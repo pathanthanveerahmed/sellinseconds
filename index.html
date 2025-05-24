@@ -690,6 +690,35 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     document.getElementById("loading-overlay").style.display = "none";
   });
 </script>
+<script>
+  document.getElementById("contact-form").addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevent default form submission
+    const form = e.target;
+    const loadingOverlay = document.getElementById("loading-overlay");
+    loadingOverlay.style.display = "flex";
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert("Form submitted successfully!");
+          form.reset();
+        } else {
+          alert("Submission failed. Please try again.");
+        }
+      })
+      .catch(() => {
+        alert("An error occurred. Please try again.");
+      })
+      .finally(() => {
+        loadingOverlay.style.display = "none"; // Always hide the overlay
+      });
+  });
+</script>
 
 </body>
 </html>
