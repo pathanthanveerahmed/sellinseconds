@@ -44,22 +44,24 @@ body {
   line-height: 1.6;
 }
 
-   header {
-  background-image: url('https://www.sellinseconds.in/hea.png'); /* <-- replace with your hosted image */
-  background-size: cover;
+header {
+  background-image: url('https://www.sellinseconds.in/hea.png');
   background-repeat: no-repeat;
-  background-position: center;
-  width: 100vw;
-  height: auto;
-  aspect-ratio: 16 / 9;
+  background-position: center top;
+  background-size: contain; /* Ensures entire image is visible */
+  background-color: #fff; /* Optional: fallback background */
+  height: auto; /* Allow height to adjust */
+  aspect-ratio: 3 / 2; /* Adjust this ratio to match your image */
+  max-width: 100%;
+  width: 100%;
+  text-align: center;
+  color: white;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 1rem;
-  margin: 0 auto;
-  color: white;
-  text-align: center;
 }
+
 
 header {
   margin: 0 auto;
@@ -384,8 +386,12 @@ h3 {
 }
 @media (max-width: 600px) {
   header {
-    aspect-ratio: 16 / 10; /* Slightly taller on mobile */
+    background-size: contain !important;
+    aspect-ratio: auto; /* Let the image resize naturally */
+    height: auto !important;
   }
+}
+
 
   .image-container.full-width img {
     object-fit: contain;
