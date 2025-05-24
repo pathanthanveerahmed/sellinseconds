@@ -654,7 +654,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
   </div>
 </footer>
 <div id="loading-overlay">
-  <img src="https://www.sellinseconds.in/images/loading.gif" alt="Loading...">
+  <img src="https://www.sellinseconds.in/loading.gif" alt="Loading...">
 </div>
 
 
