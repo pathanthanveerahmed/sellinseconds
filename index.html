@@ -44,33 +44,23 @@ body {
   line-height: 1.6;
 }
 
-header {
-  background-image: url('https://www.sellinseconds.in/hea.png');
+   header {
+  background-image: url('https://www.sellinseconds.in/hea.png'); /* <-- replace with your hosted image */
+  background-size: cover; /* make image stretch to cover header */
   background-repeat: no-repeat;
   background-position: center top;
-  background-size: contain; /* Ensures entire image is visible */
-  background-color: #fff; /* Optional: fallback background */
-  height: auto; /* Allow height to adjust */
-  aspect-ratio: 3 / 2; /* Adjust this ratio to match your image */
-  max-width: 100%;
-  width: 100%;
+  height: 200px;
   text-align: center;
   color: white;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 1rem;
-}
-
-
-header {
   margin: 0 auto;
   max-width: 100%;
 }
 
-header {
-  height: 700px; /* You can increase or decrease this */
-}
+
 .image-container {
   height: 180px; /* You can adjust this for desktop */
 }
@@ -314,21 +304,8 @@ input[type="text"].wave {
 }
 
 .image-container.full-width {
-  width: 100vw;
-  max-width: 100%;
-  margin: 0 auto 2rem;
-  overflow: hidden;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  margin-bottom: 0.5rem; /* tighter spacing below the 4th row */
 }
-
-.image-container.full-width img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
-
 
 figcaption {
   font-size: 0;
@@ -384,20 +361,19 @@ h3 {
   margin-top: 0.5rem;
   color: #ccc;
 }
+
 @media (max-width: 600px) {
   header {
-    background-size: contain !important;
-    aspect-ratio: auto; /* Let the image resize naturally */
-    height: auto !important;
+    height: 250px; /* Adjust as needed for mobile */
+    background-position: center center;
+    background-size: cover;
+  }
+
+  header h1 {
+    font-size: 1.2rem; /* Smaller heading for mobile */
+    padding: 0 1rem;
   }
 }
-
-
-  .image-container.full-width img {
-    object-fit: contain;
-  }
-}
-
 
   </style>
 </head>
@@ -410,7 +386,7 @@ h3 {
 
   <h1>Welcome to Gadget Trade-in Platform...</h1>
   <h2>Choose Your Gadget</h2>
-<h3>Fill Contact Form... No More Hassels</h3>
+<h3>Fill Contact info... No More Hassles</h3>
 
 
 
@@ -480,7 +456,7 @@ h3 {
     <button type="submit" >Submit</button>
 
   
-  <a href="https://wa.me/9886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp">
+  <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp">
 
   <img src="https://www.sellinseconds.in/whatsapp.png" loading="lazy" alt="WhatsApp">
 
