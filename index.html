@@ -518,23 +518,7 @@ h3 {
     transform: rotate(360deg);
   }
 }
-  #loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255,255,255,0.8);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
 
-  #loading-overlay img {
-    width: 80px;
-    height: 80px;
-  }
 </style>
 
 
@@ -656,7 +640,11 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
   });
 });
 </script>
-
+  <script>
+  function showLoading() {
+    document.getElementById('loading-overlay').style.display = 'flex';
+  }
+</script>
 
  <footer class="site-footer">
   <div class="footer-content">
@@ -669,97 +657,6 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
   <img src="https://www.sellinseconds.in/loading.gif" alt="Loading...">
 </div>
 
-<script>
-  document.getElementById('contact-form').addEventListener('submit', function (e) {
-    document.getElementById('loading-overlay').style.display = 'flex';
-  });
-</script>
-<div id="loading-overlay">
-  <img src="https://www.sellinseconds.in/loading.gif" alt="Loading...">
-</div>
-
-<script>
-  document.getElementById("contact-form").addEventListener("submit", function (e) {
-    e.preventDefault(); // Prevent default form submission
-    const form = e.target;
-    const loadingOverlay = document.getElementById("loading-overlay");
-    loadingOverlay.style.display = "flex";
-
-    const formData = new FormData(form);
-
-    fetch(form.action, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (response.ok) {
-          alert("Form submitted successfully!");
-          form.reset();
-        } else {
-          alert("Submission failed. Please try again.");
-        }
-      })
-      .catch(() => {
-        alert("An error occurred. Please try again.");
-      })
-      .finally(() => {
-        loadingOverlay.style.display = "none"; // Always hide the overlay
-      });
-  });
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("contact-form");
-  const interestInput = document.getElementById("interest");
-
-  // Capture selected image category
-  document.querySelectorAll(".image-container").forEach(container => {
-    container.addEventListener("click", () => {
-      document.querySelectorAll(".image-container").forEach(c => c.classList.remove("selected"));
-      container.classList.add("selected");
-      const caption = container.querySelector("figcaption");
-      interestInput.value = caption ? caption.textContent.trim() : "";
-    });
-  });
-
-  form.addEventListener("submit", function (e) {
-    // Prevent default submission
-    e.preventDefault();
-
-    // Validate: name, mobile, and selection
-    const name = document.getElementById("name").value.trim();
-    const mobile = document.getElementById("mobile").value.trim();
-    const interest = interestInput.value.trim();
-
-    if (!name || !mobile || !interest) {
-      alert("Please fill all fields and select a gadget.");
-      return;
-    }
-
-    // Show loading overlay (optional)
-    const overlay = document.getElementById("loading-overlay");
-    if (overlay) overlay.style.display = "flex";
-
-    // Submit via fetch
-    fetch(form.action, {
-      method: "POST",
-      body: new FormData(form),
-    })
-      .then(response => {
-        if (overlay) overlay.style.display = "none";
-        alert("Form submitted successfully!");
-        form.reset();
-        document.querySelectorAll(".image-container").forEach(c => c.classList.remove("selected"));
-        interestInput.value = "";
-      })
-      .catch(error => {
-        if (overlay) overlay.style.display = "none";
-        alert("Something went wrong. Please try again.");
-        console.error("Submission error:", error);
-      });
-  });
-});
-</script>
 
 </body>
 </html>
