@@ -8,7 +8,7 @@
   <meta name="author" content="Sell In Seconds">
   <meta property="og:title" content="Sell in Seconds">
   <meta property="og:description" content="Trade in your gadgets in just two steps!">
-  <meta property="og:image" content="https://www.sellinseconds.in/header.png" loading="lazy">
+  <meta property="og:image" content="https://www.sellinseconds.in/hea.png" loading="lazy">
   <meta property="og:url" content="https://www.sellinseconds.in">
   <meta name="robots" content="index, follow">
   <title>Sell in Seconds</title>
@@ -44,22 +44,22 @@ body {
   line-height: 1.6;
 }
 
-header {
-  background-image: url('https://www.sellinseconds.in/header.png');
-  background-repeat: no-repeat;
-  background-position: center top;
+   header {
+  background-image: url('https://www.sellinseconds.in/hea.png'); /* <-- replace with your hosted image */
   background-size: cover;
-  background-color: #fff;
-  height: 300px; /* Adjust based on image height ratio */
-  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100vw;
+  height: auto;
+  aspect-ratio: 16 / 9;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 1rem;
+  margin: 0 auto;
+  color: white;
   text-align: center;
 }
-
-
 
 header {
   margin: 0 auto;
@@ -382,19 +382,10 @@ h3 {
   margin-top: 0.5rem;
   color: #ccc;
 }
-header {
-  height: 700px;
-}
 @media (max-width: 600px) {
   header {
-    background-size: 300% auto !important;
-    height: 2100px !important;
+    aspect-ratio: 16 / 10; /* Slightly taller on mobile */
   }
-}
-
-}
-
-
 
   .image-container.full-width img {
     object-fit: contain;
