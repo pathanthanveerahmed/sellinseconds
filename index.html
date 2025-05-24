@@ -60,14 +60,7 @@ body {
   max-width: 100%;
 }
 
-header {
-  margin: 0 auto;
-  max-width: 100%;
-}
 
-header {
-  height: 700px; /* You can increase or decrease this */
-}
 .image-container {
   height: 180px; /* You can adjust this for desktop */
 }
@@ -369,6 +362,18 @@ h3 {
   color: #ccc;
 }
 
+@media (max-width: 600px) {
+  header {
+    height: 250px; /* Adjust as needed for mobile */
+    background-position: center center;
+    background-size: cover;
+  }
+
+  header h1 {
+    font-size: 1.2rem; /* Smaller heading for mobile */
+    padding: 0 1rem;
+  }
+}
 
   </style>
 </head>
