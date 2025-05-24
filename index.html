@@ -707,6 +707,59 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
       });
   });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("contact-form");
+  const interestInput = document.getElementById("interest");
+
+  // Capture selected image category
+  document.querySelectorAll(".image-container").forEach(container => {
+    container.addEventListener("click", () => {
+      document.querySelectorAll(".image-container").forEach(c => c.classList.remove("selected"));
+      container.classList.add("selected");
+      const caption = container.querySelector("figcaption");
+      interestInput.value = caption ? caption.textContent.trim() : "";
+    });
+  });
+
+  form.addEventListener("submit", function (e) {
+    // Prevent default submission
+    e.preventDefault();
+
+    // Validate: name, mobile, and selection
+    const name = document.getElementById("name").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const interest = interestInput.value.trim();
+
+    if (!name || !mobile || !interest) {
+      alert("Please fill all fields and select a gadget.");
+      return;
+    }
+
+    // Show loading overlay (optional)
+    const overlay = document.getElementById("loading-overlay");
+    if (overlay) overlay.style.display = "flex";
+
+    // Submit via fetch
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+    })
+      .then(response => {
+        if (overlay) overlay.style.display = "none";
+        alert("Form submitted successfully!");
+        form.reset();
+        document.querySelectorAll(".image-container").forEach(c => c.classList.remove("selected"));
+        interestInput.value = "";
+      })
+      .catch(error => {
+        if (overlay) overlay.style.display = "none";
+        alert("Something went wrong. Please try again.");
+        console.error("Submission error:", error);
+      });
+  });
+});
+</script>
 
 </body>
 </html>
