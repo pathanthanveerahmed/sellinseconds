@@ -3,18 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sell your gadgets in seconds. Fast, easy, and reliable way to trade in your gadgets like mobile phones, laptops, and tablets etc.">
-    <meta name="keywords" content="sell gadgets, trade-in phones, sell mobile, used phones, sell laptops">
+    <meta name="description" content="Sell your gadgets in seconds. Fast, easy, and reliable way to trade in your gadgets like mobile phones, laptops, and tablets etc. Get instant quotes and quick pickup.">
+    <meta name="keywords" content="sell gadgets, trade-in phones, sell mobile, used phones, sell laptops, sell tablets, sell smartwatches, gadget repair, buy used gadgets, electronics trade-in">
     <meta name="author" content="Sell In Seconds">
-    <meta property="og:title" content="Sell in Seconds">
-    <meta property="og:description" content="Trade in your gadgets in just two steps!">
+    <meta property="og:title" content="Sell in Seconds - Fast Gadget Trade-in & Repair">
+    <meta property="og:description" content="Trade in your gadgets in just two steps! Get instant quotes for mobiles, laptops, tablets, and more. Also offering gadget repair and sales.">
     <meta property="og:image" content="https://www.sellinseconds.in/aicrop.jpg" loading="lazy">
     <meta property="og:url" content="https://www.sellinseconds.in">
     <meta name="robots" content="index, follow">
-    <title>Sell in Seconds</title>
+    <title>Sell in Seconds - Sell, Buy, & Repair Gadgets Instantly</title>
     <link rel="icon" type="image/x-icon" href="https://www.sellinseconds.in/fevicon.ico">
     <link rel="canonical" href="https://www.sellinseconds.in">
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Sell In Seconds",
+      "url": "https://www.sellinseconds.in",
+      "logo": "https://www.sellinseconds.in/fevicon.ico",
+      "image": "https://www.sellinseconds.in/aicrop.jpg",
+      "description": "Sell your gadgets in seconds. Fast, easy, and reliable way to trade in your gadgets like mobile phones, laptops, and tablets etc. Get instant quotes and quick pickup.",
+      "telephone": "+919886566379",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ITPL Main Road", /* IMPORTANT: Fill in your actual street address */
+        "addressLocality": "Bangalore",          /* IMPORTANT: Fill in your actual city */
+        "addressRegion": "Karnataka",     /* IMPORTANT: Fill in your actual state/region */
+        "postalCode": "560048",       /* IMPORTANT: Fill in your actual postal code */
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+919886566379",
+        "contactType": "Customer Service",
+        "areaServed": "India", /* Adjust if you serve a specific city/region */
+        "availableLanguage": ["en", "hi"] /* Adjust if you support other languages */
+      },
+      "potentialAction": {
+        "@type": "SellAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.sellinseconds.in/#contact-form"
+        },
+        "query-input": "required name=gadgetInterest"
+      }
+    }
+    </script>
     <style>
         :root {
             --primary: #0071e3;
@@ -311,13 +346,17 @@
             color: #ccc;
         }
 
-   #whatsapp-icon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    transition: transform 0.3s ease;
-    z-index: 1000;
-}
+        #whatsapp-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            /* Removed: background-color: #25d366; */
+            /* Removed: padding: 10px; */
+            /* Removed: border-radius: 50%; */
+            /* Removed box-shadow */
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
 
         #whatsapp-icon img {
             width: 50px;
@@ -465,81 +504,80 @@
 </head>
 <body>
     <header class="header">
-        <img src="https://www.sellinseconds.in/aicrop.jpg" alt="Header Image" class="header-image" loading="lazy">
+        <img src="https://www.sellinseconds.in/aicrop.jpg" alt="Header Image: Sell or Trade-in your gadgets now" class="header-image" loading="lazy">
         <h1 class="header-title">Trade Your Gadget in Seconds⏱️</h1>
     </header>
 
-    <h1>Welcome to Gadget Trade-in Platform...</h1>
-    <h2>Choose Your Gadget</h2>
-    <h3>Fill Contact info... No More Hassles</h3>
+    <main> <h1>Welcome to Gadget Trade-in Platform...</h1>
+        <h2>Choose Your Gadget to Sell, Buy, or Repair</h2>
+        <h3>Fill Contact info... No More Hassles</h3>
 
-    <div class="image-grid">
-        <div class="image-grid-row1-row2">
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/phone.png" loading="lazy" alt="Mobile Phone">
-                <figcaption>Mobile Phone</figcaption>
+        <div class="image-grid">
+            <div class="image-grid-row1-row2">
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/phone.png" loading="lazy" alt="Sell Mobile Phone - Instant Quote">
+                    <figcaption>Mobile Phone</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/laptop.png" loading="lazy" alt="Sell Laptop or MacBook - Best Price">
+                    <figcaption>Laptop or MacBook</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/allinone.png" loading="lazy" alt="Sell iMac or All in One PC">
+                    <figcaption>iMac or All in One</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/tablet.png" loading="lazy" alt="Sell Tablet or iPad">
+                    <figcaption>Tablet</figcaption>
+                </figure>
+            </div>
+
+            <div class="image-grid-row1-row2">
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/accessories.png" loading="lazy" alt="Sell Gadget Accessories">
+                    <figcaption>Accessories</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/watch.png" loading="lazy" alt="Sell Smart Watch or Apple Watch">
+                    <figcaption>Smart Watch</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/earbuds.png" loading="lazy" alt="Sell Earbuds or AirPods">
+                    <figcaption>Earbuds</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/gamingconsole.png" loading="lazy" alt="Sell Gaming Console - Xbox Playstation">
+                    <figcaption>Gaming Console</figcaption>
+                </figure>
+            </div>
+
+            <figure class="image-container full-width">
+                <img src="https://www.sellinseconds.in/buy.png" loading="lazy" alt="Buy Refurbished Gadgets - Quality Checked">
+                <figcaption>Buying gadget</figcaption>
             </figure>
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/laptop.png" loading="lazy" alt="Laptop or MacBook">
-                <figcaption>Laptop or MacBook</figcaption>
-            </figure>
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/allinone.png" loading="lazy" alt="iMac or All in One">
-                <figcaption>iMac or All in One</figcaption>
-            </figure>
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/tablet.png" loading="lazy" alt="Tablet">
-                <figcaption>Tablet</figcaption>
+
+            <figure class="image-container full-width">
+                <img src="https://www.sellinseconds.in/repair.png" loading="lazy" alt="Gadget Repair Services - Mobile, Laptop, Tablet">
+                <figcaption>Servicing gadget</figcaption>
             </figure>
         </div>
 
-        <div class="image-grid-row1-row2">
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/accessories.png" loading="lazy" alt="Accessories">
-                <figcaption>Accessories</figcaption>
-            </figure>
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/watch.png" loading="lazy" alt="Smart Watch">
-                <figcaption>Smart Watch</figcaption>
-            </figure>
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/earbuds.png" loading="lazy" alt="Earbuds">
-                <figcaption>Earbuds</figcaption>
-            </figure>
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/gamingconsole.png" loading="lazy" alt="Gaming Console">
-                <figcaption>Gaming Console</figcaption>
-            </figure>
+        <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
+            <h2>Contact Me for Gadget Services</h2>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
+            <input type="hidden" id="interest" name="interest">
+            <button type="submit" aria-label="Submit your contact information">Submit</button>
+
+            <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp">
+                <img src="https://www.sellinseconds.in/whatsapp.png" loading="lazy" alt="WhatsApp Chat Icon">
+            </a>
+        </form>
+
+        <div class="disclaimer">
+            Disclaimer: We buy genuine products only. Identity Proof is mandatory. Payment will be done post diagnosis cum agreement of deal. Pick up will be done at your home or work location only. Roadside meeting is not allowed.
         </div>
-
-        <figure class="image-container full-width">
-            <img src="https://www.sellinseconds.in/buy.png" loading="lazy" alt="Buying gadget">
-            <figcaption>Buying gadget</figcaption>
-        </figure>
-
-        <figure class="image-container full-width">
-            <img src="https://www.sellinseconds.in/repair.png" loading="lazy" alt="Servicing gadget">
-            <figcaption>Servicing gadget</figcaption>
-        </figure>
-    </div>
-
-    <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
-        <h2>Contact Me</h2>
-        <input type="text" id="name" name="name" placeholder="Your Name" required>
-        <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
-        <input type="hidden" id="interest" name="interest">
-        <button type="submit" >Submit</button>
-
-        <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp">
-            <img src="https://www.sellinseconds.in/whatsapp.png" loading="lazy" alt="WhatsApp">
-        </a>
-    </form>
-
-    <div class="disclaimer">
-        Disclaimer: We buy genuine products only. Identity Proof is mandatory. Payment will be done post diagnosis cum agreement of deal. Pick up will be done at your home or work location only. Roadside meeting is not allowed.
-    </div>
-
-    <script>
+    </main> <script>
         const containers = document.querySelectorAll('.image-container');
         const nameInput = document.getElementById('name');
         const interestInput = document.getElementById('interest');
@@ -555,15 +593,16 @@
                 interestInput.value = description;
 
                 let message;
-                if (index <= 7) {
-                    message = `Thank you for your interest in selling ${description}`;
-                } else if (index === 8) {
-                    message = `Thank you for your interest in buying a gadget, we will WhatsApp you all the available models`;
-                } else if (index === 9) {
-                    message = `Thank you for your interest in servicing your gadget with us, we will get in touch with you at the earliest`;
+                if (index <= 7) { // Selling categories
+                    message = `Thank you for your interest in selling ${description.replace('Sell ', '').replace(' - Instant Quote', '').replace(' - Best Price', '')}.`;
+                } else if (index === 8) { // Buying gadget
+                    message = `Thank you for your interest in buying a gadget. We will WhatsApp you all the available models.`;
+                } else if (index === 9) { // Servicing gadget
+                    message = `Thank you for your interest in servicing your gadget with us. We will get in touch with you at the earliest.`;
                 } else {
-                    message = `Thank you for your interest in ${description}`;
+                    message = `Thank you for your interest in ${description}.`;
                 }
+
 
                 if (synth.speaking) {
                     synth.cancel();
@@ -606,7 +645,7 @@
 
             // Check if all fields are filled
             if (!name || !mobile || !interest) {
-                alert("Please select a product and fill out all fields");
+                alert("Please select a product/service and fill out all fields.");
                 return;
             }
 
@@ -636,8 +675,10 @@
                 body: formBody.toString()
             })
             .then(() => {
-                alert("Form submitted successfully!");
+                alert("Form submitted successfully! We will contact you soon.");
                 form.reset(); // Reset the form after successful submission
+                // Deselect any selected image container
+                document.querySelectorAll('.image-container.selected').forEach(c => c.classList.remove('selected'));
             })
             .catch(error => {
                 console.error("Error:", error.message);
