@@ -67,19 +67,19 @@
             z-index: 1;
         }
 
-        header h1 {
-            position: relative;
-            z-index: 2;
-            font-size: 3rem;
-            font-weight: 700;
-            color: white; /* Set color to white for desktop */
-            text-shadow: 1px 1px 8px rgba(0,0,0,0.8); /* Stronger text shadow for readability */
-            width: 90%;
-            text-align: center;
-            line-height: 1.2;
-            margin-top: 15px; /* Add some top margin to push it down */
-            padding: 0; /* Ensure no internal padding */
-        }
+     header h1 {
+           position: relative;
+           z-index: 2;
+           font-size: 3rem;
+           font-weight: 700;
+           color: white; /* Set color to white for desktop */
+           text-shadow: 1px 1px 8px rgba(0,0,0,0.8); /* Stronger text shadow for readability */
+           width: 90%;
+           text-align: center;
+           line-height: 1.2;
+           margin-top: 30px; /* Increased top margin */
+           padding: 0; /* Ensure no internal padding */
+       }
 
         .image-container {
             height: 180px; /* You can adjust this for desktop */
@@ -372,22 +372,53 @@
                 width: 100%;
             }
 
-            header h1 {
-                font-size: 1.3rem;
-                position: relative;
-                bottom: unset;
-                left: unset;
-                transform: none;
-                width: 90%;
-                text-align: center;
-                background-color: transparent; /* Make the background transparent */
-                padding: 0.2em 0.5em; /* Keep padding for visual spacing if needed */
-                border-radius: 5px; /* Keep border-radius if you like the rounded corners */
-                margin-top: 10px; /* Add some top margin to push it down */
-                color: white; /* Set the text color to white */
-                text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* Add a slight text shadow for better readability on the image */
-                z-index: 2;
-            }
+      header h1 {
+               font-size: 1.3rem;
+               position: relative;
+               bottom: unset;
+               left: unset;
+               transform: none;
+               width: 90%;
+               text-align: center;
+               background-color: transparent; /* Make the background transparent */
+               padding: 0.2em 0.5em; /* Keep padding for visual spacing if needed */
+               border-radius: 5px; /* Keep border-radius if you like the rounded corners */
+               margin-top: 25px; /* Increased top margin */
+               color: white; /* Set the text color to white */
+               text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* Add a slight text shadow for better readability on the image */
+               z-index: 2;
+           }
+
+           h1:first-of-type {
+               margin-top: 0;
+               padding-top: 1rem;
+           }
+
+           .image-grid-row1-row2 {
+               grid-template-columns: repeat(2, 1fr);
+               gap: 1rem;
+           }
+
+           .image-container {
+               width: 100%;
+               height: auto;
+               margin: 0;
+               padding: 2px;
+           }
+
+           .image-container img {
+               width: 100%;
+               height: auto;
+               object-fit: cover;
+               border-radius: 6px;
+           }
+
+           /* Hide figcaption in portrait mode on mobile */
+           @media (orientation: portrait) {
+               figcaption {
+                   display: none;
+               }
+           }
 
             h1:first-of-type {
                 margin-top: 0;
@@ -449,16 +480,16 @@
                 object-position: center center; /* Keep the image centered */
             }
 
-            header h1 {
-                font-size: 1.5rem; /* Slightly larger for landscape, adjust as needed */
-                position: relative;
-                bottom: unset;
-                left: unset;
-                transform: none;
-                color: white; /* Ensure white color for landscape */
-                text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* Add shadow for readability */
-                margin-top: 5px; /* Add some top margin to push it down */
-            }
+         header h1 {
+               font-size: 1.5rem; /* Slightly larger for landscape, adjust as needed */
+               position: relative;
+               bottom: unset;
+               left: unset;
+               transform: none;
+               color: white; /* Ensure white color for landscape */
+               text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* Add shadow for readability */
+               margin-top: 15px; /* Increased top margin */
+           }
         }
     </style>
 </head>
