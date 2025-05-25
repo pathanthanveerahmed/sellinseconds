@@ -359,11 +359,11 @@
                 width: 100%;
                 padding: 0;
                 display: block;
-                background-color: #f5f5f7; /* Background remains for visual fill */
+                background-color: #f5f5f7; /* Background for letterboxing if image aspect ratio doesn't fill */
             }
 
             .header-image {
-                object-fit: cover; /* Changed to cover for mobile */
+                object-fit: contain; /* Reverted to contain for mobile */
                 position: absolute;
                 top: 0;
                 left: 0;
