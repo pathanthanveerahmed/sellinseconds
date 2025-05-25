@@ -11,9 +11,12 @@
     <meta property="og:image" content="https://www.sellinseconds.in/aicrop.jpg" loading="lazy">
     <meta property="og:url" content="https://www.sellinseconds.in">
     <meta name="robots" content="index, follow">
-    <title>Sell in Seconds - Sell, Buy, & Repair Gadgets Instantly</title>
-    <link rel="icon" type="image/x-icon" href="https://www.sellinseconds.in/fevicon.ico">
+    <title>Sell, Buy, & Repair Gadgets Instantly - Sell In Seconds</title> <link rel="icon" type="image/x-icon" href="https://www.sellinseconds.in/fevicon.ico">
     <link rel="canonical" href="https://www.sellinseconds.in">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
     <script type="application/ld+json">
     {
@@ -27,10 +30,10 @@
       "telephone": "+919886566379",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "ITPL Main Road", /* IMPORTANT: Fill in your actual street address */
-        "addressLocality": "Bangalore",          /* IMPORTANT: Fill in your actual city */
-        "addressRegion": "Karnataka",     /* IMPORTANT: Fill in your actual state/region */
-        "postalCode": "560048",       /* IMPORTANT: Fill in your actual postal code */
+        "streetAddress": "ITPL Main Road", /* IMPORTANT: Fill in your actual street address for Local SEO */
+        "addressLocality": "Bangalore",          /* IMPORTANT: Fill in your actual city for Local SEO */
+        "addressRegion": "Karnataka",     /* IMPORTANT: Fill in your actual state/region for Local SEO */
+        "postalCode": "560048",       /* IMPORTANT: Fill in your actual postal code for Local SEO */
         "addressCountry": "IN"
       },
       "contactPoint": {
@@ -53,43 +56,70 @@
     <style>
         :root {
             --primary: #0071e3;
+            --primary-dark: #005bb5; /* Added for hover states */
             --text-color: #1d1d1f;
-            --background: #f5f5f7;
+            --background: linear-gradient(to bottom, #e0f7fa, #cfe9f5); /* Subtle gradient for background */
             --form-bg: #fff;
             --radius: 16px;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12); /* Added for hover states */
         }
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            /* Using Open Sans for general text, Montserrat for headings */
+            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         }
 
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
-            overflow-x: hidden; /* Prevent horizontal scroll from minor layout shifts */
+            overflow-x: hidden;
         }
 
         body {
-            background: #e0f7fa; /* Changed from var(--background) to a light blue-grey */
+            background: var(--background);
             color: var(--text-color);
-            line-height: 1.6;
-            /* Added padding-top to account for the fixed header's height on desktop */
-            padding-top: 400px; /* Matches desktop header's min-height */
+            line-height: 1.7; /* Increased line-height for better readability */
+            padding-top: 400px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif; /* Applied Montserrat to headings */
+            text-align: center;
+            color: var(--text-color); /* Ensure heading color matches */
+        }
+
+        h1 {
+            font-size: 2.8rem; /* Adjusted size for main h1 */
+            font-weight: 700;
+            margin-bottom: 1.5rem; /* Added margin */
+        }
+
+        h2 {
+            font-size: 2.2rem; /* Adjusted size for h2 */
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.6rem; /* Adjusted size for h3 */
+            font-weight: 500;
+            margin-bottom: 2rem;
+            color: #555; /* Slightly muted for less prominence than h1/h2 */
         }
 
         header {
-            position: fixed; /* Header is fixed at the top */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            min-height: 400px; /* Desktop height */
+            min-height: 400px;
             overflow: hidden;
             background-color: #f5f5f7;
-            z-index: 1000; /* Ensure header stays on top of other content */
+            z-index: 1000;
         }
 
         .header-image {
@@ -102,50 +132,61 @@
             z-index: 1;
         }
 
-        header h1 {
-            position: absolute; /* Position relative to the fixed header */
-            bottom: 20px; /* Place 20px from the bottom of the header */
+        header .header-title { /* Changed to .header-title for clarity */
+            position: absolute;
+            bottom: 30px; /* Slightly higher */
             left: 50%;
-            transform: translateX(-50%); /* Center horizontally */
-            z-index: 2; /* Ensure it's above the image */
-            font-size: 3rem;
+            transform: translateX(-50%);
+            z-index: 2;
+            font-size: 3.5rem; /* Slightly larger */
             font-weight: 700;
             color: white;
-            text-shadow: 1px 1px 8px rgba(0,0,0,0.8);
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.8); /* Stronger shadow */
             width: 90%;
             text-align: center;
             line-height: 1.2;
             margin: 0;
             padding: 0;
+            max-width: 900px; /* Constrain width on very large screens */
         }
 
-        .image-container {
-            height: 180px;
+        .hero-intro { /* New section for expanded introductory text */
+            max-width: 900px;
+            margin: 3rem auto 2rem auto;
+            padding: 0 1.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
         }
-        form {
-            padding: 3rem 2rem;
+        .hero-intro h1 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark); /* Highlight main title */
         }
-        #whatsapp-icon img {
-            width: 50px;
-            height: 50px;
+        .hero-intro p {
+            margin-bottom: 1rem;
         }
 
         .image-grid {
             max-width: 1200px;
-            margin: auto;
-            padding: 3rem 1rem;
+            margin: 3rem auto; /* Adjusted margin */
+            padding: 0 1rem; /* Adjusted padding */
             display: flex;
             flex-direction: column;
-            gap: 2.5rem;
+            gap: 2rem; /* Reduced gap between rows */
         }
-        .image-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
+
+        /* Grid Layout for Row 1 and Row 2 */
+        .image-grid-row1-row2 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem; /* Adjusted gap between images */
+            width: 100%;
+            margin-bottom: 0.5rem;
         }
+
         .image-container {
-            width: 180px;
+            width: 100%;
             height: 180px;
             border-radius: var(--radius);
             overflow: hidden;
@@ -160,9 +201,11 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
+            padding: 10px; /* Add some padding around images within container */
         }
         .image-container:hover {
-            transform: scale(1.05);
+            transform: scale(1.03); /* Slightly less aggressive zoom on hover */
+            box-shadow: var(--shadow-hover); /* More prominent shadow on hover */
         }
         .image-container.selected {
             animation: zoomInOut 0.6s ease-in-out;
@@ -171,7 +214,7 @@
         }
         @keyframes zoomInOut {
             0% { transform: scale(1); }
-            50% { transform: scale(1.25); }
+            50% { transform: scale(1.15); } /* Slightly less aggressive zoom */
             100% { transform: scale(1); }
         }
         .image-container.selected::after {
@@ -188,11 +231,26 @@
             align-items: center;
             justify-content: center;
             font-size: 1.1rem;
+            z-index: 5; /* Ensure checkmark is on top */
         }
+
+        .image-container.full-width {
+            margin-bottom: 0.5rem;
+        }
+
+        figcaption {
+            font-size: 0; /* Hidden by default for desktop, controlled by media query for mobile */
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
         form {
             background: var(--form-bg);
             max-width: 600px;
-            margin: 0.5rem auto; /* Changed from 2rem auto to 0.5rem auto */
+            margin: 1.5rem auto 3rem auto; /* Adjusted margins for contact form */
             padding: 3rem 2rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
@@ -200,8 +258,9 @@
         form h2 {
             text-align: center;
             font-size: 2rem;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 2.5rem;
+            color: var(--primary-dark);
         }
         input, select, textarea {
             width: 100%;
@@ -211,12 +270,12 @@
             border-radius: var(--radius);
             font-size: 1rem;
             background: #fafafa;
-            transition: box-shadow 0.4s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Added transition */
             box-sizing: border-box;
         }
         input:focus, select:focus, textarea:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 10px rgba(0,113,227,0.3);
+            box-shadow: 0 0 10px rgba(0,113,227,0.2); /* Softer shadow */
             outline: none;
         }
         button {
@@ -229,14 +288,22 @@
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added transitions */
+            box-shadow: var(--shadow);
         }
         button:hover {
-            background: #005bb5;
+            background: var(--primary-dark);
+            transform: translateY(-3px); /* Lift effect */
+            box-shadow: var(--shadow-hover); /* More prominent shadow */
         }
+        button:active {
+            transform: translateY(0); /* Press down effect */
+            box-shadow: var(--shadow);
+        }
+
         .disclaimer {
             max-width: 700px;
-            margin: 4rem auto;
+            margin: 4rem auto 6rem auto; /* Adjusted margins for disclaimer */
             padding: 1.5rem;
             font-size: 0.9rem;
             color: #555;
@@ -252,7 +319,7 @@
                 box-shadow: 0 0 0 0 rgba(0,113,227, 0.7);
             }
             70% {
-                transform: scale(1.05);
+                transform: scale(1.03); /* Slightly less aggressive pulse */
                 box-shadow: 0 0 0 10px rgba(0,113,227, 0);
             }
             100% {
@@ -264,67 +331,10 @@
             animation: wavePulse 0.8s ease-out;
         }
 
-        /* Grid Layout for Row 1 and Row 2 */
-        .image-grid-row1-row2 {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2.5rem;
-            width: 100%;
-            margin-bottom: 0.5rem; /* Changed from 2.5rem to 0.5rem */
-        }
-
-        /* General Image Container Style */
-        .image-container {
-            width: 100%;
-            height: 180px;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            background: white;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .image-container.full-width {
-            margin-bottom: 0.5rem;
-        }
-
-        figcaption {
-            font-size: 0;
-            height: 0;
-            overflow: hidden;
-            visibility: hidden;
-            margin: 0;
-            padding: 0;
-        }
-
-
-        .image-container:hover {
-            transform: scale(1.05);
-        }
-        .image-grid-row1-row2 + .image-grid-row1-row2 {
-            margin-top: 2rem;
-        }
-        .full-width {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto 2.5rem;
-        }
-        h1, h2, h3 {
-            text-align: center;
-        }
         .site-footer {
             background-color: #1d1d1f;
             color: #f5f5f7;
-            padding: 2rem 1rem;
+            padding: 2.5rem 1rem; /* Increased padding */
             text-align: center;
             font-size: 0.95rem;
             box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
@@ -333,16 +343,18 @@
 
         .site-footer a {
             color: #f5f5f7;
-            text-decoration: underline;
+            text-decoration: none; /* No underline by default */
+            transition: color 0.3s ease, text-decoration 0.3s ease;
         }
 
         .site-footer a:hover {
             color: var(--primary);
+            text-decoration: underline; /* Underline on hover */
         }
 
         .site-footer .small-text {
             font-size: 0.85rem;
-            margin-top: 0.5rem;
+            margin-top: 0.8rem; /* Adjusted margin */
             color: #ccc;
         }
 
@@ -350,22 +362,18 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            /* Removed: background-color: #25d366; */
-            /* Removed: padding: 10px; */
-            /* Removed: border-radius: 50%; */
-            /* Removed box-shadow */
             transition: transform 0.3s ease;
             z-index: 1000;
         }
 
         #whatsapp-icon img {
-            width: 50px;
-            height: 50px;
+            width: 55px; /* Slightly larger WhatsApp icon */
+            height: 55px;
             object-fit: contain;
         }
 
         #whatsapp-icon:hover {
-            transform: scale(1.1);
+            transform: scale(1.15); /* More prominent hover effect */
         }
 
         #loading-overlay {
@@ -395,88 +403,112 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             body {
-                /* Adjust padding-top for the mobile header height */
-                padding-top: 180px; /* Matches mobile header's min-height */
+                padding-top: 180px;
+                line-height: 1.6; /* Adjust line height for mobile */
             }
+            h1 {
+                font-size: 2rem; /* Adjusted mobile h1 size */
+            }
+            h2 {
+                font-size: 1.8rem; /* Adjusted mobile h2 size */
+            }
+            h3 {
+                font-size: 1.3rem; /* Adjusted mobile h3 size */
+            }
+            .hero-intro {
+                font-size: 0.95rem; /* Smaller text for mobile intro */
+                margin-top: 2rem;
+            }
+
             header {
                 min-height: 180px;
                 height: auto;
             }
 
             .header-image {
-                object-fit: cover;
                 object-position: 50% 30%;
                 height: 100%;
                 width: 100%;
             }
 
-            header h1 {
-                font-size: 1.3rem;
-                position: absolute;
-                bottom: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 90%;
-                text-align: center;
-                background-color: transparent;
-                padding: 0.2em 0.5em;
-                border-radius: 5px;
-                margin: 0;
-                color: white;
-                text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-                z-index: 2;
+            header .header-title {
+                font-size: 1.5rem; /* Adjusted mobile header title size */
+                bottom: 15px;
+                width: 95%; /* More width on mobile */
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+            }
+
+            .image-grid {
+                padding: 1.5rem 0.8rem; /* Reduced padding for mobile grid */
+                gap: 1.5rem; /* Reduced gap between rows for mobile */
             }
 
             .image-grid-row1-row2 {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
+                grid-template-columns: repeat(2, 1fr); /* Back to 2 columns for better mobile usability */
+                gap: 0.8rem; /* Reduced gap between images for mobile */
             }
 
             .image-container {
-                width: 100%;
-                height: auto;
-                margin: 0;
-                padding: 2px;
+                height: 120px; /* Adjusted image container height for mobile */
+                padding: 5px; /* Reduced internal padding for mobile images */
             }
 
             .image-container img {
-                width: 100%;
-                height: auto;
-                object-fit: cover;
-                border-radius: 6px;
+                padding: 0; /* Remove internal padding on mobile images if container padding is enough */
             }
 
-            /* Hide figcaption in portrait mode on mobile */
+            /* Display figcaption for mobile portrait */
             @media (orientation: portrait) {
                 figcaption {
-                    display: none;
+                    font-size: 0.75rem; /* Readable font size for mobile figcaption */
+                    color: #444;
+                    text-align: center;
+                    margin-top: 4px;
+                    height: auto;
+                    overflow: visible;
+                    visibility: visible;
+                    display: block;
+                    white-space: normal; /* Allow text to wrap if necessary */
+                    text-overflow: clip; /* No ellipsis, let it wrap or truncate naturally */
+                    line-height: 1.2;
                 }
             }
 
-            figcaption {
-                font-size: 0.8rem;
-                color: #444;
-                text-align: center;
-                margin-top: 4px;
-                height: auto;
-                overflow: visible;
-                visibility: visible;
+            form {
+                padding: 2rem 1.2rem;
+                margin: 1.5rem auto 2rem auto; /* Adjusted mobile form margins */
             }
 
-            form {
-                padding: 2rem 1rem;
+            input, select, textarea {
+                margin-bottom: 1.5rem; /* Reduced margin bottom for mobile inputs */
+                padding: 0.8rem 1rem;
+            }
+
+            button {
+                padding: 0.9rem;
+                font-size: 1rem;
+            }
+
+            .disclaimer {
+                margin: 2rem auto 4rem auto; /* Adjusted mobile disclaimer margins */
+                padding: 1rem;
+                font-size: 0.8rem;
             }
 
             #whatsapp-icon {
                 bottom: 15px;
                 right: 15px;
             }
+            #whatsapp-icon img {
+                width: 45px; /* Smaller WhatsApp icon for mobile */
+                height: 45px;
+            }
         }
 
         /* --- Landscape Orientation Specific Styles (Tablets too if under 991px) --- */
         @media (max-width: 991px) and (orientation: landscape) {
             body {
-                padding-top: 180px; /* Adjust padding-top for the landscape header height */
+                padding-top: 180px;
             }
             header {
                 height: 180px;
@@ -488,29 +520,38 @@
                 object-position: center center;
             }
 
-            header h1 {
-                font-size: 1.5rem;
-                position: absolute;
+            header .header-title {
+                font-size: 2rem; /* Adjusted landscape header title size */
                 bottom: 15px;
-                left: 50%;
-                transform: translateX(-50%);
                 color: white;
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
                 margin: 0;
                 padding: 0;
+            }
+            .image-grid-row1-row2 {
+                grid-template-columns: repeat(4, 1fr); /* Keep 4 columns for landscape tablets */
+                gap: 1.5rem;
+            }
+             .image-container {
+                height: 150px; /* Adjusted image height for landscape tablets */
             }
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <img src="https://www.sellinseconds.in/aicrop.jpg" alt="Header Image: Sell or Trade-in your gadgets now" class="header-image" loading="lazy">
+        <img src="https://www.sellinseconds.in/aicrop.jpg" alt="Dynamic header image showing various gadgets being sold or repaired" class="header-image" loading="lazy">
         <h1 class="header-title">Trade Your Gadget in Seconds⏱️</h1>
     </header>
 
-    <main> <h1>Welcome to Gadget Trade-in Platform...</h1>
-        <h2>Choose Your Gadget to Sell, Buy, or Repair</h2>
-        <h3>Fill Contact info... No More Hassles</h3>
+    <main>
+        <section class="hero-intro">
+            <h1>Your Ultimate Platform to **Sell, Buy, & Repair Gadgets Instantly**</h1>
+            <p>At Sell In Seconds, we make trading in your old electronics incredibly easy and rewarding. Whether you're looking to **sell your mobile phone**, **trade in your laptop**, or get a **quick repair** for your tablet, we offer seamless service right to your doorstep. Get an instant quote and experience a hassle-free process today!</p>
+
+            <h2>Choose the Gadget Service You Need</h2>
+            <p>From **used iPhones** to **MacBook trade-ins** and **smartwatch repairs**, find your gadget below and let us handle the rest. No more endless searching – just simple, straightforward solutions for all your electronic needs.</p>
+        </section>
 
         <div class="image-grid">
             <div class="image-grid-row1-row2">
@@ -520,15 +561,15 @@
                 </figure>
                 <figure class="image-container">
                     <img src="https://www.sellinseconds.in/laptop.png" loading="lazy" alt="Sell Laptop or MacBook - Best Price">
-                    <figcaption>Laptop or MacBook</figcaption>
+                    <figcaption>Laptop / MacBook</figcaption>
                 </figure>
                 <figure class="image-container">
-                    <img src="https://www.sellinseconds.in/allinone.png" loading="lazy" alt="Sell iMac or All in One PC">
-                    <figcaption>iMac or All in One</figcaption>
+                    <img src="https://www.sellinseconds.in/allinone.png" loading="lazy" alt="Sell iMac or All-in-One PC">
+                    <figcaption>iMac / All-in-One</figcaption>
                 </figure>
                 <figure class="image-container">
                     <img src="https://www.sellinseconds.in/tablet.png" loading="lazy" alt="Sell Tablet or iPad">
-                    <figcaption>Tablet</figcaption>
+                    <figcaption>Tablet / iPad</figcaption>
                 </figure>
             </div>
 
@@ -543,33 +584,33 @@
                 </figure>
                 <figure class="image-container">
                     <img src="https://www.sellinseconds.in/earbuds.png" loading="lazy" alt="Sell Earbuds or AirPods">
-                    <figcaption>Earbuds</figcaption>
+                    <figcaption>Earbuds / AirPods</figcaption>
                 </figure>
                 <figure class="image-container">
-                    <img src="https://www.sellinseconds.in/gamingconsole.png" loading="lazy" alt="Sell Gaming Console - Xbox Playstation">
+                    <img src="https://www.sellinseconds.in/gamingconsole.png" loading="lazy" alt="Sell Gaming Console - Xbox, PlayStation, Nintendo">
                     <figcaption>Gaming Console</figcaption>
                 </figure>
             </div>
 
             <figure class="image-container full-width">
                 <img src="https://www.sellinseconds.in/buy.png" loading="lazy" alt="Buy Refurbished Gadgets - Quality Checked">
-                <figcaption>Buying gadget</figcaption>
+                <figcaption>Buying Gadget</figcaption>
             </figure>
 
             <figure class="image-container full-width">
                 <img src="https://www.sellinseconds.in/repair.png" loading="lazy" alt="Gadget Repair Services - Mobile, Laptop, Tablet">
-                <figcaption>Servicing gadget</figcaption>
+                <figcaption>Servicing Gadget</figcaption>
             </figure>
         </div>
 
         <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
-            <h2>Contact Me</h2>
+            <h2>Get an Instant Quote or Book a Service</h2>
             <input type="text" id="name" name="name" placeholder="Your Name" required>
             <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
             <input type="hidden" id="interest" name="interest">
-            <button type="submit" aria-label="Submit your contact information">Submit</button>
+            <button type="submit" aria-label="Submit your contact information to get a quote or book service">Submit</button>
 
-            <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp">
+            <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance">
                 <img src="https://www.sellinseconds.in/whatsapp.png" loading="lazy" alt="WhatsApp Chat Icon">
             </a>
         </form>
@@ -577,7 +618,8 @@
         <div class="disclaimer">
             Disclaimer: We buy genuine products only. Identity Proof is mandatory. Payment will be done post diagnosis cum agreement of deal. Pick up will be done at your home or work location only. Roadside meeting is not allowed.
         </div>
-    </main> <script>
+    </main>
+    <script>
         const containers = document.querySelectorAll('.image-container');
         const nameInput = document.getElementById('name');
         const interestInput = document.getElementById('interest');
@@ -593,11 +635,11 @@
                 interestInput.value = description;
 
                 let message;
-                if (index <= 7) { // Selling categories
-                    message = `Thank you for your interest in selling ${description.replace('Sell ', '').replace(' - Instant Quote', '').replace(' - Best Price', '')}.`;
-                } else if (index === 8) { // Buying gadget
+                if (description.includes("Sell")) { // Selling categories
+                    message = `Thank you for your interest in selling ${description.replace('Sell ', '').replace(' - Instant Quote', '').replace(' - Best Price', '').replace(' - Xbox, PlayStation, Nintendo', '')}.`;
+                } else if (description.includes("Buy")) { // Buying gadget
                     message = `Thank you for your interest in buying a gadget. We will WhatsApp you all the available models.`;
-                } else if (index === 9) { // Servicing gadget
+                } else if (description.includes("Servicing")) { // Servicing gadget
                     message = `Thank you for your interest in servicing your gadget with us. We will get in touch with you at the earliest.`;
                 } else {
                     message = `Thank you for your interest in ${description}.`;
@@ -614,7 +656,7 @@
                 document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
                 nameInput.classList.add('wave');
                 nameInput.focus();
-                setTimeout(() => nameInput.classList.remove('wave'), 1000); // remove to allow re-trigger
+                setTimeout(() => nameInput.classList.remove('wave'), 1000);
             });
         });
 
@@ -624,44 +666,40 @@
         }
 
         nameInput.addEventListener('focus', () => {
-            nameInput.classList.remove('animated'); /* Ensure 'animated' class is removed on focus */
+            nameInput.classList.remove('animated');
         });
     </script>
 
     <script>
         document.getElementById("contact-form").addEventListener("submit", function (e) {
-            e.preventDefault();  // Prevent the form from submitting automatically
+            e.preventDefault();
 
             const form = e.target;
             const name = form.name.value.trim();
             const mobile = form.mobile.value.trim();
             const interest = form.interest.value.trim();
 
-            // Regular expression for mobile validation (exactly 10 digits, numeric only)
             const mobileRegex = /^[0-9]{10}$/;
-
-            // Regular expression for name validation (only letters and spaces)
             const nameRegex = /^[A-Za-z\s]+$/;
 
-            // Check if all fields are filled
             if (!name || !mobile || !interest) {
                 alert("Please select a product/service and fill out all fields.");
                 return;
             }
 
-            // Validate the name field (only characters and spaces)
             if (!nameRegex.test(name)) {
                 alert("Please enter a valid name. It should only contain letters and spaces.");
                 return;
             }
 
-            // Mobile number validation (only 10 digits)
             if (!mobileRegex.test(mobile)) {
                 alert("Invalid mobile number! It should contain exactly 10 digits and only numbers.");
                 return;
             }
 
-            // Proceed with form submission if validation passes
+            // Show loading overlay
+            showLoading();
+
             const formBody = new URLSearchParams();
             formBody.append("name", name);
             formBody.append("mobile", mobile);
@@ -674,15 +712,22 @@
                 },
                 body: formBody.toString()
             })
-            .then(() => {
-                alert("Form submitted successfully! We will contact you soon.");
-                form.reset(); // Reset the form after successful submission
-                // Deselect any selected image container
-                document.querySelectorAll('.image-container.selected').forEach(c => c.classList.remove('selected'));
+            .then(response => {
+                // Hide loading overlay
+                document.getElementById('loading-overlay').style.display = 'none';
+                if (response.ok) {
+                    alert("Form submitted successfully! We will contact you soon.");
+                    form.reset();
+                    document.querySelectorAll('.image-container.selected').forEach(c => c.classList.remove('selected'));
+                } else {
+                    alert("Failed to submit. Please try again. (Server error)");
+                }
             })
             .catch(error => {
+                // Hide loading overlay
+                document.getElementById('loading-overlay').style.display = 'none';
                 console.error("Error:", error.message);
-                alert("Failed to submit. Please try again.");
+                alert("Failed to submit. Please try again. (Network error)");
             });
         });
     </script>
@@ -695,8 +740,8 @@
     <footer class="site-footer">
         <div class="footer-content">
             <p>&copy; 2025 Sell In Seconds. All rights reserved.</p>
-            <p><a href="mailto:support@sellinseconds.in">support@sellinseconds.in</a> | <a href="https://www.sellinseconds.in">www.sellinseconds.in</a> Call : 9886566379</p>
-            <p class="small-text">Fast, fair and safe way to sell, buy or repair your gadgets.</p>
+            <p><a href="mailto:support@sellinseconds.in">support@sellinseconds.in</a> | <a href="https://www.sellinseconds.in">www.sellinseconds.in</a> | Call: 9886566379</p>
+            <p class="small-text">Fast, fair, and safe way to sell, buy, or repair your gadgets.</p>
         </div>
     </footer>
     <div id="loading-overlay">
