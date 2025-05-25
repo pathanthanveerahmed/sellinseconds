@@ -356,46 +356,43 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             header {
-                /* For portrait mode, allow height to be defined by padding or min-height */
-                min-height: 210px; /* Slightly increased min-height for better portrait appearance */
-                height: auto; /* Allow height to adjust */
-                display: flex; /* Keep flex for centering */
-                align-items: center; /* Center vertically */
-                justify-content: center; /* Center horizontally */
-                padding: 0; /* No padding on header itself */
-                flex-direction: column; /* Stack image and title vertically in header */
+                min-height: 180px; /* Reduced to allow for better cropping control */
+                height: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+                flex-direction: column;
             }
 
             .header-image {
-                object-fit: cover; /* Use cover for portrait to fill space, allowing minor cropping */
-                object-position: center top; /* Try adjusting vertical position slightly */
-                height: 100%; /* Make sure it takes full height of the header */
-                width: 100%; /* Make sure it takes full width of the header */
+                object-fit: cover;
+                object-position: 50% 30%; /* Adjust this value (percentage from top) to control cropping */
+                height: 100%;
+                width: 100%;
             }
 
             header h1 {
                 font-size: 1.3rem;
-                position: relative; /* Changed to relative for flow, adjust positioning below */
-                bottom: unset; /* Remove fixed bottom positioning */
-                left: unset; /* Remove fixed left positioning */
-                transform: none; /* Remove transform */
+                position: relative;
+                bottom: unset;
+                left: unset;
+                transform: none;
                 width: 90%;
                 text-align: center;
                 background-color: rgba(255, 255, 255, 0.7);
                 padding: 0.2em 0.5em;
                 border-radius: 5px;
-                margin: 0; /* Remove margin */
+                margin: 0;
                 color: black;
                 text-shadow: none;
-                z-index: 2; /* Keep above image */
+                z-index: 2;
             }
 
-            /* Ensure no space immediately below the header and above the first H1 */
             h1:first-of-type {
                 margin-top: 0;
                 padding-top: 1rem;
             }
-            /* --- End of important style --- */
 
             .image-grid-row1-row2 {
                 grid-template-columns: repeat(2, 1fr);
@@ -441,11 +438,10 @@
             header {
                 height: 180px; /* Fixed height for landscape to prevent excessive image size */
                 min-height: unset; /* Remove min-height restriction for landscape */
-                /* Ensure the header still centers content if flex is used */
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                flex-direction: column; /* Keep column direction for consistency with portrait */
+                flex-direction: column;
             }
 
             .header-image {
@@ -455,7 +451,6 @@
 
             header h1 {
                 font-size: 1.5rem; /* Slightly larger for landscape, adjust as needed */
-                /* Re-adjust position if necessary for landscape, relative with flexbox usually works well */
                 position: relative;
                 bottom: unset;
                 left: unset;
