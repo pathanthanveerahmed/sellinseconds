@@ -83,7 +83,7 @@
             background: var(--background);
             color: var(--text-color);
             line-height: 1.7; /* Increased line-height for better readability */
-            padding-top: 200px; /* REDUCED FROM 400PX */
+            padding-top: 150px; /* Adjusted: Reduced to provide very little space */
         }
 
         h1, h2, h3 {
@@ -116,7 +116,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            min-height: 400px;
+            min-height: 150px; /* Adjusted: Matches new body padding-top */
             overflow: hidden;
             background-color: #f5f5f7;
             z-index: 1000;
@@ -134,11 +134,11 @@
 
         header .header-title { /* Changed to .header-title for clarity */
             position: absolute;
-            bottom: 30px; /* Slightly higher */
+            bottom: 20px; /* Adjusted: Moved up slightly */
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
-            font-size: 3.5rem; /* Slightly larger */
+            font-size: 2.5rem; /* Adjusted: Reduced font size */
             font-weight: 700;
             color: white;
             text-shadow: 1px 1px 10px rgba(0,0,0,0.8); /* Stronger shadow */
@@ -169,7 +169,7 @@
 
         .image-grid {
             max-width: 1200px;
-            margin: 1rem auto; /* REDUCED FROM 3REM AUTO */
+            margin: 0.5rem auto; /* Adjusted: Reduced margin-top for less space */
             padding: 0 1rem; /* Adjusted padding */
             display: flex;
             flex-direction: column;
@@ -250,7 +250,7 @@
         form {
             background: var(--form-bg);
             max-width: 600px;
-            margin: 1.5rem auto 3rem auto; /* Adjusted margins for contact form */
+            margin: 1.5rem auto 0; /* Adjusted: Removed margin-bottom */
             padding: 3rem 2rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
@@ -303,7 +303,7 @@
 
         .disclaimer {
             max-width: 700px;
-            margin: 4rem auto 6rem auto; /* Adjusted margins for disclaimer */
+            margin: 0.5rem auto 0 auto; /* Adjusted: Reduced margin-top and removed margin-bottom */
             padding: 1.5rem;
             font-size: 0.9rem;
             color: #555;
@@ -403,7 +403,7 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             body {
-                padding-top: 180px;
+                padding-top: 100px; /* Adjusted: Further reduced for mobile */
                 line-height: 1.6; /* Adjust line height for mobile */
             }
             h1 {
@@ -421,7 +421,7 @@
             }
 
             header {
-                min-height: 180px;
+                min-height: 100px; /* Adjusted: Matches new mobile body padding-top */
                 height: auto;
             }
 
@@ -432,15 +432,15 @@
             }
 
             header .header-title {
-                font-size: 1.5rem; /* Adjusted mobile header title size */
-                bottom: 15px;
+                font-size: 1.3rem; /* Adjusted: Smaller for mobile */
+                bottom: 10px; /* Adjusted: Moved up for mobile */
                 width: 95%; /* More width on mobile */
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
             }
 
             .image-grid {
-                padding: 1.5rem 0.8rem; /* Reduced padding for mobile grid */
-                gap: 1.5rem; /* Reduced gap between rows for mobile */
+                padding: 1rem 0.8rem; /* Reduced padding for mobile grid */
+                gap: 1rem; /* Reduced gap between rows for mobile */
             }
 
             .image-grid-row1-row2 {
@@ -476,7 +476,7 @@
 
             form {
                 padding: 2rem 1.2rem;
-                margin: 1.5rem auto 2rem auto; /* Adjusted mobile form margins */
+                margin: 1.5rem auto 0; /* Adjusted: Removed margin-bottom */
             }
 
             input, select, textarea {
@@ -490,7 +490,7 @@
             }
 
             .disclaimer {
-                margin: 2rem auto 4rem auto; /* Adjusted mobile disclaimer margins */
+                margin: 0.5rem auto 0 auto; /* Adjusted: Reduced margin-top and removed margin-bottom */
                 padding: 1rem;
                 font-size: 0.8rem;
             }
@@ -508,10 +508,10 @@
         /* --- Landscape Orientation Specific Styles (Tablets too if under 991px) --- */
         @media (max-width: 991px) and (orientation: landscape) {
             body {
-                padding-top: 180px;
+                padding-top: 100px; /* Adjusted: Reduced for landscape */
             }
             header {
-                height: 180px;
+                height: 100px; /* Adjusted: Reduced height for landscape */
                 min-height: unset;
             }
 
@@ -521,8 +521,8 @@
             }
 
             header .header-title {
-                font-size: 2rem; /* Adjusted landscape header title size */
-                bottom: 15px;
+                font-size: 1.8rem; /* Adjusted: Smaller for landscape */
+                bottom: 10px; /* Adjusted: Moved up for landscape */
                 color: white;
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
                 margin: 0;
