@@ -354,16 +354,16 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             header {
-                min-height: 250px; /* Increased minimum height for mobile portrait */
+                min-height: 250px; /* Minimum height for mobile portrait */
                 height: 45vh; /* Header takes up 45% of viewport height on mobile */
                 width: 100%;
                 padding: 0;
                 display: block;
-                background-color: #f5f5f7; /* Background for letterboxing if image aspect ratio doesn't fill */
+                background-color: #f5f5f7; /* Background remains for visual fill */
             }
 
             .header-image {
-                object-fit: contain; /* Mobile: Ensure full image is visible, with letterboxing/pillarboxing */
+                object-fit: cover; /* Changed to cover for mobile */
                 position: absolute;
                 top: 0;
                 left: 0;
