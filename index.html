@@ -32,8 +32,8 @@
         "@type": "PostalAddress",
         "streetAddress": "ITPL Main Road", /* IMPORTANT: Fill in your actual street address for Local SEO */
         "addressLocality": "Bangalore",          /* IMPORTANT: Fill in your actual city for Local SEO */
-        "addressRegion": "Karnataka",     /* IMPORTANT: Fill in your actual state/region for Local SEO */
-        "postalCode": "560048",       /* IMPORTANT: Fill in your actual postal code for Local SEO */
+        "addressRegion": "Karnataka",      /* IMPORTANT: Fill in your actual state/region for Local SEO */
+        "postalCode": "560048",        /* IMPORTANT: Fill in your actual postal code for Local SEO */
         "addressCountry": "IN"
       },
       "contactPoint": {
@@ -313,6 +313,19 @@
             box-shadow: var(--shadow);
         }
 
+        /* New style for the moved H1 */
+        .moved-h1 {
+            max-width: 900px;
+            margin: 3rem auto 2rem auto; /* Adjust margin as needed */
+            padding: 0 1.5rem;
+            text-align: center;
+            font-size: 2.5rem; /* Adjusted font size for better visibility */
+            font-weight: 700;
+            color: var(--primary-dark); /* Using primary-dark for consistency */
+            line-height: 1.2;
+        }
+
+
         @keyframes wavePulse {
             0% {
                 transform: scale(1);
@@ -436,6 +449,8 @@
                 bottom: 15px;
                 width: 95%; /* More width on mobile */
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+                margin: 0;
+                padding: 0;
             }
 
             .image-grid {
@@ -503,6 +518,11 @@
                 width: 45px; /* Smaller WhatsApp icon for mobile */
                 height: 45px;
             }
+
+            .moved-h1 { /* Adjust for mobile */
+                font-size: 1.8rem;
+                margin: 2rem auto 1.5rem auto;
+            }
         }
 
         /* --- Landscape Orientation Specific Styles (Tablets too if under 991px) --- */
@@ -546,7 +566,6 @@
 
     <main>
         <section class="hero-intro">
-            <h1>Your Ultimate Platform to Sell, Buy & Repair Gadgets even at chip level Instantly. </h1>
             <p>At Sell In Seconds, we make trading in your old electronics incredibly easy and rewarding. Whether you're looking to sell ot Trade In your Gadgets, or get a quick repair / service, we offer seamless service right to your doorstep. Get an instant quote and experience a hassle-free process today!</p>
 
             <h2>Choose the Gadget Service You Need</h2>
@@ -614,6 +633,8 @@
                 <img src="https://www.sellinseconds.in/whatsapp.png" loading="lazy" alt="WhatsApp Chat Icon">
             </a>
         </form>
+
+        <h1 class="moved-h1">Your Ultimate Platform to Sell, Buy & Repair Gadgets even at chip level Instantly. </h1>
 
         <div class="disclaimer">
             Disclaimer: We buy genuine products only. Identity Proof is mandatory. Payment will be done post diagnosis cum agreement of deal. Pick up will be done at your home or work location only. Roadside meeting is not allowed.
