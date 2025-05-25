@@ -42,25 +42,21 @@
             background: var(--background);
             color: var(--text-color);
             line-height: 1.6;
-            /* Add padding-top to push body content below the fixed header */
-            padding-top: 400px; /* Adjust this value to match your header's height */
+            /* Adjust this padding-top to match the exact height of your fixed header */
+            padding-top: 400px; /* Assuming desktop header height is 400px */
         }
 
         header {
             position: fixed; /* Make the header stick to the viewport */
             top: 0;
             left: 0;
-            min-height: 400px; /* Desktop height - will determine padding-top for body */
             width: 100%;
+            min-height: 400px; /* Desktop height for the header */
             overflow: hidden;
             background-color: #f5f5f7;
             z-index: 1000; /* Ensure header stays on top */
-            display: flex;
-            flex-direction: column; /* Stack image and text vertically */
-            justify-content: flex-end; /* Push content to the bottom of the flex container */
-            align-items: center; /* Center horizontally */
-            padding: 0;
-            margin: 0;
+            /* No flex properties directly on header for image/text positioning */
+            /* The image will fill it, and text will be absolutely positioned relative to this fixed header */
         }
 
         .header-image {
@@ -68,28 +64,33 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
+            height: 100%; /* Make image fill the header height */
+            object-fit: cover; /* Cover the entire header area */
+            z-index: 1; /* Keep it behind the text */
         }
 
         .trade-gadget-text {
-            position: relative; /* Make this the positioning context for its children */
+            position: absolute; /* Position text absolutely relative to the FIXED header */
+            bottom: 20px; /* Distance from the bottom of the header */
+            left: 50%; /* Start at 50% from the left */
+            transform: translateX(-50%); /* Pull back by half its width for centering */
             z-index: 2; /* Ensure text is above the image */
             width: 90%; /* Maintain previous width */
             text-align: center;
-            /* Adjust padding or margin here to move it slightly up from the absolute bottom of the header */
-            padding-bottom: 20px; /* Space from the bottom of the header */
+            /* Optional: background and padding for readability if text is hard to see */
+            /* background-color: rgba(0, 0, 0, 0.5); */
+            /* padding: 10px 20px; */
+            /* border-radius: 5px; */
         }
 
         .trade-gadget-text h1 {
             font-size: 3rem;
             font-weight: 700;
-            color: white;
-            text-shadow: 1px 1px 8px rgba(0,0,0,0.8);
+            color: white; /* Make sure text color is visible on image */
+            text-shadow: 1px 1px 8px rgba(0,0,0,0.8); /* Stronger shadow for better visibility */
             line-height: 1.2;
-            margin: 0; /* Remove default margin from h1 */
-            padding: 0; /* Remove default padding from h1 */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
         }
 
         /* Rest of your existing CSS remains unchanged */
@@ -368,43 +369,24 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             header {
-                min-height: 180px; /* Reduced to allow for better cropping control */
-                height: auto;
-                display: flex;
-                align-items: center;
-                justify-content: flex-end; /* Push content to bottom */
-                padding: 0;
-                flex-direction: column;
+                min-height: 180px; /* Adjust header height for mobile */
             }
-
             .header-image {
-                object-fit: cover;
-                object-position: 50% 30%; /* Adjust this value (percentage from top) to control cropping */
-                height: 100%;
-                width: 100%;
+                object-position: 50% 30%; /* Fine-tune image cropping for mobile */
             }
-
             .trade-gadget-text {
                 font-size: 1.3rem;
-                position: relative; /* Keep relative for mobile too */
-                bottom: unset;
-                left: unset;
-                transform: none;
-                width: 90%;
-                text-align: center;
-                background-color: transparent;
-                padding: 0.2em 0.5em;
-                border-radius: 5px;
-                margin-top: 0; /* Remove top margin */
-                padding-bottom: 10px; /* Adjust for mobile spacing */
-                color: white;
-                text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-                z-index: 2;
+                padding-bottom: 10px; /* Adjust spacing from bottom for mobile */
+            }
+            body {
+                padding-top: 180px; /* Match mobile header height */
             }
 
-            h1:first-of-type {
-                margin-top: 0;
-                padding-top: 1rem;
+            /* Hiding original h1 styles in mobile media query */
+            header h1 {
+                font-size: 1.3rem;
+                color: white;
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
             }
 
             .image-grid-row1-row2 {
@@ -451,42 +433,23 @@
                 bottom: 15px;
                 right: 15px;
             }
-
-            body {
-                padding-top: 180px; /* Adjust padding for mobile header height */
-            }
         }
 
         /* --- Landscape Orientation Specific Styles (Tablets too if under 991px) --- */
         @media (max-width: 991px) and (orientation: landscape) {
             header {
-                height: 180px; /* Fixed height for landscape to prevent excessive image size */
-                min-height: unset; /* Remove min-height restriction for landscape */
-                display: flex;
-                align-items: center;
-                justify-content: flex-end; /* Push content to bottom */
-                flex-direction: column;
+                height: 180px; /* Fixed height for landscape */
+                min-height: unset;
             }
-
             .header-image {
-                object-fit: cover;
                 object-position: center center;
             }
-
             .trade-gadget-text {
                 font-size: 1.5rem;
-                position: relative;
-                bottom: unset;
-                left: unset;
-                transform: none;
-                color: white;
-                text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-                margin-top: 0; /* Remove top margin */
-                padding-bottom: 10px; /* Adjust for landscape spacing */
+                padding-bottom: 10px; /* Adjust spacing from bottom for landscape */
             }
-
             body {
-                padding-top: 180px; /* Adjust padding for landscape header height */
+                padding-top: 180px; /* Match landscape header height */
             }
         }
     </style>
