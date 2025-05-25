@@ -56,18 +56,19 @@
     <style>
         :root {
             --primary: #0071e3;
-            --primary-dark: #005bb5;
+            --primary-dark: #005bb5; /* Added for hover states */
             --text-color: #1d1d1f;
-            --background: linear-gradient(to bottom, #e0f7fa, #cfe9f5);
+            --background: linear-gradient(to bottom, #e0f7fa, #cfe9f5); /* Subtle gradient for background */
             --form-bg: #fff;
             --radius: 16px;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
+            --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12); /* Added for hover states */
         }
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            /* Using Open Sans for general text, Montserrat for headings */
             font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         }
 
@@ -81,33 +82,33 @@
         body {
             background: var(--background);
             color: var(--text-color);
-            line-height: 1.7;
-            padding-top: 400px; /* Default for Desktop */
+            line-height: 1.7; /* Increased line-height for better readability */
+            padding-top: 400px;
         }
 
         h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Montserrat', sans-serif; /* Applied Montserrat to headings */
             text-align: center;
-            color: var(--text-color);
+            color: var(--text-color); /* Ensure heading color matches */
         }
 
         h1 {
-            font-size: 2.8rem;
+            font-size: 2.8rem; /* Adjusted size for main h1 */
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.5rem; /* Added margin */
         }
 
         h2 {
-            font-size: 2.2rem;
+            font-size: 2.2rem; /* Adjusted size for h2 */
             font-weight: 600;
             margin-bottom: 1rem;
         }
 
         h3 {
-            font-size: 1.6rem;
+            font-size: 1.6rem; /* Adjusted size for h3 */
             font-weight: 500;
             margin-bottom: 2rem;
-            color: #555;
+            color: #555; /* Slightly muted for less prominence than h1/h2 */
         }
 
         header {
@@ -115,42 +116,41 @@
             top: 0;
             left: 0;
             width: 100%;
-            min-height: 400px; /* Default for Desktop */
+            min-height: 400px;
             overflow: hidden;
             background-color: #f5f5f7;
             z-index: 1000;
         }
 
         .header-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top; /* Default for Desktop: prioritize top of image */
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             z-index: 1;
         }
 
-        header .header-title {
+        header .header-title { /* Changed to .header-title for clarity */
             position: absolute;
-            bottom: 30px;
+            bottom: 30px; /* Slightly higher */
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
-            font-size: 2.5rem; /* REDUCED FOR DESKTOP */
+            font-size: 3.5rem; /* Slightly larger */
             font-weight: 700;
             color: white;
-            text-shadow: 1px 1px 10px rgba(0,0,0,0.8);
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.8); /* Stronger shadow */
             width: 90%;
             text-align: center;
             line-height: 1.2;
             margin: 0;
             padding: 0;
-            max-width: 900px;
+            max-width: 900px; /* Constrain width on very large screens */
         }
 
-        .hero-intro {
+        .hero-intro { /* New section for expanded introductory text */
             max-width: 900px;
             margin: 3rem auto 2rem auto;
             padding: 0 1.5rem;
@@ -161,7 +161,7 @@
         }
         .hero-intro h1 {
             margin-bottom: 1rem;
-            color: var(--primary-dark);
+            color: var(--primary-dark); /* Highlight main title */
         }
         .hero-intro p {
             margin-bottom: 1rem;
@@ -169,17 +169,18 @@
 
         .image-grid {
             max-width: 1200px;
-            margin: 0.5rem auto;
-            padding: 0 1rem;
+            margin: 3rem auto; /* Adjusted margin */
+            padding: 0 1rem; /* Adjusted padding */
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 2rem; /* Reduced gap between rows */
         }
 
+        /* Grid Layout for Row 1 and Row 2 */
         .image-grid-row1-row2 {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            gap: 2rem; /* Adjusted gap between images */
             width: 100%;
             margin-bottom: 0.5rem;
         }
@@ -200,11 +201,11 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            padding: 10px;
+            padding: 10px; /* Add some padding around images within container */
         }
         .image-container:hover {
-            transform: scale(1.03);
-            box-shadow: var(--shadow-hover);
+            transform: scale(1.03); /* Slightly less aggressive zoom on hover */
+            box-shadow: var(--shadow-hover); /* More prominent shadow on hover */
         }
         .image-container.selected {
             animation: zoomInOut 0.6s ease-in-out;
@@ -213,7 +214,7 @@
         }
         @keyframes zoomInOut {
             0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
+            50% { transform: scale(1.15); } /* Slightly less aggressive zoom */
             100% { transform: scale(1); }
         }
         .image-container.selected::after {
@@ -230,7 +231,7 @@
             align-items: center;
             justify-content: center;
             font-size: 1.1rem;
-            z-index: 5;
+            z-index: 5; /* Ensure checkmark is on top */
         }
 
         .image-container.full-width {
@@ -238,7 +239,7 @@
         }
 
         figcaption {
-            font-size: 0;
+            font-size: 0; /* Hidden by default for desktop, controlled by media query for mobile */
             height: 0;
             overflow: hidden;
             visibility: hidden;
@@ -249,7 +250,7 @@
         form {
             background: var(--form-bg);
             max-width: 600px;
-            margin: 1.5rem auto 0;
+            margin: 1.5rem auto 3rem auto; /* Adjusted margins for contact form */
             padding: 3rem 2rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
@@ -269,12 +270,12 @@
             border-radius: var(--radius);
             font-size: 1rem;
             background: #fafafa;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Added transition */
             box-sizing: border-box;
         }
         input:focus, select:focus, textarea:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 10px rgba(0,113,227,0.2);
+            box-shadow: 0 0 10px rgba(0,113,227,0.2); /* Softer shadow */
             outline: none;
         }
         button {
@@ -287,22 +288,22 @@
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added transitions */
             box-shadow: var(--shadow);
         }
         button:hover {
             background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px); /* Lift effect */
+            box-shadow: var(--shadow-hover); /* More prominent shadow */
         }
         button:active {
-            transform: translateY(0);
+            transform: translateY(0); /* Press down effect */
             box-shadow: var(--shadow);
         }
 
         .disclaimer {
             max-width: 700px;
-            margin: 0.5rem auto 0 auto;
+            margin: 4rem auto 6rem auto; /* Adjusted margins for disclaimer */
             padding: 1.5rem;
             font-size: 0.9rem;
             color: #555;
@@ -318,7 +319,7 @@
                 box-shadow: 0 0 0 0 rgba(0,113,227, 0.7);
             }
             70% {
-                transform: scale(1.03);
+                transform: scale(1.03); /* Slightly less aggressive pulse */
                 box-shadow: 0 0 0 10px rgba(0,113,227, 0);
             }
             100% {
@@ -333,7 +334,7 @@
         .site-footer {
             background-color: #1d1d1f;
             color: #f5f5f7;
-            padding: 2.5rem 1rem;
+            padding: 2.5rem 1rem; /* Increased padding */
             text-align: center;
             font-size: 0.95rem;
             box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
@@ -342,18 +343,18 @@
 
         .site-footer a {
             color: #f5f5f7;
-            text-decoration: none;
+            text-decoration: none; /* No underline by default */
             transition: color 0.3s ease, text-decoration 0.3s ease;
         }
 
         .site-footer a:hover {
             color: var(--primary);
-            text-decoration: underline;
+            text-decoration: underline; /* Underline on hover */
         }
 
         .site-footer .small-text {
             font-size: 0.85rem;
-            margin-top: 0.8rem;
+            margin-top: 0.8rem; /* Adjusted margin */
             color: #ccc;
         }
 
@@ -366,13 +367,13 @@
         }
 
         #whatsapp-icon img {
-            width: 55px;
+            width: 55px; /* Slightly larger WhatsApp icon */
             height: 55px;
             object-fit: contain;
         }
 
         #whatsapp-icon:hover {
-            transform: scale(1.15);
+            transform: scale(1.15); /* More prominent hover effect */
         }
 
         #loading-overlay {
@@ -399,64 +400,67 @@
             }
         }
 
-        /* --- Mobile Portrait (max-width: 600px) --- */
+        /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             body {
-                padding-top: 100px;
-                line-height: 1.6;
+                padding-top: 180px;
+                line-height: 1.6; /* Adjust line height for mobile */
             }
             h1 {
-                font-size: 2rem;
+                font-size: 2rem; /* Adjusted mobile h1 size */
             }
             h2 {
-                font-size: 1.8rem;
+                font-size: 1.8rem; /* Adjusted mobile h2 size */
             }
             h3 {
-                font-size: 1.3rem;
+                font-size: 1.3rem; /* Adjusted mobile h3 size */
             }
             .hero-intro {
-                font-size: 0.95rem;
+                font-size: 0.95rem; /* Smaller text for mobile intro */
                 margin-top: 2rem;
             }
 
             header {
-                min-height: 100px;
-                height: auto; /* Allow header height to be determined by min-height */
+                min-height: 180px;
+                height: auto;
             }
 
             .header-image {
-                object-position: center 30%; /* Fine-tune for mobile portrait */
+                object-position: 50% 30%;
+                height: 100%;
+                width: 100%;
             }
 
             header .header-title {
-                font-size: 1.2rem; /* REDUCED FOR MOBILE PORTRAIT */
-                bottom: 10px;
-                width: 95%;
+                font-size: 1.5rem; /* Adjusted mobile header title size */
+                bottom: 15px;
+                width: 95%; /* More width on mobile */
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
             }
 
             .image-grid {
-                padding: 1rem 0.8rem;
-                gap: 1rem;
+                padding: 1.5rem 0.8rem; /* Reduced padding for mobile grid */
+                gap: 1.5rem; /* Reduced gap between rows for mobile */
             }
 
             .image-grid-row1-row2 {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
+                grid-template-columns: repeat(2, 1fr); /* Back to 2 columns for better mobile usability */
+                gap: 0.8rem; /* Reduced gap between images for mobile */
             }
 
             .image-container {
-                height: 120px;
-                padding: 5px;
+                height: 120px; /* Adjusted image container height for mobile */
+                padding: 5px; /* Reduced internal padding for mobile images */
             }
 
             .image-container img {
-                padding: 0;
+                padding: 0; /* Remove internal padding on mobile images if container padding is enough */
             }
 
-            @media (orientation: portrait) { /* This nested media query is specific to portrait on mobile */
+            /* Display figcaption for mobile portrait */
+            @media (orientation: portrait) {
                 figcaption {
-                    font-size: 0.75rem;
+                    font-size: 0.75rem; /* Readable font size for mobile figcaption */
                     color: #444;
                     text-align: center;
                     margin-top: 4px;
@@ -464,19 +468,19 @@
                     overflow: visible;
                     visibility: visible;
                     display: block;
-                    white-space: normal;
-                    text-overflow: clip;
+                    white-space: normal; /* Allow text to wrap if necessary */
+                    text-overflow: clip; /* No ellipsis, let it wrap or truncate naturally */
                     line-height: 1.2;
                 }
             }
 
             form {
                 padding: 2rem 1.2rem;
-                margin: 1.5rem auto 0;
+                margin: 1.5rem auto 2rem auto; /* Adjusted mobile form margins */
             }
 
             input, select, textarea {
-                margin-bottom: 1.5rem;
+                margin-bottom: 1.5rem; /* Reduced margin bottom for mobile inputs */
                 padding: 0.8rem 1rem;
             }
 
@@ -486,7 +490,7 @@
             }
 
             .disclaimer {
-                margin: 0.5rem auto 0 auto;
+                margin: 2rem auto 4rem auto; /* Adjusted mobile disclaimer margins */
                 padding: 1rem;
                 font-size: 0.8rem;
             }
@@ -496,39 +500,40 @@
                 right: 15px;
             }
             #whatsapp-icon img {
-                width: 45px;
+                width: 45px; /* Smaller WhatsApp icon for mobile */
                 height: 45px;
             }
         }
 
-        /* --- Mobile/Tablet Landscape (max-width: 991px and orientation: landscape) --- */
+        /* --- Landscape Orientation Specific Styles (Tablets too if under 991px) --- */
         @media (max-width: 991px) and (orientation: landscape) {
             body {
-                padding-top: 120px; /* Increased padding to accommodate more header visibility */
+                padding-top: 180px;
             }
             header {
-                height: 100px; /* Set a specific height for landscape */
-                min-height: unset; /* Ensure min-height doesn't override */
+                height: 180px;
+                min-height: unset;
             }
 
             .header-image {
-                object-position: center 20%; /* Shift down to show more of the top for landscape */
+                object-fit: cover;
+                object-position: center center;
             }
 
             header .header-title {
-                font-size: 1.5rem; /* REDUCED FOR MOBILE LANDSCAPE */
-                bottom: 10px;
+                font-size: 2rem; /* Adjusted landscape header title size */
+                bottom: 15px;
                 color: white;
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
                 margin: 0;
                 padding: 0;
             }
             .image-grid-row1-row2 {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(4, 1fr); /* Keep 4 columns for landscape tablets */
                 gap: 1.5rem;
             }
              .image-container {
-                height: 150px;
+                height: 150px; /* Adjusted image height for landscape tablets */
             }
         }
     </style>
@@ -536,7 +541,7 @@
 <body>
     <header class="header">
         <img src="https://www.sellinseconds.in/aicrop.jpg" alt="Dynamic header image showing various gadgets being sold or repaired" class="header-image" loading="lazy">
-        <h1 class="header-title">Trade Your Gadget in Seconds⏱️</h1>
+        <h1 class="header-title">Trade Your Gadget in Seconds</h1>
     </header>
 
     <main>
@@ -545,7 +550,7 @@
             <p>At Sell In Seconds, we make trading in your old electronics incredibly easy and rewarding. Whether you're looking to sell ot Trade In your Gadgets, or get a quick repair / service, we offer seamless service right to your doorstep. Get an instant quote and experience a hassle-free process today!</p>
 
             <h2>Choose the Gadget Service You Need</h2>
-            <p style="text-align: center; max-width: 900px; margin: 0 auto 2rem auto; font-size: 1.1rem; line-height: 1.8; color: #444;">From used Gadget selling, Buying, Trade In and Repairs, find your gadget below and let us handle the rest. No more endless searching – just simple, straightforward solutions for all your electronic needs.</p>
+            <p>From used Gadget selling, Buying, Trade In and Repairs, find your gadget below and let us handle the rest. No more endless searching – just simple, straightforward solutions for all your electronic needs.</p>
         </section>
 
         <div class="image-grid">
@@ -630,11 +635,11 @@
                 interestInput.value = description;
 
                 let message;
-                if (description.includes("Sell")) {
+                if (description.includes("Sell")) { // Selling categories
                     message = `Thank you for your interest in selling ${description.replace('Sell ', '').replace(' - Instant Quote', '').replace(' - Best Price', '').replace(' - Xbox, PlayStation, Nintendo', '')}.`;
-                } else if (description.includes("Buy")) {
+                } else if (description.includes("Buy")) { // Buying gadget
                     message = `Thank you for your interest in buying a gadget. We will WhatsApp you all the available models.`;
-                } else if (description.includes("Servicing")) {
+                } else if (description.includes("Servicing")) { // Servicing gadget
                     message = `Thank you for your interest in servicing your gadget with us. We will get in touch with you at the earliest.`;
                 } else {
                     message = `Thank you for your interest in ${description}.`;
@@ -692,6 +697,7 @@
                 return;
             }
 
+            // Show loading overlay
             showLoading();
 
             const formBody = new URLSearchParams();
@@ -707,6 +713,7 @@
                 body: formBody.toString()
             })
             .then(response => {
+                // Hide loading overlay
                 document.getElementById('loading-overlay').style.display = 'none';
                 if (response.ok) {
                     alert("Form submitted successfully! We will contact you soon.");
@@ -717,6 +724,7 @@
                 }
             })
             .catch(error => {
+                // Hide loading overlay
                 document.getElementById('loading-overlay').style.display = 'none';
                 console.error("Error:", error.message);
                 alert("Failed to submit. Please try again. (Network error)");
