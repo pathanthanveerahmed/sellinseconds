@@ -42,19 +42,19 @@
             background: var(--background);
             color: var(--text-color);
             line-height: 1.6;
-            /* Added padding-top to ensure content doesn't hide behind fixed header */
-            padding-top: 400px; /* Adjust this to match your desktop header height */
+            /* Added padding-top to account for the fixed header's height on desktop */
+            padding-top: 400px; /* Matches desktop header's min-height */
         }
 
         header {
-            position: fixed; /* Changed to fixed so it stays in place */
+            position: fixed; /* Header is fixed at the top */
             top: 0;
             left: 0;
             width: 100%;
             min-height: 400px; /* Desktop height */
             overflow: hidden;
-            background-color: #f5f5f7; /* Background for potential empty space if image doesn't perfectly fill */
-            z-index: 1000; /* Ensure header stays on top */
+            background-color: #f5f5f7;
+            z-index: 1000; /* Ensure header stays on top of other content */
         }
 
         .header-image {
@@ -63,34 +63,32 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Default to cover for desktop to fill space */
+            object-fit: cover;
             z-index: 1;
         }
 
-        /* --- MODIFIED: header h1 positioning for desktop --- */
         header h1 {
             position: absolute; /* Position relative to the fixed header */
-            bottom: 20px; /* Place 20px from the bottom */
+            bottom: 20px; /* Place 20px from the bottom of the header */
             left: 50%;
             transform: translateX(-50%); /* Center horizontally */
             z-index: 2; /* Ensure it's above the image */
             font-size: 3rem;
             font-weight: 700;
-            color: white; /* Set color to white for desktop */
-            text-shadow: 1px 1px 8px rgba(0,0,0,0.8); /* Stronger text shadow for readability */
+            color: white;
+            text-shadow: 1px 1px 8px rgba(0,0,0,0.8);
             width: 90%;
             text-align: center;
             line-height: 1.2;
-            margin: 0; /* Remove default margin */
-            padding: 0; /* Ensure no internal padding */
+            margin: 0;
+            padding: 0;
         }
-        /* --- END MODIFIED --- */
 
         .image-container {
-            height: 180px; /* You can adjust this for desktop */
+            height: 180px;
         }
         form {
-            padding: 3rem 2rem; /* Increase padding */
+            padding: 3rem 2rem;
         }
         #whatsapp-icon img {
             width: 50px;
@@ -121,6 +119,7 @@
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             position: relative;
             cursor: pointer;
+            text-align: center;
         }
         .image-container img {
             width: 100%;
@@ -233,10 +232,10 @@
         /* Grid Layout for Row 1 and Row 2 */
         .image-grid-row1-row2 {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 equal columns for Row 1 and Row 2 */
+            grid-template-columns: repeat(4, 1fr);
             gap: 2.5rem;
             width: 100%;
-            margin-bottom: 2.5rem; /* Adds margin between rows */
+            margin-bottom: 2.5rem;
         }
 
         /* General Image Container Style */
@@ -264,7 +263,7 @@
         }
 
         figcaption {
-            font-size: 0; /* Hidden by default for desktop */
+            font-size: 0;
             height: 0;
             overflow: hidden;
             visibility: hidden;
@@ -360,40 +359,38 @@
 
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
+            body {
+                /* Adjust padding-top for the mobile header height */
+                padding-top: 180px; /* Matches mobile header's min-height */
+            }
             header {
-                min-height: 180px; /* Reduced to allow for better cropping control */
+                min-height: 180px;
                 height: auto;
-                /* Removed flex properties here as h1 is now absolute */
-                /* Removed padding and margin to give full control to absolute positioning */
             }
 
             .header-image {
                 object-fit: cover;
-                object-position: 50% 30%; /* Adjust this value (percentage from top) to control cropping */
+                object-position: 50% 30%;
                 height: 100%;
                 width: 100%;
             }
 
-            /* --- MODIFIED: header h1 positioning for mobile --- */
             header h1 {
                 font-size: 1.3rem;
-                position: absolute; /* Keep absolute position */
-                bottom: 10px; /* Adjust for mobile, 10px from bottom */
+                position: absolute;
+                bottom: 10px;
                 left: 50%;
-                transform: translateX(-50%); /* Keep centered */
+                transform: translateX(-50%);
                 width: 90%;
                 text-align: center;
-                background-color: transparent; /* Make the background transparent */
-                padding: 0.2em 0.5em; /* Keep padding for visual spacing if needed */
-                border-radius: 5px; /* Keep border-radius if you like the rounded corners */
-                margin: 0; /* Reset margin */
-                color: white; /* Set the text color to white */
-                text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* Add a slight text shadow for better readability on the image */
+                background-color: transparent;
+                padding: 0.2em 0.5em;
+                border-radius: 5px;
+                margin: 0;
+                color: white;
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
                 z-index: 2;
             }
-            /* --- END MODIFIED --- */
-
-            /* Removed h1:first-of-type as it's no longer necessary with absolute positioning */
 
             .image-grid-row1-row2 {
                 grid-template-columns: repeat(2, 1fr);
@@ -443,30 +440,30 @@
 
         /* --- Landscape Orientation Specific Styles (Tablets too if under 991px) --- */
         @media (max-width: 991px) and (orientation: landscape) {
+            body {
+                padding-top: 180px; /* Adjust padding-top for the landscape header height */
+            }
             header {
-                height: 180px; /* Fixed height for landscape to prevent excessive image size */
-                min-height: unset; /* Remove min-height restriction for landscape */
-                /* Removed flex properties here as h1 is now absolute */
+                height: 180px;
+                min-height: unset;
             }
 
             .header-image {
-                object-fit: cover; /* Use cover to fill the reduced landscape header height */
-                object-position: center center; /* Keep the image centered */
+                object-fit: cover;
+                object-position: center center;
             }
 
-            /* --- MODIFIED: header h1 positioning for landscape --- */
             header h1 {
-                font-size: 1.5rem; /* Slightly larger for landscape, adjust as needed */
-                position: absolute; /* Keep absolute position */
-                bottom: 15px; /* Adjust for landscape, e.g., 15px from bottom */
+                font-size: 1.5rem;
+                position: absolute;
+                bottom: 15px;
                 left: 50%;
-                transform: translateX(-50%); /* Keep centered */
-                color: white; /* Ensure white color for landscape */
-                text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* Add shadow for readability */
-                margin: 0; /* Reset margin */
-                padding: 0; /* Reset padding */
+                transform: translateX(-50%);
+                color: white;
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+                margin: 0;
+                padding: 0;
             }
-            /* --- END MODIFIED --- */
         }
     </style>
 </head>
@@ -560,8 +557,6 @@
 
                 const description = container.querySelector('img').alt;
                 interestInput.value = description;
-
-                let row = Math.floor(index / 4);
 
                 let message;
                 if (index <= 7) {
