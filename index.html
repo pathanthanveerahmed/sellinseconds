@@ -387,6 +387,12 @@
                 color: black;
             }
 
+            /* --- Added to remove space above the h1 below the header --- */
+            h1:first-of-type { /* Targets the very first h1 on the page */
+                margin-top: 0;
+            }
+            /* --- End of added style --- */
+
             .image-grid-row1-row2 {
                 grid-template-columns: repeat(2, 1fr); /* 2 columns instead of 4 for better tapping */
                 gap: 1rem; /* reduce gap between columns */
