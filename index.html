@@ -61,19 +61,24 @@
             --primary-dark: #0056b3; /* Deeper blue for hovers/accents */
             --text-color: #333; /* Softer black for body text */
             --heading-color: #1a1a1a; /* Darker for headings, providing stronger contrast */
-            --background-light: #f8faff; /* A very subtle, clean off-white background */
-            --background-gradient: linear-gradient(to bottom, #edf2f7, #e2e8f0); /* Gentle, cool-toned gradient */
+            /* Removed fixed background-gradient, now handled by animation */
             --form-bg: #ffffff; /* Pure white for forms */
             --border-color: #d0d7de; /* A slightly softer border color */
             --radius: 16px; /* Original radius */
             --shadow: 0 8px 24px rgba(0, 0, 0, 0.09); /* Softer, slightly more spread out shadow */
             --shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.18); /* More pronounced shadow on hover */
+
+            /* New colors for the animated background */
+            --bg-color-1: #e0f2f7; /* Light cyan */
+            --bg-color-2: #e6e6fa; /* Lavender blush */
+            --bg-color-3: #f0f8ff; /* Alice blue */
+            --bg-color-4: #fdf5e6; /* Old lace */
+            --bg-color-5: #e0ffe0; /* Pale green */
         }
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            /* Using Open Sans for general text, Montserrat for headings */
             font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
             -webkit-font-smoothing: antialiased; /* Smoother font rendering */
             -moz-osx-font-smoothing: grayscale;
@@ -87,16 +92,28 @@
         }
 
         body {
-            background: var(--background-gradient); /* Apply the refined background gradient */
+            /* Animated Background */
+            background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5));
+            background-size: 400% 400%; /* Make gradient larger than viewport for smooth animation */
+            animation: gradientShift 20s ease infinite; /* Smooth, continuous animation */
             color: var(--text-color);
             line-height: 1.7; /* Increased line-height for better readability */
             padding-top: 400px;
         }
 
+        /* Keyframe animation for background */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 100%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 0%; }
+            100% { background-position: 0% 50%; }
+        }
+
         h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif; /* Applied Montserrat to headings */
+            font-family: 'Montserrat', sans-serif;
             text-align: center;
-            color: var(--heading-color); /* Ensure heading color matches new palette */
+            color: var(--heading-color);
         }
 
         h1 {
@@ -107,15 +124,15 @@
 
         h2 {
             font-size: 2.2rem; /* Original size */
-            font-weight: 700; /* Slightly bolder for emphasis */
+            font-weight: 700;
             margin-bottom: 1rem;
         }
 
         h3 {
             font-size: 1.6rem; /* Original size */
-            font-weight: 600; /* Slightly bolder */
+            font-weight: 600;
             margin-bottom: 2rem;
-            color: #555; /* Slightly muted for less prominence than h1/h2 */
+            color: #555;
         }
 
         header {
@@ -136,18 +153,18 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.75); /* Slightly darkened for better text contrast, original look */
+            filter: brightness(0.75); /* Original filter */
             z-index: 1;
         }
 
-        header .header-title { /* Changed to .header-title for clarity */
+        header .header-title {
             position: absolute;
             bottom: 30px; /* Original position */
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
             font-size: 3.5rem; /* Original size */
-            font-weight: 800; /* Bolder for more impact */
+            font-weight: 800;
             color: white;
             text-shadow: 1px 1px 10px rgba(0,0,0,0.8); /* Original shadow */
             width: 90%;
@@ -156,38 +173,37 @@
             margin: 0;
             padding: 0;
             max-width: 900px; /* Original max-width */
-            letter-spacing: -0.02em; /* Subtle letter spacing for refined look */
+            letter-spacing: -0.02em;
         }
 
-        .hero-intro { /* New section for expanded introductory text */
+        .hero-intro {
             max-width: 900px;
             margin: 3rem auto 2rem auto;
             padding: 0 1.5rem;
             text-align: center;
             font-size: 1.1rem;
             line-height: 1.8;
-            color: var(--text-color); /* Using refined text color */
+            color: var(--text-color);
         }
         .hero-intro h2 {
             margin-bottom: 1rem;
-            color: var(--primary-dark); /* Highlight main title */
+            color: var(--primary-dark);
         }
         .hero-intro p {
             margin-bottom: 1rem;
         }
 
-        /* New styles for content moved below the form */
         .below-form-content {
             max-width: 900px;
-            margin: 3rem auto 2rem auto; /* Original margin */
+            margin: 3rem auto 2rem auto;
             padding: 0 1.5rem;
             text-align: center;
-            color: var(--text-color); /* Using refined text color */
+            color: var(--text-color);
         }
         .below-form-content h1 {
-            font-size: 2.5rem; /* Adjusted font size for better visibility */
+            font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-dark); /* Using primary-dark for consistency */
+            color: var(--primary-dark);
             line-height: 1.2;
             margin-bottom: 1.5rem;
         }
@@ -197,48 +213,34 @@
             margin-bottom: 1rem;
         }
 
-
         .image-grid {
             max-width: 1200px;
-            margin: 1.5rem auto; /* Original margin */
-            padding: 0 1rem; /* Original padding */
-            display: grid; /* Changed to grid for implicit responsive layout, but explicit old layout for rows */
-            grid-template-columns: repeat(4, 1fr); /* Maintaining original 4-column structure */
-            gap: 2rem; /* Original gap between images */
-            grid-auto-rows: minmax(180px, auto); /* Ensure consistent row height for image containers */
-        }
-
-        /* To maintain original row structure explicitly, we'll keep these */
-        .image-grid-row1-row2:nth-child(1) { grid-column: span 4; } /* Keep first set of 4 as a row */
-        .image-grid-row1-row2:nth-child(2) { grid-column: span 4; } /* Keep second set of 4 as a row */
-
-        /* Override the above to match original image grid structure */
-        .image-grid {
-            display: flex; /* Revert to flexbox to match original layout */
-            flex-direction: column; /* Revert to column to stack rows */
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+            display: flex; /* Original layout */
+            flex-direction: column; /* Original layout */
             gap: 2rem; /* Original gap */
         }
         .image-grid-row1-row2 {
-            display: grid; /* Use grid for internal row layout */
+            display: grid;
             grid-template-columns: repeat(4, 1fr); /* Original 4-column layout */
             gap: 2rem; /* Original gap */
             width: 100%;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.5rem; /* Original margin */
         }
-
 
         .image-container {
             width: 100%;
             height: 180px; /* Original height */
             border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: var(--shadow); /* Apply new shadow */
-            background: var(--form-bg); /* Use refined white background */
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; /* Smooth transitions */
+            box-shadow: var(--shadow);
+            background: var(--form-bg);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
             position: relative;
             cursor: pointer;
             text-align: center;
-            border: 2px solid var(--border-color); /* Subtle border for definition */
+            border: 2px solid var(--border-color);
             display: flex; /* For vertical centering of image and caption */
             flex-direction: column;
             align-items: center;
@@ -252,19 +254,19 @@
             padding: 10px; /* Original padding */
         }
         .image-container:hover {
-            transform: scale(1.03) translateY(-3px); /* Subtle scale and lift on hover */
-            box-shadow: var(--shadow-hover); /* More prominent shadow on hover */
-            border-color: var(--primary); /* Primary color border on hover */
+            transform: scale(1.03) translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
         }
         .image-container.selected {
             animation: zoomInOut 0.6s ease-in-out;
-            outline: 3px solid var(--primary); /* Original outline thickness */
-            box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25); /* Adjusted glow color */
-            border-color: var(--primary); /* Keep primary border when selected */
+            outline: 3px solid var(--primary);
+            box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
+            border-color: var(--primary);
         }
         @keyframes zoomInOut {
             0% { transform: scale(1); }
-            50% { transform: scale(1.15); } /* Original zoom aggressive */
+            50% { transform: scale(1.15); }
             100% { transform: scale(1); }
         }
         .image-container.selected::after {
@@ -281,41 +283,52 @@
             align-items: center;
             justify-content: center;
             font-size: 1.1rem;
-            z-index: 5; /* Ensure checkmark is on top */
+            z-index: 5;
         }
 
         .image-container.full-width {
             margin-bottom: 0.5rem;
         }
 
+        /* REVERTED: Figcaptions hidden by default */
         figcaption {
-            font-size: 0.9rem; /* Slightly larger default font size for better readability */
-            color: var(--text-color); /* Ensure text color matches new palette */
+            font-size: 0; /* Hide font size */
+            height: 0; /* Collapse height */
+            overflow: hidden; /* Hide overflow */
+            visibility: hidden; /* Hide element */
+            display: block; /* Keep block behavior for smooth transition */
+            opacity: 0; /* Start invisible */
+            transition: opacity 0.3s ease, font-size 0.3s ease, height 0.3s ease; /* Smooth transition */
+            color: var(--text-color);
             text-align: center;
-            margin-top: 4px; /* Small space from image */
-            height: auto; /* Allow height to adjust */
-            overflow: visible; /* Always visible */
-            visibility: visible; /* Always visible */
-            display: block; /* Ensure it behaves as a block */
-            white-space: normal; /* Allow text to wrap if necessary */
-            text-overflow: clip; /* No ellipsis, let it wrap or truncate naturally */
+            margin-top: 4px;
             line-height: 1.2;
-            font-weight: 600; /* Make captions bold */
+            font-weight: 600;
         }
 
+        /* Show figcaption on hover */
+        .image-container:hover figcaption {
+            font-size: 0.9rem; /* Show font size */
+            height: auto; /* Expand height */
+            overflow: visible; /* Show overflow */
+            visibility: visible; /* Make visible */
+            opacity: 1; /* Fade in */
+        }
+
+
         form {
-            background: var(--form-bg); /* Use refined form background */
+            background: var(--form-bg);
             max-width: 600px;
-            margin: 1.5rem auto 3rem auto; /* Original margins for contact form */
+            margin: 1.5rem auto 3rem auto;
             padding: 3rem 2rem;
             border-radius: var(--radius);
-            box-shadow: var(--shadow); /* Apply new shadow */
-            border: 1px solid var(--border-color); /* Subtle border for form */
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
         }
         form h2 {
             text-align: center;
             font-size: 2rem;
-            font-weight: 700; /* Bolder */
+            font-weight: 700;
             margin-bottom: 2.5rem;
             color: var(--primary-dark);
         }
@@ -323,16 +336,16 @@
             width: 100%;
             padding: 1rem 1.2rem;
             margin-bottom: 2rem;
-            border: 1px solid var(--border-color); /* Use refined border color */
+            border: 1px solid var(--border-color);
             border-radius: var(--radius);
             font-size: 1rem;
             background: #fafafa;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Added transition */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
             box-sizing: border-box;
         }
         input:focus, select:focus, textarea:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 10px rgba(0,123,255,0.2); /* Softer shadow, using new primary color */
+            box-shadow: 0 0 10px rgba(0,123,255,0.2);
             outline: none;
         }
         button {
@@ -345,44 +358,44 @@
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added transitions */
-            box-shadow: var(--shadow); /* Apply new shadow */
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow);
         }
         button:hover {
             background: var(--primary-dark);
-            transform: translateY(-3px); /* Lift effect */
-            box-shadow: var(--shadow-hover); /* More prominent shadow */
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
         }
         button:active {
-            transform: translateY(0); /* Press down effect */
+            transform: translateY(0);
             box-shadow: var(--shadow);
         }
 
         .disclaimer {
             max-width: 700px;
-            margin: 4rem auto 6rem auto; /* Original margins for disclaimer */
+            margin: 4rem auto 6rem auto;
             padding: 1.5rem;
             font-size: 0.9rem;
             color: #555;
             text-align: center;
-            background-color: var(--form-bg); /* Use refined background */
+            background-color: var(--form-bg);
             border-radius: var(--radius);
-            box-shadow: var(--shadow); /* Apply new shadow */
-            border: 1px solid var(--border-color); /* Subtle border */
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
         }
 
         @keyframes wavePulse {
             0% {
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(0,123,255, 0.7); /* Using new primary color */
+                box-shadow: 0 0 0 0 rgba(0,123,255, 0.7);
             }
             70% {
-                transform: scale(1.01); /* Very subtle pulse */
-                box-shadow: 0 0 0 10px rgba(0,123,255, 0); /* Using new primary color */
+                transform: scale(1.01);
+                box-shadow: 0 0 0 10px rgba(0,123,255, 0);
             }
             100% {
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(0,123,255, 0); /* Using new primary color */
+                box-shadow: 0 0 0 0 rgba(0,123,255, 0);
             }
         }
         input.wave {
@@ -390,24 +403,24 @@
         }
 
         .site-footer {
-            background-color: #1d1d1f; /* Original color */
+            background-color: #1d1d1f;
             color: #f5f5f7;
-            padding: 2.5rem 1rem; /* Original padding */
+            padding: 2.5rem 1rem;
             text-align: center;
             font-size: 0.95rem;
             box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
-            border-top: 4px solid var(--primary); /* Using new primary color */
+            border-top: 4px solid var(--primary);
         }
 
         .site-footer a {
             color: #f5f5f7;
-            text-decoration: none; /* No underline by default */
+            text-decoration: none;
             transition: color 0.3s ease, text-decoration 0.3s ease;
         }
 
         .site-footer a:hover {
-            color: var(--primary); /* Using new primary color */
-            text-decoration: underline; /* Underline on hover */
+            color: var(--primary);
+            text-decoration: underline;
         }
 
         .site-footer .small-text {
@@ -420,24 +433,24 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             z-index: 1000;
-            background-color: #25D366; /* WhatsApp brand color for a pop */
+            background-color: #25D366;
             border-radius: 50%;
-            padding: 5px; /* Small padding to make it a circle */
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Subtle shadow for floating effect */
+            padding: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         #whatsapp-icon img {
-            width: 55px; /* Original size */
+            width: 55px;
             height: 55px;
             object-fit: contain;
-            display: block; /* Removes extra space below image */
+            display: block;
         }
 
         #whatsapp-icon:hover {
-            transform: scale(1.15); /* More prominent hover effect */
-            box-shadow: 0 6px 16px rgba(0,0,0,0.3); /* Stronger shadow on hover */
+            transform: scale(1.15);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
         }
 
         #loading-overlay {
@@ -446,12 +459,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.9); /* Slightly more opaque background */
+            background: rgba(255, 255, 255, 0.9);
             z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
-            /* display: none;  Controlled by JS */
+            /* display: none; */
         }
         #loading-overlay img {
             width: 80px;
@@ -468,19 +481,19 @@
         @media (max-width: 600px) {
             body {
                 padding-top: 180px;
-                line-height: 1.6; /* Adjust line height for mobile */
+                line-height: 1.6;
             }
             h1 {
-                font-size: 2rem; /* Original mobile h1 size */
+                font-size: 2rem;
             }
             h2 {
-                font-size: 1.8rem; /* Original mobile h2 size */
+                font-size: 1.8rem;
             }
             h3 {
-                font-size: 1.3rem; /* Original mobile h3 size */
+                font-size: 1.3rem;
             }
             .hero-intro {
-                font-size: 0.95rem; /* Original text for mobile intro */
+                font-size: 0.95rem;
                 margin-top: 2rem;
             }
 
@@ -496,36 +509,36 @@
             }
 
             header .header-title {
-                font-size: 1.5rem; /* Original mobile header title size */
+                font-size: 1.5rem;
                 bottom: 15px;
-                width: 95%; /* Original width on mobile */
+                width: 95%;
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
             }
 
             .image-grid {
-                padding: 1.5rem 0.8rem; /* Original padding for mobile grid */
-                gap: 1.5rem; /* Original gap between rows for mobile */
-                margin-top: 1rem; /* Original margin */
+                padding: 1.5rem 0.8rem;
+                gap: 1.5rem;
+                margin-top: 1rem;
             }
 
             .image-grid-row1-row2 {
-                grid-template-columns: repeat(2, 1fr); /* Original 2 columns for better mobile usability */
-                gap: 0.8rem; /* Original gap between images for mobile */
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
             }
 
             .image-container {
-                height: 120px; /* Original image container height for mobile */
-                padding: 5px; /* Original internal padding for mobile images */
+                height: 120px;
+                padding: 5px;
             }
 
             .image-container img {
-                padding: 0; /* Original padding */
+                padding: 0;
             }
 
-            /* Display figcaption for mobile portrait - this was already enabling it */
+            /* Mobile portrait figcaption (original behavior) */
             @media (orientation: portrait) {
                 figcaption {
-                    font-size: 0.75rem; /* Original font size for mobile figcaption */
+                    font-size: 0.75rem; /* Original size */
                     color: #444;
                     text-align: center;
                     margin-top: 4px;
@@ -539,13 +552,14 @@
                 }
             }
 
+
             form {
                 padding: 2rem 1.2rem;
-                margin: 1.5rem auto 2rem auto; /* Original mobile form margins */
+                margin: 1.5rem auto 2rem auto;
             }
 
             input, select, textarea {
-                margin-bottom: 1.5rem; /* Original margin bottom for mobile inputs */
+                margin-bottom: 1.5rem;
                 padding: 0.8rem 1rem;
             }
 
@@ -554,17 +568,17 @@
                 font-size: 1rem;
             }
 
-            .below-form-content h1 { /* Adjust for mobile */
+            .below-form-content h1 {
                 font-size: 1.8rem;
                 margin: 2rem auto 1.5rem auto;
             }
             .below-form-content p {
-                font-size: 0.95rem; /* Original text for mobile intro */
+                font-size: 0.95rem;
                 margin-top: 1.5rem;
             }
 
             .disclaimer {
-                margin: 2rem auto 4rem auto; /* Original mobile disclaimer margins */
+                margin: 2rem auto 4rem auto;
                 padding: 1rem;
                 font-size: 0.8rem;
             }
@@ -574,7 +588,7 @@
                 right: 15px;
             }
             #whatsapp-icon img {
-                width: 45px; /* Original size for mobile */
+                width: 45px;
                 height: 45px;
             }
         }
@@ -595,17 +609,17 @@
             }
 
             header .header-title {
-                font-size: 2rem; /* Original landscape header title size */
+                font-size: 2rem;
                 bottom: 15px;
                 color: white;
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
             }
             .image-grid-row1-row2 {
-                grid-template-columns: repeat(4, 1fr); /* Original 4 columns for landscape tablets */
+                grid-template-columns: repeat(4, 1fr);
                 gap: 1.5rem;
             }
              .image-container {
-                height: 150px; /* Original image height for landscape tablets */
+                height: 150px;
             }
         }
     </style>
@@ -693,12 +707,12 @@
         const containers = document.querySelectorAll('.image-container');
         const nameInput = document.getElementById('name');
         const interestInput = document.getElementById('interest');
-        const submitButton = document.querySelector('#contact-form button[type="submit"]'); // Get the submit button
+        const submitButton = document.querySelector('#contact-form button[type="submit"]');
 
         const synth = window.speechSynthesis;
         let currentUtterance;
 
-        containers.forEach((container, index) => {
+        containers.forEach((container) => {
             container.addEventListener('click', () => {
                 containers.forEach(c => c.classList.remove('selected'));
                 container.classList.add('selected');
@@ -725,20 +739,19 @@
                     message = `Selling your gaming console? Xbox, PlayStation, Nintendo - we buy them all!`;
                 } else if (description.includes("Buy Refurbished Gadgets")) {
                     message = `Fantastic! You're interested in buying refurbished gadgets. We'll WhatsApp you all the available models and offers.`;
-                    submitButton.textContent = "See Available Gadgets"; // Change button text
+                    submitButton.textContent = "See Available Gadgets";
                 } else if (description.includes("Gadget Repair Services")) {
                     message = `Need gadget repair services? We'll get in touch with you to schedule a service.`;
-                    submitButton.textContent = "Book Repair Service"; // Change button text
+                    submitButton.textContent = "Book Repair Service";
                 } else {
                     message = `Thank you for your interest in ${description}.`;
-                    submitButton.textContent = "Submit"; // Default button text
+                    submitButton.textContent = "Submit";
                 }
 
-
-                if (synth.speaking) {
+                if (synth && synth.speaking) {
                     synth.cancel();
                     setTimeout(() => speak(message), 200);
-                } else {
+                } else if (synth) {
                     speak(message);
                 }
 
@@ -784,7 +797,6 @@
                 return;
             }
 
-            // Show loading overlay
             showLoading();
 
             const formBody = new URLSearchParams();
@@ -800,19 +812,17 @@
                 body: formBody.toString()
             })
             .then(response => {
-                // Hide loading overlay
                 hideLoading();
                 if (response.ok) {
                     alert("Form submitted successfully! We will contact you soon.");
                     form.reset();
                     document.querySelectorAll('.image-container.selected').forEach(c => c.classList.remove('selected'));
-                    submitButton.textContent = "Submit"; // Reset button text
+                    submitButton.textContent = "Submit";
                 } else {
                     alert("Failed to submit. Please try again. (Server error)");
                 }
             })
             .catch(error => {
-                // Hide loading overlay
                 hideLoading();
                 console.error("Error:", error.message);
                 alert("Failed to submit. Please try again. (Network error)");
