@@ -56,23 +56,24 @@
     </script>
     <style>
         :root {
-            --primary: #007bff; /* A fresh, vibrant blue */
+            /* Refined Color Palette */
+            --primary: #007bff; /* A vibrant, modern blue */
             --primary-dark: #0056b3; /* Deeper blue for hovers/accents */
             --text-color: #333; /* Softer black for body text */
-            --heading-color: #1a1a1a; /* Darker for headings */
-            --background-light: #f9fbfd; /* Very subtle light blue/gray background */
-            --background-gradient: linear-gradient(to bottom, #f0f4f8, #e6edf4); /* Gentle gradient */
-            --form-bg: #ffffff; /* Pure white for form */
-            --border-color: #e0e0e0; /* Light gray border */
-            --radius: 12px; /* Consistent rounded corners */
-            --shadow: 0 8px 24px rgba(0, 0, 0, 0.08); /* More prominent, soft shadow */
-            --shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
-            --header-overlay-color: rgba(0, 0, 0, 0.5); /* Darker overlay for header image */
+            --heading-color: #1a1a1a; /* Darker for headings, providing stronger contrast */
+            --background-light: #f8faff; /* A very subtle, clean off-white background */
+            --background-gradient: linear-gradient(to bottom, #edf2f7, #e2e8f0); /* Gentle, cool-toned gradient */
+            --form-bg: #ffffff; /* Pure white for forms */
+            --border-color: #d0d7de; /* A slightly softer border color */
+            --radius: 16px; /* Original radius */
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.09); /* Softer, slightly more spread out shadow */
+            --shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.18); /* More pronounced shadow on hover */
         }
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            /* Using Open Sans for general text, Montserrat for headings */
             font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
             -webkit-font-smoothing: antialiased; /* Smoother font rendering */
             -moz-osx-font-smoothing: grayscale;
@@ -86,35 +87,33 @@
         }
 
         body {
-            background: var(--background-gradient); /* Apply the subtle gradient */
+            background: var(--background-gradient); /* Apply the refined background gradient */
             color: var(--text-color);
             line-height: 1.7; /* Increased line-height for better readability */
-            padding-top: 400px; /* Space for fixed header */
+            padding-top: 400px;
         }
 
         h1, h2, h3 {
             font-family: 'Montserrat', sans-serif; /* Applied Montserrat to headings */
             text-align: center;
-            color: var(--heading-color); /* Specific color for headings */
-            font-weight: 700; /* Default bold for headings */
+            color: var(--heading-color); /* Ensure heading color matches new palette */
         }
 
         h1 {
-            font-size: 3.5rem; /* Larger for main impact */
-            font-weight: 800; /* Extra bold for main title */
-            margin-bottom: 1rem;
-            line-height: 1.1;
-        }
-
-        h2 {
-            font-size: 2.5rem; /* Adjusted size for h2 */
+            font-size: 2.8rem; /* Original size */
             font-weight: 700;
             margin-bottom: 1.5rem;
         }
 
+        h2 {
+            font-size: 2.2rem; /* Original size */
+            font-weight: 700; /* Slightly bolder for emphasis */
+            margin-bottom: 1rem;
+        }
+
         h3 {
-            font-size: 1.8rem; /* Adjusted size for h3 */
-            font-weight: 600;
+            font-size: 1.6rem; /* Original size */
+            font-weight: 600; /* Slightly bolder */
             margin-bottom: 2rem;
             color: #555; /* Slightly muted for less prominence than h1/h2 */
         }
@@ -126,11 +125,8 @@
             width: 100%;
             min-height: 400px;
             overflow: hidden;
-            background-color: #f0f0f5; /* Light background for header */
+            background-color: #f5f5f7; /* Original color */
             z-index: 1000;
-            display: flex; /* Use flexbox for centering */
-            align-items: flex-end; /* Align title to bottom */
-            justify-content: center; /* Center horizontally */
         }
 
         .header-image {
@@ -140,193 +136,221 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.6); /* Slightly darken image for text readability */
+            filter: brightness(0.75); /* Slightly darkened for better text contrast, original look */
             z-index: 1;
         }
 
         header .header-title { /* Changed to .header-title for clarity */
-            position: relative; /* Relative to header flex container */
+            position: absolute;
+            bottom: 30px; /* Original position */
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 2;
-            font-size: 4.5rem; /* Even larger for dramatic effect */
-            font-weight: 800;
+            font-size: 3.5rem; /* Original size */
+            font-weight: 800; /* Bolder for more impact */
             color: white;
-            text-shadow: 2px 2px 20px rgba(0,0,0,0.8); /* Stronger, softer shadow */
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.8); /* Original shadow */
             width: 90%;
             text-align: center;
-            line-height: 1.1;
-            margin-bottom: 70px; /* Push up from the bottom edge of the header */
-            padding: 0 1rem;
-            letter-spacing: -0.03em; /* Slightly tighter letter spacing */
+            line-height: 1.2;
+            margin: 0;
+            padding: 0;
+            max-width: 900px; /* Original max-width */
+            letter-spacing: -0.02em; /* Subtle letter spacing for refined look */
         }
 
         .hero-intro { /* New section for expanded introductory text */
-            max-width: 960px; /* Wider content area */
-            margin: 4.5rem auto 3rem auto; /* More generous margins */
-            padding: 0 2rem;
+            max-width: 900px;
+            margin: 3rem auto 2rem auto;
+            padding: 0 1.5rem;
             text-align: center;
-            font-size: 1.2rem; /* Slightly larger base text */
+            font-size: 1.1rem;
             line-height: 1.8;
-            color: var(--text-color);
+            color: var(--text-color); /* Using refined text color */
         }
         .hero-intro h2 {
             margin-bottom: 1rem;
             color: var(--primary-dark); /* Highlight main title */
         }
         .hero-intro p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         /* New styles for content moved below the form */
         .below-form-content {
-            max-width: 960px;
-            margin: 4.5rem auto 3.5rem auto; /* Adjust margin as needed */
-            padding: 0 2rem;
+            max-width: 900px;
+            margin: 3rem auto 2rem auto; /* Original margin */
+            padding: 0 1.5rem;
             text-align: center;
-            color: var(--text-color);
+            color: var(--text-color); /* Using refined text color */
         }
         .below-form-content h1 {
-            font-size: 3rem; /* Adjusted font size for better visibility */
+            font-size: 2.5rem; /* Adjusted font size for better visibility */
             font-weight: 700;
             color: var(--primary-dark); /* Using primary-dark for consistency */
             line-height: 1.2;
             margin-bottom: 1.5rem;
         }
         .below-form-content p {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 1.8;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
 
         .image-grid {
             max-width: 1200px;
-            margin: 3rem auto; /* Adjusted margin */
-            padding: 0 1.5rem; /* Adjusted padding */
-            display: grid; /* Use CSS Grid for flexibility */
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive columns */
-            gap: 2rem; /* Consistent gap between items */
+            margin: 1.5rem auto; /* Original margin */
+            padding: 0 1rem; /* Original padding */
+            display: grid; /* Changed to grid for implicit responsive layout, but explicit old layout for rows */
+            grid-template-columns: repeat(4, 1fr); /* Maintaining original 4-column structure */
+            gap: 2rem; /* Original gap between images */
+            grid-auto-rows: minmax(180px, auto); /* Ensure consistent row height for image containers */
         }
+
+        /* To maintain original row structure explicitly, we'll keep these */
+        .image-grid-row1-row2:nth-child(1) { grid-column: span 4; } /* Keep first set of 4 as a row */
+        .image-grid-row1-row2:nth-child(2) { grid-column: span 4; } /* Keep second set of 4 as a row */
+
+        /* Override the above to match original image grid structure */
+        .image-grid {
+            display: flex; /* Revert to flexbox to match original layout */
+            flex-direction: column; /* Revert to column to stack rows */
+            gap: 2rem; /* Original gap */
+        }
+        .image-grid-row1-row2 {
+            display: grid; /* Use grid for internal row layout */
+            grid-template-columns: repeat(4, 1fr); /* Original 4-column layout */
+            gap: 2rem; /* Original gap */
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
 
         .image-container {
             width: 100%;
-            min-height: 200px; /* Ensure sufficient height */
+            height: 180px; /* Original height */
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow); /* Apply new shadow */
-            background: var(--form-bg); /* Use white background */
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Smooth transitions */
+            background: var(--form-bg); /* Use refined white background */
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; /* Smooth transitions */
             position: relative;
             cursor: pointer;
-            display: flex; /* Use flexbox for vertical centering */
+            text-align: center;
+            border: 2px solid var(--border-color); /* Subtle border for definition */
+            display: flex; /* For vertical centering of image and caption */
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem; /* Internal padding for content */
-            border: 2px solid var(--border-color); /* Subtle border */
+            padding: 10px; /* Original padding */
         }
         .image-container img {
-            max-width: 80%; /* Constrain image size within container */
-            max-height: 120px; /* Max height for consistent image scaling */
+            width: 100%;
+            height: 100%;
             object-fit: contain;
-            margin-bottom: 0.8rem; /* Space between image and figcaption */
+            padding: 10px; /* Original padding */
         }
         .image-container:hover {
-            transform: translateY(-5px); /* Lift effect on hover */
+            transform: scale(1.03) translateY(-3px); /* Subtle scale and lift on hover */
             box-shadow: var(--shadow-hover); /* More prominent shadow on hover */
             border-color: var(--primary); /* Primary color border on hover */
         }
         .image-container.selected {
             animation: zoomInOut 0.6s ease-in-out;
-            outline: 4px solid var(--primary); /* Thicker outline */
-            box-shadow: 0 0 0 6px rgba(0, 123, 255, 0.2); /* Softer, larger glow */
+            outline: 3px solid var(--primary); /* Original outline thickness */
+            box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25); /* Adjusted glow color */
             border-color: var(--primary); /* Keep primary border when selected */
         }
         @keyframes zoomInOut {
             0% { transform: scale(1); }
-            50% { transform: scale(1.08); } /* Gentle zoom */
+            50% { transform: scale(1.15); } /* Original zoom aggressive */
             100% { transform: scale(1); }
         }
         .image-container.selected::after {
-            content: '✓'; /* Changed checkmark unicode for broader compatibility */
+            content: '\2713';
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 10px;
+            right: 10px;
             background: var(--primary);
             color: white;
             border-radius: 50%;
-            width: 30px; /* Larger checkmark */
-            height: 30px;
+            width: 26px;
+            height: 26px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.1rem;
             z-index: 5; /* Ensure checkmark is on top */
         }
 
-        /* figcaption is now always visible by default for better user experience */
+        .image-container.full-width {
+            margin-bottom: 0.5rem;
+        }
+
         figcaption {
-            font-size: 1rem; /* Readable font size */
-            color: var(--text-color);
+            font-size: 0.9rem; /* Slightly larger default font size for better readability */
+            color: var(--text-color); /* Ensure text color matches new palette */
             text-align: center;
-            font-weight: 600; /* Make captions bold */
             margin-top: 4px; /* Small space from image */
-            height: auto;
-            overflow: visible;
-            visibility: visible;
-            display: block;
-            white-space: normal;
-            line-height: 1.3;
+            height: auto; /* Allow height to adjust */
+            overflow: visible; /* Always visible */
+            visibility: visible; /* Always visible */
+            display: block; /* Ensure it behaves as a block */
+            white-space: normal; /* Allow text to wrap if necessary */
+            text-overflow: clip; /* No ellipsis, let it wrap or truncate naturally */
+            line-height: 1.2;
+            font-weight: 600; /* Make captions bold */
         }
 
         form {
-            background: var(--form-bg);
-            max-width: 680px; /* Slightly wider form */
-            margin: 4rem auto 5rem auto; /* Adjusted margins for contact form */
-            padding: 3.5rem 2.5rem; /* More internal padding */
+            background: var(--form-bg); /* Use refined form background */
+            max-width: 600px;
+            margin: 1.5rem auto 3rem auto; /* Original margins for contact form */
+            padding: 3rem 2rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow); /* Apply new shadow */
-            border: 1px solid var(--border-color); /* Subtle form border */
+            border: 1px solid var(--border-color); /* Subtle border for form */
         }
         form h2 {
             text-align: center;
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 2.8rem;
+            font-size: 2rem;
+            font-weight: 700; /* Bolder */
+            margin-bottom: 2.5rem;
             color: var(--primary-dark);
         }
         input, select, textarea {
             width: 100%;
-            padding: 1.1rem 1.4rem; /* More padding */
-            margin-bottom: 2.2rem; /* More margin */
-            border: 1px solid var(--border-color); /* Consistent border */
+            padding: 1rem 1.2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color); /* Use refined border color */
             border-radius: var(--radius);
-            font-size: 1.05rem; /* Slightly larger text in fields */
-            background: #fdfdfd; /* Very light background */
+            font-size: 1rem;
+            background: #fafafa;
             transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Added transition */
             box-sizing: border-box;
         }
         input:focus, select:focus, textarea:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 12px rgba(0,123,255,0.25); /* More prominent focus shadow */
+            box-shadow: 0 0 10px rgba(0,123,255,0.2); /* Softer shadow, using new primary color */
             outline: none;
         }
         button {
             width: 100%;
-            padding: 1.2rem; /* More padding */
+            padding: 1rem;
             background: var(--primary);
             color: white;
             border: none;
             border-radius: var(--radius);
-            font-size: 1.2rem; /* Larger font */
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added transitions */
             box-shadow: var(--shadow); /* Apply new shadow */
         }
         button:hover {
             background: var(--primary-dark);
-            transform: translateY(-4px); /* Lift effect */
+            transform: translateY(-3px); /* Lift effect */
             box-shadow: var(--shadow-hover); /* More prominent shadow */
         }
         button:active {
@@ -335,13 +359,13 @@
         }
 
         .disclaimer {
-            max-width: 760px;
-            margin: 5rem auto 7rem auto; /* Adjusted margins for disclaimer */
-            padding: 2rem; /* More padding */
-            font-size: 0.95rem; /* Slightly larger font */
+            max-width: 700px;
+            margin: 4rem auto 6rem auto; /* Original margins for disclaimer */
+            padding: 1.5rem;
+            font-size: 0.9rem;
             color: #555;
             text-align: center;
-            background-color: var(--form-bg);
+            background-color: var(--form-bg); /* Use refined background */
             border-radius: var(--radius);
             box-shadow: var(--shadow); /* Apply new shadow */
             border: 1px solid var(--border-color); /* Subtle border */
@@ -350,70 +374,70 @@
         @keyframes wavePulse {
             0% {
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(0,123,255, 0.7);
+                box-shadow: 0 0 0 0 rgba(0,123,255, 0.7); /* Using new primary color */
             }
             70% {
                 transform: scale(1.01); /* Very subtle pulse */
-                box-shadow: 0 0 0 15px rgba(0,123,255, 0);
+                box-shadow: 0 0 0 10px rgba(0,123,255, 0); /* Using new primary color */
             }
             100% {
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(0,123,255, 0);
+                box-shadow: 0 0 0 0 rgba(0,123,255, 0); /* Using new primary color */
             }
         }
         input.wave {
-            animation: wavePulse 0.9s ease-out; /* Slightly longer animation */
+            animation: wavePulse 0.8s ease-out;
         }
 
         .site-footer {
-            background-color: #222; /* Darker footer */
-            color: #f8f8f8; /* Lighter text */
-            padding: 3rem 1.5rem; /* Increased padding */
+            background-color: #1d1d1f; /* Original color */
+            color: #f5f5f7;
+            padding: 2.5rem 1rem; /* Original padding */
             text-align: center;
             font-size: 0.95rem;
-            box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-            border-top: 5px solid var(--primary); /* Thicker primary border */
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid var(--primary); /* Using new primary color */
         }
 
         .site-footer a {
-            color: #f8f8f8;
+            color: #f5f5f7;
             text-decoration: none; /* No underline by default */
             transition: color 0.3s ease, text-decoration 0.3s ease;
         }
 
         .site-footer a:hover {
-            color: var(--primary);
+            color: var(--primary); /* Using new primary color */
             text-decoration: underline; /* Underline on hover */
         }
 
         .site-footer .small-text {
             font-size: 0.85rem;
-            margin-top: 1rem; /* Adjusted margin */
-            color: #bbb; /* Slightly lighter for less contrast */
+            margin-top: 0.8rem;
+            color: #ccc;
         }
 
         #whatsapp-icon {
             position: fixed;
-            bottom: 25px; /* Slightly higher */
-            right: 25px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            bottom: 20px;
+            right: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
             z-index: 1000;
-            background-color: #25D366; /* WhatsApp brand color */
+            background-color: #25D366; /* WhatsApp brand color for a pop */
             border-radius: 50%;
-            padding: 8px; /* Padding around icon */
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Shadow for floating effect */
+            padding: 5px; /* Small padding to make it a circle */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Subtle shadow for floating effect */
         }
 
         #whatsapp-icon img {
-            width: 60px; /* Larger WhatsApp icon */
-            height: 60px;
+            width: 55px; /* Original size */
+            height: 55px;
             object-fit: contain;
-            display: block; /* Remove extra space below image */
+            display: block; /* Removes extra space below image */
         }
 
         #whatsapp-icon:hover {
-            transform: scale(1.1); /* More prominent hover effect */
-            box-shadow: 0 6px 18px rgba(0,0,0,0.3); /* Stronger shadow on hover */
+            transform: scale(1.15); /* More prominent hover effect */
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3); /* Stronger shadow on hover */
         }
 
         #loading-overlay {
@@ -422,7 +446,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.9); /* Slightly more opaque */
+            background: rgba(255, 255, 255, 0.9); /* Slightly more opaque background */
             z-index: 9999;
             display: flex;
             align-items: center;
@@ -430,8 +454,8 @@
             /* display: none;  Controlled by JS */
         }
         #loading-overlay img {
-            width: 90px; /* Larger loading icon */
-            height: 90px;
+            width: 80px;
+            height: 80px;
             animation: spin 1s linear infinite;
         }
         @keyframes spin {
@@ -440,130 +464,148 @@
             }
         }
 
-        /* --- Mobile-specific styles (max-width: 768px - adjusted breakpoint) --- */
-        @media (max-width: 768px) {
+        /* --- Mobile-specific styles (max-width: 600px) --- */
+        @media (max-width: 600px) {
             body {
-                padding-top: 250px; /* Adjust for smaller header on mobile */
-                line-height: 1.6;
+                padding-top: 180px;
+                line-height: 1.6; /* Adjust line height for mobile */
             }
             h1 {
-                font-size: 2.8rem; /* Adjusted mobile h1 size */
+                font-size: 2rem; /* Original mobile h1 size */
             }
             h2 {
-                font-size: 2.2rem; /* Adjusted mobile h2 size */
+                font-size: 1.8rem; /* Original mobile h2 size */
             }
             h3 {
-                font-size: 1.6rem; /* Adjusted mobile h3 size */
+                font-size: 1.3rem; /* Original mobile h3 size */
             }
             .hero-intro {
-                font-size: 1.05rem; /* Slightly smaller text for mobile intro */
-                margin-top: 2.5rem;
-                padding: 0 1.2rem;
+                font-size: 0.95rem; /* Original text for mobile intro */
+                margin-top: 2rem;
             }
 
             header {
-                min-height: 250px;
+                min-height: 180px;
                 height: auto;
             }
 
             .header-image {
-                object-position: 50% 30%; /* Adjust image position for better mobile crop */
+                object-position: 50% 30%;
                 height: 100%;
                 width: 100%;
             }
 
             header .header-title {
-                font-size: 2.8rem; /* Adjusted mobile header title size */
-                bottom: 30px; /* Slightly higher on mobile */
-                width: 95%; /* More width on mobile */
-                text-shadow: 1px 1px 10px rgba(0,0,0,0.6);
-                margin-bottom: 30px;
+                font-size: 1.5rem; /* Original mobile header title size */
+                bottom: 15px;
+                width: 95%; /* Original width on mobile */
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
             }
 
             .image-grid {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Back to 2 columns for better mobile usability */
-                gap: 1.2rem; /* Reduced gap between rows for mobile */
-                padding: 0 1rem; /* Reduced padding for mobile grid */
-                margin-top: 2rem;
+                padding: 1.5rem 0.8rem; /* Original padding for mobile grid */
+                gap: 1.5rem; /* Original gap between rows for mobile */
+                margin-top: 1rem; /* Original margin */
+            }
+
+            .image-grid-row1-row2 {
+                grid-template-columns: repeat(2, 1fr); /* Original 2 columns for better mobile usability */
+                gap: 0.8rem; /* Original gap between images for mobile */
             }
 
             .image-container {
-                min-height: 140px; /* Adjusted image container height for mobile */
-                padding: 0.8rem; /* Reduced internal padding for mobile images */
+                height: 120px; /* Original image container height for mobile */
+                padding: 5px; /* Original internal padding for mobile images */
             }
 
             .image-container img {
-                max-height: 80px; /* Smaller image size for mobile */
-                margin-bottom: 0.5rem;
+                padding: 0; /* Original padding */
             }
 
-            figcaption {
-                font-size: 0.85rem; /* Readable font size for mobile figcaption */
+            /* Display figcaption for mobile portrait - this was already enabling it */
+            @media (orientation: portrait) {
+                figcaption {
+                    font-size: 0.75rem; /* Original font size for mobile figcaption */
+                    color: #444;
+                    text-align: center;
+                    margin-top: 4px;
+                    height: auto;
+                    overflow: visible;
+                    visibility: visible;
+                    display: block;
+                    white-space: normal;
+                    text-overflow: clip;
+                    line-height: 1.2;
+                }
             }
 
             form {
-                padding: 2.5rem 1.8rem;
-                margin: 2.5rem auto 3.5rem auto; /* Adjusted mobile form margins */
+                padding: 2rem 1.2rem;
+                margin: 1.5rem auto 2rem auto; /* Original mobile form margins */
             }
 
             input, select, textarea {
-                margin-bottom: 1.8rem; /* Reduced margin bottom for mobile inputs */
-                padding: 0.9rem 1.1rem;
-                font-size: 1rem;
+                margin-bottom: 1.5rem; /* Original margin bottom for mobile inputs */
+                padding: 0.8rem 1rem;
             }
 
             button {
-                padding: 1.1rem;
-                font-size: 1.1rem;
+                padding: 0.9rem;
+                font-size: 1rem;
             }
 
             .below-form-content h1 { /* Adjust for mobile */
-                font-size: 2.2rem;
-                margin: 2.5rem auto 1.2rem auto;
+                font-size: 1.8rem;
+                margin: 2rem auto 1.5rem auto;
             }
             .below-form-content p {
-                font-size: 1.05rem; /* Slightly smaller text for mobile intro */
+                font-size: 0.95rem; /* Original text for mobile intro */
+                margin-top: 1.5rem;
             }
 
             .disclaimer {
-                margin: 3rem auto 5rem auto; /* Adjusted mobile disclaimer margins */
-                padding: 1.5rem;
-                font-size: 0.85rem;
+                margin: 2rem auto 4rem auto; /* Original mobile disclaimer margins */
+                padding: 1rem;
+                font-size: 0.8rem;
             }
 
             #whatsapp-icon {
-                bottom: 18px;
-                right: 18px;
+                bottom: 15px;
+                right: 15px;
             }
             #whatsapp-icon img {
-                width: 50px; /* Smaller WhatsApp icon for mobile */
-                height: 50px;
+                width: 45px; /* Original size for mobile */
+                height: 45px;
             }
         }
 
         /* --- Landscape Orientation Specific Styles (Tablets too if under 991px) --- */
         @media (max-width: 991px) and (orientation: landscape) {
             body {
-                padding-top: 200px;
+                padding-top: 180px;
             }
             header {
-                min-height: 200px;
+                height: 180px;
+                min-height: unset;
             }
 
             .header-image {
+                object-fit: cover;
                 object-position: center center;
             }
 
             header .header-title {
-                font-size: 3.5rem; /* Adjusted landscape header title size */
-                margin-bottom: 40px;
+                font-size: 2rem; /* Original landscape header title size */
+                bottom: 15px;
+                color: white;
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
             }
-            .image-grid {
-                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Keep 4 columns for landscape tablets */
+            .image-grid-row1-row2 {
+                grid-template-columns: repeat(4, 1fr); /* Original 4 columns for landscape tablets */
                 gap: 1.5rem;
             }
              .image-container {
-                min-height: 160px; /* Adjusted image height for landscape tablets */
+                height: 150px; /* Original image height for landscape tablets */
             }
         }
     </style>
@@ -577,96 +619,86 @@
     <main>
         <section class="hero-intro">
             <h2>Choose the Gadget Service You Need</h2>
-            <p>From selling your used gadgets, buying refurbished ones, to quick repairs, we offer seamless solutions. Find your gadget below and let us handle the rest. No more endless searching – just simple, straightforward services for all your electronic needs.</p>
+            <p>From used Gadget selling, Buying, Trade In and Repairs, find your gadget below and let us handle the rest. No more endless searching – just simple, straightforward solutions for all your electronic needs.</p>
         </section>
 
-        <section class="image-grid">
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/phone.png" loading="lazy" alt="Sell Mobile Phone - Instant Quote">
-                <figcaption>Mobile Phone</figcaption>
-            </figure>
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/laptop.png" loading="lazy" alt="Sell Laptop or MacBook - Best Price">
-                <figcaption>Laptop / MacBook</figcaption>
-            </figure>
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/allinone.png" loading="lazy" alt="Sell iMac or All-in-One PC">
-                <figcaption>iMac / All-in-One</figcaption>
-            </figure>
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/tablet.png" loading="lazy" alt="Sell Tablet or iPad">
-                <figcaption>Tablet / iPad</figcaption>
-            </figure>
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/accessories.png" loading="lazy" alt="Sell Gadget Accessories">
-                <figcaption>Accessories</figcaption>
-            </figure>
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/watch.png" loading="lazy" alt="Sell Smart Watch or Apple Watch">
-                <figcaption>Smart Watch</figcaption>
-            </figure>
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/earbuds.png" loading="lazy" alt="Sell Earbuds or AirPods">
-                <figcaption>Earbuds / AirPods</figcaption>
-            </figure>
-            <figure class="image-container">
-                <img src="https://www.sellinseconds.in/gamingconsole.png" loading="lazy" alt="Sell Gaming Console - Xbox, PlayStation, Nintendo">
-                <figcaption>Gaming Console</figcaption>
-            </figure>
-            <figure class="image-container">
+        <div class="image-grid">
+            <div class="image-grid-row1-row2">
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/phone.png" loading="lazy" alt="Sell Mobile Phone - Instant Quote">
+                    <figcaption>Mobile Phone</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/laptop.png" loading="lazy" alt="Sell Laptop or MacBook - Best Price">
+                    <figcaption>Laptop / MacBook</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/allinone.png" loading="lazy" alt="Sell iMac or All-in-One PC">
+                    <figcaption>iMac / All-in-One</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/tablet.png" loading="lazy" alt="Sell Tablet or iPad">
+                    <figcaption>Tablet / iPad</figcaption>
+                </figure>
+            </div>
+
+            <div class="image-grid-row1-row2">
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/accessories.png" loading="lazy" alt="Sell Gadget Accessories">
+                    <figcaption>Accessories</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/watch.png" loading="lazy" alt="Sell Smart Watch or Apple Watch">
+                    <figcaption>Smart Watch</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/earbuds.png" loading="lazy" alt="Sell Earbuds or AirPods">
+                    <figcaption>Earbuds / AirPods</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/gamingconsole.png" loading="lazy" alt="Sell Gaming Console - Xbox, PlayStation, Nintendo">
+                    <figcaption>Gaming Console</figcaption>
+                </figure>
+            </div>
+
+            <figure class="image-container full-width">
                 <img src="https://www.sellinseconds.in/buy.png" loading="lazy" alt="Buy Refurbished Gadgets - Quality Checked">
                 <figcaption>Buying Gadget</figcaption>
             </figure>
-            <figure class="image-container">
+
+            <figure class="image-container full-width">
                 <img src="https://www.sellinseconds.in/repair.png" loading="lazy" alt="Gadget Repair Services - Mobile, Laptop, Tablet">
                 <figcaption>Servicing Gadget</figcaption>
             </figure>
-        </section>
+        </div>
 
         <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
-            <h2>Get Your Instant Quote or Book a Service</h2>
+            <h2>Get an Instant Quote or Book a Service</h2>
             <input type="text" id="name" name="name" placeholder="Your Name" required>
             <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
             <input type="hidden" id="interest" name="interest">
-            <button type="submit" aria-label="Submit your contact information to get a quote or book service">Get Started</button>
+            <button type="submit" aria-label="Submit your contact information to get a quote or book service">Submit</button>
         </form>
 
         <div class="below-form-content">
-            <h1>Your Ultimate Platform to Sell, Buy & Repair Gadgets Instantly.</h1>
-            <p>At Sell In Seconds, we make trading in your old electronics incredibly easy and rewarding. Whether you're looking to sell, trade-in, buy refurbished gadgets, or get a quick repair, we offer seamless service right to your doorstep. Get an instant quote and experience a hassle-free process today!</p>
+            <h1>Your Ultimate Platform to Sell, Buy & Repair Gadgets even at chip level Instantly. </h1>
+            <p>At Sell In Seconds, we make trading in your old electronics incredibly easy and rewarding. Whether you're looking to sell ot Trade In your Gadgets, or get a quick repair / service, we offer seamless service right to your doorstep. Get an instant quote and experience a hassle-free process today!</p>
         </div>
 
         <div class="disclaimer">
             Disclaimer: We buy genuine products only. Identity Proof is mandatory. Payment will be done post diagnosis cum agreement of deal. Pick up will be done at your home or work location only. Roadside meeting is not allowed.
         </div>
     </main>
-
-    <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance">
-        <img src="https://www.sellinseconds.in/whatsapp.png" loading="lazy" alt="WhatsApp Chat Icon">
-    </a>
-
-    <footer class="site-footer">
-        <div class="footer-content">
-            <p>&copy; 2025 Sell In Seconds. All rights reserved.</p>
-            <p><a href="mailto:support@sellinseconds.in">support@sellinseconds.in</a> | <a href="https://www.sellinseconds.in">www.sellinseconds.in</a> | Call: 9886566379</p>
-            <p class="small-text">Fast, fair, and safe way to sell, buy, or repair your gadgets.</p>
-        </div>
-    </footer>
-    <div id="loading-overlay">
-        <img src="https://www.sellinseconds.in/loading.gif" alt="Loading...">
-    </div>
-
     <script>
         const containers = document.querySelectorAll('.image-container');
         const nameInput = document.getElementById('name');
         const interestInput = document.getElementById('interest');
         const submitButton = document.querySelector('#contact-form button[type="submit"]'); // Get the submit button
 
-        // Only try to use SpeechSynthesis if it's available
         const synth = window.speechSynthesis;
         let currentUtterance;
 
-        containers.forEach((container) => {
+        containers.forEach((container, index) => {
             container.addEventListener('click', () => {
                 containers.forEach(c => c.classList.remove('selected'));
                 container.classList.add('selected');
@@ -699,17 +731,15 @@
                     submitButton.textContent = "Book Repair Service"; // Change button text
                 } else {
                     message = `Thank you for your interest in ${description}.`;
-                    submitButton.textContent = "Get Started"; // Default button text
+                    submitButton.textContent = "Submit"; // Default button text
                 }
 
-                // If speech synthesis is supported, speak the message
-                if (synth) {
-                    if (synth.speaking) {
-                        synth.cancel();
-                        setTimeout(() => speak(message), 200);
-                    } else {
-                        speak(message);
-                    }
+
+                if (synth.speaking) {
+                    synth.cancel();
+                    setTimeout(() => speak(message), 200);
+                } else {
+                    speak(message);
                 }
 
                 document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
@@ -728,7 +758,6 @@
             nameInput.classList.remove('animated');
         });
 
-        // Form submission logic
         document.getElementById("contact-form").addEventListener("submit", function (e) {
             e.preventDefault();
 
@@ -755,7 +784,8 @@
                 return;
             }
 
-            showLoading(); // Show loading overlay
+            // Show loading overlay
+            showLoading();
 
             const formBody = new URLSearchParams();
             formBody.append("name", name);
@@ -770,19 +800,20 @@
                 body: formBody.toString()
             })
             .then(response => {
-                hideLoading(); // Hide loading overlay
+                // Hide loading overlay
+                hideLoading();
                 if (response.ok) {
                     alert("Form submitted successfully! We will contact you soon.");
                     form.reset();
-                    // Remove selected class from all image containers after successful submission
                     document.querySelectorAll('.image-container.selected').forEach(c => c.classList.remove('selected'));
-                    submitButton.textContent = "Get Started"; // Reset button text
+                    submitButton.textContent = "Submit"; // Reset button text
                 } else {
                     alert("Failed to submit. Please try again. (Server error)");
                 }
             })
             .catch(error => {
-                hideLoading(); // Hide loading overlay
+                // Hide loading overlay
+                hideLoading();
                 console.error("Error:", error.message);
                 alert("Failed to submit. Please try again. (Network error)");
             });
@@ -791,13 +822,17 @@
         function showLoading() {
             document.getElementById('loading-overlay').style.display = 'flex';
         }
-
         function hideLoading() {
             document.getElementById('loading-overlay').style.display = 'none';
         }
-
-        // Initially hide loading overlay in case of page reload or back button
         document.addEventListener('DOMContentLoaded', hideLoading);
     </script>
+
+    <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance">
+        <img src="https://www.sellinseconds.in/whatsapp.png" loading="lazy" alt="WhatsApp Chat Icon">
+    </a>
+    <div id="loading-overlay">
+        <img src="https://www.sellinseconds.in/loading.gif" alt="Loading...">
+    </div>
 </body>
 </html>
