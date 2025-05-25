@@ -310,30 +310,44 @@
             margin-bottom: 0.5rem;
         }
 
-        /* HIDDEN BY DEFAULT: figcaption */
+        /* --- MODIFIED CSS FOR FIGCAPTION --- */
         figcaption {
-            font-size: 0; /* Ensures text is not visible */
-            height: 0; /* Collapses the height of the element */
-            overflow: hidden; /* Hides any overflowing content */
-            visibility: hidden; /* Ensures the element is completely hidden from screen readers/DOM */
-            opacity: 0; /* Fades out the element */
-            transition: opacity 0.3s ease, font-size 0.3s ease, height 0.3s ease; /* Smooth transition */
-            color: var(--text-color);
-            text-align: center;
-            margin-top: 4px;
-            line-height: 1.2;
-            font-weight: 600;
-            display: block; /* Important to keep as block for transition behavior */
+            /* This will hide the figcaption completely on all devices */
+            display: none;
         }
 
-        /* SHOW ON HOVER: figcaption */
+        /* You can remove or comment out the following if you want them always hidden: */
+        /*
         .image-container:hover figcaption {
-            font-size: 0.9rem; /* Restore font size */
-            height: auto; /* Allow height to adjust to content */
-            overflow: visible; /* Make content visible */
-            visibility: visible; /* Make element visible */
-            opacity: 1; /* Fade in */
+            font-size: 0.9rem;
+            height: auto;
+            overflow: visible;
+            visibility: visible;
+            opacity: 1;
         }
+        */
+
+        /*
+        @media (max-width: 600px) {
+            @media (orientation: portrait) {
+                figcaption {
+                    font-size: 0.75rem;
+                    color: #444;
+                    text-align: center;
+                    margin-top: 4px;
+                    height: auto;
+                    overflow: visible;
+                    visibility: visible;
+                    opacity: 1;
+                    display: block;
+                    white-space: normal;
+                    text-overflow: clip;
+                    line-height: 1.2;
+                }
+            }
+        }
+        */
+        /* --- END MODIFIED CSS FOR FIGCAPTION --- */
 
 
         form {
@@ -555,7 +569,8 @@
                 padding: 0;
             }
 
-            /* Mobile portrait figcaption */
+            /* Mobile portrait figcaption - REMOVED OR COMMENTED OUT */
+            /*
             @media (orientation: portrait) {
                 figcaption {
                     font-size: 0.75rem;
@@ -565,14 +580,14 @@
                     height: auto;
                     overflow: visible;
                     visibility: visible;
-                    opacity: 1; /* Ensure it's visible for portrait mobile */
+                    opacity: 1;
                     display: block;
                     white-space: normal;
                     text-overflow: clip;
                     line-height: 1.2;
                 }
             }
-
+            */
 
             form {
                 padding: 2rem 1.2rem;
