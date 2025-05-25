@@ -311,10 +311,42 @@
         }
 
         /* --- MODIFIED CSS FOR FIGCAPTION --- */
+                /* --- MODIFIED CSS FOR FIGCAPTION --- */
         figcaption {
-            /* This will hide the figcaption completely on all devices */
-            display: none;
+            /* Ensure figcaption is always displayed */
+            display: block;
+            font-size: 0.9rem; /* Default font size for desktop */
+            color: #444;
+            text-align: center;
+            margin-top: 8px; /* Add some space above the caption */
+            height: auto; /* Allow height to adjust to content */
+            overflow: visible; /* Ensure content is not hidden */
+            visibility: visible; /* Make it visible */
+            opacity: 1; /* Ensure full opacity */
+            white-space: normal; /* Allow text to wrap */
+            text-overflow: clip; /* Prevent text truncation with ellipsis */
+            line-height: 1.2; /* Adjust line height for readability */
         }
+
+        /* Remove the hover effect that previously made figcaption visible,
+           as it will now be always visible */
+        .image-container:hover figcaption {
+            /* No changes needed here, as figcaption is always visible */
+            /* You can remove this block if you want to be super strict about no changes,
+               but keeping it doesn't harm anything since it's overridden by the above. */
+        }
+
+        /* Adjustments for mobile portrait view */
+        @media (max-width: 600px) {
+            @media (orientation: portrait) {
+                figcaption {
+                    font-size: 0.75rem; /* Smaller font size for mobile portrait */
+                    margin-top: 4px; /* Reduced margin for mobile */
+                }
+            }
+        }
+        /* --- END MODIFIED CSS FOR FIGCAPTION --- */
+
 
         /* You can remove or comment out the following if you want them always hidden: */
         /*
