@@ -47,29 +47,31 @@
             background-image: url('https://www.sellinseconds.in/ggai.webp');
             background-size: cover;
             background-repeat: no-repeat;
-            background-position: center top;
-            height: 700px; /* Default height for larger screens */
+            background-position: center top; /* Focus on the top part of the image */
+            min-height: 400px; /* Minimum height for desktop */
             text-align: center;
             color: white;
             display: flex;
-            align-items: flex-end;
+            align-items: flex-end; /* Aligns content to the bottom */
             justify-content: center;
-            padding-bottom: 1rem;
+            padding-bottom: 2rem; /* Space for the title at the bottom */
             margin: 0 auto;
             max-width: 100%;
-            position: relative; /* Added for proper positioning of the title */
+            position: relative; /* For absolute positioning of the h1 */
         }
 
         header h1 {
             font-size: 3rem; /* Default font size for larger screens */
             font-weight: 700;
             text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-            color: black; /* Ensure the color is black as specified in your original HTML */
-            position: absolute; /* Position the title */
-            bottom: 1rem; /* Adjust as needed */
+            color: black; /* Your specified color */
+            position: absolute; /* Position relative to the header */
+            bottom: 2rem; /* Distance from the bottom of the header */
             left: 50%;
-            transform: translateX(-50%);
-            width: 90%; /* Ensure it doesn't overflow on smaller screens */
+            transform: translateX(-50%); /* Center horizontally */
+            width: 90%; /* Ensure it's not too wide */
+            text-align: center; /* Center the text itself */
+            line-height: 1.2; /* Adjust line height for better readability */
         }
 
         .image-container {
@@ -280,7 +282,7 @@
         }
 
         figcaption {
-            font-size: 0;
+            font-size: 0; /* Hidden by default */
             height: 0;
             overflow: hidden;
             visibility: hidden;
@@ -374,34 +376,34 @@
             }
         }
 
-        /* --- Mobile-specific styles --- */
+        /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             header {
-                height: 300px; /* Adjust header height for mobile */
-                padding-bottom: 0.5rem; /* Reduce padding for smaller screens */
+                min-height: 200px; /* Adjust header minimum height for mobile */
+                padding-bottom: 1rem; /* Reduce padding for smaller screens */
             }
 
             header h1 {
                 font-size: 1.5rem; /* Adjust font size for mobile */
-                bottom: 0.5rem; /* Adjust position for mobile */
+                bottom: 1rem; /* Adjust position for mobile */
             }
 
             .image-grid-row1-row2 {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns instead of 4 */
+                grid-template-columns: repeat(2, 1fr); /* 2 columns instead of 4 for better tapping */
                 gap: 1rem; /* reduce gap between columns */
             }
 
             .image-container {
                 width: 100%;
-                height: auto;
+                height: auto; /* Allow height to adjust with content */
                 margin: 0;
                 padding: 2px;
             }
 
             .image-container img {
                 width: 100%;
-                height: auto;
-                object-fit: cover;
+                height: auto; /* Allow height to adjust with content */
+                object-fit: cover; /* Use cover to fill the container */
                 border-radius: 6px;
             }
 
@@ -410,7 +412,7 @@
                 color: #444;
                 text-align: center;
                 margin-top: 4px;
-                height: auto; /* Make figcaption visible */
+                height: auto; /* Make figcaption visible on mobile */
                 overflow: visible;
                 visibility: visible;
             }
@@ -535,6 +537,7 @@
                     setTimeout(() => speak(message), 200);
                 } else {
                     speak(message);
+                (message);
                 }
 
                 document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
