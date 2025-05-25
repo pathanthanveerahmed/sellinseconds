@@ -47,8 +47,8 @@
             background-image: url('https://www.sellinseconds.in/ggai.webp');
             background-size: cover;
             background-repeat: no-repeat;
-            background-position: center top; /* Focus on the top part of the image */
-            min-height: 400px; /* Minimum height for desktop */
+            background-position: center top; /* Default: Focus on the top part of the image */
+            min-height: 400px; /* Minimum height for desktop view */
             text-align: center;
             color: white;
             display: flex;
@@ -282,7 +282,7 @@
         }
 
         figcaption {
-            font-size: 0; /* Hidden by default */
+            font-size: 0; /* Hidden by default for desktop */
             height: 0;
             overflow: hidden;
             visibility: hidden;
@@ -379,12 +379,26 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             header {
-                min-height: 200px; /* Adjust header minimum height for mobile */
-                padding-bottom: 1rem; /* Reduce padding for smaller screens */
+                /*
+                 * Try adjusting this min-height:
+                 * - Smaller value (e.g., 180px-220px) will show more width,
+                 * but might make the image look very "squashed" vertically.
+                 * - Larger value will show more height, but will crop more horizontally.
+                 * Experiment to find the best balance for your image.
+                 */
+                min-height: 220px; /* Increased slightly for better visibility if needed */
+                padding-bottom: 1rem; /* Consistent with desktop on relative terms */
+                /*
+                 * Optional: Adjust background-position for mobile if a different part
+                 * of the image is more important for smaller screens.
+                 * Example: background-position: center center;
+                 * Or: background-position: center bottom;
+                 */
+                background-position: center center; /* Consider centering for mobile */
             }
 
             header h1 {
-                font-size: 1.5rem; /* Adjust font size for mobile */
+                font-size: 1.3rem; /* Slightly reduced font size for mobile */
                 bottom: 1rem; /* Adjust position for mobile */
             }
 
@@ -537,7 +551,6 @@
                     setTimeout(() => speak(message), 200);
                 } else {
                     speak(message);
-                (message);
                 }
 
                 document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
