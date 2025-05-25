@@ -68,16 +68,16 @@
         }
 
         header h1 {
-            position: relative; /* Keep relative by default for desktop, will be adjusted for mobile */
+            position: relative;
             z-index: 2;
             font-size: 3rem;
             font-weight: 700;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-            color: black;
+            color: white; /* Set color to white for desktop */
+            text-shadow: 1px 1px 8px rgba(0,0,0,0.8); /* Stronger text shadow for readability */
             width: 90%;
             text-align: center;
             line-height: 1.2;
-            margin: 0;
+            margin-top: 15px; /* Add some top margin to push it down */
             padding: 0; /* Ensure no internal padding */
         }
 
@@ -383,7 +383,7 @@
                 background-color: transparent; /* Make the background transparent */
                 padding: 0.2em 0.5em; /* Keep padding for visual spacing if needed */
                 border-radius: 5px; /* Keep border-radius if you like the rounded corners */
-                margin: 0; /* Remove margin */
+                margin-top: 10px; /* Add some top margin to push it down */
                 color: white; /* Set the text color to white */
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* Add a slight text shadow for better readability on the image */
                 z-index: 2;
@@ -455,6 +455,9 @@
                 bottom: unset;
                 left: unset;
                 transform: none;
+                color: white; /* Ensure white color for landscape */
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* Add shadow for readability */
+                margin-top: 5px; /* Add some top margin to push it down */
             }
         }
     </style>
