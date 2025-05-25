@@ -252,6 +252,20 @@
             object-fit: contain;
         }
 
+        .image-container.full-width {
+            margin-bottom: 0.5rem;
+        }
+
+        figcaption {
+            font-size: 0; /* Hidden by default for desktop */
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+
         .image-container:hover {
             transform: scale(1.05);
         }
@@ -346,11 +360,10 @@
                 padding: 0;
                 display: block;
                 background-color: #f5f5f7; /* Background for letterboxing if image aspect ratio doesn't fill */
-                margin-top: 0; /* Ensures no margin above the header itself */
             }
 
             .header-image {
-                object-fit: cover; /* Changed to cover to remove gaps around the image within the header */
+                object-fit: contain; /* Reverted to contain for mobile */
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -375,7 +388,7 @@
             }
 
             /* --- Added to remove space above the h1 below the header --- */
-            h1:first-of-type { /* Targets the very first h1 on the page that comes after the header */
+            h1:first-of-type { /* Targets the very first h1 on the page */
                 margin-top: 0;
             }
             /* --- End of added style --- */
