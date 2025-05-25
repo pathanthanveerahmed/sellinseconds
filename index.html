@@ -53,34 +53,37 @@
             width: 100%;
             min-height: 400px; /* Desktop height for the header */
             overflow: hidden;
-            background-color: #f5f5f7;
+            background-color: #f5f5f7; /* Fallback background */
             z-index: 1000; /* Ensure header stays on top */
-            /* No flex properties directly on header for image/text positioning */
-            /* The image will fill it, and text will be absolutely positioned relative to this fixed header */
+
+            /* --- NEW/MODIFIED: Background Image for Header --- */
+            background-image: url('https://www.sellinseconds.in/aicrop.jpg'); /* Use background-image */
+            background-size: cover; /* Ensure image covers the entire header */
+            background-position: center center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent repeating */
+            /* --- END NEW/MODIFIED --- */
         }
 
-        .header-image {
-            position: absolute; /* Position the image relative to the header */
+        /* Remove .header-image styles as it's no longer an <img> tag */
+        /* .header-image {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%; /* Make image fill the header height */
-            object-fit: cover; /* Cover the entire header area */
-            z-index: 1; /* Keep it behind the text */
-        }
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        } */
+
 
         .trade-gadget-text {
             position: absolute; /* Position text absolutely relative to the FIXED header */
             bottom: 20px; /* Distance from the bottom of the header */
             left: 50%; /* Start at 50% from the left */
             transform: translateX(-50%); /* Pull back by half its width for centering */
-            z-index: 2; /* Ensure text is above the image */
+            z-index: 2; /* Ensure text is above the background image */
             width: 90%; /* Maintain previous width */
             text-align: center;
-            /* Optional: background and padding for readability if text is hard to see */
-            /* background-color: rgba(0, 0, 0, 0.5); */
-            /* padding: 10px 20px; */
-            /* border-radius: 5px; */
         }
 
         .trade-gadget-text h1 {
@@ -119,135 +122,6 @@
             justify-content: center;
             gap: 1.5rem;
         }
-        .image-container {
-            width: 180px;
-            height: 180px;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            background: white;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
-            cursor: pointer;
-        }
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        .image-container:hover {
-            transform: scale(1.05);
-        }
-        .image-container.selected {
-            animation: zoomInOut 0.6s ease-in-out;
-            outline: 3px solid var(--primary);
-            box-shadow: 0 0 0 5px rgba(0, 113, 227, 0.25);
-        }
-        @keyframes zoomInOut {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.25); }
-            100% { transform: scale(1); }
-        }
-        .image-container.selected::after {
-            content: '\2713';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            width: 26px;
-            height: 26px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-        }
-        form {
-            background: var(--form-bg);
-            max-width: 600px;
-            margin: 4rem auto;
-            padding: 3rem 2rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-        form h2 {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 500;
-            margin-bottom: 2.5rem;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            margin-bottom: 2rem;
-            border: 1px solid #ccc;
-            border-radius: var(--radius);
-            font-size: 1rem;
-            background: #fafafa;
-            transition: box-shadow 0.4s ease;
-            box-sizing: border-box;
-        }
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 10px rgba(0,113,227,0.3);
-            outline: none;
-        }
-        button {
-            width: 100%;
-            padding: 1rem;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: var(--radius);
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        button:hover {
-            background: #005bb5;
-        }
-        .disclaimer {
-            max-width: 700px;
-            margin: 4rem auto;
-            padding: 1.5rem;
-            font-size: 0.9rem;
-            color: #555;
-            text-align: center;
-            background-color: #fff;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-
-        @keyframes wavePulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(0,113,227, 0.7);
-            }
-            70% {
-                transform: scale(1.05);
-                box-shadow: 0 0 0 10px rgba(0,113,227, 0);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(0,113,227, 0);
-            }
-        }
-        input.wave {
-            animation: wavePulse 0.8s ease-out;
-        }
-
-        /* Grid Layout for Row 1 and Row 2 */
-        .image-grid-row1-row2 {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 equal columns for Row 1 and Row 2 */
-            gap: 2.5rem;
-            width: 100%;
-            margin-bottom: 2.5rem; /* Adds margin between rows */
-        }
-
-        /* General Image Container Style */
         .image-container {
             width: 100%;
             height: 180px;
@@ -370,9 +244,7 @@
         @media (max-width: 600px) {
             header {
                 min-height: 180px; /* Adjust header height for mobile */
-            }
-            .header-image {
-                object-position: 50% 30%; /* Fine-tune image cropping for mobile */
+                background-position: 50% 30%; /* Fine-tune image cropping for mobile */
             }
             .trade-gadget-text {
                 font-size: 1.3rem;
@@ -440,9 +312,7 @@
             header {
                 height: 180px; /* Fixed height for landscape */
                 min-height: unset;
-            }
-            .header-image {
-                object-position: center center;
+                background-position: center center;
             }
             .trade-gadget-text {
                 font-size: 1.5rem;
@@ -456,7 +326,6 @@
 </head>
 <body>
     <header class="header">
-        <img src="https://www.sellin.in/aicrop.jpg" alt="Header Image" class="header-image" loading="lazy">
         <div class="trade-gadget-text">
             <h1>Trade Your Gadget in ⏱️</h1>
         </div>
