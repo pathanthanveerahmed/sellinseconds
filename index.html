@@ -167,6 +167,28 @@
             margin-bottom: 1rem;
         }
 
+        /* New styles for content moved below the form */
+        .below-form-content {
+            max-width: 900px;
+            margin: 3rem auto 2rem auto; /* Adjust margin as needed */
+            padding: 0 1.5rem;
+            text-align: center;
+            color: #444;
+        }
+        .below-form-content h1 {
+            font-size: 2.5rem; /* Adjusted font size for better visibility */
+            font-weight: 700;
+            color: var(--primary-dark); /* Using primary-dark for consistency */
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        .below-form-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+
         .image-grid {
             max-width: 1200px;
             margin: 3rem auto; /* Adjusted margin */
@@ -313,19 +335,6 @@
             box-shadow: var(--shadow);
         }
 
-        /* New style for the moved H1 */
-        .moved-h1 {
-            max-width: 900px;
-            margin: 3rem auto 2rem auto; /* Adjust margin as needed */
-            padding: 0 1.5rem;
-            text-align: center;
-            font-size: 2.5rem; /* Adjusted font size for better visibility */
-            font-weight: 700;
-            color: var(--primary-dark); /* Using primary-dark for consistency */
-            line-height: 1.2;
-        }
-
-
         @keyframes wavePulse {
             0% {
                 transform: scale(1);
@@ -449,8 +458,6 @@
                 bottom: 15px;
                 width: 95%; /* More width on mobile */
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
-                margin: 0;
-                padding: 0;
             }
 
             .image-grid {
@@ -504,6 +511,15 @@
                 font-size: 1rem;
             }
 
+            .below-form-content h1 { /* Adjust for mobile */
+                font-size: 1.8rem;
+                margin: 2rem auto 1.5rem auto;
+            }
+            .below-form-content p {
+                font-size: 0.95rem; /* Smaller text for mobile intro */
+                margin-top: 1.5rem;
+            }
+
             .disclaimer {
                 margin: 2rem auto 4rem auto; /* Adjusted mobile disclaimer margins */
                 padding: 1rem;
@@ -517,11 +533,6 @@
             #whatsapp-icon img {
                 width: 45px; /* Smaller WhatsApp icon for mobile */
                 height: 45px;
-            }
-
-            .moved-h1 { /* Adjust for mobile */
-                font-size: 1.8rem;
-                margin: 2rem auto 1.5rem auto;
             }
         }
 
@@ -545,8 +556,6 @@
                 bottom: 15px;
                 color: white;
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-                margin: 0;
-                padding: 0;
             }
             .image-grid-row1-row2 {
                 grid-template-columns: repeat(4, 1fr); /* Keep 4 columns for landscape tablets */
@@ -566,8 +575,6 @@
 
     <main>
         <section class="hero-intro">
-            <p>At Sell In Seconds, we make trading in your old electronics incredibly easy and rewarding. Whether you're looking to sell ot Trade In your Gadgets, or get a quick repair / service, we offer seamless service right to your doorstep. Get an instant quote and experience a hassle-free process today!</p>
-
             <h2>Choose the Gadget Service You Need</h2>
             <p>From used Gadget selling, Buying, Trade In and Repairs, find your gadget below and let us handle the rest. No more endless searching – just simple, straightforward solutions for all your electronic needs.</p>
         </section>
@@ -634,7 +641,10 @@
             </a>
         </form>
 
-        <h1 class="moved-h1">Your Ultimate Platform to Sell, Buy & Repair Gadgets even at chip level Instantly. </h1>
+        <div class="below-form-content">
+            <h1>Your Ultimate Platform to Sell, Buy & Repair Gadgets even at chip level Instantly. </h1>
+            <p>At Sell In Seconds, we make trading in your old electronics incredibly easy and rewarding. Whether you're looking to sell ot Trade In your Gadgets, or get a quick repair / service, we offer seamless service right to your doorstep. Get an instant quote and experience a hassle-free process today!</p>
+        </div>
 
         <div class="disclaimer">
             Disclaimer: We buy genuine products only. Identity Proof is mandatory. Payment will be done post diagnosis cum agreement of deal. Pick up will be done at your home or work location only. Roadside meeting is not allowed.
