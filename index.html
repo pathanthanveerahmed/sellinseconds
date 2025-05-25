@@ -76,8 +76,7 @@
             width: 90%; /* Ensure it's not too wide */
             text-align: center; /* Center the text itself */
             line-height: 1.2; /* Adjust line height for better readability */
-            /* Margin adjusted for desktop alignment within flex container */
-            margin: 0;
+            margin: 0; /* No external margins */
         }
 
         .image-container {
@@ -220,10 +219,10 @@
                 box-shadow: 0 0 0 0 rgba(0,113,227, 0);
             }
         }
-
         input.wave {
             animation: wavePulse 0.8s ease-out;
         }
+
         /* Grid Layout for Row 1 and Row 2 */
         .image-grid-row1-row2 {
             display: grid;
@@ -357,12 +356,17 @@
             header {
                 min-height: 0; /* Remove fixed min-height for dynamic sizing */
                 height: 0; /* Set height to 0 to use padding for aspect ratio */
-                /* Adjust this percentage based on your ggai.webp image's aspect ratio (Height / Width * 100%) */
-                padding-bottom: 56.25%; /* Example: For a 16:9 image. Adjust as needed. */
+                /*
+                 * IMPORTANT: ADJUST THIS 'padding-bottom' PERCENTAGE.
+                 * Calculate it precisely: (Image Height / Image Width) * 100%
+                 * For example, if ggai.webp is 1920px wide and 1080px high, then (1080/1920)*100% = 56.25%
+                 * If your image is taller (e.g., more square), this percentage will be higher.
+                 * If it's wider (e.g., ultra-wide), this percentage will be lower.
+                 * This ensures the header container itself maintains the image's aspect ratio.
+                 */
+                padding-bottom: 56.25%; /* REPLACE THIS VALUE WITH YOUR CALCULATED PERCENTAGE */
                 display: block; /* Important for padding-bottom trick to work */
-                padding-top: 0; /* Remove top padding if h1 is absolutely positioned */
-                padding-left: 0;
-                padding-right: 0;
+                padding: 0; /* Remove general padding, letting h1 handle its own */
             }
 
             .header-image {
@@ -379,7 +383,7 @@
                 transform: translateX(-50%); /* Re-center */
                 width: 90%;
                 text-align: center;
-                background-color: rgba(255, 255, 255, 0.7); /* Background for text clarity */
+                background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background for text clarity */
                 padding: 0.2em 0.5em;
                 border-radius: 5px;
                 margin: 0; /* Remove any default margins */
@@ -538,7 +542,6 @@
                 }
 
                 document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
-                nameInput.classList.add('animated');
                 nameInput.classList.add('wave');
                 nameInput.focus();
                 setTimeout(() => nameInput.classList.remove('wave'), 1000); // remove to allow re-trigger
@@ -551,7 +554,7 @@
         }
 
         nameInput.addEventListener('focus', () => {
-            nameInput.classList.remove('animated');
+            nameInput.classList.remove('animated'); /* Ensure 'animated' class is removed on focus */
         });
     </script>
 
