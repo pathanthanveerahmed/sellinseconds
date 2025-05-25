@@ -138,7 +138,7 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
-            font-size: 3.5rem; /* Slightly larger */
+            font-size: 3rem; /* Reduced from 3.5rem for desktop */
             font-weight: 700;
             color: white;
             text-shadow: 1px 1px 10px rgba(0,0,0,0.8); /* Stronger shadow */
@@ -147,7 +147,8 @@
             line-height: 1.2;
             margin: 0;
             padding: 0;
-            max-width: 900px; /* Constrain width on very large screens */
+            max-width: 950px; /* Slightly increased max-width for more room */
+            white-space: nowrap; /* Ensures text stays on one line */
         }
 
         .hero-intro { /* New section for expanded introductory text */
@@ -432,10 +433,10 @@
             }
 
             header .header-title {
-                font-size: 1.5rem; /* Adjusted mobile header title size */
-                bottom: 15px;
-                width: 95%; /* More width on mobile */
-                text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+                font-size: 1.3rem; /* Further reduced from 1.5rem for mobile */
+                bottom: 15px; /* Adjusted position */
+                width: 95%;
+                white-space: nowrap; /* Keep it on one line on mobile too */
             }
 
             .image-grid {
@@ -527,6 +528,7 @@
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
                 margin: 0;
                 padding: 0;
+                white-space: nowrap; /* Ensure it stays on one line in landscape mode */
             }
             .image-grid-row1-row2 {
                 grid-template-columns: repeat(4, 1fr); /* Keep 4 columns for landscape tablets */
@@ -545,15 +547,10 @@
     </header>
 
     <main>
-        <section class="hero-intro">
-            <h1>Your Ultimate Platform to Sell, Buy & Repair Gadgets even at chip level Instantly. </h1>
-            <p>At Sell In Seconds, we make trading in your old electronics incredibly easy and rewarding. Whether you're looking to sell ot Trade In your Gadgets, or get a quick repair / service, we offer seamless service right to your doorstep. Get an instant quote and experience a hassle-free process today!</p>
-
-            <h2>Choose the Gadget Service You Need</h2>
-            <p>From used Gadget selling, Buying, Trade In and Repairs, find your gadget below and let us handle the rest. No more endless searching – just simple, straightforward solutions for all your electronic needs.</p>
-        </section>
-
         <div class="image-grid">
+            <h2>Choose the Gadget Service You Need</h2>
+            <p style="text-align: center; max-width: 900px; margin: 0 auto 2rem auto; font-size: 1.1rem; line-height: 1.8; color: #444;">From **used iPhones** to **MacBook trade-ins** and **smartwatch repairs**, find your gadget below and let us handle the rest. No more endless searching – just simple, straightforward solutions for all your electronic needs.</p>
+
             <div class="image-grid-row1-row2">
                 <figure class="image-container">
                     <img src="https://www.sellinseconds.in/phone.png" loading="lazy" alt="Sell Mobile Phone - Instant Quote">
@@ -614,6 +611,11 @@
                 <img src="https://www.sellinseconds.in/whatsapp.png" loading="lazy" alt="WhatsApp Chat Icon">
             </a>
         </form>
+
+        <section class="hero-intro">
+            <h1>Your Ultimate Platform to **Sell, Buy & Repair Gadgets even at Chip Level** Instantly</h1>
+            <p>At Sell In Seconds, we make **trading in your old electronics** incredibly easy and rewarding. Whether you're looking to **sell or trade in your gadgets**, or get a **quick repair/service**, we offer seamless service right to your doorstep. Get an **instant quote** and experience a hassle-free process today!</p>
+        </section>
 
         <div class="disclaimer">
             Disclaimer: We buy genuine products only. Identity Proof is mandatory. Payment will be done post diagnosis cum agreement of deal. Pick up will be done at your home or work location only. Roadside meeting is not allowed.
