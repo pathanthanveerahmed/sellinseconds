@@ -354,39 +354,37 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             header {
-                min-height: 0; /* Remove fixed min-height for dynamic sizing */
-                height: 0; /* Set height to 0 to use padding for aspect ratio */
-                /*
-                 * IMPORTANT: ADJUST THIS 'padding-bottom' PERCENTAGE.
-                 * Calculate it precisely: (Image Height / Image Width) * 100%
-                 * For example, if ggai.webp is 1920px wide and 1080px high, then (1080/1920)*100% = 56.25%
-                 * If your image is taller (e.g., more square), this percentage will be higher.
-                 * If it's wider (e.g., ultra-wide), this percentage will be lower.
-                 * This ensures the header container itself maintains the image's aspect ratio.
-                 */
-                padding-bottom: 33.43%; /* REPLACE THIS VALUE WITH YOUR CALCULATED PERCENTAGE */
-                display: block; /* Important for padding-bottom trick to work */
-                padding: 0; /* Remove general padding, letting h1 handle its own */
+                min-height: 250px; /* Increased minimum height for mobile portrait */
+                height: 45vh; /* Header takes up 45% of viewport height on mobile */
+                width: 100%;
+                padding: 0;
+                display: block;
+                background-color: #f5f5f7; /* Background for letterboxing if image aspect ratio doesn't fill */
             }
 
             .header-image {
-                object-fit: contain; /* Mobile: Ensure full image is visible */
-                /* Image still covers 100% width/height of header.
-                   The header's padding-bottom defines the height for the 'contain' to work within. */
+                object-fit: contain; /* Mobile: Ensure full image is visible, with letterboxing/pillarboxing */
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
             }
 
             header h1 {
                 font-size: 1.3rem; /* Slightly reduced font size for mobile */
-                position: absolute; /* Keep absolute for overlay */
-                bottom: 1rem; /* Adjust position relative to the bottom of the header */
+                position: absolute;
+                bottom: 1rem;
                 left: 50%;
-                transform: translateX(-50%); /* Re-center */
+                transform: translateX(-50%);
                 width: 90%;
                 text-align: center;
                 background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background for text clarity */
                 padding: 0.2em 0.5em;
                 border-radius: 5px;
-                margin: 0; /* Remove any default margins */
+                margin: 0;
+                color: black;
             }
 
             .image-grid-row1-row2 {
