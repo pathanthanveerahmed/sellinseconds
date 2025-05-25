@@ -504,7 +504,7 @@
         /* --- Mobile/Tablet Landscape (max-width: 991px and orientation: landscape) --- */
         @media (max-width: 991px) and (orientation: landscape) {
             body {
-                padding-top: 100px; /* Adjust padding for landscape to avoid cropping content */
+                padding-top: 120px; /* Increased padding to accommodate more header visibility */
             }
             header {
                 height: 100px; /* Set a specific height for landscape */
@@ -512,8 +512,7 @@
             }
 
             .header-image {
-                object-position: center 50%; /* Center image content for landscape */
-                /* If top is still cropped in landscape, try center 40% or center 30% */
+                object-position: center 20%; /* Shift down to show more of the top for landscape */
             }
 
             header .header-title {
