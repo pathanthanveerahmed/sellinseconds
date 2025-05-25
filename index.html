@@ -354,16 +354,18 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             header {
-                min-height: 250px; /* Minimum height for mobile portrait */
-                height: 45vh; /* Header takes up 45% of viewport height on mobile */
+                min-height: 200px; /* Adjusted minimum height for mobile */
+                height: 40vh; /* Adjusted percentage of viewport height */
                 width: 100%;
                 padding: 0;
                 display: block;
-                background-color: #f5f5f7; /* Background for letterboxing if image aspect ratio doesn't fill */
+                /* No background-color needed here if image fully covers */
+                margin-top: 0; /* Ensures no gap above the header itself */
+                margin-bottom: 0; /* Ensures no gap below the header itself */
             }
 
             .header-image {
-                object-fit: contain; /* Reverted to contain for mobile */
+                object-fit: cover; /* CHANGED TO COVER to fill the space and remove gaps */
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -373,42 +375,43 @@
             }
 
             header h1 {
-                font-size: 1.3rem; /* Slightly reduced font size for mobile */
+                font-size: 1.3rem;
                 position: absolute;
                 bottom: 1rem;
                 left: 50%;
                 transform: translateX(-50%);
                 width: 90%;
                 text-align: center;
-                background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background for text clarity */
+                background-color: rgba(255, 255, 255, 0.7);
                 padding: 0.2em 0.5em;
                 border-radius: 5px;
                 margin: 0;
                 color: black;
             }
 
-            /* --- Added to remove space above the h1 below the header --- */
-            h1:first-of-type { /* Targets the very first h1 on the page */
-                margin-top: 0;
+            /* --- Important: Remove margins from the H1 immediately following the header --- */
+            h1:first-of-type {
+                margin-top: 0; /* Ensure no gap above the H1 below the header */
+                padding-top: 1rem; /* Add some padding to push it down from the top of its section */
             }
-            /* --- End of added style --- */
+            /* --- End of important style --- */
 
             .image-grid-row1-row2 {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns instead of 4 for better tapping */
-                gap: 1rem; /* reduce gap between columns */
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
 
             .image-container {
                 width: 100%;
-                height: auto; /* Allow height to adjust with content */
+                height: auto;
                 margin: 0;
                 padding: 2px;
             }
 
             .image-container img {
                 width: 100%;
-                height: auto; /* Allow height to adjust with content */
-                object-fit: cover; /* Use cover to fill the container */
+                height: auto;
+                object-fit: cover;
                 border-radius: 6px;
             }
 
@@ -417,13 +420,13 @@
                 color: #444;
                 text-align: center;
                 margin-top: 4px;
-                height: auto; /* Make figcaption visible on mobile */
+                height: auto;
                 overflow: visible;
                 visibility: visible;
             }
 
             form {
-                padding: 2rem 1rem; /* Adjust form padding for mobile */
+                padding: 2rem 1rem;
             }
 
             #whatsapp-icon {
@@ -431,7 +434,6 @@
                 right: 15px;
             }
         }
-
     </style>
 </head>
 <body>
