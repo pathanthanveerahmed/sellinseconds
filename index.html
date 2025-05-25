@@ -357,7 +357,7 @@
         @media (max-width: 600px) {
             header {
                 /* For portrait mode, allow height to be defined by padding or min-height */
-                min-height: 200px; /* Increased min-height for better portrait appearance */
+                min-height: 210px; /* Slightly increased min-height for better portrait appearance */
                 height: auto; /* Allow height to adjust */
                 display: flex; /* Keep flex for centering */
                 align-items: center; /* Center vertically */
@@ -368,7 +368,7 @@
 
             .header-image {
                 object-fit: cover; /* Use cover for portrait to fill space, allowing minor cropping */
-                object-position: center center; /* Ensure the center of the image is prioritized */
+                object-position: center top; /* Try adjusting vertical position slightly */
                 height: 100%; /* Make sure it takes full height of the header */
                 width: 100%; /* Make sure it takes full width of the header */
             }
