@@ -42,45 +42,57 @@
             background: var(--background);
             color: var(--text-color);
             line-height: 1.6;
+            /* Add padding-top to push body content below the fixed header */
+            padding-top: 400px; /* Adjust this value to match your header's height */
         }
 
         header {
-            position: relative;
-            min-height: 400px; /* Desktop height */
+            position: fixed; /* Make the header stick to the viewport */
+            top: 0;
+            left: 0;
+            min-height: 400px; /* Desktop height - will determine padding-top for body */
             width: 100%;
             overflow: hidden;
-            background-color: #f5f5f7; /* Background for potential empty space if image doesn't perfectly fill */
-            display: flex; /* Use flexbox for centering content */
-            align-items: center; /* Center vertically */
-            justify-content: center; /* Center horizontally */
-            padding: 0; /* Remove header's own padding to avoid unwanted gaps */
-            margin: 0; /* Ensure no external margin */
+            background-color: #f5f5f7;
+            z-index: 1000; /* Ensure header stays on top */
+            display: flex;
+            flex-direction: column; /* Stack image and text vertically */
+            justify-content: flex-end; /* Push content to the bottom of the flex container */
+            align-items: center; /* Center horizontally */
+            padding: 0;
+            margin: 0;
         }
 
         .header-image {
-            position: absolute;
+            position: absolute; /* Position the image relative to the header */
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Default to cover for desktop to fill space */
+            object-fit: cover;
             z-index: 1;
         }
 
-     header h1 {
-           position: relative;
-           z-index: 2;
-           font-size: 3rem;
-           font-weight: 700;
-           color: white; /* Set color to white for desktop */
-           text-shadow: 1px 1px 8px rgba(0,0,0,0.8); /* Stronger text shadow for readability */
-           width: 90%;
-           text-align: center;
-           line-height: 1.2;
-           margin-top: 30px; /* Increased top margin */
-           padding: 0; /* Ensure no internal padding */
-       }
+        .trade-gadget-text {
+            position: relative; /* Make this the positioning context for its children */
+            z-index: 2; /* Ensure text is above the image */
+            width: 90%; /* Maintain previous width */
+            text-align: center;
+            /* Adjust padding or margin here to move it slightly up from the absolute bottom of the header */
+            padding-bottom: 20px; /* Space from the bottom of the header */
+        }
 
+        .trade-gadget-text h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 1px 1px 8px rgba(0,0,0,0.8);
+            line-height: 1.2;
+            margin: 0; /* Remove default margin from h1 */
+            padding: 0; /* Remove default padding from h1 */
+        }
+
+        /* Rest of your existing CSS remains unchanged */
         .image-container {
             height: 180px; /* You can adjust this for desktop */
         }
@@ -360,7 +372,7 @@
                 height: auto;
                 display: flex;
                 align-items: center;
-                justify-content: center;
+                justify-content: flex-end; /* Push content to bottom */
                 padding: 0;
                 flex-direction: column;
             }
@@ -372,53 +384,23 @@
                 width: 100%;
             }
 
-      header h1 {
-               font-size: 1.3rem;
-               position: relative;
-               bottom: unset;
-               left: unset;
-               transform: none;
-               width: 90%;
-               text-align: center;
-               background-color: transparent; /* Make the background transparent */
-               padding: 0.2em 0.5em; /* Keep padding for visual spacing if needed */
-               border-radius: 5px; /* Keep border-radius if you like the rounded corners */
-               margin-top: 25px; /* Increased top margin */
-               color: white; /* Set the text color to white */
-               text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* Add a slight text shadow for better readability on the image */
-               z-index: 2;
-           }
-
-           h1:first-of-type {
-               margin-top: 0;
-               padding-top: 1rem;
-           }
-
-           .image-grid-row1-row2 {
-               grid-template-columns: repeat(2, 1fr);
-               gap: 1rem;
-           }
-
-           .image-container {
-               width: 100%;
-               height: auto;
-               margin: 0;
-               padding: 2px;
-           }
-
-           .image-container img {
-               width: 100%;
-               height: auto;
-               object-fit: cover;
-               border-radius: 6px;
-           }
-
-           /* Hide figcaption in portrait mode on mobile */
-           @media (orientation: portrait) {
-               figcaption {
-                   display: none;
-               }
-           }
+            .trade-gadget-text {
+                font-size: 1.3rem;
+                position: relative; /* Keep relative for mobile too */
+                bottom: unset;
+                left: unset;
+                transform: none;
+                width: 90%;
+                text-align: center;
+                background-color: transparent;
+                padding: 0.2em 0.5em;
+                border-radius: 5px;
+                margin-top: 0; /* Remove top margin */
+                padding-bottom: 10px; /* Adjust for mobile spacing */
+                color: white;
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+                z-index: 2;
+            }
 
             h1:first-of-type {
                 margin-top: 0;
@@ -444,6 +426,13 @@
                 border-radius: 6px;
             }
 
+            /* Hide figcaption in portrait mode on mobile */
+            @media (orientation: portrait) {
+                figcaption {
+                    display: none;
+                }
+            }
+
             figcaption {
                 font-size: 0.8rem;
                 color: #444;
@@ -462,6 +451,10 @@
                 bottom: 15px;
                 right: 15px;
             }
+
+            body {
+                padding-top: 180px; /* Adjust padding for mobile header height */
+            }
         }
 
         /* --- Landscape Orientation Specific Styles (Tablets too if under 991px) --- */
@@ -471,32 +464,39 @@
                 min-height: unset; /* Remove min-height restriction for landscape */
                 display: flex;
                 align-items: center;
-                justify-content: center;
+                justify-content: flex-end; /* Push content to bottom */
                 flex-direction: column;
             }
 
             .header-image {
-                object-fit: cover; /* Use cover to fill the reduced landscape header height */
-                object-position: center center; /* Keep the image centered */
+                object-fit: cover;
+                object-position: center center;
             }
 
-         header h1 {
-               font-size: 1.5rem; /* Slightly larger for landscape, adjust as needed */
-               position: relative;
-               bottom: unset;
-               left: unset;
-               transform: none;
-               color: white; /* Ensure white color for landscape */
-               text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* Add shadow for readability */
-               margin-top: 15px; /* Increased top margin */
-           }
+            .trade-gadget-text {
+                font-size: 1.5rem;
+                position: relative;
+                bottom: unset;
+                left: unset;
+                transform: none;
+                color: white;
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+                margin-top: 0; /* Remove top margin */
+                padding-bottom: 10px; /* Adjust for landscape spacing */
+            }
+
+            body {
+                padding-top: 180px; /* Adjust padding for landscape header height */
+            }
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <img src="https://www.sellinseconds.in/aicrop.jpg" alt="Header Image" class="header-image" loading="lazy">
-        <h1 class="header-title">Trade Your Gadget in Seconds⏱️</h1>
+        <img src="https://www.sellin.in/aicrop.jpg" alt="Header Image" class="header-image" loading="lazy">
+        <div class="trade-gadget-text">
+            <h1>Trade Your Gadget in ⏱️</h1>
+        </div>
     </header>
 
     <h1>Welcome to Gadget Trade-in Platform...</h1>
