@@ -1,1 +1,893 @@
-ss
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QMV442HBWL');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sell your gadgets in seconds in Bangalore! Fast, easy trade-in for phones, laptops, tablets & more. Get instant quotes & quick pickup in Bangalore.">
+    <meta name="keywords" content="sell gadgets Bangalore, trade-in phones Bangalore, sell mobile Bangalore, used phones Bangalore, sell laptops Bangalore, sell tablets Bangalore, gadget repair Bangalore, buy used gadgets Bangalore, electronics trade-in Bangalore">
+    <meta name="author" content="Sell In Seconds">
+    <meta property="og:title" content="Sell, Buy, & Repair Gadgets Instantly in Bangalore - Sell In Seconds">
+    <meta property="og:description" content="Trade in your gadgets in Bangalore in just two steps! Get instant quotes for mobiles, laptops, tablets, and more. Also offering gadget repair and sales in Bangalore.">
+    <meta property="og:image" content="https://www.sellinseconds.in/aicrop.webp" loading="lazy">
+    <meta property="og:url" content="https://www.sellinseconds.in">
+    <meta name="robots" content="index, follow">
+    <title>Sell, Buy, & Repair Used Gadgets in Bangalore - Instant Quotes & Service</title>
+    <link rel="icon" type="image/x-icon" href="https://www.sellinseconds.in/fevicon.ico">
+    <link rel="canonical" href="https://www.sellinseconds.in">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Sell In Seconds",
+      "url": "https://www.sellinseconds.in",
+      "logo": "https://www.sellinseconds.in/fevicon.ico",
+      "image": "https://www.sellinseconds.in/aicrop.webp",
+      "description": "Sell your gadgets in seconds in Bangalore. Fast, easy, and reliable way to trade in your gadgets like mobile phones, laptops, and tablets etc. Get instant quotes and quick pickup.",
+      "telephone": "+919886566379",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ITPL Main Road",
+        "addressLocality": "Bangalore",
+        "addressRegion": "Karnataka",
+        "postalCode": "560048",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 12.9699,
+        "longitude": 77.7497
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "10:00",
+          "closes": "19:00"
+        }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+919886566379",
+        "contactType": "Customer Service",
+        "areaServed": "Bangalore, Karnataka",
+        "availableLanguage": ["en", "hi"]
+      },
+      "potentialAction": {
+        "@type": "SellAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.sellinseconds.in/#contact-form"
+        },
+        "query-input": "required name=gadgetInterest"
+      }
+    }
+    </script>
+    <style>
+        :root {
+            /* Refined Color Palette */
+            --primary: #007bff;
+            --primary-dark: #0056b3;
+            --text-color: #333;
+            --heading-color: #1a1a1a;
+            --form-bg: #ffffff;
+            --border-color: #d0d7de;
+            --radius: 16px;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
+            --shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.18);
+
+            /* New colors for the animated background */
+            --bg-color-1: #e0f2f7; /* Light cyan */
+            --bg-color-2: #e6e6fa; /* Lavender blush */
+            --bg-color-3: #f0f8ff; /* Alice blue */
+            --bg-color-4: #fdf5e6; /* Old lace */
+            --bg-color-5: #e0ffe0; /* Pale green */
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            /* Animated Background - SLOWER ANIMATION */
+            background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5));
+            background-size: 400% 400%;
+            animation: gradientShift 40s ease infinite; /* SLOWER: Changed to 40 seconds */
+            color: var(--text-color);
+            line-height: 1.7;
+            padding-top: 400px;
+        }
+
+        /* Keyframe animation for background */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 100%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 0%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            color: var(--heading-color);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 400px;
+            overflow: hidden;
+            background-color: #f5f5f7;
+            z-index: 1000;
+        }
+
+        .header-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.75);
+            z-index: 1;
+        }
+
+        header .header-title {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.8);
+            width: 90%;
+            text-align: center;
+            line-height: 1.2;
+            margin: 0;
+            padding: 0;
+            max-width: 900px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-intro {
+            max-width: 900px;
+            margin: 3rem auto 2rem auto;
+            padding: 0 1.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+        .hero-intro h2 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        .hero-intro p {
+            margin-bottom: 1rem;
+        }
+
+        .below-form-content {
+            max-width: 900px;
+            margin: 3rem auto 2rem auto;
+            padding: 0 1.5rem;
+            text-align: center;
+            color: var(--text-color);
+        }
+        .below-form-content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        .below-form-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .image-grid {
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .image-grid-row1-row2 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 180px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: var(--form-bg);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            position: relative;
+            cursor: pointer;
+            text-align: center;
+            border: 2px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+        .image-container:hover {
+            transform: scale(1.03) translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+        }
+        .image-container.selected {
+            animation: zoomInOut 0.6s ease-in-out;
+            outline: 3px solid var(--primary);
+            box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
+            border-color: var(--primary);
+        }
+        @keyframes zoomInOut {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+        .image-container.selected::after {
+            content: '\2713';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            z-index: 5;
+        }
+
+        .image-container.full-width {
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- MODIFIED CSS FOR FIGCAPTION --- */
+        figcaption {
+            /* This will hide the figcaption completely on all devices */
+            display: none;
+        }
+
+        /* You can remove or comment out the following if you want them always hidden: */
+        /*
+        .image-container:hover figcaption {
+            font-size: 0.9rem;
+            height: auto;
+            overflow: visible;
+            visibility: visible;
+            opacity: 1;
+        }
+        */
+
+        /*
+        @media (max-width: 600px) {
+            @media (orientation: portrait) {
+                figcaption {
+                    font-size: 0.75rem;
+                    color: #444;
+                    text-align: center;
+                    margin-top: 4px;
+                    height: auto;
+                    overflow: visible;
+                    visibility: visible;
+                    opacity: 1;
+                    display: block;
+                    white-space: normal;
+                    text-overflow: clip;
+                    line-height: 1.2;
+                }
+            }
+        }
+        */
+        /* --- END MODIFIED CSS FOR FIGCAPTION --- */
+
+
+        form {
+            background: var(--form-bg);
+            max-width: 600px;
+            margin: 1.5rem auto 3rem auto;
+            padding: 3rem 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+        form h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            color: var(--primary-dark);
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            background: #fafafa;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0,123,255,0.2);
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+        button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        button:active {
+            transform: translateY(0);
+            box-shadow: var(--shadow);
+        }
+
+        .disclaimer {
+            max-width: 700px;
+            margin: 4rem auto 6rem auto;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            color: #555;
+            text-align: center;
+            background-color: var(--form-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        @keyframes wavePulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0,123,255, 0.7);
+            }
+            70% {
+                transform: scale(1.01);
+                box-shadow: 0 0 0 10px rgba(0,123,255, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0,123,255, 0);
+            }
+        }
+        input.wave {
+            animation: wavePulse 0.8s ease-out;
+        }
+
+        .site-footer {
+            background-color: #1d1d1f;
+            color: #f5f5f7;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            font-size: 0.95rem;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid var(--primary);
+        }
+
+        .site-footer a {
+            color: #f5f5f7;
+            text-decoration: none;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        .site-footer a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .site-footer .small-text {
+            font-size: 0.85rem;
+            margin-top: 0.8rem;
+            color: #ccc;
+        }
+
+        #whatsapp-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1000;
+            background-color: #25D366;
+            border-radius: 50%;
+            padding: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        #whatsapp-icon img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            display: block;
+        }
+
+        #whatsapp-icon:hover {
+            transform: scale(1.15);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+        }
+
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* display: none; */
+        }
+        #loading-overlay img {
+            width: 80px;
+            height: 80px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* --- Mobile-specific styles (max-width: 600px) --- */
+        @media (max-width: 600px) {
+            body {
+                padding-top: 180px;
+                line-height: 1.6;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            h3 {
+                font-size: 1.3rem;
+            }
+            .hero-intro {
+                font-size: 0.95rem;
+                margin-top: 2rem;
+            }
+
+            header {
+                min-height: 180px;
+                height: auto;
+            }
+
+            .header-image {
+                object-position: 50% 30%;
+                height: 100%;
+                width: 100%;
+            }
+
+            header .header-title {
+                font-size: 1.5rem;
+                bottom: 15px;
+                width: 95%;
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+            }
+
+            .image-grid {
+                padding: 1.5rem 0.8rem;
+                gap: 1.5rem;
+                margin-top: 1rem;
+            }
+
+            .image-grid-row1-row2 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+
+            .image-container {
+                height: 120px;
+                padding: 5px;
+            }
+
+            .image-container img {
+                padding: 0;
+            }
+
+            /* Mobile portrait figcaption - REMOVED OR COMMENTED OUT */
+            /*
+            @media (orientation: portrait) {
+                figcaption {
+                    font-size: 0.75rem;
+                    color: #444;
+                    text-align: center;
+                    margin-top: 4px;
+                    height: auto;
+                    overflow: visible;
+                    visibility: visible;
+                    opacity: 1;
+                    display: block;
+                    white-space: normal;
+                    text-overflow: clip;
+                    line-height: 1.2;
+                }
+            }
+            */
+
+            form {
+                padding: 2rem 1.2rem;
+                margin: 1.5rem auto 2rem auto;
+            }
+
+            input, select, textarea {
+                margin-bottom: 1.5rem;
+                padding: 0.8rem 1rem;
+            }
+
+            button {
+                padding: 0.9rem;
+                font-size: 1rem;
+            }
+
+            .below-form-content h1 {
+                font-size: 1.8rem;
+                margin: 2rem auto 1.5rem auto;
+            }
+            .below-form-content p {
+                font-size: 0.95rem;
+                margin-top: 1.5rem;
+            }
+
+            .disclaimer {
+                margin: 2rem auto 4rem auto;
+                padding: 1rem;
+                font-size: 0.8rem;
+            }
+
+            #whatsapp-icon {
+                bottom: 15px;
+                right: 15px;
+            }
+            #whatsapp-icon img {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        /* --- Landscape Orientation Specific Styles (Tablets too if under 991px) --- */
+        @media (max-width: 991px) and (orientation: landscape) {
+            body {
+                padding-top: 180px;
+            }
+            header {
+                height: 180px;
+                min-height: unset;
+            }
+
+            .header-image {
+                object-fit: cover;
+                object-position: center center;
+            }
+
+            header .header-title {
+                font-size: 2rem;
+                bottom: 15px;
+                color: white;
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            }
+            .image-grid-row1-row2 {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.5rem;
+            }
+             .image-container {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="https://www.sellinseconds.in/aicrop.webp" alt="Dynamic header image showing various gadgets being sold or repaired in Bangalore" class="header-image" loading="lazy">
+        <h1 class="header-title">Trade Your Gadget in Seconds</h1>
+    </header>
+
+    <main>
+        <section class="hero-intro">
+            <h2>Choose the Gadget Service You Need</h2>
+            <p>From used Gadget selling, Buying, Trade In and Repairs in Bangalore, find your gadget below and let us handle the rest. No more endless searching – just simple, straightforward solutions for all your electronic needs in Bangalore.</p>
+        </section>
+
+        <div class="image-grid">
+            <div class="image-grid-row1-row2">
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/phone.webp" loading="lazy" alt="Sell Mobile Phone in Bangalore - Get an Instant Quote">
+                    <figcaption>Mobile Phone</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/laptop.webp" loading="lazy" alt="Sell Laptop or MacBook in Bangalore - Get the Best Price">
+                    <figcaption>Laptop / MacBook</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/allinone.webp" loading="lazy" alt="Sell iMac or All-in-One PC in Bangalore">
+                    <figcaption>iMac / All-in-One</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/tablet.webp" loading="lazy" alt="Sell Tablet or iPad in Bangalore">
+                    <figcaption>Tablet / iPad</figcaption>
+                </figure>
+            </div>
+
+            <div class="image-grid-row1-row2">
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/accessories.webp" loading="lazy" alt="Sell Gadget Accessories in Bangalore">
+                    <figcaption>Accessories</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/watch.webp" loading="lazy" alt="Sell Smart Watch or Apple Watch in Bangalore">
+                    <figcaption>Smart Watch</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/earbuds.webp" loading="lazy" alt="Sell Earbuds or AirPods in Bangalore">
+                    <figcaption>Earbuds / AirPods</figcaption>
+                </figure>
+                <figure class="image-container">
+                    <img src="https://www.sellinseconds.in/gamingconsole.webp" loading="lazy" alt="Sell Gaming Console (Xbox, PlayStation, Nintendo) in Bangalore">
+                    <figcaption>Gaming Console</figcaption>
+                </figure>
+            </div>
+
+            <figure class="image-container full-width">
+                <img src="https://www.sellinseconds.in/buy.webp" loading="lazy" alt="Buy Refurbished Gadgets in Bangalore - Quality Checked">
+                <figcaption>Buying Gadget</figcaption>
+            </figure>
+
+            <figure class="image-container full-width">
+                <img src="https://www.sellinseconds.in/repair.webp" loading="lazy" alt="Gadget Repair Services in Bangalore - Mobile, Laptop, Tablet">
+                <figcaption>Servicing Gadget</figcaption>
+            </figure>
+        </div>
+
+        <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
+            <h2>Get an Instant Quote or Book a Service in Bangalore</h2>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
+            <input type="hidden" id="interest" name="interest">
+            <button type="submit" aria-label="Submit your contact information to get a quote or book service in Bangalore">Submit</button>
+        </form>
+
+        <div class="below-form-content">
+            <h1>Your Ultimate Platform to Sell, Buy & Repair Gadgets even at chip level Instantly in Bangalore. </h1>
+            <p>At Sell In Seconds in Bangalore, we make trading in your old electronics incredibly easy and rewarding. Whether you're looking to sell ot Trade In your Gadgets, or get a quick repair / service, we offer seamless service right to your doorstep in Bangalore. Get an instant quote and experience a hassle-free process today!</p>
+        </div>
+
+        <div class="disclaimer">
+            Disclaimer: We buy genuine products only in Bangalore. Identity Proof is mandatory. Payment will be done post diagnosis cum agreement of deal. Pick up will be done at your home or work location only in Bangalore. Roadside meeting is not allowed.
+        </div>
+    </main>
+    <script>
+        const containers = document.querySelectorAll('.image-container');
+        const nameInput = document.getElementById('name');
+        const interestInput = document.getElementById('interest');
+        const submitButton = document.querySelector('#contact-form button');
+
+        const synth = window.speechSynthesis;
+        let currentUtterance;
+
+        containers.forEach((container) => {
+            container.addEventListener('click', () => {
+                containers.forEach(c => c.classList.remove('selected'));
+                container.classList.add('selected');
+
+                const description = container.querySelector('img').alt;
+                interestInput.value = description;
+
+                let message;
+                if (description.includes("Sell Mobile Phone")) {
+                    message = `Great choice! You're looking to sell your mobile phone. We'll get you an instant quote.`;
+                } else if (description.includes("Sell Laptop")) {
+                    message = `Excellent! Selling your laptop or MacBook is easy with us.`;
+                } else if (description.includes("Sell iMac")) {
+                    message = `Selling your iMac or All-in-One PC? We'll help you with that.`;
+                } else if (description.includes("Sell Tablet")) {
+                    message = `Looking to sell your tablet or iPad? We've got you covered.`;
+                } else if (description.includes("Sell Gadget Accessories")) {
+                    message = `Interested in selling gadget accessories? We can assist you.`;
+                } else if (description.includes("Sell Smart Watch")) {
+                    message = `Selling your smart watch or Apple Watch? Get a great deal here.`;
+                } else if (description.includes("Sell Earbuds")) {
+                    message = `Time to sell your earbuds or AirPods? We make it simple.`;
+                } else if (description.includes("Sell Gaming Console")) {
+                    message = `Selling your gaming console? Xbox, PlayStation, Nintendo - we buy them all!`;
+                } else if (description.includes("Buy Refurbished Gadgets")) {
+                    message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
+                    submitButton.textContent = "See Available Gadgets";
+                } else if (description.includes("Gadget Repair Services")) {
+                    message = `Need gadget repair services in Bangalore? We'll get in touch with you to schedule a service.`;
+                    submitButton.textContent = "Book Repair Service";
+                } else {
+                    message = `Thank you for your interest in ${description} 🙏.`;
+                    submitButton.textContent = "Submit";
+                }
+
+                if (synth && synth.speaking) {
+                    synth.cancel();
+                    setTimeout(() => speak(message), 200);
+                } else if (synth) {
+                    speak(message);
+                }
+
+                document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
+                nameInput.classList.add('wave');
+                nameInput.focus();
+                setTimeout(() => nameInput.classList.remove('wave'), 1000);
+            });
+        });
+
+        function speak(text) {
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            synth.speak(currentUtterance);
+        }
+
+        nameInput.addEventListener('focus', () => {
+            nameInput.classList.remove('animated');
+        });
+
+        document.getElementById("contact-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const name = form.name.value.trim();
+            const mobile = form.mobile.value.trim();
+            const interest = form.interest.value.trim();
+
+            const mobileRegex = /^[0-9]{10}$/;
+            const nameRegex = /^[A-Za-z\s]+$/;
+
+            if (!name || !mobile || !interest) {
+                alert("Please select a product/service and fill out all fields.");
+                return;
+            }
+
+            if (!nameRegex.test(name)) {
+                alert("Please enter a valid name. It should only contain letters and spaces.");
+                return;
+            }
+
+            if (!mobileRegex.test(mobile)) {
+                alert("Invalid mobile number! It should contain exactly 10 digits and only numbers.");
+                return;
+            }
+
+            showLoading();
+
+            const formBody = new URLSearchParams();
+            formBody.append("name", name);
+            formBody.append("mobile", mobile);
+            formBody.append("interest", interest);
+
+            fetch(form.action, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: formBody.toString()
+            })
+            .then(response => {
+                hideLoading();
+                if (response.ok) {
+                    alert("Form submitted successfully! We will contact you soon.");
+                    form.reset();
+                    document.querySelectorAll('.image-container.selected').forEach(c => c.classList.remove('selected'));
+                    submitButton.textContent = "Submit";
+                } else {
+                    alert("Failed to submit. Please try again. (Server error)");
+                }
+            })
+            .catch(error => {
+                hideLoading();
+                console.error("Error:", error.message);
+                alert("Failed to submit. Please try again. (Network error)");
+            });
+        });
+
+        function showLoading() {
+            document.getElementById('loading-overlay').style.display = 'flex';
+        }
+        function hideLoading() {
+            document.getElementById('loading-overlay').style.display = 'none';
+        }
+        document.addEventListener('DOMContentLoaded', hideLoading);
+    </script>
+
+    <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair in Bangalore.">
+        <img src="https://www.sellinseconds.in/whatsapp.webp" loading="lazy" alt="WhatsApp Chat Icon">
+    </a>
+    <div id="loading-overlay">
+        <img src="https://www.sellinseconds.in/loading.gif" alt="Loading...">
+    </div>
+</body>
+</html>
