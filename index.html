@@ -205,13 +205,14 @@
             font-family: 'Roboto', sans-serif;
 
             /* White background with smooth edges for the h1 container */
-            background-color: rgba(255, 255, 255, 0.9); /* This sets the white background for the h1 element */
+            background-color: rgb(255, 255, 255); /* Changed to fully opaque white */
             border-radius: 20px; /* Smooth rounded corners */
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4); /* Stronger, more visible shadow */
+            border: 3px solid rgba(0, 123, 255, 0.5); /* Added a semi-transparent blue border for better visibility testing */
             box-sizing: border-box; /* Ensures padding is included in total size */
-            display: inline-block; /* Ensure it behaves like a block for background, but wraps content */
+            display: inline-block; /* Essential for background and padding to wrap content effectively when centered */
         }
-        /* New rule for the span inside header .header-title */
+        /* Rule for the span inside header .header-title */
         header .header-title span {
             font-size: 3.5rem; /* Apply font size to the span */
             font-weight: 900; /* Apply font weight to the span */
@@ -221,7 +222,7 @@
             background-clip: text;
             color: transparent; /* Makes the text transparent so the background-image shows */
             text-shadow: none; /* No shadow with gradient text */
-            /* No display: inline-block here, as it's already handled by the parent h1 */
+            /* No display: inline-block here, as it's already handled by the parent h1 or is default inline */
         }
 
 
@@ -536,11 +537,12 @@
             }
 
             header .header-title {
-                font-size: unset; /* Reset font size for h1 itself */
                 bottom: 15px;
                 width: 95%;
                 padding: 10px 20px; /* Adjust padding for mobile */
                 border-radius: 15px; /* Adjust border-radius for mobile */
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Adjust shadow for mobile */
+                border: 2px solid rgba(0, 123, 255, 0.4); /* Adjust border for mobile */
             }
             header .header-title span { /* Apply mobile specific font size to the span */
                 font-size: 1.5rem;
@@ -626,8 +628,8 @@
             header .header-title {
                 font-size: unset; /* Reset font size for h1 itself */
                 bottom: 15px;
-                color: white;
-                text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+                color: white; /* This color will be hidden by the span's transparent color */
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* This text-shadow applies to the h1, but won't be visible due to color: transparent on span */
             }
             header .header-title span { /* Apply mobile specific font size to the span */
                 font-size: 2rem;
