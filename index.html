@@ -188,32 +188,47 @@
             z-index: 1;
         }
 
-        header .header-title {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    font-size: 3.5rem;
-    font-weight: 900;
-    color: var(--heading-color); /* Change to a dark color for contrast */
-    text-shadow: none; /* Remove existing text shadow */
-    width: 90%;
-    text-align: center;
-    line-height: 1.2;
-    margin: 0;
-    padding: 15px 30px; /* Add padding for the background */
-    max-width: 900px;
-    letter-spacing: -0.02em;
-    font-family: 'Roboto', sans-serif;
+       header .header-title {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            font-size: 3.5rem;
+            font-weight: 900;
+            /* Apply the colorful gradient to the text */
+            background: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; /* Makes the text transparent so the background gradient shows */
+            text-shadow: none; /* Remove any text shadow as it interferes with gradient text */
 
-    /* New styles for the white background with smooth edges */
-    background-color: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
-    border-radius: 20px; /* Smooth rounded corners */
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
-    -webkit-background-clip: padding-box; /* Ensure background respects padding and border-radius */
-    background-clip: padding-box;
-}
+            width: 90%;
+            text-align: center;
+            line-height: 1.2;
+            margin: 0;
+            padding: 15px 30px; /* Padding for the white background */
+            max-width: 900px;
+            letter-spacing: -0.02em;
+            font-family: 'Roboto', sans-serif;
+
+            /* White background with smooth edges */
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            border-radius: 20px; /* Smooth rounded corners */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+            box-sizing: border-box; /* Ensures padding is included in total size */
+        }
+
+        /* Adjust for mobile screens */
+        @media (max-width: 600px) {
+            header .header-title {
+                font-size: 1.5rem;
+                bottom: 15px;
+                padding: 10px 20px; /* Adjust padding for mobile */
+                border-radius: 15px; /* Adjust border-radius for mobile */
+                text-shadow: none; /* Ensure no text shadow on mobile either */
+            }
+        }
 
 /* Adjust for mobile screens */
 @media (max-width: 600px) {
