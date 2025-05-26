@@ -508,8 +508,8 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             body {
-                /* Adjusted padding-top to match the new shorter header height */
-                padding-top: 126px; /* (180px * 0.7 = 126px) */
+                /* Adjusted padding-top to match the new shorter header height (180px * 0.75 = 135px) */
+                padding-top: 135px;
                 line-height: 1.6;
             }
             h1 {
@@ -527,9 +527,9 @@
             }
 
             header {
-                /* Set the header's height to 70% of its original mobile height */
-                min-height: 126px;
-                height: 126px; /* Explicitly set height */
+                /* Set the header's height to 75% of its original mobile height */
+                min-height: 135px; /* 180px * 0.75 = 135px */
+                height: 135px; /* Explicitly set height */
                 overflow: hidden; /* Crucial to clip the excess image */
             }
 
