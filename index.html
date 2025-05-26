@@ -141,7 +141,7 @@
         h1, h2, h3 {
             font-family: 'Roboto', sans-serif; /* Changed to Roboto */
             text-align: center;
-            /* Multi-color gradient effect */
+            /* Multi-color gradient effect for general headings */
             background: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
             -webkit-background-clip: text;
             background-clip: text;
@@ -188,21 +188,13 @@
             z-index: 1;
         }
 
-       header .header-title {
+        header .header-title {
             position: absolute;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
-            font-size: 3.5rem;
-            font-weight: 900;
-            /* Apply the colorful gradient as background-image, which will be clipped to text */
-            background-image: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent; /* Makes the text transparent so the background-image shows */
-            text-shadow: none; /* Remove any text shadow as it interferes with gradient text */
-
+            
             width: 90%;
             text-align: center;
             line-height: 1.2;
@@ -212,44 +204,25 @@
             letter-spacing: -0.02em;
             font-family: 'Roboto', sans-serif;
 
-            /* White background with smooth edges for the entire container */
-            background-color: rgba(255, 255, 255, 0.9); /* This sets the white background for the element */
+            /* White background with smooth edges for the h1 container */
+            background-color: rgba(255, 255, 255, 0.9); /* This sets the white background for the h1 element */
             border-radius: 20px; /* Smooth rounded corners */
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
             box-sizing: border-box; /* Ensures padding is included in total size */
         }
-
-        /* Adjust for mobile screens */
-        @media (max-width: 600px) {
-            header .header-title {
-                font-size: 1.5rem;
-                bottom: 15px;
-                padding: 10px 20px; /* Adjust padding for mobile */
-                border-radius: 15px; /* Adjust border-radius for mobile */
-                text-shadow: none;
-            }
+        /* New rule for the span inside header .header-title */
+        header .header-title span {
+            font-size: 3.5rem; /* Apply font size to the span */
+            font-weight: 900; /* Apply font weight to the span */
+            /* Apply the colorful gradient directly to the text within the span */
+            background-image: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; /* Makes the text transparent so the background-image shows */
+            text-shadow: none; /* No shadow with gradient text */
+            display: inline-block; /* Essential for background-clip to work correctly on span */
         }
 
-        /* Adjust for mobile screens */
-        @media (max-width: 600px) {
-            header .header-title {
-                font-size: 1.5rem;
-                bottom: 15px;
-                padding: 10px 20px; /* Adjust padding for mobile */
-                border-radius: 15px; /* Adjust border-radius for mobile */
-                text-shadow: none; /* Ensure no text shadow on mobile either */
-            }
-        }
-
-/* Adjust for mobile screens */
-@media (max-width: 600px) {
-    header .header-title {
-        font-size: 1.5rem;
-        bottom: 15px;
-        padding: 10px 20px; /* Adjust padding for mobile */
-        border-radius: 15px; /* Adjust border-radius for mobile */
-    }
-}
 
         .hero-intro {
             max-width: 900px;
@@ -562,11 +535,17 @@
             }
 
             header .header-title {
-                font-size: 1.5rem;
+                font-size: unset; /* Reset font size for h1 itself */
                 bottom: 15px;
                 width: 95%;
-                text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+                padding: 10px 20px; /* Adjust padding for mobile */
+                border-radius: 15px; /* Adjust border-radius for mobile */
             }
+            header .header-title span { /* Apply mobile specific font size to the span */
+                font-size: 1.5rem;
+                text-shadow: none; /* No shadow with gradient text */
+            }
+
 
             .image-grid {
                 padding: 1.5rem 0.8rem;
@@ -644,11 +623,15 @@
             }
 
             header .header-title {
-                font-size: 2rem;
+                font-size: unset; /* Reset font size for h1 itself */
                 bottom: 15px;
                 color: white;
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
             }
+            header .header-title span { /* Apply mobile specific font size to the span */
+                font-size: 2rem;
+            }
+
             .image-grid-row1-row2 {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 1.5rem;
@@ -662,7 +645,7 @@
 <body>
     <header class="header">
         <img src="https://www.sellinseconds.in/aicrop.webp" alt="Dynamic header image showing various gadgets being sold or repaired in Bangalore" class="header-image" loading="lazy">
-        <h1 class="header-title">Trade Your Gadget in Seconds</h1>
+        <h1 class="header-title"><span>Trade Your Gadget in Seconds</span></h1>
     </header>
 
     <main>
@@ -721,7 +704,7 @@
             </figure>
         </div>
 
-        <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
+        <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWKFV/exec">
             <h2>Get an Instant Quote or Book a Service in Bangalore</h2>
             <input type="text" id="name" name="name" placeholder="Your Name" required>
             <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
@@ -738,6 +721,12 @@
             Disclaimer: We buy genuine products only in Bangalore. Identity Proof is mandatory. Payment will be done post diagnosis cum agreement of deal. Pick up will be done at your home or work location only in Bangalore. Roadside meeting is not allowed.
         </div>
     </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2024 Sell In Seconds. All rights reserved.</p>
+        <p class="small-text">Designed & Developed by <a href="https://www.linkedin.com/in/suraj-t-4b361427b/" target="_blank">Suraj T</a></p>
+    </footer>
+
     <script>
         const containers = document.querySelectorAll('.image-container');
         const nameInput = document.getElementById('name');
