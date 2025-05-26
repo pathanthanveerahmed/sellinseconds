@@ -86,10 +86,10 @@
     <style>
         :root {
             /* Refined Color Palette */
-            --primary: #007bff;
+            --primary: #007bff; /* Google Blue-ish */
             --primary-dark: #0056b3;
             --text-color: #333;
-            --heading-color: #1a1a1a;
+            --heading-color: #1a1a1a; /* Kept for reference, but overridden below */
             --form-bg: #ffffff;
             --border-color: #d0d7de;
             --radius: 16px;
@@ -141,7 +141,7 @@
         h1, h2, h3 {
             font-family: 'Roboto', sans-serif; /* Changed to Roboto */
             text-align: center;
-            color: var(--heading-color);
+            color: var(--primary); /* Changed to primary blue */
         }
 
         h1 {
@@ -160,7 +160,7 @@
             font-size: 1.6rem;
             font-weight: 500; /* Adjusted from 600 to 500 */
             margin-bottom: 2rem;
-            color: #555;
+            color: var(--primary); /* Changed from #555 to primary blue */
         }
 
         header {
@@ -193,7 +193,7 @@
             z-index: 2;
             font-size: 3.5rem;
             font-weight: 900; /* Changed from 800 to 900 */
-            color: white;
+            color: white; /* Kept white */
             text-shadow: 1px 1px 10px rgba(0,0,0,0.8);
             width: 90%;
             text-align: center;
@@ -216,7 +216,7 @@
         }
         .hero-intro h2 {
             margin-bottom: 1rem;
-            color: var(--primary-dark);
+            color: var(--primary); /* Changed from primary-dark to primary */
         }
         .hero-intro p {
             margin-bottom: 1rem;
@@ -232,7 +232,7 @@
         .below-form-content h1 {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-dark);
+            color: var(--primary); /* Changed from primary-dark to primary */
             line-height: 1.2;
             margin-bottom: 1.5rem;
         }
@@ -319,45 +319,9 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- MODIFIED CSS FOR FIGCAPTION --- */
         figcaption {
-            /* This will hide the figcaption completely on all devices */
             display: none;
         }
-
-        /* You can remove or comment out the following if you want them always hidden: */
-        /*
-        .image-container:hover figcaption {
-            font-size: 0.9rem;
-            height: auto;
-            overflow: visible;
-            visibility: visible;
-            opacity: 1;
-        }
-        */
-
-        /*
-        @media (max-width: 600px) {
-            @media (orientation: portrait) {
-                figcaption {
-                    font-size: 0.75rem;
-                    color: #444;
-                    text-align: center;
-                    margin-top: 4px;
-                    height: auto;
-                    overflow: visible;
-                    visibility: visible;
-                    opacity: 1;
-                    display: block;
-                    white-space: normal;
-                    text-overflow: clip;
-                    line-height: 1.2;
-                }
-            }
-        }
-        */
-        /* --- END MODIFIED CSS FOR FIGCAPTION --- */
-
 
         form {
             background: var(--form-bg);
@@ -373,7 +337,7 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 2.5rem;
-            color: var(--primary-dark);
+            color: var(--primary); /* Changed from primary-dark to primary */
         }
         input, select, textarea {
             width: 100%;
@@ -578,26 +542,6 @@
                 padding: 0;
             }
 
-            /* Mobile portrait figcaption - REMOVED OR COMMENTED OUT */
-            /*
-            @media (orientation: portrait) {
-                figcaption {
-                    font-size: 0.75rem;
-                    color: #444;
-                    text-align: center;
-                    margin-top: 4px;
-                    height: auto;
-                    overflow: visible;
-                    visibility: visible;
-                    opacity: 1;
-                    display: block;
-                    white-space: normal;
-                    text-overflow: clip;
-                    line-height: 1.2;
-                }
-            }
-            */
-
             form {
                 padding: 2rem 1.2rem;
                 margin: 1.5rem auto 2rem auto;
@@ -732,7 +676,7 @@
         </div>
 
         <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
-            <h2>Get an Instant Quote or Book a Service in Bangalore</h2>
+            <h2>Get an Instant Quote or Book a Service</h2>
             <input type="text" id="name" name="name" placeholder="Your Name" required>
             <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
             <input type="hidden" id="interest" name="interest">
