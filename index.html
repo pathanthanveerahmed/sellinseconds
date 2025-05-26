@@ -209,6 +209,7 @@
             border-radius: 20px; /* Smooth rounded corners */
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
             box-sizing: border-box; /* Ensures padding is included in total size */
+            display: inline-block; /* Ensure it behaves like a block for background, but wraps content */
         }
         /* New rule for the span inside header .header-title */
         header .header-title span {
@@ -220,7 +221,7 @@
             background-clip: text;
             color: transparent; /* Makes the text transparent so the background-image shows */
             text-shadow: none; /* No shadow with gradient text */
-            display: inline-block; /* Essential for background-clip to work correctly on span */
+            /* No display: inline-block here, as it's already handled by the parent h1 */
         }
 
 
