@@ -121,7 +121,7 @@
 
         body {
             /* Animated Background - SLOWER ANIMATION */
-            background: linear-gradient(135deg, var(--bg-color-1), var(--bg-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5));
+            background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5));
             background-size: 400% 400%;
             animation: gradientShift 40s ease infinite; /* SLOWER: Changed to 40 seconds */
             color: var(--text-color);
@@ -205,7 +205,7 @@
             font-family: 'Roboto', sans-serif;
 
             /* White background with smooth edges for the h1 container */
-            background: rgb(255, 255, 255); /* Changed to background shorthand with solid white */
+            background: rgb(255, 255, 255); /* Fully opaque white */
             border-radius: 20px; /* Smooth rounded corners */
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.4); /* Stronger, more visible shadow */
             border: 3px solid rgba(0, 123, 255, 0.5); /* Added a semi-transparent blue border for better visibility testing */
@@ -508,7 +508,8 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             body {
-                padding-top: 180px;
+                /* Adjusted padding-top to match the new shorter header height */
+                padding-top: 126px; /* (180px * 0.7 = 126px) */
                 line-height: 1.6;
             }
             h1 {
@@ -526,18 +527,21 @@
             }
 
             header {
-                min-height: 180px;
-                height: auto;
+                /* Set the header's height to 70% of its original mobile height */
+                min-height: 126px;
+                height: 126px; /* Explicitly set height */
+                overflow: hidden; /* Crucial to clip the excess image */
             }
 
             .header-image {
-                object-position: 50% 30%;
-                height: 100%;
+                /* object-fit: cover and object-position will handle the visibility */
+                object-position: 50% 100%; /* Align bottom of the image with bottom of the container, hiding the top part */
+                height: 100%; /* Fill the new container height */
                 width: 100%;
             }
 
             header .header-title {
-                bottom: 15px;
+                bottom: 15px; /* Keep consistent with previous mobile adjustment */
                 width: 95%;
                 padding: 10px 20px; /* Adjust padding for mobile */
                 border-radius: 15px; /* Adjust border-radius for mobile */
@@ -610,28 +614,28 @@
             }
         }
 
-        /* --- Landscape Orientation Specific Styles (Tablets too if under 991px) --- */
+        /* --- Mobile Landscape and Tablet Landscape Specific Styles (max-width: 991px and landscape) --- */
         @media (max-width: 991px) and (orientation: landscape) {
             body {
-                padding-top: 180px;
+                padding-top: 180px; /* Keep original padding-top for landscape */
             }
             header {
-                height: 180px;
-                min-height: unset;
+                height: 180px; /* Keep original height for landscape */
+                min-height: unset; /* Reset min-height */
             }
 
             .header-image {
                 object-fit: cover;
-                object-position: center center;
+                object-position: center center; /* Show full image */
             }
 
             header .header-title {
-                font-size: unset; /* Reset font size for h1 itself */
+                font-size: unset;
                 bottom: 15px;
                 color: white; /* This color will be hidden by the span's transparent color */
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* This text-shadow applies to the h1, but won't be visible due to color: transparent on span */
             }
-            header .header-title span { /* Apply mobile specific font size to the span */
+            header .header-title span {
                 font-size: 2rem;
             }
 
@@ -726,8 +730,8 @@
     </main>
 
     <footer class="site-footer">
-        <p>&copy; 2025 Sell In Seconds. All rights reserved.</p>
-        <p class="small-text">&copy; 2025 Sell in Seconds. All rights reserved. Designed & Developed by Thanveer</a></p>
+        <p>&copy; 2024 Sell In Seconds. All rights reserved.</p>
+        <p class="small-text">Designed & Developed by <a href="https://www.linkedin.com/in/suraj-t-4b361427b/" target="_blank">Suraj T</a></p>
     </footer>
 
     <script>
