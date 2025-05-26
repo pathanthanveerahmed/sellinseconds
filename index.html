@@ -86,10 +86,10 @@
     <style>
         :root {
             /* Refined Color Palette */
-            --primary: #007bff; /* Google Blue-ish */
+            --primary: #007bff;
             --primary-dark: #0056b3;
             --text-color: #333;
-            --heading-color: #1a1a1a; /* Kept for reference, but overridden below */
+            --heading-color: #1a1a1a;
             --form-bg: #ffffff;
             --border-color: #d0d7de;
             --radius: 16px;
@@ -141,7 +141,11 @@
         h1, h2, h3 {
             font-family: 'Roboto', sans-serif; /* Changed to Roboto */
             text-align: center;
-            color: var(--primary); /* Changed to primary blue */
+            /* Multi-color gradient effect */
+            background: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         h1 {
@@ -158,9 +162,8 @@
 
         h3 {
             font-size: 1.6rem;
-            font-weight: 500; /* Adjusted from 600 to 500 */
+            font-weight: 500;
             margin-bottom: 2rem;
-            color: var(--primary); /* Changed from #555 to primary blue */
         }
 
         header {
@@ -192,8 +195,8 @@
             transform: translateX(-50%);
             z-index: 2;
             font-size: 3.5rem;
-            font-weight: 900; /* Changed from 800 to 900 */
-            color: white; /* Kept white */
+            font-weight: 900; /* Changed to 900 */
+            color: white; /* Override: Kept white */
             text-shadow: 1px 1px 10px rgba(0,0,0,0.8);
             width: 90%;
             text-align: center;
@@ -202,7 +205,10 @@
             padding: 0;
             max-width: 900px;
             letter-spacing: -0.02em;
-            font-family: 'Roboto', sans-serif; /* Explicitly set to Roboto */
+            font-family: 'Roboto', sans-serif; /* Added Roboto */
+            background: none; /* Override: Remove gradient */
+            -webkit-background-clip: unset; /* Override: Remove clip */
+            background-clip: unset; /* Override: Remove clip */
         }
 
         .hero-intro {
@@ -216,7 +222,7 @@
         }
         .hero-intro h2 {
             margin-bottom: 1rem;
-            color: var(--primary); /* Changed from primary-dark to primary */
+            /* Color will be inherited (gradient) */
         }
         .hero-intro p {
             margin-bottom: 1rem;
@@ -232,7 +238,7 @@
         .below-form-content h1 {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary); /* Changed from primary-dark to primary */
+            /* Color will be inherited (gradient) */
             line-height: 1.2;
             margin-bottom: 1.5rem;
         }
@@ -337,7 +343,7 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 2.5rem;
-            color: var(--primary); /* Changed from primary-dark to primary */
+             /* Color will be inherited (gradient) */
         }
         input, select, textarea {
             width: 100%;
@@ -676,7 +682,7 @@
         </div>
 
         <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
-            <h2>Get an Instant Quote or Book a Service</h2>
+            <h2>Get an Instant Quote or Book a Service in Bangalore</h2>
             <input type="text" id="name" name="name" placeholder="Your Name" required>
             <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
             <input type="hidden" id="interest" name="interest">
