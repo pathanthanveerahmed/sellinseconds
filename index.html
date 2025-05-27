@@ -1030,12 +1030,23 @@
                         speak(message);
                     }
 
+                    // *** MODIFIED SCROLL BEHAVIOR FOR FIXED HEADER ***
                     const contactForm = document.getElementById('contact-form');
-contactForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
-setTimeout(() => {
-    nameInput.focus();
-}, 100);
-                    setTimeout(() => nameInput.classList.remove('wave'), 1000);
+                    const headerHeight = document.querySelector('header').offsetHeight; // Get dynamic header height
+                    const formTop = contactForm.getBoundingClientRect().top + window.scrollY; // Get form's absolute top position
+
+                    // Calculate the target scroll position: form's top minus header height
+                    const scrollPosition = formTop - headerHeight - 20; // -20 for a little extra padding above the form
+
+                    window.scrollTo({
+                        top: scrollPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Immediately after scrolling, then focus the input.
+                    // This should now work correctly as we explicitly controlled the scroll.
+                    nameInput.classList.add('wave');
+                    nameInput.focus();
                 });
             });
         });
