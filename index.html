@@ -286,46 +286,93 @@
             margin-bottom: 0.5rem;
         }
 
+        /* NEW CSS FOR FLIP EFFECT */
         .image-container {
             width: 100%;
             height: 180px;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            background: var(--form-bg);
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            perspective: 1000px; /* Needed for 3D effect */
             position: relative;
             cursor: pointer;
             text-align: center;
-            border: 2px solid var(--border-color);
+            /* Remove default border and shadow here, as they're applied to front/back faces */
+            border: none;
+            box-shadow: none;
+            background: none; /* No background on the container itself */
+        }
+
+        .image-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s; /* Smooth flip animation */
+            transform-style: preserve-3d; /* Enables 3D space for children */
+        }
+
+        .image-card-front,
+        .image-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* Hide the back of the element during rotation */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow); /* Apply shadow here */
+            border: 2px solid var(--border-color); /* Apply border here */
+            background: var(--form-bg); /* Apply background here */
             padding: 10px;
+            box-sizing: border-box; /* Include padding in element's total width and height */
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; /* Transitions for hover/selected */
         }
-        .image-container img {
-            width: 100%;
-            height: 100%;
+
+        .image-card-back {
+            transform: rotateY(180deg); /* Start rotated for the back face */
+            background-color: var(--primary); /* Example back color */
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .image-card-front img {
+            max-width: 90%; /* Adjust as needed */
+            max-height: 90%; /* Adjust as needed */
             object-fit: contain;
-            padding: 10px;
+            margin-bottom: 5px; /* Space between image and figcaption */
         }
-        .image-container:hover {
-            transform: scale(1.03) translateY(-3px);
+
+        .image-card-front figcaption {
+            display: block; /* Make figcaption visible on the front face */
+            font-size: 0.95rem;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        /* Ensure figcaption is hidden on the initial structure */
+        /* This rule is now overridden by .image-card-front figcaption */
+        figcaption {
+            display: none;
+        }
+
+        /* Hover effects for the new structure */
+        .image-container:hover .image-card-front,
+        .image-container:hover .image-card-back {
+            transform: scale(1.03) translateY(-3px); /* Apply the scale/translate effect to the cards */
             box-shadow: var(--shadow-hover);
             border-color: var(--primary);
         }
-        .image-container.selected {
-            animation: zoomInOut 0.6s ease-in-out;
+
+        /* Adjustments for selected state */
+        .image-container.selected .image-card-front,
+        .image-container.selected .image-card-back {
+            animation: zoomInOut 0.6s ease-in-out; /* Keep the zoomInOut animation */
             outline: 3px solid var(--primary);
             box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
             border-color: var(--primary);
         }
-        @keyframes zoomInOut {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
-        }
+
         .image-container.selected::after {
             content: '\2713';
             position: absolute;
@@ -342,13 +389,11 @@
             font-size: 1.1rem;
             z-index: 5;
         }
+        /* END NEW CSS FOR FLIP EFFECT */
+
 
         .image-container.full-width {
             margin-bottom: 0.5rem;
-        }
-
-        figcaption {
-            display: none;
         }
 
         form {
@@ -574,12 +619,19 @@
 
             .image-container {
                 height: 120px;
-                padding: 5px;
+                /* No padding here, padding moved to image-card-front/back */
             }
 
-            .image-container img {
+            .image-card-front img {
                 padding: 0;
             }
+            .image-card-front figcaption {
+                font-size: 0.85rem;
+            }
+            .image-card-back {
+                font-size: 1rem;
+            }
+
 
             form {
                 padding: 2rem 1.2rem;
@@ -670,51 +722,121 @@
 
         <div class="image-grid">
             <div class="image-grid-row1-row2">
-                <figure class="image-container">
-                    <img src="https://www.sellinseconds.in/phone.webp" loading="lazy" alt="Sell Mobile Phone in Bangalore - Get an Instant Quote">
-                    <figcaption>Mobile Phone</figcaption>
+                <figure class="image-container" data-back-text="Sell Phone">
+                    <div class="image-card-inner">
+                        <div class="image-card-front">
+                            <img src="https://www.sellinseconds.in/phone.webp" loading="lazy" alt="Sell Mobile Phone in Bangalore - Get an Instant Quote">
+                            <figcaption>Mobile Phone</figcaption>
+                        </div>
+                        <div class="image-card-back">
+                            Sell Phone
+                        </div>
+                    </div>
                 </figure>
-                <figure class="image-container">
-                    <img src="https://www.sellinseconds.in/laptop.webp" loading="lazy" alt="Sell Laptop or MacBook in Bangalore - Get the Best Price">
-                    <figcaption>Laptop / MacBook</figcaption>
+                <figure class="image-container" data-back-text="Sell Laptop">
+                    <div class="image-card-inner">
+                        <div class="image-card-front">
+                            <img src="https://www.sellinseconds.in/laptop.webp" loading="lazy" alt="Sell Laptop or MacBook in Bangalore - Get the Best Price">
+                            <figcaption>Laptop / MacBook</figcaption>
+                        </div>
+                        <div class="image-card-back">
+                            Sell Laptop
+                        </div>
+                    </div>
                 </figure>
-                <figure class="image-container">
-                    <img src="https://www.sellinseconds.in/allinone.webp" loading="lazy" alt="Sell iMac or All-in-One PC in Bangalore">
-                    <figcaption>iMac / All-in-One</figcaption>
+                <figure class="image-container" data-back-text="Sell iMac">
+                    <div class="image-card-inner">
+                        <div class="image-card-front">
+                            <img src="https://www.sellinseconds.in/allinone.webp" loading="lazy" alt="Sell iMac or All-in-One PC in Bangalore">
+                            <figcaption>iMac / All-in-One</figcaption>
+                        </div>
+                        <div class="image-card-back">
+                            Sell iMac
+                        </div>
+                    </div>
                 </figure>
-                <figure class="image-container">
-                    <img src="https://www.sellinseconds.in/tablet.webp" loading="lazy" alt="Sell Tablet or iPad in Bangalore">
-                    <figcaption>Tablet / iPad</figcaption>
+                <figure class="image-container" data-back-text="Sell Tablet">
+                    <div class="image-card-inner">
+                        <div class="image-card-front">
+                            <img src="https://www.sellinseconds.in/tablet.webp" loading="lazy" alt="Sell Tablet or iPad in Bangalore">
+                            <figcaption>Tablet / iPad</figcaption>
+                        </div>
+                        <div class="image-card-back">
+                            Sell Tablet
+                        </div>
+                    </div>
                 </figure>
             </div>
 
             <div class="image-grid-row1-row2">
-                <figure class="image-container">
-                    <img src="https://www.sellinseconds.in/accessories.webp" loading="lazy" alt="Sell Gadget Accessories in Bangalore">
-                    <figcaption>Accessories</figcaption>
+                <figure class="image-container" data-back-text="Sell Accessories">
+                    <div class="image-card-inner">
+                        <div class="image-card-front">
+                            <img src="https://www.sellinseconds.in/accessories.webp" loading="lazy" alt="Sell Gadget Accessories in Bangalore">
+                            <figcaption>Accessories</figcaption>
+                        </div>
+                        <div class="image-card-back">
+                            Sell Accessories
+                        </div>
+                    </div>
                 </figure>
-                <figure class="image-container">
-                    <img src="https://www.sellinseconds.in/watch.webp" loading="lazy" alt="Sell Smart Watch or Apple Watch in Bangalore">
-                    <figcaption>Smart Watch</figcaption>
+                <figure class="image-container" data-back-text="Sell Smart Watch">
+                    <div class="image-card-inner">
+                        <div class="image-card-front">
+                            <img src="https://www.sellinseconds.in/watch.webp" loading="lazy" alt="Sell Smart Watch or Apple Watch in Bangalore">
+                            <figcaption>Smart Watch</figcaption>
+                        </div>
+                        <div class="image-card-back">
+                            Sell Smart Watch
+                        </div>
+                    </div>
                 </figure>
-                <figure class="image-container">
-                    <img src="https://www.sellinseconds.in/earbuds.webp" loading="lazy" alt="Sell Earbuds or AirPods in Bangalore">
-                    <figcaption>Earbuds / AirPods</figcaption>
+                <figure class="image-container" data-back-text="Sell Earbuds">
+                    <div class="image-card-inner">
+                        <div class="image-card-front">
+                            <img src="https://www.sellinseconds.in/earbuds.webp" loading="lazy" alt="Sell Earbuds or AirPods in Bangalore">
+                            <figcaption>Earbuds / AirPods</figcaption>
+                        </div>
+                        <div class="image-card-back">
+                            Sell Earbuds
+                        </div>
+                    </div>
                 </figure>
-                <figure class="image-container">
-                    <img src="https://www.sellinseconds.in/gamingconsole.webp" loading="lazy" alt="Sell Gaming Console (Xbox, PlayStation, Nintendo) in Bangalore">
-                    <figcaption>Gaming Console</figcaption>
+                <figure class="image-container" data-back-text="Sell Console">
+                    <div class="image-card-inner">
+                        <div class="image-card-front">
+                            <img src="https://www.sellinseconds.in/gamingconsole.webp" loading="lazy" alt="Sell Gaming Console (Xbox, PlayStation, Nintendo) in Bangalore">
+                            <figcaption>Gaming Console</figcaption>
+                        </div>
+                        <div class="image-card-back">
+                            Sell Console
+                        </div>
+                    </div>
                 </figure>
             </div>
 
-            <figure class="image-container full-width">
-                <img src="https://www.sellinseconds.in/buy.webp" loading="lazy" alt="Buy Refurbished Gadgets in Bangalore - Quality Checked">
-                <figcaption>Buying Gadget</figcaption>
+            <figure class="image-container full-width" data-back-text="Buy Gadgets">
+                <div class="image-card-inner">
+                    <div class="image-card-front">
+                        <img src="https://www.sellinseconds.in/buy.webp" loading="lazy" alt="Buy Refurbished Gadgets in Bangalore - Quality Checked">
+                        <figcaption>Buying Gadget</figcaption>
+                    </div>
+                    <div class="image-card-back">
+                        Buy Gadgets
+                    </div>
+                </div>
             </figure>
 
-            <figure class="image-container full-width">
-                <img src="https://www.sellinseconds.in/repair.webp" loading="lazy" alt="Gadget Repair Services in Bangalore - Mobile, Laptop, Tablet">
-                <figcaption>Servicing Gadget</figcaption>
+            <figure class="image-container full-width" data-back-text="Repair Gadgets">
+                <div class="image-card-inner">
+                    <div class="image-card-front">
+                        <img src="https://www.sellinseconds.in/repair.webp" loading="lazy" alt="Gadget Repair Services in Bangalore - Mobile, Laptop, Tablet">
+                        <figcaption>Servicing Gadget</figcaption>
+                    </div>
+                    <div class="image-card-back">
+                        Repair Gadgets
+                    </div>
+                </div>
             </figure>
         </div>
 
@@ -750,53 +872,91 @@
         const synth = window.speechSynthesis;
         let currentUtterance;
 
-        containers.forEach((container) => {
-            container.addEventListener('click', () => {
-                containers.forEach(c => c.classList.remove('selected'));
-                container.classList.add('selected');
+        document.addEventListener('DOMContentLoaded', () => {
+            hideLoading(); // Keep this for your loading overlay
 
-                const description = container.querySelector('img').alt;
-                interestInput.value = description;
+            const containersToFlip = document.querySelectorAll('.image-grid-row1-row2 .image-container, .image-container.full-width');
+            const hasFlippedOnce = sessionStorage.getItem('hasFlippedImages');
 
-                let message;
-                if (description.includes("Sell Mobile Phone")) {
-                    message = `Great choice! You're looking to sell your mobile phone. We'll get you an instant quote.`;
-                } else if (description.includes("Sell Laptop")) {
-                    message = `Excellent! Selling your laptop or MacBook is easy with us.`;
-                } else if (description.includes("Sell iMac")) {
-                    message = `Selling your iMac or All-in-One PC? We'll help you with that.`;
-                } else if (description.includes("Sell Tablet")) {
-                    message = `Looking to sell your tablet or iPad? We've got you covered.`;
-                } else if (description.includes("Sell Gadget Accessories")) {
-                    message = `Interested in selling gadget accessories? We can assist you.`;
-                } else if (description.includes("Sell Smart Watch")) {
-                    message = `Selling your smart watch or Apple Watch? Get a great deal here.`;
-                } else if (description.includes("Sell Earbuds")) {
-                    message = `Time to sell your earbuds or AirPods? We make it simple.`;
-                } else if (description.includes("Sell Gaming Console")) {
-                    message = `Selling your gaming console? Xbox, PlayStation, Nintendo - we buy them all!`;
-                } else if (description.includes("Buy Refurbished Gadgets")) {
-                    message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
-                    submitButton.textContent = "See Available Gadgets";
-                } else if (description.includes("Gadget Repair Services")) {
-                    message = `Need gadget repair services? We'll get in touch with you to schedule a service.`;
-                    submitButton.textContent = "Book Repair Service";
-                } else {
-                    message = `Thank you for your interest in ${description} 🙏.`;
-                    submitButton.textContent = "Submit";
-                }
+            if (!hasFlippedOnce) {
+                containersToFlip.forEach((container, index) => {
+                    // Stagger the animation for a nicer effect
+                    setTimeout(() => {
+                        const innerCard = container.querySelector('.image-card-inner');
+                        if (innerCard) {
+                            innerCard.style.transform = 'rotateY(180deg)';
+                            const backText = container.getAttribute('data-back-text');
+                            const backFace = container.querySelector('.image-card-back');
+                            if (backText && backFace) {
+                                backFace.textContent = backText;
+                            }
+                        }
+                    }, 100 * index); // Adjust stagger delay as needed
+                });
 
-                if (synth && synth.speaking) {
-                    synth.cancel();
-                    setTimeout(() => speak(message), 200);
-                } else if (synth) {
-                    speak(message);
-                }
+                // After all flips, flip them back
+                setTimeout(() => {
+                    containersToFlip.forEach((container, index) => {
+                        setTimeout(() => {
+                            const innerCard = container.querySelector('.image-card-inner');
+                            if (innerCard) {
+                                innerCard.style.transform = 'rotateY(0deg)';
+                            }
+                        }, 100 * index);
+                    });
+                    sessionStorage.setItem('hasFlippedImages', 'true'); // Set flag after animation
+                }, 2000); // Wait for 2 seconds (adjust as needed) before flipping back
+            }
 
-                document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
-                nameInput.classList.add('wave');
-                nameInput.focus();
-                setTimeout(() => nameInput.classList.remove('wave'), 1000);
+            containers.forEach((container) => {
+                container.addEventListener('click', () => {
+                    containers.forEach(c => c.classList.remove('selected'));
+                    container.classList.add('selected');
+
+                    // Find the image within the front card to get the alt text for description
+                    const description = container.querySelector('.image-card-front img').alt;
+                    interestInput.value = description;
+
+                    let message;
+                    if (description.includes("Sell Mobile Phone")) {
+                        message = `Great choice! You're looking to sell your mobile phone. We'll get you an instant quote.`;
+                    } else if (description.includes("Sell Laptop")) {
+                        message = `Excellent! Selling your laptop or MacBook is easy with us.`;
+                    } else if (description.includes("Sell iMac")) {
+                        message = `Selling your iMac or All-in-One PC? We'll help you with that.`;
+                    } else if (description.includes("Sell Tablet")) {
+                        message = `Looking to sell your tablet or iPad? We've got you covered.`;
+                    } else if (description.includes("Sell Gadget Accessories")) {
+                        message = `Interested in selling gadget accessories? We can assist you.`;
+                    } else if (description.includes("Sell Smart Watch")) {
+                        message = `Selling your smart watch or Apple Watch? Get a great deal here.`;
+                    } else if (description.includes("Sell Earbuds")) {
+                        message = `Time to sell your earbuds or AirPods? We make it simple.`;
+                    } else if (description.includes("Sell Gaming Console")) {
+                        message = `Selling your gaming console? Xbox, PlayStation, Nintendo - we buy them all!`;
+                    } else if (description.includes("Buy Refurbished Gadgets")) {
+                        message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
+                        submitButton.textContent = "See Available Gadgets";
+                    } else if (description.includes("Gadget Repair Services")) {
+                        message = `Need gadget repair services? We'll get in touch with you to schedule a service.`;
+                        submitButton.textContent = "Book Repair Service";
+                    } else {
+                        message = `Thank you for your interest in ${description} 🙏.`;
+                        submitButton.textContent = "Submit";
+                    }
+
+                    if (synth && synth.speaking) {
+                        synth.cancel();
+                        setTimeout(() => speak(message), 200);
+                    } else if (synth) {
+                        speak(message);
+                    }
+
+                    document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
+                    nameInput.classList.add('wave');
+                    nameInput.focus();
+                    setTimeout(() => nameInput.classList.remove('wave'), 1000);
+                });
             });
         });
 
