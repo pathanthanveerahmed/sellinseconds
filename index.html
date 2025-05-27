@@ -464,9 +464,11 @@
                 box-shadow: 0 0 0 0 rgba(0,123,255, 0);
             }
         }
+        /* Keep the input.wave class */
         input.wave {
             animation: wavePulse 0.8s ease-out;
         }
+
 
         .site-footer {
             background-color: #1d1d1f;
@@ -946,98 +948,76 @@
                 }, totalFlipInTime + 500);
             }
 
-         // ... (rest of your existing JavaScript) ...
+            // --- Click Event Listener for Image Containers ---
+            containers.forEach((container) => {
+                container.addEventListener('click', () => {
+                    containers.forEach(c => c.classList.remove('selected'));
+                    container.classList.add('selected');
 
-containers.forEach((container) => {
-    container.addEventListener('click', () => {
-        containers.forEach(c => c.classList.remove('selected'));
-        container.classList.add('selected');
+                    const description = container.querySelector('.image-card-front img').alt;
+                    interestInput.value = description;
 
-        const description = container.querySelector('.image-card-front img').alt;
-        interestInput.value = description;
+                    let message;
+                    // Refined dynamic speech and button text logic
+                    if (description.includes("Mobile Phone")) {
+                        message = `You chose Mobile Phone. Get an instant quote for your mobile phone!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Laptop or MacBook")) {
+                        message = `You chose Laptop or MacBook. Selling your laptop is easy with us!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("iMac or All-in-One PC")) {
+                        message = `You chose iMac or All-in-One PC. Get an instant quote!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Tablet or iPad")) {
+                        message = `You chose Tablet or iPad. Get an instant quote!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Gadget Accessories")) {
+                        message = `You chose Accessories. Get an instant quote!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Smart Watch or Apple Watch")) {
+                        message = `You chose Smart Watch. Get a great deal here!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Earbuds or AirPods")) {
+                        message = `You chose Earbuds or AirPods. We make selling them simple!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Gaming Console")) {
+                        message = `You chose Gaming Console. Sell your Xbox, PlayStation, or Nintendo here!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Buy Refurbished Gadgets")) {
+                        message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
+                        submitButton.textContent = "See Available Gadgets";
+                    } else if (description.includes("Gadget Repair Services")) {
+                        message = `Need gadget repair services? We'll get in touch with you to schedule a service.`;
+                        submitButton.textContent = "Book Repair Service";
+                    } else {
+                        message = `Thank you for your interest in ${description} 🙏.`;
+                        submitButton.textContent = "Submit";
+                    }
 
-        let message;
-        // FIX: Refined dynamic speech and button text logic
-        if (description.includes("Mobile Phone")) {
-            message = `You chose Mobile Phone. Get an instant quote for your mobile phone!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("Laptop or MacBook")) {
-            message = `You chose Laptop or MacBook. Selling your laptop is easy with us!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("iMac or All-in-One PC")) {
-            message = `You chose iMac or All-in-One PC. Get an instant quote!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("Tablet or iPad")) {
-            message = `You chose Tablet or iPad. Get an instant quote!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("Gadget Accessories")) {
-            message = `You chose Accessories. Get an instant quote!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("Smart Watch or Apple Watch")) {
-            message = `You chose Smart Watch. Get a great deal here!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("Earbuds or AirPods")) {
-            message = `You chose Earbuds or AirPods. We make selling them simple!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("Gaming Console")) {
-            message = `You chose Gaming Console. Sell your Xbox, PlayStation, or Nintendo here!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("Buy Refurbished Gadgets")) {
-            message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
-            submitButton.textContent = "See Available Gadgets";
-        } else if (description.includes("Gadget Repair Services")) {
-            message = `Need gadget repair services? We'll get in touch with you to schedule a service.`;
-            submitButton.textContent = "Book Repair Service";
-        } else {
-            message = `Thank you for your interest in ${description} 🙏.`;
-            submitButton.textContent = "Submit";
-        }
+                    if (synth && synth.speaking) {
+                        synth.cancel();
+                        setTimeout(() => speak(message), 200);
+                    } else if (synth) {
+                        speak(message);
+                    }
 
-        if (synth && synth.speaking) {
-            synth.cancel();
-            setTimeout(() => speak(message), 200);
-        } else if (synth) {
-            speak(message);
-        }
+                    // *** IMPROVED CURSOR VISIBILITY & ANIMATION LOGIC ***
+                    // 1. Scroll into view first (smoothly)
+                    nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-        // Improved Cursor Visibility Logic
-        nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Tries to put input in middle of view
+                    // 2. Delay focus to allow scroll and keyboard to appear/stabilize
+                    setTimeout(() => {
+                        nameInput.focus();
+                        // 3. Apply the wave animation class
+                        nameInput.classList.add('wave');
+                        // 4. After a short delay, remove the wave class to allow it to be re-applied later if needed
+                        setTimeout(() => {
+                            nameInput.classList.remove('wave');
+                        }, 900); // Duration of wavePulse is 0.8s, so 900ms allows it to complete
+                    }, 400); // Adjusted delay for focus
 
-        setTimeout(() => {
-            nameInput.focus();
-            nameInput.classList.add('wave'); // Apply wave animation
-
-            // Attempt to force repaint and ensure cursor visibility on mobile
-            if (window.innerWidth <= 600) { // Check if mobile
-                // Briefly apply and remove an animation or class to force a repaint
-                nameInput.classList.add('force-repaint');
-                setTimeout(() => {
-                    nameInput.classList.remove('force-repaint');
-                }, 100); // Short delay to allow repaint
-            }
-
-            // Small scroll adjustment for mobile if keyboard still covers it
-            // This often fixes the cursor visibility issue
-            if (window.innerWidth <= 600 && window.innerHeight < window.outerHeight) { // Check if mobile and keyboard might be open
-                setTimeout(() => {
-                    window.scrollBy(0, 1); // Nudge by 1px to prompt re-render
-                }, 150); // Slightly increased delay after focus
-            }
-        }, 300); // Delay for scroll and focus
-    });
-});
-
-// Add this CSS to your <style> block
-/*
-.force-repaint {
-    animation: forceRepaint 0.01s forwards;
-}
-
-@keyframes forceRepaint {
-    from { opacity: 0.9999; }
-    to { opacity: 1; }
-}
-*/
+                });
+            });
         });
 
         // Fix 1: Refresh to Top on Mobile (window.onload as a fallback/additional measure)
@@ -1055,9 +1035,8 @@ containers.forEach((container) => {
             synth.speak(currentUtterance);
         }
 
-        nameInput.addEventListener('focus', () => {
-            nameInput.classList.remove('animated');
-        });
+        // Removed the previous nameInput.addEventListener('focus') as the animation logic is now integrated.
+        // If you had other functionality tied to it, you might need to re-add those.
 
         document.getElementById("contact-form").addEventListener("submit", function (e) {
             e.preventDefault();
