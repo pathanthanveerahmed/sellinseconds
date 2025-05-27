@@ -181,7 +181,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            /* NEW: Set header height to 70% of original desktop height (400px * 0.70 = 280px) */
+            /* Set header height to 70% of original desktop height (400px * 0.70 = 280px) */
             min-height: 280px;
             height: 280px; /* Explicitly set height */
             overflow: hidden; /* Crucial to clip the excess image if it's taller */
@@ -196,7 +196,6 @@
             width: 100%; /* Keep full width for the image */
             height: 100%; /* Image fills the *reduced* header height */
             object-fit: cover;
-            /* NEW: Adjust object-position for vertical shift */
             object-position: 50% 45%; /* Shift image up by 5% to show more top, less bottom */
             filter: brightness(0.75);
             z-index: 1;
@@ -934,34 +933,32 @@
             bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
         }
 
+        // Fix 2a: Force scroll to top on DOMContentLoaded
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Force scroll to top on page load/refresh
-            window.scrollTo(0, 0);
+            setTimeout(() => { // Small timeout to ensure browser fully renders before scrolling
+                window.scrollTo(0, 0);
+            }, 10); // 10ms delay
 
             hideLoading();
 
-            // 2. Dynamically set body padding-top on load and resize
+            // Fix 1: Dynamically set body padding-top on load and resize
             setBodyPadding();
             window.addEventListener('resize', setBodyPadding);
-
 
             const rowsToGlow = document.querySelectorAll('.image-grid-row1-row2');
             const fullWidthContainersToGlow = document.querySelectorAll('.image-grid > .image-container.full-width');
             const allFlipContainers = document.querySelectorAll('.image-grid-row1-row2 .image-container, .image-container.full-width');
             const hasFlippedOnce = sessionStorage.getItem('hasFlippedImages');
 
-            // Animation timing parameters
-            const flipDuration = 800; // Duration of the individual flip (CSS transition)
-            const staggerDelay = 100; // Delay between each image starting its flip
-            const totalFlipInTime = allFlipContainers.length * staggerDelay; // Approx time for all images to flip to back
-            const totalFlipOutTime = allFlipContainers.length * staggerDelay + flipDuration; // Approx time for all images to flip back
+            const flipDuration = 800;
+            const staggerDelay = 100;
+            const totalFlipInTime = allFlipContainers.length * staggerDelay;
+            const totalFlipOutTime = allFlipContainers.length * staggerDelay + flipDuration;
 
             if (!hasFlippedOnce) {
-                // Add glowing border to rows/full-width containers *before* the first flip starts
                 rowsToGlow.forEach(row => row.classList.add('glowing-border'));
                 fullWidthContainersToGlow.forEach(container => container.classList.add('glowing-border'));
 
-                // First wave: flip to back
                 allFlipContainers.forEach((container, index) => {
                     setTimeout(() => {
                         const innerCard = container.querySelector('.image-card-inner');
@@ -969,14 +966,13 @@
                             innerCard.style.transform = 'rotateY(180deg)';
                             const backText = container.getAttribute('data-back-text');
                             const backFace = container.querySelector('.image-card-back');
-                            if (backText) { // Ensure backText exists
+                            if (backText) {
                                 backFace.textContent = backText;
                             }
                         }
                     }, staggerDelay * index);
                 });
 
-                // Second wave: flip back to front and remove glow
                 setTimeout(() => {
                     allFlipContainers.forEach((container, index) => {
                         setTimeout(() => {
@@ -987,13 +983,14 @@
                         }, staggerDelay * index);
                     });
 
-                    // Remove glowing border after all images have flipped back
                     setTimeout(() => {
                         rowsToGlow.forEach(row => row.classList.remove('glowing-border'));
                         fullWidthContainersToGlow.forEach(container => container.classList.remove('glowing-border'));
-                        sessionStorage.setItem('hasFlippedImages', 'true'); // Set flag after animation completion
-                    }, totalFlipOutTime); // Wait for the entire flip-back sequence to finish
-                }, totalFlipInTime + 500); // Wait for all flips-in to finish + a small pause (e.g., 500ms)
+                        sessionStorage.setItem('hasFlippedImages', 'true');
+                        // Fix 1: Re-call setBodyPadding after animation is completely done
+                        setTimeout(setBodyPadding, 50); // Small delay to ensure layout is final
+                    }, totalFlipOutTime);
+                }, totalFlipInTime + 500);
             }
 
             containers.forEach((container) => {
@@ -1005,8 +1002,7 @@
                     interestInput.value = description;
 
                     let message;
-                    // --- START FIX FOR BUTTON TEXT ---
-                    // Explicitly set the button text for each case
+                    // FIX 2: Corrected button text logic
                     if (description.includes("Sell Mobile Phone") ||
                         description.includes("Sell Laptop") ||
                         description.includes("Sell iMac") ||
@@ -1015,8 +1011,8 @@
                         description.includes("Sell Smart Watch") ||
                         description.includes("Sell Earbuds") ||
                         description.includes("Sell Gaming Console")) {
-                        message = `Great choice! You're looking to sell your gadget. We'll get you an instant quote.`; // Generic message for selling
-                        submitButton.textContent = "Get Instant Quote"; // Specific text for selling
+                        message = `Great choice! You're looking to sell your gadget. We'll get you an instant quote.`;
+                        submitButton.textContent = "Get Instant Quote";
                     } else if (description.includes("Buy Refurbished Gadgets")) {
                         message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
                         submitButton.textContent = "See Available Gadgets";
@@ -1024,11 +1020,9 @@
                         message = `Need gadget repair services? We'll get in touch with you to schedule a service.`;
                         submitButton.textContent = "Book Repair Service";
                     } else {
-                        // Fallback for any unexpected descriptions, though it should be caught above
                         message = `Thank you for your interest in ${description} 🙏.`;
                         submitButton.textContent = "Submit";
                     }
-                    // --- END FIX FOR BUTTON TEXT ---
 
                     if (synth && synth.speaking) {
                         synth.cancel();
@@ -1037,17 +1031,12 @@
                         speak(message);
                     }
 
-                    // --- START FIX FOR SCROLLING ---
                     const contactForm = document.getElementById('contact-form');
-                    // Get header height dynamically for accurate offset
                     const currentHeaderHeight = headerElement.offsetHeight;
                     const formTopPosition = contactForm.getBoundingClientRect().top + window.scrollY;
-
-                    // Calculate target scroll position, ensuring header doesn't cover the form heading
-                    // The '- 20' is a small buffer in pixels. Adjust if needed.
                     const targetScrollPosition = formTopPosition - currentHeaderHeight - 20;
 
-                    // Use setTimeout to allow browser layout to settle, then scroll and focus
+                    // Use setTimeout to allow browser layout to settle before scrolling and focusing
                     setTimeout(() => {
                         window.scrollTo({
                             top: targetScrollPosition,
@@ -1055,11 +1044,18 @@
                         });
                         nameInput.classList.add('wave');
                         nameInput.focus();
-                    }, 250); // Small delay, e.g., 250ms, adjust as needed
-                    // --- END FIX FOR SCROLLING ---
+                    }, 250); // Small delay, e.g., 250ms, adjust as needed if still issues persist
                 });
             });
         });
+
+        // Fix 2b: Force scroll to top on window.onload as a fallback/additional measure
+        window.onload = () => {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 10); // 10ms delay
+        };
+
 
         function speak(text) {
             currentUtterance = new SpeechSynthesisUtterance(text);
@@ -1134,7 +1130,6 @@
         function hideLoading() {
             document.getElementById('loading-overlay').style.display = 'none';
         }
-        // Initial hide on load is handled by DOMContentLoaded
     </script>
 </body>
 </html>
