@@ -136,7 +136,8 @@
             animation: gradientShift 40s ease infinite; /* SLOWER: Changed to 40 seconds */
             color: var(--text-color);
             line-height: 1.7;
-            padding-top: 400px;
+            /* Adjust padding-top based on the NEW desktop header height (400px * 0.6 = 240px) */
+            padding-top: 240px;
         }
 
         /* Keyframe animation for background */
@@ -181,8 +182,10 @@
             top: 0;
             left: 0;
             width: 100%;
-            min-height: 400px;
-            overflow: hidden;
+            /* NEW: Set header height to 60% of original desktop height (400px * 0.6 = 240px) */
+            min-height: 240px;
+            height: 240px; /* Explicitly set height */
+            overflow: hidden; /* Crucial to clip the excess image if it's taller */
             background-color: #f5f5f7;
             z-index: 1000;
         }
@@ -190,10 +193,9 @@
         .header-image {
             position: absolute;
             top: 0;
-            left: 50%; /* Center the image horizontally */
-            transform: translateX(-50%); /* Center the image horizontally */
-            width: 60%; /* Adjusted to 60% for desktop view */
-            height: 100%;
+            left: 0; /* Keep full width */
+            width: 100%; /* Keep full width */
+            height: 100%; /* Image fills the *reduced* header height */
             object-fit: cover;
             filter: brightness(0.75);
             z-index: 1;
@@ -593,8 +595,8 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             body {
-                /* Adjusted padding-top to match the new shorter header height (180px * 0.75 = 135px) */
-                padding-top: 135px;
+                /* Adjusted padding-top to match the NEW shorter header height (180px) */
+                padding-top: 180px;
                 line-height: 1.6;
             }
             h1 {
@@ -612,16 +614,15 @@
             }
 
             header {
-                /* Set the header's height to 75% of its original mobile height */
-                min-height: 135px; /* 180px * 0.75 = 135px */
-                height: 135px; /* Explicitly set height */
-                overflow: hidden; /* Crucial to clip the excess image */
+                /* Reset height for mobile to its original 180px */
+                min-height: 180px;
+                height: 180px; /* Explicitly set height */
+                overflow: hidden;
             }
 
             .header-image {
-                /* object-fit: cover and object-position will handle the visibility */
-                object-position: 50% 100%; /* Align bottom of the image with bottom of the container, hiding the top part */
-                height: 100%; /* Fill the new container height */
+                object-position: 50% 30%;
+                height: 100%; /* Image fills the 180px header height */
                 width: 100%;
                 left: 0; /* Reset left position */
                 transform: none; /* Reset transform */
