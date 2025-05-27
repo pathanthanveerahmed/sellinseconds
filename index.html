@@ -466,7 +466,7 @@
         }
         /* Keep the input.wave class */
         input.wave {
-            animation: wavePulse 0.8s ease-out;
+            animation: wavePulse 0.8s ease-out forwards; /* Added forwards to keep the final state */
         }
 
 
@@ -477,7 +477,7 @@
             text-align: center;
             font-size: 0.95rem;
             box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
-            border-top: 4px solid var(--primary);
+            border-top: 44px solid var(--primary);
         }
 
         .site-footer a {
@@ -1001,20 +1001,21 @@
                         speak(message);
                     }
 
-                    // *** IMPROVED CURSOR VISIBILITY & ANIMATION LOGIC ***
-                    // 1. Scroll into view first (smoothly)
+                    // --- Updated Cursor & Animation Logic ---
+                    // 1. Ensure the 'wave' class is removed before adding to re-trigger
+                    nameInput.classList.remove('wave');
+
+                    // 2. Scroll into view first (smoothly)
                     nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-                    // 2. Delay focus to allow scroll and keyboard to appear/stabilize
+                    // 3. Delay focus to allow scroll and keyboard to appear/stabilize
                     setTimeout(() => {
                         nameInput.focus();
-                        // 3. Apply the wave animation class
+                        // 4. Apply the wave animation class
                         nameInput.classList.add('wave');
-                        // 4. After a short delay, remove the wave class to allow it to be re-applied later if needed
-                        setTimeout(() => {
-                            nameInput.classList.remove('wave');
-                        }, 900); // Duration of wavePulse is 0.8s, so 900ms allows it to complete
-                    }, 400); // Adjusted delay for focus
+                        // No need for a separate setTimeout to remove 'wave' if animation-fill-mode: forwards is used.
+                        // The animation will stay at its final state.
+                    }, 400); // Adjusted delay for focus (can try 500ms or 600ms if needed)
 
                 });
             });
@@ -1035,8 +1036,8 @@
             synth.speak(currentUtterance);
         }
 
-        // Removed the previous nameInput.addEventListener('focus') as the animation logic is now integrated.
-        // If you had other functionality tied to it, you might need to re-add those.
+        // Removed the previous nameInput.addEventListener('focus')
+        // The wave animation is now controlled directly by adding/removing the 'wave' class on click.
 
         document.getElementById("contact-form").addEventListener("submit", function (e) {
             e.preventDefault();
@@ -1085,6 +1086,7 @@
                     form.reset();
                     document.querySelectorAll('.image-container.selected').forEach(c => c.classList.remove('selected'));
                     submitButton.textContent = "Submit"; // Reset button text after submission
+                    nameInput.classList.remove('wave'); // Clean up animation after submission
                 } else {
                     alert("Failed to submit. Please try again. (Server error)");
                 }
