@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -15,18 +14,25 @@
     <meta name="description" content="Sell your gadgets in seconds in Bangalore! Fast, easy trade-in for phones, laptops, tablets & more. Get instant quotes & quick pickup in Bangalore.">
     <meta name="keywords" content="sell gadgets Bangalore, trade-in phones Bangalore, sell mobile Bangalore, used phones Bangalore, sell laptops Bangalore, sell tablets Bangalore, gadget repair Bangalore, buy used gadgets Bangalore, electronics trade-in Bangalore">
     <meta name="author" content="Sell In Seconds">
-    <meta property="og:title" content="Sell, Buy, & Repair Gadgets Instantly in Bangalore - Sell In Seconds">
-    <meta property="og:description" content="Trade in your gadgets in Bangalore in just two steps! Get instant quotes for mobiles, laptops, tablets, and more. Also offering gadget repair and sales in Bangalore.">
-    <meta property="og:image" content="https://www.sellinseconds.in/aicrop.webp" loading="lazy">
-    <meta property="og:url" content="https://www.sellinseconds.in">
     <meta name="robots" content="index, follow">
     <title>Sell, Buy, & Repair Used Gadgets in Bangalore - Instant Quotes & Service</title>
     <link rel="icon" type="image/x-icon" href="https://www.sellinseconds.in/fevicon.ico">
     <link rel="canonical" href="https://www.sellinseconds.in">
 
+    <meta property="og:title" content="Sell, Buy, & Repair Gadgets Instantly in Bangalore - Sell In Seconds">
+    <meta property="og:description" content="Trade in your gadgets in Bangalore in just two steps! Get instant quotes for mobiles, laptops, tablets, and more. Also offering gadget repair and sales in Bangalore.">
+    <meta property="og:image" content="https://www.sellinseconds.in/aicrop.webp" loading="lazy">
+    <meta property="og:url" content="https://www.sellinseconds.in">
+    <meta property="og:type" content="website"> <meta property="og:site_name" content="Sell In Seconds"> <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@SellInSeconds"> <meta name="twitter:creator" content="@ThanveerP"> <meta name="twitter:title" content="Sell, Buy, & Repair Gadgets Instantly in Bangalore - Sell In Seconds">
+    <meta name="twitter:description" content="Trade in your gadgets in Bangalore in just two steps! Get instant quotes for mobiles, laptops, tablets, and more. Also offering gadget repair and sales in Bangalore.">
+    <meta name="twitter:image" content="https://www.sellinseconds.in/aicrop.webp">
+    <meta name="twitter:image:alt" content="Gadget trade-in, buying, and repair services in Bangalore">
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
     <script type="application/ld+json">
     {
@@ -140,9 +146,13 @@
         }
 
         h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Roboto', sans-serif; /* Changed to Roboto */
             text-align: center;
-            color: var(--heading-color);
+            /* Multi-color gradient effect for general headings */
+            background: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         h1 {
@@ -159,9 +169,8 @@
 
         h3 {
             font-size: 1.6rem;
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 2rem;
-            color: #555;
         }
 
         header {
@@ -192,18 +201,37 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: white;
-            text-shadow: 1px 1px 10px rgba(0,0,0,0.8);
+            
             width: 90%;
             text-align: center;
             line-height: 1.2;
             margin: 0;
-            padding: 0;
+            padding: 15px 30px; /* Padding for the white background */
             max-width: 900px;
             letter-spacing: -0.02em;
+            font-family: 'Roboto', sans-serif;
+
+            /* White background with smooth edges for the h1 container */
+            background: rgb(255, 255, 255); /* Fully opaque white */
+            border-radius: 20px; /* Smooth rounded corners */
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4); /* Stronger, more visible shadow */
+            border: 3px solid rgba(0, 123, 255, 0.5); /* Added a semi-transparent blue border for better visibility testing */
+            box-sizing: border-box; /* Ensures padding is included in total size */
+            display: inline-block; /* Essential for background and padding to wrap content effectively when centered */
         }
+        /* Rule for the span inside header .header-title */
+        header .header-title span {
+            font-size: 3.5rem; /* Apply font size to the span */
+            font-weight: 900; /* Apply font weight to the span */
+            /* Apply the colorful gradient directly to the text within the span */
+            background-image: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; /* Makes the text transparent so the background-image shows */
+            text-shadow: none; /* No shadow with gradient text */
+            /* No display: inline-block here, as it's already handled by the parent h1 or is default inline */
+        }
+
 
         .hero-intro {
             max-width: 900px;
@@ -216,7 +244,7 @@
         }
         .hero-intro h2 {
             margin-bottom: 1rem;
-            color: var(--primary-dark);
+            /* Color will be inherited (gradient) */
         }
         .hero-intro p {
             margin-bottom: 1rem;
@@ -232,7 +260,7 @@
         .below-form-content h1 {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-dark);
+            /* Color will be inherited (gradient) */
             line-height: 1.2;
             margin-bottom: 1.5rem;
         }
@@ -319,45 +347,9 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- MODIFIED CSS FOR FIGCAPTION --- */
         figcaption {
-            /* This will hide the figcaption completely on all devices */
             display: none;
         }
-
-        /* You can remove or comment out the following if you want them always hidden: */
-        /*
-        .image-container:hover figcaption {
-            font-size: 0.9rem;
-            height: auto;
-            overflow: visible;
-            visibility: visible;
-            opacity: 1;
-        }
-        */
-
-        /*
-        @media (max-width: 600px) {
-            @media (orientation: portrait) {
-                figcaption {
-                    font-size: 0.75rem;
-                    color: #444;
-                    text-align: center;
-                    margin-top: 4px;
-                    height: auto;
-                    overflow: visible;
-                    visibility: visible;
-                    opacity: 1;
-                    display: block;
-                    white-space: normal;
-                    text-overflow: clip;
-                    line-height: 1.2;
-                }
-            }
-        }
-        */
-        /* --- END MODIFIED CSS FOR FIGCAPTION --- */
-
 
         form {
             background: var(--form-bg);
@@ -373,7 +365,7 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 2.5rem;
-            color: var(--primary-dark);
+             /* Color will be inherited (gradient) */
         }
         input, select, textarea {
             width: 100%;
@@ -523,7 +515,8 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             body {
-                padding-top: 180px;
+                /* Adjusted padding-top to match the new shorter header height (180px * 0.75 = 135px) */
+                padding-top: 135px;
                 line-height: 1.6;
             }
             h1 {
@@ -541,22 +534,32 @@
             }
 
             header {
-                min-height: 180px;
-                height: auto;
+                /* Set the header's height to 75% of its original mobile height */
+                min-height: 135px; /* 180px * 0.75 = 135px */
+                height: 135px; /* Explicitly set height */
+                overflow: hidden; /* Crucial to clip the excess image */
             }
 
             .header-image {
-                object-position: 50% 30%;
-                height: 100%;
+                /* object-fit: cover and object-position will handle the visibility */
+                object-position: 50% 100%; /* Align bottom of the image with bottom of the container, hiding the top part */
+                height: 100%; /* Fill the new container height */
                 width: 100%;
             }
 
             header .header-title {
-                font-size: 1.5rem;
-                bottom: 15px;
+                bottom: 15px; /* Keep consistent with previous mobile adjustment */
                 width: 95%;
-                text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+                padding: 10px 20px; /* Adjust padding for mobile */
+                border-radius: 15px; /* Adjust border-radius for mobile */
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Adjust shadow for mobile */
+                border: 2px solid rgba(0, 123, 255, 0.4); /* Adjust border for mobile */
             }
+            header .header-title span { /* Apply mobile specific font size to the span */
+                font-size: 1.5rem;
+                text-shadow: none; /* No shadow with gradient text */
+            }
+
 
             .image-grid {
                 padding: 1.5rem 0.8rem;
@@ -577,26 +580,6 @@
             .image-container img {
                 padding: 0;
             }
-
-            /* Mobile portrait figcaption - REMOVED OR COMMENTED OUT */
-            /*
-            @media (orientation: portrait) {
-                figcaption {
-                    font-size: 0.75rem;
-                    color: #444;
-                    text-align: center;
-                    margin-top: 4px;
-                    height: auto;
-                    overflow: visible;
-                    visibility: visible;
-                    opacity: 1;
-                    display: block;
-                    white-space: normal;
-                    text-overflow: clip;
-                    line-height: 1.2;
-                }
-            }
-            */
 
             form {
                 padding: 2rem 1.2rem;
@@ -638,27 +621,31 @@
             }
         }
 
-        /* --- Landscape Orientation Specific Styles (Tablets too if under 991px) --- */
+        /* --- Mobile Landscape and Tablet Landscape Specific Styles (max-width: 991px and landscape) --- */
         @media (max-width: 991px) and (orientation: landscape) {
             body {
-                padding-top: 180px;
+                padding-top: 180px; /* Keep original padding-top for landscape */
             }
             header {
-                height: 180px;
-                min-height: unset;
+                height: 180px; /* Keep original height for landscape */
+                min-height: unset; /* Reset min-height */
             }
 
             .header-image {
                 object-fit: cover;
-                object-position: center center;
+                object-position: center center; /* Show full image */
             }
 
             header .header-title {
-                font-size: 2rem;
+                font-size: unset;
                 bottom: 15px;
-                color: white;
-                text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+                color: white; /* This color will be hidden by the span's transparent color */
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* This text-shadow applies to the h1, but won't be visible due to color: transparent on span */
             }
+            header .header-title span {
+                font-size: 2rem;
+            }
+
             .image-grid-row1-row2 {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 1.5rem;
@@ -672,7 +659,7 @@
 <body>
     <header class="header">
         <img src="https://www.sellinseconds.in/aicrop.webp" alt="Dynamic header image showing various gadgets being sold or repaired in Bangalore" class="header-image" loading="lazy">
-        <h1 class="header-title">Trade Your Gadget in Seconds</h1>
+        <h1 class="header-title"><span>Trade Your Gadget in Seconds</span></h1>
     </header>
 
     <main>
@@ -732,7 +719,7 @@
         </div>
 
         <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
-            <h2>Get an Instant Quote or Book a Service in Bangalore</h2>
+            <h2>Get an Instant Quote or Book a Service</h2>
             <input type="text" id="name" name="name" placeholder="Your Name" required>
             <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
             <input type="hidden" id="interest" name="interest">
@@ -740,7 +727,7 @@
         </form>
 
         <div class="below-form-content">
-            <h1>Your Ultimate Platform to Sell, Buy & Repair Gadgets even at chip level Instantly in Bangalore. </h1>
+            <h1>Your Ultimate Platform to Sell, Buy & Repair Gadgets even at chip level Instantly</h1>
             <p>At Sell In Seconds in Bangalore, we make trading in your old electronics incredibly easy and rewarding. Whether you're looking to sell ot Trade In your Gadgets, or get a quick repair / service, we offer seamless service right to your doorstep in Bangalore. Get an instant quote and experience a hassle-free process today!</p>
         </div>
 
@@ -748,6 +735,12 @@
             Disclaimer: We buy genuine products only in Bangalore. Identity Proof is mandatory. Payment will be done post diagnosis cum agreement of deal. Pick up will be done at your home or work location only in Bangalore. Roadside meeting is not allowed.
         </div>
     </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Sell In Seconds. All rights reserved.</p>
+        <p class="small-text">Designed & Developed by Thanveer P</p>
+    </footer>
+
     <script>
         const containers = document.querySelectorAll('.image-container');
         const nameInput = document.getElementById('name');
@@ -786,7 +779,7 @@
                     message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
                     submitButton.textContent = "See Available Gadgets";
                 } else if (description.includes("Gadget Repair Services")) {
-                    message = `Need gadget repair services in Bangalore? We'll get in touch with you to schedule a service.`;
+                    message = `Need gadget repair services? We'll get in touch with you to schedule a service.`;
                     submitButton.textContent = "Book Repair Service";
                 } else {
                     message = `Thank you for your interest in ${description} 🙏.`;
