@@ -1003,19 +1003,19 @@
 
                     // --- Updated Cursor & Animation Logic ---
                     // 1. Ensure the 'wave' class is removed before adding to re-trigger
-                    nameInput.classList.remove('wave');
+                   nameInput.classList.remove('wave');
 
-                    // 2. Scroll into view first (smoothly)
-                    nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+// 1. Scroll first, allow browser to repaint
+nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-                    // 3. Delay focus to allow scroll and keyboard to appear/stabilize
-                    setTimeout(() => {
-                        nameInput.focus();
-                        // 4. Apply the wave animation class
-                        nameInput.classList.add('wave');
-                        // No need for a separate setTimeout to remove 'wave' if animation-fill-mode: forwards is used.
-                        // The animation will stay at its final state.
-                    }, 400); // Adjusted delay for focus (can try 500ms or 600ms if needed)
+setTimeout(() => {
+    // 2. Use requestAnimationFrame to guarantee layout settled
+    requestAnimationFrame(() => {
+        nameInput.focus({ preventScroll: true });  // prevents another scroll jump
+        nameInput.classList.add('wave');
+    });
+}, 500); // Can tweak to 500–700ms if needed
+ // Adjusted delay for focus (can try 500ms or 600ms if needed)
 
                 });
             });
