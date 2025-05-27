@@ -1000,24 +1000,35 @@ containers.forEach((container) => {
             speak(message);
         }
 
-        // Robust mobile fix: delay focus long enough after animation/scroll
+        // Final mobile workaround: focus dummy input, then real input
         nameInput.classList.remove('wave');
 
-        nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Step 1: Focus a temporary dummy input to trigger keyboard
+        const dummy = document.createElement('input');
+        dummy.setAttribute('type', 'text');
+        dummy.style.position = 'absolute';
+        dummy.style.top = '-1000px';
+        document.body.appendChild(dummy);
+        dummy.focus();
 
-        // Delay focus enough to let scroll and layout stabilize
+        // Step 2: After slight delay, scroll and focus real input
         setTimeout(() => {
-            // Trigger reflow (forces layout recalculation)
-            void nameInput.offsetHeight;
+            document.body.removeChild(dummy); // Clean up dummy
 
-            // Focus field
-            nameInput.focus({ preventScroll: true });
+            // Scroll the name input into view
+            nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-            // Add animation class
-            nameInput.classList.add('wave');
-        }, 700); // Delay long enough (600–800ms) to fix cursor issue
+            // Ensure layout is fully reflowed
+            setTimeout(() => {
+                nameInput.focus({ preventScroll: true });
+
+                // Trigger CSS animation
+                nameInput.classList.add('wave');
+            }, 300);
+        }, 200); // Adjust this delay as needed for stability
     });
 });
+
 
 
         });
