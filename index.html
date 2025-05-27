@@ -133,7 +133,7 @@
             /* Animated Background - SLOWER ANIMATION */
             background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5));
             background-size: 400% 400%;
-            animation: gradientShift 40s ease infinite; /* SLOWER: Changed to 40 seconds */
+            animation: gradientShift 40s ease infinite;
             color: var(--text-color);
             line-height: 1.7;
             /* IMPORTANT: Removed all fixed padding-top. It will be set dynamically by JS. */
@@ -150,13 +150,12 @@
         }
 
         h1, h2, h3 {
-            font-family: 'Roboto', sans-serif; /* Changed to Roboto */
+            font-family: 'Roboto', sans-serif;
             text-align: center;
-            /* Multi-color gradient effect for general headings */
             background: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
             -webkit-background-clip: text;
             background-clip: text;
-            color: transparent; /* Makes the text transparent so the background-image shows */
+            color: transparent;
         }
 
         h1 {
@@ -182,10 +181,9 @@
             top: 0;
             left: 0;
             width: 100%;
-            /* Set header height to 70% of original desktop height (400px * 0.70 = 280px) */
             min-height: 280px;
-            height: 280px; /* Explicitly set height */
-            overflow: hidden; /* Crucial to clip the excess image if it's taller */
+            height: 280px;
+            overflow: hidden;
             background-color: #f5f5f7;
             z-index: 1000;
         }
@@ -193,11 +191,11 @@
         .header-image {
             position: absolute;
             top: 0;
-            left: 0; /* Keep full width for the image */
-            width: 100%; /* Keep full width for the image */
-            height: 100%; /* Image fills the *reduced* header height */
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            object-position: 50% 45%; /* Shift image up by 5% to show more top, less bottom */
+            object-position: 50% 45%;
             filter: brightness(0.75);
             z-index: 1;
         }
@@ -213,37 +211,32 @@
             text-align: center;
             line-height: 1.2;
             margin: 0;
-            padding: 15px 30px; /* Padding for the white background */
+            padding: 15px 30px;
             max-width: 900px;
             letter-spacing: -0.02em;
             font-family: 'Roboto', sans-serif;
 
-            /* White background with smooth edges for the h1 container */
-            background: rgb(255, 255, 255); /* Fully opaque white */
-            border-radius: 20px; /* Smooth rounded corners */
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4); /* Stronger, more visible shadow */
-            /* Using the main-accent-color variable for the border */
-            border: 3px solid var(--main-accent-color); /* Applied main accent color here */
-            box-sizing: border-box; /* Ensures padding is included in total size */
-            display: inline-block; /* Essential for background and padding to wrap content effectively when centered */
+            background: rgb(255, 255, 255);
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+            border: 3px solid var(--main-accent-color);
+            box-sizing: border-box;
+            display: inline-block;
         }
-        /* Rule for the span inside header .header-title */
         header .header-title span {
-            font-size: 3.5rem; /* Apply font size to the span */
-            font-weight: 900; /* Apply font weight to the span */
-            /* Apply the colorful gradient directly to the text within the span */
+            font-size: 3.5rem;
+            font-weight: 900;
             background-image: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
             -webkit-background-clip: text;
             background-clip: text;
-            color: transparent; /* Makes the text transparent so the background-image shows */
-            text-shadow: none; /* No shadow with gradient text */
-            /* No display: inline-block here, as it's already handled by the parent h1 or is default inline */
+            color: transparent;
+            text-shadow: none;
         }
 
 
         .hero-intro {
             max-width: 900px;
-            margin: 0 auto 0 auto;
+            margin: 0 auto; /* Keep auto for left/right centering */
             padding: 0 1.5rem;
             text-align: center;
             font-size: 1.1rem;
@@ -295,13 +288,11 @@
             transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
         }
 
-        /* NEW CSS FOR GLOWING BORDER */
         .image-grid-row1-row2.glowing-border {
             box-shadow: 0 0 10px var(--main-accent-color), 0 0 20px rgba(0, 123, 255, 0.4), 0 0 30px rgba(0, 123, 255, 0.2);
             border: 2px solid var(--main-accent-color);
             border-radius: 10px;
         }
-        /* Glowing border for full-width containers */
         .image-grid > .image-container.full-width.glowing-border {
             box-shadow: 0 0 10px var(--main-accent-color), 0 0 20px rgba(0, 123, 255, 0.4), 0 0 30px rgba(0, 123, 255, 0.2);
             border: 2px solid var(--main-accent-color);
@@ -408,11 +399,6 @@
             z-index: 5;
         }
 
-
-        .image-container.full-width {
-            margin-bottom: 0.5rem;
-            transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
-        }
 
         form {
             background: var(--form-bg);
@@ -579,6 +565,10 @@
                 /* padding-top will be set dynamically by JS. */
                 line-height: 1.6;
             }
+            /* FIX 1: Remove top margin from hero-intro in mobile view */
+            .hero-intro {
+                margin-top: 0 !important; /* Aggressively remove any top margin */
+            }
             h1 {
                 font-size: 2rem;
             }
@@ -590,7 +580,7 @@
             }
             .hero-intro {
                 font-size: 0.95rem;
-                margin-top: 2rem;
+                /* margin-top: 2rem; -- REMOVED and set to 0 !important above */
             }
 
             header {
@@ -906,8 +896,11 @@
 
         // Function to dynamically set body padding-top based on header height
         function setBodyPadding() {
-            bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
-            console.log('Body padding-top set to:', headerElement.offsetHeight + 'px'); // Debugging
+            // Use requestAnimationFrame to ensure layout is stable before reading offsetHeight
+            requestAnimationFrame(() => {
+                bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
+                console.log('Body padding-top set to:', headerElement.offsetHeight + 'px'); // Debugging
+            });
         }
 
         // Fix 2a: Force scroll to top on DOMContentLoaded
@@ -1018,14 +1011,20 @@
                     const formTopPosition = contactForm.getBoundingClientRect().top + window.scrollY;
                     const targetScrollPosition = formTopPosition - currentHeaderHeight - 20;
 
-                    setTimeout(() => {
-                        window.scrollTo({
-                            top: targetScrollPosition,
-                            behavior: 'smooth'
-                        });
-                        nameInput.classList.add('wave');
-                        nameInput.focus();
-                    }, 250);
+                    // FIX 2: Cursor visibility on mobile
+                    // Scroll first, then set focus with a very small delay or within requestAnimationFrame
+                    // to ensure browser has time to render.
+                    window.scrollTo({
+                        top: targetScrollPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Use requestAnimationFrame for focus to ensure it happens after repaint
+                    requestAnimationFrame(() => {
+                         nameInput.classList.add('wave');
+                         nameInput.focus();
+                         console.log('Name input focused.'); // Debugging
+                    });
                 });
             });
         });
@@ -1035,7 +1034,7 @@
             setTimeout(() => {
                 window.scrollTo(0, 0);
                 console.log('Scrolled to top on window.onload.'); // Debugging
-            }, 50); // Short delay
+            }, 50);
             setBodyPadding(); // Ensure padding is correct after all resources loaded
         };
 
