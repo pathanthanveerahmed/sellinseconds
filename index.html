@@ -957,7 +957,7 @@
                 console.log('Scrolled to top on DOMContentLoaded.');
             }, 50);
 
-            hideLoading();
+            hideLoading(); // Hides the overlay on DOMContentLoaded
             setBodyPadding(); // Initial padding set
             window.addEventListener('resize', setBodyPadding); // Update padding on resize
 
@@ -1163,12 +1163,5 @@
         }
         document.addEventListener('DOMContentLoaded', hideLoading);
     </script>
-
-    <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair in Bangalore.">
-        <img src="https://www.sellinseconds.in/whatsapp.webp" loading="lazy" alt="WhatsApp Chat Icon">
-    </a>
-    <div id="loading-overlay">
-        <img src="https://www.sellinseconds.in/loading.gif" alt="Loading...">
-    </div>
 </body>
 </html>
