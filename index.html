@@ -194,16 +194,16 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* UPDATED: Adjust object-position for desktop to shift image up */
-            object-position: 50% 38%; /* Changed from 50% 45% */
+            /* UPDATED: Shift image further upwards within the header */
+            object-position: 50% 32%; /* Changed from 35% to 32% */
             filter: brightness(0.75);
             z-index: 1;
         }
 
         header .header-title {
             position: absolute;
-            /* UPDATED: Move title upwards further for desktop */
-            bottom: -20px; /* Changed from 0px to -20px */
+            /* UPDATED: Move title further upwards for desktop */
+            bottom: -36px; /* Changed from -28px to -36px */
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
@@ -599,7 +599,7 @@
             }
 
             .header-image {
-                object-position: 50% 100%;
+                object-position: 50% 100%; /* Keep this for mobile */
                 height: 100%;
                 width: 100%;
             }
