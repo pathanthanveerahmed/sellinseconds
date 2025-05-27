@@ -236,7 +236,7 @@
 
         .hero-intro {
             max-width: 900px;
-            margin: 0 auto; /* Keep auto for left/right centering */
+            margin: 0 auto;
             padding: 0 1.5rem;
             text-align: center;
             font-size: 1.1rem;
@@ -380,23 +380,6 @@
             outline: 3px solid var(--main-accent-color);
             box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
             border-color: var(--main-accent-color);
-        }
-
-        .image-container.selected::after {
-            content: '\2713';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            width: 26px;
-            height: 26px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            z-index: 5;
         }
 
 
@@ -562,7 +545,6 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             body {
-                /* padding-top will be set dynamically by JS. */
                 line-height: 1.6;
             }
             /* FIX 1: Ensure no top margin on hero-intro in mobile view */
@@ -895,20 +877,22 @@
 
         // Function to dynamically set body padding-top based on header height
         function setBodyPadding() {
-            // Use requestAnimationFrame to ensure layout is stable before reading offsetHeight
             requestAnimationFrame(() => {
                 bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
-                // console.log('Body padding-top set to:', headerElement.offsetHeight + 'px'); // Debugging
+                console.log('Body padding-top set to:', headerElement.offsetHeight + 'px');
             });
         }
 
-        // --- Fix for Refresh to Top (Both DOMContentLoaded and window.onload) ---
-        // Ensures the page is scrolled to top when content is ready and when all assets are loaded
+        // --- Fix 1: Refresh to Top on Mobile ---
+        // Prevents browser scroll restoration
+        history.scrollRestoration = 'manual';
+
         document.addEventListener('DOMContentLoaded', () => {
+            // Aggressive scroll to top with a short delay
             setTimeout(() => {
                 window.scrollTo(0, 0);
-                // console.log('Scrolled to top on DOMContentLoaded.'); // Debugging
-            }, 50); // Small delay to bypass browser scroll restoration
+                console.log('Scrolled to top on DOMContentLoaded.');
+            }, 50);
 
             hideLoading();
             setBodyPadding(); // Initial padding set
@@ -972,7 +956,7 @@
                     interestInput.value = description;
 
                     let message;
-                    // FIX 2: Corrected dynamic speech and button text logic for all rows
+                    // FIX: Refined dynamic speech and button text logic
                     if (description.includes("Mobile Phone")) {
                         message = `You chose Mobile Phone. Get an instant quote for your mobile phone!`;
                         submitButton.textContent = "Get Instant Quote";
@@ -1015,51 +999,37 @@
                         speak(message);
                     }
 
-                    // --- Fix for Mobile Cursor Visibility ---
-                    const contactForm = document.getElementById('contact-form');
-                    const currentHeaderHeight = headerElement.offsetHeight;
-                    const nameInputTopRelativeToViewport = nameInput.getBoundingClientRect().top;
-                    const nameInputAbsoluteTop = nameInputTopRelativeToViewport + window.scrollY;
+                    // --- FIX 2: Mobile Cursor Visibility ---
+                    // Try to scroll the input into view, then focus it
+                    // This is robust for both mobile and desktop
+                    nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Tries to put input in middle of view
 
-                    // Target scroll position to ensure name input is below header with some buffer
-                    // Adjust the buffer (e.g., -50) to make sure the keyboard doesn't cover it on mobile.
-                    const targetScrollPosition = nameInputAbsoluteTop - currentHeaderHeight - 50;
+                    // Give browser a moment to complete scroll, then focus
+                    setTimeout(() => {
+                        nameInput.focus();
+                        nameInput.classList.add('wave'); // Apply wave animation
 
-                    // Scroll to position
-                    window.scrollTo({
-                        top: targetScrollPosition,
-                        behavior: 'smooth'
-                    });
+                        // Optional: Small scroll adjustment for mobile if keyboard still covers it
+                        // This often fixes the cursor visibility issue
+                        if (window.innerWidth <= 600 && window.innerHeight < window.outerHeight) { // Check if mobile and keyboard might be open
+                            setTimeout(() => {
+                                window.scrollBy(0, 1); // Nudge by 1px
+                                // console.log('Mobile specific 1px scroll nudge applied.'); // Debugging
+                            }, 50); // Small delay after focus
+                        }
+                        // console.log('Focus applied to name input.'); // Debugging
+                    }, 300); // Delay for scroll and focus
 
-                    // Conditional focus for mobile vs desktop
-                    if (window.innerWidth <= 600) { // Assuming 600px as mobile breakpoint
-                        // On mobile, use a slight delay for focus AND a small scrollBy
-                        setTimeout(() => {
-                            nameInput.focus();
-                            // Optional: If cursor still not visible, try a small scrollBy after focus
-                            // This can sometimes force the browser to reveal the cursor
-                            window.scrollBy(0, 1); // Scroll down by 1px
-                            console.log('Mobile focus and scrollBy executed.'); // Debugging
-                        }, 300); // Slightly longer delay for mobile focus
-                    } else {
-                        // On desktop, direct focus after scroll
-                        requestAnimationFrame(() => {
-                            nameInput.focus();
-                            console.log('Desktop focus executed.'); // Debugging
-                        });
-                    }
-
-                    nameInput.classList.add('wave'); // Apply wave animation
                 });
             });
         });
 
-        // Fix for Refresh to Top (window.onload as a fallback/additional measure)
+        // Fix 1: Refresh to Top on Mobile (window.onload as a fallback/additional measure)
         window.onload = () => {
             setTimeout(() => {
                 window.scrollTo(0, 0);
-                // console.log('Scrolled to top on window.onload.'); // Debugging
-            }, 50); // Short delay
+                console.log('Scrolled to top on window.onload.'); // Debugging
+            }, 50);
             setBodyPadding(); // Ensure padding is correct after all resources loaded
         };
 
