@@ -1002,12 +1002,12 @@
                         submitButton.textContent = "Submit";
                     }
 
-                    if (synth && synth.speaking) {
-                        synth.cancel();
-                        setTimeout(() => speak(message), 200);
-                    } else if (synth) {
-                        speak(message);
-                    }
+                  // Delay speech synthesis until after focus to avoid keyboard issues
+setTimeout(() => {
+    if (synth && synth.speaking) synth.cancel();
+    if (synth) speak(message);
+}, 1000); // 1-second delay ensures focus/keyboard works first
+
 
                     // --- Updated Cursor & Animation Logic ---
                     // 1. Ensure the 'wave' class is removed before adding to re-trigger
