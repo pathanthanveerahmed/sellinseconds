@@ -237,9 +237,10 @@
         }
 
 
-        .hero-intro {
+                .hero-intro {
             max-width: 900px;
-            margin: 3rem auto 2rem auto;
+            /* Removed margin-top, set margin-bottom to 0 */
+            margin: 0 auto 0 auto; /* This sets top and bottom margins to 0, and auto for left/right to center */
             padding: 0 1.5rem;
             text-align: center;
             font-size: 1.1rem;
@@ -247,12 +248,14 @@
             color: var(--text-color);
         }
         .hero-intro h2 {
-            margin-bottom: 1rem;
-            /* Color will be inherited (gradient) */
+            /* Adjusted margin-bottom for the heading itself if needed, or remove it */
+            margin-bottom: 0; /* Remove space below the h2 within hero-intro */
         }
         .hero-intro p {
-            margin-bottom: 1rem;
+            /* Adjusted margin-bottom for the paragraph itself, or remove it */
+            margin-bottom: 0; /* Remove space below the paragraph within hero-intro */
         }
+
 
         .below-form-content {
             max-width: 900px;
