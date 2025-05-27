@@ -868,6 +868,12 @@
 
     <script>
         const containers = document.querySelectorAll('.image-container');
+        <div id="focus-helper" style="text-align:center; margin-bottom: -1rem;">
+  <button type="button" style="background:none; border:none; font-size:0.9rem; color:#007bff; text-decoration:underline; padding:0;" onclick="document.getElementById('name').focus()">
+    Tap here if the cursor doesn't appear
+  </button>
+</div>
+
         const nameInput = document.getElementById('name');
         const interestInput = document.getElementById('interest');
         const submitButton = document.querySelector('#contact-form button');
@@ -1032,6 +1038,11 @@ containers.forEach((container) => {
 
 
         });
+// Optional: Hide helper after first focus
+nameInput.addEventListener('focus', () => {
+    const helper = document.getElementById('focus-helper');
+    if (helper) helper.style.display = 'none';
+});
 
         // Fix 1: Refresh to Top on Mobile (window.onload as a fallback/additional measure)
         window.onload = () => {
