@@ -1030,9 +1030,11 @@
                         speak(message);
                     }
 
-                    document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
-                    nameInput.classList.add('wave');
-                    nameInput.focus();
+                    const contactForm = document.getElementById('contact-form');
+contactForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+setTimeout(() => {
+    nameInput.focus();
+}, 100);
                     setTimeout(() => nameInput.classList.remove('wave'), 1000);
                 });
             });
