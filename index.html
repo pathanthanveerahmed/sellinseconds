@@ -133,11 +133,10 @@
             /* Animated Background - SLOWER ANIMATION */
             background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5));
             background-size: 400% 400%;
-            animation: gradientShift 40s ease infinite;
+            animation: gradientShift 40s ease infinite; /* SLOWER: Changed to 40 seconds */
             color: var(--text-color);
             line-height: 1.7;
-            /* IMPORTANT: Removed all fixed padding-top. It will be set dynamically by JS. */
-            padding-top: 0; /* Ensures no default padding */
+            padding-top: 400px;
         }
 
         /* Keyframe animation for background */
@@ -150,12 +149,13 @@
         }
 
         h1, h2, h3 {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', sans-serif; /* Changed to Roboto */
             text-align: center;
+            /* Multi-color gradient effect for general headings */
             background: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
             -webkit-background-clip: text;
             background-clip: text;
-            color: transparent;
+            color: transparent; /* Makes the text transparent so the background-image shows */
         }
 
         h1 {
@@ -181,8 +181,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            min-height: 280px;
-            height: 280px;
+            min-height: 400px;
             overflow: hidden;
             background-color: #f5f5f7;
             z-index: 1000;
@@ -195,7 +194,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: 50% 45%;
             filter: brightness(0.75);
             z-index: 1;
         }
@@ -206,49 +204,57 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
-
+            
             width: 90%;
             text-align: center;
             line-height: 1.2;
             margin: 0;
-            padding: 15px 30px;
+            padding: 15px 30px; /* Padding for the white background */
             max-width: 900px;
             letter-spacing: -0.02em;
             font-family: 'Roboto', sans-serif;
 
-            background: rgb(255, 255, 255);
-            border-radius: 20px;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
-            border: 3px solid var(--main-accent-color);
-            box-sizing: border-box;
-            display: inline-block;
+            /* White background with smooth edges for the h1 container */
+            background: rgb(255, 255, 255); /* Fully opaque white */
+            border-radius: 20px; /* Smooth rounded corners */
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4); /* Stronger, more visible shadow */
+            /* Using the main-accent-color variable for the border */
+            border: 3px solid var(--main-accent-color); /* Applied main accent color here */
+            box-sizing: border-box; /* Ensures padding is included in total size */
+            display: inline-block; /* Essential for background and padding to wrap content effectively when centered */
         }
+        /* Rule for the span inside header .header-title */
         header .header-title span {
-            font-size: 3.5rem;
-            font-weight: 900;
+            font-size: 3.5rem; /* Apply font size to the span */
+            font-weight: 900; /* Apply font weight to the span */
+            /* Apply the colorful gradient directly to the text within the span */
             background-image: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
             -webkit-background-clip: text;
             background-clip: text;
-            color: transparent;
-            text-shadow: none;
+            color: transparent; /* Makes the text transparent so the background-image shows */
+            text-shadow: none; /* No shadow with gradient text */
+            /* No display: inline-block here, as it's already handled by the parent h1 or is default inline */
         }
 
 
-        .hero-intro {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            text-align: center;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-color);
-        }
-        .hero-intro h2 {
-            margin-bottom: 0;
-        }
-        .hero-intro p {
-            margin-bottom: 0;
-        }
+                .hero-intro {
+    max-width: 900px;
+    /* Removed margin-top, set margin-bottom to 0 */
+    margin: 0 auto 0 auto; /* This sets top and bottom margins to 0, and auto for left/right to center */
+    padding: 0 1.5rem;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+.hero-intro h2 {
+    /* Adjusted margin-bottom for the heading itself if needed, or remove it */
+    margin-bottom: 0; /* Remove space below the h2 within hero-intro */
+}
+.hero-intro p {
+    /* Adjusted margin-bottom for the paragraph itself, or remove it */
+    margin-bottom: 0; /* Remove space below the paragraph within hero-intro */
+}
 
 
 
@@ -262,6 +268,7 @@
         .below-form-content h1 {
             font-size: 2.5rem;
             font-weight: 700;
+            /* Color will be inherited (gradient) */
             line-height: 1.2;
             margin-bottom: 1.5rem;
         }
@@ -285,32 +292,38 @@
             gap: 2rem;
             width: 100%;
             margin-bottom: 0.5rem;
+            /* Add transition for glowing border */
             transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
         }
 
+        /* NEW CSS FOR GLOWING BORDER */
         .image-grid-row1-row2.glowing-border {
             box-shadow: 0 0 10px var(--main-accent-color), 0 0 20px rgba(0, 123, 255, 0.4), 0 0 30px rgba(0, 123, 255, 0.2);
-            border: 2px solid var(--main-accent-color);
-            border-radius: 10px;
+            border: 2px solid var(--main-accent-color); /* Applied main accent color here */
+            border-radius: 10px; /* Optional: Round the corners of the glowing area */
         }
+        /* Glowing border for full-width containers */
         .image-grid > .image-container.full-width.glowing-border {
             box-shadow: 0 0 10px var(--main-accent-color), 0 0 20px rgba(0, 123, 255, 0.4), 0 0 30px rgba(0, 123, 255, 0.2);
-            border: 2px solid var(--main-accent-color);
-            border-radius: var(--radius);
+            border: 2px solid var(--main-accent-color); /* Applied main accent color here */
+            border-radius: var(--radius); /* Use existing radius or adjust */
             transition: box-shadow 0.4s ease, border 0.4s ease;
         }
+        /* END NEW CSS FOR GLOWING BORDER */
 
 
+        /* NEW CSS FOR FLIP EFFECT */
         .image-container {
             width: 100%;
             height: 180px;
-            perspective: 1000px;
+            perspective: 1000px; /* Needed for 3D effect */
             position: relative;
             cursor: pointer;
             text-align: center;
+            /* Remove default border and shadow here, as they're applied to front/back faces */
             border: none;
             box-shadow: none;
-            background: none;
+            background: none; /* No background on the container itself */
         }
 
         .image-card-inner {
@@ -318,8 +331,8 @@
             width: 100%;
             height: 100%;
             text-align: center;
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
+            transition: transform 0.8s; /* Smooth flip animation */
+            transform-style: preserve-3d; /* Enables 3D space for children */
         }
 
         .image-card-front,
@@ -327,61 +340,90 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden;
+            backface-visibility: hidden; /* Hide the back of the element during rotation */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 2px solid var(--main-accent-color);
-            background: var(--form-bg);
+            box-shadow: var(--shadow); /* Apply shadow here */
+            /* Using the main-accent-color variable for the border */
+            border: 2px solid var(--main-accent-color); /* Applied main accent color here */
+            background: var(--form-bg); /* Apply background here */
             padding: 10px;
-            box-sizing: border-box;
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            box-sizing: border-box; /* Include padding in element's total width and height */
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; /* Transitions for hover/selected */
         }
 
         .image-card-back {
-            transform: rotateY(180deg);
-            background-color: var(--primary);
+            transform: rotateY(180deg); /* Start rotated for the back face */
+            background-color: var(--primary); /* Example back color */
             color: white;
             font-size: 1.2rem;
             font-weight: 600;
         }
 
         .image-card-front img {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 90%; /* Adjust as needed */
+            max-height: 90%; /* Adjust as needed */
             object-fit: contain;
-            margin-bottom: 5px;
+            margin-bottom: 5px; /* Space between image and figcaption */
         }
 
         .image-card-front figcaption {
-            display: block;
+            display: block; /* Make figcaption visible on the front face */
             font-size: 0.95rem;
             color: var(--text-color);
             font-weight: 600;
         }
 
+        /* Ensure figcaption is hidden on the initial structure */
+        /* This rule is now overridden by .image-card-front figcaption */
         figcaption {
             display: none;
         }
 
+        /* Hover effects for the new structure */
         .image-container:hover .image-card-front,
         .image-container:hover .image-card-back {
-            transform: scale(1.03) translateY(-3px);
+            transform: scale(1.03) translateY(-3px); /* Apply the scale/translate effect to the cards */
             box-shadow: var(--shadow-hover);
-            border-color: var(--main-accent-color);
+            border-color: var(--main-accent-color); /* Applied main accent color here */
         }
 
+        /* Adjustments for selected state */
         .image-container.selected .image-card-front,
         .image-container.selected .image-card-back {
-            animation: zoomInOut 0.6s ease-in-out;
-            outline: 3px solid var(--main-accent-color);
+            animation: zoomInOut 0.6s ease-in-out; /* Keep the zoomInOut animation */
+            outline: 3px solid var(--main-accent-color); /* Applied main accent color here */
             box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
-            border-color: var(--main-accent-color);
+            border-color: var(--main-accent-color); /* Applied main accent color here */
         }
 
+        .image-container.selected::after {
+            content: '\2713';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            z-index: 5;
+        }
+        /* END NEW CSS FOR FLIP EFFECT */
+
+
+        .image-container.full-width {
+            margin-bottom: 0.5rem;
+            /* Adjust this to account for the new border/shadow when glowing */
+            transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
+        }
 
         form {
             background: var(--form-bg);
@@ -390,19 +432,22 @@
             padding: 3rem 2rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            border: 1px solid var(--main-accent-color);
+            /* Using the main-accent-color variable for the border */
+            border: 1px solid var(--main-accent-color); /* Applied main accent color here */
         }
         form h2 {
             text-align: center;
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 2.5rem;
+             /* Color will be inherited (gradient) */
         }
         input, select, textarea {
             width: 100%;
             padding: 1rem 1.2rem;
             margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
+            /* Using the main-accent-color variable for the border on focus */
+            border: 1px solid var(--border-color); /* Default border color */
             border-radius: var(--radius);
             font-size: 1rem;
             background: #fafafa;
@@ -410,7 +455,7 @@
             box-sizing: border-box;
         }
         input:focus, select:focus, textarea:focus {
-            border-color: var(--main-accent-color);
+            border-color: var(--main-accent-color); /* Applied main accent color here */
             box-shadow: 0 0 10px rgba(0,123,255,0.2);
             outline: none;
         }
@@ -447,7 +492,8 @@
             background-color: var(--form-bg);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            border: 1px solid var(--main-accent-color);
+            /* Using the main-accent-color variable for the border */
+            border: 1px solid var(--main-accent-color); /* Applied main accent color here */
         }
 
         @keyframes wavePulse {
@@ -464,11 +510,9 @@
                 box-shadow: 0 0 0 0 rgba(0,123,255, 0);
             }
         }
-        /* Keep the input.wave class */
         input.wave {
-            animation: wavePulse 0.8s ease-out forwards; /* Added forwards to keep the final state */
+            animation: wavePulse 0.8s ease-out;
         }
-
 
         .site-footer {
             background-color: #1d1d1f;
@@ -477,7 +521,7 @@
             text-align: center;
             font-size: 0.95rem;
             box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
-            border-top: 44px solid var(--primary);
+            border-top: 4px solid var(--primary); /* You could use --main-accent-color here too */
         }
 
         .site-footer a {
@@ -532,6 +576,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            /* display: none; */
         }
         #loading-overlay img {
             width: 80px;
@@ -547,11 +592,9 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             body {
+                /* Adjusted padding-top to match the new shorter header height (180px * 0.75 = 135px) */
+                padding-top: 135px;
                 line-height: 1.6;
-            }
-            /* FIX 1: Ensure no top margin on hero-intro in mobile view */
-            .hero-intro {
-                margin-top: 0 !important; /* Aggressively remove any top margin */
             }
             h1 {
                 font-size: 2rem;
@@ -564,33 +607,35 @@
             }
             .hero-intro {
                 font-size: 0.95rem;
+                margin-top: 2rem;
             }
 
             header {
-                min-height: 180px;
-                height: 180px;
-                overflow: hidden;
+                /* Set the header's height to 75% of its original mobile height */
+                min-height: 135px; /* 180px * 0.75 = 135px */
+                height: 135px; /* Explicitly set height */
+                overflow: hidden; /* Crucial to clip the excess image */
             }
 
             .header-image {
-                object-position: 50% 30%;
-                height: 100%;
+                /* object-fit: cover and object-position will handle the visibility */
+                object-position: 50% 100%; /* Align bottom of the image with bottom of the container, hiding the top part */
+                height: 100%; /* Fill the new container height */
                 width: 100%;
-                left: 0;
-                transform: none;
             }
 
             header .header-title {
-                bottom: 15px;
+                bottom: 15px; /* Keep consistent with previous mobile adjustment */
                 width: 95%;
-                padding: 10px 20px;
-                border-radius: 15px;
-                box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-                border: 2px solid var(--main-accent-color);
+                padding: 10px 20px; /* Adjust padding for mobile */
+                border-radius: 15px; /* Adjust border-radius for mobile */
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Adjust shadow for mobile */
+                /* Using the main-accent-color variable for the border */
+                border: 2px solid var(--main-accent-color); /* Applied main accent color here */
             }
-            header .header-title span {
+            header .header-title span { /* Apply mobile specific font size to the span */
                 font-size: 1.5rem;
-                text-shadow: none;
+                text-shadow: none; /* No shadow with gradient text */
             }
 
 
@@ -605,14 +650,16 @@
                 gap: 0.8rem;
             }
 
+            /* Adjust glowing border for mobile rows */
             .image-grid-row1-row2.glowing-border,
             .image-grid > .image-container.full-width.glowing-border {
-                 box-shadow: 0 0 8px rgba(0, 123, 255, 0.6), 0 0 15px rgba(0, 123, 255, 0.4);
-                 border: 1px solid var(--main-accent-color);
+                 box-shadow: 0 0 8px rgba(0, 123, 255, 0.6), 0 0 15px rgba(0, 123, 255, 0.4); /* Slightly softer glow for mobile */
+                 border: 1px solid var(--main-accent-color); /* Applied main accent color here */
             }
 
             .image-container {
                 height: 120px;
+                /* No padding here, padding moved to image-card-front/back */
             }
 
             .image-card-front img {
@@ -669,26 +716,23 @@
         /* --- Mobile Landscape and Tablet Landscape Specific Styles (max-width: 991px and landscape) --- */
         @media (max-width: 991px) and (orientation: landscape) {
             body {
-                /* padding-top will be set dynamically by JS. */
+                padding-top: 180px; /* Keep original padding-top for landscape */
             }
             header {
-                height: 180px;
-                min-height: unset;
+                height: 180px; /* Keep original height for landscape */
+                min-height: unset; /* Reset min-height */
             }
 
             .header-image {
                 object-fit: cover;
-                object-position: center center;
-                width: 100%;
-                left: 0;
-                transform: none;
+                object-position: center center; /* Show full image */
             }
 
             header .header-title {
                 font-size: unset;
                 bottom: 15px;
-                color: white;
-                text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+                color: white; /* This color will be hidden by the span's transparent color */
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* This text-shadow applies to the h1, but won't be visible due to color: transparent on span */
             }
             header .header-title span {
                 font-size: 2rem;
@@ -838,15 +882,7 @@
 
         <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
             <h2>Get an Instant Quote or Book a Service</h2>
-            
-<!-- Fallback tap-to-focus helper for mobile users -->
-<div id="focus-helper" style="text-align:center; margin-bottom: -1rem;">
-  <button type="button" style="background:none; border:none; font-size:0.9rem; color:#007bff; text-decoration:underline; padding:0;" onclick="document.getElementById('name').focus()">
-    Tap here if the cursor doesn't appear
-  </button>
-</div>
-
-<input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
             <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
             <input type="hidden" id="interest" name="interest">
             <button type="submit" aria-label="Submit your contact information to get a quote or book service in Bangalore">Submit</button>
@@ -867,62 +903,35 @@
         <p class="small-text">Designed & Developed by Thanveer P</p>
     </footer>
 
-    <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair in Bangalore.">
-        <img src="https://www.sellinseconds.in/whatsapp.webp" loading="lazy" alt="WhatsApp Chat Icon">
-    </a>
-    <div id="loading-overlay">
-        <img src="https://www.sellinseconds.in/loading.gif" alt="Loading...">
-    </div>
-
     <script>
         const containers = document.querySelectorAll('.image-container');
         const nameInput = document.getElementById('name');
         const interestInput = document.getElementById('interest');
         const submitButton = document.querySelector('#contact-form button');
-        const headerElement = document.querySelector('header');
-        const bodyElement = document.body;
 
         const synth = window.speechSynthesis;
         let currentUtterance;
 
-        // Function to dynamically set body padding-top based on header height
-        function setBodyPadding() {
-            requestAnimationFrame(() => {
-                bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
-                console.log('Body padding-top set to:', headerElement.offsetHeight + 'px');
-            });
-        }
-
-        // --- Fix 1: Refresh to Top on Mobile ---
-        // Prevents browser scroll restoration
-        history.scrollRestoration = 'manual';
-
         document.addEventListener('DOMContentLoaded', () => {
-            // Aggressive scroll to top with a short delay
-            setTimeout(() => {
-                window.scrollTo(0, 0);
-                console.log('Scrolled to top on DOMContentLoaded.');
-            }, 50);
-
             hideLoading();
-            setBodyPadding(); // Initial padding set
-            window.addEventListener('resize', setBodyPadding); // Update padding on resize
 
-            // --- Image Flip Animation Logic ---
             const rowsToGlow = document.querySelectorAll('.image-grid-row1-row2');
             const fullWidthContainersToGlow = document.querySelectorAll('.image-grid > .image-container.full-width');
             const allFlipContainers = document.querySelectorAll('.image-grid-row1-row2 .image-container, .image-container.full-width');
             const hasFlippedOnce = sessionStorage.getItem('hasFlippedImages');
 
-            const flipDuration = 800;
-            const staggerDelay = 100;
-            const totalFlipInTime = allFlipContainers.length * staggerDelay;
-            const totalFlipOutTime = allFlipContainers.length * staggerDelay + flipDuration;
+            // Animation timing parameters
+            const flipDuration = 800; // Duration of the individual flip (CSS transition)
+            const staggerDelay = 100; // Delay between each image starting its flip
+            const totalFlipInTime = allFlipContainers.length * staggerDelay; // Approx time for all images to flip to back
+            const totalFlipOutTime = allFlipContainers.length * staggerDelay + flipDuration; // Approx time for all images to flip back
 
             if (!hasFlippedOnce) {
+                // Add glowing border to rows/full-width containers *before* the first flip starts
                 rowsToGlow.forEach(row => row.classList.add('glowing-border'));
                 fullWidthContainersToGlow.forEach(container => container.classList.add('glowing-border'));
 
+                // First wave: flip to back
                 allFlipContainers.forEach((container, index) => {
                     setTimeout(() => {
                         const innerCard = container.querySelector('.image-card-inner');
@@ -930,13 +939,16 @@
                             innerCard.style.transform = 'rotateY(180deg)';
                             const backText = container.getAttribute('data-back-text');
                             const backFace = container.querySelector('.image-card-back');
-                            if (backText) {
+                            if (backText && backFace) {
                                 backFace.textContent = backText;
                             }
                         }
                     }, staggerDelay * index);
                 });
 
+                // Second wave: flip back to front and remove glow
+                // This timeout needs to be long enough for all initial flips to complete
+                // plus a short pause before flipping back
                 setTimeout(() => {
                     allFlipContainers.forEach((container, index) => {
                         setTimeout(() => {
@@ -947,50 +959,42 @@
                         }, staggerDelay * index);
                     });
 
+                    // Remove glowing border after all images have flipped back
                     setTimeout(() => {
                         rowsToGlow.forEach(row => row.classList.remove('glowing-border'));
                         fullWidthContainersToGlow.forEach(container => container.classList.remove('glowing-border'));
-                        sessionStorage.setItem('hasFlippedImages', 'true');
-                        setTimeout(setBodyPadding, 100); // Recalculate padding after animation
-                    }, totalFlipOutTime);
-                }, totalFlipInTime + 500);
+                        sessionStorage.setItem('hasFlippedImages', 'true'); // Set flag after animation completion
+                    }, totalFlipOutTime); // Wait for the entire flip-back sequence to finish
+                }, totalFlipInTime + 500); // Wait for all flips-in to finish + a small pause (e.g., 500ms)
             }
 
-            // --- Click Event Listener for Image Containers ---
+            // Existing click event listener (make sure it targets the inner card for flip interaction)
             containers.forEach((container) => {
                 container.addEventListener('click', () => {
                     containers.forEach(c => c.classList.remove('selected'));
                     container.classList.add('selected');
 
+                    // Find the image within the front card to get the alt text for description
                     const description = container.querySelector('.image-card-front img').alt;
                     interestInput.value = description;
 
                     let message;
-                    // Refined dynamic speech and button text logic
-                    if (description.includes("Mobile Phone")) {
-                        message = `You chose Mobile Phone. Get an instant quote for your mobile phone!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("Laptop or MacBook")) {
-                        message = `You chose Laptop or MacBook. Selling your laptop is easy with us!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("iMac or All-in-One PC")) {
-                        message = `You chose iMac or All-in-One PC. Get an instant quote!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("Tablet or iPad")) {
-                        message = `You chose Tablet or iPad. Get an instant quote!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("Gadget Accessories")) {
-                        message = `You chose Accessories. Get an instant quote!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("Smart Watch or Apple Watch")) {
-                        message = `You chose Smart Watch. Get a great deal here!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("Earbuds or AirPods")) {
-                        message = `You chose Earbuds or AirPods. We make selling them simple!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("Gaming Console")) {
-                        message = `You chose Gaming Console. Sell your Xbox, PlayStation, or Nintendo here!`;
-                        submitButton.textContent = "Get Instant Quote";
+                    if (description.includes("Sell Mobile Phone")) {
+                        message = `Great choice! You're looking to sell your mobile phone. We'll get you an instant quote.`;
+                    } else if (description.includes("Sell Laptop")) {
+                        message = `Excellent! Selling your laptop or MacBook is easy with us.`;
+                    } else if (description.includes("Sell iMac")) {
+                        message = `Selling your iMac or All-in-One PC? We'll help you with that.`;
+                    } else if (description.includes("Sell Tablet")) {
+                        message = `Looking to sell your tablet or iPad? We've got you covered.`;
+                    } else if (description.includes("Sell Gadget Accessories")) {
+                        message = `Interested in selling gadget accessories? We can assist you.`;
+                    } else if (description.includes("Sell Smart Watch")) {
+                        message = `Selling your smart watch or Apple Watch? Get a great deal here.`;
+                    } else if (description.includes("Sell Earbuds")) {
+                        message = `Time to sell your earbuds or AirPods? We make it simple.`;
+                    } else if (description.includes("Sell Gaming Console")) {
+                        message = `Selling your gaming console? Xbox, PlayStation, Nintendo - we buy them all!`;
                     } else if (description.includes("Buy Refurbished Gadgets")) {
                         message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
                         submitButton.textContent = "See Available Gadgets";
@@ -1002,59 +1006,29 @@
                         submitButton.textContent = "Submit";
                     }
 
-                  // Delay speech synthesis until after focus to avoid keyboard issues
-setTimeout(() => {
-    if (synth && synth.speaking) synth.cancel();
-    if (synth) speak(message);
-}, 1000); // 1-second delay ensures focus/keyboard works first
+                    if (synth && synth.speaking) {
+                        synth.cancel();
+                        setTimeout(() => speak(message), 200);
+                    } else if (synth) {
+                        speak(message);
+                    }
 
-
-                    // --- Updated Cursor & Animation Logic ---
-                    // 1. Ensure the 'wave' class is removed before adding to re-trigger
-                    nameInput.classList.remove('wave');
-
-                    // 2. Scroll into view first (smoothly)
-                // Smooth scroll to name input and gently highlight it
-nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-// Add soft glow animation to guide user
-nameInput.classList.add('wave');
-
-// Optional: Remove the wave after 2s
-setTimeout(() => {
-    nameInput.classList.remove('wave');
-}, 2000);
- // Adjusted delay for focus (can try 500ms or 600ms if needed)
-
+                    document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
+                    nameInput.classList.add('wave');
+                    nameInput.focus();
+                    setTimeout(() => nameInput.classList.remove('wave'), 1000);
                 });
             });
-        
-// Hide the helper once the name input is actually focused
-nameInput.addEventListener('focus', () => {
-    const helper = document.getElementById('focus-helper');
-    if (helper) helper.style.display = 'none';
-});
-
-
         });
-
-        // Fix 1: Refresh to Top on Mobile (window.onload as a fallback/additional measure)
-        window.onload = () => {
-            setTimeout(() => {
-                window.scrollTo(0, 0);
-                console.log('Scrolled to top on window.onload.'); // Debugging
-            }, 50);
-            setBodyPadding(); // Ensure padding is correct after all resources loaded
-        };
-
 
         function speak(text) {
             currentUtterance = new SpeechSynthesisUtterance(text);
             synth.speak(currentUtterance);
         }
 
-        // Removed the previous nameInput.addEventListener('focus')
-        // The wave animation is now controlled directly by adding/removing the 'wave' class on click.
+        nameInput.addEventListener('focus', () => {
+            nameInput.classList.remove('animated');
+        });
 
         document.getElementById("contact-form").addEventListener("submit", function (e) {
             e.preventDefault();
@@ -1102,8 +1076,7 @@ nameInput.addEventListener('focus', () => {
                     alert("Form submitted successfully! We will contact you soon.");
                     form.reset();
                     document.querySelectorAll('.image-container.selected').forEach(c => c.classList.remove('selected'));
-                    submitButton.textContent = "Submit"; // Reset button text after submission
-                    nameInput.classList.remove('wave'); // Clean up animation after submission
+                    submitButton.textContent = "Submit";
                 } else {
                     alert("Failed to submit. Please try again. (Server error)");
                 }
@@ -1121,6 +1094,14 @@ nameInput.addEventListener('focus', () => {
         function hideLoading() {
             document.getElementById('loading-overlay').style.display = 'none';
         }
+        document.addEventListener('DOMContentLoaded', hideLoading);
     </script>
+
+    <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair in Bangalore.">
+        <img src="https://www.sellinseconds.in/whatsapp.webp" loading="lazy" alt="WhatsApp Chat Icon">
+    </a>
+    <div id="loading-overlay">
+        <img src="https://www.sellinseconds.in/loading.gif" alt="Loading...">
+    </div>
 </body>
 </html>
