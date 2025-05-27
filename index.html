@@ -136,8 +136,8 @@
             animation: gradientShift 40s ease infinite;
             color: var(--text-color);
             line-height: 1.7;
-            /* UPDATED: Default padding-top for desktop */
-            padding-top: 280px; /* Reduced from 400px */
+            /* UPDATED: Default padding-top for desktop (matches header height) */
+            padding-top: 280px; 
         }
 
         /* Keyframe animation for background */
@@ -202,7 +202,8 @@
 
         header .header-title {
             position: absolute;
-            bottom: 30px;
+            /* UPDATED: Move title upwards for desktop */
+            bottom: 10px; /* Reduced from 30px (approx 20px shift upwards) */
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
@@ -566,22 +567,21 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             body {
-                /* Let JS handle padding-top. No explicit value needed here for mobile. */
-                padding-top: 0px; /* Reset this to ensure no interference with JS */
+                /* JS will set padding-top based on header height. No need for explicit value here */
+                padding-top: 0px; 
                 line-height: 1.6;
             }
 
-            /* Revert hero-intro and h2 styling to initial state, let JS handle body padding-top */
+            /* Revert hero-intro and h2 styling from previous attempts */
             .hero-intro {
                 font-size: 0.95rem;
-                margin-top: 0; /* Changed from -10px to 0, or just remove */
+                margin-top: 0; /* Revert to default/0 */
                 padding-top: 0;
             }
             .hero-intro h2 {
-                margin-bottom: 0; /* Keep current */
+                margin-bottom: 0;
             }
             /* REMOVE the 'main' margin-top as it was causing layout issues */
-            /* main { margin-top: 145px; } */
 
 
             h1 {
@@ -905,7 +905,7 @@
         function setBodyPadding() {
             requestAnimationFrame(() => {
                 // This ensures content starts below the fixed header on all views.
-                // It will automatically pick up the new 280px for desktop, and 135px for mobile from CSS media query.
+                // It will automatically pick up the new 280px for desktop, and 135px for mobile from CSS media query for header.
                 bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
                 console.log('Body padding-top set to:', headerElement.offsetHeight + 'px');
             });
