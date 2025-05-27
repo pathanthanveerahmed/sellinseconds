@@ -136,7 +136,6 @@
             animation: gradientShift 40s ease infinite;
             color: var(--text-color);
             line-height: 1.7;
-            /* UPDATED: Default padding-top for desktop (matches header height) */
             padding-top: 280px; 
         }
 
@@ -181,7 +180,6 @@
             top: 0;
             left: 0;
             width: 100%;
-            /* UPDATED: Header height remains 280px for desktop */
             min-height: 280px;
             height: 280px;
             overflow: hidden;
@@ -196,6 +194,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            /* UPDATED: Adjust object-position for desktop to shift image up */
+            object-position: 50% 38%; /* Changed from 50% 45% */
             filter: brightness(0.75);
             z-index: 1;
         }
@@ -203,7 +203,7 @@
         header .header-title {
             position: absolute;
             /* UPDATED: Move title upwards further for desktop */
-            bottom: 0px; /* Reduced from 10px to 0px */
+            bottom: -20px; /* Changed from 0px to -20px */
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
@@ -567,21 +567,18 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             body {
-                /* JS will set padding-top based on header height. No need for explicit value here */
                 padding-top: 0px; 
                 line-height: 1.6;
             }
 
-            /* Revert hero-intro and h2 styling to initial state */
             .hero-intro {
                 font-size: 0.95rem;
-                margin-top: 0; /* Reset to 0 */
-                padding: 0 1.5rem; /* Keep existing padding */
+                margin-top: 0;
+                padding: 0 1.5rem;
             }
             .hero-intro h2 {
                 margin-bottom: 0;
             }
-            /* REMOVE the 'main' margin-top as it was causing layout issues */
 
 
             h1 {
@@ -904,8 +901,6 @@
         // Function to dynamically set body padding-top based on header height
         function setBodyPadding() {
             requestAnimationFrame(() => {
-                // This ensures content starts below the fixed header on all views.
-                // It will automatically pick up the new 280px for desktop, and 135px for mobile from CSS media query for header.
                 bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
                 console.log('Body padding-top set to:', headerElement.offsetHeight + 'px');
             });
@@ -915,15 +910,14 @@
         history.scrollRestoration = 'manual';
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Aggressive scroll to top with a short delay
             setTimeout(() => {
                 window.scrollTo(0, 0);
                 console.log('Scrolled to top on DOMContentLoaded.');
             }, 50);
 
             hideLoading();
-            setBodyPadding(); // Initial padding set
-            window.addEventListener('resize', setBodyPadding); // Update padding on resize
+            setBodyPadding();
+            window.addEventListener('resize', setBodyPadding);
 
             const rowsToGlow = document.querySelectorAll('.image-grid-row1-row2');
             const fullWidthContainersToGlow = document.querySelectorAll('.image-grid > .image-container.full-width');
