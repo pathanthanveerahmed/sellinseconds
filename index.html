@@ -93,12 +93,12 @@
     <style>
         :root {
             /* Refined Color Palette */
-            --primary: #007bff;
+            --primary: #007bff; /* This is a general primary blue */
             --primary-dark: #0056b3;
             --text-color: #333;
-            --heading-color: #1a1a1a;
+            --heading-color: #1a1a1a; /* This is currently overridden by gradient on h1, h2, h3 */
             --form-bg: #ffffff;
-            --border-color: #d0d7de;
+            --border-color: #d0d7de; /* This is the default border color */
             --radius: 16px;
             --shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
             --shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.18);
@@ -109,6 +109,9 @@
             --bg-color-3: #f0f8ff; /* Alice blue */
             --bg-color-4: #fdf5e6; /* Old lace */
             --bg-color-5: #e0ffe0; /* Pale green */
+
+            /* New: Define a color that matches or complements the heading gradient */
+            --main-accent-color: #4285F4; /* This is the starting blue of your heading gradient */
         }
         * {
             box-sizing: border-box;
@@ -152,7 +155,7 @@
             background: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
             -webkit-background-clip: text;
             background-clip: text;
-            color: transparent;
+            color: transparent; /* Makes the text transparent so the background-image shows */
         }
 
         h1 {
@@ -215,7 +218,8 @@
             background: rgb(255, 255, 255); /* Fully opaque white */
             border-radius: 20px; /* Smooth rounded corners */
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.4); /* Stronger, more visible shadow */
-            border: 3px solid rgba(0, 123, 255, 0.5); /* Added a semi-transparent blue border for better visibility testing */
+            /* Using the main-accent-color variable for the border */
+            border: 3px solid var(--main-accent-color); /* Applied main accent color here */
             box-sizing: border-box; /* Ensures padding is included in total size */
             display: inline-block; /* Essential for background and padding to wrap content effectively when centered */
         }
@@ -290,14 +294,14 @@
 
         /* NEW CSS FOR GLOWING BORDER */
         .image-grid-row1-row2.glowing-border {
-            box-shadow: 0 0 10px rgba(0, 123, 255, 0.6), 0 0 20px rgba(0, 123, 255, 0.4), 0 0 30px rgba(0, 123, 255, 0.2);
-            border: 2px solid var(--primary); /* Optional: Add a solid border to enhance the effect */
+            box-shadow: 0 0 10px var(--main-accent-color), 0 0 20px rgba(0, 123, 255, 0.4), 0 0 30px rgba(0, 123, 255, 0.2);
+            border: 2px solid var(--main-accent-color); /* Applied main accent color here */
             border-radius: 10px; /* Optional: Round the corners of the glowing area */
         }
         /* Glowing border for full-width containers */
         .image-grid > .image-container.full-width.glowing-border {
-            box-shadow: 0 0 10px rgba(0, 123, 255, 0.6), 0 0 20px rgba(0, 123, 255, 0.4), 0 0 30px rgba(0, 123, 255, 0.2);
-            border: 2px solid var(--primary); /* Optional: Add a solid border to enhance the effect */
+            box-shadow: 0 0 10px var(--main-accent-color), 0 0 20px rgba(0, 123, 255, 0.4), 0 0 30px rgba(0, 123, 255, 0.2);
+            border: 2px solid var(--main-accent-color); /* Applied main accent color here */
             border-radius: var(--radius); /* Use existing radius or adjust */
             transition: box-shadow 0.4s ease, border 0.4s ease;
         }
@@ -339,7 +343,8 @@
             justify-content: center;
             border-radius: var(--radius);
             box-shadow: var(--shadow); /* Apply shadow here */
-            border: 2px solid var(--border-color); /* Apply border here */
+            /* Using the main-accent-color variable for the border */
+            border: 2px solid var(--main-accent-color); /* Applied main accent color here */
             background: var(--form-bg); /* Apply background here */
             padding: 10px;
             box-sizing: border-box; /* Include padding in element's total width and height */
@@ -379,16 +384,16 @@
         .image-container:hover .image-card-back {
             transform: scale(1.03) translateY(-3px); /* Apply the scale/translate effect to the cards */
             box-shadow: var(--shadow-hover);
-            border-color: var(--primary);
+            border-color: var(--main-accent-color); /* Applied main accent color here */
         }
 
         /* Adjustments for selected state */
         .image-container.selected .image-card-front,
         .image-container.selected .image-card-back {
             animation: zoomInOut 0.6s ease-in-out; /* Keep the zoomInOut animation */
-            outline: 3px solid var(--primary);
+            outline: 3px solid var(--main-accent-color); /* Applied main accent color here */
             box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
-            border-color: var(--primary);
+            border-color: var(--main-accent-color); /* Applied main accent color here */
         }
 
         .image-container.selected::after {
@@ -423,7 +428,8 @@
             padding: 3rem 2rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
+            /* Using the main-accent-color variable for the border */
+            border: 1px solid var(--main-accent-color); /* Applied main accent color here */
         }
         form h2 {
             text-align: center;
@@ -436,7 +442,8 @@
             width: 100%;
             padding: 1rem 1.2rem;
             margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
+            /* Using the main-accent-color variable for the border on focus */
+            border: 1px solid var(--border-color); /* Default border color */
             border-radius: var(--radius);
             font-size: 1rem;
             background: #fafafa;
@@ -444,7 +451,7 @@
             box-sizing: border-box;
         }
         input:focus, select:focus, textarea:focus {
-            border-color: var(--primary);
+            border-color: var(--main-accent-color); /* Applied main accent color here */
             box-shadow: 0 0 10px rgba(0,123,255,0.2);
             outline: none;
         }
@@ -481,7 +488,8 @@
             background-color: var(--form-bg);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
+            /* Using the main-accent-color variable for the border */
+            border: 1px solid var(--main-accent-color); /* Applied main accent color here */
         }
 
         @keyframes wavePulse {
@@ -509,7 +517,7 @@
             text-align: center;
             font-size: 0.95rem;
             box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
-            border-top: 4px solid var(--primary);
+            border-top: 4px solid var(--primary); /* You could use --main-accent-color here too */
         }
 
         .site-footer a {
@@ -618,7 +626,8 @@
                 padding: 10px 20px; /* Adjust padding for mobile */
                 border-radius: 15px; /* Adjust border-radius for mobile */
                 box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Adjust shadow for mobile */
-                border: 2px solid rgba(0, 123, 255, 0.4); /* Adjust border for mobile */
+                /* Using the main-accent-color variable for the border */
+                border: 2px solid var(--main-accent-color); /* Applied main accent color here */
             }
             header .header-title span { /* Apply mobile specific font size to the span */
                 font-size: 1.5rem;
@@ -641,7 +650,7 @@
             .image-grid-row1-row2.glowing-border,
             .image-grid > .image-container.full-width.glowing-border {
                  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6), 0 0 15px rgba(0, 123, 255, 0.4); /* Slightly softer glow for mobile */
-                 border: 1px solid var(--primary); /* Thinner border for mobile */
+                 border: 1px solid var(--main-accent-color); /* Applied main accent color here */
             }
 
             .image-container {
