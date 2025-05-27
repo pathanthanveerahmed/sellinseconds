@@ -237,10 +237,10 @@
         }
 
 
-                .hero-intro {
+        .hero-intro {
             max-width: 900px;
-            /* Removed margin-top, set margin-bottom to 0 */
-            margin: 0 auto 0 auto; /* This sets top and bottom margins to 0, and auto for left/right to center */
+            /* Changed from initial 3rem auto 2rem auto to 0 auto 0 auto for mobile optimization */
+            margin: 0 auto 0 auto;
             padding: 0 1.5rem;
             text-align: center;
             font-size: 1.1rem;
@@ -248,12 +248,10 @@
             color: var(--text-color);
         }
         .hero-intro h2 {
-            /* Adjusted margin-bottom for the heading itself if needed, or remove it */
-            margin-bottom: 0; /* Remove space below the h2 within hero-intro */
+            margin-bottom: 0;
         }
         .hero-intro p {
-            /* Adjusted margin-bottom for the paragraph itself, or remove it */
-            margin-bottom: 0; /* Remove space below the paragraph within hero-intro */
+            margin-bottom: 0;
         }
 
 
@@ -592,9 +590,24 @@
         @media (max-width: 600px) {
             body {
                 /* Adjusted padding-top to match the new shorter header height (180px * 0.75 = 135px) */
-                padding-top: 135px;
+                padding-top: 135px; /* Keep this if you have a fixed header, otherwise set to 0 */
                 line-height: 1.6;
             }
+
+            /* --- START OF MODIFICATION FOR SPACE ABOVE H2 --- */
+            .hero-intro {
+                /* Remove any top margin inherited from desktop or default browser styles */
+                margin-top: -10px; /* Adjust this value as needed, can be 0 or a small negative */
+                padding-top: 0; /* Ensure no extra padding at the top of this section */
+            }
+
+            .hero-intro h2 {
+                /* Reduce or remove margin on the h2 itself if it's still pushing down */
+                margin-top: 0; /* Start with 0, adjust to small negative if needed */
+            }
+            /* --- END OF MODIFICATION FOR SPACE ABOVE H2 --- */
+
+
             h1 {
                 font-size: 2rem;
             }
@@ -606,7 +619,7 @@
             }
             .hero-intro {
                 font-size: 0.95rem;
-                margin-top: 2rem;
+                /* margin-top: 2rem; -- REMOVED/OVERRIDDEN BY ABOVE */
             }
 
             header {
@@ -712,7 +725,7 @@
             }
         }
 
-        /* --- Mobile Landscape and Tablet Landscape Specific Styles (max-width: 991px and landscape) --- */
+        /* --- Mobile Landscape and Tablet Landscape Specific Styles (max-width: 991px and orientation: landscape) --- */
         @media (max-width: 991px) and (orientation: landscape) {
             body {
                 padding-top: 180px; /* Keep original padding-top for landscape */
@@ -902,35 +915,66 @@
         <p class="small-text">Designed & Developed by Thanveer P</p>
     </footer>
 
+    <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair in Bangalore.">
+        <img src="https://www.sellinseconds.in/whatsapp.webp" loading="lazy" alt="WhatsApp Chat Icon">
+    </a>
+    <div id="loading-overlay">
+        <img src="https://www.sellinseconds.in/loading.gif" alt="Loading...">
+    </div>
+
     <script>
         const containers = document.querySelectorAll('.image-container');
         const nameInput = document.getElementById('name');
         const interestInput = document.getElementById('interest');
         const submitButton = document.querySelector('#contact-form button');
+        const headerElement = document.querySelector('header');
+        const bodyElement = document.body;
 
         const synth = window.speechSynthesis;
         let currentUtterance;
 
+        // Function to dynamically set body padding-top based on header height
+        function setBodyPadding() {
+            requestAnimationFrame(() => {
+                // Only apply padding if the screen is wider than 600px (desktop/larger tablet)
+                if (window.innerWidth > 600 || window.orientation === 90 || window.orientation === -90) { // Landscape
+                    bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
+                } else {
+                    // For portrait mobile, let CSS media query control padding-top
+                    bodyElement.style.paddingTop = ''; // Remove inline style
+                }
+                console.log('Body padding-top set to:', bodyElement.style.paddingTop);
+            });
+        }
+
+        // Prevents browser scroll restoration on refresh
+        history.scrollRestoration = 'manual';
+
         document.addEventListener('DOMContentLoaded', () => {
+            // Aggressive scroll to top with a short delay
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                console.log('Scrolled to top on DOMContentLoaded.');
+            }, 50);
+
             hideLoading();
+            setBodyPadding(); // Initial padding set
+            window.addEventListener('resize', setBodyPadding); // Update padding on resize
 
             const rowsToGlow = document.querySelectorAll('.image-grid-row1-row2');
             const fullWidthContainersToGlow = document.querySelectorAll('.image-grid > .image-container.full-width');
             const allFlipContainers = document.querySelectorAll('.image-grid-row1-row2 .image-container, .image-container.full-width');
             const hasFlippedOnce = sessionStorage.getItem('hasFlippedImages');
 
-            // Animation timing parameters
-            const flipDuration = 800; // Duration of the individual flip (CSS transition)
-            const staggerDelay = 100; // Delay between each image starting its flip
-            const totalFlipInTime = allFlipContainers.length * staggerDelay; // Approx time for all images to flip to back
-            const totalFlipOutTime = allFlipContainers.length * staggerDelay + flipDuration; // Approx time for all images to flip back
+            const flipDuration = 800;
+            const staggerDelay = 100;
+            const totalFlipInTime = allFlipContainers.length * staggerDelay;
+            const totalFlipOutTime = allFlipContainers.length * staggerDelay + flipDuration;
 
             if (!hasFlippedOnce) {
-                // Add glowing border to rows/full-width containers *before* the first flip starts
                 rowsToGlow.forEach(row => row.classList.add('glowing-border'));
                 fullWidthContainersToGlow.forEach(container => container.classList.add('glowing-border'));
 
-                // First wave: flip to back
                 allFlipContainers.forEach((container, index) => {
                     setTimeout(() => {
                         const innerCard = container.querySelector('.image-card-inner');
@@ -945,9 +989,6 @@
                     }, staggerDelay * index);
                 });
 
-                // Second wave: flip back to front and remove glow
-                // This timeout needs to be long enough for all initial flips to complete
-                // plus a short pause before flipping back
                 setTimeout(() => {
                     allFlipContainers.forEach((container, index) => {
                         setTimeout(() => {
@@ -958,42 +999,49 @@
                         }, staggerDelay * index);
                     });
 
-                    // Remove glowing border after all images have flipped back
                     setTimeout(() => {
                         rowsToGlow.forEach(row => row.classList.remove('glowing-border'));
                         fullWidthContainersToGlow.forEach(container => container.classList.remove('glowing-border'));
-                        sessionStorage.setItem('hasFlippedImages', 'true'); // Set flag after animation completion
-                    }, totalFlipOutTime); // Wait for the entire flip-back sequence to finish
-                }, totalFlipInTime + 500); // Wait for all flips-in to finish + a small pause (e.g., 500ms)
+                        sessionStorage.setItem('hasFlippedImages', 'true');
+                        setTimeout(setBodyPadding, 100);
+                    }, totalFlipOutTime);
+                }, totalFlipInTime + 500);
             }
 
-            // Existing click event listener (make sure it targets the inner card for flip interaction)
+            // --- Click Event Listener for Image Containers ---
             containers.forEach((container) => {
                 container.addEventListener('click', () => {
                     containers.forEach(c => c.classList.remove('selected'));
                     container.classList.add('selected');
 
-                    // Find the image within the front card to get the alt text for description
                     const description = container.querySelector('.image-card-front img').alt;
                     interestInput.value = description;
 
                     let message;
-                    if (description.includes("Sell Mobile Phone")) {
-                        message = `Great choice! You're looking to sell your mobile phone. We'll get you an instant quote.`;
-                    } else if (description.includes("Sell Laptop")) {
-                        message = `Excellent! Selling your laptop or MacBook is easy with us.`;
-                    } else if (description.includes("Sell iMac")) {
-                        message = `Selling your iMac or All-in-One PC? We'll help you with that.`;
-                    } else if (description.includes("Sell Tablet")) {
-                        message = `Looking to sell your tablet or iPad? We've got you covered.`;
-                    } else if (description.includes("Sell Gadget Accessories")) {
-                        message = `Interested in selling gadget accessories? We can assist you.`;
-                    } else if (description.includes("Sell Smart Watch")) {
-                        message = `Selling your smart watch or Apple Watch? Get a great deal here.`;
-                    } else if (description.includes("Sell Earbuds")) {
-                        message = `Time to sell your earbuds or AirPods? We make it simple.`;
-                    } else if (description.includes("Sell Gaming Console")) {
-                        message = `Selling your gaming console? Xbox, PlayStation, Nintendo - we buy them all!`;
+                    if (description.includes("Mobile Phone")) {
+                        message = `You chose Mobile Phone. Get an instant quote for your mobile phone!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Laptop or MacBook")) {
+                        message = `You chose Laptop or MacBook. Selling your laptop is easy with us!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("iMac or All-in-One PC")) {
+                        message = `You chose iMac or All-in-One PC. Get an instant quote!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Tablet or iPad")) {
+                        message = `You chose Tablet or iPad. Get an instant quote!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Gadget Accessories")) {
+                        message = `You chose Accessories. Get an instant quote!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Smart Watch or Apple Watch")) {
+                        message = `You chose Smart Watch. Get a great deal here!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Earbuds or AirPods")) {
+                        message = `You chose Earbuds or AirPods. We make selling them simple!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Gaming Console")) {
+                        message = `You chose Gaming Console. Sell your Xbox, PlayStation, or Nintendo here!`;
+                        submitButton.textContent = "Get Instant Quote";
                     } else if (description.includes("Buy Refurbished Gadgets")) {
                         message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
                         submitButton.textContent = "See Available Gadgets";
@@ -1012,22 +1060,41 @@
                         speak(message);
                     }
 
-                    document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
-                    nameInput.classList.add('wave');
-                    nameInput.focus();
-                    setTimeout(() => nameInput.classList.remove('wave'), 1000);
+                    // --- Cursor Visibility & Animation Logic ---
+                    nameInput.classList.remove('wave'); // Ensure it's removed first to re-trigger
+                    nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // A very short delay before focus for mobile keyboards to react
+                    setTimeout(() => {
+                        nameInput.focus();
+                        nameInput.classList.add('wave');
+                        // No need for a separate setTimeout to remove 'wave' if animation-fill-mode: forwards is used,
+                        // but keeping for explicit control if needed.
+                        setTimeout(() => {
+                            nameInput.classList.remove('wave');
+                        }, 900); // Duration of wavePulse is 0.8s, so 900ms allows it to complete
+                    }, 50); // Reduced delay to 50ms for quicker focus feedback. Can be 0 if works.
+
                 });
             });
         });
+
+
+        window.onload = () => {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                console.log('Scrolled to top on window.onload.');
+            }, 50);
+            setBodyPadding();
+        };
+
 
         function speak(text) {
             currentUtterance = new SpeechSynthesisUtterance(text);
             synth.speak(currentUtterance);
         }
 
-        nameInput.addEventListener('focus', () => {
-            nameInput.classList.remove('animated');
-        });
+        // Removed the previous nameInput.addEventListener('focus') as the animation logic is now integrated.
 
         document.getElementById("contact-form").addEventListener("submit", function (e) {
             e.preventDefault();
@@ -1076,6 +1143,7 @@
                     form.reset();
                     document.querySelectorAll('.image-container.selected').forEach(c => c.classList.remove('selected'));
                     submitButton.textContent = "Submit";
+                    nameInput.classList.remove('wave'); // Clean up animation after submission
                 } else {
                     alert("Failed to submit. Please try again. (Server error)");
                 }
