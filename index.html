@@ -838,7 +838,15 @@
 
         <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
             <h2>Get an Instant Quote or Book a Service</h2>
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            
+<!-- Fallback tap-to-focus helper for mobile users -->
+<div id="focus-helper" style="text-align:center; margin-bottom: -1rem;">
+  <button type="button" style="background:none; border:none; font-size:0.9rem; color:#007bff; text-decoration:underline; padding:0;" onclick="document.getElementById('name').focus()">
+    Tap here if the cursor doesn't appear
+  </button>
+</div>
+
+<input type="text" id="name" name="name" placeholder="Your Name" required>
             <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
             <input type="hidden" id="interest" name="interest">
             <button type="submit" aria-label="Submit your contact information to get a quote or book service in Bangalore">Submit</button>
@@ -868,12 +876,6 @@
 
     <script>
         const containers = document.querySelectorAll('.image-container');
-        <div id="focus-helper" style="text-align:center; margin-bottom: -1rem;">
-  <button type="button" style="background:none; border:none; font-size:0.9rem; color:#007bff; text-decoration:underline; padding:0;" onclick="document.getElementById('name').focus()">
-    Tap here if the cursor doesn't appear
-  </button>
-</div>
-
         const nameInput = document.getElementById('name');
         const interestInput = document.getElementById('interest');
         const submitButton = document.querySelector('#contact-form button');
@@ -955,94 +957,85 @@
             }
 
             // --- Click Event Listener for Image Containers ---
-containers.forEach((container) => {
-    container.addEventListener('click', () => {
-        containers.forEach(c => c.classList.remove('selected'));
-        container.classList.add('selected');
+            containers.forEach((container) => {
+                container.addEventListener('click', () => {
+                    containers.forEach(c => c.classList.remove('selected'));
+                    container.classList.add('selected');
 
-        const description = container.querySelector('.image-card-front img').alt;
-        interestInput.value = description;
+                    const description = container.querySelector('.image-card-front img').alt;
+                    interestInput.value = description;
 
-        let message;
-        if (description.includes("Mobile Phone")) {
-            message = `You chose Mobile Phone. Get an instant quote for your mobile phone!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("Laptop or MacBook")) {
-            message = `You chose Laptop or MacBook. Selling your laptop is easy with us!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("iMac or All-in-One PC")) {
-            message = `You chose iMac or All-in-One PC. Get an instant quote!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("Tablet or iPad")) {
-            message = `You chose Tablet or iPad. Get an instant quote!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("Gadget Accessories")) {
-            message = `You chose Accessories. Get an instant quote!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("Smart Watch or Apple Watch")) {
-            message = `You chose Smart Watch. Get a great deal here!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("Earbuds or AirPods")) {
-            message = `You chose Earbuds or AirPods. We make selling them simple!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("Gaming Console")) {
-            message = `You chose Gaming Console. Sell your Xbox, PlayStation, or Nintendo here!`;
-            submitButton.textContent = "Get Instant Quote";
-        } else if (description.includes("Buy Refurbished Gadgets")) {
-            message = `You're interested in buying gadgets. We’ll WhatsApp you the best deals.`;
-            submitButton.textContent = "See Available Gadgets";
-        } else if (description.includes("Gadget Repair Services")) {
-            message = `Need gadget repair services? We'll reach out shortly.`;
-            submitButton.textContent = "Book Repair Service";
-        } else {
-            message = `Thank you for your interest in ${description} 🙏.`;
-            submitButton.textContent = "Submit";
-        }
+                    let message;
+                    // Refined dynamic speech and button text logic
+                    if (description.includes("Mobile Phone")) {
+                        message = `You chose Mobile Phone. Get an instant quote for your mobile phone!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Laptop or MacBook")) {
+                        message = `You chose Laptop or MacBook. Selling your laptop is easy with us!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("iMac or All-in-One PC")) {
+                        message = `You chose iMac or All-in-One PC. Get an instant quote!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Tablet or iPad")) {
+                        message = `You chose Tablet or iPad. Get an instant quote!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Gadget Accessories")) {
+                        message = `You chose Accessories. Get an instant quote!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Smart Watch or Apple Watch")) {
+                        message = `You chose Smart Watch. Get a great deal here!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Earbuds or AirPods")) {
+                        message = `You chose Earbuds or AirPods. We make selling them simple!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Gaming Console")) {
+                        message = `You chose Gaming Console. Sell your Xbox, PlayStation, or Nintendo here!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Buy Refurbished Gadgets")) {
+                        message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
+                        submitButton.textContent = "See Available Gadgets";
+                    } else if (description.includes("Gadget Repair Services")) {
+                        message = `Need gadget repair services? We'll get in touch with you to schedule a service.`;
+                        submitButton.textContent = "Book Repair Service";
+                    } else {
+                        message = `Thank you for your interest in ${description} 🙏.`;
+                        submitButton.textContent = "Submit";
+                    }
 
-        if (synth && synth.speaking) {
-            synth.cancel();
-            setTimeout(() => speak(message), 200);
-        } else if (synth) {
-            speak(message);
-        }
+                    if (synth && synth.speaking) {
+                        synth.cancel();
+                        setTimeout(() => speak(message), 200);
+                    } else if (synth) {
+                        speak(message);
+                    }
 
-        // Final mobile workaround: focus dummy input, then real input
-        nameInput.classList.remove('wave');
+                    // --- Updated Cursor & Animation Logic ---
+                    // 1. Ensure the 'wave' class is removed before adding to re-trigger
+                    nameInput.classList.remove('wave');
 
-        // Step 1: Focus a temporary dummy input to trigger keyboard
-        const dummy = document.createElement('input');
-        dummy.setAttribute('type', 'text');
-        dummy.style.position = 'absolute';
-        dummy.style.top = '-1000px';
-        document.body.appendChild(dummy);
-        dummy.focus();
+                    // 2. Scroll into view first (smoothly)
+                    nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-        // Step 2: After slight delay, scroll and focus real input
-        setTimeout(() => {
-            document.body.removeChild(dummy); // Clean up dummy
+                    // 3. Delay focus to allow scroll and keyboard to appear/stabilize
+                    setTimeout(() => {
+                        nameInput.focus();
+                        // 4. Apply the wave animation class
+                        nameInput.classList.add('wave');
+                        // No need for a separate setTimeout to remove 'wave' if animation-fill-mode: forwards is used.
+                        // The animation will stay at its final state.
+                    }, 400); // Adjusted delay for focus (can try 500ms or 600ms if needed)
 
-            // Scroll the name input into view
-            nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            // Ensure layout is fully reflowed
-            setTimeout(() => {
-                nameInput.focus({ preventScroll: true });
-
-                // Trigger CSS animation
-                nameInput.classList.add('wave');
-            }, 300);
-        }, 200); // Adjust this delay as needed for stability
-    });
-});
-
-
-
-        });
-// Optional: Hide helper after first focus
+                });
+            });
+        
+// Hide the helper once the name input is actually focused
 nameInput.addEventListener('focus', () => {
     const helper = document.getElementById('focus-helper');
     if (helper) helper.style.display = 'none';
 });
+
+
+        });
 
         // Fix 1: Refresh to Top on Mobile (window.onload as a fallback/additional measure)
         window.onload = () => {
