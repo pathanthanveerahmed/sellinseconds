@@ -136,8 +136,7 @@
             animation: gradientShift 40s ease infinite; /* SLOWER: Changed to 40 seconds */
             color: var(--text-color);
             line-height: 1.7;
-            /* REMOVED fixed padding-top here. It will be set dynamically by JS. */
-            /* padding-top: 280px; */ /* Removed */
+            /* REMOVED fixed padding-top here. It will be set dynamically by JS for all views. */
         }
 
         /* Keyframe animation for background */
@@ -598,7 +597,6 @@
         @media (max-width: 600px) {
             body {
                 /* padding-top will be set dynamically by JS. Remove fixed value here. */
-                /* padding-top: 180px; */ /* Removed */
                 line-height: 1.6;
             }
             h1 {
@@ -724,7 +722,6 @@
         @media (max-width: 991px) and (orientation: landscape) {
             body {
                 /* padding-top will be set dynamically by JS. Remove fixed value here. */
-                /* padding-top: 180px; */ /* Removed */
             }
             header {
                 height: 180px; /* Keep original height for landscape */
@@ -943,9 +940,8 @@
 
             hideLoading();
 
-            // 2. Dynamically set body padding-top on load
+            // 2. Dynamically set body padding-top on load and resize
             setBodyPadding();
-            // Also update padding-top on window resize
             window.addEventListener('resize', setBodyPadding);
 
 
@@ -973,7 +969,7 @@
                             innerCard.style.transform = 'rotateY(180deg)';
                             const backText = container.getAttribute('data-back-text');
                             const backFace = container.querySelector('.image-card-back');
-                            if (backText && backFace) {
+                            if (backText) { // Ensure backText exists
                                 backFace.textContent = backText;
                             }
                         }
@@ -981,8 +977,6 @@
                 });
 
                 // Second wave: flip back to front and remove glow
-                // This timeout needs to be long enough for all initial flips to complete
-                // plus a short pause before flipping back
                 setTimeout(() => {
                     allFlipContainers.forEach((container, index) => {
                         setTimeout(() => {
@@ -1002,33 +996,27 @@
                 }, totalFlipInTime + 500); // Wait for all flips-in to finish + a small pause (e.g., 500ms)
             }
 
-            // Existing click event listener (make sure it targets the inner card for flip interaction)
             containers.forEach((container) => {
                 container.addEventListener('click', () => {
                     containers.forEach(c => c.classList.remove('selected'));
                     container.classList.add('selected');
 
-                    // Find the image within the front card to get the alt text for description
                     const description = container.querySelector('.image-card-front img').alt;
                     interestInput.value = description;
 
                     let message;
-                    if (description.includes("Sell Mobile Phone")) {
-                        message = `Great choice! You're looking to sell your mobile phone. We'll get you an instant quote.`;
-                    } else if (description.includes("Sell Laptop")) {
-                        message = `Excellent! Selling your laptop or MacBook is easy with us.`;
-                    } else if (description.includes("Sell iMac")) {
-                        message = `Selling your iMac or All-in-One PC? We'll help you with that.`;
-                    } else if (description.includes("Sell Tablet")) {
-                        message = `Looking to sell your tablet or iPad? We've got you covered.`;
-                    } else if (description.includes("Sell Gadget Accessories")) {
-                        message = `Interested in selling gadget accessories? We can assist you.`;
-                    } else if (description.includes("Sell Smart Watch")) {
-                        message = `Selling your smart watch or Apple Watch? Get a great deal here.`;
-                    } else if (description.includes("Sell Earbuds")) {
-                        message = `Time to sell your earbuds or AirPods? We make it simple.`;
-                    } else if (description.includes("Sell Gaming Console")) {
-                        message = `Selling your gaming console? Xbox, PlayStation, Nintendo - we buy them all!`;
+                    // --- START FIX FOR BUTTON TEXT ---
+                    // Explicitly set the button text for each case
+                    if (description.includes("Sell Mobile Phone") ||
+                        description.includes("Sell Laptop") ||
+                        description.includes("Sell iMac") ||
+                        description.includes("Sell Tablet") ||
+                        description.includes("Sell Gadget Accessories") ||
+                        description.includes("Sell Smart Watch") ||
+                        description.includes("Sell Earbuds") ||
+                        description.includes("Sell Gaming Console")) {
+                        message = `Great choice! You're looking to sell your gadget. We'll get you an instant quote.`; // Generic message for selling
+                        submitButton.textContent = "Get Instant Quote"; // Specific text for selling
                     } else if (description.includes("Buy Refurbished Gadgets")) {
                         message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
                         submitButton.textContent = "See Available Gadgets";
@@ -1036,9 +1024,11 @@
                         message = `Need gadget repair services? We'll get in touch with you to schedule a service.`;
                         submitButton.textContent = "Book Repair Service";
                     } else {
+                        // Fallback for any unexpected descriptions, though it should be caught above
                         message = `Thank you for your interest in ${description} 🙏.`;
                         submitButton.textContent = "Submit";
                     }
+                    // --- END FIX FOR BUTTON TEXT ---
 
                     if (synth && synth.speaking) {
                         synth.cancel();
@@ -1047,24 +1037,26 @@
                         speak(message);
                     }
 
-                    // *** MODIFIED SCROLL BEHAVIOR FOR FIXED HEADER ***
+                    // --- START FIX FOR SCROLLING ---
                     const contactForm = document.getElementById('contact-form');
-                    const headerHeight = headerElement.offsetHeight; // Use the element directly
-                    const formTop = contactForm.getBoundingClientRect().top + window.scrollY; // Get form's absolute top position
+                    // Get header height dynamically for accurate offset
+                    const currentHeaderHeight = headerElement.offsetHeight;
+                    const formTopPosition = contactForm.getBoundingClientRect().top + window.scrollY;
 
-                    // Calculate the target scroll position: form's top minus header height
-                    // Adjust by a small buffer (e.g., 20px) to prevent the form heading from being right under the header
-                    const scrollPosition = formTop - headerHeight - 20;
+                    // Calculate target scroll position, ensuring header doesn't cover the form heading
+                    // The '- 20' is a small buffer in pixels. Adjust if needed.
+                    const targetScrollPosition = formTopPosition - currentHeaderHeight - 20;
 
-                    window.scrollTo({
-                        top: scrollPosition,
-                        behavior: 'smooth'
-                    });
-
-                    // Immediately after scrolling, then focus the input.
-                    // This should now work correctly as we explicitly controlled the scroll.
-                    nameInput.classList.add('wave');
-                    nameInput.focus();
+                    // Use setTimeout to allow browser layout to settle, then scroll and focus
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: targetScrollPosition,
+                            behavior: 'smooth'
+                        });
+                        nameInput.classList.add('wave');
+                        nameInput.focus();
+                    }, 250); // Small delay, e.g., 250ms, adjust as needed
+                    // --- END FIX FOR SCROLLING ---
                 });
             });
         });
@@ -1124,7 +1116,7 @@
                     alert("Form submitted successfully! We will contact you soon.");
                     form.reset();
                     document.querySelectorAll('.image-container.selected').forEach(c => c.classList.remove('selected'));
-                    submitButton.textContent = "Submit";
+                    submitButton.textContent = "Submit"; // Reset button text after submission
                 } else {
                     alert("Failed to submit. Please try again. (Server error)");
                 }
@@ -1142,7 +1134,7 @@
         function hideLoading() {
             document.getElementById('loading-overlay').style.display = 'none';
         }
-        // document.addEventListener('DOMContentLoaded', hideLoading); // This is now called inside the main DOMContentLoaded listener
+        // Initial hide on load is handled by DOMContentLoaded
     </script>
 </body>
 </html>
