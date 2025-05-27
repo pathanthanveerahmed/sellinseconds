@@ -136,8 +136,8 @@
             animation: gradientShift 40s ease infinite; /* SLOWER: Changed to 40 seconds */
             color: var(--text-color);
             line-height: 1.7;
-            /* Adjust padding-top based on the NEW desktop header height (400px * 0.70 = 280px) */
-            padding-top: 280px;
+            /* REMOVED fixed padding-top here. It will be set dynamically by JS. */
+            /* padding-top: 280px; */ /* Removed */
         }
 
         /* Keyframe animation for background */
@@ -597,8 +597,8 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             body {
-                /* Adjusted padding-top to match the NEW shorter header height (180px) */
-                padding-top: 180px;
+                /* padding-top will be set dynamically by JS. Remove fixed value here. */
+                /* padding-top: 180px; */ /* Removed */
                 line-height: 1.6;
             }
             h1 {
@@ -723,7 +723,8 @@
         /* --- Mobile Landscape and Tablet Landscape Specific Styles (max-width: 991px and landscape) --- */
         @media (max-width: 991px) and (orientation: landscape) {
             body {
-                padding-top: 180px; /* Keep original padding-top for landscape */
+                /* padding-top will be set dynamically by JS. Remove fixed value here. */
+                /* padding-top: 180px; */ /* Removed */
             }
             header {
                 height: 180px; /* Keep original height for landscape */
@@ -925,12 +926,28 @@
         const nameInput = document.getElementById('name');
         const interestInput = document.getElementById('interest');
         const submitButton = document.querySelector('#contact-form button');
+        const headerElement = document.querySelector('header'); // Get the header element
+        const bodyElement = document.body; // Get the body element
 
         const synth = window.speechSynthesis;
         let currentUtterance;
 
+        // Function to dynamically set body padding-top based on header height
+        function setBodyPadding() {
+            bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            // 1. Force scroll to top on page load/refresh
+            window.scrollTo(0, 0);
+
             hideLoading();
+
+            // 2. Dynamically set body padding-top on load
+            setBodyPadding();
+            // Also update padding-top on window resize
+            window.addEventListener('resize', setBodyPadding);
+
 
             const rowsToGlow = document.querySelectorAll('.image-grid-row1-row2');
             const fullWidthContainersToGlow = document.querySelectorAll('.image-grid > .image-container.full-width');
@@ -1032,11 +1049,12 @@
 
                     // *** MODIFIED SCROLL BEHAVIOR FOR FIXED HEADER ***
                     const contactForm = document.getElementById('contact-form');
-                    const headerHeight = document.querySelector('header').offsetHeight; // Get dynamic header height
+                    const headerHeight = headerElement.offsetHeight; // Use the element directly
                     const formTop = contactForm.getBoundingClientRect().top + window.scrollY; // Get form's absolute top position
 
                     // Calculate the target scroll position: form's top minus header height
-                    const scrollPosition = formTop - headerHeight - 20; // -20 for a little extra padding above the form
+                    // Adjust by a small buffer (e.g., 20px) to prevent the form heading from being right under the header
+                    const scrollPosition = formTop - headerHeight - 20;
 
                     window.scrollTo({
                         top: scrollPosition,
@@ -1124,7 +1142,7 @@
         function hideLoading() {
             document.getElementById('loading-overlay').style.display = 'none';
         }
-        document.addEventListener('DOMContentLoaded', hideLoading);
+        // document.addEventListener('DOMContentLoaded', hideLoading); // This is now called inside the main DOMContentLoaded listener
     </script>
 </body>
 </html>
