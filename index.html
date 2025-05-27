@@ -17,6 +17,7 @@
     <title>Sell, Buy, & Repair Used Gadgets in Bangalore - Instant Quotes & Service</title>
     <link rel="icon" type="image/x-icon" href="https://www.sellinseconds.in/fevicon.ico">
     <link rel="canonical" href="https://www.sellinseconds.in">
+
     <meta property="og:title" content="Sell, Buy, & Repair Gadgets Instantly in Bangalore - Sell In Seconds">
     <meta property="og:description" content="Trade in your gadgets in Bangalore in just two steps! Get instant quotes for mobiles, laptops, tablets, and more. Also offering gadget repair and sales in Bangalore.">
     <meta property="og:image" content="https://www.sellinseconds.in/aicrop.webp" loading="lazy">
@@ -26,9 +27,12 @@
     <meta name="twitter:description" content="Trade in your gadgets in Bangalore in just two steps! Get instant quotes for mobiles, laptops, tablets, and more. Also offering gadget repair and sales in Bangalore.">
     <meta name="twitter:image" content="https://www.sellinseconds.in/aicrop.webp">
     <meta name="twitter:image:alt" content="Gadget trade-in, buying, and repair services in Bangalore">
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -173,14 +177,14 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* UPDATED: Hide 25% from top, show more at bottom */
-            object-position: 50% 75%; /* Changed from 50% 32% */
+            /* UPDATED: Shift image significantly upwards for desktop */
+            object-position: 50% 7%; /* Changed from 32% to 7% */
             filter: brightness(0.75);
             z-index: 1;
         }
         header .header-title {
             position: absolute;
-            bottom: -36px;
+            bottom: -36px; /* Retained from previous instruction */
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
@@ -536,7 +540,7 @@
                 overflow: hidden;
             }
             .header-image {
-                object-position: 50% 100%; /* Keep this for mobile */
+                object-position: 50% 100%;
                 height: 100%;
                 width: 100%;
             }
