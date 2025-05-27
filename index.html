@@ -589,21 +589,25 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             body {
-                /* Adjusted padding-top to match the new shorter header height (180px * 0.75 = 135px) */
-                padding-top: 135px; /* Keep this if you have a fixed header, otherwise set to 0 */
+                /* Removed padding-top here. It will be handled by main's margin-top for mobile portrait. */
+                padding-top: 0px; /* Explicitly set to 0 to prevent conflicts */
                 line-height: 1.6;
             }
 
             /* --- START OF MODIFICATION FOR SPACE ABOVE H2 --- */
-          .hero-intro {
-    /* Revert margin-top to a non-negative or 0 value */
-    margin-top: 0px; /* Or simply remove this line if it was originally 0 or not present */
-    padding-top: 0; /* Keep this if you want to remove any default padding */
-}
+            /* Removed margin-top on .hero-intro as main now handles top spacing */
+            .hero-intro {
+                margin-top: 0;
+                padding-top: 0;
+            }
 
             .hero-intro h2 {
-                /* Reduce or remove margin on the h2 itself if it's still pushing down */
-                margin-top: 0; /* Start with 0, adjust to small negative if needed */
+                margin-top: 0;
+            }
+
+            /* NEW: Direct top margin for the main content area on mobile portrait */
+            main {
+                margin-top: 145px; /* Adjust this value (e.g., 135px, 140px, 150px) for desired spacing */
             }
             /* --- END OF MODIFICATION FOR SPACE ABOVE H2 --- */
 
@@ -617,10 +621,8 @@
             h3 {
                 font-size: 1.3rem;
             }
-            .hero-intro {
-                font-size: 0.95rem;
-                /* margin-top: 2rem; -- REMOVED/OVERRIDDEN BY ABOVE */
-            }
+            /* .hero-intro { font-size: 0.95rem; /* margin-top: 2rem; -- REMOVED/OVERRIDDEN BY ABOVE */ } */
+
 
             header {
                 /* Set the header's height to 75% of its original mobile height */
@@ -915,13 +917,6 @@
         <p class="small-text">Designed & Developed by Thanveer P</p>
     </footer>
 
-    <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair in Bangalore.">
-        <img src="https://www.sellinseconds.in/whatsapp.webp" loading="lazy" alt="WhatsApp Chat Icon">
-    </a>
-    <div id="loading-overlay">
-        <img src="https://www.sellinseconds.in/loading.gif" alt="Loading...">
-    </div>
-
     <script>
         const containers = document.querySelectorAll('.image-container');
         const nameInput = document.getElementById('name');
@@ -936,12 +931,12 @@
         // Function to dynamically set body padding-top based on header height
         function setBodyPadding() {
             requestAnimationFrame(() => {
-                // Only apply padding if the screen is wider than 600px (desktop/larger tablet)
-                if (window.innerWidth > 600 || window.orientation === 90 || window.orientation === -90) { // Landscape
+                // Apply padding if desktop or mobile landscape (width > 600px OR landscape orientation on devices up to 991px)
+                if (window.innerWidth > 600 || (window.innerWidth <= 991 && window.innerHeight < window.innerWidth)) {
                     bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
                 } else {
-                    // For portrait mobile, let CSS media query control padding-top
-                    bodyElement.style.paddingTop = ''; // Remove inline style
+                    // For mobile portrait, remove inline padding-top from JS to let CSS media query for 'main' handle it
+                    bodyElement.style.paddingTop = ''; // This removes the inline style
                 }
                 console.log('Body padding-top set to:', bodyElement.style.paddingTop);
             });
@@ -1093,8 +1088,6 @@
             currentUtterance = new SpeechSynthesisUtterance(text);
             synth.speak(currentUtterance);
         }
-
-        // Removed the previous nameInput.addEventListener('focus') as the animation logic is now integrated.
 
         document.getElementById("contact-form").addEventListener("submit", function (e) {
             e.preventDefault();
