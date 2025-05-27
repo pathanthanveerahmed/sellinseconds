@@ -284,7 +284,25 @@
             gap: 2rem;
             width: 100%;
             margin-bottom: 0.5rem;
+            /* Add transition for glowing border */
+            transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
         }
+
+        /* NEW CSS FOR GLOWING BORDER */
+        .image-grid-row1-row2.glowing-border {
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.6), 0 0 20px rgba(0, 123, 255, 0.4), 0 0 30px rgba(0, 123, 255, 0.2);
+            border: 2px solid var(--primary); /* Optional: Add a solid border to enhance the effect */
+            border-radius: 10px; /* Optional: Round the corners of the glowing area */
+        }
+        /* Glowing border for full-width containers */
+        .image-grid > .image-container.full-width.glowing-border {
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.6), 0 0 20px rgba(0, 123, 255, 0.4), 0 0 30px rgba(0, 123, 255, 0.2);
+            border: 2px solid var(--primary); /* Optional: Add a solid border to enhance the effect */
+            border-radius: var(--radius); /* Use existing radius or adjust */
+            transition: box-shadow 0.4s ease, border 0.4s ease;
+        }
+        /* END NEW CSS FOR GLOWING BORDER */
+
 
         /* NEW CSS FOR FLIP EFFECT */
         .image-container {
@@ -394,6 +412,8 @@
 
         .image-container.full-width {
             margin-bottom: 0.5rem;
+            /* Adjust this to account for the new border/shadow when glowing */
+            transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
         }
 
         form {
@@ -615,6 +635,13 @@
             .image-grid-row1-row2 {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 0.8rem;
+            }
+
+            /* Adjust glowing border for mobile rows */
+            .image-grid-row1-row2.glowing-border,
+            .image-grid > .image-container.full-width.glowing-border {
+                 box-shadow: 0 0 8px rgba(0, 123, 255, 0.6), 0 0 15px rgba(0, 123, 255, 0.4); /* Slightly softer glow for mobile */
+                 border: 1px solid var(--primary); /* Thinner border for mobile */
             }
 
             .image-container {
@@ -873,14 +900,26 @@
         let currentUtterance;
 
         document.addEventListener('DOMContentLoaded', () => {
-            hideLoading(); // Keep this for your loading overlay
+            hideLoading();
 
-            const containersToFlip = document.querySelectorAll('.image-grid-row1-row2 .image-container, .image-container.full-width');
+            const rowsToGlow = document.querySelectorAll('.image-grid-row1-row2');
+            const fullWidthContainersToGlow = document.querySelectorAll('.image-grid > .image-container.full-width');
+            const allFlipContainers = document.querySelectorAll('.image-grid-row1-row2 .image-container, .image-container.full-width');
             const hasFlippedOnce = sessionStorage.getItem('hasFlippedImages');
 
+            // Animation timing parameters
+            const flipDuration = 800; // Duration of the individual flip (CSS transition)
+            const staggerDelay = 100; // Delay between each image starting its flip
+            const totalFlipInTime = allFlipContainers.length * staggerDelay; // Approx time for all images to flip to back
+            const totalFlipOutTime = allFlipContainers.length * staggerDelay + flipDuration; // Approx time for all images to flip back
+
             if (!hasFlippedOnce) {
-                containersToFlip.forEach((container, index) => {
-                    // Stagger the animation for a nicer effect
+                // Add glowing border to rows/full-width containers *before* the first flip starts
+                rowsToGlow.forEach(row => row.classList.add('glowing-border'));
+                fullWidthContainersToGlow.forEach(container => container.classList.add('glowing-border'));
+
+                // First wave: flip to back
+                allFlipContainers.forEach((container, index) => {
                     setTimeout(() => {
                         const innerCard = container.querySelector('.image-card-inner');
                         if (innerCard) {
@@ -891,23 +930,32 @@
                                 backFace.textContent = backText;
                             }
                         }
-                    }, 100 * index); // Adjust stagger delay as needed
+                    }, staggerDelay * index);
                 });
 
-                // After all flips, flip them back
+                // Second wave: flip back to front and remove glow
+                // This timeout needs to be long enough for all initial flips to complete
+                // plus a short pause before flipping back
                 setTimeout(() => {
-                    containersToFlip.forEach((container, index) => {
+                    allFlipContainers.forEach((container, index) => {
                         setTimeout(() => {
                             const innerCard = container.querySelector('.image-card-inner');
                             if (innerCard) {
                                 innerCard.style.transform = 'rotateY(0deg)';
                             }
-                        }, 100 * index);
+                        }, staggerDelay * index);
                     });
-                    sessionStorage.setItem('hasFlippedImages', 'true'); // Set flag after animation
-                }, 2000); // Wait for 2 seconds (adjust as needed) before flipping back
+
+                    // Remove glowing border after all images have flipped back
+                    setTimeout(() => {
+                        rowsToGlow.forEach(row => row.classList.remove('glowing-border'));
+                        fullWidthContainersToGlow.forEach(container => container.classList.remove('glowing-border'));
+                        sessionStorage.setItem('hasFlippedImages', 'true'); // Set flag after animation completion
+                    }, totalFlipOutTime); // Wait for the entire flip-back sequence to finish
+                }, totalFlipInTime + 500); // Wait for all flips-in to finish + a small pause (e.g., 500ms)
             }
 
+            // Existing click event listener (make sure it targets the inner card for flip interaction)
             containers.forEach((container) => {
                 container.addEventListener('click', () => {
                     containers.forEach(c => c.classList.remove('selected'));
