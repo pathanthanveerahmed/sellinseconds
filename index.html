@@ -1014,16 +1014,17 @@ setTimeout(() => {
                     nameInput.classList.remove('wave');
 
                     // 2. Scroll into view first (smoothly)
-                    nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Smooth scroll to name input and gently highlight it
+nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-                    // 3. Delay focus to allow scroll and keyboard to appear/stabilize
-                    setTimeout(() => {
-                        nameInput.focus();
-                        // 4. Apply the wave animation class
-                        nameInput.classList.add('wave');
-                        // No need for a separate setTimeout to remove 'wave' if animation-fill-mode: forwards is used.
-                        // The animation will stay at its final state.
-                    }, 400); // Adjusted delay for focus (can try 500ms or 600ms if needed)
+// Add soft glow animation to guide user
+nameInput.classList.add('wave');
+
+// Optional: Remove the wave after 2s
+setTimeout(() => {
+    nameInput.classList.remove('wave');
+}, 2000);
+ // Adjusted delay for focus (can try 500ms or 600ms if needed)
 
                 });
             });
