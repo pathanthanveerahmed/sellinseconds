@@ -595,11 +595,11 @@
             }
 
             /* --- START OF MODIFICATION FOR SPACE ABOVE H2 --- */
-            .hero-intro {
-                /* Remove any top margin inherited from desktop or default browser styles */
-                margin-top: -10px; /* Adjust this value as needed, can be 0 or a small negative */
-                padding-top: 0; /* Ensure no extra padding at the top of this section */
-            }
+          .hero-intro {
+    /* Revert margin-top to a non-negative or 0 value */
+    margin-top: 0px; /* Or simply remove this line if it was originally 0 or not present */
+    padding-top: 0; /* Keep this if you want to remove any default padding */
+}
 
             .hero-intro h2 {
                 /* Reduce or remove margin on the h2 itself if it's still pushing down */
