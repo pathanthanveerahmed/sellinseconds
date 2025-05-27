@@ -197,6 +197,8 @@
             width: 100%; /* Keep full width for the image */
             height: 100%; /* Image fills the *reduced* header height */
             object-fit: cover;
+            /* NEW: Adjust object-position for vertical shift */
+            object-position: 50% 45%; /* Shift image up by 5% to show more top, less bottom */
             filter: brightness(0.75);
             z-index: 1;
         }
@@ -621,7 +623,8 @@
             }
 
             .header-image {
-                object-position: 50% 30%;
+                /* Reset object-position for mobile */
+                object-position: 50% 30%; /* Revert to original mobile object-position */
                 height: 100%; /* Image fills the 180px header height */
                 width: 100%;
                 left: 0; /* Reset left position */
