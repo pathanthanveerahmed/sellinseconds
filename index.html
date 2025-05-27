@@ -133,10 +133,10 @@
             /* Animated Background - SLOWER ANIMATION */
             background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5));
             background-size: 400% 400%;
-            animation: gradientShift 40s ease infinite; /* SLOWER: Changed to 40 seconds */
+            animation: gradientShift 40s ease infinite;
             color: var(--text-color);
             line-height: 1.7;
-            padding-top: 400px;
+            padding-top: 0; /* JS will set this dynamically based on header height */
         }
 
         /* Keyframe animation for background */
@@ -149,7 +149,7 @@
         }
 
         h1, h2, h3 {
-            font-family: 'Roboto', sans-serif; /* Changed to Roboto */
+            font-family: 'Roboto', sans-serif;
             text-align: center;
             /* Multi-color gradient effect for general headings */
             background: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
@@ -181,7 +181,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            min-height: 400px;
+            min-height: 400px; /* Desktop default */
             overflow: hidden;
             background-color: #f5f5f7;
             z-index: 1000;
@@ -209,38 +209,32 @@
             text-align: center;
             line-height: 1.2;
             margin: 0;
-            padding: 15px 30px; /* Padding for the white background */
+            padding: 15px 30px;
             max-width: 900px;
             letter-spacing: -0.02em;
             font-family: 'Roboto', sans-serif;
 
-            /* White background with smooth edges for the h1 container */
-            background: rgb(255, 255, 255); /* Fully opaque white */
-            border-radius: 20px; /* Smooth rounded corners */
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4); /* Stronger, more visible shadow */
-            /* Using the main-accent-color variable for the border */
-            border: 3px solid var(--main-accent-color); /* Applied main accent color here */
-            box-sizing: border-box; /* Ensures padding is included in total size */
-            display: inline-block; /* Essential for background and padding to wrap content effectively when centered */
+            background: rgb(255, 255, 255);
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+            border: 3px solid var(--main-accent-color);
+            box-sizing: border-box;
+            display: inline-block;
         }
-        /* Rule for the span inside header .header-title */
         header .header-title span {
-            font-size: 3.5rem; /* Apply font size to the span */
-            font-weight: 900; /* Apply font weight to the span */
-            /* Apply the colorful gradient directly to the text within the span */
+            font-size: 3.5rem;
+            font-weight: 900;
             background-image: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
             -webkit-background-clip: text;
             background-clip: text;
-            color: transparent; /* Makes the text transparent so the background-image shows */
-            text-shadow: none; /* No shadow with gradient text */
-            /* No display: inline-block here, as it's already handled by the parent h1 or is default inline */
+            color: transparent;
+            text-shadow: none;
         }
 
 
         .hero-intro {
             max-width: 900px;
-            /* Changed from initial 3rem auto 2rem auto to 0 auto 0 auto for mobile optimization */
-            margin: 0 auto 0 auto;
+            margin: 0 auto; /* Default margin, adjust in media query */
             padding: 0 1.5rem;
             text-align: center;
             font-size: 1.1rem;
@@ -265,7 +259,6 @@
         .below-form-content h1 {
             font-size: 2.5rem;
             font-weight: 700;
-            /* Color will be inherited (gradient) */
             line-height: 1.2;
             margin-bottom: 1.5rem;
         }
@@ -289,38 +282,32 @@
             gap: 2rem;
             width: 100%;
             margin-bottom: 0.5rem;
-            /* Add transition for glowing border */
             transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
         }
 
-        /* NEW CSS FOR GLOWING BORDER */
         .image-grid-row1-row2.glowing-border {
             box-shadow: 0 0 10px var(--main-accent-color), 0 0 20px rgba(0, 123, 255, 0.4), 0 0 30px rgba(0, 123, 255, 0.2);
-            border: 2px solid var(--main-accent-color); /* Applied main accent color here */
-            border-radius: 10px; /* Optional: Round the corners of the glowing area */
+            border: 2px solid var(--main-accent-color);
+            border-radius: 10px;
         }
-        /* Glowing border for full-width containers */
         .image-grid > .image-container.full-width.glowing-border {
             box-shadow: 0 0 10px var(--main-accent-color), 0 0 20px rgba(0, 123, 255, 0.4), 0 0 30px rgba(0, 123, 255, 0.2);
-            border: 2px solid var(--main-accent-color); /* Applied main accent color here */
-            border-radius: var(--radius); /* Use existing radius or adjust */
+            border: 2px solid var(--main-accent-color);
+            border-radius: var(--radius);
             transition: box-shadow 0.4s ease, border 0.4s ease;
         }
-        /* END NEW CSS FOR GLOWING BORDER */
 
 
-        /* NEW CSS FOR FLIP EFFECT */
         .image-container {
             width: 100%;
             height: 180px;
-            perspective: 1000px; /* Needed for 3D effect */
+            perspective: 1000px;
             position: relative;
             cursor: pointer;
             text-align: center;
-            /* Remove default border and shadow here, as they're applied to front/back faces */
             border: none;
             box-shadow: none;
-            background: none; /* No background on the container itself */
+            background: none;
         }
 
         .image-card-inner {
@@ -328,8 +315,8 @@
             width: 100%;
             height: 100%;
             text-align: center;
-            transition: transform 0.8s; /* Smooth flip animation */
-            transform-style: preserve-3d; /* Enables 3D space for children */
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
         }
 
         .image-card-front,
@@ -337,64 +324,59 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden; /* Hide the back of the element during rotation */
+            backface-visibility: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             border-radius: var(--radius);
-            box-shadow: var(--shadow); /* Apply shadow here */
-            /* Using the main-accent-color variable for the border */
-            border: 2px solid var(--main-accent-color); /* Applied main accent color here */
-            background: var(--form-bg); /* Apply background here */
+            box-shadow: var(--shadow);
+            border: 2px solid var(--main-accent-color);
+            background: var(--form-bg);
             padding: 10px;
-            box-sizing: border-box; /* Include padding in element's total width and height */
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; /* Transitions for hover/selected */
+            box-sizing: border-box;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
         }
 
         .image-card-back {
-            transform: rotateY(180deg); /* Start rotated for the back face */
-            background-color: var(--primary); /* Example back color */
+            transform: rotateY(180deg);
+            background-color: var(--primary);
             color: white;
             font-size: 1.2rem;
             font-weight: 600;
         }
 
         .image-card-front img {
-            max-width: 90%; /* Adjust as needed */
-            max-height: 90%; /* Adjust as needed */
+            max-width: 90%;
+            max-height: 90%;
             object-fit: contain;
-            margin-bottom: 5px; /* Space between image and figcaption */
+            margin-bottom: 5px;
         }
 
         .image-card-front figcaption {
-            display: block; /* Make figcaption visible on the front face */
+            display: block;
             font-size: 0.95rem;
             color: var(--text-color);
             font-weight: 600;
         }
 
-        /* Ensure figcaption is hidden on the initial structure */
-        /* This rule is now overridden by .image-card-front figcaption */
         figcaption {
             display: none;
         }
 
-        /* Hover effects for the new structure */
         .image-container:hover .image-card-front,
         .image-container:hover .image-card-back {
-            transform: scale(1.03) translateY(-3px); /* Apply the scale/translate effect to the cards */
+            transform: scale(1.03) translateY(-3px);
             box-shadow: var(--shadow-hover);
-            border-color: var(--main-accent-color); /* Applied main accent color here */
+            border-color: var(--main-accent-color);
         }
 
-        /* Adjustments for selected state */
         .image-container.selected .image-card-front,
         .image-container.selected .image-card-back {
-            animation: zoomInOut 0.6s ease-in-out; /* Keep the zoomInOut animation */
-            outline: 3px solid var(--main-accent-color); /* Applied main accent color here */
+            animation: zoomInOut 0.6s ease-in-out;
+            outline: 3px solid var(--main-accent-color);
             box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
-            border-color: var(--main-accent-color); /* Applied main accent color here */
+            border-color: var(--main-accent-color);
         }
 
         .image-container.selected::after {
@@ -413,12 +395,10 @@
             font-size: 1.1rem;
             z-index: 5;
         }
-        /* END NEW CSS FOR FLIP EFFECT */
 
 
         .image-container.full-width {
             margin-bottom: 0.5rem;
-            /* Adjust this to account for the new border/shadow when glowing */
             transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
         }
 
@@ -429,22 +409,19 @@
             padding: 3rem 2rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            /* Using the main-accent-color variable for the border */
-            border: 1px solid var(--main-accent-color); /* Applied main accent color here */
+            border: 1px solid var(--main-accent-color);
         }
         form h2 {
             text-align: center;
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 2.5rem;
-             /* Color will be inherited (gradient) */
         }
         input, select, textarea {
             width: 100%;
             padding: 1rem 1.2rem;
             margin-bottom: 2rem;
-            /* Using the main-accent-color variable for the border on focus */
-            border: 1px solid var(--border-color); /* Default border color */
+            border: 1px solid var(--border-color);
             border-radius: var(--radius);
             font-size: 1rem;
             background: #fafafa;
@@ -452,7 +429,7 @@
             box-sizing: border-box;
         }
         input:focus, select:focus, textarea:focus {
-            border-color: var(--main-accent-color); /* Applied main accent color here */
+            border-color: var(--main-accent-color);
             box-shadow: 0 0 10px rgba(0,123,255,0.2);
             outline: none;
         }
@@ -489,8 +466,7 @@
             background-color: var(--form-bg);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            /* Using the main-accent-color variable for the border */
-            border: 1px solid var(--main-accent-color); /* Applied main accent color here */
+            border: 1px solid var(--main-accent-color);
         }
 
         @keyframes wavePulse {
@@ -518,7 +494,7 @@
             text-align: center;
             font-size: 0.95rem;
             box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
-            border-top: 4px solid var(--primary); /* You could use --main-accent-color here too */
+            border-top: 4px solid var(--primary);
         }
 
         .site-footer a {
@@ -573,7 +549,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* display: none; */
         }
         #loading-overlay img {
             width: 80px;
@@ -589,27 +564,22 @@
         /* --- Mobile-specific styles (max-width: 600px) --- */
         @media (max-width: 600px) {
             body {
-                /* Removed padding-top here. It will be handled by main's margin-top for mobile portrait. */
-                padding-top: 0px; /* Explicitly set to 0 to prevent conflicts */
+                /* Let JS handle padding-top. No explicit value needed here for mobile. */
+                padding-top: 0px; /* Reset this to ensure no interference with JS */
                 line-height: 1.6;
             }
 
-            /* --- START OF MODIFICATION FOR SPACE ABOVE H2 --- */
-            /* Removed margin-top on .hero-intro as main now handles top spacing */
+            /* Revert hero-intro and h2 styling from previous attempts */
             .hero-intro {
-                margin-top: 0;
-                padding-top: 0;
+                font-size: 0.95rem;
+                margin-top: 0; /* Let default or JS handle this */
+                padding-top: 0; /* Let default or JS handle this */
             }
-
             .hero-intro h2 {
-                margin-top: 0;
+                margin-top: 0; /* Let default or JS handle this */
             }
-
-            /* NEW: Direct top margin for the main content area on mobile portrait */
-            main {
-                margin-top: 145px; /* Adjust this value (e.g., 135px, 140px, 150px) for desired spacing */
-            }
-            /* --- END OF MODIFICATION FOR SPACE ABOVE H2 --- */
+            /* REMOVE the 'main' margin-top as it was causing layout issues */
+            /* main { margin-top: 145px; } */
 
 
             h1 {
@@ -621,35 +591,31 @@
             h3 {
                 font-size: 1.3rem;
             }
-            /* .hero-intro { font-size: 0.95rem; /* margin-top: 2rem; -- REMOVED/OVERRIDDEN BY ABOVE */ } */
 
 
             header {
-                /* Set the header's height to 75% of its original mobile height */
                 min-height: 135px; /* 180px * 0.75 = 135px */
-                height: 135px; /* Explicitly set height */
-                overflow: hidden; /* Crucial to clip the excess image */
+                height: 135px;
+                overflow: hidden;
             }
 
             .header-image {
-                /* object-fit: cover and object-position will handle the visibility */
-                object-position: 50% 100%; /* Align bottom of the image with bottom of the container, hiding the top part */
-                height: 100%; /* Fill the new container height */
+                object-position: 50% 100%;
+                height: 100%;
                 width: 100%;
             }
 
             header .header-title {
-                bottom: 15px; /* Keep consistent with previous mobile adjustment */
+                bottom: 15px;
                 width: 95%;
-                padding: 10px 20px; /* Adjust padding for mobile */
-                border-radius: 15px; /* Adjust border-radius for mobile */
-                box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Adjust shadow for mobile */
-                /* Using the main-accent-color variable for the border */
-                border: 2px solid var(--main-accent-color); /* Applied main accent color here */
+                padding: 10px 20px;
+                border-radius: 15px;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+                border: 2px solid var(--main-accent-color);
             }
-            header .header-title span { /* Apply mobile specific font size to the span */
+            header .header-title span {
                 font-size: 1.5rem;
-                text-shadow: none; /* No shadow with gradient text */
+                text-shadow: none;
             }
 
 
@@ -664,16 +630,14 @@
                 gap: 0.8rem;
             }
 
-            /* Adjust glowing border for mobile rows */
             .image-grid-row1-row2.glowing-border,
             .image-grid > .image-container.full-width.glowing-border {
-                 box-shadow: 0 0 8px rgba(0, 123, 255, 0.6), 0 0 15px rgba(0, 123, 255, 0.4); /* Slightly softer glow for mobile */
-                 border: 1px solid var(--main-accent-color); /* Applied main accent color here */
+                 box-shadow: 0 0 8px rgba(0, 123, 255, 0.6), 0 0 15px rgba(0, 123, 255, 0.4);
+                 border: 1px solid var(--main-accent-color);
             }
 
             .image-container {
                 height: 120px;
-                /* No padding here, padding moved to image-card-front/back */
             }
 
             .image-card-front img {
@@ -917,6 +881,13 @@
         <p class="small-text">Designed & Developed by Thanveer P</p>
     </footer>
 
+    <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair in Bangalore.">
+        <img src="https://www.sellinseconds.in/whatsapp.webp" loading="lazy" alt="WhatsApp Chat Icon">
+    </a>
+    <div id="loading-overlay">
+        <img src="https://www.sellinseconds.in/loading.gif" alt="Loading...">
+    </div>
+
     <script>
         const containers = document.querySelectorAll('.image-container');
         const nameInput = document.getElementById('name');
@@ -931,14 +902,9 @@
         // Function to dynamically set body padding-top based on header height
         function setBodyPadding() {
             requestAnimationFrame(() => {
-                // Apply padding if desktop or mobile landscape (width > 600px OR landscape orientation on devices up to 991px)
-                if (window.innerWidth > 600 || (window.innerWidth <= 991 && window.innerHeight < window.innerWidth)) {
-                    bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
-                } else {
-                    // For mobile portrait, remove inline padding-top from JS to let CSS media query for 'main' handle it
-                    bodyElement.style.paddingTop = ''; // This removes the inline style
-                }
-                console.log('Body padding-top set to:', bodyElement.style.paddingTop);
+                // This ensures content starts below the fixed header on all views.
+                bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
+                console.log('Body padding-top set to:', headerElement.offsetHeight + 'px');
             });
         }
 
@@ -1056,19 +1022,16 @@
                     }
 
                     // --- Cursor Visibility & Animation Logic ---
-                    nameInput.classList.remove('wave'); // Ensure it's removed first to re-trigger
+                    nameInput.classList.remove('wave');
                     nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-                    // A very short delay before focus for mobile keyboards to react
                     setTimeout(() => {
                         nameInput.focus();
                         nameInput.classList.add('wave');
-                        // No need for a separate setTimeout to remove 'wave' if animation-fill-mode: forwards is used,
-                        // but keeping for explicit control if needed.
                         setTimeout(() => {
                             nameInput.classList.remove('wave');
-                        }, 900); // Duration of wavePulse is 0.8s, so 900ms allows it to complete
-                    }, 50); // Reduced delay to 50ms for quicker focus feedback. Can be 0 if works.
+                        }, 900);
+                    }, 50);
 
                 });
             });
