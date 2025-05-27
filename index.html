@@ -565,7 +565,7 @@
                 /* padding-top will be set dynamically by JS. */
                 line-height: 1.6;
             }
-            /* FIX 1: Remove top margin from hero-intro in mobile view */
+            /* FIX 1: Ensure no top margin on hero-intro in mobile view */
             .hero-intro {
                 margin-top: 0 !important; /* Aggressively remove any top margin */
             }
@@ -580,7 +580,6 @@
             }
             .hero-intro {
                 font-size: 0.95rem;
-                /* margin-top: 2rem; -- REMOVED and set to 0 !important above */
             }
 
             header {
@@ -899,27 +898,23 @@
             // Use requestAnimationFrame to ensure layout is stable before reading offsetHeight
             requestAnimationFrame(() => {
                 bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
-                console.log('Body padding-top set to:', headerElement.offsetHeight + 'px'); // Debugging
+                // console.log('Body padding-top set to:', headerElement.offsetHeight + 'px'); // Debugging
             });
         }
 
-        // Fix 2a: Force scroll to top on DOMContentLoaded
+        // --- Fix for Refresh to Top (Both DOMContentLoaded and window.onload) ---
+        // Ensures the page is scrolled to top when content is ready and when all assets are loaded
         document.addEventListener('DOMContentLoaded', () => {
-            // Aggressive scroll to top with short delay to bypass browser scroll restoration
             setTimeout(() => {
                 window.scrollTo(0, 0);
-                console.log('Scrolled to top on DOMContentLoaded.'); // Debugging
-            }, 50); // Increased delay slightly for better reliability
+                // console.log('Scrolled to top on DOMContentLoaded.'); // Debugging
+            }, 50); // Small delay to bypass browser scroll restoration
 
             hideLoading();
+            setBodyPadding(); // Initial padding set
+            window.addEventListener('resize', setBodyPadding); // Update padding on resize
 
-            // Fix 1: Dynamically set body padding-top on load and resize
-            // Call immediately
-            setBodyPadding();
-            // Listen for resize events
-            window.addEventListener('resize', setBodyPadding);
-
-
+            // --- Image Flip Animation Logic ---
             const rowsToGlow = document.querySelectorAll('.image-grid-row1-row2');
             const fullWidthContainersToGlow = document.querySelectorAll('.image-grid > .image-container.full-width');
             const allFlipContainers = document.querySelectorAll('.image-grid-row1-row2 .image-container, .image-container.full-width');
@@ -962,12 +957,12 @@
                         rowsToGlow.forEach(row => row.classList.remove('glowing-border'));
                         fullWidthContainersToGlow.forEach(container => container.classList.remove('glowing-border'));
                         sessionStorage.setItem('hasFlippedImages', 'true');
-                        // Fix 1: Re-call setBodyPadding after animation is completely done
-                        setTimeout(setBodyPadding, 100); // Added small delay
+                        setTimeout(setBodyPadding, 100); // Recalculate padding after animation
                     }, totalFlipOutTime);
                 }, totalFlipInTime + 500);
             }
 
+            // --- Click Event Listener for Image Containers ---
             containers.forEach((container) => {
                 container.addEventListener('click', () => {
                     containers.forEach(c => c.classList.remove('selected'));
@@ -977,16 +972,30 @@
                     interestInput.value = description;
 
                     let message;
-                    // FIX 2: Corrected button text logic
-                    if (description.includes("Sell Mobile Phone") ||
-                        description.includes("Sell Laptop") ||
-                        description.includes("Sell iMac") ||
-                        description.includes("Sell Tablet") ||
-                        description.includes("Sell Gadget Accessories") ||
-                        description.includes("Sell Smart Watch") ||
-                        description.includes("Sell Earbuds") ||
-                        description.includes("Sell Gaming Console")) {
-                        message = `Great choice! You're looking to sell your gadget. We'll get you an instant quote.`;
+                    // FIX 2: Corrected dynamic speech and button text logic for all rows
+                    if (description.includes("Mobile Phone")) {
+                        message = `You chose Mobile Phone. Get an instant quote for your mobile phone!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Laptop or MacBook")) {
+                        message = `You chose Laptop or MacBook. Selling your laptop is easy with us!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("iMac or All-in-One PC")) {
+                        message = `You chose iMac or All-in-One PC. Get an instant quote!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Tablet or iPad")) {
+                        message = `You chose Tablet or iPad. Get an instant quote!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Gadget Accessories")) {
+                        message = `You chose Accessories. Get an instant quote!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Smart Watch or Apple Watch")) {
+                        message = `You chose Smart Watch. Get a great deal here!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Earbuds or AirPods")) {
+                        message = `You chose Earbuds or AirPods. We make selling them simple!`;
+                        submitButton.textContent = "Get Instant Quote";
+                    } else if (description.includes("Gaming Console")) {
+                        message = `You chose Gaming Console. Sell your Xbox, PlayStation, or Nintendo here!`;
                         submitButton.textContent = "Get Instant Quote";
                     } else if (description.includes("Buy Refurbished Gadgets")) {
                         message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
@@ -1006,35 +1015,51 @@
                         speak(message);
                     }
 
+                    // --- Fix for Mobile Cursor Visibility ---
                     const contactForm = document.getElementById('contact-form');
                     const currentHeaderHeight = headerElement.offsetHeight;
-                    const formTopPosition = contactForm.getBoundingClientRect().top + window.scrollY;
-                    const targetScrollPosition = formTopPosition - currentHeaderHeight - 20;
+                    const nameInputTopRelativeToViewport = nameInput.getBoundingClientRect().top;
+                    const nameInputAbsoluteTop = nameInputTopRelativeToViewport + window.scrollY;
 
-                    // FIX 2: Cursor visibility on mobile
-                    // Scroll first, then set focus with a very small delay or within requestAnimationFrame
-                    // to ensure browser has time to render.
+                    // Target scroll position to ensure name input is below header with some buffer
+                    // Adjust the buffer (e.g., -50) to make sure the keyboard doesn't cover it on mobile.
+                    const targetScrollPosition = nameInputAbsoluteTop - currentHeaderHeight - 50;
+
+                    // Scroll to position
                     window.scrollTo({
                         top: targetScrollPosition,
                         behavior: 'smooth'
                     });
 
-                    // Use requestAnimationFrame for focus to ensure it happens after repaint
-                    requestAnimationFrame(() => {
-                         nameInput.classList.add('wave');
-                         nameInput.focus();
-                         console.log('Name input focused.'); // Debugging
-                    });
+                    // Conditional focus for mobile vs desktop
+                    if (window.innerWidth <= 600) { // Assuming 600px as mobile breakpoint
+                        // On mobile, use a slight delay for focus AND a small scrollBy
+                        setTimeout(() => {
+                            nameInput.focus();
+                            // Optional: If cursor still not visible, try a small scrollBy after focus
+                            // This can sometimes force the browser to reveal the cursor
+                            window.scrollBy(0, 1); // Scroll down by 1px
+                            console.log('Mobile focus and scrollBy executed.'); // Debugging
+                        }, 300); // Slightly longer delay for mobile focus
+                    } else {
+                        // On desktop, direct focus after scroll
+                        requestAnimationFrame(() => {
+                            nameInput.focus();
+                            console.log('Desktop focus executed.'); // Debugging
+                        });
+                    }
+
+                    nameInput.classList.add('wave'); // Apply wave animation
                 });
             });
         });
 
-        // Fix 2b: Force scroll to top on window.onload as a fallback/additional measure
+        // Fix for Refresh to Top (window.onload as a fallback/additional measure)
         window.onload = () => {
             setTimeout(() => {
                 window.scrollTo(0, 0);
-                console.log('Scrolled to top on window.onload.'); // Debugging
-            }, 50);
+                // console.log('Scrolled to top on window.onload.'); // Debugging
+            }, 50); // Short delay
             setBodyPadding(); // Ensure padding is correct after all resources loaded
         };
 
