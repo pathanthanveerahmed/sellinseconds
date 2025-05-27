@@ -949,7 +949,7 @@
             }
 
             // --- Click Event Listener for Image Containers ---
-        containers.forEach((container) => {
+containers.forEach((container) => {
     container.addEventListener('click', () => {
         containers.forEach(c => c.classList.remove('selected'));
         container.classList.add('selected');
@@ -983,10 +983,10 @@
             message = `You chose Gaming Console. Sell your Xbox, PlayStation, or Nintendo here!`;
             submitButton.textContent = "Get Instant Quote";
         } else if (description.includes("Buy Refurbished Gadgets")) {
-            message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
+            message = `You're interested in buying gadgets. We’ll WhatsApp you the best deals.`;
             submitButton.textContent = "See Available Gadgets";
         } else if (description.includes("Gadget Repair Services")) {
-            message = `Need gadget repair services? We'll get in touch with you to schedule a service.`;
+            message = `Need gadget repair services? We'll reach out shortly.`;
             submitButton.textContent = "Book Repair Service";
         } else {
             message = `Thank you for your interest in ${description} 🙏.`;
@@ -1000,32 +1000,25 @@
             speak(message);
         }
 
-        // ✅ Fix cursor/focus bug on mobile:
-        // Remove wave animation
+        // Robust mobile fix: delay focus long enough after animation/scroll
         nameInput.classList.remove('wave');
 
-        // Focus a temporary hidden input to force keyboard
-        const tempInput = document.createElement('input');
-        tempInput.style.position = 'absolute';
-        tempInput.style.opacity = '0';
-        tempInput.style.height = '0px';
-        tempInput.style.pointerEvents = 'none';
-        document.body.appendChild(tempInput);
-        tempInput.focus();
+        nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
+        // Delay focus enough to let scroll and layout stabilize
         setTimeout(() => {
-            tempInput.remove(); // Clean up
+            // Trigger reflow (forces layout recalculation)
+            void nameInput.offsetHeight;
 
-            // Now scroll and focus the real input
-            nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Focus field
+            nameInput.focus({ preventScroll: true });
 
-            setTimeout(() => {
-                nameInput.focus({ preventScroll: true });
-                nameInput.classList.add('wave');
-            }, 200);
-        }, 100);
+            // Add animation class
+            nameInput.classList.add('wave');
+        }, 700); // Delay long enough (600–800ms) to fix cursor issue
     });
 });
+
 
         });
 
