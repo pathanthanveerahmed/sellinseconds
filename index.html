@@ -136,8 +136,8 @@
             animation: gradientShift 40s ease infinite; /* SLOWER: Changed to 40 seconds */
             color: var(--text-color);
             line-height: 1.7;
-            /* Adjust padding-top based on the NEW desktop header height (400px * 0.6 = 240px) */
-            padding-top: 240px;
+            /* Adjust padding-top based on the NEW desktop header height (400px * 0.70 = 280px) */
+            padding-top: 280px;
         }
 
         /* Keyframe animation for background */
@@ -182,9 +182,9 @@
             top: 0;
             left: 0;
             width: 100%;
-            /* NEW: Set header height to 60% of original desktop height (400px * 0.6 = 240px) */
-            min-height: 240px;
-            height: 240px; /* Explicitly set height */
+            /* NEW: Set header height to 70% of original desktop height (400px * 0.70 = 280px) */
+            min-height: 280px;
+            height: 280px; /* Explicitly set height */
             overflow: hidden; /* Crucial to clip the excess image if it's taller */
             background-color: #f5f5f7;
             z-index: 1000;
@@ -193,8 +193,8 @@
         .header-image {
             position: absolute;
             top: 0;
-            left: 0; /* Keep full width */
-            width: 100%; /* Keep full width */
+            left: 0; /* Keep full width for the image */
+            width: 100%; /* Keep full width for the image */
             height: 100%; /* Image fills the *reduced* header height */
             object-fit: cover;
             filter: brightness(0.75);
