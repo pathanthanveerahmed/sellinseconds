@@ -190,8 +190,9 @@
         .header-image {
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            left: 50%; /* Center the image horizontally */
+            transform: translateX(-50%); /* Center the image horizontally */
+            width: 60%; /* Adjusted to 60% for desktop view */
             height: 100%;
             object-fit: cover;
             filter: brightness(0.75);
@@ -204,7 +205,7 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
-            
+
             width: 90%;
             text-align: center;
             line-height: 1.2;
@@ -237,24 +238,24 @@
         }
 
 
-                .hero-intro {
-    max-width: 900px;
-    /* Removed margin-top, set margin-bottom to 0 */
-    margin: 0 auto 0 auto; /* This sets top and bottom margins to 0, and auto for left/right to center */
-    padding: 0 1.5rem;
-    text-align: center;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--text-color);
-}
-.hero-intro h2 {
-    /* Adjusted margin-bottom for the heading itself if needed, or remove it */
-    margin-bottom: 0; /* Remove space below the h2 within hero-intro */
-}
-.hero-intro p {
-    /* Adjusted margin-bottom for the paragraph itself, or remove it */
-    margin-bottom: 0; /* Remove space below the paragraph within hero-intro */
-}
+        .hero-intro {
+            max-width: 900px;
+            /* Removed margin-top, set margin-bottom to 0 */
+            margin: 0 auto 0 auto; /* This sets top and bottom margins to 0, and auto for left/right to center */
+            padding: 0 1.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+        .hero-intro h2 {
+            /* Adjusted margin-bottom for the heading itself if needed, or remove it */
+            margin-bottom: 0; /* Remove space below the h2 within hero-intro */
+        }
+        .hero-intro p {
+            /* Adjusted margin-bottom for the paragraph itself, or remove it */
+            margin-bottom: 0; /* Remove space below the paragraph within hero-intro */
+        }
 
 
 
@@ -622,6 +623,8 @@
                 object-position: 50% 100%; /* Align bottom of the image with bottom of the container, hiding the top part */
                 height: 100%; /* Fill the new container height */
                 width: 100%;
+                left: 0; /* Reset left position */
+                transform: none; /* Reset transform */
             }
 
             header .header-title {
@@ -726,6 +729,9 @@
             .header-image {
                 object-fit: cover;
                 object-position: center center; /* Show full image */
+                width: 100%; /* Keep at 100% for landscape */
+                left: 0; /* Reset left position */
+                transform: none; /* Reset transform */
             }
 
             header .header-title {
@@ -746,13 +752,6 @@
                 height: 150px;
             }
         }
-   @media (min-width: 992px) {
-  header {
-    height: 420px; /* 60% of 700px */
-  }
-}
-
-
     </style>
 </head>
 <body>
@@ -909,6 +908,13 @@
         <p>&copy; 2025 Sell In Seconds. All rights reserved.</p>
         <p class="small-text">Designed & Developed by Thanveer P</p>
     </footer>
+
+    <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair in Bangalore.">
+        <img src="https://www.sellinseconds.in/whatsapp.webp" loading="lazy" alt="WhatsApp Chat Icon">
+    </a>
+    <div id="loading-overlay">
+        <img src="https://www.sellinseconds.in/loading.gif" alt="Loading...">
+    </div>
 
     <script>
         const containers = document.querySelectorAll('.image-container');
@@ -1103,12 +1109,5 @@
         }
         document.addEventListener('DOMContentLoaded', hideLoading);
     </script>
-
-    <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair in Bangalore.">
-        <img src="https://www.sellinseconds.in/whatsapp.webp" loading="lazy" alt="WhatsApp Chat Icon">
-    </a>
-    <div id="loading-overlay">
-        <img src="https://www.sellinseconds.in/loading.gif" alt="Loading...">
-    </div>
 </body>
 </html>
