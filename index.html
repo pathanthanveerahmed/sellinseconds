@@ -949,76 +949,84 @@
             }
 
             // --- Click Event Listener for Image Containers ---
-            containers.forEach((container) => {
-                container.addEventListener('click', () => {
-                    containers.forEach(c => c.classList.remove('selected'));
-                    container.classList.add('selected');
+        containers.forEach((container) => {
+    container.addEventListener('click', () => {
+        containers.forEach(c => c.classList.remove('selected'));
+        container.classList.add('selected');
 
-                    const description = container.querySelector('.image-card-front img').alt;
-                    interestInput.value = description;
+        const description = container.querySelector('.image-card-front img').alt;
+        interestInput.value = description;
 
-                    let message;
-                    // Refined dynamic speech and button text logic
-                    if (description.includes("Mobile Phone")) {
-                        message = `You chose Mobile Phone. Get an instant quote for your mobile phone!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("Laptop or MacBook")) {
-                        message = `You chose Laptop or MacBook. Selling your laptop is easy with us!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("iMac or All-in-One PC")) {
-                        message = `You chose iMac or All-in-One PC. Get an instant quote!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("Tablet or iPad")) {
-                        message = `You chose Tablet or iPad. Get an instant quote!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("Gadget Accessories")) {
-                        message = `You chose Accessories. Get an instant quote!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("Smart Watch or Apple Watch")) {
-                        message = `You chose Smart Watch. Get a great deal here!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("Earbuds or AirPods")) {
-                        message = `You chose Earbuds or AirPods. We make selling them simple!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("Gaming Console")) {
-                        message = `You chose Gaming Console. Sell your Xbox, PlayStation, or Nintendo here!`;
-                        submitButton.textContent = "Get Instant Quote";
-                    } else if (description.includes("Buy Refurbished Gadgets")) {
-                        message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
-                        submitButton.textContent = "See Available Gadgets";
-                    } else if (description.includes("Gadget Repair Services")) {
-                        message = `Need gadget repair services? We'll get in touch with you to schedule a service.`;
-                        submitButton.textContent = "Book Repair Service";
-                    } else {
-                        message = `Thank you for your interest in ${description} 🙏.`;
-                        submitButton.textContent = "Submit";
-                    }
+        let message;
+        if (description.includes("Mobile Phone")) {
+            message = `You chose Mobile Phone. Get an instant quote for your mobile phone!`;
+            submitButton.textContent = "Get Instant Quote";
+        } else if (description.includes("Laptop or MacBook")) {
+            message = `You chose Laptop or MacBook. Selling your laptop is easy with us!`;
+            submitButton.textContent = "Get Instant Quote";
+        } else if (description.includes("iMac or All-in-One PC")) {
+            message = `You chose iMac or All-in-One PC. Get an instant quote!`;
+            submitButton.textContent = "Get Instant Quote";
+        } else if (description.includes("Tablet or iPad")) {
+            message = `You chose Tablet or iPad. Get an instant quote!`;
+            submitButton.textContent = "Get Instant Quote";
+        } else if (description.includes("Gadget Accessories")) {
+            message = `You chose Accessories. Get an instant quote!`;
+            submitButton.textContent = "Get Instant Quote";
+        } else if (description.includes("Smart Watch or Apple Watch")) {
+            message = `You chose Smart Watch. Get a great deal here!`;
+            submitButton.textContent = "Get Instant Quote";
+        } else if (description.includes("Earbuds or AirPods")) {
+            message = `You chose Earbuds or AirPods. We make selling them simple!`;
+            submitButton.textContent = "Get Instant Quote";
+        } else if (description.includes("Gaming Console")) {
+            message = `You chose Gaming Console. Sell your Xbox, PlayStation, or Nintendo here!`;
+            submitButton.textContent = "Get Instant Quote";
+        } else if (description.includes("Buy Refurbished Gadgets")) {
+            message = `Wow! You're interested in buying gadgets. We'll WhatsApp you all the available models and offers.`;
+            submitButton.textContent = "See Available Gadgets";
+        } else if (description.includes("Gadget Repair Services")) {
+            message = `Need gadget repair services? We'll get in touch with you to schedule a service.`;
+            submitButton.textContent = "Book Repair Service";
+        } else {
+            message = `Thank you for your interest in ${description} 🙏.`;
+            submitButton.textContent = "Submit";
+        }
 
-                    if (synth && synth.speaking) {
-                        synth.cancel();
-                        setTimeout(() => speak(message), 200);
-                    } else if (synth) {
-                        speak(message);
-                    }
+        if (synth && synth.speaking) {
+            synth.cancel();
+            setTimeout(() => speak(message), 200);
+        } else if (synth) {
+            speak(message);
+        }
 
-                    // --- Updated Cursor & Animation Logic ---
-                    // 1. Ensure the 'wave' class is removed before adding to re-trigger
-                   nameInput.classList.remove('wave');
+        // ✅ Fix cursor/focus bug on mobile:
+        // Remove wave animation
+        nameInput.classList.remove('wave');
 
-// 1. Scroll first, allow browser to repaint
-nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Focus a temporary hidden input to force keyboard
+        const tempInput = document.createElement('input');
+        tempInput.style.position = 'absolute';
+        tempInput.style.opacity = '0';
+        tempInput.style.height = '0px';
+        tempInput.style.pointerEvents = 'none';
+        document.body.appendChild(tempInput);
+        tempInput.focus();
 
-setTimeout(() => {
-    // 2. Use requestAnimationFrame to guarantee layout settled
-    requestAnimationFrame(() => {
-        nameInput.focus({ preventScroll: true });  // prevents another scroll jump
-        nameInput.classList.add('wave');
+        setTimeout(() => {
+            tempInput.remove(); // Clean up
+
+            // Now scroll and focus the real input
+            nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            setTimeout(() => {
+                nameInput.focus({ preventScroll: true });
+                nameInput.classList.add('wave');
+            }, 200);
+        }, 100);
     });
-}, 500); // Can tweak to 500–700ms if needed
- // Adjusted delay for focus (can try 500ms or 600ms if needed)
+});
 
-                });
-            });
         });
 
         // Fix 1: Refresh to Top on Mobile (window.onload as a fallback/additional measure)
