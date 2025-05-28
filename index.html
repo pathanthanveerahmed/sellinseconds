@@ -165,22 +165,28 @@
             top: 0;
             left: 0;
             width: 100%;
-            min-height: 280px; /* Original height */
-            height: 280px; /* Original height */
-            overflow: hidden;
-            /* NEW: Set background image here */
-            background-image: url('https://www.sellinseconds.in/aicrop.webp');
-            background-size: cover; /* Image covers the entire header area */
-            background-position: center top; /* Center horizontally, align top vertically (crops bottom) */
-            background-repeat: no-repeat;
-            filter: brightness(0.75); /* Apply filter to the header background */
+            /* Desktop: Reduced height by 20px from original 280px */
+            min-height: 260px;
+            height: 260px;
+            overflow: hidden; /* Crucial for clipping the image */
+            background-color: #f5f5f7;
             z-index: 1000;
         }
-        /* .header-image rule is removed as it's no longer an <img> tag */
-
+        .header-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* Will scale to fill header height */
+            object-fit: cover;
+            object-position: 50% 0%; /* Aligns the top of the image to the top of the header, cropping bottom */
+            filter: brightness(0.75);
+            z-index: 1;
+        }
         header .header-title {
             position: absolute;
-            bottom: 35px;
+            /* Desktop: Adjusted bottom up by 20px (35px + 20px = 55px) */
+            bottom: 55px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
@@ -201,7 +207,7 @@
             display: inline-block;
         }
         header .header-title span {
-            font-size: 2.975rem; /* Reduced by 15% */
+            font-size: 2.975rem;
             font-weight: 900;
             background-image: none;
             -webkit-background-clip: unset;
@@ -512,14 +518,19 @@
                 font-size: 1.3rem;
             }
             header {
-                min-height: 135px; /* Original mobile height */
-                height: 135px; /* Original mobile height */
-                /* Background image properties inherited and overridden as needed */
-                background-position: center top; /* Center horizontally, align top vertically */
+                /* Mobile: Reduced height by 20px from original 135px */
+                min-height: 115px;
+                height: 115px;
+                overflow: hidden;
             }
-            /* .header-image rule is removed as it's no longer an <img> tag */
+            .header-image {
+                object-position: 50% 0%; /* Aligns top, crops bottom */
+                height: 100%;
+                width: 100%;
+            }
             header .header-title {
-                bottom: 30px;
+                /* Mobile: Adjusted bottom up by 20px (30px + 20px = 50px) */
+                bottom: 50px;
                 width: 95%;
                 padding: 10px 20px;
                 background: none;
@@ -596,15 +607,19 @@
                 padding-top: 180px;
             }
             header {
-                height: 180px; /* Original landscape tablet height */
+                /* Landscape: Reduced height by 20px from original 180px */
+                height: 160px;
                 min-height: unset;
-                /* Background image properties inherited and overridden as needed */
-                background-position: center top; /* Center horizontally, align top vertically */
+                overflow: hidden;
             }
-            /* .header-image rule is removed as it's no longer an <img> tag */
+            .header-image {
+                object-fit: cover;
+                object-position: 50% 0%; /* Aligns top, crops bottom */
+            }
             header .header-title {
                 font-size: unset;
-                bottom: 30px;
+                /* Landscape: Adjusted bottom up by 20px (30px + 20px = 50px) */
+                bottom: 50px;
                 color: white;
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
             }
@@ -623,6 +638,7 @@
 </head>
 <body>
     <header class="header">
+        <img src="https://www.sellinseconds.in/aicrop.webp" alt="Dynamic header image showing various gadgets being sold or repaired in Bangalore" class="header-image" loading="lazy">
         <h1 class="header-title"><span>Trade Your Gadget in Seconds</span></h1>
     </header>
     <main>
