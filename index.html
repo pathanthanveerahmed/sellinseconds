@@ -179,8 +179,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Changed to contain */
-            object-position: 50% 50%; /* Changed to center */
+            object-fit: cover; /* Changed to cover */
+            object-position: 50% 15%; /* Adjusted for better visibility with cover */
             filter: brightness(0.75) contrast(1.1);
             z-index: 1;
             transition: transform 0.5s ease-out;
@@ -495,7 +495,7 @@
                 min-height: unset;
             }
             /* Landscape: Show middle 50% of the image */
-            .header-image { object-fit: contain; object-position: 50% 50%; } /* Changed to contain and center */
+            .header-image { object-fit: cover; object-position: 50% 15%; } /* Adjusted for better visibility with cover */
             .header-main-slogan {
                 bottom: 40px; /* Original 30px + 10px */
             }
@@ -518,7 +518,7 @@
                 height: 160px; /* Original 135px + 25px */
             }
             /* Mobile portrait: Show middle 50% of the image */
-            .header-image { object-fit: contain; object-position: 50% 50%; } /* Changed to contain and center */
+            .header-image { object-fit: cover; object-position: 50% 15%; } /* Adjusted for better visibility with cover */
             .header-main-slogan {
                 bottom: 35px; /* Original 20px + 15px */
                 padding: 5px 10px;
