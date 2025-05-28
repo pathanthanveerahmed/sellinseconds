@@ -165,8 +165,9 @@
             top: 0;
             left: 0;
             width: 100%;
-            min-height: 280px;
-            height: 280px;
+            /* Desktop height reduced by 20% to crop bottom */
+            min-height: 224px; /* 280px * 0.80 */
+            height: 224px; /* 280px * 0.80 */
             overflow: hidden;
             background-color: #f5f5f7;
             z-index: 1000;
@@ -178,13 +179,14 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: 50% 40%;
+            /* Aligns top of image with top of container, cropping excess from bottom */
+            object-position: 50% 0%;
             filter: brightness(0.75);
             z-index: 1;
         }
         header .header-title {
             position: absolute;
-            bottom: 35px; /* Adjusted to move 5px (approx 0.5cm) up for desktop */
+            bottom: 35px; /* Keeps its position relative to the header's new bottom */
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
@@ -516,26 +518,27 @@
                 font-size: 1.3rem;
             }
             header {
-                min-height: 135px;
-                height: 135px;
+                /* Mobile height reduced by 20% to crop bottom */
+                min-height: 108px; /* 135px * 0.80 */
+                height: 108px; /* 135px * 0.80 */
                 overflow: hidden;
             }
             .header-image {
-                object-position: 50% 100%;
+                object-position: 50% 0%; /* Aligns top, crops bottom */
                 height: 100%;
                 width: 100%;
             }
             header .header-title {
-                bottom: 30px; /* Adjusted to give more space from bottom */
+                bottom: 30px; /* Keeps its position relative to the header's new bottom */
                 width: 95%;
                 padding: 10px 20px;
                 background: none;
                 border-radius: 0;
                 box-shadow: none;
-                border: none; /* Explicitly removed border for mobile */
+                border: none;
             }
             header .header-title span {
-                font-size: 1.275rem; /* Reduced by 15% */
+                font-size: 1.275rem;
                 text-shadow: none;
             }
             .image-grid {
@@ -603,16 +606,17 @@
                 padding-top: 180px;
             }
             header {
-                height: 180px;
+                /* Landscape tablet height reduced by 20% to crop bottom */
+                height: 144px; /* 180px * 0.80 */
                 min-height: unset;
             }
             .header-image {
                 object-fit: cover;
-                object-position: center center;
+                object-position: 50% 0%; /* Aligns top, crops bottom */
             }
             header .header-title {
                 font-size: unset;
-                bottom: 30px; /* Adjusted to match desktop */
+                bottom: 30px; /* Keeps its position relative to the header's new bottom */
                 color: white;
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
             }
