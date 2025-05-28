@@ -165,10 +165,9 @@
             top: 0;
             left: 0;
             width: 100%;
-            /* Desktop: Reduced height by 20px from original 280px */
-            min-height: 260px;
-            height: 260px;
-            overflow: hidden; /* Crucial for clipping the image */
+            min-height: 280px;
+            height: 280px;
+            overflow: hidden;
             background-color: #f5f5f7;
             z-index: 1000;
         }
@@ -177,16 +176,15 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%; /* Will scale to fill header height */
+            height: 100%;
             object-fit: cover;
-            object-position: 50% 0%; /* Aligns the top of the image to the top of the header, cropping bottom */
+            object-position: 50% 40%;
             filter: brightness(0.75);
             z-index: 1;
         }
         header .header-title {
             position: absolute;
-            /* Desktop: Adjusted bottom up by 20px (35px + 20px = 55px) */
-            bottom: 55px;
+            bottom: 35px; /* Adjusted to move 5px (approx 0.5cm) up for desktop */
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
@@ -207,7 +205,7 @@
             display: inline-block;
         }
         header .header-title span {
-            font-size: 2.975rem;
+            font-size: 2.975rem; /* Reduced by 15% */
             font-weight: 900;
             background-image: none;
             -webkit-background-clip: unset;
@@ -518,28 +516,26 @@
                 font-size: 1.3rem;
             }
             header {
-                /* Mobile: Reduced height by 20px from original 135px */
-                min-height: 115px;
-                height: 115px;
+                min-height: 135px;
+                height: 135px;
                 overflow: hidden;
             }
             .header-image {
-                object-position: 50% 0%; /* Aligns top, crops bottom */
+                object-position: 50% 100%;
                 height: 100%;
                 width: 100%;
             }
             header .header-title {
-                /* Mobile: Adjusted bottom up by 20px (30px + 20px = 50px) */
-                bottom: 50px;
+                bottom: 30px; /* Adjusted to give more space from bottom */
                 width: 95%;
                 padding: 10px 20px;
                 background: none;
                 border-radius: 0;
                 box-shadow: none;
-                border: none;
+                border: none; /* Explicitly removed border for mobile */
             }
             header .header-title span {
-                font-size: 1.275rem;
+                font-size: 1.275rem; /* Reduced by 15% */
                 text-shadow: none;
             }
             .image-grid {
@@ -607,19 +603,16 @@
                 padding-top: 180px;
             }
             header {
-                /* Landscape: Reduced height by 20px from original 180px */
-                height: 160px;
+                height: 180px;
                 min-height: unset;
-                overflow: hidden;
             }
             .header-image {
                 object-fit: cover;
-                object-position: 50% 0%; /* Aligns top, crops bottom */
+                object-position: center center;
             }
             header .header-title {
                 font-size: unset;
-                /* Landscape: Adjusted bottom up by 20px (30px + 20px = 50px) */
-                bottom: 50px;
+                bottom: 30px; /* Adjusted to match desktop */
                 color: white;
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
             }
