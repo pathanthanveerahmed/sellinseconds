@@ -314,10 +314,10 @@
             font-weight: 700;
         }
         .image-card-front img {
-            max-width: 120px; /* Consistent image size for all grid items */
-            max-height: 72px; /* Reduced by 20% from top and bottom (60% of 120px) */
+            max-width: 100%; /* Changed to fill available width */
+            max-height: 100%; /* Changed to fill available height */
             object-fit: contain;
-            margin-bottom: 18px;
+            margin-bottom: 0; /* Removed margin-bottom to allow image to expand */
             transition: transform 0.4s ease;
         }
         .image-container:hover .image-card-front img {
@@ -482,7 +482,7 @@
             .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.5rem; }
             .image-card-inner { height: 260px; }
 
-            .image-card-front img { max-width: 100px; max-height: 60px; } /* Reduced by 20% from top and bottom (60% of 100px) */
+            .image-card-front img { max-width: 100%; max-height: 100%; }
 
             .image-card-front figcaption { font-size: 1.05rem; }
             .image-description { font-size: 0.85rem; min-height: 60px;}
@@ -503,7 +503,7 @@
             .header-main-slogan span { font-size: 2rem; }
             .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
             .image-card-inner { height: 240px; }
-            .image-card-front img { max-width: 100px; max-height: 60px; } /* Reduced by 20% from top and bottom (60% of 100px) */
+            .image-card-front img { max-width: 100%; max-height: 100%; }
         }
         @media (max-width: 600px) { /* Mobile */
             body { padding-top: 0px; line-height: 1.6; }
@@ -541,7 +541,7 @@
             .image-container { min-height: auto; }
             .image-card-inner { height: 240px; }
 
-            .image-card-front img { max-width: 80px; max-height: 48px; } /* Reduced by 20% from top and bottom (60% of 80px) */
+            .image-card-front img { max-width: 100%; max-height: 100%; }
 
             .image-card-front figcaption { font-size: 0.95rem; }
             .image-description { font-size: 0.8rem; padding: 8px 10px; min-height: 50px; }
@@ -565,7 +565,7 @@
             }
             .image-card-inner { height: 250px; }
 
-            .image-card-front img { max-width: 90px; max-height: 54px; } /* Reduced by 20% from top and bottom (60% of 90px) */
+            .image-card-front img { max-width: 100%; max-height: 100%; }
         }
     </style>
 </head>
