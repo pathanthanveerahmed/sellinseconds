@@ -178,15 +178,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* To crop 20% top and 40% bottom, we aim for the center of the remaining 40% (100 - 20 - 40 = 40).
-               The center of the visible part (from 20% to 60%) is at 40%. */
             object-position: 50% 40%;
             filter: brightness(0.75);
             z-index: 1;
         }
         header .header-title {
             position: absolute;
-            bottom: -36px;
+            bottom: 30px; /* Adjusted to match desktop for consistency */
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
@@ -194,28 +192,25 @@
             text-align: center;
             line-height: 1.2;
             margin: 0;
-            padding: 15px 30px; /* Kept padding for general spacing if needed, but background removed */
+            padding: 15px 30px;
             max-width: 900px;
             letter-spacing: -0.02em;
             font-family: 'Roboto', sans-serif;
 
             /* REMOVED BACKGROUND FOR "Trade Your Gadget in Seconds" */
-            background: none; /* Changed from rgb(255, 255, 255) to none */
-            border-radius: 0; /* Changed from 20px to 0 */
-            box-shadow: none; /* Changed from rgba(0, 0, 0, 0.4) to none */
-            border: none; /* Changed from 3px solid to none */
+            background: none;
+            border-radius: 0;
+            box-shadow: none;
+            border: none; /* Explicitly removed border */
             box-sizing: border-box;
             display: inline-block;
         }
         header .header-title span {
-            /* Current desktop font size: 3.5rem (56px assuming 16px base)
-               Reduce by 15%: 3.5rem * 0.85 = 2.975rem */
             font-size: 2.975rem; /* Reduced by 15% */
             font-weight: 900;
-            /* Changed to white color */
-            background-image: none; /* Removed gradient background */
-            -webkit-background-clip: unset; /* Unset to allow solid color */
-            background-clip: unset; /* Unset to allow solid color */
+            background-image: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
             color: white; /* Changed to white */
             text-shadow: 1px 1px 4px rgba(0,0,0,0.7); /* Added text shadow for visibility on image */
         }
@@ -501,7 +496,7 @@
         }
         @media (max-width: 600px) {
             body {
-                padding-top: 0px; 
+                padding-top: 0px;
                 line-height: 1.6;
             }
             .hero-intro {
@@ -532,16 +527,16 @@
                 width: 100%;
             }
             header .header-title {
-                bottom: 15px;
+                bottom: 30px; /* Adjusted to give more space from bottom */
                 width: 95%;
                 padding: 10px 20px;
-                border-radius: 15px;
-                box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-                border: 2px solid var(--main-accent-color);
+                /* Removed background, border-radius, box-shadow, and border for mobile */
+                background: none;
+                border-radius: 0;
+                box-shadow: none;
+                border: none; /* Explicitly removed border for mobile */
             }
             header .header-title span {
-                /* Current mobile font size: 1.5rem (24px)
-                   Reduce by 15%: 1.5rem * 0.85 = 1.275rem */
                 font-size: 1.275rem; /* Reduced by 15% */
                 text-shadow: none;
             }
@@ -619,7 +614,7 @@
             }
             header .header-title {
                 font-size: unset;
-                bottom: 15px;
+                bottom: 30px; /* Adjusted to match desktop */
                 color: white;
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
             }
@@ -867,7 +862,6 @@
                     interestInput.value = description;
                     let message;
 
-                    // Updated Speech and Button Text Logic
                     if (description.includes("Mobile Phone")) {
                         message = `You chose Mobile Phone. Get an instant quote for your mobile phone!`;
                         submitButton.textContent = "Get Instant Quote";
@@ -910,42 +904,34 @@
                         speak(message);
                     }
 
-                    nameInput.classList.remove('wave'); // Ensure animation state is clean before re-adding
+                    nameInput.classList.remove('wave');
 
-                    // Scroll the input into view, adjusting for fixed header
-                    // Calculate precise offset for the name input relative to the document
                     const nameInputRect = nameInput.getBoundingClientRect();
                     const currentScrollY = window.scrollY;
                     const headerHeight = headerElement.offsetHeight;
-
-                    // Aim to place the top of the input below the header, with a small buffer
-                    const targetScrollTop = nameInputRect.top + currentScrollY - headerHeight - 10; // -10px buffer
+                    const targetScrollTop = nameInputRect.top + currentScrollY - headerHeight - 10;
 
                     window.scrollTo({
                         top: targetScrollTop,
                         behavior: 'smooth'
                     });
 
-                    // Conditional focus for mobile vs desktop after scroll
-                    // A very short timeout often helps mobile browsers settle the scroll before focusing
                     setTimeout(() => {
                         nameInput.focus();
                         nameInput.classList.add('wave');
-                        // Remove wave class after animation to allow it to re-trigger on next focus
                         setTimeout(() => {
                             nameInput.classList.remove('wave');
                         }, 900);
-                    }, 150); // Small delay for focus after scroll
+                    }, 150);
                 });
             });
         });
 
         window.onload = () => {
-            // Aggressive scroll to top with short delay on full page load
             setTimeout(() => {
                 window.scrollTo(0, 0);
             }, 50);
-            setBodyPadding(); // Ensure padding is correct after all resources loaded
+            setBodyPadding();
         };
 
         function speak(text) {
@@ -994,7 +980,7 @@
                     form.reset();
                     document.querySelectorAll('.image-container.selected').forEach(c => c.classList.remove('selected'));
                     submitButton.textContent = "Submit";
-                    nameInput.classList.remove('wave'); // Ensure wave is removed on form reset
+                    nameInput.classList.remove('wave');
                 } else {
                     alert("Failed to submit. Please try again. (Server error)");
                 }
