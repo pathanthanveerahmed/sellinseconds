@@ -6,6 +6,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+
   gtag('config', 'G-QMV442HBWL');
 </script>
     <meta charset="UTF-8">
@@ -127,7 +128,7 @@
             animation: gradientShift 40s ease infinite;
             color: var(--text-color);
             line-height: 1.7;
-            padding-top: 280px; 
+            padding-top: 0; /* Managed by JS */
         }
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
@@ -177,15 +178,15 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* New: Adjust object-position for desktop to crop 20% top, 40% bottom */
-            /* This effectively centers the middle 40% of the image. */
-            object-position: 50% 40%; /* Adjusting for 20% top crop and 40% bottom crop */
+            /* To crop 20% top and 40% bottom, we aim for the center of the remaining 40% (100 - 20 - 40 = 40).
+               The center of the visible part (from 20% to 60%) is at 40%. */
+            object-position: 50% 40%;
             filter: brightness(0.75);
             z-index: 1;
         }
         header .header-title {
             position: absolute;
-            bottom: -36px; /* Retained from previous instruction */
+            bottom: -36px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
@@ -193,25 +194,30 @@
             text-align: center;
             line-height: 1.2;
             margin: 0;
-            padding: 15px 30px;
+            padding: 15px 30px; /* Kept padding for general spacing if needed, but background removed */
             max-width: 900px;
             letter-spacing: -0.02em;
             font-family: 'Roboto', sans-serif;
-            background: rgb(255, 255, 255);
-            border-radius: 20px;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
-            border: 3px solid var(--main-accent-color);
+
+            /* REMOVED BACKGROUND FOR "Trade Your Gadget in Seconds" */
+            background: none; /* Changed from rgb(255, 255, 255) to none */
+            border-radius: 0; /* Changed from 20px to 0 */
+            box-shadow: none; /* Changed from rgba(0, 0, 0, 0.4) to none */
+            border: none; /* Changed from 3px solid to none */
             box-sizing: border-box;
             display: inline-block;
         }
         header .header-title span {
-            font-size: 3.5rem;
+            /* Current desktop font size: 3.5rem (56px assuming 16px base)
+               Reduce by 15%: 3.5rem * 0.85 = 2.975rem */
+            font-size: 2.975rem; /* Reduced by 15% */
             font-weight: 900;
-            background-image: linear-gradient(90deg, #4285F4 10%, #34A853 50%, #FBBC05 90%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: none;
+            /* Changed to white color */
+            background-image: none; /* Removed gradient background */
+            -webkit-background-clip: unset; /* Unset to allow solid color */
+            background-clip: unset; /* Unset to allow solid color */
+            color: white; /* Changed to white */
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7); /* Added text shadow for visibility on image */
         }
         .hero-intro {
             max-width: 900px;
@@ -344,26 +350,6 @@
             outline: 3px solid var(--main-accent-color);
             box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
             border-color: var(--main-accent-color);
-        }
-        .image-container.selected::after {
-            content: '\2713';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            width: 26px;
-            height: 26px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            z-index: 5;
-        }
-        .image-container.full-width {
-            margin-bottom: 0.5rem;
-            transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
         }
         form {
             background: var(--form-bg);
@@ -541,7 +527,7 @@
                 overflow: hidden;
             }
             .header-image {
-                object-position: 50% 100%;
+                object-position: 50% 100%; /* Keeps the bottom of the image aligned on mobile */
                 height: 100%;
                 width: 100%;
             }
@@ -554,7 +540,9 @@
                 border: 2px solid var(--main-accent-color);
             }
             header .header-title span {
-                font-size: 1.5rem;
+                /* Current mobile font size: 1.5rem (24px)
+                   Reduce by 15%: 1.5rem * 0.85 = 1.275rem */
+                font-size: 1.275rem; /* Reduced by 15% */
                 text-shadow: none;
             }
             .image-grid {
@@ -808,19 +796,24 @@
         const bodyElement = document.body;
         const synth = window.speechSynthesis;
         let currentUtterance;
+
         function setBodyPadding() {
             requestAnimationFrame(() => {
                 bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
             });
         }
+
         history.scrollRestoration = 'manual';
+
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 window.scrollTo(0, 0);
             }, 50);
+
             hideLoading();
             setBodyPadding();
             window.addEventListener('resize', setBodyPadding);
+
             const rowsToGlow = document.querySelectorAll('.image-grid-row1-row2');
             const fullWidthContainersToGlow = document.querySelectorAll('.image-grid > .image-container.full-width');
             const allFlipContainers = document.querySelectorAll('.image-grid-row1-row2 .image-container, .image-container.full-width');
@@ -829,9 +822,11 @@
             const staggerDelay = 100;
             const totalFlipInTime = allFlipContainers.length * staggerDelay;
             const totalFlipOutTime = allFlipContainers.length * staggerDelay + flipDuration;
+
             if (!hasFlippedOnce) {
                 rowsToGlow.forEach(row => row.classList.add('glowing-border'));
                 fullWidthContainersToGlow.forEach(container => container.classList.add('glowing-border'));
+
                 allFlipContainers.forEach((container, index) => {
                     setTimeout(() => {
                         const innerCard = container.querySelector('.image-card-inner');
@@ -845,6 +840,7 @@
                         }
                     }, staggerDelay * index);
                 });
+
                 setTimeout(() => {
                     allFlipContainers.forEach((container, index) => {
                         setTimeout(() => {
@@ -862,6 +858,7 @@
                     }, totalFlipOutTime);
                 }, totalFlipInTime + 500);
             }
+
             containers.forEach((container) => {
                 container.addEventListener('click', () => {
                     containers.forEach(c => c.classList.remove('selected'));
@@ -869,6 +866,8 @@
                     const description = container.querySelector('.image-card-front img').alt;
                     interestInput.value = description;
                     let message;
+
+                    // Updated Speech and Button Text Logic
                     if (description.includes("Mobile Phone")) {
                         message = `You chose Mobile Phone. Get an instant quote for your mobile phone!`;
                         submitButton.textContent = "Get Instant Quote";
@@ -903,34 +902,57 @@
                         message = `Thank you for your interest in ${description} 🙏.`;
                         submitButton.textContent = "Submit";
                     }
+
                     if (synth && synth.speaking) {
                         synth.cancel();
                         setTimeout(() => speak(message), 200);
                     } else if (synth) {
                         speak(message);
                     }
-                    nameInput.classList.remove('wave');
-                    nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    nameInput.classList.remove('wave'); // Ensure animation state is clean before re-adding
+
+                    // Scroll the input into view, adjusting for fixed header
+                    // Calculate precise offset for the name input relative to the document
+                    const nameInputRect = nameInput.getBoundingClientRect();
+                    const currentScrollY = window.scrollY;
+                    const headerHeight = headerElement.offsetHeight;
+
+                    // Aim to place the top of the input below the header, with a small buffer
+                    const targetScrollTop = nameInputRect.top + currentScrollY - headerHeight - 10; // -10px buffer
+
+                    window.scrollTo({
+                        top: targetScrollTop,
+                        behavior: 'smooth'
+                    });
+
+                    // Conditional focus for mobile vs desktop after scroll
+                    // A very short timeout often helps mobile browsers settle the scroll before focusing
                     setTimeout(() => {
                         nameInput.focus();
                         nameInput.classList.add('wave');
+                        // Remove wave class after animation to allow it to re-trigger on next focus
                         setTimeout(() => {
                             nameInput.classList.remove('wave');
                         }, 900);
-                    }, 50);
+                    }, 150); // Small delay for focus after scroll
                 });
             });
         });
+
         window.onload = () => {
+            // Aggressive scroll to top with short delay on full page load
             setTimeout(() => {
                 window.scrollTo(0, 0);
             }, 50);
-            setBodyPadding();
+            setBodyPadding(); // Ensure padding is correct after all resources loaded
         };
+
         function speak(text) {
             currentUtterance = new SpeechSynthesisUtterance(text);
             synth.speak(currentUtterance);
         }
+
         document.getElementById("contact-form").addEventListener("submit", function (e) {
             e.preventDefault();
             const form = e.target;
@@ -939,6 +961,7 @@
             const interest = form.interest.value.trim();
             const mobileRegex = /^[0-9]{10}$/;
             const nameRegex = /^[A-Za-z\s]+$/;
+
             if (!name || !mobile || !interest) {
                 alert("Please select a product/service and fill out all fields.");
                 return;
@@ -956,6 +979,7 @@
             formBody.append("name", name);
             formBody.append("mobile", mobile);
             formBody.append("interest", interest);
+
             fetch(form.action, {
                 method: "POST",
                 headers: {
@@ -970,7 +994,7 @@
                     form.reset();
                     document.querySelectorAll('.image-container.selected').forEach(c => c.classList.remove('selected'));
                     submitButton.textContent = "Submit";
-                    nameInput.classList.remove('wave');
+                    nameInput.classList.remove('wave'); // Ensure wave is removed on form reset
                 } else {
                     alert("Failed to submit. Please try again. (Server error)");
                 }
@@ -981,6 +1005,7 @@
                 alert("Failed to submit. Please try again. (Network error)");
             });
         });
+
         function showLoading() {
             document.getElementById('loading-overlay').style.display = 'flex';
         }
