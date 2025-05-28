@@ -165,7 +165,6 @@
             top: 0;
             left: 0;
             width: 100%;
-            /* Desktop: Increased height for better image visibility */
             min-height: 300px;
             height: 300px;
             overflow: hidden;
@@ -180,16 +179,15 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Ensured top of image is anchored to top of header */
-            object-position: 50% 0%;
+            /* Desktop: 50% of image visible from bottom to top */
+            object-position: 50% 100%; /* Changed to center bottom */
             filter: brightness(0.75) contrast(1.1);
             z-index: 1;
             transition: transform 0.5s ease-out;
         }
         .header-main-slogan {
             position: absolute;
-            /* Desktop: Adjusted bottom to stay in place relative to content */
-            bottom: 45px; /* Increased by 10px for the 20px header height increase (35 + 10) */
+            bottom: 45px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
@@ -492,13 +490,12 @@
         @media (max-width: 991px) and (orientation: landscape) {
             body { padding-top: 200px; } /* Adjust padding-top to match new header height */
             header {
-                /* Landscape: Increased height for better image visibility */
                 height: 200px; /* Original 180px + 20px */
                 min-height: unset;
             }
+            /* Landscape: Keep top of image visible */
             .header-image { object-fit: cover; object-position: center top; }
             .header-main-slogan {
-                /* Landscape: Adjusted bottom to stay in place relative to content */
                 bottom: 40px; /* Original 30px + 10px */
             }
             .header-main-slogan span { font-size: 2rem; }
@@ -516,13 +513,12 @@
             h2 { font-size: 1.8rem; }
             h3 { font-size: 1.3rem; }
             header {
-                /* Mobile: Increased height for better image visibility */
                 min-height: 160px; /* Original 135px + 25px */
                 height: 160px; /* Original 135px + 25px */
             }
+            /* Mobile: Keep top of image visible */
             .header-image { object-position: 50% 0%; }
             .header-main-slogan {
-                /* Mobile: Adjusted bottom to stay in place relative to content */
                 bottom: 35px; /* Original 20px + 15px */
                 padding: 5px 10px;
             }
