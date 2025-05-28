@@ -165,28 +165,22 @@
             top: 0;
             left: 0;
             width: 100%;
-            /* Desktop height reduced by 20% to crop bottom */
-            min-height: 224px; /* 280px * 0.80 */
-            height: 224px; /* 280px * 0.80 */
+            min-height: 280px; /* Original height */
+            height: 280px; /* Original height */
             overflow: hidden;
-            background-color: #f5f5f7;
+            /* NEW: Set background image here */
+            background-image: url('https://www.sellinseconds.in/aicrop.webp');
+            background-size: cover; /* Image covers the entire header area */
+            background-position: center top; /* Center horizontally, align top vertically (crops bottom) */
+            background-repeat: no-repeat;
+            filter: brightness(0.75); /* Apply filter to the header background */
             z-index: 1000;
         }
-        .header-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* Aligns top of image with top of container, cropping excess from bottom */
-            object-position: 50% 0%;
-            filter: brightness(0.75);
-            z-index: 1;
-        }
+        /* .header-image rule is removed as it's no longer an <img> tag */
+
         header .header-title {
             position: absolute;
-            bottom: 35px; /* Keeps its position relative to the header's new bottom */
+            bottom: 35px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
@@ -518,18 +512,14 @@
                 font-size: 1.3rem;
             }
             header {
-                /* Mobile height reduced by 20% to crop bottom */
-                min-height: 108px; /* 135px * 0.80 */
-                height: 108px; /* 135px * 0.80 */
-                overflow: hidden;
+                min-height: 135px; /* Original mobile height */
+                height: 135px; /* Original mobile height */
+                /* Background image properties inherited and overridden as needed */
+                background-position: center top; /* Center horizontally, align top vertically */
             }
-            .header-image {
-                object-position: 50% 0%; /* Aligns top, crops bottom */
-                height: 100%;
-                width: 100%;
-            }
+            /* .header-image rule is removed as it's no longer an <img> tag */
             header .header-title {
-                bottom: 30px; /* Keeps its position relative to the header's new bottom */
+                bottom: 30px;
                 width: 95%;
                 padding: 10px 20px;
                 background: none;
@@ -606,17 +596,15 @@
                 padding-top: 180px;
             }
             header {
-                /* Landscape tablet height reduced by 20% to crop bottom */
-                height: 144px; /* 180px * 0.80 */
+                height: 180px; /* Original landscape tablet height */
                 min-height: unset;
+                /* Background image properties inherited and overridden as needed */
+                background-position: center top; /* Center horizontally, align top vertically */
             }
-            .header-image {
-                object-fit: cover;
-                object-position: 50% 0%; /* Aligns top, crops bottom */
-            }
+            /* .header-image rule is removed as it's no longer an <img> tag */
             header .header-title {
                 font-size: unset;
-                bottom: 30px; /* Keeps its position relative to the header's new bottom */
+                bottom: 30px;
                 color: white;
                 text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
             }
@@ -635,7 +623,6 @@
 </head>
 <body>
     <header class="header">
-        <img src="https://www.sellinseconds.in/aicrop.webp" alt="Dynamic header image showing various gadgets being sold or repaired in Bangalore" class="header-image" loading="lazy">
         <h1 class="header-title"><span>Trade Your Gadget in Seconds</span></h1>
     </header>
     <main>
