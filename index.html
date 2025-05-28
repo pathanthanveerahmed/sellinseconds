@@ -181,7 +181,7 @@
             height: 100%;
             object-fit: cover;
             /* Show middle 50% of the image */
-            object-position: 50% 25%;
+            object-position: 50% 0%; /* Moved to top to show apple leaf */
             filter: brightness(0.75) contrast(1.1);
             z-index: 1;
             transition: transform 0.5s ease-out;
@@ -496,7 +496,7 @@
                 min-height: unset;
             }
             /* Landscape: Show middle 50% of the image */
-            .header-image { object-fit: cover; object-position: 50% 25%; }
+            .header-image { object-fit: cover; object-position: 50% 0%; } /* Moved to top to show apple leaf */
             .header-main-slogan {
                 bottom: 40px; /* Original 30px + 10px */
             }
