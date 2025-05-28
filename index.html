@@ -98,6 +98,7 @@
             --bg-color-5: #f0fff0;
             --main-accent-color: #4285F4; /* Google Blue */
             --selection-glow-color: #FBBC05; /* Google Yellow for selection glow */
+            --purple-border: #8A2BE2; /* Violet color */
         }
         * {
             box-sizing: border-box;
@@ -250,12 +251,12 @@
             gap: 2rem;
             width: 100%;
             transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
+            /* Removed border from here as it's now on individual image-container */
         }
         .image-grid-row1-row2.glowing-border { /* Apply to all glowing containers */
             box-shadow: 0 0 15px var(--main-accent-color), 0 0 30px rgba(66, 133, 244, 0.5), 0 0 45px rgba(66, 133, 244, 0.3);
             border: 2px solid var(--main-accent-color);
-            border-radius: var(--radius);
-            padding: 1rem;
+            /* Removed border-radius and padding from here */
             animation: pulseBorder 2s infinite alternate;
         }
 
@@ -277,6 +278,7 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            border: 2px solid var(--purple-border); /* Added purple border to each image container */
         }
         .image-container:hover {
             transform: translateY(-10px) scale(1.03);
@@ -313,7 +315,7 @@
         }
         .image-card-front img {
             max-width: 120px; /* Consistent image size for all grid items */
-            max-height: 120px; /* Consistent image size for all grid items */
+            max-height: 72px; /* Reduced by 20% from top and bottom (60% of 120px) */
             object-fit: contain;
             margin-bottom: 18px;
             transition: transform 0.4s ease;
@@ -480,7 +482,7 @@
             .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.5rem; }
             .image-card-inner { height: 260px; }
 
-            .image-card-front img { max-width: 100px; max-height: 100px; }
+            .image-card-front img { max-width: 100px; max-height: 60px; } /* Reduced by 20% from top and bottom (60% of 100px) */
 
             .image-card-front figcaption { font-size: 1.05rem; }
             .image-description { font-size: 0.85rem; min-height: 60px;}
@@ -501,7 +503,7 @@
             .header-main-slogan span { font-size: 2rem; }
             .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
             .image-card-inner { height: 240px; }
-            .image-card-front img { max-width: 100px; max-height: 100px; }
+            .image-card-front img { max-width: 100px; max-height: 60px; } /* Reduced by 20% from top and bottom (60% of 100px) */
         }
         @media (max-width: 600px) { /* Mobile */
             body { padding-top: 0px; line-height: 1.6; }
@@ -533,13 +535,13 @@
             .image-grid-row1-row2.glowing-border {
                  box-shadow: 0 0 8px rgba(66, 133, 244, 0.6), 0 0 15px rgba(66, 133, 244, 0.4);
                  border: 1px solid var(--main-accent-color);
-                 padding: 0.5rem;
+                 /* Removed padding from here */
                  animation: none;
             }
             .image-container { min-height: auto; }
             .image-card-inner { height: 240px; }
 
-            .image-card-front img { max-width: 80px; max-height: 80px; }
+            .image-card-front img { max-width: 80px; max-height: 48px; } /* Reduced by 20% from top and bottom (60% of 80px) */
 
             .image-card-front figcaption { font-size: 0.95rem; }
             .image-description { font-size: 0.8rem; padding: 8px 10px; min-height: 50px; }
@@ -563,13 +565,13 @@
             }
             .image-card-inner { height: 250px; }
 
-            .image-card-front img { max-width: 90px; max-height: 90px; }
+            .image-card-front img { max-width: 90px; max-height: 54px; } /* Reduced by 20% from top and bottom (60% of 90px) */
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <img src="https://www.sellinseconds.in/aicrop.webp" alt="Sell In Seconds - Banner showing various gadgets like phones, laptops, and watches" class="header-image" loading="lazy">
+        <img src="https://www.sellinseconds.in/aicrop.webp" loading="lazy" alt="Sell In Seconds - Banner showing various gadgets like phones, laptops, and watches" class="header-image">
         <div class="header-main-slogan"><span>Trade Your Gadget in Seconds</span></div>
     </header>
     <main>
