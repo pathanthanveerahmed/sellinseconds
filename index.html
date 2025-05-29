@@ -528,9 +528,17 @@ transform: translate(-50%, -50%);
 bottom: auto; /* Ensure bottom isn't overriding */
 }
 .header-main-slogan span { font-size: 2rem; }
-.image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
-.image-card-inner { height: 240px; }
+.image-grid-row1-row2 {
+    grid-template-columns: repeat(4, 1fr); /* Changed to force 4 columns */
+    gap: 0.8rem; /* Reduced gap to help fit 4 columns */
+}
+.image-card-inner { height: 180px; /* Reduced height to fit more compact layout */ }
 .image-card-front img { max-width: 100%; max-height: 100%; }
+
+/* Optionally adjust figcaption and description font sizes for better fit */
+.image-card-front figcaption { font-size: 0.9rem; }
+.image-description { font-size: 0.75rem; min-height: 40px; padding: 5px 8px; }
+.image-card-back { font-size: 1rem; }
 }
 @media (max-width: 600px) { /* Mobile */
 body { padding-top: 0px; line-height: 1.6; }
@@ -805,7 +813,7 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
 <p><a href="https://www.sellinseconds.in/privacy-policy.html" title="Privacy Policy">Privacy Policy</a> | <a href="https://www.sellinseconds.in/terms-conditions.html" title="Terms and Conditions">Terms & Conditions</a></p>
 <p class="small-text">Designed & Developed by Thanveer P</p>
 </footer>
-<a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%20selling%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair.">
+<a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair.">
 <img src="https://www.sellinseconds.in/whatsapp.webp" loading="lazy" alt="WhatsApp Chat Icon for SellInSeconds">
 </a>
 <div id="loading-overlay">
