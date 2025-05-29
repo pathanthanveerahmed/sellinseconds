@@ -113,6 +113,7 @@ gtag('config', 'G-QMV442HBWL');
     {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": [
+        "Sunday"
         "Monday",
         "Tuesday",
         "Wednesday",
@@ -120,8 +121,8 @@ gtag('config', 'G-QMV442HBWL');
         "Friday",
         "Saturday"
       ],
-      "opens": "09:00",
-      "closes": "20:00"
+      "opens": "12:00",
+      "closes": "11:59"
     }
   ],
   "priceRange": "$$",
@@ -193,69 +194,63 @@ h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 1.5rem; }
 h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; }
 h3 { font-size: 1.6rem; font-weight: 500; margin-bottom: 2rem; }
 
-/* Modified styles for hero-intro h1 and h2 */
 .hero-intro h1 {
-    font-size: 1.25rem; /* Matches the size of .selection-prompt */
-    font-weight: 600; /* Matches the font weight of .selection-prompt */
-    color: var(--main-accent-color); /* Set to blue color */
-    background: none; /* Remove background gradient */
-    -webkit-background-clip: unset; /* Remove webkit background clip */
-    background-clip: unset; /* Remove background clip */
-    text-align: center; /* Keep text centered */
-    margin: 0.5rem auto 0.5rem; /* Adjust margins as needed */
-    text-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Keep text shadow */
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--main-accent-color);
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    text-align: center;
+    margin: 0.5rem auto 0.5rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .hero-intro h2 {
-    font-size: 1.25rem; /* Matches the size of .selection-prompt */
-    font-weight: 600; /* Matches the font weight of .selection-prompt */
-    color: var(--main-accent-color); /* Set to blue color */
-    background: none; /* Remove background gradient */
-    -webkit-background-clip: unset; /* Remove webkit background clip */
-    background-clip: unset; /* Remove background clip */
-    text-align: center; /* Keep text centered */
-    margin: 0.5rem auto 0.5rem; /* Adjust margins as needed */
-    text-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Keep text shadow */
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--main-accent-color);
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    text-align: center;
+    margin: 0.5rem auto 0.5rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* Add an underline to hero-intro h2 */
 .hero-intro h2::after {
     content: '';
     display: block;
     width: 80px;
     height: 3px;
-    background: var(--main-accent-color); /* Blue underline */
+    background: var(--main-accent-color);
     margin: 0.5rem auto 0;
     border-radius: 2px;
 }
 
-/* Ensure .selection-prompt retains its original styling, but change color to black */
 .selection-prompt {
     text-align: center;
     font-size: 1.25rem;
     font-weight: 600;
-    color: #000; /* Changed to black color */
+    color: #000;
     margin: 2.5rem auto 1rem;
     padding: 0 1rem;
     max-width: 900px;
     text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    background: none; /* Remove background gradient for text */
-    -webkit-background-clip: unset; /* Remove webkit background clip */
-    background-clip: unset; /* Remove background clip */
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
 }
-/* Re-apply the ::after pseudo-element for the underline */
 .selection-prompt::after {
     content: '';
     display: block;
     width: 80px;
     height: 3px;
-    background: var(--main-accent-color); /* Blue underline */
+    background: var(--main-accent-color);
     margin: 0.5rem auto 0;
     border-radius: 2px;
 }
 
-
-/* HEADER STYLES - KEY CHANGES */
 header {
 position: fixed;
 top: 0;
@@ -265,9 +260,8 @@ overflow: hidden;
 background-color: #f5f5f7;
 z-index: 1000;
 box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-/* Maintain aspect ratio of 4092x437 (approx 9.36:1) */
-padding-top: 10.68%; /* 437/4092 = 0.1068 -> 10.68% */
-min-height: 150px; /* Minimum height for very narrow screens */
+padding-top: 10.68%;
+min-height: 150px;
 }
 .header-image {
 position: absolute;
@@ -275,14 +269,14 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-object-fit: contain; /* Changed to contain to show entire image */
+object-fit: contain;
 filter: brightness(0.75) contrast(1.1);
 z-index: 1;
 transition: transform 0.5s ease-out;
 }
 .header-main-slogan {
 position: absolute;
-top: 65%; /* Adjusted from 50% to move it down */
+top: 65%;
 left: 50%;
 transform: translate(-50%, -50%);
 z-index: 2;
@@ -296,15 +290,14 @@ letter-spacing: -0.02em;
 font-family: 'Roboto', sans-serif;
 }
 .header-main-slogan span {
-font-size: 2.53rem; /* Reduced by 15% from 2.975rem */
+font-size: 2.53rem;
 font-weight: 900;
 color: white;
 text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
 }
 
-/* NEW ELEMENT FOR TOP TEXT */
 .header-top-text {
-display: none; /* Hidden by default */
+display: none;
 position: absolute;
 top: 20px;
 left: 0;
@@ -363,12 +356,10 @@ grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 gap: 2rem;
 width: 100%;
 transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
-/* Removed border from here as it's now on individual image-container */
 }
-.image-grid-row1-row2.glowing-border { /* Apply to all glowing containers */
+.image-grid-row1-row2.glowing-border {
 box-shadow: 0 0 15px var(--main-accent-color), 0 0 30px rgba(66, 133, 244, 0.5), 0 0 45px rgba(66, 133, 244, 0.3);
 border: 2px solid var(--main-accent-color);
-/* Removed border-radius and padding from here */
 animation: pulseBorder 2s infinite alternate;
 }
 
@@ -390,7 +381,7 @@ transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cub
 display: flex;
 flex-direction: column;
 overflow: hidden;
-border: 2px solid var(--purple-border); /* Added purple border to each image container */
+border: 2px solid var(--purple-border);
 }
 .image-container:hover {
 transform: translateY(-10px) scale(1.03);
@@ -399,7 +390,7 @@ box-shadow: var(--shadow-hover);
 .image-card-inner {
 position: relative;
 width: 100%;
-height: 300px; /* Consistent height for all grid items */
+height: 300px;
 text-align: center;
 transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
 transform-style: preserve-3d;
@@ -426,10 +417,10 @@ font-size: 1.4rem;
 font-weight: 700;
 }
 .image-card-front img {
-max-width: 100%; /* Changed to fill available width */
-max-height: 100%; /* Changed to fill available height */
+max-width: 100%;
+max-height: 100%;
 object-fit: contain;
-margin-bottom: 0; /* Removed margin-bottom to allow image to expand */
+margin-bottom: 0;
 transition: transform 0.4s ease;
 }
 .image-container:hover .image-card-front img {
@@ -447,7 +438,7 @@ font-size: 0.9rem;
 color: var(--secondary);
 padding: 12px 15px;
 text-align: center;
-background-color: #f0f0f0; /* Changed background color to a light grey */
+background-color: #f0f0f0;
 width: 100%;
 box-sizing: border-box;
 margin-top: auto;
@@ -585,53 +576,56 @@ border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: bac
 }
 .modal-close-button:hover { background-color: var(--primary-dark); transform: scale(1.05); }
 
-/* Social Icons Styling */
 .social-links {
     margin-top: 1rem;
     display: flex;
     justify-content: center;
-    /* Changed gap to accommodate smaller icons */
-    gap: 10px; /* Reduced gap for smaller icons */
+    gap: 10px;
     flex-wrap: wrap;
-    align-items: center; /* Vertically align icons */
+    align-items: center;
 }
 
 .social-links a {
-    /* Removed text styling from here as we're using icons now */
     text-decoration: none;
-    display: inline-flex; /* Use inline-flex to center icon if text is added later */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    vertical-align: middle; /* Align with middle of text if text were present */
-    transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+    vertical-align: middle;
+    transition: transform 0.2s ease-in-out;
 }
 
 .social-icon {
-    width: 24px; /* Significantly reduced size */
-    height: 24px; /* Significantly reduced size */
+    width: 24px;
+    height: 24px;
     object-fit: contain;
-    /* Added filter for hover effect */
-    filter: grayscale(100%) brightness(150%); /* Start with grayscale for subtle look */
+    filter: grayscale(100%) brightness(150%);
     transition: filter 0.3s ease;
 }
 
 .social-links a:hover .social-icon {
-    filter: grayscale(0%) brightness(100%); /* Full color on hover */
-    transform: scale(1.1); /* Slight zoom on hover */
+    filter: grayscale(0%) brightness(100%);
+    transform: scale(1.1);
 }
 
+.social-links a[href*="x.com"] .social-icon {
+    filter: invert(100%) brightness(100%);
+}
 
-/* Responsive Adjustments */
-@media (min-width: 992px) { /* Adjust this breakpoint as needed for desktop */
+.social-links a[href*="x.com"]:hover .social-icon {
+    filter: invert(100%) brightness(100%) drop-shadow(0 0 5px rgba(255,255,255,0.5));
+    transform: scale(1.1);
+}
+
+@media (min-width: 992px) {
     .header-main-slogan {
-        top: 70%; /* Further adjust for desktop if desired */
+        top: 70%;
     }
 }
 @media (max-width: 1200px) {
 .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.8rem; }
 .image-card-inner { height: 280px; }
 }
-@media (max-width: 991px) { /* Standard tablet portrait */
+@media (max-width: 991px) {
 .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.5rem; }
 .image-card-inner { height: 260px; }
 
@@ -643,81 +637,105 @@ border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: bac
 .selection-prompt { font-size: 1.15rem; }
 }
 @media (max-width: 991px) and (orientation: landscape) {
-body { padding-top: 200px; } /* Adjust padding-top to match new header height */
+body { padding-top: 200px; }
 header {
-height: auto; /* Use auto height with padding-top */
+height: auto;
 min-height: unset;
-padding-top: 10.68%; /* Maintain aspect ratio */
+padding-top: 10.68%;
 }
-/* Landscape: Show middle 50% of the image */
-.header-image { object-fit: contain; } /* Maintain full image display */
+.header-image { object-fit: contain; }
+.header-image {
+    object-fit: contain;
+    object-position: center 45%;
+}
+
+.header-top-text {
+display: block;
+    top: 15px;
+    top: 0;
+    padding-top: 10px;
+font-size: 1.8rem;
+color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
 .header-main-slogan {
-top: 75%; /* Adjusted from 50% to move it down */
-left: 50%; /* Ensure it stays centered horizontally */
-transform: translate(-50%, -50%);
-bottom: auto; /* Ensure bottom isn't overriding */
+top: auto;
+    bottom: 15px;
+    bottom: 0;
+    padding-bottom: 10px;
+transform: translateX(-50%);
+    width: 100%;
 }
-.header-main-slogan span { font-size: 2rem; }
+.header-main-slogan span {
+    font-size: 1.5rem;
+    font-size: 1.4rem;
+color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    display: inline-block;
+    padding: 0 10px;
+}
+
+.selection-prompt { font-size: 1.1rem; margin: 2rem auto 0.5rem; }
+.image-grid-section { padding: 1.5rem 0.5rem; margin: 1rem auto 1.5rem auto; }
+.image-grid { padding: 0 0.5rem; gap: 1.5rem; }
 .image-grid-row1-row2 {
-    grid-template-columns: repeat(4, 1fr); /* Changed to force 4 columns */
-    gap: 0.8rem; /* Reduced gap to help fit 4 columns */
+grid-template-columns: repeat(4, 1fr);
+gap: 0.8rem;
 }
-.image-card-inner { height: 180px; /* Reduced height to fit more compact layout */ }
+.image-card-inner { height: 180px; }
+
 .image-card-front img { max-width: 100%; max-height: 100%; }
 
-/* Optionally adjust figcaption and description font sizes for better fit */
 .image-card-front figcaption { font-size: 0.9rem; }
-.image-description { font-size: 0.75rem; min-height: 40px; padding: 5px 8px; }
+.image-description { font-size: 0.75rem; padding: 5px 8px; min-height: 40px; }
 .image-card-back { font-size: 1rem; }
 }
-@media (max-width: 600px) { /* Mobile */
+@media (max-width: 600px) {
 body { padding-top: 0px; line-height: 1.6; }
 .hero-intro { font-size: 0.95rem; margin-top: 0; padding: 0 1rem; }
 h1 { font-size: 2rem; }
-            .header-main-slogan span {
-                font-size: 1.275rem; /* Reduced by 15% from 1.5rem */
-            }
+.header-main-slogan span {
+    font-size: 1.275rem;
+}
 h2 { font-size: 1.8rem; }
 h3 { font-size: 1.3rem; }
 header {
-min-height: 120px; /* Reduced minimum height for mobile */
-padding-top: 10.68%; /* Maintain aspect ratio */
-background-color: #000; /* Black padding for mobile portrait */
+min-height: 120px;
+padding-top: 10.68%;
+background-color: #000;
 }
-            .header-image { object-fit: contain; } /* Maintain full image display */
-            .header-image {
-                object-fit: contain;
-                /* Center the image vertically */
-                object-position: center 45%;
-            }
+.header-image { object-fit: contain; }
+.header-image {
+    object-fit: contain;
+    object-position: center 45%;
+}
 
-/* NEW TOP TEXT - VISIBLE ONLY IN MOBILE PORTRAIT */
 .header-top-text {
 display: block;
-                top: 15px;
-                top: 0; /* Start from top padding */
-                padding-top: 10px; /* Add top padding */
+    top: 15px;
+    top: 0;
+    padding-top: 10px;
 font-size: 1.8rem;
 color: white;
-                text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
-/* MOVE EXISTING SLOGAN TO BOTTOM */
 .header-main-slogan {
 top: auto;
-                bottom: 15px;
-                bottom: 0; /* Touch bottom padding */
-                padding-bottom: 10px; /* Add bottom padding */
+    bottom: 15px;
+    bottom: 0;
+    padding-bottom: 10px;
 transform: translateX(-50%);
-                width: 100%;
+    width: 100%;
 }
 .header-main-slogan span {
-                font-size: 1.5rem;
-                font-size: 1.4rem; /* Slightly reduced for better fit */
+    font-size: 1.5rem;
+    font-size: 1.4rem;
 color: white;
-                text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-                display: inline-block;
-                padding: 0 10px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    display: inline-block;
+    padding: 0 10px;
 }
 
 .selection-prompt { font-size: 1.1rem; margin: 2rem auto 0.5rem; }
@@ -730,7 +748,6 @@ gap: 1rem;
 .image-grid-row1-row2.glowing-border {
 box-shadow: 0 0 8px rgba(66, 133, 244, 0.6), 0 0 15px rgba(66, 133, 244, 0.4);
 border: 1px solid var(--main-accent-color);
-/* Removed padding from here */
 animation: none;
 }
 .image-container { min-height: auto; }
@@ -753,7 +770,7 @@ button[type="submit"] { padding: 0.9rem; font-size: 1rem; }
 .modal-content { width: 90%; padding: 20px; }
 .modal-content p { font-size: 1rem; }
 }
-@media (max-width: 380px) { /* Extra small mobile screens */
+@media (max-width: 380px) {
 .image-grid-row1-row2 {
 grid-template-columns: 1fr;
 gap: 1.5rem;
@@ -762,16 +779,15 @@ gap: 1.5rem;
 
 .image-card-front img { max-width: 100%; max-height: 100%; }
 
-/* Adjust text sizes for very small screens */
 .header-top-text {
 font-size: 1.5rem;
-                top: 10px;
-                top: 0;
-                padding-top: 8px;
+    top: 10px;
+    top: 0;
+    padding-top: 8px;
 }
 .header-main-slogan span {
 font-size: 1.2rem;
-                padding: 0 8px;
+    padding: 0 8px;
 }
 }
 </style>
@@ -952,7 +968,7 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
     <a href="https://www.instagram.com/apple.speaks/#" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram logo" class="social-icon">
     </a>
-    <a href="https://www.youtube.com/@telwin9616" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to our YouTube channel">
+    <a href="https://www.youtube.com/channel/YourYoutubeChannel" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to our YouTube channel">
         <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282017%29.svg" alt="YouTube logo" class="social-icon">
     </a>
 </div>
@@ -1053,7 +1069,6 @@ setTimeout(setBodyPadding, 100);
 }, totalFlipInTime + 500);
 }
 
-
 containers.forEach((container) => {
 container.addEventListener('click', () => {
 containers.forEach(c => c.classList.remove('selected'));
@@ -1148,11 +1163,10 @@ showModal("Invalid mobile number! It should contain exactly 10 digits.");
 return;
 }
 showLoading();
-// Set a timeout for the loading screen as a fallback
 let loadingTimeout = setTimeout(() => {
     hideLoading();
     showModal("The request is taking longer than expected. Please check your internet connection and try again.");
-}, 15000); // 15 seconds timeout
+}, 15000);
 
 const formBody = new URLSearchParams();
 formBody.append("name", name);
@@ -1165,7 +1179,7 @@ headers: { "Content-Type": "application/x-www-form-urlencoded" },
 body: formBody.toString()
 })
 .then(response => {
-    clearTimeout(loadingTimeout); // Clear the timeout if the fetch request completes
+    clearTimeout(loadingTimeout);
     hideLoading();
     if (response.ok) {
         showModal("Form submitted successfully! We will contact you soon.");
@@ -1182,7 +1196,7 @@ body: formBody.toString()
     }
 })
 .catch(error => {
-    clearTimeout(loadingTimeout); // Clear the timeout even if there's a network error
+    clearTimeout(loadingTimeout);
     hideLoading();
     console.error("Network Error:", error.message);
     showModal("Failed to submit. Please check your internet connection and try again. (Network error)");
