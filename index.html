@@ -188,7 +188,7 @@ transition: transform 0.5s ease-out;
 }
 .header-main-slogan {
 position: absolute;
-top: 50%; /* Center vertically - RETAINED ORIGINAL BASE */
+top: 50%; /* Center vertically */
 left: 50%;
 transform: translate(-50%, -50%);
 z-index: 2;
@@ -507,14 +507,6 @@ border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: bac
 .header-main-slogan span { font-size: 2.5rem; }
 .selection-prompt { font-size: 1.15rem; }
 }
-
-/* NEW: Rule for Desktop */
-@media (min-width: 992px) {
-    .header-main-slogan {
-        top: 70%; /* Move down for desktop */
-    }
-}
-
 @media (max-width: 991px) and (orientation: landscape) {
 body { padding-top: 200px; } /* Adjust padding-top to match new header height */
 header {
@@ -525,7 +517,7 @@ padding-top: 10.68%; /* Maintain aspect ratio */
 /* Landscape: Show middle 50% of the image */
 .header-image { object-fit: contain; } /* Maintain full image display */
 .header-main-slogan {
-top: 70%; /* MODIFIED: Moved down from 50% */
+top: 50%; /* Center vertically */
 transform: translate(-50%, -50%);
 bottom: auto;
 }
@@ -534,7 +526,7 @@ bottom: auto;
 .image-card-inner { height: 240px; }
 .image-card-front img { max-width: 100%; max-height: 100%; }
 }
-@media (max-width: 600px) { /* Mobile - REMAINS UNCHANGED */
+@media (max-width: 600px) { /* Mobile */
 body { padding-top: 0px; line-height: 1.6; }
 .hero-intro { font-size: 0.95rem; margin-top: 0; padding: 0 1rem; }
 h1 { font-size: 2rem; }
@@ -568,7 +560,7 @@ color: white;
 
 /* MOVE EXISTING SLOGAN TO BOTTOM */
 .header-main-slogan {
-top: auto; /* CRITICAL: Ensure 'top' is auto */
+top: auto;
                 bottom: 15px;
                 bottom: 0; /* Touch bottom padding */
                 padding-bottom: 10px; /* Add bottom padding */
@@ -642,10 +634,12 @@ font-size: 1.2rem;
 </head>
 <body>
 <header class="header">
+<!-- New top text element for "Sell in Seconds" -->
 <div class="header-top-text">Sell in Seconds</div>
 
 <img src="https://www.sellinseconds.in/aicrop1.webp" loading="lazy" alt="Sell In Seconds - Banner showing various gadgets like phones, laptops, and watches" class="header-image">
 
+<!-- Existing slogan moved to bottom in mobile portrait -->
 <div class="header-main-slogan"><span>Trade Your Gadget in Seconds</span></div>
 </header>
 <main>
@@ -1035,4 +1029,3 @@ function hideLoading() { document.getElementById('loading-overlay').style.displa
 document.addEventListener('DOMContentLoaded', hideLoading);
 </script>
 </body>
-</html>
