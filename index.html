@@ -188,7 +188,7 @@ transition: transform 0.5s ease-out;
 }
 .header-main-slogan {
 position: absolute;
-top: 50%; /* Center vertically */
+top: 65%; /* Adjusted from 50% to move it down */
 left: 50%;
 transform: translate(-50%, -50%);
 z-index: 2;
@@ -492,6 +492,11 @@ border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: bac
 .modal-close-button:hover { background-color: var(--primary-dark); transform: scale(1.05); }
 
 /* Responsive Adjustments */
+@media (min-width: 992px) { /* Adjust this breakpoint as needed for desktop */
+    .header-main-slogan {
+        top: 70%; /* Further adjust for desktop if desired */
+    }
+}
 @media (max-width: 1200px) {
 .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.8rem; }
 .image-card-inner { height: 280px; }
@@ -507,14 +512,6 @@ border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: bac
 .header-main-slogan span { font-size: 2.5rem; }
 .selection-prompt { font-size: 1.15rem; }
 }
-
-/* NEW: Rule for Desktop */
-@media (min-width: 992px) {
-    .header-main-slogan {
-        top: 70%; /* Move down for desktop */
-    }
-}
-
 @media (max-width: 991px) and (orientation: landscape) {
 body { padding-top: 200px; } /* Adjust padding-top to match new header height */
 header {
@@ -525,15 +522,13 @@ padding-top: 10.68%; /* Maintain aspect ratio */
 /* Landscape: Show middle 50% of the image */
 .header-image { object-fit: contain; } /* Maintain full image display */
 .header-main-slogan {
-top: 70%; /* MODIFIED: Move down for landscape */
+top: 75%; /* Adjusted from 50% to move it down */
+left: 50%; /* Ensure it stays centered horizontally */
 transform: translate(-50%, -50%);
-bottom: auto;
+bottom: auto; /* Ensure bottom isn't overriding */
 }
 .header-main-slogan span { font-size: 2rem; }
-.image-grid-row1-row2 {
-    grid-template-columns: repeat(4, 1fr); /* MODIFIED: Set to 4 columns */
-    gap: 1rem; /* MODIFIED: Reduced gap for 4 columns */
-}
+.image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
 .image-card-inner { height: 240px; }
 .image-card-front img { max-width: 100%; max-height: 100%; }
 }
@@ -552,11 +547,11 @@ padding-top: 10.68%; /* Maintain aspect ratio */
 background-color: #000; /* Black padding for mobile portrait */
 }
             .header-image { object-fit: contain; } /* Maintain full image display */
-            .header-image { 
+            .header-image {
                 object-fit: contain;
                 /* Center the image vertically */
                 object-position: center 45%;
-            } 
+            }
 
 /* NEW TOP TEXT - VISIBLE ONLY IN MOBILE PORTRAIT */
 .header-top-text {
@@ -828,7 +823,7 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
 const containers = document.querySelectorAll('.image-container');
 const nameInput = document.getElementById('name');
 const interestInput = document.getElementById('interest');
-const submitButton = document.querySelector('#contact-form button[type="submit"]');
+const submitButton = document.querySelector('#contact-form button[type="submit"]);
 const headerElement = document.querySelector('header');
 const bodyElement = document.body;
 const synth = window.speechSynthesis;
