@@ -161,17 +161,19 @@
             border-radius: 2px;
         }
 
+        /* HEADER STYLES - KEY CHANGES */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            min-height: 300px;
-            height: 300px;
             overflow: hidden;
             background-color: #f5f5f7;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            /* Maintain aspect ratio of 4092x437 (approx 9.36:1) */
+            padding-top: 10.68%; /* 437/4092 = 0.1068 -> 10.68% */
+            min-height: 150px; /* Minimum height for very narrow screens */
         }
         .header-image {
             position: absolute;
@@ -179,17 +181,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Changed to cover */
-            object-position: 50% 15%; /* Adjusted for better visibility with cover */
+            object-fit: contain; /* Changed to contain to show entire image */
             filter: brightness(0.75) contrast(1.1);
             z-index: 1;
             transition: transform 0.5s ease-out;
         }
         .header-main-slogan {
             position: absolute;
-            bottom: 45px;
+            top: 50%; /* Center vertically */
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
             z-index: 2;
             width: 90%;
             text-align: center;
@@ -491,13 +492,16 @@
         @media (max-width: 991px) and (orientation: landscape) {
             body { padding-top: 200px; } /* Adjust padding-top to match new header height */
             header {
-                height: 200px; /* Original 180px + 20px */
+                height: auto; /* Use auto height with padding-top */
                 min-height: unset;
+                padding-top: 10.68%; /* Maintain aspect ratio */
             }
             /* Landscape: Show middle 50% of the image */
-            .header-image { object-fit: cover; object-position: 50% 15%; } /* Adjusted for better visibility with cover */
+            .header-image { object-fit: contain; } /* Maintain full image display */
             .header-main-slogan {
-                bottom: 40px; /* Original 30px + 10px */
+                top: 50%; /* Center vertically */
+                transform: translate(-50%, -50%);
+                bottom: auto;
             }
             .header-main-slogan span { font-size: 2rem; }
             .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
@@ -514,13 +518,14 @@
             h2 { font-size: 1.8rem; }
             h3 { font-size: 1.3rem; }
             header {
-                min-height: 160px; /* Original 135px + 25px */
-                height: 160px; /* Original 135px + 25px */
+                min-height: 120px; /* Reduced minimum height for mobile */
+                padding-top: 10.68%; /* Maintain aspect ratio */
             }
-            /* Mobile portrait: Show middle 50% of the image */
-            .header-image { object-fit: cover; object-position: 50% 15%; } /* Adjusted for better visibility with cover */
+            .header-image { object-fit: contain; } /* Maintain full image display */
             .header-main-slogan {
-                bottom: 35px; /* Original 20px + 15px */
+                top: 50%; /* Center vertically */
+                transform: translate(-50%, -50%);
+                bottom: auto;
                 padding: 5px 10px;
             }
 
