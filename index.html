@@ -585,6 +585,42 @@ border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: bac
 }
 .modal-close-button:hover { background-color: var(--primary-dark); transform: scale(1.05); }
 
+/* Social Icons Styling */
+.social-links {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    /* Changed gap to accommodate smaller icons */
+    gap: 10px; /* Reduced gap for smaller icons */
+    flex-wrap: wrap;
+    align-items: center; /* Vertically align icons */
+}
+
+.social-links a {
+    /* Removed text styling from here as we're using icons now */
+    text-decoration: none;
+    display: inline-flex; /* Use inline-flex to center icon if text is added later */
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle; /* Align with middle of text if text were present */
+    transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+.social-icon {
+    width: 24px; /* Significantly reduced size */
+    height: 24px; /* Significantly reduced size */
+    object-fit: contain;
+    /* Added filter for hover effect */
+    filter: grayscale(100%) brightness(150%); /* Start with grayscale for subtle look */
+    transition: filter 0.3s ease;
+}
+
+.social-links a:hover .social-icon {
+    filter: grayscale(0%) brightness(100%); /* Full color on hover */
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+
 /* Responsive Adjustments */
 @media (min-width: 992px) { /* Adjust this breakpoint as needed for desktop */
     .header-main-slogan {
