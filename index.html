@@ -507,6 +507,14 @@ border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: bac
 .header-main-slogan span { font-size: 2.5rem; }
 .selection-prompt { font-size: 1.15rem; }
 }
+
+/* NEW: Rule for Desktop */
+@media (min-width: 992px) {
+    .header-main-slogan {
+        top: 70%; /* Move down for desktop */
+    }
+}
+
 @media (max-width: 991px) and (orientation: landscape) {
 body { padding-top: 200px; } /* Adjust padding-top to match new header height */
 header {
@@ -517,12 +525,15 @@ padding-top: 10.68%; /* Maintain aspect ratio */
 /* Landscape: Show middle 50% of the image */
 .header-image { object-fit: contain; } /* Maintain full image display */
 .header-main-slogan {
-top: 50%; /* Center vertically */
+top: 70%; /* MODIFIED: Move down for landscape */
 transform: translate(-50%, -50%);
 bottom: auto;
 }
 .header-main-slogan span { font-size: 2rem; }
-.image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+.image-grid-row1-row2 {
+    grid-template-columns: repeat(4, 1fr); /* MODIFIED: Set to 4 columns */
+    gap: 1rem; /* MODIFIED: Reduced gap for 4 columns */
+}
 .image-card-inner { height: 240px; }
 .image-card-front img { max-width: 100%; max-height: 100%; }
 }
@@ -634,12 +645,10 @@ font-size: 1.2rem;
 </head>
 <body>
 <header class="header">
-<!-- New top text element for "Sell in Seconds" -->
 <div class="header-top-text">Sell in Seconds</div>
 
 <img src="https://www.sellinseconds.in/aicrop1.webp" loading="lazy" alt="Sell In Seconds - Banner showing various gadgets like phones, laptops, and watches" class="header-image">
 
-<!-- Existing slogan moved to bottom in mobile portrait -->
 <div class="header-main-slogan"><span>Trade Your Gadget in Seconds</span></div>
 </header>
 <main>
@@ -1029,3 +1038,4 @@ function hideLoading() { document.getElementById('loading-overlay').style.displa
 document.addEventListener('DOMContentLoaded', hideLoading);
 </script>
 </body>
+</html>
