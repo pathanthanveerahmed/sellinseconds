@@ -18,13 +18,13 @@ gtag('config', 'G-QMV442HBWL');
 <link rel="icon" type="image/x-icon" href="https://www.sellinseconds.in/fevicon.ico">
 <link rel="canonical" href="https://www.sellinseconds.in"> <meta property="og:title" content="Sell, Buy, & Repair Gadgets Instantly - Sell In Seconds">
 <meta property="og:description" content="Trade in your gadgets in just two steps! Get instant quotes for mobiles, laptops, tablets, and more. Also offering gadget repair and sales of pre-owned devices.">
-<meta property="og:image" content="https://www.sellinseconds.in/aicrop.webp" loading="lazy">
+<meta property="og:image" content="https://www.sellinseconds.in/aicrop1.webp" loading="lazy">
 <meta property="og:url" content="https://www.sellinseconds.in"> <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sell In Seconds">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@SellInSeconds"> <meta name="twitter:creator" content="@ThanveerP"> <meta name="twitter:title" content="Sell, Buy, & Repair Gadgets Instantly - Sell In Seconds">
 <meta name="twitter:description" content="Trade in your gadgets easily! Get instant quotes for mobiles, laptops, tablets, and more. Also offering gadget repair and sales of pre-owned devices.">
-<meta name="twitter:image" content="https://www.sellinseconds.in/aicrop.webp">
+<meta name="twitter:image" content="https://www.sellinseconds.in/aicrop1.webp">
 <meta name="twitter:image:alt" content="Gadget trade-in, buying, and repair services">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,7 @@ gtag('config', 'G-QMV442HBWL');
 "name": "Sell In Seconds",
 "url": "https://www.sellinseconds.in", // Assuming this is the main domain
 "logo": "https://www.sellinseconds.in/fevicon.ico",
-"image": "https://www.sellinseconds.in/aicrop.webp",
+"image": "https://www.sellinseconds.in/aicrop1.webp",
 "description": "Sell your gadgets in seconds. Fast, easy, and reliable way to trade in your gadgets like mobile phones (iPhone, Samsung, OnePlus), laptops (MacBook, Dell, HP), tablets (iPad, Samsung Tab), smartwatches (Apple Watch), and more. Get instant quotes and quick service.",
 "contactPoint": {
 "@type": "ContactPoint",
@@ -98,6 +98,7 @@ gtag('config', 'G-QMV442HBWL');
 --bg-color-5: #f0fff0;
 --main-accent-color: #4285F4; /* Google Blue */
 --selection-glow-color: #FBBC05; /* Google Yellow for selection glow */
+--purple-border: #8A2BE2; /* Violet color */
 }
 * {
 box-sizing: border-box;
@@ -160,17 +161,19 @@ margin: 0.5rem auto 0;
 border-radius: 2px;
 }
 
+/* HEADER STYLES - KEY CHANGES */
 header {
 position: fixed;
 top: 0;
 left: 0;
 width: 100%;
-min-height: 300px;
-height: 300px;
 overflow: hidden;
 background-color: #f5f5f7;
 z-index: 1000;
 box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+/* Maintain aspect ratio of 4092x437 (approx 9.36:1) */
+padding-top: 10.68%; /* 437/4092 = 0.1068 -> 10.68% */
+min-height: 150px; /* Minimum height for very narrow screens */
 }
 .header-image {
 position: absolute;
@@ -178,20 +181,16 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-object-fit: cover;
-            /* Desktop: 50% of image visible from bottom to top */
-            object-position: 50% 100%; /* Changed to center bottom */
-            /* Desktop: Hide top 50% and show bottom 50% */
-            object-position: 50% 100%;
+object-fit: contain; /* Changed to contain to show entire image */
 filter: brightness(0.75) contrast(1.1);
 z-index: 1;
 transition: transform 0.5s ease-out;
 }
 .header-main-slogan {
 position: absolute;
-bottom: 45px;
+top: 50%; /* Center vertically */
 left: 50%;
-transform: translateX(-50%);
+transform: translate(-50%, -50%);
 z-index: 2;
 width: 90%;
 text-align: center;
@@ -208,6 +207,24 @@ font-weight: 900;
 color: white;
 text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
 }
+
+/* NEW ELEMENT FOR TOP TEXT */
+.header-top-text {
+display: none; /* Hidden by default */
+position: absolute;
+top: 20px;
+left: 0;
+width: 100%;
+text-align: center;
+z-index: 3;
+color: white;
+font-weight: 700;
+font-size: 1.8rem;
+text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+letter-spacing: 1px;
+font-family: 'Roboto', sans-serif;
+}
+
 .hero-intro {
 max-width: 900px;
 margin: 0 auto;
@@ -252,12 +269,12 @@ grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 gap: 2rem;
 width: 100%;
 transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
+/* Removed border from here as it's now on individual image-container */
 }
 .image-grid-row1-row2.glowing-border { /* Apply to all glowing containers */
 box-shadow: 0 0 15px var(--main-accent-color), 0 0 30px rgba(66, 133, 244, 0.5), 0 0 45px rgba(66, 133, 244, 0.3);
 border: 2px solid var(--main-accent-color);
-border-radius: var(--radius);
-padding: 1rem;
+/* Removed border-radius and padding from here */
 animation: pulseBorder 2s infinite alternate;
 }
 
@@ -279,6 +296,7 @@ transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cub
 display: flex;
 flex-direction: column;
 overflow: hidden;
+border: 2px solid var(--purple-border); /* Added purple border to each image container */
 }
 .image-container:hover {
 transform: translateY(-10px) scale(1.03);
@@ -314,10 +332,10 @@ font-size: 1.4rem;
 font-weight: 700;
 }
 .image-card-front img {
-max-width: 120px; /* Consistent image size for all grid items */
-max-height: 120px; /* Consistent image size for all grid items */
+max-width: 100%; /* Changed to fill available width */
+max-height: 100%; /* Changed to fill available height */
 object-fit: contain;
-margin-bottom: 18px;
+margin-bottom: 0; /* Removed margin-bottom to allow image to expand */
 transition: transform 0.4s ease;
 }
 .image-container:hover .image-card-front img {
@@ -335,7 +353,7 @@ font-size: 0.9rem;
 color: var(--secondary);
 padding: 12px 15px;
 text-align: center;
-background-color: var(--light-gray);
+background-color: #f0f0f0; /* Changed background color to a light grey */
 width: 100%;
 box-sizing: border-box;
 margin-top: auto;
@@ -482,7 +500,7 @@ border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: bac
 .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.5rem; }
 .image-card-inner { height: 260px; }
 
-.image-card-front img { max-width: 100px; max-height: 100px; }
+.image-card-front img { max-width: 100%; max-height: 100%; }
 
 .image-card-front figcaption { font-size: 1.05rem; }
 .image-description { font-size: 0.85rem; min-height: 60px;}
@@ -492,40 +510,70 @@ border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: bac
 @media (max-width: 991px) and (orientation: landscape) {
 body { padding-top: 200px; } /* Adjust padding-top to match new header height */
 header {
-height: 200px; /* Original 180px + 20px */
+height: auto; /* Use auto height with padding-top */
 min-height: unset;
+padding-top: 10.68%; /* Maintain aspect ratio */
 }
-            /* Landscape: Keep top of image visible */
-            .header-image { object-fit: cover; object-position: center top; }
-            /* Landscape: Hide top 50% and show bottom 50% */
-            .header-image { object-fit: cover; object-position: 50% 100%; }
+/* Landscape: Show middle 50% of the image */
+.header-image { object-fit: contain; } /* Maintain full image display */
 .header-main-slogan {
-bottom: 40px; /* Original 30px + 10px */
+top: 50%; /* Center vertically */
+transform: translate(-50%, -50%);
+bottom: auto;
 }
 .header-main-slogan span { font-size: 2rem; }
 .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
 .image-card-inner { height: 240px; }
-.image-card-front img { max-width: 100px; max-height: 100px; }
+.image-card-front img { max-width: 100%; max-height: 100%; }
 }
 @media (max-width: 600px) { /* Mobile */
 body { padding-top: 0px; line-height: 1.6; }
 .hero-intro { font-size: 0.95rem; margin-top: 0; padding: 0 1rem; }
 h1 { font-size: 2rem; }
-.header-main-slogan span {
-font-size: 1.275rem; /* Reduced by 15% from 1.5rem */
-}
+            .header-main-slogan span {
+                font-size: 1.275rem; /* Reduced by 15% from 1.5rem */
+            }
 h2 { font-size: 1.8rem; }
 h3 { font-size: 1.3rem; }
 header {
-min-height: 160px; /* Original 135px + 25px */
-height: 160px; /* Original 135px + 25px */
+min-height: 120px; /* Reduced minimum height for mobile */
+padding-top: 10.68%; /* Maintain aspect ratio */
+background-color: #000; /* Black padding for mobile portrait */
 }
-            /* Mobile: Keep top of image visible */
-            /* Mobile portrait: Keep top 50% visible */
-.header-image { object-position: 50% 0%; }
+            .header-image { object-fit: contain; } /* Maintain full image display */
+            .header-image { 
+                object-fit: contain;
+                /* Center the image vertically */
+                object-position: center 45%;
+            } 
+
+/* NEW TOP TEXT - VISIBLE ONLY IN MOBILE PORTRAIT */
+.header-top-text {
+display: block;
+                top: 15px;
+                top: 0; /* Start from top padding */
+                padding-top: 10px; /* Add top padding */
+font-size: 1.8rem;
+color: white;
+                text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+/* MOVE EXISTING SLOGAN TO BOTTOM */
 .header-main-slogan {
-bottom: 35px; /* Original 20px + 15px */
-padding: 5px 10px;
+top: auto;
+                bottom: 15px;
+                bottom: 0; /* Touch bottom padding */
+                padding-bottom: 10px; /* Add bottom padding */
+transform: translateX(-50%);
+                width: 100%;
+}
+.header-main-slogan span {
+                font-size: 1.5rem;
+                font-size: 1.4rem; /* Slightly reduced for better fit */
+color: white;
+                text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+                display: inline-block;
+                padding: 0 10px;
 }
 
 .selection-prompt { font-size: 1.1rem; margin: 2rem auto 0.5rem; }
@@ -538,13 +586,13 @@ gap: 1rem;
 .image-grid-row1-row2.glowing-border {
 box-shadow: 0 0 8px rgba(66, 133, 244, 0.6), 0 0 15px rgba(66, 133, 244, 0.4);
 border: 1px solid var(--main-accent-color);
-padding: 0.5rem;
+/* Removed padding from here */
 animation: none;
 }
 .image-container { min-height: auto; }
 .image-card-inner { height: 240px; }
 
-.image-card-front img { max-width: 80px; max-height: 80px; }
+.image-card-front img { max-width: 100%; max-height: 100%; }
 
 .image-card-front figcaption { font-size: 0.95rem; }
 .image-description { font-size: 0.8rem; padding: 8px 10px; min-height: 50px; }
@@ -568,13 +616,30 @@ gap: 1.5rem;
 }
 .image-card-inner { height: 250px; }
 
-.image-card-front img { max-width: 90px; max-height: 90px; }
+.image-card-front img { max-width: 100%; max-height: 100%; }
+
+/* Adjust text sizes for very small screens */
+.header-top-text {
+font-size: 1.5rem;
+                top: 10px;
+                top: 0;
+                padding-top: 8px;
+}
+.header-main-slogan span {
+font-size: 1.2rem;
+                padding: 0 8px;
+}
 }
 </style>
 </head>
 <body>
 <header class="header">
-<img src="https://www.sellinseconds.in/aicrop.webp" alt="Sell In Seconds - Banner showing various gadgets like phones, laptops, and watches" class="header-image" loading="lazy">
+<!-- New top text element for "Sell in Seconds" -->
+<div class="header-top-text">Sell in Seconds</div>
+
+<img src="https://www.sellinseconds.in/aicrop1.webp" loading="lazy" alt="Sell In Seconds - Banner showing various gadgets like phones, laptops, and watches" class="header-image">
+
+<!-- Existing slogan moved to bottom in mobile portrait -->
 <div class="header-main-slogan"><span>Trade Your Gadget in Seconds</span></div>
 </header>
 <main>
@@ -695,7 +760,7 @@ gap: 1.5rem;
 <figure class="image-container" data-back-text="Software Fix" data-gadget-name="Software Fix & Optimization">
 <div class="image-card-inner">
 <div class="image-card-front">
-<img src="https://www.sellinseconds.in/software_fix_placeholder.webp" loading="lazy" alt="Software Fix & Optimization for Phones, Laptops, Tablets">
+<img src="https://www.sellinseconds.in/software.webp" loading="lazy" alt="Software Fix & Optimization for Phones, Laptops, Tablets">
 <figcaption>Software Fix</figcaption>
 </div>
 <div class="image-card-back">Software Fix</div>
@@ -705,12 +770,12 @@ gap: 1.5rem;
 <figure class="image-container" data-back-text="Diagnosis" data-gadget-name="Gadget Diagnosis & Checkup">
 <div class="image-card-inner">
 <div class="image-card-front">
-<img src="https://www.sellinseconds.in/diagnosis_placeholder.webp" loading="lazy" alt="Full Gadget Diagnosis & Health Check-up">
+<img src="https://www.sellinseconds.in/diagnosis.webp" loading="lazy" alt="Full Gadget Diagnosis & Health Check-up">
 <figcaption>Diagnosis</figcaption>
 </div>
 <div class="image-card-back">Diagnosis</div>
 </div>
-<p class="image-description">Comprehensive diagnosis to identify hidden issues and ensure optimal performance.</p>
+<p class="image-description">Diagnosis to identify hidden issues and ensure optimal performance.</p>
 </figure>
 </div>
 </div>
@@ -964,4 +1029,3 @@ function hideLoading() { document.getElementById('loading-overlay').style.displa
 document.addEventListener('DOMContentLoaded', hideLoading);
 </script>
 </body>
-</html>
