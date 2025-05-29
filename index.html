@@ -530,9 +530,6 @@
             body { padding-top: 0px; line-height: 1.6; }
             .hero-intro { font-size: 0.95rem; margin-top: 0; padding: 0 1rem; }
             h1 { font-size: 2rem; }
-            .header-main-slogan span {
-                font-size: 1.275rem; /* Reduced by 15% from 1.5rem */
-            }
             h2 { font-size: 1.8rem; }
             h3 { font-size: 1.3rem; }
             header {
@@ -540,25 +537,36 @@
                 padding-top: 10.68%; /* Maintain aspect ratio */
                 background-color: #000; /* Black padding for mobile portrait */
             }
-            .header-image { object-fit: contain; } /* Maintain full image display */
+            .header-image { 
+                object-fit: contain;
+                /* Center the image vertically */
+                object-position: center 45%;
+            } 
             
             /* NEW TOP TEXT - VISIBLE ONLY IN MOBILE PORTRAIT */
             .header-top-text {
                 display: block;
-                top: 15px;
+                top: 0; /* Start from top padding */
+                padding-top: 10px; /* Add top padding */
                 font-size: 1.8rem;
                 color: white;
+                text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
             }
             
             /* MOVE EXISTING SLOGAN TO BOTTOM */
             .header-main-slogan {
                 top: auto;
-                bottom: 15px;
+                bottom: 0; /* Touch bottom padding */
+                padding-bottom: 10px; /* Add bottom padding */
                 transform: translateX(-50%);
+                width: 100%;
             }
             .header-main-slogan span {
-                font-size: 1.5rem;
+                font-size: 1.4rem; /* Slightly reduced for better fit */
                 color: white;
+                text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+                display: inline-block;
+                padding: 0 10px;
             }
 
             .selection-prompt { font-size: 1.1rem; margin: 2rem auto 0.5rem; }
@@ -606,10 +614,12 @@
             /* Adjust text sizes for very small screens */
             .header-top-text {
                 font-size: 1.5rem;
-                top: 10px;
+                top: 0;
+                padding-top: 8px;
             }
             .header-main-slogan span {
                 font-size: 1.2rem;
+                padding: 0 8px;
             }
         }
     </style>
