@@ -188,7 +188,7 @@ transition: transform 0.5s ease-out;
 }
 .header-main-slogan {
 position: absolute;
-top: 70%; /* MODIFIED: Moved down from 50% */
+top: 50%; /* Center vertically - RETAINED ORIGINAL BASE */
 left: 50%;
 transform: translate(-50%, -50%);
 z-index: 2;
@@ -507,6 +507,14 @@ border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: bac
 .header-main-slogan span { font-size: 2.5rem; }
 .selection-prompt { font-size: 1.15rem; }
 }
+
+/* NEW: Rule for Desktop */
+@media (min-width: 992px) {
+    .header-main-slogan {
+        top: 70%; /* Move down for desktop */
+    }
+}
+
 @media (max-width: 991px) and (orientation: landscape) {
 body { padding-top: 200px; } /* Adjust padding-top to match new header height */
 header {
@@ -526,7 +534,7 @@ bottom: auto;
 .image-card-inner { height: 240px; }
 .image-card-front img { max-width: 100%; max-height: 100%; }
 }
-@media (max-width: 600px) { /* Mobile */
+@media (max-width: 600px) { /* Mobile - REMAINS UNCHANGED */
 body { padding-top: 0px; line-height: 1.6; }
 .hero-intro { font-size: 0.95rem; margin-top: 0; padding: 0 1rem; }
 h1 { font-size: 2rem; }
@@ -560,7 +568,7 @@ color: white;
 
 /* MOVE EXISTING SLOGAN TO BOTTOM */
 .header-main-slogan {
-top: auto; /* Keep this for mobile portrait */
+top: auto; /* CRITICAL: Ensure 'top' is auto */
                 bottom: 15px;
                 bottom: 0; /* Touch bottom padding */
                 padding-bottom: 10px; /* Add bottom padding */
