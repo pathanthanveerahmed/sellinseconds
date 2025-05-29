@@ -126,7 +126,7 @@ gtag('config', 'G-QMV442HBWL');
   ],
   "priceRange": "$$",
   "servesCuisine": "Gadget Services",
-  "description": "Your one-stop shop for selling, buying, exchanging, trading in, and repairing all types of mobile devices, laptops, tablets, and smartwatches in India. Get instant quotes and professional service.",
+  "description": "Your one-stop shop for selling, buying, exchanging, trading in, and repairing all types of mobile devices, laptops, and smartwatches in India. Get instant quotes and professional service.",
   "hasMap": "https://www.google.com/maps/search/Sell+In+Seconds+Your+City"
 }
 </script>
@@ -194,7 +194,18 @@ h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; }
 h3 { font-size: 1.6rem; font-weight: 500; margin-bottom: 2rem; }
 
 /* Modified styles for hero-intro h1 and h2 */
-.hero-intro h1,
+.hero-intro h1 {
+    font-size: 1.25rem; /* Matches the size of .selection-prompt */
+    font-weight: 600; /* Matches the font weight of .selection-prompt */
+    color: var(--main-accent-color); /* Set to blue color */
+    background: none; /* Remove background gradient */
+    -webkit-background-clip: unset; /* Remove webkit background clip */
+    background-clip: unset; /* Remove background clip */
+    text-align: center; /* Keep text centered */
+    margin: 0.5rem auto 0.5rem; /* Adjust margins as needed */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Keep text shadow */
+}
+
 .hero-intro h2 {
     font-size: 1.25rem; /* Matches the size of .selection-prompt */
     font-weight: 600; /* Matches the font weight of .selection-prompt */
@@ -207,21 +218,30 @@ h3 { font-size: 1.6rem; font-weight: 500; margin-bottom: 2rem; }
     text-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Keep text shadow */
 }
 
-/* Ensure .selection-prompt retains its original styling */
+/* Add an underline to hero-intro h2 */
+.hero-intro h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--main-accent-color); /* Blue underline */
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+/* Ensure .selection-prompt retains its original styling, but change color to black */
 .selection-prompt {
     text-align: center;
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--heading-color); /* Original color before gradient */
+    color: #000; /* Changed to black color */
     margin: 2.5rem auto 1rem;
     padding: 0 1rem;
     max-width: 900px;
     text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    /* Re-apply the gradient for the underline effect if desired, or set a solid color */
-    background: linear-gradient(90deg, var(--main-accent-color) 0%, #34A853 33%, #FBBC05 66%, #EA4335 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent; /* This makes the text itself transparent to show the gradient */
+    background: none; /* Remove background gradient for text */
+    -webkit-background-clip: unset; /* Remove webkit background clip */
+    background-clip: unset; /* Remove background clip */
 }
 /* Re-apply the ::after pseudo-element for the underline */
 .selection-prompt::after {
@@ -730,7 +750,7 @@ font-size: 1.2rem;
 </header>
 <main>
 <section class="hero-intro">
-<h1>Sell, Buy, Exchange & Repair All Mobile Devices, Laptops & Tablets</h1>
+<h1>Sell, Buy, Exchange & Repair Mobile Devices, Laptops & Tablets.</h1>
 <h2>Choose the Gadget Service You Need</h2>
 <p>From selling used gadgets, buying pre-owned devices, seamless trade-ins, and easy exchanges, to expert repairs for mobile phones, laptops, and tablets, select your gadget category below. Sell In Seconds offers simple, straightforward solutions for all your electronic needs. Get instant quotes for selling your iPhone, MacBook, Apple Watch, Android phones, and more. We also specialize in chip-level repairs and comprehensive gadget servicing.</p>
 </section>
@@ -748,7 +768,7 @@ font-size: 1.2rem;
 </div>
 <div class="image-card-back">Sell Phone</div>
 </div>
-<p class="image-description">Sell your old mobile (iPhone, Samsung, Android, etc.) for a great price.</p>
+<p class="image-description">Sell your old mobile (Apple iPhone, Android, etc.) for a great price.</p>
 </figure>
 <figure class="image-container" data-back-text="Sell Laptop" data-gadget-name="Laptop / MacBook (Dell, HP, Apple, Windows)">
 <div class="image-card-inner">
@@ -790,12 +810,12 @@ font-size: 1.2rem;
 </div>
 <div class="image-card-back">Sell Accessories</div>
 </div>
-<p class="image-description">Sell various gadget accessories like chargers, cables, and covers.</p>
+<p class="image-description">Sell various gadget accessories like Apple TV, Apple Pencil & Keyboard, etc.</p>
 </figure>
 <figure class="image-container" data-back-text="Sell Smart Watch" data-gadget-name="Smart Watch / Apple Watch">
 <div class="image-card-inner">
 <div class="image-card-front">
-<img src="https://www.sellinseconds.in/watch.webp" loading="lazy" alt="Sell Smart Watch or Apple Watch - Series 7, 8, Ultra">
+<img src="https://www.sellinseconds.in/watch.webp" loading="lazy" alt="Sell Smart Watch or Apple Watch - Series 8, 9, Ultra">
 <figcaption>Smart Watch</figcaption>
 </div>
 <div class="image-card-back">Sell Smart Watch</div>
@@ -877,7 +897,7 @@ font-size: 1.2rem;
 </form>
 <div class="below-form-content">
 <h1>Your Ultimate Platform to Sell, Buy, Exchange & Repair Gadgets – Chip Level Service Available!</h1>
-<p>At Sell In Seconds, we make trading your old electronics incredibly easy and rewarding. Whether you're looking to sell your iPhone, trade in your MacBook, buy a pre-owned iPad, or get a quick repair for your Samsung phone (including chip-level motherboard service), we offer seamless service for all types of mobile devices, laptops, and tablets. Get an instant quote and experience a hassle-free process today!</p>
+<p>At Sell In Seconds, we make trading your old electronics incredibly easy and rewarding. Whether you're looking to sell your iPhone, trade in your MacBook, buy a pre-owned iPad, or get a quick repair for all your Gadgets (including chip-level motherboard service), we offer seamless service for all types of mobile devices, laptops, and tablets. Get an instant quote and experience a hassle-free process today!</p>
 </div>
 <div class="disclaimer">
 Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Driving License) may be required for certain transactions. Payment will be processed post diagnosis and agreement. Service processes will be clearly communicated. For safety and verification, transactions are conducted through secure channels.
@@ -906,7 +926,7 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
 const containers = document.querySelectorAll('.image-container');
 const nameInput = document.getElementById('name');
 const interestInput = document.getElementById('interest');
-const submitButton = document.querySelector('#contact-form button[type="submit"]');
+const submitButton = document.querySelector('#contact-form button[type="submit рефббб] ');
 const headerElement = document.querySelector('header');
 const bodyElement = document.body;
 const synth = window.speechSynthesis;
