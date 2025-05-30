@@ -485,7 +485,7 @@ input.wave { animation: wavePulse 0.8s ease-out; }
 
 @media (min-width: 992px) {
   .header-main-slogan {
-    top: 70%;
+    top: 70%; /* Adjust as needed for desktop based on new image positioning */
   }
 }
 @media (max-width: 1200px) {
@@ -516,7 +516,13 @@ input.wave { animation: wavePulse 0.8s ease-out; }
   }
 
   .header-top-text {
-    display: none; /* Hide "Sell In Seconds" text in mobile landscape */
+    display: block;
+    top: 15px;
+    top: 0;
+    padding-top: 10px;
+    font-size: 1.8rem;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
   }
 
   .header-main-slogan {
@@ -571,7 +577,7 @@ input.wave { animation: wavePulse 0.8s ease-out; }
   }
 
   .header-top-text {
-    display: block; /* Keep "Sell In Seconds" text visible in mobile portrait */
+    display: block;
     top: 15px;
     top: 0;
     padding-top: 10px;
