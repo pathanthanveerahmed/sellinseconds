@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -259,8 +260,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-object-fit: cover; /* Changed to cover for consistent cropping */
-object-position: 50% 25%; /* Shows middle 50% (25% top crop, 25% bottom crop) */
+object-fit: contain;
 filter: brightness(0.75) contrast(1.1);
 z-index: 1;
 transition: transform 0.5s ease-out;
@@ -628,52 +628,49 @@ border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: bac
 .selection-prompt { font-size: 1.15rem; }
 }
 @media (max-width: 991px) and (orientation: landscape) {
-body { padding-top: 200px; }
-header {
-height: auto;
-min-height: unset;
-padding-top: 10.68%;
-}
-.header-image {
-    object-fit: cover; /* Ensuring cover for proper cropping */
-    object-position: center 25%; /* Show middle 50% */
-}
+    body { padding-top: 200px; }
+    header {
+        height: auto;
+        min-height: unset;
+        padding-top: 10.68%;
+    }
+    .header-image { 
+        object-fit: contain;
+        object-position: center 45%;
+    }
 
-.header-top-text {
-display: none; /* Hide "Sell In Seconds" text in mobile landscape */
-}
+    .header-top-text {
+        display: none !important; /* THIS IS THE CHANGE - HIDE TEXT IN LANDSCAPE */
+    }
 
-.header-main-slogan {
-top: auto;
-    bottom: 15px;
-    bottom: 0;
-    padding-bottom: 10px;
-transform: translateX(-50%);
-    width: 100%;
-}
-.header-main-slogan span {
-    font-size: 1.5rem;
-    font-size: 1.4rem;
-color: white;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-    display: inline-block;
-    padding: 0 10px;
-}
+    .header-main-slogan {
+        top: auto;
+        bottom: 15px;
+        bottom: 0;
+        padding-bottom: 10px;
+        transform: translateX(-50%);
+        width: 100%;
+    }
+    .header-main-slogan span {
+        font-size: 1.5rem;
+        font-size: 1.4rem;
+        color: white;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        display: inline-block;
+        padding: 0 10px;
+    }
 
-.selection-prompt { font-size: 1.1rem; margin: 2rem auto 0.5rem; }
-.image-grid-section { padding: 1.5rem 0.5rem; margin: 1rem auto 1.5rem auto; }
-.image-grid { padding: 0 0.5rem; gap: 1.5rem; }
-.image-grid-row1-row2 {
-grid-template-columns: repeat(4, 1fr);
-gap: 0.8rem;
-}
-.image-card-inner { height: 180px; }
-
-.image-card-front img { max-width: 100%; max-height: 100%; }
-
-.image-card-front figcaption { font-size: 0.9rem; }
-.image-description { font-size: 0.75rem; padding: 5px 8px; min-height: 40px; }
-.image-card-back { font-size: 1rem; }
+    .selection-prompt { font-size: 1.1rem; margin: 2rem auto 0.5rem; }
+    .image-grid-section { padding: 1.5rem 0.5rem; margin: 1rem auto 1.5rem auto; }
+    .image-grid { padding: 0 0.5rem; gap: 1.5rem; }
+    .image-grid-row1-row2 {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.8rem;
+    }
+    .image-card-inner { height: 180px; }
+    .image-card-front figcaption { font-size: 0.9rem; }
+    .image-description { font-size: 0.75rem; padding: 5px 8px; min-height: 40px; }
+    .image-card-back { font-size: 1rem; }
 }
 @media (max-width: 600px) {
 body { padding-top: 0px; line-height: 1.6; }
@@ -689,13 +686,14 @@ min-height: 120px;
 padding-top: 10.68%;
 background-color: #000;
 }
+.header-image { object-fit: contain; }
 .header-image {
-    object-fit: cover; /* Ensuring cover for proper cropping */
-    object-position: center 25%; /* Show middle 50% */
+    object-fit: contain;
+    object-position: center 45%;
 }
 
 .header-top-text {
-display: block; /* Keep "Sell In Seconds" text visible in mobile portrait */
+display: block;
     top: 15px;
     top: 0;
     padding-top: 10px;
