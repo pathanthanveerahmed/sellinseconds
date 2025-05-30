@@ -555,6 +555,1240 @@ background-color: #25D366; border-radius: 50%; padding: 5px; box-shadow: 0 4px 1
 #loading-overlay {
 position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95);
 z-index: 9999; display: flex; align-items: center; justify-content: center;
+
+/* NEW CSS for smooth hiding */
+opacity: 1; /* Start visible */
+visibility: visible; /* Start visible */
+transition: opacity 0.3s ease-out, visibility 0.3s ease-out; /* Smooth transition */
+}
+#loading-overlay img { width: 80px; height: 80px; animation: spin 1s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+.modal {
+display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%;
+overflow: auto; background-color: rgba(0,0,0,0.5);
+padding-top: 60px; animation: fadeInModal 0.3s ease-out;
+}
+@keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+
+.modal-content {
+background-color: #fefefe; margin: 5% auto; padding: 30px; border: 1px solid #888;
+width: 85%; max-width: 480px; border-radius: var(--radius); box-shadow: var(--shadow-hover); text-align: center;
+animation: slideInModal 0.4s ease-out;
+}
+@keyframes slideInModal { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.modal-content p { margin-bottom: 25px; font-size: 1.15rem; line-height: 1.6; }
+.modal-close-button {
+background-color: var(--primary); color: white; padding: 12px 30px; border: none; cursor: pointer;
+border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.modal-close-button:hover { background-color: var(--primary-dark); transform: scale(1.05); }
+
+.social-links {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.social-links a {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    transition: transform 0.2s ease-in-out;
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(150%);
+    transition: filter 0.3s ease;
+}
+
+.social-links a:hover .social-icon {
+    filter: grayscale(0%) brightness(100%);
+    transform: scale(1.1);
+}
+
+.social-links a[href*="x.com"] .social-icon {
+    filter: invert(100%) brightness(100%);
+}
+
+.social-links a[href*="x.com"]:hover .social-icon {
+    filter: invert(100%) brightness(100%) drop-shadow(0 0 5px rgba(255,255,255,0.5));
+    transform: scale(1.1);
+}
+
+@media (min-width: 992px) {
+    .header-main-slogan {
+        top: 70%;
+    }
+}
+@media (max-width: 1200px) {
+.image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.8rem; }
+.image-card-inner { height: 280px; }
+}
+@media (max-width: 991px) {
+.image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.5rem; }
+.image-card-inner { height: 260px; }
+
+.image-card-front img { max-width: 100%; max-height: 100%; }
+
+.image-card-front figcaption { font-size: 1.05rem; }
+.image-description { font-size: 0.85rem; min-height: 60px;}
+.header-main-slogan span { font-size: 2.5rem; }
+.selection-prompt { font-size: 1.15rem; }
+}
+@media (max-width: 991px) and (orientation: landscape) {
+    body { padding-top: 200px; }
+    header {
+        height: auto;
+        min-height: unset;
+        padding-top: 10.68%;
+    }
+    .header-image { 
+        object-fit: contain;
+        object-position: center 45%;
+    }
+
+    .header-top-text {
+        display: none !important; /* THIS IS THE CHANGE - HIDE TEXT IN LANDSCAPE */
+    }
+
+    .header-main-slogan {
+        top: auto;
+        bottom: 15px;
+        bottom: 0;
+        padding-bottom: 10px;
+        transform: translateX(-50%);
+        width: 100%;
+    }
+    .header-main-slogan span {
+        font-size: 1.5rem;
+        font-size: 1.4rem;
+        color: white;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        display: inline-block;
+        padding: 0 10px;
+    }
+
+    .selection-prompt { font-size: 1.1rem; margin: 2rem auto 0.5rem; }
+    .image-grid-section { padding: 1.5rem 0.5rem; margin: 1rem auto 1.5rem auto; }
+    .image-grid { padding: 0 0.5rem; gap: 1.5rem; }
+    .image-grid-row1-row2 {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.8rem;
+    }
+    .image-card-inner { height: 180px; }
+    .image-card-front figcaption { font-size: 0.9rem; }
+    .image-description { font-size: 0.75rem; padding: 5px 8px; min-height: 40px; }
+    .image-card-back { font-size: 1rem; }
+}
+@media (max-width: 600px) {
+body { padding-top: 0px; line-height: 1.6; }
+.hero-intro { font-size: 0.95rem; margin-top: 0; padding: 0 1rem; }
+h1 { font-size: 2rem; }
+.header-main-slogan span {
+    font-size: 1.275rem;
+}
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.3rem; }
+header {
+min-height: 120px;
+padding-top: 10.68%;
+background-color: #000;
+}
+.header-image {
+    object-fit: contain;
+    object-position: center 45%;
+}
+
+.header-top-text {
+display: block;
+    top: 15px;
+    top: 0;
+    padding-top: 10px;
+font-size: 1.8rem;
+color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.header-main-slogan {
+top: auto;
+    bottom: 15px;
+    bottom: 0;
+    padding-bottom: 10px;
+transform: translateX(-50%);
+    width: 100%;
+}
+.header-main-slogan span {
+    font-size: 1.5rem;
+    font-size: 1.4rem;
+color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    display: inline-block;
+    padding: 0 10px;
+}
+
+.selection-prompt { font-size: 1.1rem; margin: 2rem auto 0.5rem; }
+.image-grid-section { padding: 1.5rem 0.5rem; margin: 1rem auto 1.5rem auto; }
+.image-grid { padding: 0 0.5rem; gap: 1.5rem; }
+.image-grid-row1-row2 {
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+gap: 1rem;
+}
+.image-grid-row1-row2.glowing-border {
+box-shadow: 0 0 8px rgba(66, 133, 244, 0.6), 0 0 15px rgba(66, 133, 244, 0.4);
+border: 1px solid var(--main-accent-color);
+animation: none;
+}
+.image-container { min-height: auto; }
+.image-card-inner { height: 240px; }
+
+.image-card-front img { max-width: 100%; max-height: 100%; }
+
+.image-card-front figcaption { font-size: 0.95rem; }
+.image-description { font-size: 0.8rem; padding: 8px 10px; min-height: 50px; }
+.image-card-back { font-size: 1.1rem; }
+
+form { padding: 2rem 1.2rem; margin: 1.5rem auto 2rem auto; }
+input, select, textarea { margin-bottom: 1.5rem; padding: 0.8rem 1rem; }
+button[type="submit"] { padding: 0.9rem; font-size: 1rem; }
+.below-form-content h1 { font-size: 1.8rem; margin: 2rem auto 1.5rem auto; }
+.below-form-content p { font-size: 0.95rem; margin-top: 1.5rem; }
+.disclaimer { margin: 2rem auto 4rem auto; padding: 1rem; font-size: 0.8rem; }
+#whatsapp-icon { bottom: 15px; right: 15px; }
+#whatsapp-icon img { width: 45px; height: 45px; }
+.modal-content { width: 90%; padding: 20px; }
+.modal-content p { font-size: 1rem; }
+}
+@media (max-width: 380px) {
+.image-grid-row1-row2 {
+grid-template-columns: 1fr;
+gap: 1.5rem;
+}
+.image-card-inner { height: 250px; }
+
+.image-card-front img { max-width: 100%; max-height: 100%; }
+
+.header-top-text {
+font-size: 1.5rem;
+    top: 10px;
+    top: 0;
+    padding-top: 8px;
+}
+.header-main-slogan span {
+font-size: 1.2rem;
+    padding: 0 8px;
+}
+}
+</style>
+</head>
+<body>
+   <noscript>
+    <p style="text-align:center;color:red;">JavaScript is required to use this site effectively.</p>
+  </noscript>
+<header class="header">
+<div class="header-top-text">Sell in Seconds</div>
+
+<img src="https://www.sellinseconds.in/aicrop1.webp" loading="lazy" alt="Sell In Seconds - Banner showing various gadgets like phones, laptops, and watches" class="header-image">
+
+<div class="header-main-slogan"><span>Trade Your Gadget in Seconds</span></div>
+</header>
+<main>
+<section class="hero-intro">
+<h2 class="no-nonsense-heading">No App, No Multiple Questions, No Nonsense.</h2>
+
+<h2>Choose the Gadget Service You Need</h2>
+</section>
+
+
+
+<section class="image-grid-section">
+<div class="image-grid">
+<div class="image-grid-row1-row2">
+<figure class="image-container" data-back-text="Sell Phone" data-gadget-name="Mobile Phone (iPhone, Samsung, Android, etc.)">
+<div class="image-card-inner">
+<div class="image-card-front">
+<img src="https://www.sellinseconds.in/phone.webp" loading="lazy" alt="Sell Mobile Phone - iPhone, Samsung, OnePlus, Android - Instant Quote">
+<figcaption>Mobile Phone</figcaption>
+</div>
+<div class="image-card-back">Sell Phone</div>
+</div>
+<p class="image-description">Sell your old mobile (Apple iPhone, Android, etc.) for a great price.</p>
+</figure>
+<figure class="image-container" data-back-text="Sell Laptop" data-gadget-name="Laptop / MacBook (Dell, HP, Apple, Windows)">
+<div class="image-card-inner">
+<div class="image-card-front">
+<img src="https://www.sellinseconds.in/laptop.webp" loading="lazy" alt="Sell Laptop or MacBook - Dell, HP, Apple, Windows - Get Best Price">
+<figcaption>Laptop / MacBook</figcaption>
+</div>
+<div class="image-card-back">Sell Laptop</div>
+</div>
+<p class="image-description">Trade in your used laptop or MacBook (Dell, HP, Apple, Windows) quickly.</p>
+</figure>
+<figure class="image-container" data-back-text="Sell iMac" data-gadget-name="iMac / All-in-One PC">
+<div class="image-card-inner">
+<div class="image-card-front">
+<img src="https://www.sellinseconds.in/allinone.webp" loading="lazy" alt="Sell iMac or All-in-One PC - Apple, HP, Dell">
+<figcaption>iMac / All-in-One</figcaption>
+</div>
+<div class="image-card-back">Sell iMac</div>
+</div>
+<p class="image-description">Get a great price for your used iMac or All-in-One PC.</p>
+</figure>
+<figure class="image-container" data-back-text="Sell Tablet" data-gadget-name="Tablet / iPad (Apple, Samsung, Android)">
+<div class="image-card-inner">
+<div class="image-card-front">
+<img src="https://www.sellinseconds.in/tablet.webp" loading="lazy" alt="Sell Tablet or iPad - Apple iPad, Samsung Galaxy Tab, Android Tablets">
+<figcaption>Tablet / iPad</figcaption>
+</div>
+<div class="image-card-back">Sell Tablet</div>
+</div>
+<p class="image-description">Sell your old tablet or iPad (Apple, Samsung, Android) for instant cash.</p>
+</figure>
+</div>
+<div class="image-grid-row1-row2">
+<figure class="image-container" data-back-text="Sell Accessories" data-gadget-name="Gadget Accessories">
+<div class="image-card-inner">
+<div class="image-card-front">
+<img src="https://www.sellinseconds.in/accessories.webp" loading="lazy" alt="Sell Gadget Accessories - Chargers, Cables, Covers">
+<figcaption>Accessories</figcaption>
+</div>
+<div class="image-card-back">Sell Accessories</div>
+</div>
+<p class="image-description">Sell various gadget accessories like Apple TV, Apple Pencil & Keyboard, etc.</p>
+</figure>
+<figure class="image-container" data-back-text="Sell Smart Watch" data-gadget-name="Smart Watch / Apple Watch">
+<div class="image-card-inner">
+<div class="image-card-front">
+<img src="https://www.sellinseconds.in/watch.webp" loading="lazy" alt="Sell Smart Watch or Apple Watch - Series 8, 9, Ultra">
+<figcaption>Smart Watch</figcaption>
+</div>
+<div class="image-card-back">Sell Smart Watch</div>
+</div>
+<p class="image-description">Sell your Apple Watch or other smartwatches for the best value.</p>
+</figure>
+<figure class="image-container" data-back-text="Sell Earbuds" data-gadget-name="Earbuds / AirPods">
+<div class="image-card-inner">
+<div class="image-card-front">
+<img src="https://www.sellinseconds.in/earbuds.webp" loading="lazy" alt="Sell Earbuds or AirPods - Apple AirPods, Samsung Buds">
+<figcaption>Earbuds / AirPods</figcaption>
+</div>
+<div class="image-card-back">Sell Earbuds</div>
+</div>
+<p class="image-description">Get cash for used earbuds, including Apple AirPods & Samsung Buds.</p>
+</figure>
+<figure class="image-container" data-back-text="Sell Console" data-gadget-name="Gaming Console (Xbox, PS, Nintendo)">
+<div class="image-card-inner">
+<div class="image-card-front">
+<img src="https://www.sellinseconds.in/gamingconsole.webp" loading="lazy" alt="Sell Gaming Console (Xbox, PlayStation, Nintendo)">
+<figcaption>Gaming Console</figcaption>
+</div>
+<div class="image-card-back">Sell Console</div>
+</div>
+<p class="image-description">Sell your Xbox, PlayStation, or Nintendo Switch easily.</p>
+</figure>
+</div>
+<div class="image-grid-row1-row2">
+<figure class="image-container" data-back-text="Buy Gadgets" data-gadget-name="Buy Pre-owned Gadgets">
+<div class="image-card-inner">
+<div class="image-card-front">
+<img src="https://www.sellinseconds.in/buy.webp" loading="lazy" alt="Buy Pre-owned Gadgets - Phones, Laptops, Tablets - Quality Checked">
+<figcaption>Buying Gadget</figcaption>
+</div>
+<div class="image-card-back">Buy Gadgets</div>
+</div>
+<p class="image-description">Looking for quality pre-owned gadgets? Explore our range of iPhones, MacBooks, and iPads.</p>
+</figure>
+<figure class="image-container" data-back-text="Repair Gadgets" data-gadget-name="Gadget Repair Service">
+<div class="image-card-inner">
+<div class="image-card-front">
+<img src="https://www.sellinseconds.in/repair.webp" loading="lazy" alt="Gadget Repair Services - Mobile, Laptop, Tablet, Chip Level Repair">
+<figcaption>Servicing Gadget</figcaption>
+</div>
+<div class="image-card-back">Repair Gadgets</div>
+</div>
+<p class="image-description">Expert gadget repair for mobiles, laptops, tablets, including chip-level motherboard repairs.</p>
+</figure>
+<figure class="image-container" data-back-text="Software Fix" data-gadget-name="Software Fix & Optimization">
+<div class="image-card-inner">
+<div class="image-card-front">
+<img src="https://www.sellinseconds.in/software.webp" loading="lazy" alt="Software Fix & Optimization for Phones, Laptops, Tablets">
+<figcaption>Software Fix</figcaption>
+</div>
+<div class="image-card-back">Software Fix</div>
+</div>
+<p class="image-description">Resolve software issues, performance lags, and system errors for all devices.</p>
+</figure>
+<figure class="image-container" data-back-text="Diagnosis" data-gadget-name="Gadget Diagnosis & Checkup">
+<div class="image-card-inner">
+<div class="image-card-front">
+<img src="https://www.sellinseconds.in/diagnosis.webp" loading="lazy" alt="Full Gadget Diagnosis & Health Check-up">
+<figcaption>Diagnosis</figcaption>
+</div>
+<div class="image-card-back">Diagnosis</div>
+</div>
+<p class="image-description">Diagnosis to identify hidden issues and ensure optimal performance.</p>
+</figure>
+</div>
+</div>
+</section>
+
+<section class="hero-intro">
+    <h1>Sell, Buy, Exchange & Repair Mobile Devices, Laptops & Tablets.</h1>
+    <p>From selling used gadgets, buying pre-owned devices, seamless trade-ins, and easy exchanges, to expert repairs for mobile phones, laptops, and tablets, select your gadget category below. Sell In Seconds offers simple, straightforward solutions for all your electronic needs. Get instant quotes for selling your iPhone, MacBook, Apple Watch, Android phones, and more. We also specialize in chip-level repairs and comprehensive gadget servicing.</p>
+</section>
+<form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
+<h2>Get an Instant Quote or Book a Service</h2>
+<input type="text" id="name" name="name" placeholder="Your Name" required>
+<input type="tel" id="mobile" name="mobile" placeholder="Mobile Number (10 digits)" required pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number">
+<input type="hidden" id="interest" name="interest">
+<button type="submit" aria-label="Submit your contact information to get a quote or book service">Submit</button>
+</form>
+<div class="below-form-content">
+<h1>Your Ultimate Platform to Sell, Buy, Exchange & Repair Gadgets – Chip Level Service Available!</h1>
+<p>At Sell In Seconds, we make trading your old electronics incredibly easy and rewarding. Whether you're looking to sell your iPhone, trade in your MacBook, buy a pre-owned iPad, or get a quick repair for all your Gadgets (including chip-level motherboard service), we offer seamless service for all types of mobile devices, laptops, and tablets. Get an instant quote and experience a hassle-free process today!</p>
+</div>
+<div class="disclaimer">
+Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Driving License) may be required for certain transactions. Payment will be processed post diagnosis and agreement. Service processes will be clearly communicated. For safety and verification, transactions are conducted through secure channels.
+</div>
+</main>
+<footer class="site-footer">
+<p>© <span id="currentYear"></span> Sell In Seconds. All rights reserved.</p>
+<p><a href="https://www.sellinseconds.in/privacy-policy.html" title="Privacy Policy">Privacy Policy</a> | <a href="https://www.sellinseconds.in/terms-conditions.html" title="Terms and Conditions">Terms & Conditions</a></p>
+<div class="social-links">
+    <a href="https://x.com/thanveerahmed" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg" alt="X (formerly Twitter) logo" class="social-icon">
+    </a>
+    <a href="https://www.facebook.com/rush4phone" target="_blank" rel="noopener noreferrer" aria-label="Like our Facebook page">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook logo" class="social-icon">
+    </a>
+    <a href="https://www.instagram.com/apple.speaks/#" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram logo" class="social-icon">
+    </a>
+    <a href="https://www.youtube.com/@telwin9616" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to our YouTube channel">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/YouTube_social_white_squircle_%282024%29.svg" alt="YouTube logo" class="social-icon">
+    </a>
+</div>
+<p class="small-text">Designed & Developed by Thanveer P</p>
+</footer>
+<a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair.">
+<img src="https://www.sellinseconds.in/whatsapp.webp" loading="lazy" alt="WhatsApp Chat Icon for SellInSeconds">
+</a>
+<div id="loading-overlay">
+<img src="https://www.sellinseconds.in/loading.gif" alt="Loading, please wait...">
+</div>
+
+<div id="customModal" class="modal">
+<div class="modal-content">
+<p id="modalMessage">This is a modal message!</p>
+<button id="modalCloseButton" class="modal-close-button">OK</button>
+</div>
+</div>
+
+<script>
+const containers = document.querySelectorAll('.image-container');
+const nameInput = document.getElementById('name');
+const interestInput = document.getElementById('interest');
+const submitButton = document.querySelector('#contact-form button[type="submit"]');
+const headerElement = document.querySelector('header');
+const bodyElement = document.body;
+const synth = window.speechSynthesis;
+let currentUtterance;
+
+const modal = document.getElementById('customModal');
+const modalMessage = document.getElementById('modalMessage');
+const modalCloseButton = document.getElementById('modalCloseButton');
+
+function showModal(message) {
+modalMessage.textContent = message;
+modal.style.display = 'block';
+}
+modalCloseButton.onclick = function() { modal.style.display = 'none'; }
+window.onclick = function(event) { if (event.target == modal) { modal.style.display = 'none'; } }
+
+function setBodyPadding() {
+requestAnimationFrame(() => {
+if (headerElement) {
+bodyElement.style.paddingTop = headerElement.offsetHeight + 'px';
+}
+});
+}
+
+history.scrollRestoration = 'manual';
+
+document.addEventListener('DOMContentLoaded', () => {
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+setTimeout(() => { window.scrollTo(0, 0); }, 50);
+
+// Add a small delay to hideLoading on DOMContentLoaded for smoother initial render
+setTimeout(hideLoading, 100); 
+
+setBodyPadding();
+window.addEventListener('resize', setBodyPadding);
+
+const allFlipContainers = document.querySelectorAll('.image-grid .image-container');
+const hasFlippedOnce = sessionStorage.getItem('hasFlippedImages');
+const flipDuration = 900;
+const staggerDelay = 100;
+const totalFlipInTime = allFlipContainers.length * staggerDelay;
+const totalFlipOutTime = allFlipContainers.length * staggerDelay + flipDuration;
+const parentGlowElements = document.querySelectorAll('.image-grid-row1-row2');
+
+if (!hasFlippedOnce && allFlipContainers.length > 0) {
+parentGlowElements.forEach(el => el.classList.add('glowing-border'));
+
+allFlipContainers.forEach((container, index) => {
+setTimeout(() => {
+const innerCard = container.querySelector('.image-card-inner');
+if (innerCard) {
+innerCard.style.transform = 'rotateY(180deg)';
+const backText = container.getAttribute('data-back-text');
+const backFace = container.querySelector('.image-card-back');
+if (backText && backFace) {
+backFace.textContent = backText;
+}
+}
+}, staggerDelay * index);
+});
+
+setTimeout(() => {
+allFlipContainers.forEach((container, index) => {
+setTimeout(() => {
+const innerCard = container.querySelector('.image-card-inner');
+if (innerCard) {
+innerCard.style.transform = 'rotateY(0deg)';
+}
+}, staggerDelay * index);
+});
+setTimeout(() => {
+parentGlowElements.forEach(el => el.classList.remove('glowing-border'));
+sessionStorage.setItem('hasFlippedImages', 'true');
+setTimeout(setBodyPadding, 100);
+}, totalFlipOutTime + 200);
+}, totalFlipInTime + 500);
+}
+
+containers.forEach((container) => {
+container.addEventListener('click', () => {
+containers.forEach(c => c.classList.remove('selected'));
+container.classList.add('selected');
+
+const gadgetInterest = container.getAttribute('data-gadget-name') || 'Selected Gadget';
+interestInput.value = gadgetInterest;
+let message;
+
+if (gadgetInterest.toLowerCase().includes("buy")) {
+message = `Interested in buying? Great choice!`;
+submitButton.textContent = "See Available Gadgets";
+} else if (gadgetInterest.toLowerCase().includes("repair")) {
+message = `Need a repair? We can help!`;
+submitButton.textContent = "Book Repair Service";
+} else if (gadgetInterest.toLowerCase().includes("software fix")) {
+message = `Having software troubles? We offer quick solutions!`;
+submitButton.textContent = "Book Software Fix";
+} else if (gadgetInterest.toLowerCase().includes("diagnosis")) {
+message = `Need a checkup? We can diagnose any gadget issue!`;
+submitButton.textContent = "Book Diagnosis";
+} else {
+message = `Selected: ${container.querySelector('figcaption')?.textContent || 'Gadget'}. Get your quote!`;
+submitButton.textContent = "Get Instant Quote";
+}
+
+if (synth && 'speechSynthesis' in window && synth.speaking) {
+synth.cancel();
+setTimeout(() => speak(message), 150);
+} else if (synth && 'speechSynthesis' in window) {
+speak(message);
+}
+
+nameInput.classList.remove('wave');
+const nameInputRect = nameInput.getBoundingClientRect();
+const currentScrollY = window.scrollY;
+const headerHeight = headerElement ? headerElement.offsetHeight : 0;
+const targetScrollTop = nameInputRect.top + currentScrollY - headerHeight - 30;
+
+window.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
+
+setTimeout(() => {
+nameInput.focus({ preventScroll: true });
+nameInput.classList.add('wave');
+setTimeout(() => { nameInput.classList.remove('wave'); }, 900);
+}, 100);
+});
+});
+});
+
+window.onload = () => {
+setTimeout(() => { window.scrollTo(0, 0); }, 50);
+// Add a small delay to hideLoading on window.onload as well
+setTimeout(hideLoading, 100); // Ensure it hides after all assets load
+setBodyPadding();
+};
+
+function speak(text) {
+if ('speechSynthesis' in window && synth) {
+if (synth.speaking) {
+synth.cancel();
+}
+setTimeout(() => {
+currentUtterance = new SpeechSynthesisUtterance(text);
+currentUtterance.rate = 1.1;
+currentUtterance.pitch = 1.0;
+synth.speak(currentUtterance);
+}, 50);
+} else {
+console.log("Speech synthesis not supported or synth not initialized.");
+}
+}
+
+document.getElementById("contact-form").addEventListener("submit", function (e) {
+e.preventDefault();
+const form = e.target;
+const name = form.name.value.trim();
+const mobile = form.mobile.value.trim();
+const interest = form.interest.value.trim();
+const mobileRegex = /^[0-9]{10}$/;
+const nameRegex = /^(?!^\d+$)(?!^[^\w\s]+$)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]+$/u;
+
+
+if (!name || !mobile || !interest) {
+showModal("Please select a product/service and fill out all fields.");
+return;
+}
+if (!nameRegex.test(name) || name.length < 2) {
+showModal("Please enter a valid name (at least 2 characters, letters and standard punctuation).");
+return;
+}
+if (!mobileRegex.test(mobile)) {
+showModal("Invalid mobile number! It should contain exactly 10 digits.");
+return;
+}
+showLoading();
+let loadingTimeout = setTimeout(() => {
+    hideLoading();
+    showModal("The request is taking longer than expected. Please check your internet connection and try again.");
+}, 15000);
+
+const formBody = new URLSearchParams();
+formBody.append("name", name);
+formBody.append("mobile", mobile);
+formBody.append("interest", interest);
+
+fetch(form.action, {
+method: "POST",
+headers: { "Content-Type": "application/x-www-form-urlencoded" },
+body: formBody.toString()
+})
+.then(response => {
+    clearTimeout(loadingTimeout);
+    hideLoading();
+    if (response.ok) {
+        showModal("Form submitted successfully! We will contact you soon.");
+        form.reset();
+        document.querySelectorAll('.image-container.selected').forEach(c => c.classList.remove('selected'));
+        if(submitButton) submitButton.textContent = "Submit";
+        interestInput.value = "";
+        nameInput.classList.remove('wave');
+    } else {
+        response.text().then(text => {
+            console.error("Server error response:", text);
+            showModal("Failed to submit. Please try again. (Server error " + response.status + ")");
+        });
+    }
+})
+.catch(error => {
+    clearTimeout(loadingTimeout);
+    hideLoading();
+    console.error("Network Error:", error.message);
+    showModal("Failed to submit. Please check your internet connection and try again. (Network error)");
+});
+});
+
+function showLoading() { 
+    const overlay = document.getElementById('loading-overlay');
+    overlay.style.display = 'flex'; 
+    overlay.style.opacity = '1';
+    overlay.style.visibility = 'visible';
+}
+function hideLoading() { 
+    const overlay = document.getElementById('loading-overlay');
+    overlay.style.opacity = '0';
+    overlay.style.visibility = 'hidden';
+    // Use a timeout to truly hide the display after the transition, if needed,
+    // to prevent interaction with invisible element, but for now, opacity/visibility are key.
+    // setTimeout(() => { overlay.style.display = 'none'; }, 300); // Optional: if you want display:none after transition
+}
+// Initial state: hideLoading() should be called, but with a delay for visual stability.
+// The DOMContentLoaded and window.onload event listeners already handle this.
+// No direct hideLoading() call here immediately, as it's better to wait a tiny bit
+// document.addEventListener('DOMContentLoaded', hideLoading); // Removed this direct call
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QMV442HBWL');
+  </script>
+ <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sell your gadgets in seconds! Fast, easy trade-in, exchange & repair for phones, laptops, tablets & smartwatches. Get instant quotes & quick service.">
+  <meta name="keywords" content="sell gadgets, trade-in phones, sell mobile, used phones, sell laptops, sell tablets, gadget repair, buy pre-owned gadgets, electronics trade-in">
+  <meta name="author" content="Sell In Seconds">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#007bff">
+  <title>Sell, Buy, Exchange & Repair Mobile Devices | SellInSeconds</title>
+  <link rel="canonical" href="https://www.sellinseconds.in">
+  <link rel="icon" type="image/x-icon" href="https://www.sellinseconds.in/fevicon.ico">
+<meta property="og:title" content="Sell, Buy, Exchange & Chip level Repair Gadgets Instantly - Sell In Seconds">
+  <meta property="og:description" content="Trade in your gadgets easily! Get instant quotes for mobiles, laptops, tablets, and more.">
+  <meta property="og:image" content="https://www.sellinseconds.in/aicrop1.webp">
+  <meta property="og:url" content="https://www.sellinseconds.in">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sell In Seconds">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@SellInSeconds">
+  <meta name="twitter:creator" content="@thanveerahmed">
+  <meta name="twitter:title" content="Sell, Buy, Exchange & Repair Gadgets Instantly">
+  <meta name="twitter:description" content="Get instant quotes for selling your iPhone, MacBook, Android devices, and more.">
+  <meta name="twitter:image" content="https://www.sellinseconds.in/aicrop1.webp">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Sell In Seconds",
+      "url": "https://www.sellinseconds.in",
+      "logo": "https://www.sellinseconds.in/fevicon.ico",
+      "image": "https://www.sellinseconds.in/aicrop1.webp",
+      "description": "Sell In Seconds is your trusted platform for selling, buying, exchanging, trade-ins, and expert repairs of mobile phones, laptops, tablets, smartwatches, and other electronic gadgets. We offer instant quotes, quick service, and chip-level repairs.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+919886566379",
+        "contactType": "Customer Service",
+        "areaServed": "IN",
+        "availableLanguage": ["en", "hi"]
+      },
+      "potentialAction": {
+        "@type": "SellAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.sellinseconds.in/#contact-form"
+        },
+        "query-input": "required name=gadgetInterest"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Gadget Services Offered by Sell In Seconds",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sell Mobile Phone" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sell iPhone" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sell Android Phone" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sell Laptop" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sell MacBook" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sell Tablet" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sell iPad" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sell Smart Watch" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sell Apple Watch" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sell iMac" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sell Gaming Console" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sell Gadget Accessories" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Buy Pre-owned Mobile Phone" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Buy Pre-owned Laptop" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Buy Pre-owned Tablet" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gadget Repair Service" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile Phone Repair" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Laptop Repair" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tablet Repair" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Smartwatch Repair" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Chip-Level Motherboard Repair" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Software Fix & Optimization" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gadget Diagnosis & Checkup" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile Phone Exchange" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gadgets Exchange" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gadget Trade-in Program" } }
+        ]
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Sell In Seconds",
+      "url": "https://www.sellinseconds.in",
+      "image": "https://www.sellinseconds.in/aicrop1.webp",
+      "telephone": "+919886566379",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ITPL Main Road",
+        "addressLocality": "Bangalore",
+        "addressRegion": "Karnataka",
+        "postalCode": "560048",
+        "addressCountry": "IN"
+      },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "12:00",
+        "closes": "23:59"
+      }],
+      "priceRange": "$$",
+      "description": "Buy, sell, and repair gadgets (Chip level as well) instantly with trusted service and instant quotes."
+    }
+  </script>
+<style>
+:root {
+--primary: #007bff;
+--primary-dark: #0056b3;
+--secondary: #6c757d;
+--light-gray: #f8f9fa;
+--text-color: #333;
+--heading-color: #1a1a1a;
+--form-bg: #ffffff;
+--border-color: #d0d7de;
+--radius: 12px;
+--shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+--shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.15);
+--bg-color-1: #e9f5ff;
+--bg-color-2: #f0f2ff;
+--bg-color-3: #f8f0ff;
+--bg-color-4: #fff9f0;
+--bg-color-5: #f0fff0;
+--main-accent-color: #4285F4; /* Google Blue */
+--selection-glow-color: #FBBC05; /* Google Yellow for selection glow */
+--purple-border: #8A2BE2; /* Violet color */
+}
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+html, body {
+margin: 0;
+padding: 0;
+width: 100%;
+overflow-x: hidden;
+}
+body {
+background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5));
+background-size: 400% 400%;
+animation: gradientShift 40s ease infinite;
+color: var(--text-color);
+line-height: 1.7;
+padding-top: 0;
+}
+@keyframes gradientShift {
+0% { background-position: 0% 50%; }
+25% { background-position: 50% 100%; }
+50% { background-position: 100% 50%; }
+75% { background-position: 50% 0%; }
+100% { background-position: 0% 50%; }
+}
+h1, h2, h3, .header-main-slogan span {
+font-family: 'Roboto', sans-serif;
+text-align: center;
+background: linear-gradient(90deg, var(--main-accent-color) 0%, #34A853 33%, #FBBC05 66%, #EA4335 100%);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 1.5rem; }
+h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; }
+h3 { font-size: 1.6rem; font-weight: 500; margin-bottom: 2rem; }
+
+.hero-intro h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--main-accent-color);
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    text-align: center;
+    margin: 0.5rem auto 0.5rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* NEW RULE FOR "No App, No Nonsense" heading */
+.hero-intro .no-nonsense-heading {
+    font-size: 1.25rem; /* Same size as h1 below it */
+    font-weight: 600;
+    color: black; /* Black color */
+    background: none; /* Remove gradient background */
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    text-align: center;
+    margin: 0.5rem auto 0.5rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+
+.hero-intro h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--main-accent-color);
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    text-align: center;
+    margin: 0.5rem auto 0.5rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.hero-intro h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--main-accent-color);
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+.selection-prompt {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #000;
+    margin: 2.5rem auto 1rem;
+    padding: 0 1rem;
+    max-width: 900px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+}
+.selection-prompt::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--main-accent-color);
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+header {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+overflow: hidden;
+background-color: #f5f5f7;
+z-index: 1000;
+box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+padding-top: 10.68%;
+min-height: 150px;
+}
+.header-image {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: contain;
+filter: brightness(0.75) contrast(1.1);
+z-index: 1;
+transition: transform 0.5s ease-out;
+}
+.header-main-slogan {
+position: absolute;
+top: 65%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 2;
+width: 90%;
+text-align: center;
+line-height: 1.2;
+margin: 0;
+padding: 15px 30px;
+max-width: 900px;
+letter-spacing: -0.02em;
+font-family: 'Roboto', sans-serif;
+}
+.header-main-slogan span {
+font-size: 2.53rem;
+font-weight: 900;
+color: white;
+text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+}
+
+.header-top-text {
+display: none;
+position: absolute;
+top: 20px;
+left: 0;
+width: 100%;
+text-align: center;
+z-index: 3;
+color: white;
+font-weight: 700;
+font-size: 1.8rem;
+text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+letter-spacing: 1px;
+font-family: 'Roboto', sans-serif;
+}
+
+.hero-intro {
+max-width: 900px;
+margin: 0 auto;
+padding: 0 1.5rem;
+text-align: center;
+font-size: 1.1rem;
+line-height: 1.8;
+color: var(--text-color);
+}
+.hero-intro h2 { margin-bottom: 0; }
+.hero-intro p { margin-bottom: 0; }
+
+.below-form-content {
+max-width: 900px;
+margin: 3rem auto 2rem auto;
+padding: 0 1.5rem;
+text-align: center;
+color: var(--text-color);
+}
+.below-form-content h1 { font-size: 2.5rem; }
+.below-form-content p { font-size: 1.1rem; }
+
+.image-grid-section {
+padding: 2rem 1rem;
+background-color: rgba(255, 255, 255, 0.6);
+border-radius: var(--radius);
+margin: 1rem auto 2rem auto;
+max-width: 1280px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.image-grid {
+max-width: 1200px;
+margin: 1.5rem auto;
+padding: 0 1rem;
+display: flex;
+flex-direction: column;
+gap: 2.5rem;
+}
+.image-grid-row1-row2 {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+gap: 2rem;
+width: 100%;
+transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
+}
+.image-grid-row1-row2.glowing-border {
+box-shadow: 0 0 15px var(--main-accent-color), 0 0 30px rgba(66, 133, 244, 0.5), 0 0 45px rgba(66, 133, 244, 0.3);
+border: 2px solid var(--main-accent-color);
+animation: pulseBorder 2s infinite alternate;
+}
+
+@keyframes pulseBorder {
+from { border-color: var(--main-accent-color); }
+to { border-color: #8ab4f8; }
+}
+
+.image-container {
+width: 100%;
+perspective: 1200px;
+position: relative;
+cursor: pointer;
+text-align: center;
+background: var(--form-bg);
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+display: flex;
+flex-direction: column;
+overflow: hidden;
+border: 2px solid var(--purple-border);
+}
+.image-container:hover {
+transform: translateY(-10px) scale(1.03);
+box-shadow: var(--shadow-hover);
+}
+.image-card-inner {
+position: relative;
+width: 100%;
+height: 300px;
+text-align: center;
+transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+transform-style: preserve-3d;
+}
+.image-card-back,
+.image-card-front {
+position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background: transparent;
+padding: 20px;
+box-sizing: border-box;
+}
+.image-card-back {
+transform: rotateY(180deg);
+background-color: var(--primary);
+color: white;
+font-size: 1.4rem;
+font-weight: 700;
+}
+.image-card-front img {
+max-width: 100%;
+max-height: 100%;
+object-fit: contain;
+margin-bottom: 0;
+transition: transform 0.4s ease;
+}
+.image-container:hover .image-card-front img {
+transform: scale(1.12);
+}
+.image-card-front figcaption {
+display: block;
+font-size: 1.15rem;
+color: var(--heading-color);
+font-weight: 700;
+margin-top: 8px;
+}
+.image-description {
+font-size: 0.9rem;
+color: var(--secondary);
+padding: 12px 15px;
+text-align: center;
+background-color: #f0f0f0;
+width: 100%;
+box-sizing: border-box;
+margin-top: auto;
+border-top: 1px solid var(--border-color);
+min-height: 70px;
+display: flex;
+align-items: center;
+justify-content: center;
+line-height: 1.4;
+}
+.image-container.selected {
+outline: none;
+box-shadow: 0 0 0 4px white, 0 0 0 7px var(--selection-glow-color), var(--shadow-hover);
+transform: translateY(-10px) scale(1.05);
+z-index: 10;
+}
+
+figcaption { display: block; }
+
+form {
+background: var(--form-bg);
+max-width: 600px;
+margin: 1.5rem auto 3rem auto;
+padding: 3rem 2rem;
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+border: 1px solid var(--border-color);
+}
+form h2 {
+text-align: center;
+font-size: 2rem;
+font-weight: 700;
+margin-bottom: 2.5rem;
+}
+input, select, textarea {
+width: 100%;
+padding: 1rem 1.2rem;
+margin-bottom: 2rem;
+border: 1px solid var(--border-color);
+border-radius: var(--radius);
+font-size: 1rem;
+background: #fdfdfd;
+transition: border-color 0.3s ease, box-shadow 0.3s ease;
+box-sizing: border-box;
+}
+input:focus, select:focus, textarea:focus {
+border-color: var(--main-accent-color);
+box-shadow: 0 0 0 3px rgba(66,133,244,0.2);
+outline: none;
+}
+button[type="submit"] {
+width: 100%;
+padding: 1rem;
+background: var(--primary);
+color: white;
+border: none;
+border-radius: var(--radius);
+font-size: 1.1rem;
+font-weight: 600;
+cursor: pointer;
+transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+box-shadow: var(--shadow);
+}
+button[type="submit"]:hover {
+background: var(--primary-dark);
+transform: translateY(-3px);
+box-shadow: var(--shadow-hover);
+}
+button[type="submit"]:active {
+transform: translateY(0);
+box-shadow: var(--shadow);
+}
+.disclaimer {
+max-width: 700px;
+margin: 4rem auto 6rem auto;
+padding: 1.5rem;
+font-size: 0.9rem;
+color: #555;
+text-align: center;
+background-color: var(--form-bg);
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+border: 1px solid var(--border-color);
+}
+@keyframes wavePulse {
+0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(66,133,244, 0.7); }
+70% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(66,133,244, 0); }
+100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(66,133,244, 0); }
+}
+input.wave { animation: wavePulse 0.8s ease-out; }
+
+.site-footer {
+background-color: #1d1d1f;
+color: #f5f5f7;
+padding: 2.5rem 1rem;
+text-align: center;
+font-size: 0.95rem;
+box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+border-top: 4px solid var(--primary);
+}
+.site-footer a { color: #f5f5f7; text-decoration: none; transition: color 0.3s ease, text-decoration 0.3s ease; }
+.site-footer a:hover { color: var(--primary); text-decoration: underline; }
+.site-footer .small-text { font-size: 0.85rem; margin-top: 0.8rem; color: #ccc; }
+#whatsapp-icon {
+position: fixed; bottom: 20px; right: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease; z-index: 1000;
+background-color: #25D366; border-radius: 50%; padding: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+#whatsapp-icon img { width: 55px; height: 55px; object-fit: contain; display: block; }
+#whatsapp-icon:hover { transform: scale(1.15); box-shadow: 0 6px 16px rgba(0,0,0,0.3); }
+#loading-overlay {
+position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95);
+z-index: 9999; display: flex; align-items: center; justify-content: center;
 }
 #loading-overlay img { width: 80px; height: 80px; animation: spin 1s linear infinite; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
