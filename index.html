@@ -90,12 +90,12 @@
       top: 0;
       left: 0;
       width: 100%;
+      height: 30vh;
+      min-height: 200px;
       overflow: hidden;
-      background-color: #f5f5f7;
+      background-color: #000;
       z-index: 1000;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      padding-top: 10.68%;
-      min-height: 150px;
     }
     
     .header-image {
@@ -111,7 +111,7 @@
     
     .header-main-slogan {
       position: absolute;
-      top: 65%;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 2;
@@ -126,14 +126,13 @@
     }
     
     .header-main-slogan span {
-      font-size: clamp(1.5rem, 4vw, 2.53rem);
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
       font-weight: 900;
       color: white;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     }
     
     .header-top-text {
-      display: none;
       position: absolute;
       top: 20px;
       left: 0;
@@ -142,7 +141,7 @@
       z-index: 3;
       color: white;
       font-weight: 700;
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-size: clamp(1.5rem, 4vw, 2rem);
       text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
       letter-spacing: 1px;
       font-family: 'Roboto', sans-serif;
@@ -160,20 +159,17 @@
       100% { background-position: -200% 0; }
     }
     
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       header {
-        min-height: 120px;
+        height: 25vh;
+        min-height: 180px;
       }
-      .header-main-slogan {
-        top: auto;
-        bottom: 15px;
-        transform: translateX(-50%);
-        width: 100%;
-      }
-      .header-top-text {
-        display: block;
-        top: 15px;
-        padding-top: 10px;
+    }
+    
+    @media (max-width: 480px) {
+      header {
+        height: 20vh;
+        min-height: 150px;
       }
     }
   </style>
@@ -342,12 +338,11 @@
       gap: 2.5rem;
     }
     
-    .image-grid-row1-row2 {
+    .image-grid-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
       width: 100%;
-      transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
     }
     
     .image-container {
@@ -374,7 +369,7 @@
     .image-card-inner {
       position: relative;
       width: 100%;
-      height: clamp(200px, 30vw, 300px);
+      height: 250px;
       text-align: center;
       transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
       transform-style: preserve-3d;
@@ -729,10 +724,30 @@
     }
     
     /* Responsive optimizations */
-    @media (max-width: 991px) and (orientation: landscape) {
-      body { padding-top: 200px; }
-      .header-main-slogan span {
-        font-size: clamp(1.4rem, 4vw, 1.8rem);
+    @media (max-width: 1200px) {
+      .image-grid-row {
+        gap: 1.2rem;
+      }
+    }
+    
+    @media (max-width: 991px) {
+      .image-grid-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .image-grid-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .image-grid-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
       }
     }
   </style>
@@ -765,7 +780,7 @@
     <section class="image-grid-section" id="image-grid-section">
       <div class="skeleton" style="height: 40px; width: 80%; max-width: 300px; margin: 0 auto 2rem;"></div>
       <div class="image-grid">
-        <div class="image-grid-row1-row2">
+        <div class="image-grid-row">
           <div class="skeleton" style="height: min(350px, 50vw);"></div>
           <div class="skeleton" style="height: min(350px, 50vw);"></div>
           <div class="skeleton" style="height: min(350px, 50vw);"></div>
@@ -875,7 +890,7 @@
         
         gridSection.innerHTML = `
           <div class="image-grid">
-            <div class="image-grid-row1-row2">
+            <div class="image-grid-row">
               <figure class="image-container" data-back-text="Sell Phone" data-gadget-name="Mobile Phone (iPhone, Samsung, Android, etc.)" role="button" aria-pressed="false" tabindex="0">
                 <div class="image-card-inner">
                   <div class="image-card-front">
@@ -917,7 +932,7 @@
                 <p class="image-description">Sell your old tablet or iPad (Apple, Samsung, Android) for instant cash.</p>
               </figure>
             </div>
-            <div class="image-grid-row1-row2">
+            <div class="image-grid-row">
               <figure class="image-container" data-back-text="Sell Accessories" data-gadget-name="Gadget Accessories" role="button" aria-pressed="false" tabindex="0">
                 <div class="image-card-inner">
                   <div class="image-card-front">
@@ -959,7 +974,7 @@
                 <p class="image-description">Sell your Xbox, PlayStation, or Nintendo Switch easily.</p>
               </figure>
             </div>
-            <div class="image-grid-row1-row2">
+            <div class="image-grid-row">
               <figure class="image-container" data-back-text="Buy Gadgets" data-gadget-name="Buy Pre-owned Gadgets" role="button" aria-pressed="false" tabindex="0">
                 <div class="image-card-inner">
                   <div class="image-card-front">
