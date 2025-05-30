@@ -799,11 +799,11 @@ font-size: 1.2rem;
 <main>
 <section class="hero-intro">
 <h2 class="no-nonsense-heading">No App, No Multiple Questions, No Nonsense.</h2>
-<h1>Sell, Buy, Exchange & Repair Mobile Devices, Laptops & Tablets.</h1>
-<p>From selling used gadgets, buying pre-owned devices, seamless trade-ins, and easy exchanges, to expert repairs for mobile phones, laptops, and tablets, select your gadget category below. Sell In Seconds offers simple, straightforward solutions for all your electronic needs. Get instant quotes for selling your iPhone, MacBook, Apple Watch, Android phones, and more. We also specialize in chip-level repairs and comprehensive gadget servicing.</p>
+
+<h2>Choose the Gadget Service You Need</h2>
 </section>
 
-<h3 class="selection-prompt">Please select a Service or Gadget type to continue:</h3>
+
 
 <section class="image-grid-section">
 <div class="image-grid">
@@ -936,6 +936,10 @@ font-size: 1.2rem;
 </div>
 </section>
 
+<section class="hero-intro">
+    <h1>Sell, Buy, Exchange & Repair Mobile Devices, Laptops & Tablets.</h1>
+    <p>From selling used gadgets, buying pre-owned devices, seamless trade-ins, and easy exchanges, to expert repairs for mobile phones, laptops, and tablets, select your gadget category below. Sell In Seconds offers simple, straightforward solutions for all your electronic needs. Get instant quotes for selling your iPhone, MacBook, Apple Watch, Android phones, and more. We also specialize in chip-level repairs and comprehensive gadget servicing.</p>
+</section>
 <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
 <h2>Get an Instant Quote or Book a Service</h2>
 <input type="text" id="name" name="name" placeholder="Your Name" required>
@@ -1089,65 +1093,58 @@ submitButton.textContent = "Book Software Fix";
 message = `Need a checkup? We can diagnose any gadget issue!`;
 submitButton.textContent = "Book Diagnosis";
 } else {
-message = `Selected: ${container.querySelector('figcaption')?.textContent || 'Gadget'}. Get your quote!`;
-submitButton.textContent = "Get Instant Quote";
-}
-
-if (synth && 'speechSynthesis' in window && synth.speaking) {
-synth.cancel();
-setTimeout(() => speak(message), 150);
-} else if (synth && 'speechSynthesis' in window) {
-speak(message);
-}
-
-nameInput.classList.remove('wave');
-const nameInputRect = nameInput.getBoundingClientRect();
-const currentScrollY = window.scrollY;
-const headerHeight = headerElement ? headerElement.offsetHeight : 0;
-const targetScrollTop = nameInputRect.top + currentScrollY - headerHeight - 30;
-
-window.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
-
-setTimeout(() => {
-nameInput.focus({ preventScroll: true });
-nameInput.classList.add('wave');
-setTimeout(() => { nameInput.classList.remove('wave'); }, 900);
-}, 100);
-});
-});
-});
-
-window.onload = () => {
-setTimeout(() => { window.scrollTo(0, 0); }, 50);
-// Add a small delay to hideLoading on window.onload as well
-setTimeout(hideLoading, 100); // Ensure it hides after all assets load
-setBodyPadding();
-};
-
-function speak(text) {
-if ('speechSynthesis' in window && synth) {
-if (synth.speaking) {
-synth.cancel();
-}
-setTimeout(() => {
-currentUtterance = new SpeechSynthesisUtterance(text);
-currentUtterance.rate = 1.1;
-currentUtterance.pitch = 1.0;
-synth.speak(currentUtterance);
-}, 50);
-} else {
-console.log("Speech synthesis not supported or synth not initialized.");
-}
-}
-
-document.getElementById("contact-form").addEventListener("submit", function (e) {
-e.preventDefault();
-const form = e.target;
-const name = form.name.value.trim();
-const mobile = form.mobile.value.trim();
-const interest = form.interest.value.trim();
-const mobileRegex = /^[0-9]{10}$/;
-const nameRegex = /^(?!^\d+$)(?!^[^\w\s]+$)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]+$/u;
+message = `Selected: <span class="math-inline">\{container\.querySelector\('figcaption'\)?\.textContent \|\| 'Gadget'\}\. Get your quote\!\`;
+submitButton\.textContent \= "Get Instant Quote";
+\}
+if \(synth && 'speechSynthesis' in window && synth\.speaking\) \{
+synth\.cancel\(\);
+setTimeout\(\(\) \=\> speak\(message\), 150\);
+\} else if \(synth && 'speechSynthesis' in window\) \{
+speak\(message\);
+\}
+nameInput\.classList\.remove\('wave'\);
+const nameInputRect \= nameInput\.getBoundingClientRect\(\);
+const currentScrollY \= window\.scrollY;
+const headerHeight \= headerElement ? headerElement\.offsetHeight \: 0;
+const targetScrollTop \= nameInputRect\.top \+ currentScrollY \- headerHeight \- 30;
+window\.scrollTo\(\{ top\: targetScrollTop, behavior\: 'smooth' \}\);
+setTimeout\(\(\) \=\> \{
+nameInput\.focus\(\{ preventScroll\: true \}\);
+nameInput\.classList\.add\('wave'\);
+setTimeout\(\(\) \=\> \{ nameInput\.classList\.remove\('wave'\); \}, 900\);
+\}, 100\);
+\}\);
+\}\);
+\}\);
+window\.onload \= \(\) \=\> \{
+setTimeout\(\(\) \=\> \{ window\.scrollTo\(0, 0\); \}, 50\);
+// Add a small delay to hideLoading on window\.onload as well
+setTimeout\(hideLoading, 100\); // Ensure it hides after all assets load
+setBodyPadding\(\);
+\};
+function speak\(text\) \{
+if \('speechSynthesis' in window && synth\) \{
+if \(synth\.speaking\) \{
+synth\.cancel\(\);
+\}
+setTimeout\(\(\) \=\> \{
+currentUtterance \= new SpeechSynthesisUtterance\(text\);
+currentUtterance\.rate \= 1\.1;
+currentUtterance\.pitch \= 1\.0;
+synth\.speak\(currentUtterance\);
+\}, 50\);
+\} else \{
+console\.log\("Speech synthesis not supported or synth not initialized\."\);
+\}
+\}
+document\.getElementById\("contact\-form"\)\.addEventListener\("submit", function \(e\) \{
+e\.preventDefault\(\);
+const form \= e\.target;
+const name \= form\.name\.value\.trim\(\);
+const mobile \= form\.mobile\.value\.trim\(\);
+const interest \= form\.interest\.value\.trim\(\);
+const mobileRegex \= /^\[0\-9\]\{10\}</span>/;
+const nameRegex = /^(?!^\d+<span class="math-inline">\)\(?\!^\[^\\w\\s\]\+</span>)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]+$/u;
 
 
 if (!name || !mobile || !interest) {
@@ -1211,3 +1208,4 @@ function hideLoading() { document.getElementById('loading-overlay').style.displa
 </script>
 </body>
 </html>
+}
