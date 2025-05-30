@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
-   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
+   
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -195,6 +195,20 @@ h3 { font-size: 1.6rem; font-weight: 500; margin-bottom: 2rem; }
     margin: 0.5rem auto 0.5rem;
     text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
+
+/* NEW RULE FOR "No App, No Nonsense" heading */
+.hero-intro .no-nonsense-heading {
+    font-size: 1.25rem; /* Same size as h1 below it */
+    font-weight: 600;
+    color: black; /* Black color */
+    background: none; /* Remove gradient background */
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    text-align: center;
+    margin: 0.5rem auto 0.5rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
 
 .hero-intro h2 {
     font-size: 1.25rem;
@@ -541,6 +555,11 @@ background-color: #25D366; border-radius: 50%; padding: 5px; box-shadow: 0 4px 1
 #loading-overlay {
 position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95);
 z-index: 9999; display: flex; align-items: center; justify-content: center;
+
+/* NEW CSS for smooth hiding */
+opacity: 1; /* Start visible */
+visibility: visible; /* Start visible */
+transition: opacity 0.3s ease-out, visibility 0.3s ease-out; /* Smooth transition */
 }
 #loading-overlay img { width: 80px; height: 80px; animation: spin 1s linear infinite; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
@@ -627,59 +646,49 @@ border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: bac
 .selection-prompt { font-size: 1.15rem; }
 }
 @media (max-width: 991px) and (orientation: landscape) {
-body { padding-top: 200px; }
-header {
-height: auto;
-min-height: unset;
-padding-top: 10.68%;
-}
-.header-image { object-fit: contain; }
-.header-image {
-    object-fit: contain;
-    object-position: center 45%;
-}
+    body { padding-top: 200px; }
+    header {
+        height: auto;
+        min-height: unset;
+        padding-top: 10.68%;
+    }
+    .header-image { 
+        object-fit: contain;
+        object-position: center 45%;
+    }
 
-.header-top-text {
-display: block;
-    top: 15px;
-    top: 0;
-    padding-top: 10px;
-font-size: 1.8rem;
-color: white;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-}
+    .header-top-text {
+        display: none !important; /* THIS IS THE CHANGE - HIDE TEXT IN LANDSCAPE */
+    }
 
-.header-main-slogan {
-top: auto;
-    bottom: 15px;
-    bottom: 0;
-    padding-bottom: 10px;
-transform: translateX(-50%);
-    width: 100%;
-}
-.header-main-slogan span {
-    font-size: 1.5rem;
-    font-size: 1.4rem;
-color: white;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-    display: inline-block;
-    padding: 0 10px;
-}
+    .header-main-slogan {
+        top: auto;
+        bottom: 15px;
+        bottom: 0;
+        padding-bottom: 10px;
+        transform: translateX(-50%);
+        width: 100%;
+    }
+    .header-main-slogan span {
+        font-size: 1.5rem;
+        font-size: 1.4rem;
+        color: white;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        display: inline-block;
+        padding: 0 10px;
+    }
 
-.selection-prompt { font-size: 1.1rem; margin: 2rem auto 0.5rem; }
-.image-grid-section { padding: 1.5rem 0.5rem; margin: 1rem auto 1.5rem auto; }
-.image-grid { padding: 0 0.5rem; gap: 1.5rem; }
-.image-grid-row1-row2 {
-grid-template-columns: repeat(4, 1fr);
-gap: 0.8rem;
-}
-.image-card-inner { height: 180px; }
-
-.image-card-front img { max-width: 100%; max-height: 100%; }
-
-.image-card-front figcaption { font-size: 0.9rem; }
-.image-description { font-size: 0.75rem; padding: 5px 8px; min-height: 40px; }
-.image-card-back { font-size: 1rem; }
+    .selection-prompt { font-size: 1.1rem; margin: 2rem auto 0.5rem; }
+    .image-grid-section { padding: 1.5rem 0.5rem; margin: 1rem auto 1.5rem auto; }
+    .image-grid { padding: 0 0.5rem; gap: 1.5rem; }
+    .image-grid-row1-row2 {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.8rem;
+    }
+    .image-card-inner { height: 180px; }
+    .image-card-front figcaption { font-size: 0.9rem; }
+    .image-description { font-size: 0.75rem; padding: 5px 8px; min-height: 40px; }
+    .image-card-back { font-size: 1rem; }
 }
 @media (max-width: 600px) {
 body { padding-top: 0px; line-height: 1.6; }
@@ -695,7 +704,6 @@ min-height: 120px;
 padding-top: 10.68%;
 background-color: #000;
 }
-.header-image { object-fit: contain; }
 .header-image {
     object-fit: contain;
     object-position: center 45%;
@@ -781,7 +789,6 @@ font-size: 1.2rem;
 }
 }
 </style>
-  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
    <noscript>
@@ -796,12 +803,10 @@ font-size: 1.2rem;
 </header>
 <main>
 <section class="hero-intro">
-<h1>Sell, Buy, Exchange & Repair Mobile Devices, Laptops & Tablets.</h1>
-<h2>Choose the Gadget Service You Need</h2>
-<p>No App, No Multipe Questions, No Nonsense... From selling used gadgets, buying pre-owned devices, seamless trade-ins, and easy exchanges, to expert repairs for mobile phones, laptops, and tablets, select your gadget category below. Sell In Seconds offers simple, straightforward solutions for all your electronic needs. Get instant quotes for selling your iPhone, MacBook, Apple Watch, Android phones, and more. We also specialize in chip-level repairs and comprehensive gadget servicing.</p>
+<h2 class="no-nonsense-heading">No App, No Multiple Questions.</h2>
 </section>
 
-<h3 class="selection-prompt">Please select a Service or Gadget type to continue:</h3>
+
 
 <section class="image-grid-section">
 <div class="image-grid">
@@ -934,6 +939,15 @@ font-size: 1.2rem;
 </div>
 </section>
 
+<section class="hero-intro">
+    <h1>Sell, Buy, Exchange & Repair Mobile Devices, Laptops & Tablets.</h1>
+    <p>From selling used gadgets, buying pre-owned devices, seamless trade-ins, and easy exchanges, to expert repairs for mobile phones, laptops, and tablets, select your gadget category below. Sell In Seconds offers simple, straightforward solutions for all your electronic needs. Get instant quotes for selling your iPhone, MacBook, Apple Watch, Android phones, and more. We also specialize in chip-level repairs and comprehensive gadget servicing.</p>
+</section>
+
+<div class="below-form-content">
+<h1>Your Ultimate Platform to Sell, Buy, Exchange & Repair Gadgets – Chip Level Service Available!</h1>
+<p>At Sell In Seconds, we make trading your old electronics incredibly easy and rewarding. Whether you're looking to sell your iPhone, trade in your MacBook, buy a pre-owned iPad, or get a quick repair for all your Gadgets (including chip-level motherboard service), we offer seamless service for all types of mobile devices, laptops, and tablets. Get an instant quote and experience a hassle-free process today!</p>
+</div>
 <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
 <h2>Get an Instant Quote or Book a Service</h2>
 <input type="text" id="name" name="name" placeholder="Your Name" required>
@@ -941,10 +955,7 @@ font-size: 1.2rem;
 <input type="hidden" id="interest" name="interest">
 <button type="submit" aria-label="Submit your contact information to get a quote or book service">Submit</button>
 </form>
-<div class="below-form-content">
-<h1>Your Ultimate Platform to Sell, Buy, Exchange & Repair Gadgets – Chip Level Service Available!</h1>
-<p>At Sell In Seconds, we make trading your old electronics incredibly easy and rewarding. Whether you're looking to sell your iPhone, trade in your MacBook, buy a pre-owned iPad, or get a quick repair for all your Gadgets (including chip-level motherboard service), we offer seamless service for all types of mobile devices, laptops, and tablets. Get an instant quote and experience a hassle-free process today!</p>
-</div>
+
 <div class="disclaimer">
 Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Driving License) may be required for certain transactions. Payment will be processed post diagnosis and agreement. Service processes will be clearly communicated. For safety and verification, transactions are conducted through secure channels.
 </div>
@@ -1017,7 +1028,9 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('currentYear').textContent = new Date().getFullYear();
 setTimeout(() => { window.scrollTo(0, 0); }, 50);
 
-hideLoading();
+// Add a small delay to hideLoading on DOMContentLoaded for smoother initial render
+setTimeout(hideLoading, 100); 
+
 setBodyPadding();
 window.addEventListener('resize', setBodyPadding);
 
@@ -1115,6 +1128,8 @@ setTimeout(() => { nameInput.classList.remove('wave'); }, 900);
 
 window.onload = () => {
 setTimeout(() => { window.scrollTo(0, 0); }, 50);
+// Add a small delay to hideLoading on window.onload as well
+setTimeout(hideLoading, 100); // Ensure it hides after all assets load
 setBodyPadding();
 };
 
@@ -1197,10 +1212,24 @@ body: formBody.toString()
 });
 });
 
-function showLoading() { document.getElementById('loading-overlay').style.display = 'flex'; }
-function hideLoading() { document.getElementById('loading-overlay').style.display = 'none'; }
-document.addEventListener('DOMContentLoaded', hideLoading);
+function showLoading() { 
+    const overlay = document.getElementById('loading-overlay');
+    overlay.style.display = 'flex'; 
+    overlay.style.opacity = '1';
+    overlay.style.visibility = 'visible';
+}
+function hideLoading() { 
+    const overlay = document.getElementById('loading-overlay');
+    overlay.style.opacity = '0';
+    overlay.style.visibility = 'hidden';
+    // Use a timeout to truly hide the display after the transition, if needed,
+    // to prevent interaction with invisible element, but for now, opacity/visibility are key.
+    // setTimeout(() => { overlay.style.display = 'none'; }, 300); // Optional: if you want display:none after transition
+}
+// Initial state: hideLoading() should be called, but with a delay for visual stability.
+// The DOMContentLoaded and window.onload event listeners already handle this.
+// No direct hideLoading() call here immediately, as it's better to wait a tiny bit
+// document.addEventListener('DOMContentLoaded', hideLoading); // Removed this direct call
 </script>
-   <script src="main.js" defer></script>
 </body>
 </html>
