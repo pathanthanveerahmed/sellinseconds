@@ -1,0 +1,21 @@
+{
+  "name": "Sell In Seconds",
+  "short_name": "SellNow",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
+  "description": "Buy, sell, and repair gadgets instantly!",
+  "icons": [
+    {
+      "src": "https://www.sellinseconds.in/fevicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "https://www.sellinseconds.in/aicrop1.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    }
+  ]
+}
