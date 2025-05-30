@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -747,8 +746,6 @@
       }
     }
   </style>
-  <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#007bff">
 </head>
 <body>
   <noscript>
@@ -907,18 +904,18 @@
       <p>At Sell In Seconds, we make trading your old electronics incredibly easy and rewarding. Whether you're looking to sell your iPhone, trade in your MacBook, buy a pre-owned iPad, or get a quick repair for all your Gadgets (including chip-level motherboard service), we offer seamless service for all types of mobile devices, laptops, and tablets. Get an instant quote and experience a hassle-free process today!</p>
     </div>
     
-    <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
+    <form id="contact-form" method="POST" role="form" autocomplete="on" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
       <h2>Get an Instant Quote or Book a Service</h2>
       
       <div class="form-group">
         <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required autocomplete="name">
         <div id="name-error" class="error-message">Please enter a valid name (at least 2 characters)</div>
       </div>
       
       <div class="form-group">
         <label for="mobile">Mobile Number</label>
-        <input type="tel" id="mobile" name="mobile" placeholder="Enter 10-digit mobile number" required pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number">
+        <input type="tel" id="mobile" name="mobile" placeholder="Enter 10-digit mobile number" required pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number" autocomplete="tel">
         <div id="mobile-error" class="error-message">Please enter a valid 10-digit mobile number</div>
       </div>
       
@@ -960,14 +957,14 @@
     <img src="https://www.sellinseconds.in/loading.gif" alt="Loading, please wait...">
   </div>
 
-  <div id="customModal" class="modal">
+  <div id="customModal" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <p id="modalMessage">This is a modal message!</p>
       <button id="modalCloseButton" class="modal-close-button">OK</button>
     </div>
   </div>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
+  <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -1241,11 +1238,5 @@
       overlay.style.visibility = 'hidden';
     }
   </script>
-  <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-      .then(() => console.log('Service Worker Registered'));
-  }
-</script>
 </body>
 </html>
