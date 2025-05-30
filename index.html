@@ -150,7 +150,7 @@
       background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5));
       color: var(--text-color);
       line-height: 1.7;
-      padding-top: 0;
+      padding-top: 0; /* Adjusted by JS */
     }
     h1, h2, h3, .header-main-slogan span {
       font-family: 'Roboto', sans-serif;
@@ -236,8 +236,8 @@
       background-color: #f5f5f7;
       z-index: 1000;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      padding-top: 10.68%;
-      min-height: 150px;
+      padding-top: 10.68%; /* Aspect ratio for initial height placeholder */
+      min-height: 150px; /* Minimum height */
     }
     .header-image {
       position: absolute;
@@ -248,7 +248,7 @@
       object-fit: contain;
       filter: brightness(0.75) contrast(1.1);
       z-index: 1;
-      transition: transform 0.5s ease-out;
+      /* transition: transform 0.5s ease-out; */ /* Removed as it appeared unused */
     }
     .header-main-slogan {
       position: absolute;
@@ -272,7 +272,7 @@
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     }
     .header-top-text {
-      display: none;
+      display: none; /* Hidden by default, shown in media queries */
       position: absolute;
       top: 20px;
       left: 0;
@@ -362,7 +362,7 @@
       width: 100%;
       height: 300px;
       text-align: center;
-      transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1); /* Matches JS flipDuration */
       transform-style: preserve-3d;
     }
     .image-card-back,
@@ -506,7 +506,7 @@
       70% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(66,133,244, 0); }
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(66,133,244, 0); }
     }
-    input.wave { animation: wavePulse 0.8s ease-out; }
+    input.wave { animation: wavePulse 0.8s ease-out; } /* Corresponds to WAVE_ANIMATION_DURATION */
     .site-footer {
       background-color: #1d1d1f;
       color: #f5f5f7;
@@ -620,7 +620,7 @@
       .selection-prompt { font-size: 1.15rem; }
     }
     @media (max-width: 991px) and (orientation: landscape) {
-      body { padding-top: 200px; }
+      body { padding-top: 200px; } /* Will be overridden by JS if header is taller */
       header {
         height: auto;
         min-height: unset;
@@ -636,7 +636,7 @@
       .header-main-slogan {
         top: auto;
         bottom: 15px;
-        bottom: 0;
+        /* bottom: 0; */ /* This was present twice, bottom:15px takes precedence */
         padding-bottom: 10px;
         transform: translateX(-50%);
         width: 100%;
@@ -659,7 +659,7 @@
       .image-card-back { font-size: 1rem; }
     }
     @media (max-width: 600px) {
-      body { padding-top: 0px; line-height: 1.6; }
+      body { padding-top: 0px; line-height: 1.6; } /* Will be overridden by JS if header is taller */
       .hero-intro { font-size: 0.95rem; margin-top: 0; padding: 0 1rem; }
       h1 { font-size: 2rem; }
       .header-main-slogan span {
@@ -679,7 +679,7 @@
       .header-top-text {
         display: block;
         top: 15px;
-        top: 0;
+        /* top: 0; */ /* This was present twice, top:15px takes precedence */
         padding-top: 10px;
         font-size: 1.8rem;
         color: white;
@@ -688,7 +688,7 @@
       .header-main-slogan {
         top: auto;
         bottom: 15px;
-        bottom: 0;
+        /* bottom: 0; */ /* This was present twice, bottom:15px takes precedence */
         padding-bottom: 10px;
         transform: translateX(-50%);
         width: 100%;
@@ -736,7 +736,7 @@
       .header-top-text {
         font-size: 1.5rem;
         top: 10px;
-        top: 0;
+        /* top: 0; */ /* This was present twice, top:10px takes precedence */
         padding-top: 8px;
       }
       .header-main-slogan span {
@@ -933,16 +933,16 @@
     <p><a href="https://www.sellinseconds.in/privacy-policy.html" title="Privacy Policy">Privacy Policy</a> | <a href="https://www.sellinseconds.in/terms-conditions.html" title="Terms and Conditions">Terms & Conditions</a></p>
     <div class="social-links">
       <a href="https://x.com/thanveerahmed" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg" alt="X (formerly Twitter) logo" class="social-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg" alt="" class="social-icon">
       </a>
       <a href="https://www.facebook.com/rush4phone" target="_blank" rel="noopener noreferrer" aria-label="Like our Facebook page">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook logo" class="social-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="" class="social-icon">
       </a>
       <a href="https://www.instagram.com/apple.speaks/#" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram logo" class="social-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="" class="social-icon">
       </a>
       <a href="https://www.youtube.com/@telwin9616" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to our YouTube channel">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/YouTube_social_white_squircle_%282024%29.svg" alt="YouTube logo" class="social-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/YouTube_social_white_squircle_%282024%29.svg" alt="" class="social-icon">
       </a>
     </div>
     <p class="small-text">Designed & Developed by Thanveer P</p>
@@ -972,29 +972,43 @@
   </script>
   
   <script>
+    // --- Configuration Constants ---
+    const SCROLL_TO_TOP_DELAY = 50; // ms, for scrolling to top on load
+    const HIDE_LOADING_OVERLAY_DELAY = 100; // ms, initial delay to hide loading overlay
+    const INITIAL_FOCUS_DELAY = 100; // ms, delay before focusing on name input after selection
+    const WAVE_ANIMATION_DURATION = 900; // ms, duration of the input field wave animation
+    const FLIP_ANIMATION_DURATION = 900; // ms, duration of the card flip (should match CSS)
+    const FLIP_STAGGER_DELAY = 100; // ms, delay between each card flipping in sequence
+    const FLIP_ANIMATION_END_PADDING_ADJUST_DELAY = 100; // ms, delay after flip animation for padding adjustment
+    const FLIP_ANIMATION_GROUP_OUTRO_DELAY = 200; // ms, delay after all cards flipped out before removing glow
+    const FLIP_ANIMATION_TOTAL_INTRO_PAUSE = 500; // ms, pause after all cards flipped in before flipping out
+    const SPEAK_ON_SELECT_DELAY = 150; // ms, delay before speaking after a card selection
+    const SPEAK_QUEUE_PROCESSING_DELAY = 50; // ms, short delay to ensure speech cancellation before new speech
+    const FORM_SUBMISSION_TIMEOUT = 15000; // ms, timeout for form submission fetch request
+
+    // --- DOM Element References ---
     const containers = document.querySelectorAll('.image-container');
     const nameInput = document.getElementById('name');
     const interestInput = document.getElementById('interest');
     const submitButton = document.querySelector('#contact-form button[type="submit"]');
     const headerElement = document.querySelector('header');
     const bodyElement = document.body;
-    const synth = window.speechSynthesis;
-    let currentUtterance;
-
     const modal = document.getElementById('customModal');
     const modalMessage = document.getElementById('modalMessage');
     const modalCloseButton = document.getElementById('modalCloseButton');
-
     const nameError = document.getElementById('name-error');
     const mobileError = document.getElementById('mobile-error');
     const mobileInput = document.getElementById('mobile');
 
+    // --- Speech Synthesis ---
+    const synth = window.speechSynthesis;
+    let currentUtterance;
+
+    // --- Utility Functions ---
     function showModal(message) {
       modalMessage.textContent = message;
       modal.style.display = 'block';
     }
-    modalCloseButton.onclick = function() { modal.style.display = 'none'; }
-    window.onclick = function(event) { if (event.target == modal) { modal.style.display = 'none'; } }
 
     function setBodyPadding() {
       requestAnimationFrame(() => {
@@ -1004,47 +1018,58 @@
       });
     }
 
+    function showLoading() { 
+      const overlay = document.getElementById('loading-overlay');
+      overlay.style.display = 'flex'; 
+      overlay.style.opacity = '1';
+      overlay.style.visibility = 'visible';
+    }
+
+    function hideLoading() { 
+      const overlay = document.getElementById('loading-overlay');
+      overlay.style.opacity = '0';
+      overlay.style.visibility = 'hidden';
+    }
+
+    function speak(text) {
+      if ('speechSynthesis' in window) {
+        if (window.speechSynthesis.speaking) {
+          window.speechSynthesis.cancel();
+        }
+        // Brief pause after cancelling existing speech to ensure the command processes
+        // before queueing a new utterance. Helps prevent speech overlap or missed speech.
+        setTimeout(() => {
+          currentUtterance = new SpeechSynthesisUtterance(text);
+          currentUtterance.rate = 1.1;
+          currentUtterance.pitch = 1.0;
+          window.speechSynthesis.speak(currentUtterance);
+        }, SPEAK_QUEUE_PROCESSING_DELAY);
+      } else {
+        console.log("Speech synthesis not supported.");
+      }
+    }
+
+    // --- Event Listeners & Initializers ---
     history.scrollRestoration = 'manual';
+
+    modalCloseButton.onclick = function() { modal.style.display = 'none'; }
+    window.onclick = function(event) { if (event.target == modal) { modal.style.display = 'none'; } }
 
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('currentYear').textContent = new Date().getFullYear();
-      setTimeout(() => { window.scrollTo(0, 0); }, 50);
-      setTimeout(hideLoading, 100); 
-      setBodyPadding();
+      setTimeout(() => { window.scrollTo(0, 0); }, SCROLL_TO_TOP_DELAY);
+      setTimeout(hideLoading, HIDE_LOADING_OVERLAY_DELAY); 
+      setBodyPadding(); // Initial padding calculation
       window.addEventListener('resize', setBodyPadding);
 
       // Real-time validation
       nameInput.addEventListener('input', validateName);
       mobileInput.addEventListener('input', validateMobile);
 
-      function validateName() {
-        const nameRegex = /^(?!^\d+$)(?!^[^\w\s]+$)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,}$/u;
-        if (!nameRegex.test(nameInput.value.trim())) {
-          nameError.style.display = 'block';
-          return false;
-        } else {
-          nameError.style.display = 'none';
-          return true;
-        }
-      }
-
-      function validateMobile() {
-        const mobileRegex = /^[0-9]{10}$/;
-        if (!mobileRegex.test(mobileInput.value.trim())) {
-          mobileError.style.display = 'block';
-          return false;
-        } else {
-          mobileError.style.display = 'none';
-          return true;
-        }
-      }
-
+      // One-time flip animation for gadget cards on the user's first session visit.
+      // Uses sessionStorage to track if the animation has already been played.
       const allFlipContainers = document.querySelectorAll('.image-grid .image-container');
       const hasFlippedOnce = sessionStorage.getItem('hasFlippedImages');
-      const flipDuration = 900;
-      const staggerDelay = 100;
-      const totalFlipInTime = allFlipContainers.length * staggerDelay;
-      const totalFlipOutTime = allFlipContainers.length * staggerDelay + flipDuration;
       const parentGlowElements = document.querySelectorAll('.image-grid-row1-row2');
 
       if (!hasFlippedOnce && allFlipContainers.length > 0) {
@@ -1061,8 +1086,10 @@
                 backFace.textContent = backText;
               }
             }
-          }, staggerDelay * index);
+          }, FLIP_STAGGER_DELAY * index);
         });
+        
+        const totalFlipInTime = allFlipContainers.length * FLIP_STAGGER_DELAY;
 
         setTimeout(() => {
           allFlipContainers.forEach((container, index) => {
@@ -1071,14 +1098,15 @@
               if (innerCard) {
                 innerCard.style.transform = 'rotateY(0deg)';
               }
-            }, staggerDelay * index);
+            }, FLIP_STAGGER_DELAY * index);
           });
+          const totalFlipOutTime = allFlipContainers.length * FLIP_STAGGER_DELAY + FLIP_ANIMATION_DURATION;
           setTimeout(() => {
             parentGlowElements.forEach(el => el.classList.remove('glowing-border'));
             sessionStorage.setItem('hasFlippedImages', 'true');
-            setTimeout(setBodyPadding, 100);
-          }, totalFlipOutTime + 200);
-        }, totalFlipInTime + 500);
+            setTimeout(setBodyPadding, FLIP_ANIMATION_END_PADDING_ADJUST_DELAY); // Adjust padding after animation if needed
+          }, totalFlipOutTime + FLIP_ANIMATION_GROUP_OUTRO_DELAY);
+        }, totalFlipInTime + FLIP_ANIMATION_TOTAL_INTRO_PAUSE);
       }
 
       containers.forEach((container) => {
@@ -1113,70 +1141,77 @@
 
           if (window.speechSynthesis && window.speechSynthesis.speaking) {
             window.speechSynthesis.cancel();
-            setTimeout(() => speak(message), 150);
+            setTimeout(() => speak(message), SPEAK_ON_SELECT_DELAY);
           } else if (window.speechSynthesis) {
             speak(message);
           }
 
-          nameInput.classList.remove('wave');
+          nameInput.classList.remove('wave'); // Ensure previous wave is removed
           const nameInputRect = nameInput.getBoundingClientRect();
           const currentScrollY = window.scrollY;
           const headerHeight = headerElement ? headerElement.offsetHeight : 0;
-          const targetScrollTop = nameInputRect.top + currentScrollY - headerHeight - 30;
+          const targetScrollTop = nameInputRect.top + currentScrollY - headerHeight - 30; // 30px offset
 
           window.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
 
           setTimeout(() => {
             nameInput.focus({ preventScroll: true });
             nameInput.classList.add('wave');
-            setTimeout(() => { nameInput.classList.remove('wave'); }, 900);
-          }, 100);
+            setTimeout(() => { nameInput.classList.remove('wave'); }, WAVE_ANIMATION_DURATION);
+          }, INITIAL_FOCUS_DELAY);
         });
       });
     });
 
+    // Fallback for final padding adjustment after all resources (images) are loaded
     window.onload = () => {
-      setTimeout(() => { window.scrollTo(0, 0); }, 50);
-      setTimeout(hideLoading, 100);
       setBodyPadding();
     };
 
-    function speak(text) {
-      if ('speechSynthesis' in window) {
-        if (window.speechSynthesis.speaking) {
-          window.speechSynthesis.cancel();
-        }
-        setTimeout(() => {
-          currentUtterance = new SpeechSynthesisUtterance(text);
-          currentUtterance.rate = 1.1;
-          currentUtterance.pitch = 1.0;
-          window.speechSynthesis.speak(currentUtterance);
-        }, 50);
+    // --- Validation Functions ---
+    function validateName() {
+      const nameRegex = /^(?!^\d+$)(?!^[^\w\s]+$)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,}$/u;
+      if (!nameRegex.test(nameInput.value.trim())) {
+        nameError.style.display = 'block';
+        return false;
       } else {
-        console.log("Speech synthesis not supported.");
+        nameError.style.display = 'none';
+        return true;
       }
     }
 
+    function validateMobile() {
+      const mobileRegex = /^[0-9]{10}$/;
+      if (!mobileRegex.test(mobileInput.value.trim())) {
+        mobileError.style.display = 'block';
+        return false;
+      } else {
+        mobileError.style.display = 'none';
+        return true;
+      }
+    }
+
+    // --- Form Submission ---
     document.getElementById("contact-form").addEventListener("submit", function (e) {
       e.preventDefault();
       const form = e.target;
       const name = form.name.value.trim();
       const mobile = form.mobile.value.trim();
       const interest = form.interest.value.trim();
-      const mobileRegex = /^[0-9]{10}$/;
-      const nameRegex = /^(?!^\d+$)(?!^[^\w\s]+$)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,}$/u;
+      
+      // Re-validate before submission
+      const isNameValid = validateName();
+      const isMobileValid = validateMobile();
 
       if (!name || !mobile || !interest) {
         showModal("Please select a product/service and fill out all fields.");
         return;
       }
-      if (!nameRegex.test(name)) {
-        nameError.style.display = 'block';
-        showModal("Please enter a valid name (at least 2 characters, letters and standard punctuation).");
+      if (!isNameValid) {
+         showModal("Please enter a valid name (at least 2 characters, letters and standard punctuation).");
         return;
       }
-      if (!mobileRegex.test(mobile)) {
-        mobileError.style.display = 'block';
+      if (!isMobileValid) {
         showModal("Invalid mobile number! It should contain exactly 10 digits.");
         return;
       }
@@ -1185,7 +1220,7 @@
       let loadingTimeout = setTimeout(() => {
         hideLoading();
         showModal("The request is taking longer than expected. Please check your internet connection and try again.");
-      }, 15000);
+      }, FORM_SUBMISSION_TIMEOUT);
 
       const formBody = new URLSearchParams();
       formBody.append("name", name);
@@ -1207,9 +1242,11 @@
             c.classList.remove('selected');
             c.setAttribute('aria-pressed', 'false');
           });
-          if(submitButton) submitButton.textContent = "Submit";
+          if(submitButton) submitButton.textContent = "Submit"; // Reset button text
           interestInput.value = "";
           nameInput.classList.remove('wave');
+          nameError.style.display = 'none'; // Hide errors on successful submit
+          mobileError.style.display = 'none';
         } else {
           response.text().then(text => {
             console.error("Server error response:", text);
@@ -1224,18 +1261,6 @@
         showModal("Failed to submit. Please check your internet connection and try again. (Network error)");
       });
     });
-
-    function showLoading() { 
-      const overlay = document.getElementById('loading-overlay');
-      overlay.style.display = 'flex'; 
-      overlay.style.opacity = '1';
-      overlay.style.visibility = 'visible';
-    }
-    function hideLoading() { 
-      const overlay = document.getElementById('loading-overlay');
-      overlay.style.opacity = '0';
-      overlay.style.visibility = 'hidden';
-    }
   </script>
 </body>
 </html>
