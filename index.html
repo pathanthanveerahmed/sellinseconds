@@ -3,27 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Instantly sell, buy or repair gadgets! Get same-day quotes for phones, laptops & watches. Free pickup. Top prices guaranteed.">
-  <meta name="keywords" content="sell gadgets, trade-in phones, sell mobile, used phones, sell laptops, sell tablets, gadget repair, buy pre-owned gadgets, electronics trade-in">
+  <meta name="description" content="Instantly sell, buy, exchange or repair gadgets in seconds! Get same-day quotes for phones, laptops, tablets & smartwatches. Free pickup & chip-level repairs available.">
+  <meta name="keywords" content="sell gadgets, trade-in phones, sell mobile, used phones, sell laptops, repair gadgets, buy pre-owned gadgets, electronics trade-in, iPhone repair, MacBook trade-in">
   <meta name="author" content="Sell In Seconds">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#007bff">
-  <title>Sell, Buy, Exchange & Repair Mobile Devices | SellInSeconds</title>
+  <title>Sell, Buy, Exchange & Repair Gadgets Instantly | SellInSeconds</title>
   <link rel="canonical" href="https://www.sellinseconds.in/">
-  <link rel="icon" type="image/x-icon" href="https://www.sellinseconds.in/fevicon.ico">
+  <link rel="icon" href="https://www.sellinseconds.in/fevicon.ico" type="image/x-icon">
   
-  <!-- Preconnect to required origins -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Sell In Seconds",
+      "image": "https://www.sellinseconds.in/aicrop1.webp",
+      "@id": "https://www.sellinseconds.in",
+      "url": "https://www.sellinseconds.in",
+      "telephone": "+919886566379",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ITPL Main Road",
+        "addressLocality": "Bangalore",
+        "addressRegion": "Karnataka",
+        "postalCode": "560048",
+        "addressCountry": "IN"
+      },
+      "priceRange": "₹₹",
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "12:00",
+        "closes": "23:59"
+      }],
+      "sameAs": [
+        "https://x.com/thanveerahmed",
+        "https://www.facebook.com/rush4phone",
+        "https://www.instagram.com/apple.speaks/",
+        "https://www.youtube.com/@telwin9616"
+      ]
+    }
+  </script>
   
   <!-- Preload critical resources -->
   <link rel="preload" href="https://www.sellinseconds.in/aicrop1.webp" as="image">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&family=Open+Sans:wght@400;600&display=swap" as="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com">
   
-  <!-- Inline critical CSS -->
+  <!-- Critical CSS -->
   <style>
-    /* Critical CSS - Above the fold styles */
     :root {
       --primary: #007bff;
       --primary-dark: #0056b3;
@@ -42,9 +73,16 @@
       padding: 0;
       width: 100%;
       overflow-x: hidden;
+    }
+    
+    body {
       font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      background: #e9f5ff;
+      color: #333;
+      line-height: 1.7;
+      padding-top: 0;
     }
     
     header {
@@ -66,7 +104,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       filter: brightness(0.75) contrast(1.1);
       z-index: 1;
     }
@@ -88,18 +126,33 @@
     }
     
     .header-main-slogan span {
-      font-size: 2.53rem;
+      font-size: clamp(1.5rem, 4vw, 2.53rem);
       font-weight: 900;
       color: white;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     }
     
-    /* Add loading animation for visual feedback */
+    .header-top-text {
+      display: none;
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 3;
+      color: white;
+      font-weight: 700;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+      letter-spacing: 1px;
+      font-family: 'Roboto', sans-serif;
+    }
+    
     .skeleton {
       background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
       background-size: 200% 100%;
       animation: skeleton-loading 1.5s infinite;
-      border-radius: 4px;
+      border-radius: 12px;
     }
     
     @keyframes skeleton-loading {
@@ -107,42 +160,32 @@
       100% { background-position: -200% 0; }
     }
     
-    /* Media queries for critical layout */
-    @media (max-width: 991px) {
-      .header-main-slogan span {
-        font-size: 2.5rem;
-      }
-    }
-    
     @media (max-width: 600px) {
-      body { padding-top: 0px; }
-      .header-main-slogan span {
-        font-size: 1.275rem;
-      }
       header {
         min-height: 120px;
-        padding-top: 10.68%;
-        background-color: #000;
       }
-    }
-    
-    @media (max-width: 380px) {
-      .header-main-slogan span {
-        font-size: 1.2rem;
-        padding: 0 8px;
+      .header-main-slogan {
+        top: auto;
+        bottom: 15px;
+        transform: translateX(-50%);
+        width: 100%;
+      }
+      .header-top-text {
+        display: block;
+        top: 15px;
+        padding-top: 10px;
       }
     }
   </style>
   
-  <!-- Non-critical CSS loaded asynchronously -->
+  <!-- Non-critical CSS -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&family=Open+Sans:wght@400;600&display=swap" media="print" onload="this.media='all'">
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&family=Open+Sans:wght@400;600&display=swap">
   </noscript>
   
-  <!-- Deferred CSS for non-critical styles -->
   <style>
-    /* Deferred CSS - Below the fold styles */
+    /* Deferred CSS */
     :root {
       --secondary: #6c757d;
       --light-gray: #f8f9fa;
@@ -163,9 +206,6 @@
     
     body {
       background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5));
-      color: var(--text-color);
-      line-height: 1.7;
-      padding-top: 0;
     }
     
     h1, h2, h3 {
@@ -175,11 +215,26 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      line-height: 1.3;
     }
     
-    h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 1.5rem; }
-    h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; }
-    h3 { font-size: 1.6rem; font-weight: 500; margin-bottom: 2rem; }
+    h1 { 
+      font-size: clamp(1.8rem, 5vw, 2.8rem); 
+      font-weight: 700; 
+      margin-bottom: 1.5rem; 
+    }
+    
+    h2 { 
+      font-size: clamp(1.6rem, 4.5vw, 2.2rem); 
+      font-weight: 700; 
+      margin-bottom: 1rem; 
+    }
+    
+    h3 { 
+      font-size: clamp(1.3rem, 4vw, 1.6rem); 
+      font-weight: 500; 
+      margin-bottom: 2rem; 
+    }
     
     .hero-intro h1 {
       font-size: 1.25rem;
@@ -223,7 +278,7 @@
     
     .selection-prompt {
       text-align: center;
-      font-size: 1.25rem;
+      font-size: clamp(1.1rem, 3vw, 1.25rem);
       font-weight: 600;
       color: #000;
       margin: 2.5rem auto 1rem;
@@ -248,7 +303,7 @@
       margin: 0 auto;
       padding: 0 1.5rem;
       text-align: center;
-      font-size: 1.1rem;
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
       line-height: 1.8;
       color: var(--text-color);
     }
@@ -264,8 +319,10 @@
       color: var(--text-color);
     }
     
-    .below-form-content h1 { font-size: 2.5rem; }
-    .below-form-content p { font-size: 1.1rem; }
+    .below-form-content p { 
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem); 
+      margin-top: 1.5rem;
+    }
     
     .image-grid-section {
       padding: 2rem 1rem;
@@ -287,21 +344,10 @@
     
     .image-grid-row1-row2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
       gap: 2rem;
       width: 100%;
       transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
-    }
-    
-    .image-grid-row1-row2.glowing-border {
-      box-shadow: 0 0 15px var(--main-accent-color), 0 0 30px rgba(66, 133, 244, 0.5), 0 0 45px rgba(66, 133, 244, 0.3);
-      border: 2px solid var(--main-accent-color);
-      animation: pulseBorder 2s infinite alternate;
-    }
-    
-    @keyframes pulseBorder {
-      from { border-color: var(--main-accent-color); }
-      to { border-color: #8ab4f8; }
     }
     
     .image-container {
@@ -328,7 +374,7 @@
     .image-card-inner {
       position: relative;
       width: 100%;
-      height: 300px;
+      height: clamp(200px, 30vw, 300px);
       text-align: center;
       transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
       transform-style: preserve-3d;
@@ -353,7 +399,7 @@
       transform: rotateY(180deg);
       background-color: var(--primary);
       color: white;
-      font-size: 1.4rem;
+      font-size: clamp(1rem, 3vw, 1.4rem);
       font-weight: 700;
     }
     
@@ -371,14 +417,14 @@
     
     .image-card-front figcaption {
       display: block;
-      font-size: 1.15rem;
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
       color: var(--heading-color);
       font-weight: 700;
       margin-top: 8px;
     }
     
     .image-description {
-      font-size: 0.9rem;
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
       color: var(--secondary);
       padding: 12px 15px;
       text-align: center;
@@ -405,9 +451,9 @@
     
     form {
       background: var(--form-bg);
-      max-width: 600px;
+      max-width: min(90%, 600px);
       margin: 1.5rem auto 3rem auto;
-      padding: 3rem 2rem;
+      padding: clamp(1.5rem, 4vw, 3rem) clamp(1.2rem, 3vw, 2rem);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       border: 1px solid var(--border-color);
@@ -415,13 +461,13 @@
     
     form h2 {
       text-align: center;
-      font-size: 2rem;
+      font-size: clamp(1.8rem, 4vw, 2rem);
       font-weight: 700;
-      margin-bottom: 2.5rem;
+      margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
     }
     
     .form-group {
-      margin-bottom: 1.8rem;
+      margin-bottom: clamp(1.2rem, 2.5vw, 1.8rem);
     }
     
     label {
@@ -429,18 +475,19 @@
       margin-bottom: 0.5rem;
       font-weight: 600;
       color: var(--heading-color);
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
     }
     
     input, select, textarea {
       width: 100%;
-      padding: 1.1rem 1.3rem;
+      padding: clamp(0.8rem, 2.5vw, 1.1rem) clamp(1rem, 2.5vw, 1.3rem);
       border: 1px solid var(--border-color);
       border-radius: var(--radius);
-      font-size: 1rem;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
       background: #fdfdfd;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
       box-sizing: border-box;
-      min-height: 56px;
+      min-height: clamp(48px, 8vw, 56px);
     }
     
     input:focus, select:focus, textarea:focus {
@@ -451,17 +498,17 @@
     
     button[type="submit"] {
       width: 100%;
-      padding: 1.1rem;
+      padding: clamp(0.9rem, 2.5vw, 1.1rem);
       background: var(--primary);
       color: white;
       border: none;
       border-radius: var(--radius);
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
       font-weight: 600;
       cursor: pointer;
       transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
       box-shadow: var(--shadow);
-      margin-top: 1rem;
+      margin-top: clamp(0.8rem, 2vw, 1rem);
     }
     
     button[type="submit"]:hover {
@@ -476,10 +523,10 @@
     }
     
     .disclaimer {
-      max-width: 700px;
-      margin: 4rem auto 6rem auto;
-      padding: 1.5rem;
-      font-size: 0.9rem;
+      max-width: min(90%, 700px);
+      margin: clamp(2rem, 5vw, 4rem) auto clamp(3rem, 6vw, 6rem) auto;
+      padding: clamp(1rem, 2.5vw, 1.5rem);
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
       color: #555;
       text-align: center;
       background-color: var(--form-bg);
@@ -499,61 +546,138 @@
     .site-footer {
       background-color: #1d1d1f;
       color: #f5f5f7;
-      padding: 2.5rem 1rem;
+      padding: clamp(1.5rem, 3vw, 2.5rem) 1rem;
       text-align: center;
-      font-size: 0.95rem;
+      font-size: clamp(0.85rem, 2.5vw, 0.95rem);
       box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
       border-top: 4px solid var(--primary);
     }
     
-    .site-footer a { color: #f5f5f7; text-decoration: none; transition: color 0.3s ease, text-decoration 0.3s ease; }
-    .site-footer a:hover { color: var(--primary); text-decoration: underline; }
-    .site-footer .small-text { font-size: 0.85rem; margin-top: 0.8rem; color: #ccc; }
-    
-    #whatsapp-icon {
-      position: fixed; bottom: 20px; right: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease; z-index: 1000;
-      background-color: #25D366; border-radius: 50%; padding: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    .site-footer a { 
+      color: #f5f5f7; 
+      text-decoration: none; 
+      transition: color 0.3s ease, text-decoration 0.3s ease; 
     }
     
-    #whatsapp-icon img { width: 55px; height: 55px; object-fit: contain; display: block; }
-    #whatsapp-icon:hover { transform: scale(1.15); box-shadow: 0 6px 16px rgba(0,0,0,0.3); }
+    .site-footer a:hover { 
+      color: var(--primary); 
+      text-decoration: underline; 
+    }
+    
+    .site-footer .small-text { 
+      font-size: clamp(0.75rem, 2vw, 0.85rem); 
+      margin-top: 0.8rem; 
+      color: #ccc; 
+    }
+    
+    #whatsapp-icon {
+      position: fixed; 
+      bottom: 20px; 
+      right: 20px; 
+      transition: transform 0.3s ease, box-shadow 0.3s ease; 
+      z-index: 1000;
+      background-color: #25D366; 
+      border-radius: 50%; 
+      padding: 5px; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    #whatsapp-icon img { 
+      width: clamp(45px, 8vw, 55px); 
+      height: clamp(45px, 8vw, 55px); 
+      object-fit: contain; 
+      display: block; 
+    }
+    
+    #whatsapp-icon:hover { 
+      transform: scale(1.15); 
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3); 
+    }
     
     #loading-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95);
-      z-index: 9999; display: flex; align-items: center; justify-content: center;
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: rgba(255, 255, 255, 0.95);
+      z-index: 9999; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
       opacity: 1;
       visibility: visible;
       transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
     }
     
-    #loading-overlay img { width: 80px; height: 80px; animation: spin 1s linear infinite; }
-    
-    @keyframes spin { 100% { transform: rotate(360deg); } }
-    
-    .modal {
-      display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%;
-      overflow: auto; background-color: rgba(0,0,0,0.5);
-      padding-top: 60px; animation: fadeInModal 0.3s ease-out;
+    #loading-overlay img { 
+      width: clamp(60px, 10vw, 80px); 
+      height: clamp(60px, 10vw, 80px); 
+      animation: spin 1s linear infinite; 
     }
     
-    @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes spin { 
+      100% { transform: rotate(360deg); } 
+    }
+    
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 10000; 
+      left: 0; 
+      top: 0; 
+      width: 100%; 
+      height: 100%;
+      overflow: auto; 
+      background-color: rgba(0,0,0,0.5);
+      padding-top: 60px; 
+      animation: fadeInModal 0.3s ease-out;
+    }
+    
+    @keyframes fadeInModal { 
+      from { opacity: 0; } 
+      to { opacity: 1; } 
+    }
     
     .modal-content {
-      background-color: #fefefe; margin: 5% auto; padding: 30px; border: 1px solid #888;
-      width: 85%; max-width: 480px; border-radius: var(--radius); box-shadow: var(--shadow-hover); text-align: center;
+      background-color: #fefefe; 
+      margin: 5% auto; 
+      padding: clamp(1.5rem, 3vw, 2rem); 
+      border: 1px solid #888;
+      width: min(90%, 480px); 
+      border-radius: var(--radius); 
+      box-shadow: var(--shadow-hover); 
+      text-align: center;
       animation: slideInModal 0.4s ease-out;
     }
     
-    @keyframes slideInModal { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    
-    .modal-content p { margin-bottom: 25px; font-size: 1.15rem; line-height: 1.6; }
-    
-    .modal-close-button {
-      background-color: var(--primary); color: white; padding: 12px 30px; border: none; cursor: pointer;
-      border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: background-color 0.3s ease, transform 0.2s ease;
+    @keyframes slideInModal { 
+      from { transform: translateY(-30px); opacity: 0; } 
+      to { transform: translateY(0); opacity: 1; } 
     }
     
-    .modal-close-button:hover { background-color: var(--primary-dark); transform: scale(1.05); }
+    .modal-content p { 
+      margin-bottom: clamp(1rem, 2.5vw, 1.5rem); 
+      font-size: clamp(1rem, 2.5vw, 1.15rem); 
+      line-height: 1.6; 
+    }
+    
+    .modal-close-button {
+      background-color: var(--primary); 
+      color: white; 
+      padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1.5rem, 4vw, 2rem); 
+      border: none; 
+      cursor: pointer;
+      border-radius: var(--radius); 
+      font-size: clamp(0.9rem, 2.5vw, 1rem); 
+      font-weight: 600; 
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    
+    .modal-close-button:hover { 
+      background-color: var(--primary-dark); 
+      transform: scale(1.05); 
+    }
     
     .social-links {
       margin-top: 1rem;
@@ -586,15 +710,6 @@
       transform: scale(1.1);
     }
     
-    .social-links a[href*="x.com"] .social-icon {
-      filter: invert(100%) brightness(100%);
-    }
-    
-    .social-links a[href*="x.com"]:hover .social-icon {
-      filter: invert(100%) brightness(100%) drop-shadow(0 0 5px rgba(255,255,255,0.5));
-      transform: scale(1.1);
-    }
-    
     .visually-hidden {
       position: absolute;
       width: 1px;
@@ -608,151 +723,16 @@
     
     .error-message {
       color: #d32f2f;
-      font-size: 0.85rem;
+      font-size: clamp(0.75rem, 2vw, 0.85rem);
       margin-top: 0.25rem;
       display: none;
     }
     
     /* Responsive optimizations */
-    @media (max-width: 1200px) {
-      .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.8rem; }
-      .image-card-inner { height: 280px; }
-    }
-    
-    @media (max-width: 991px) {
-      .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.5rem; }
-      .image-card-inner { height: 260px; }
-      .image-card-front figcaption { font-size: 1.05rem; }
-      .image-description { font-size: 0.85rem; min-height: 60px;}
-      .header-main-slogan span { font-size: 2.5rem; }
-      .selection-prompt { font-size: 1.15rem; }
-    }
-    
     @media (max-width: 991px) and (orientation: landscape) {
       body { padding-top: 200px; }
-      header {
-        height: auto;
-        min-height: unset;
-        padding-top: 10.68%;
-      }
-      .header-image { 
-        object-fit: contain;
-        object-position: center 45%;
-      }
-      .header-top-text {
-        display: none;
-      }
-      .header-main-slogan {
-        top: auto;
-        bottom: 15px;
-        bottom: 0;
-        padding-bottom: 10px;
-        transform: translateX(-50%);
-        width: 100%;
-      }
       .header-main-slogan span {
-        font-size: 1.8rem;
-        color: white;
-        text-shadow: 0 0 8px rgba(0,0,0,0.8);
-      }
-      .selection-prompt { font-size: 1.1rem; margin: 2rem auto 0.5rem; }
-      .image-grid-section { padding: 1.5rem 0.5rem; margin: 1rem auto 1.5rem auto; }
-      .image-grid { padding: 0 0.5rem; gap: 1.5rem; }
-      .image-grid-row1-row2 {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.8rem;
-      }
-      .image-card-inner { height: 180px; }
-      .image-card-front figcaption { font-size: 0.9rem; }
-      .image-description { font-size: 0.75rem; padding: 5px 8px; min-height: 40px; }
-      .image-card-back { font-size: 1rem; }
-    }
-    
-    @media (max-width: 600px) {
-      body { padding-top: 0px; line-height: 1.6; }
-      .hero-intro { font-size: 0.95rem; margin-top: 0; padding: 0 1rem; }
-      h1 { font-size: 2rem; }
-      .header-main-slogan span {
-        font-size: 1.275rem;
-      }
-      h2 { font-size: 1.8rem; }
-      h3 { font-size: 1.3rem; }
-      header {
-        min-height: 120px;
-        padding-top: 10.68%;
-        background-color: #000;
-      }
-      .header-image {
-        object-fit: contain;
-        object-position: center 45%;
-      }
-      .header-top-text {
-        display: block;
-        top: 15px;
-        top: 0;
-        padding-top: 10px;
-        font-size: 1.8rem;
-        color: white;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-      }
-      .header-main-slogan {
-        top: auto;
-        bottom: 15px;
-        bottom: 0;
-        padding-bottom: 10px;
-        transform: translateX(-50%);
-        width: 100%;
-      }
-      .header-main-slogan span {
-        font-size: 1.5rem;
-        color: white;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-        display: inline-block;
-        padding: 0 10px;
-      }
-      .selection-prompt { font-size: 1.1rem; margin: 2rem auto 0.5rem; }
-      .image-grid-section { padding: 1.5rem 0.5rem; margin: 1rem auto 1.5rem auto; }
-      .image-grid { padding: 0 0.5rem; gap: 1.5rem; }
-      .image-grid-row1-row2 {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 1rem;
-      }
-      .image-grid-row1-row2.glowing-border {
-        box-shadow: 0 0 8px rgba(66, 133, 244, 0.6), 0 0 15px rgba(66, 133, 244, 0.4);
-        border: 1px solid var(--main-accent-color);
-      }
-      .image-container { min-height: auto; }
-      .image-card-inner { height: 240px; }
-      .image-card-front figcaption { font-size: 0.95rem; }
-      .image-description { font-size: 0.8rem; padding: 8px 10px; min-height: 50px; }
-      .image-card-back { font-size: 1.1rem; }
-      form { padding: 2rem 1.2rem; margin: 1.5rem auto 2rem auto; }
-      input, select, textarea { margin-bottom: 1rem; padding: 0.9rem 1rem; min-height: 52px; }
-      button[type="submit"] { padding: 1rem; font-size: 1rem; }
-      .below-form-content h1 { font-size: 1.8rem; margin: 2rem auto 1.5rem auto; }
-      .below-form-content p { font-size: 0.95rem; margin-top: 1.5rem; }
-      .disclaimer { margin: 2rem auto 4rem auto; padding: 1rem; font-size: 0.8rem; }
-      #whatsapp-icon { bottom: 15px; right: 15px; }
-      #whatsapp-icon img { width: 45px; height: 45px; }
-      .modal-content { width: 90%; padding: 20px; }
-      .modal-content p { font-size: 1rem; }
-    }
-    
-    @media (max-width: 380px) {
-      .image-grid-row1-row2 {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-      .image-card-inner { height: 250px; }
-      .header-top-text {
-        font-size: 1.5rem;
-        top: 10px;
-        top: 0;
-        padding-top: 8px;
-      }
-      .header-main-slogan span {
-        font-size: 1.2rem;
-        padding: 0 8px;
+        font-size: clamp(1.4rem, 4vw, 1.8rem);
       }
     }
   </style>
@@ -764,7 +744,15 @@
   
   <header class="header">
     <div class="header-top-text">Sell in Seconds</div>
-    <img src="https://www.sellinseconds.in/aicrop1.webp" loading="lazy" alt="Sell In Seconds - Banner showing various gadgets like phones, laptops, and watches" class="header-image">
+    <img 
+      src="https://www.sellinseconds.in/aicrop1.webp" 
+      loading="eager" 
+      fetchpriority="high"
+      alt="Sell In Seconds - Banner showing various gadgets like phones, laptops, and watches" 
+      class="header-image"
+      width="1600"
+      height="900"
+    >
     <div class="header-main-slogan"><span>Trade Your Gadget in Seconds</span></div>
   </header>
   
@@ -778,10 +766,10 @@
       <div class="skeleton" style="height: 40px; width: 80%; max-width: 300px; margin: 0 auto 2rem;"></div>
       <div class="image-grid">
         <div class="image-grid-row1-row2">
-          <div class="skeleton" style="height: 350px;"></div>
-          <div class="skeleton" style="height: 350px;"></div>
-          <div class="skeleton" style="height: 350px;"></div>
-          <div class="skeleton" style="height: 350px;"></div>
+          <div class="skeleton" style="height: min(350px, 50vw);"></div>
+          <div class="skeleton" style="height: min(350px, 50vw);"></div>
+          <div class="skeleton" style="height: min(350px, 50vw);"></div>
+          <div class="skeleton" style="height: min(350px, 50vw);"></div>
         </div>
       </div>
     </section>
@@ -792,7 +780,7 @@
     </section>
 
     <div class="below-form-content">
-      <h1>Your Ultimate Platform to Sell, Buy, Exchange & Repair Gadgets – Chip Level Service Available!</h1>
+      <h2>Your Ultimate Platform to Sell, Buy, Exchange & Repair Gadgets – Chip Level Service Available!</h2>
       <p>At Sell In Seconds, we make trading your old electronics incredibly easy and rewarding. Whether you're looking to sell your iPhone, trade in your MacBook, buy a pre-owned iPad, or get a quick repair for all your Gadgets (including chip-level motherboard service), we offer seamless service for all types of mobile devices, laptops, and tablets. Get an instant quote and experience a hassle-free process today!</p>
     </div>
     
@@ -801,13 +789,13 @@
       
       <div class="form-group">
         <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required aria-required="true">
         <div id="name-error" class="error-message">Please enter a valid name (at least 2 characters)</div>
       </div>
       
       <div class="form-group">
         <label for="mobile">Mobile Number</label>
-        <input type="tel" id="mobile" name="mobile" placeholder="Enter 10-digit mobile number" required pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number">
+        <input type="tel" id="mobile" name="mobile" placeholder="Enter 10-digit mobile number" required pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number" aria-required="true">
         <div id="mobile-error" class="error-message">Please enter a valid 10-digit mobile number</div>
       </div>
       
@@ -821,27 +809,27 @@
     </div>
   </main>
   
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <p>© <span id="currentYear"></span> Sell In Seconds. All rights reserved.</p>
     <p><a href="https://www.sellinseconds.in/privacy-policy.html" title="Privacy Policy">Privacy Policy</a> | <a href="https://www.sellinseconds.in/terms-conditions.html" title="Terms and Conditions">Terms & Conditions</a></p>
     <div class="social-links">
-      <a href="https://x.com/thanveerahmed" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X">
+      <a href="https://x.com/thanveerahmed" target="_blank" rel="noopener noreferrer nofollow" aria-label="Follow us on X">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg" alt="X (formerly Twitter) logo" class="social-icon" width="24" height="24">
       </a>
-      <a href="https://www.facebook.com/rush4phone" target="_blank" rel="noopener noreferrer" aria-label="Like our Facebook page">
+      <a href="https://www.facebook.com/rush4phone" target="_blank" rel="noopener noreferrer nofollow" aria-label="Like our Facebook page">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook logo" class="social-icon" width="24" height="24">
       </a>
-      <a href="https://www.instagram.com/apple.speaks/#" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+      <a href="https://www.instagram.com/apple.speaks/#" target="_blank" rel="noopener noreferrer nofollow" aria-label="Follow us on Instagram">
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram logo" class="social-icon" width="24" height="24">
       </a>
-      <a href="https://www.youtube.com/@telwin9616" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to our YouTube channel">
+      <a href="https://www.youtube.com/@telwin9616" target="_blank" rel="noopener noreferrer nofollow" aria-label="Subscribe to our YouTube channel">
         <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/YouTube_social_white_squircle_%282024%29.svg" alt="YouTube logo" class="social-icon" width="24" height="24">
       </a>
     </div>
     <p class="small-text">Designed & Developed by Thanveer P</p>
   </footer>
   
-  <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair.">
+  <a href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" target="_blank" id="whatsapp-icon" aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair." rel="nofollow">
     <img src="https://www.sellinseconds.in/whatsapp.webp" loading="lazy" alt="WhatsApp Chat Icon for SellInSeconds" width="55" height="55">
   </a>
   
@@ -878,6 +866,7 @@
       }, 50);
       
       window.addEventListener('resize', setBodyPadding);
+      window.addEventListener('orientationchange', setBodyPadding);
       
       // Replace skeleton with actual content
       function loadImageGrid() {
@@ -1016,6 +1005,11 @@
         `;
         
         // Initialize image container interactions
+        initImageGridInteractions();
+      }
+      
+      // Initialize image grid interactions
+      function initImageGridInteractions() {
         const containers = document.querySelectorAll('.image-container');
         const nameInput = document.getElementById('name');
         const interestInput = document.getElementById('interest');
@@ -1033,22 +1027,17 @@
 
             const gadgetInterest = container.getAttribute('data-gadget-name') || 'Selected Gadget';
             interestInput.value = gadgetInterest;
-            let message;
-
+            
+            // Update button text based on selection
             if (gadgetInterest.toLowerCase().includes("buy")) {
-              message = `Interested in buying? Great choice!`;
               submitButton.textContent = "See Available Gadgets";
             } else if (gadgetInterest.toLowerCase().includes("repair")) {
-              message = `Need a repair? We can help!`;
               submitButton.textContent = "Book Repair Service";
             } else if (gadgetInterest.toLowerCase().includes("software fix")) {
-              message = `Having software troubles? We offer quick solutions!`;
               submitButton.textContent = "Book Software Fix";
             } else if (gadgetInterest.toLowerCase().includes("diagnosis")) {
-              message = `Need a checkup? We can diagnose any gadget issue!`;
               submitButton.textContent = "Book Diagnosis";
             } else {
-              message = `Selected: ${container.querySelector('figcaption')?.textContent || 'Gadget'}. Get your quote!`;
               submitButton.textContent = "Get Instant Quote";
             }
 
@@ -1069,121 +1058,138 @@
         });
       }
       
-      // Load image grid after initial render
-      setTimeout(loadImageGrid, 300);
-      
       // Initialize form validation
-      const nameInput = document.getElementById('name');
-      const mobileInput = document.getElementById('mobile');
-      const nameError = document.getElementById('name-error');
-      const mobileError = document.getElementById('mobile-error');
-      
-      nameInput.addEventListener('input', validateName);
-      mobileInput.addEventListener('input', validateMobile);
-      
-      function validateName() {
-        const nameRegex = /^(?!^\d+$)(?!^[^\w\s]+$)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,}$/u;
-        if (!nameRegex.test(nameInput.value.trim())) {
-          nameError.style.display = 'block';
-          return false;
-        } else {
-          nameError.style.display = 'none';
-          return true;
+      function initFormValidation() {
+        const nameInput = document.getElementById('name');
+        const mobileInput = document.getElementById('mobile');
+        const nameError = document.getElementById('name-error');
+        const mobileError = document.getElementById('mobile-error');
+        
+        nameInput.addEventListener('input', validateName);
+        mobileInput.addEventListener('input', validateMobile);
+        
+        function validateName() {
+          const nameRegex = /^(?!^\d+$)(?!^[^\w\s]+$)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,}$/u;
+          if (!nameRegex.test(nameInput.value.trim())) {
+            nameError.style.display = 'block';
+            return false;
+          } else {
+            nameError.style.display = 'none';
+            return true;
+          }
         }
-      }
-      
-      function validateMobile() {
-        const mobileRegex = /^[0-9]{10}$/;
-        if (!mobileRegex.test(mobileInput.value.trim())) {
-          mobileError.style.display = 'block';
-          return false;
-        } else {
-          mobileError.style.display = 'none';
-          return true;
+        
+        function validateMobile() {
+          const mobileRegex = /^[0-9]{10}$/;
+          if (!mobileRegex.test(mobileInput.value.trim())) {
+            mobileError.style.display = 'block';
+            return false;
+          } else {
+            mobileError.style.display = 'none';
+            return true;
+          }
         }
       }
       
       // Form submission handler
-      document.getElementById("contact-form").addEventListener("submit", function (e) {
-        e.preventDefault();
-        const form = e.target;
-        const name = form.name.value.trim();
-        const mobile = form.mobile.value.trim();
-        const interest = form.interest.value.trim();
-        const mobileRegex = /^[0-9]{10}$/;
-        const nameRegex = /^(?!^\d+$)(?!^[^\w\s]+$)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,}$/u;
-
-        if (!name || !mobile || !interest) {
-          showModal("Please select a product/service and fill out all fields.");
-          return;
-        }
-        if (!nameRegex.test(name)) {
-          nameError.style.display = 'block';
-          showModal("Please enter a valid name (at least 2 characters, letters and standard punctuation).");
-          return;
-        }
-        if (!mobileRegex.test(mobile)) {
-          mobileError.style.display = 'block';
-          showModal("Invalid mobile number! It should contain exactly 10 digits.");
-          return;
-        }
+      function initFormSubmission() {
+        const form = document.getElementById("contact-form");
+        const nameInput = document.getElementById('name');
+        const mobileInput = document.getElementById('mobile');
+        const interestInput = document.getElementById('interest');
+        const submitButton = document.querySelector('#contact-form button[type="submit"]');
+        const nameError = document.getElementById('name-error');
+        const mobileError = document.getElementById('mobile-error');
         
-        showLoading();
-        let loadingTimeout = setTimeout(() => {
-          hideLoading();
-          showModal("The request is taking longer than expected. Please check your internet connection and try again.");
-        }, 15000);
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = nameInput.value.trim();
+          const mobile = mobileInput.value.trim();
+          const interest = interestInput.value.trim();
+          const mobileRegex = /^[0-9]{10}$/;
+          const nameRegex = /^(?!^\d+$)(?!^[^\w\s]+$)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,}$/u;
 
-        const formBody = new URLSearchParams();
-        formBody.append("name", name);
-        formBody.append("mobile", mobile);
-        formBody.append("interest", interest);
-
-        fetch(form.action, {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: formBody.toString()
-        })
-        .then(response => {
-          clearTimeout(loadingTimeout);
-          hideLoading();
-          if (response.ok) {
-            showModal("Form submitted successfully! We will contact you soon.");
-            form.reset();
-            document.querySelectorAll('.image-container.selected').forEach(c => {
-              c.classList.remove('selected');
-              c.setAttribute('aria-pressed', 'false');
-            });
-            if(submitButton) submitButton.textContent = "Submit";
-            interestInput.value = "";
-            nameInput.classList.remove('wave');
-          } else {
-            response.text().then(text => {
-              console.error("Server error response:", text);
-              showModal("Failed to submit. Please try again. (Server error " + response.status + ")");
-            });
+          if (!name || !mobile || !interest) {
+            showModal("Please select a product/service and fill out all fields.");
+            return;
           }
-        })
-        .catch(error => {
-          clearTimeout(loadingTimeout);
-          hideLoading();
-          console.error("Network Error:", error.message);
-          showModal("Failed to submit. Please check your internet connection and try again. (Network error)");
+          if (!nameRegex.test(name)) {
+            nameError.style.display = 'block';
+            showModal("Please enter a valid name (at least 2 characters, letters and standard punctuation).");
+            return;
+          }
+          if (!mobileRegex.test(mobile)) {
+            mobileError.style.display = 'block';
+            showModal("Invalid mobile number! It should contain exactly 10 digits.");
+            return;
+          }
+          
+          showLoading();
+          let loadingTimeout = setTimeout(() => {
+            hideLoading();
+            showModal("The request is taking longer than expected. Please check your internet connection and try again.");
+          }, 15000);
+
+          const formBody = new URLSearchParams();
+          formBody.append("name", name);
+          formBody.append("mobile", mobile);
+          formBody.append("interest", interest);
+
+          fetch(form.action, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: formBody.toString()
+          })
+          .then(response => {
+            clearTimeout(loadingTimeout);
+            hideLoading();
+            if (response.ok) {
+              showModal("Form submitted successfully! We will contact you soon.");
+              form.reset();
+              document.querySelectorAll('.image-container.selected').forEach(c => {
+                c.classList.remove('selected');
+                c.setAttribute('aria-pressed', 'false');
+              });
+              submitButton.textContent = "Submit";
+              interestInput.value = "";
+              nameInput.classList.remove('wave');
+            } else {
+              response.text().then(text => {
+                console.error("Server error response:", text);
+                showModal("Failed to submit. Please try again. (Server error " + response.status + ")");
+              });
+            }
+          })
+          .catch(error => {
+            clearTimeout(loadingTimeout);
+            hideLoading();
+            console.error("Network Error:", error.message);
+            showModal("Failed to submit. Please check your internet connection and try again. (Network error)");
+          });
         });
-      });
-      
-      // Modal functionality
-      const modal = document.getElementById('customModal');
-      const modalMessage = document.getElementById('modalMessage');
-      const modalCloseButton = document.getElementById('modalCloseButton');
-      
-      function showModal(message) {
-        modalMessage.textContent = message;
-        modal.style.display = 'block';
       }
       
-      modalCloseButton.onclick = function() { modal.style.display = 'none'; }
-      window.onclick = function(event) { if (event.target == modal) { modal.style.display = 'none'; } }
+      // Modal functionality
+      function initModal() {
+        const modal = document.getElementById('customModal');
+        const modalMessage = document.getElementById('modalMessage');
+        const modalCloseButton = document.getElementById('modalCloseButton');
+        
+        window.showModal = function(message) {
+          modalMessage.textContent = message;
+          modal.style.display = 'block';
+        }
+        
+        modalCloseButton.onclick = function() { 
+          modal.style.display = 'none'; 
+        }
+        
+        window.onclick = function(event) { 
+          if (event.target == modal) { 
+            modal.style.display = 'none'; 
+          } 
+        }
+      }
       
       // Loading functions
       function showLoading() { 
@@ -1198,6 +1204,12 @@
         overlay.style.opacity = '0';
         overlay.style.visibility = 'hidden';
       }
+      
+      // Initialize all components
+      setTimeout(loadImageGrid, 300);
+      initFormValidation();
+      initFormSubmission();
+      initModal();
     });
   </script>
   
