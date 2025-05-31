@@ -981,7 +981,6 @@
     const bodyElement = document.body;
     const synth = window.speechSynthesis;
     let currentUtterance;
-    const formDynamicHeading = document.getElementById('form-dynamic-heading'); // Get the new heading element
 
     const modal = document.getElementById('customModal');
     const modalMessage = document.getElementById('modalMessage');
@@ -1009,8 +1008,9 @@
     history.scrollRestoration = 'manual';
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Set initial form heading on page load
-      formDynamicHeading.textContent = "Get an Instant Quote or Book a Service";
+      // **CRITICAL FIX:** Initialize formDynamicHeading here to ensure the element is in the DOM
+      const formDynamicHeading = document.getElementById('form-dynamic-heading'); 
+      formDynamicHeading.textContent = "Get an Instant Quote or Book a Service"; // Set initial text
 
       document.getElementById('currentYear').textContent = new Date().getFullYear();
       setTimeout(() => { window.scrollTo(0, 0); }, 50);
@@ -1228,7 +1228,8 @@
           if(submitButton) submitButton.textContent = "Submit";
           interestInput.value = "";
           nameInput.classList.remove('wave');
-          formDynamicHeading.textContent = "Get an Instant Quote or Book a Service"; // Reset form heading
+          // Reset form heading to default after successful submission
+          document.getElementById('form-dynamic-heading').textContent = "Get an Instant Quote or Book a Service"; 
         } else {
           response.text().then(text => {
             console.error("Server error response:", text);
