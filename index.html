@@ -907,7 +907,9 @@
     </div>
     
     <form id="contact-form" method="POST" role="form" autocomplete="on" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
-      <h2 id="form-dynamic-heading"></h2> <div class="form-group">
+      <h2>Quote or Repairs</h2>
+      
+      <div class="form-group">
         <label for="name">Your Name</label>
         <input type="text" id="name" name="name" placeholder="Enter your full name" required autocomplete="name">
         <div id="name-error" class="error-message">Please enter a valid name (at least 2 characters)</div>
@@ -1005,13 +1007,10 @@
       });
     }
 
-    history.scrollRestoration = 'manual';
+    history.scrollRestoration = 'manual'; // This is fine here, or can be in DOMContentLoaded
 
     document.addEventListener('DOMContentLoaded', () => {
-      // **CRITICAL FIX:** Initialize formDynamicHeading here to ensure the element is in the DOM
-      const formDynamicHeading = document.getElementById('form-dynamic-heading'); 
-      formDynamicHeading.textContent = "Get an Instant Quote or Book a Service"; // Set initial text
-
+      // history.scrollRestoration = 'manual'; // Also fine here
       document.getElementById('currentYear').textContent = new Date().getFullYear();
       setTimeout(() => { window.scrollTo(0, 0); }, 50);
       setTimeout(hideLoading, 100); 
@@ -1086,7 +1085,7 @@
         }, totalFlipInTime + 500);
       }
 
-      containers.forEach((container, index) => { // Added index to the loop
+      containers.forEach((container) => {
         container.addEventListener('click', () => {
           containers.forEach(c => {
             c.classList.remove('selected');
@@ -1096,39 +1095,25 @@
           container.setAttribute('aria-pressed', 'true');
 
           const gadgetInterest = container.getAttribute('data-gadget-name') || 'Selected Gadget';
-          const figcaptionText = container.querySelector('figcaption')?.textContent;
           interestInput.value = gadgetInterest;
           let message;
-          let formHeadingText; // New variable for form heading
 
-          // Determine the form heading text based on the index of the clicked container
-          // Indices 0-7 are the first two rows (Mobile Phone to Gaming Console)
-          // Indices 8-11 are the third row (Buying Gadget to Diagnosis)
-          if (index >= 0 && index <= 7) { 
-            formHeadingText = `Sell ${figcaptionText}`;
-            message = `Selected: ${figcaptionText}. Get your quote!`;
+          if (gadgetInterest.toLowerCase().includes("buy")) {
+            message = `Interested in buying? Great choice!`;
+            submitButton.textContent = "See Available Gadgets";
+          } else if (gadgetInterest.toLowerCase().includes("repair")) {
+            message = `Need a repair? We can help!`;
+            submitButton.textContent = "Book Repair Service";
+          } else if (gadgetInterest.toLowerCase().includes("software fix")) {
+            message = `Having software troubles? We offer quick solutions!`;
+            submitButton.textContent = "Book Software Fix";
+          } else if (gadgetInterest.toLowerCase().includes("diagnosis")) {
+            message = `Need a checkup? We can diagnose any gadget issue!`;
+            submitButton.textContent = "Book Diagnosis";
+          } else {
+            message = `Selected: ${container.querySelector('figcaption')?.textContent || 'Gadget'}. Get your quote!`;
             submitButton.textContent = "Get Instant Quote";
-          } else { 
-            formHeadingText = figcaptionText; // For Buy, Repair, Software Fix, Diagnosis
-            if (figcaptionText.toLowerCase().includes("buy")) {
-              message = `Interested in buying? Great choice!`;
-              submitButton.textContent = "See Available Gadgets";
-            } else if (figcaptionText.toLowerCase().includes("repair")) {
-              message = `Need a repair? We can help!`;
-              submitButton.textContent = "Book Repair Service";
-            } else if (figcaptionText.toLowerCase().includes("software fix")) {
-              message = `Having software troubles? We offer quick solutions!`;
-              submitButton.textContent = "Book Software Fix";
-            } else if (figcaptionText.toLowerCase().includes("diagnosis")) {
-              message = `Need a checkup? We can diagnose any gadget issue!`;
-              submitButton.textContent = "Book Diagnosis";
-            } else {
-              message = `Selected: ${figcaptionText}. Get your quote!`;
-              submitButton.textContent = "Get Instant Quote";
-            }
           }
-          
-          formDynamicHeading.textContent = formHeadingText; // Set the dynamic form heading
 
           if (window.speechSynthesis && window.speechSynthesis.speaking) {
             window.speechSynthesis.cancel();
@@ -1228,8 +1213,6 @@
           if(submitButton) submitButton.textContent = "Submit";
           interestInput.value = "";
           nameInput.classList.remove('wave');
-          // Reset form heading to default after successful submission
-          document.getElementById('form-dynamic-heading').textContent = "Get an Instant Quote or Book a Service"; 
         } else {
           response.text().then(text => {
             console.error("Server error response:", text);
