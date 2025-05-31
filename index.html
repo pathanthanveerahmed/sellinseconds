@@ -907,7 +907,7 @@
     </div>
     
     <form id="contact-form" method="POST" role="form" autocomplete="on" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
-      <h2>Get an Instant Quote or Book a Service</h2>
+      <h2 id="form-dynamic-heading"></h2>
       
       <div class="form-group">
         <label for="name">Your Name</label>
@@ -983,6 +983,7 @@
     const bodyElement = document.body;
     const synth = window.speechSynthesis;
     let currentUtterance;
+    const formDynamicHeading = document.getElementById('form-dynamic-heading'); // Get the new heading element
 
     const modal = document.getElementById('customModal');
     const modalMessage = document.getElementById('modalMessage');
@@ -1010,7 +1011,9 @@
     history.scrollRestoration = 'manual'; // This is fine here, or can be in DOMContentLoaded
 
     document.addEventListener('DOMContentLoaded', () => {
-      // history.scrollRestoration = 'manual'; // Also fine here
+      // Set initial form heading on page load
+      formDynamicHeading.textContent = "Get an Instant Quote or Book a Service";
+
       document.getElementById('currentYear').textContent = new Date().getFullYear();
       setTimeout(() => { window.scrollTo(0, 0); }, 50);
       setTimeout(hideLoading, 100); 
@@ -1085,7 +1088,7 @@
         }, totalFlipInTime + 500);
       }
 
-      containers.forEach((container) => {
+      containers.forEach((container, index) => { // Added index to the loop
         container.addEventListener('click', () => {
           containers.forEach(c => {
             c.classList.remove('selected');
@@ -1095,25 +1098,37 @@
           container.setAttribute('aria-pressed', 'true');
 
           const gadgetInterest = container.getAttribute('data-gadget-name') || 'Selected Gadget';
+          const figcaptionText = container.querySelector('figcaption')?.textContent;
           interestInput.value = gadgetInterest;
           let message;
+          let formHeadingText; // New variable for form heading
 
-          if (gadgetInterest.toLowerCase().includes("buy")) {
-            message = `Interested in buying? Great choice!`;
-            submitButton.textContent = "See Available Gadgets";
-          } else if (gadgetInterest.toLowerCase().includes("repair")) {
-            message = `Need a repair? We can help!`;
-            submitButton.textContent = "Book Repair Service";
-          } else if (gadgetInterest.toLowerCase().includes("software fix")) {
-            message = `Having software troubles? We offer quick solutions!`;
-            submitButton.textContent = "Book Software Fix";
-          } else if (gadgetInterest.toLowerCase().includes("diagnosis")) {
-            message = `Need a checkup? We can diagnose any gadget issue!`;
-            submitButton.textContent = "Book Diagnosis";
-          } else {
-            message = `Selected: ${container.querySelector('figcaption')?.textContent || 'Gadget'}. Get your quote!`;
+          // Determine the form heading text based on the row (index)
+          if (index >= 0 && index <= 7) { // First two rows (indices 0-7)
+            formHeadingText = `Sell ${figcaptionText}`;
+            message = `Selected: ${figcaptionText}. Get your quote!`;
             submitButton.textContent = "Get Instant Quote";
+          } else { // Third row onwards (indices 8-11)
+            formHeadingText = figcaptionText;
+            if (figcaptionText.toLowerCase().includes("buy")) {
+              message = `Interested in buying? Great choice!`;
+              submitButton.textContent = "See Available Gadgets";
+            } else if (figcaptionText.toLowerCase().includes("repair")) {
+              message = `Need a repair? We can help!`;
+              submitButton.textContent = "Book Repair Service";
+            } else if (figcaptionText.toLowerCase().includes("software fix")) {
+              message = `Having software troubles? We offer quick solutions!`;
+              submitButton.textContent = "Book Software Fix";
+            } else if (figcaptionText.toLowerCase().includes("diagnosis")) {
+              message = `Need a checkup? We can diagnose any gadget issue!`;
+              submitButton.textContent = "Book Diagnosis";
+            } else {
+              message = `Selected: ${figcaptionText}. Get your quote!`;
+              submitButton.textContent = "Get Instant Quote";
+            }
           }
+          
+          formDynamicHeading.textContent = formHeadingText; // Set the dynamic form heading
 
           if (window.speechSynthesis && window.speechSynthesis.speaking) {
             window.speechSynthesis.cancel();
@@ -1213,6 +1228,7 @@
           if(submitButton) submitButton.textContent = "Submit";
           interestInput.value = "";
           nameInput.classList.remove('wave');
+          formDynamicHeading.textContent = "Get an Instant Quote or Book a Service"; // Reset form heading
         } else {
           response.text().then(text => {
             console.error("Server error response:", text);
