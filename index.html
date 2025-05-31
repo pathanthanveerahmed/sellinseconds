@@ -767,8 +767,7 @@
 
     <section class="image-grid-section">
       <div class="image-grid">
-        <!-- First row - Sell items -->
-        <div class="image-grid-row1-row2" data-row-type="sell">
+        <div class="image-grid-row1-row2">
           <figure class="image-container" data-back-text="Sell Phone" data-gadget-name="Mobile Phone (iPhone, Samsung, Android, etc.)" role="button" aria-pressed="false" tabindex="0">
             <div class="image-card-inner">
               <div class="image-card-front">
@@ -810,8 +809,7 @@
             <p class="image-description">Sell your old tablet or iPad (Apple, Samsung, Android) for instant cash.</p>
           </figure>
         </div>
-        <!-- Second row - Sell items -->
-        <div class="image-grid-row1-row2" data-row-type="sell">
+        <div class="image-grid-row1-row2">
           <figure class="image-container" data-back-text="Sell Accessories" data-gadget-name="Gadget Accessories" role="button" aria-pressed="false" tabindex="0">
             <div class="image-card-inner">
               <div class="image-card-front">
@@ -853,8 +851,7 @@
             <p class="image-description">Sell your Xbox, PlayStation, or Nintendo Switch easily.</p>
           </figure>
         </div>
-        <!-- Third row - Service items -->
-        <div class="image-grid-row1-row2" data-row-type="service">
+        <div class="image-grid-row1-row2">
           <figure class="image-container" data-back-text="Buy Gadgets" data-gadget-name="Buy Pre-owned Gadgets" role="button" aria-pressed="false" tabindex="0">
             <div class="image-card-inner">
               <div class="image-card-front">
@@ -910,7 +907,7 @@
     </div>
     
     <form id="contact-form" method="POST" role="form" autocomplete="on" action="https://script.google.com/macros/s/AKfycbxv8W_IewKCJ31sR0Li3QqlOF96i4WBZ8ak0yOs-Gl4NjOGNVyQIVssL_iGZhwLWQKF/exec">
-      <h2 id="form-heading">Get an Instant Quote or Book a Service</h2>
+      <h2>Get an Instant Quote or Book a Service</h2>
       
       <div class="form-group">
         <label for="name">Your Name</label>
@@ -994,7 +991,6 @@
     const nameError = document.getElementById('name-error');
     const mobileError = document.getElementById('mobile-error');
     const mobileInput = document.getElementById('mobile');
-    const formHeading = document.getElementById('form-heading');
 
     function showModal(message) {
       modalMessage.textContent = message;
@@ -1102,22 +1098,7 @@
           interestInput.value = gadgetInterest;
           let message;
 
-          // Get row type and figcaption for dynamic heading
-          const row = container.closest('.image-grid-row1-row2');
-          const rowType = row.getAttribute('data-row-type');
-          const figcaption = container.querySelector('figcaption').textContent;
-          
-          // Update form heading based on row type
-          if (rowType === 'sell') {
-            formHeading.textContent = `Sell Your ${figcaption} - Get Instant Quote`;
-          } else {
-            formHeading.textContent = `Book a Service for ${figcaption}`;
-          }
-
-          if (rowType === 'sell') {
-            message = `Selected: ${figcaption}. Get your quote!`;
-            submitButton.textContent = "Get Instant Quote";
-          } else if (gadgetInterest.toLowerCase().includes("buy")) {
+          if (gadgetInterest.toLowerCase().includes("buy")) {
             message = `Interested in buying? Great choice!`;
             submitButton.textContent = "See Available Gadgets";
           } else if (gadgetInterest.toLowerCase().includes("repair")) {
@@ -1130,8 +1111,8 @@
             message = `Need a checkup? We can diagnose any gadget issue!`;
             submitButton.textContent = "Book Diagnosis";
           } else {
-            message = `Selected: ${figcaption}. Get started!`;
-            submitButton.textContent = "Submit";
+            message = `Selected: ${container.querySelector('figcaption')?.textContent || 'Gadget'}. Get your quote!`;
+            submitButton.textContent = "Get Instant Quote";
           }
 
           if (window.speechSynthesis && window.speechSynthesis.speaking) {
@@ -1232,7 +1213,6 @@
           if(submitButton) submitButton.textContent = "Submit";
           interestInput.value = "";
           nameInput.classList.remove('wave');
-          formHeading.textContent = "Get an Instant Quote or Book a Service";
         } else {
           response.text().then(text => {
             console.error("Server error response:", text);
