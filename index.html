@@ -779,14 +779,13 @@
       .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.8rem; }
       .image-card-inner { height: 280px; }
     }
-    @media (max-width: 991px) { /* Medium devices (tablets, less than 992px) */
-      .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.5rem; }
-      .image-card-inner { height: 260px; }
-      .image-card-front figcaption { font-size: 1.05rem; }
-      .image-description { font-size: 0.85rem; min-height: 60px;}
-      .header-main-slogan span { font-size: 2.5rem; }
-      .selection-prompt { font-size: 1.15rem; }
-    }
+    @media (max-width: 991px) {
+  .image-grid-row1-row2 {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+  }
+}
+
     @media (max-width: 991px) and (orientation: landscape) { /* Landscape on tablets */
       body { padding-top: 200px; } /* Adjust body padding for landscape header */
       header {
