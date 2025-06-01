@@ -2,20 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.sellinseconds.in/</loc>
-    <lastmod>2025-05-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.sellinseconds.in/privacy-policy.html</loc>
-    <lastmod>2025-05-29</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.sellinseconds.in/blog.html</loc>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.sellinseconds.in/terms-conditions.html</loc>
-    <lastmod>2025-05-29</lastmod>
+    <loc>https://www.sellinseconds.in/contact.html</loc>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
   </url>
-  </urlset>
+</urlset>
