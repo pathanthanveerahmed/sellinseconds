@@ -77,29 +77,29 @@
     }
 
     .image-card-front figcaption {
-      font-weight: bold;
-      font-size: 1.1rem;
+      display: none; /* Hidden as requested */
     }
 
     .image-description {
-      font-size: 0.95rem;
-      color: #555;
-      background: #f0f0f0;
-      padding: 0.8rem 1rem;
-      border-top: 1px solid #ddd;
-      min-height: 60px;
+      font-size: 1rem;
+      color: #000;
+      background: #d4edda;
+      padding: 1rem;
+      font-weight: 700;
+      border-top: 1px solid #c3e6cb;
     }
 
     @media (max-width: 600px) {
       .image-card-inner { height: 240px; }
-      .image-card-front figcaption { font-size: 1rem; }
-      .image-description { font-size: 0.85rem; }
+      .image-description { font-size: 0.95rem; }
     }
   </style>
 </head>
 <body>
   <h1>Available Gadgets for Purchase <br> Call: 9886566379</h1>
   <div class="image-grid">
+
+    <!-- Repeat this block for each row -->
     <div class="image-grid-row">
       <figure class="image-container">
         <div class="image-card-inner">
@@ -108,7 +108,7 @@
             <figcaption>iPhone 12</figcaption>
           </div>
         </div>
-        <p class="image-description">128GB, Mint Condition – Includes Original Charger</p>
+        <p class="image-description">Call 9886566379</p>
       </figure>
 
       <figure class="image-container">
@@ -118,7 +118,7 @@
             <figcaption>Samsung S21</figcaption>
           </div>
         </div>
-        <p class="image-description">256GB, Phantom Gray – 6 Months Warranty</p>
+        <p class="image-description">Call 9886566379</p>
       </figure>
 
       <figure class="image-container">
@@ -128,7 +128,7 @@
             <figcaption>MacBook Pro</figcaption>
           </div>
         </div>
-        <p class="image-description">M1 Chip, 8GB RAM, 256GB SSD – Excellent Battery</p>
+        <p class="image-description">Call 9886566379</p>
       </figure>
 
       <figure class="image-container">
@@ -138,7 +138,7 @@
             <figcaption>iPad Air</figcaption>
           </div>
         </div>
-        <p class="image-description">64GB, WiFi + Cellular – Space Gray</p>
+        <p class="image-description">Call 9886566379</p>
       </figure>
     </div>
 
@@ -150,7 +150,7 @@
             <figcaption>OnePlus Nord</figcaption>
           </div>
         </div>
-        <p class="image-description">Blue Marble, 128GB, Like New</p>
+        <p class="image-description">Call 9886566379</p>
       </figure>
 
       <figure class="image-container">
@@ -160,7 +160,7 @@
             <figcaption>Apple Watch</figcaption>
           </div>
         </div>
-        <p class="image-description">Series 7, GPS, 45mm – Original Strap Included</p>
+        <p class="image-description">Call 9886566379</p>
       </figure>
 
       <figure class="image-container">
@@ -170,17 +170,17 @@
             <figcaption>AirPods Pro</figcaption>
           </div>
         </div>
-        <p class="image-description">Noise Cancelling – New Silicone Tips</p>
+        <p class="image-description">Call 9886566379</p>
       </figure>
 
       <figure class="image-container">
         <div class="image-card-inner">
           <div class="image-card-front">
             <img src="https://www.sellinseconds.in/dynamic/images/device8.webp" alt="Device 8" loading="lazy" />
-            <figcaption>iMac 24"</figcaption>
+            <figcaption>iMac</figcaption>
           </div>
         </div>
-        <p class="image-description">M1, 8-core CPU, 256GB SSD – Magic Keyboard</p>
+        <p class="image-description">Call 9886566379</p>
       </figure>
     </div>
 
@@ -192,7 +192,7 @@
             <figcaption>Gaming Console</figcaption>
           </div>
         </div>
-        <p class="image-description">PS5 – DualSense Controller + HDMI</p>
+        <p class="image-description">Call 9886566379</p>
       </figure>
 
       <figure class="image-container">
@@ -202,12 +202,11 @@
             <figcaption>Asus ROG Phone</figcaption>
           </div>
         </div>
-        <p class="image-description">512GB – RGB Lighting – Great for Gaming</p>
+        <p class="image-description">Call 9886566379</p>
       </figure>
     </div>
   </div>
 
-  <!-- JavaScript to auto-hide broken images -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('img').forEach(img => {
