@@ -7,7 +7,14 @@
   <style>
     body { font-family: sans-serif; margin: 0; padding: 2rem; }
     h1 { text-align: center; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.grid img').forEach(img => {
+      img.onerror = () => img.style.display = 'none';
+    });
+  });
+</script>
+
     .grid img { width: 100%; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
   </style>
 </head>
