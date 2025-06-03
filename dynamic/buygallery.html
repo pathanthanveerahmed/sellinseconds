@@ -5,39 +5,215 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Available Gadgets - SellInSeconds</title>
   <style>
-    body { font-family: sans-serif; margin: 0; padding: 2rem; }
-    h1 { text-align: center; }
-    <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.grid img').forEach(img => {
-      img.onerror = () => img.style.display = 'none';
-    });
-  });
-</script>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 2rem 1rem;
+      color: #333;
+    }
 
-    .grid img { width: 100%; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #007bff;
+    }
+
+    .image-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .image-grid-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .image-container {
+      border: 2px solid #6A0DAD;
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .image-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .image-card-inner {
+      position: relative;
+      height: 280px;
+      perspective: 1200px;
+    }
+
+    .image-card-front, .image-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+
+    .image-card-front img {
+      max-width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .image-card-front figcaption {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .image-description {
+      font-size: 0.95rem;
+      color: #555;
+      background: #f0f0f0;
+      padding: 0.8rem 1rem;
+      border-top: 1px solid #ddd;
+      min-height: 60px;
+    }
+
+    @media (max-width: 600px) {
+      .image-card-inner { height: 240px; }
+      .image-card-front figcaption { font-size: 1rem; }
+      .image-description { font-size: 0.85rem; }
+    }
   </style>
 </head>
 <body>
-  <h1>Available Gadgets for Purchase. <br> Call : 9886566379</h1>
-  <div class="grid">
-    <img src="https://www.sellinseconds.in/dynamic/images/device1.webp" alt="Device 1"/>
-    <img src="https://www.sellinseconds.in/dynamic/images/device2.webp" alt="Device 2"/>
-    <img src="https://www.sellinseconds.in/dynamic/images/device3.webp" alt="Device 3"/>
-    <img src="https://www.sellinseconds.in/dynamic/images/device4.webp" alt="Device 4"/>
-    <img src="https://www.sellinseconds.in/dynamic/images/device5.webp" alt="Device 5"/>
-    <img src="https://www.sellinseconds.in/dynamic/images/device6.webp" alt="Device 6"/>
-    <img src="https://www.sellinseconds.in/dynamic/images/device7.webp" alt="Device 7"/>
-    <img src="https://www.sellinseconds.in/dynamic/images/device8.webp" alt="Device 8"/>
-    <img src="https://www.sellinseconds.in/dynamic/images/device9.webp" alt="Device 9"/>
-    <img src="https://www.sellinseconds.in/dynamic/images/device10.webp" alt="Device 10"/>
+  <h1>Available Gadgets for Purchase <br> Call: 9886566379</h1>
+  <div class="image-grid">
+    <div class="image-grid-row">
+      <figure class="image-container">
+        <div class="image-card-inner">
+          <div class="image-card-front">
+            <img src="https://www.sellinseconds.in/dynamic/images/device1.webp" alt="Device 1" loading="lazy" />
+            <figcaption>iPhone 12</figcaption>
+          </div>
+        </div>
+        <p class="image-description">128GB, Mint Condition – Includes Original Charger</p>
+      </figure>
+
+      <figure class="image-container">
+        <div class="image-card-inner">
+          <div class="image-card-front">
+            <img src="https://www.sellinseconds.in/dynamic/images/device2.webp" alt="Device 2" loading="lazy" />
+            <figcaption>Samsung S21</figcaption>
+          </div>
+        </div>
+        <p class="image-description">256GB, Phantom Gray – 6 Months Warranty</p>
+      </figure>
+
+      <figure class="image-container">
+        <div class="image-card-inner">
+          <div class="image-card-front">
+            <img src="https://www.sellinseconds.in/dynamic/images/device3.webp" alt="Device 3" loading="lazy" />
+            <figcaption>MacBook Pro</figcaption>
+          </div>
+        </div>
+        <p class="image-description">M1 Chip, 8GB RAM, 256GB SSD – Excellent Battery</p>
+      </figure>
+
+      <figure class="image-container">
+        <div class="image-card-inner">
+          <div class="image-card-front">
+            <img src="https://www.sellinseconds.in/dynamic/images/device4.webp" alt="Device 4" loading="lazy" />
+            <figcaption>iPad Air</figcaption>
+          </div>
+        </div>
+        <p class="image-description">64GB, WiFi + Cellular – Space Gray</p>
+      </figure>
+    </div>
+
+    <div class="image-grid-row">
+      <figure class="image-container">
+        <div class="image-card-inner">
+          <div class="image-card-front">
+            <img src="https://www.sellinseconds.in/dynamic/images/device5.webp" alt="Device 5" loading="lazy" />
+            <figcaption>OnePlus Nord</figcaption>
+          </div>
+        </div>
+        <p class="image-description">Blue Marble, 128GB, Like New</p>
+      </figure>
+
+      <figure class="image-container">
+        <div class="image-card-inner">
+          <div class="image-card-front">
+            <img src="https://www.sellinseconds.in/dynamic/images/device6.webp" alt="Device 6" loading="lazy" />
+            <figcaption>Apple Watch</figcaption>
+          </div>
+        </div>
+        <p class="image-description">Series 7, GPS, 45mm – Original Strap Included</p>
+      </figure>
+
+      <figure class="image-container">
+        <div class="image-card-inner">
+          <div class="image-card-front">
+            <img src="https://www.sellinseconds.in/dynamic/images/device7.webp" alt="Device 7" loading="lazy" />
+            <figcaption>AirPods Pro</figcaption>
+          </div>
+        </div>
+        <p class="image-description">Noise Cancelling – New Silicone Tips</p>
+      </figure>
+
+      <figure class="image-container">
+        <div class="image-card-inner">
+          <div class="image-card-front">
+            <img src="https://www.sellinseconds.in/dynamic/images/device8.webp" alt="Device 8" loading="lazy" />
+            <figcaption>iMac 24"</figcaption>
+          </div>
+        </div>
+        <p class="image-description">M1, 8-core CPU, 256GB SSD – Magic Keyboard</p>
+      </figure>
+    </div>
+
+    <div class="image-grid-row">
+      <figure class="image-container">
+        <div class="image-card-inner">
+          <div class="image-card-front">
+            <img src="https://www.sellinseconds.in/dynamic/images/device9.webp" alt="Device 9" loading="lazy" />
+            <figcaption>Gaming Console</figcaption>
+          </div>
+        </div>
+        <p class="image-description">PS5 – DualSense Controller + HDMI</p>
+      </figure>
+
+      <figure class="image-container">
+        <div class="image-card-inner">
+          <div class="image-card-front">
+            <img src="https://www.sellinseconds.in/dynamic/images/device10.webp" alt="Device 10" loading="lazy" />
+            <figcaption>Asus ROG Phone</figcaption>
+          </div>
+        </div>
+        <p class="image-description">512GB – RGB Lighting – Great for Gaming</p>
+      </figure>
+    </div>
   </div>
+
+  <!-- JavaScript to auto-hide broken images -->
   <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.grid img').forEach(img => {
-      img.onerror = () => img.style.display = 'none';
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('img').forEach(img => {
+        img.onerror = () => img.closest('.image-container')?.remove();
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>
