@@ -1,119 +1,205 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Available Gadgets - SellInSeconds</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Used Gadgets - SellInSeconds.in</title>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QMV442HBWL');
+  </script>
+
+  <!-- Canonical & Preconnect -->
+  <link rel="canonical" href="https://www.sellinseconds.in/" />
+  <link rel="preconnect" href="https://www.sellinseconds.in" crossorigin />
+
   <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 2rem 1rem 6rem; /* padding bottom for WhatsApp button */
-      background: #f8f9fa;
-      color: #333;
+  body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 1rem;
+    background: #f9f9f9;
+  }
+  .card img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: contain;
+    background: #fff;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    animation: glow-on-load 1.5s ease-out;
+  }
+  .card img:hover {
+    transform: scale(1.03);
+    border-color: #00ffcc;
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
+  }
+  @keyframes glow-on-load {
+    0% {
+      border-color: #00ffcc;
+      box-shadow: 0 0 25px rgba(0, 255, 204, 0.9);
     }
-
-    h1 {
-      text-align: center;
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-      color: #007bff;
+    100% {
+      border-color: transparent;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
     }
-
-    .count {
-      text-align: center;
-      font-size: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .grid img {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      object-fit: contain;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-      background: white;
-      transition: transform 0.2s ease;
-    }
-
-    .grid img:hover {
-      transform: scale(1.03);
-    }
-
-    /* Floating WhatsApp Button */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      color: white;
-      border-radius: 50%;
-      width: 56px;
-      height: 56px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 24px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      cursor: pointer;
-      text-decoration: none;
-      z-index: 1000;
-    }
-
-    .whatsapp-float:hover {
-      background-color: #1ebe5b;
-    }
-
-    @media (max-width: 768px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .grid {
-        grid-template-columns: repeat(1, 1fr);
-      }
-    }
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: auto;
+  }
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+  }
+  .description {
+    background: #d4edda;
+    color: #155724;
+    padding: 0.75rem;
+    font-weight: bold;
+  }
+  .back-to-main {
+    display: block;
+    text-align: center;
+    margin: 1rem auto;
+    background: #007bff;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    width: fit-content;
+  }
+  .back-to-main:hover {
+    background-color: #0056b3;
+  }
+  .share-buttons {
+    text-align: center;
+    margin: 1rem auto 2rem;
+  }
+  .share-buttons a {
+    display: inline-block;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  .share-whatsapp { background: #25D366; }
+  .share-facebook { background: #1877F2; }
+  .share-twitter { background: #1DA1F2; }
+  .share-linkedin { background: #0077B5; }
+  #scrollToTopBtn {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: none;
+    z-index: 999;
+  }
   </style>
 </head>
 <body>
-  <h1>Available Gadgets for Purchase</h1>
-  <div class="count">10 items available • Call: 9886566379</div>
 
-  <div class="grid">
-    <img src="https://www.sellinseconds.in/dynamic/images/device1.webp" alt="Device 1" loading="lazy" />
-    <img src="https://www.sellinseconds.in/dynamic/images/device2.webp" alt="Device 2" loading="lazy" />
-    <img src="https://www.sellinseconds.in/dynamic/images/device3.webp" alt="Device 3" loading="lazy" />
-    <img src="https://www.sellinseconds.in/dynamic/images/device4.webp" alt="Device 4" loading="lazy" />
-    <img src="https://www.sellinseconds.in/dynamic/images/device5.webp" alt="Device 5" loading="lazy" />
-    <img src="https://www.sellinseconds.in/dynamic/images/device6.webp" alt="Device 6" loading="lazy" />
-    <img src="https://www.sellinseconds.in/dynamic/images/device7.webp" alt="Device 7" loading="lazy" />
-    <img src="https://www.sellinseconds.in/dynamic/images/device8.webp" alt="Device 8" loading="lazy" />
-    <img src="https://www.sellinseconds.in/dynamic/images/device9.webp" alt="Device 9" loading="lazy" />
-    <img src="https://www.sellinseconds.in/dynamic/images/device10.webp" alt="Device 10" loading="lazy" />
+<a class="back-to-main" href="https://www.sellinseconds.in">🔙 Visit SellInSeconds.in</a>
+
+<div class="share-buttons">
+  <a class="share-whatsapp" href="https://wa.me/?text=Check+this+out:+https://www.sellinseconds.in/test.html?utm_source=whatsapp&utm_medium=social&utm_campaign=gadget_promo" target="_blank">Share on WhatsApp</a>
+  <a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://www.sellinseconds.in/test.html?utm_source=facebook&utm_medium=social&utm_campaign=gadget_promo" target="_blank">Share on Facebook</a>
+  <a class="share-twitter" href="https://twitter.com/intent/tweet?url=https://www.sellinseconds.in/test.html?utm_source=twitter&utm_medium=social&utm_campaign=gadget_promo&text=Check+out+these+top+used+gadgets!" target="_blank">Share on Twitter</a>
+  <a class="share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.sellinseconds.in/test.html?utm_source=linkedin&utm_medium=social&utm_campaign=gadget_promo" target="_blank">Share on LinkedIn</a>
+</div>
+
+<button id="scrollToTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">⬆ Top</button>
+
+<div class="grid">
+  <div class="card">
+    <a href="https://www.sellinseconds.in?utm_source=testpage&utm_medium=referral&utm_campaign=gadget_grid">
+      <img src="https://www.sellinseconds.in/dynamic/images/device1.webp" alt="Device 1" title="Device 1" loading="lazy" />
+    </a>
+    <div class="description">Call 9886566379</div>
   </div>
+  <div class="card">
+    <a href="https://www.sellinseconds.in?utm_source=testpage&utm_medium=referral&utm_campaign=gadget_grid">
+      <img src="https://www.sellinseconds.in/dynamic/images/device2.webp" alt="Device 2" title="Device 2" loading="lazy" />
+    </a>
+    <div class="description">Call 9886566379</div>
+  </div>
+  <div class="card">
+    <a href="https://www.sellinseconds.in?utm_source=testpage&utm_medium=referral&utm_campaign=gadget_grid">
+      <img src="https://www.sellinseconds.in/dynamic/images/device3.webp" alt="Device 3" title="Device 3" loading="lazy" />
+    </a>
+    <div class="description">Call 9886566379</div>
+  </div>
+  <div class="card">
+    <a href="https://www.sellinseconds.in?utm_source=testpage&utm_medium=referral&utm_campaign=gadget_grid">
+      <img src="https://www.sellinseconds.in/dynamic/images/device4.webp" alt="Device 4" title="Device 4" loading="lazy" />
+    </a>
+    <div class="description">Call 9886566379</div>
+  </div>
+  <div class="card">
+    <a href="https://www.sellinseconds.in?utm_source=testpage&utm_medium=referral&utm_campaign=gadget_grid">
+      <img src="https://www.sellinseconds.in/dynamic/images/device5.webp" alt="Device 5" title="Device 5" loading="lazy" />
+    </a>
+    <div class="description">Call 9886566379</div>
+  </div>
+  <div class="card">
+    <a href="https://www.sellinseconds.in?utm_source=testpage&utm_medium=referral&utm_campaign=gadget_grid">
+      <img src="https://www.sellinseconds.in/dynamic/images/device6.webp" alt="Device 6" title="Device 6" loading="lazy" />
+    </a>
+    <div class="description">Call 9886566379</div>
+  </div>
+  <div class="card">
+    <a href="https://www.sellinseconds.in?utm_source=testpage&utm_medium=referral&utm_campaign=gadget_grid">
+      <img src="https://www.sellinseconds.in/dynamic/images/device7.webp" alt="Device 7" title="Device 7" loading="lazy" />
+    </a>
+    <div class="description">Call 9886566379</div>
+  </div>
+  <div class="card">
+    <a href="https://www.sellinseconds.in?utm_source=testpage&utm_medium=referral&utm_campaign=gadget_grid">
+      <img src="https://www.sellinseconds.in/dynamic/images/device8.webp" alt="Device 8" title="Device 8" loading="lazy" />
+    </a>
+    <div class="description">Call 9886566379</div>
+  </div>
+  <div class="card">
+    <a href="https://www.sellinseconds.in?utm_source=testpage&utm_medium=referral&utm_campaign=gadget_grid">
+      <img src="https://www.sellinseconds.in/dynamic/images/device9.webp" alt="Device 9" title="Device 9" loading="lazy" />
+    </a>
+    <div class="description">Call 9886566379</div>
+  </div>
+  <div class="card">
+    <a href="https://www.sellinseconds.in?utm_source=testpage&utm_medium=referral&utm_campaign=gadget_grid">
+      <img src="https://www.sellinseconds.in/dynamic/images/device10.webp" alt="Device 10" title="Device 10" loading="lazy" />
+    </a>
+    <div class="description">Call 9886566379</div>
+  </div>
+</div>
 
-  <!-- Floating WhatsApp Button -->
-  <a class="whatsapp-float" href="https://wa.me/919886566379" target="_blank" title="Chat on WhatsApp">
-    🟢
-  </a>
+<script>
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('scrollToTopBtn');
+    btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+  });
+</script>
 
-  <script>
-    // Hide broken images
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.grid img').forEach(img => {
-        img.onerror = () => img.style.display = 'none';
-      });
-    });
-  </script>
 </body>
 </html>
