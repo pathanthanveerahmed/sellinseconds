@@ -1362,15 +1362,8 @@
       modalMessage.textContent = message;
       modal.style.display = 'block';
     }
-  modalCloseButton.onclick = function () {
-  modal.style.display = 'none';
-  const interest = (document.getElementById("interest").value || "").toLowerCase();
-  if (interest.includes("buy")) {
-    window.location.href = "https://www.sellinseconds.in/dynamic/buygallery.html"; // your destination page
-  }
-};
-
-  window.onclick = function(event) { if (event.target == modal) { modal.style.display = 'none'; } }
+    modalCloseButton.onclick = function() { modal.style.display = 'none'; }
+    window.onclick = function(event) { if (event.target == modal) { modal.style.display = 'none'; } }
     function setBodyPadding() {
       requestAnimationFrame(() => {
         if (headerElement) {
@@ -1515,9 +1508,10 @@
       const form = e.target;
       const name = form.name.value.trim();
       const mobile = form.mobile.value.trim();
-      const interest = form.interest.value.trim();
+      const interest = form.interest.value.trim(); // This is the 'interest' from the hidden input
       const mobileRegex = /^[0-9]{10}$/;
       const nameRegex = /^(?!^\d+$)(?!^[^\w\s]+$)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,}$/u;
+
       if (!name || !mobile || !interest) {
         showModal("Please select a product/service and fill out all fields.");
         return;
@@ -1532,15 +1526,18 @@
         showModal("Invalid mobile number! It should contain exactly 10 digits.");
         return;
       }
+
       showLoading();
       let loadingTimeout = setTimeout(() => {
         hideLoading();
         showModal("The request is taking longer than expected. Please check your internet connection and try again.");
       }, 15000);
+
       const formBody = new URLSearchParams();
       formBody.append("name", name);
       formBody.append("mobile", mobile);
-      formBody.append("interest", interest);
+      formBody.append("interest", interest); // Use the 'interest' variable
+
       fetch(form.action, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -1550,15 +1547,42 @@
         clearTimeout(loadingTimeout);
         hideLoading();
         if (response.ok) {
-          showModal("Form submitted successfully! We will contact you soon.");
-          form.reset();
-          document.querySelectorAll('.image-container.selected').forEach(c => {
-            c.classList.remove('selected');
-            c.setAttribute('aria-pressed', 'false');
-          });
-          if(submitButton) submitButton.textContent = "Submit";
-          interestInput.value = "";
-          nameInput.classList.remove('wave');
+          // MODIFICATION START: Check if interest is "Buy Pre-owned Gadgets"
+          if (interest === "Buy Pre-owned Gadgets") {
+            // Redirect to your new page.
+            // You will need to create this 'buy-gadgets-gallery.html' page yourself
+            // with the 10 images.
+            window.location.href = 'https://www.sellinseconds.in/dynamic/buygallery.html';
+          } else {
+            // Original success behavior for other interests
+            showModal("Form submitted successfully! We will contact you soon.");
+            form.reset();
+            document.querySelectorAll('.image-container.selected').forEach(c => {
+              c.classList.remove('selected');
+              c.setAttribute('aria-pressed', 'false');
+            });
+            if(submitButton) { // Ensure submitButton is defined in this scope or passed
+                // Reset button text appropriately. It might have been changed.
+                // The default before selection is "Get an Instant Quote or Book a Service"
+                // Or a generic "Submit" or the specific one if needed.
+                // For simplicity, let's assume 'interestInput' and 'submitButton' are accessible
+                // as they are defined in the outer scope of the DOMContentLoaded.
+                const initialButtonText = "Get an Instant Quote or Book a Service"; // Or get from an attribute
+                if (document.getElementById('interest').value === "") { // If interest was cleared
+                    submitButton.textContent = initialButtonText;
+                } else {
+                    // If for some reason it's not a "buy" and form reset,
+                    // you might want to set it back to its specific text, or a generic one.
+                    // For now, the original code had:
+                    // submitButton.textContent = "Submit";
+                    // Let's refine this to reset to a more generic or original state
+                    submitButton.textContent = "Submit Another Inquiry"; // Or back to initial
+                }
+            }
+            interestInput.value = ""; // Clear the hidden interest field
+            nameInput.classList.remove('wave');
+          }
+          // MODIFICATION END
         } else {
           response.text().then(text => {
             console.error("Server error response:", text);
