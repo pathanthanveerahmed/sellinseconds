@@ -8,76 +8,22 @@
     body { font-family: sans-serif; margin: 0; padding: 2rem; }
     h1 { text-align: center; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
-    .grid img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
-    .loading-message, .error-message { text-align: center; font-size: 1.2rem; padding: 2rem; }
+    .grid img { width: 100%; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
   </style>
 </head>
 <body>
-  <h1>Available Gadgets for Purchase. <br> Call : 9886566379</h1>
-  <div class="grid" id="image-grid">
-    <p class="loading-message">Loading images...</p>
-    </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const imageGrid = document.getElementById('image-grid');
-      const loadingMessage = imageGrid.querySelector('.loading-message');
-
-      // IMPORTANT: Replace '/api/get-images.php' with the actual URL
-      // of YOUR server-side script that lists the images.
-      const imageUrlApi = 'https://www.sellinseconds.in/get-images.php'; // Example API endpoint
-
-      fetch(imageUrlApi)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`Network response was not ok (status: ${response.status})`);
-          }
-          return response.json();
-        })
-        .then(imageUrls => {
-          if (loadingMessage) {
-            loadingMessage.remove(); // Remove "Loading images..." message
-          }
-
-          if (!Array.isArray(imageUrls)) {
-            console.error('Invalid data format received from server. Expected an array of image URLs.');
-            imageGrid.innerHTML = '<p class="error-message">Error: Could not load image data correctly.</p>';
-            return;
-          }
-
-          if (imageUrls.length === 0) {
-            imageGrid.innerHTML = '<p class="loading-message">No images found in the directory.</p>';
-            return;
-          }
-
-          imageUrls.forEach((url, index) => {
-            const img = document.createElement('img');
-            img.src = url;
-
-            // Attempt to create a somewhat descriptive alt text from the URL
-            let altText = `Device ${index + 1}`;
-            try {
-              const fileNameWithExtension = url.substring(url.lastIndexOf('/') + 1);
-              const fileNameWithoutExtension = fileNameWithExtension.substring(0, fileNameWithExtension.lastIndexOf('.'));
-              if (fileNameWithoutExtension) {
-                altText = fileNameWithoutExtension.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase()); // Capitalize and replace hyphens
-              }
-            } catch (e) {
-              // Keep default alt text if parsing fails
-            }
-            img.alt = altText;
-            img.loading = 'lazy'; // Improve performance by lazy loading images
-            imageGrid.appendChild(img);
-          });
-        })
-        .catch(error => {
-          console.error('Error fetching or displaying images:', error);
-          if (loadingMessage) {
-            loadingMessage.remove();
-          }
-          imageGrid.innerHTML = `<p class="error-message">Could not load images. ${error.message}. Please ensure the image API endpoint is correct and the server is responding properly.</p>`;
-        });
-    });
-  </script>
+  <h1>Available Gadgets for Purchase. Call : 9886566379</h1>
+  <div class="grid">
+    <img src="https://www.sellinseconds.in/dynamic/images/device1.webp" alt="Device 1"/>
+    <img src="https://www.sellinseconds.in/dynamic/images/device2.webp" alt="Device 2"/>
+    <img src="https://www.sellinseconds.in/dynamic/images/device3.webp" alt="Device 3"/>
+    <img src="https://www.sellinseconds.in/dynamic/images/device4.webp" alt="Device 4"/>
+    <img src="https://www.sellinseconds.in/dynamic/images/device5.webp" alt="Device 5"/>
+    <img src="https://www.sellinseconds.in/dynamic/images/device6.webp" alt="Device 6"/>
+    <img src="https://www.sellinseconds.in/dynamic/images/device7.webp" alt="Device 7"/>
+    <img src="https://www.sellinseconds.in/dynamic/images/device8.webp" alt="Device 8"/>
+    <img src="https://www.sellinseconds.in/dynamic/images/device9.webp" alt="Device 9"/>
+    <img src="https://www.sellinseconds.in/dynamic/images/device10.webp" alt="Device 10"/>
+  </div>
 </body>
 </html>
