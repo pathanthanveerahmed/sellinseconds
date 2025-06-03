@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SellInSeconds - Buy Gallery</title>
     
+    <!-- Favicon -->
+    <link rel="icon" href="https://www.sellinseconds.in/fevicon.ico" type="image/x-icon">
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
     <script>
@@ -19,6 +22,18 @@
     <link rel="preconnect" href="https://www.sellinseconds.in" crossorigin />
 
     <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f2f5;
+        color: #333;
+      }
+
+      h2 {
+        color: #007bff;
+      }
+
       .card img {
         max-width: 90%;
         height: 220px;
@@ -56,6 +71,7 @@
         gap: 1.5rem;
         max-width: 1200px;
         margin: auto;
+        padding: 1.5rem; /* Added padding for smaller screens */
       }
 
       .card {
@@ -63,6 +79,7 @@
         border-radius: 12px;
         overflow: hidden;
         text-align: center;
+        padding: 1rem; /* Added padding inside card */
       }
 
       .description {
@@ -147,6 +164,42 @@
         width: 28px;
         height: 28px;
         fill: white;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .grid {
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          gap: 1rem;
+          padding: 1rem;
+        }
+        .card img {
+          height: 180px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .grid {
+          grid-template-columns: 1fr; /* Single column layout on very small screens */
+          padding: 0.5rem;
+        }
+        .card img {
+          height: 150px;
+        }
+        .share-buttons a {
+          padding: 0.4rem 0.8rem;
+          font-size: 0.85rem;
+        }
+        .whatsapp-float, #scrollToTopBtn {
+          width: 48px;
+          height: 48px;
+          bottom: 15px;
+          right: 15px;
+        }
+        .whatsapp-float svg {
+          width: 24px;
+          height: 24px;
+        }
       }
     </style>
 </head>
