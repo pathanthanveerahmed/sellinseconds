@@ -1362,7 +1362,13 @@
       modalMessage.textContent = message;
       modal.style.display = 'block';
     }
-    modalCloseButton.onclick = function() { modal.style.display = 'none'; }
+    modalCloseButton.onclick = function () {
+    modal.style.display = 'none';
+  if ((document.getElementById("interest").value || "").toLowerCase().includes("buy")) {
+    window.location.href = "https://www.sellinseconds.in/dynamic/buygallery.html";
+  }
+};
+
     window.onclick = function(event) { if (event.target == modal) { modal.style.display = 'none'; } }
     function setBodyPadding() {
       requestAnimationFrame(() => {
