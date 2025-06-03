@@ -8,20 +8,27 @@
     body {
       font-family: sans-serif;
       margin: 0;
-      padding: 2rem;
+      padding: 2rem 1rem 6rem; /* padding bottom for WhatsApp button */
       background: #f8f9fa;
+      color: #333;
     }
 
     h1 {
       text-align: center;
       font-size: 1.8rem;
-      margin-bottom: 2rem;
+      margin-bottom: 0.5rem;
       color: #007bff;
+    }
+
+    .count {
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 2rem;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
       max-width: 1200px;
       margin: 0 auto;
@@ -29,19 +36,59 @@
 
     .grid img {
       width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: contain;
       border-radius: 12px;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s ease;
       background: white;
+      transition: transform 0.2s ease;
     }
 
     .grid img:hover {
       transform: scale(1.03);
     }
+
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      cursor: pointer;
+      text-decoration: none;
+      z-index: 1000;
+    }
+
+    .whatsapp-float:hover {
+      background-color: #1ebe5b;
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>For Sale<br>Call: 9886566379</h1>
+  <h1>Available Gadgets for Purchase</h1>
+  <div class="count">10 items available • Call: 9886566379</div>
+
   <div class="grid">
     <img src="https://www.sellinseconds.in/dynamic/images/device1.webp" alt="Device 1" loading="lazy" />
     <img src="https://www.sellinseconds.in/dynamic/images/device2.webp" alt="Device 2" loading="lazy" />
@@ -55,7 +102,13 @@
     <img src="https://www.sellinseconds.in/dynamic/images/device10.webp" alt="Device 10" loading="lazy" />
   </div>
 
+  <!-- Floating WhatsApp Button -->
+  <a class="whatsapp-float" href="https://wa.me/919886566379" target="_blank" title="Chat on WhatsApp">
+    🟢
+  </a>
+
   <script>
+    // Hide broken images
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.grid img').forEach(img => {
         img.onerror = () => img.style.display = 'none';
