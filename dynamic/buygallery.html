@@ -27,36 +27,50 @@
       }
 
       header {
-        background: transparent; /* Removed blue gradient background */
-        padding: 0; /* Removed padding */
-        box-shadow: none; /* Removed box shadow */
+        background: transparent;
+        padding: 0;
+        box-shadow: none;
         position: sticky;
         top: 0;
         z-index: 1000;
-        min-height: 90px; /* Increased height for a bigger header */
-        display: flex; /* Make header a flex container to align its content */
-        align-items: center; /* Vertically center the header content */
+        min-height: 90px;
+        display: flex;
+        align-items: center;
       }
 
      header {
   width: 100%;
-  background-color: #fff; /* optional background */
+  background-color: #fff;
   overflow: hidden;
 }
 
-.header-content img {
-  width: 100%;
-  height: auto;
-  display: block;
-  max-height: 280px;
-  object-fit: cover;
-  border-radius: 12px;
+.header-banner {
+  display: flex;
+  justify-content: center;
+  background: white;
+}
+
+.header-banner img {
+  width: auto;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 /* Mobile: scale height down for smaller screens */
 @media (max-width: 768px) {
   .header-banner {
     height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+  }
+  .header-banner img {
+    max-height: 100%;
+    max-width: 100%;
+    height: auto;
+    width: auto;
   }
 }
 @media (min-width: 1400px) {
@@ -93,27 +107,27 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       }
 
-      .share-header { /* New flex container for the top row of share section */
+      .share-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 1rem; /* Space between header and share buttons */
-        flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
       }
 
       .share-left-link {
-        color: #007bff; /* Use theme blue for the link */
+        color: #007bff;
         padding: 0.5rem 1rem;
         border-radius: 8px;
         text-decoration: none;
         font-weight: bold;
         transition: all 0.3s ease;
-        background: #f0f0f0; /* Subtle background */
+        background: #f0f0f0;
         box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        white-space: nowrap; /* Prevent text wrapping */
+        white-space: nowrap;
       }
 
       .share-left-link:hover {
@@ -125,18 +139,18 @@
       .share-title {
         color: #007bff;
         font-size: 1.4rem;
-        flex-grow: 1; /* Allows title to take up remaining space */
+        flex-grow: 1;
         text-align: center;
-        margin: 0 1rem; /* Add horizontal margin to prevent crowding */
+        margin: 0 1rem;
       }
 
       .share-right-text {
-        color: #333; /* Dark color for visibility */
+        color: #333;
         font-size: 1.5rem;
         font-weight: 700;
-        text-shadow: none; /* Removed text shadow */
-        padding: 0.5rem 0; /* Align vertically with link */
-        white-space: nowrap; /* Prevent text wrapping */
+        text-shadow: none;
+        padding: 0.5rem 0;
+        white-space: nowrap;
       }
 
       .share-buttons {
@@ -144,7 +158,7 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 1rem;
-        margin-top: 1rem; /* Space between title/link and buttons */
+        margin-top: 1rem;
       }
 
       .share-buttons a {
@@ -189,7 +203,7 @@
         display: flex;
         flex-direction: column;
         height: 100%;
-        height: auto; /* let it grow based on content */
+        height: auto;
       }
 
       .card:hover {
@@ -212,7 +226,6 @@
         height: auto;
         object-fit: contain;
         transition: transform 0.2s ease;
-        border-radius: 8px;
       }
 
       .card:hover img {
@@ -286,26 +299,26 @@
 
       @media (max-width: 768px) {
         header {
-            min-height: 70px; /* Adjust header height for smaller screens */
+            min-height: 70px;
         }
         .share-header {
-            flex-direction: column; /* Stack items vertically */
-            gap: 0.5rem; /* Space between stacked items */
+            flex-direction: column;
+            gap: 0.5rem;
             text-align: center;
         }
         .share-left-link {
-            order: 2; /* "Visit Main Site" below title */
+            order: 2;
             width: 100%;
             justify-content: center;
         }
         .share-title {
-            order: 1; /* Title on top */
-            margin: 0; /* Remove horizontal margin for full width */
-            font-size: 1.3rem; /* Adjust title font size */
+            order: 1;
+            margin: 0;
+            font-size: 1.3rem;
         }
         .share-right-text {
-            order: 3; /* "SellInSeconds" text at bottom */
-            font-size: 1.3rem; /* Adjust text size */
+            order: 3;
+            font-size: 1.3rem;
         }
 
         .page-title {
@@ -323,6 +336,7 @@
         }
       }
 
+      /* FIXED: Mobile view images now fill container */
       @media (max-width: 480px) {
         .grid {
           grid-template-columns: 1fr;
@@ -331,18 +345,21 @@
         }
 
         .card {
-          aspect-ratio: 1/1.2;
+          aspect-ratio: 1/1;
           padding: 0;
         }
 
         .card-img-container {
-          padding: 0.5rem;
+          padding: 0;
+          height: 100%;
+          display: block;
         }
 
         .card img {
           width: 100%;
-          height: auto;
-          max-height: 250px;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 16px;
         }
 
         .share-buttons {
@@ -379,8 +396,6 @@
     <img src="https://www.sellinseconds.in/sellhead.webp" alt="SellInSeconds Banner">
   </div>
 </header>
-
-
 
     <div class="container">
         <h1 class="page-title">Premium Gadgets Gallery</h1>
