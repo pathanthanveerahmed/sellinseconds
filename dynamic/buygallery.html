@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SellInSeconds - Clean Gallery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon"/>
     <style>
       * {
         margin: 0;
@@ -26,58 +27,54 @@
         padding: 0 1rem;
       }
 
+      /* Consolidated and Marquee Header Styles */
       header {
-        background: transparent;
+        background: #fff;
         padding: 0;
         box-shadow: none;
         position: sticky;
         top: 0;
         z-index: 1000;
-        min-height: 90px;
-        display: flex;
-        align-items: center;
+        width: 100%;
+        overflow: hidden; /* Essential for marquee effect */
       }
 
-     header {
-  width: 100%;
-  background-color: #fff;
-  overflow: hidden;
-}
+      .header-banner {
+        width: 100%;
+        display: flex;
+        /* The height of header-banner will be determined by marquee-image height */
+      }
 
-.header-banner {
-  display: flex;
-  justify-content: center;
-  background: white;
-}
+      .marquee-track { /* Contains the single image */
+        display: flex;
+        animation: single-marquee-scroll 20s linear infinite;
+      }
 
-.header-banner img {
-  width: auto;
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-}
+      .marquee-image {
+        height: 25vh; /* Responsive height: 25% of viewport height */
+        /* Min and Max height can be added for more control:
+           min-height: 150px;
+           max-height: 300px;
+        */
+        width: auto;   /* Width adjusts to maintain aspect ratio for the given height */
+        object-fit: cover; /* Ensures image covers the area, crops if necessary */
+        display: block;
+        border-radius: 12px; /* You may or may not want radius if it's full viewport width */
+        flex-shrink: 0;
+      }
 
-/* Mobile: scale height down for smaller screens */
-@media (max-width: 768px) {
-  .header-banner {
-    height: 160px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
-  }
-  .header-banner img {
-    max-height: 100%;
-    max-width: 100%;
-    height: auto;
-    width: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .header-banner {
-    height: 300px;
-  }
-}
+      @keyframes single-marquee-scroll {
+        0% {
+            /* Start track so its content (image) begins off-screen to the right */
+            transform: translateX(100vw);
+        }
+        100% {
+            /* Translate track by its own full width to the left,
+               ensuring the image slides completely off-screen to the left */
+            transform: translateX(-100%);
+        }
+      }
+
       .page-title {
         text-align: center;
         margin: 2rem 0 1rem;
@@ -202,7 +199,6 @@
         transition: transform 0.3s ease, box-shadow 0.4s ease;
         display: flex;
         flex-direction: column;
-        height: 100%;
         height: auto;
       }
 
@@ -220,19 +216,17 @@
       }
 
       .card img {
-        max-width: 100%;
-        max-height: 100%;
         width: 100%;
-        height: auto;
+        height: 100%;
         object-fit: contain;
         transition: transform 0.2s ease;
+        border-radius: 8px;
       }
 
       .card:hover img {
         transform: scale(1.05);
       }
 
-      /* Hide captions and descriptions */
       .card h3, .card .description {
         display: none;
       }
@@ -289,7 +283,6 @@
         box-shadow: 0 6px 16px rgba(0,0,0,0.25);
       }
 
-      /* Responsive adjustments */
       @media (max-width: 1024px) {
         .grid {
           grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -298,9 +291,6 @@
       }
 
       @media (max-width: 768px) {
-        header {
-            min-height: 70px;
-        }
         .share-header {
             flex-direction: column;
             gap: 0.5rem;
@@ -320,70 +310,50 @@
             order: 3;
             font-size: 1.3rem;
         }
-
         .page-title {
           font-size: 1.8rem;
         }
-
         .share-buttons a {
           padding: 0.6rem 1.2rem;
           font-size: 0.95rem;
         }
-
         .grid {
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
           gap: 1.5rem;
         }
       }
 
-      /* FIXED: Mobile view images now fill container */
       @media (max-width: 480px) {
         .grid {
           grid-template-columns: 1fr;
           gap: 1.5rem;
           padding: 0 1rem;
         }
-
         .card {
-          aspect-ratio: 1/1;
+          aspect-ratio: 1/1.2;
           padding: 0;
         }
-
         .card-img-container {
-          padding: 0;
-          height: 100%;
-          display: block;
+          padding: 0.5rem;
         }
-
-        .card img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: 16px;
-        }
-
         .share-buttons {
           flex-direction: column;
           align-items: center;
         }
-
         .share-buttons a {
           width: 100%;
           max-width: 280px;
           justify-content: center;
         }
-
         .whatsapp-float, #scrollToTopBtn {
           width: 50px;
           height: 50px;
           bottom: 20px;
           right: 20px;
         }
-
         #scrollToTopBtn {
           bottom: 85px;
         }
-
         .whatsapp-float i {
           font-size: 28px;
         }
@@ -393,7 +363,9 @@
 <body>
 <header>
   <div class="header-banner">
-    <img src="https://www.sellinseconds.in/sellhead.webp" alt="SellInSeconds Banner">
+    <div class="marquee-track">
+      <img src="https://www.sellinseconds.in/sellhead.webp" alt="SellInSeconds Banner" class="marquee-image">
+    </div>
   </div>
 </header>
 
@@ -405,14 +377,11 @@
                 <a class="share-left-link" href="https://www.sellinseconds.in">
                     <i class="fas fa-arrow-left"></i> Visit Main Site
                 </a>
-
                 <h2 class="share-title">🔗 Share this page with friends</h2>
-
                 <div class="share-right-text">
                     SellInSeconds
                 </div>
             </div>
-
             <div class="share-buttons">
                 <a class="share-whatsapp" href="https://wa.me/?text=Check+out+these+gadgets:+https://www.sellinseconds.in/dynamic/buygallery.html" target="_blank">
                     <i class="fab fa-whatsapp"></i> WhatsApp
@@ -522,7 +491,6 @@
         btn.style.display = window.scrollY > 300 ? 'block' : 'none';
       });
 
-      // Add fade-in animation to cards
       document.addEventListener('DOMContentLoaded', () => {
         const cards = document.querySelectorAll('.card');
         cards.forEach((card, index) => {
@@ -534,15 +502,11 @@
         });
       });
 
-      // Add animation to CSS
       const style = document.createElement('style');
       style.innerHTML = `
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
-        }
-        .card {
-          opacity: 0;
         }
       `;
       document.head.appendChild(style);
