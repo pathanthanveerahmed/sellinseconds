@@ -3,297 +3,509 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SellInSeconds - Buy Gallery</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" href="https://www.sellinseconds.in/fevicon.ico" type="image/x-icon">
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-QMV442HBWL');
-    </script>
-
-    <!-- Canonical & Preconnect -->
-    <link rel="canonical" href="https://www.sellinseconds.in/" />
-    <link rel="preconnect" href="https://www.sellinseconds.in" crossorigin />
-
+    <title>SellInSeconds - Clean Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-      body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      * {
         margin: 0;
         padding: 0;
-        background-color: #f0f2f5;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
         color: #333;
+        line-height: 1.6;
+        padding-bottom: 2rem;
       }
 
-      h2 {
-        color: #007bff;
-      }
-
-      .card img {
-        max-width: 90%;
-        height: 220px;
-        display: block;
+      .container {
+        max-width: 1400px;
         margin: 0 auto;
-        object-fit: contain;
-        background: #fff;
-        transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        border: 2px solid transparent;
+        padding: 0 1rem;
+      }
+
+      header {
+        background: transparent; /* Removed blue gradient background */
+        padding: 0; /* Removed padding */
+        box-shadow: none; /* Removed box shadow */
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        min-height: 90px; /* Increased height for a bigger header */
+        display: flex; /* Make header a flex container to align its content */
+        align-items: center; /* Vertically center the header content */
+      }
+
+      .header-content {
+        display: none; /* Hide the old header content */
+      }
+
+      .page-title {
+        text-align: center;
+        margin: 2rem 0 1rem;
+        color: #007bff;
+        font-size: 2.2rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        position: relative;
+      }
+
+      .page-title::after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(to right, #007bff, #00c6ff);
+        margin: 0.5rem auto;
+        border-radius: 2px;
+      }
+
+      .share-section {
+        text-align: center;
+        margin: 1.5rem auto 2rem;
+        max-width: 800px;
+        padding: 1rem;
+        background: white;
         border-radius: 12px;
-        box-shadow: 0 0 12px rgba(0,0,0,0.1);
-        animation: glow-on-load 1.5s ease-out;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       }
 
-      .card img:hover {
-        transform: scale(1.03);
-        border-color: #00ffcc;
-        box-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
+      .share-header { /* New flex container for the top row of share section */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem; /* Space between header and share buttons */
+        flex-wrap: wrap; /* Allow items to wrap on smaller screens */
       }
 
-      @keyframes glow-on-load {
-        0% {
-          border-color: #00ffcc;
-          box-shadow: 0 0 25px rgba(0, 255, 204, 0.9);
-        }
-        100% {
-          border-color: transparent;
-          box-shadow: 0 0 12px rgba(0,0,0,0.1);
-        }
+      .share-left-link {
+        color: #007bff; /* Use theme blue for the link */
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        background: #f0f0f0; /* Subtle background */
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        white-space: nowrap; /* Prevent text wrapping */
       }
+
+      .share-left-link:hover {
+        background: #e0e0e0;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      }
+
+      .share-title {
+        color: #007bff;
+        font-size: 1.4rem;
+        flex-grow: 1; /* Allows title to take up remaining space */
+        text-align: center;
+        margin: 0 1rem; /* Add horizontal margin to prevent crowding */
+      }
+
+      .share-right-text {
+        color: #333; /* Dark color for visibility */
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-shadow: none; /* Removed text shadow */
+        padding: 0.5rem 0; /* Align vertically with link */
+        white-space: nowrap; /* Prevent text wrapping */
+      }
+
+      .share-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem; /* Space between title/link and buttons */
+      }
+
+      .share-buttons a {
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: transform 0.2s, box-shadow 0.3s;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+
+      .share-buttons a:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      }
+
+      .share-whatsapp { background: linear-gradient(to right, #25D366, #128C7E); }
+      .share-facebook { background: linear-gradient(to right, #1877F2, #0A58CA); }
+      .share-twitter { background: linear-gradient(to right, #1DA1F2, #0d8abc); }
+      .share-linkedin { background: linear-gradient(to right, #0077B5, #00669c); }
 
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        max-width: 1200px;
-        margin: auto;
-        padding: 1.5rem; /* Added padding for smaller screens */
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 2rem;
+        margin: 0 auto;
+        padding: 0 1rem;
       }
 
       .card {
         background: white;
-        border-radius: 12px;
+        border-radius: 16px;
         overflow: hidden;
         text-align: center;
-        padding: 1rem; /* Added padding inside card */
-      }
-
-      .description {
-        background: #d4edda;
-        color: #155724;
-        padding: 0.5rem 0.75rem;
-        font-weight: bold;
-        font-size: 0.9rem;
-        display: inline-block;
-        margin: 0.5rem auto;
-        border-radius: 6px;
-      }
-
-      .back-to-main {
-        display: block;
-        text-align: center;
-        margin: 1rem auto;
-        background: #007bff;
-        color: white;
-        padding: 0.75rem 1.5rem;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        width: fit-content;
-      }
-      .back-to-main:hover {
-        background-color: #0056b3;
-      }
-
-      .share-buttons {
-        text-align: center;
-        margin: 1rem auto 2rem;
+        padding: 0;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease, box-shadow 0.4s ease;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem;
+        flex-direction: column;
+        height: 100%;
+        aspect-ratio: 1/1;
       }
-      
-      .share-buttons a {
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        text-decoration: none;
-        font-weight: bold;
-      }
-      
-      .share-whatsapp { background: #25D366; }
-      .share-facebook { background: #1877F2; }
-      .share-twitter { background: #1DA1F2; }
-      .share-linkedin { background: #0077B5; }
 
-      #scrollToTopBtn {
-        position: fixed;
-        bottom: 80px;
-        right: 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        cursor: pointer;
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      }
+
+      .card-img-container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      .card img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        transition: transform 0.2s ease;
+        border-radius: 8px;
+      }
+
+      .card:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Hide captions and descriptions */
+      .card h3, .card .description {
         display: none;
-        z-index: 999;
       }
 
       .whatsapp-float {
         position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 56px;
-        height: 56px;
-        background-color: #25D366;
+        bottom: 25px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(to bottom, #25D366, #128C7E);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         text-decoration: none;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
         z-index: 1000;
+        transition: transform 0.3s, box-shadow 0.3s;
       }
-      .whatsapp-float svg {
-        width: 28px;
-        height: 28px;
-        fill: white;
+
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+      }
+
+      .whatsapp-float i {
+        color: white;
+        font-size: 32px;
+      }
+
+      #scrollToTopBtn {
+        position: fixed;
+        bottom: 100px;
+        right: 25px;
+        background: linear-gradient(to bottom, #007bff, #0056b3);
+        color: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+
+      #scrollToTopBtn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.25);
       }
 
       /* Responsive adjustments */
-      @media (max-width: 768px) {
+      @media (max-width: 1024px) {
         .grid {
-          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-          gap: 1rem;
-          padding: 1rem;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 1.5rem;
         }
-        .card img {
-          height: 180px;
+      }
+
+      @media (max-width: 768px) {
+        header {
+            min-height: 70px; /* Adjust header height for smaller screens */
+        }
+        .share-header {
+            flex-direction: column; /* Stack items vertically */
+            gap: 0.5rem; /* Space between stacked items */
+            text-align: center;
+        }
+        .share-left-link {
+            order: 2; /* "Visit Main Site" below title */
+            width: 100%;
+            justify-content: center;
+        }
+        .share-title {
+            order: 1; /* Title on top */
+            margin: 0; /* Remove horizontal margin for full width */
+            font-size: 1.3rem; /* Adjust title font size */
+        }
+        .share-right-text {
+            order: 3; /* "SellInSeconds" text at bottom */
+            font-size: 1.3rem; /* Adjust text size */
+        }
+
+        .page-title {
+          font-size: 1.8rem;
+        }
+
+        .share-buttons a {
+          padding: 0.6rem 1.2rem;
+          font-size: 0.95rem;
+        }
+
+        .grid {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1.5rem;
         }
       }
 
       @media (max-width: 480px) {
         .grid {
-          grid-template-columns: 1fr; /* Single column layout on very small screens */
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          padding: 0 1rem;
+        }
+
+        .card {
+          aspect-ratio: 1/1.2;
+          padding: 0;
+        }
+
+        .card-img-container {
           padding: 0.5rem;
         }
+
         .card img {
-          height: 150px;
+          width: 100%;
+          height: auto;
+          max-height: 250px;
         }
+
+        .share-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
         .share-buttons a {
-          padding: 0.4rem 0.8rem;
-          font-size: 0.85rem;
+          width: 100%;
+          max-width: 280px;
+          justify-content: center;
         }
+
         .whatsapp-float, #scrollToTopBtn {
-          width: 48px;
-          height: 48px;
-          bottom: 15px;
-          right: 15px;
+          width: 50px;
+          height: 50px;
+          bottom: 20px;
+          right: 20px;
         }
-        .whatsapp-float svg {
-          width: 24px;
-          height: 24px;
+
+        #scrollToTopBtn {
+          bottom: 85px;
+        }
+
+        .whatsapp-float i {
+          font-size: 28px;
         }
       }
     </style>
 </head>
 <body>
-    <!-- Visit Main Site -->
-    <a class="back-to-main" href="https://www.sellinseconds.in">🔙 Visit SellInSeconds.in</a>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                </div>
+        </div>
+    </header>
 
-    <h2 style="text-align:center;margin-bottom:0.5rem;">🔗 Share this page:</h2>
-    <!-- Share Buttons -->
-    <div class="share-buttons">
-      <a class="share-whatsapp" href="https://wa.me/?text=Check+out+these+gadgets:+https://www.sellinseconds.in/dynamic/buygallery.html" target="_blank">WhatsApp</a>
-      <a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://www.sellinseconds.in/dynamic/buygallery.html" target="_blank">Facebook</a>
-      <a class="share-twitter" href="https://twitter.com/intent/tweet?url=https://www.sellinseconds.in/dynamic/buygallery.html&text=Best+used+gadgets" target="_blank">Twitter</a>
-      <a class="share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.sellinseconds.in/dynamic/buygallery.html" target="_blank">LinkedIn</a>
+    <div class="container">
+        <h1 class="page-title">Premium Gadgets Gallery</h1>
+
+        <div class="share-section">
+            <div class="share-header">
+                <a class="share-left-link" href="https://www.sellinseconds.in">
+                    <i class="fas fa-arrow-left"></i> Visit Main Site
+                </a>
+
+                <h2 class="share-title">🔗 Share this page with friends</h2>
+
+                <div class="share-right-text">
+                    SellInSeconds
+                </div>
+            </div>
+
+            <div class="share-buttons">
+                <a class="share-whatsapp" href="https://wa.me/?text=Check+out+these+gadgets:+https://www.sellinseconds.in/dynamic/buygallery.html" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://www.sellinseconds.in/dynamic/buygallery.html" target="_blank">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+                <a class="share-twitter" href="https://twitter.com/intent/tweet?url=https://www.sellinseconds.in/dynamic/buygallery.html&text=Best+used+gadgets" target="_blank">
+                    <i class="fab fa-twitter"></i> Twitter
+                </a>
+                <a class="share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.sellinseconds.in/dynamic/buygallery.html" target="_blank">
+                    <i class="fab fa-linkedin-in"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/1.webp" alt="iPhone 12 - Mint Condition" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/2.webp" alt="Samsung S21 - Phantom Gray" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/3.webp" alt="MacBook Pro M1 - 256GB SSD" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/4.webp" alt="iPad Air - Space Gray" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/5.webp" alt="OnePlus Nord - Blue Marble" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/6.webp" alt="Apple Watch Series 7 - GPS" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/7.webp" alt="AirPods Pro - Noise Cancelling" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/8.webp" alt="iMac 24 M1 - Magic Keyboard" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/9.webp" alt="PS5 Gaming Console" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/10.webp" alt="Asus ROG Phone - RGB Gaming" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/11.webp" alt="Sony WH-1000XM4 Headphones" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/12.webp" alt="DJI Mavic Air 2 Drone" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/13.webp" alt="GoPro HERO9 Black" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/14.webp" alt="Nintendo Switch OLED" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/15.webp" alt="Samsung Galaxy Tab S7+" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Product Grid -->
-    <div class="grid">
-      <!-- 10 Clean Image Cards -->
-      <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/1.webp" alt="iPhone 12 - Mint Condition" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-      <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/2.webp" alt="Samsung S21 - Phantom Gray" title="Samsung S21 - Phantom Gray" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-      <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/3.webp" alt="MacBook Pro M1 - 256GB SSD" title="MacBook Pro M1 - 256GB SSD" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-      <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/4.webp" alt="iPad Air - Space Gray" title="iPad Air - Space Gray" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-      <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/5.webp" alt="OnePlus Nord - Blue Marble" title="OnePlus Nord - Blue Marble" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-      <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/6.webp" alt="Apple Watch Series 7 - GPS" title="Apple Watch Series 7 - GPS" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-      <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/7.webp" alt="AirPods Pro - Noise Cancelling" title="AirPods Pro - Noise Cancelling" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-      <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/8.webp" alt="iMac 24 M1 - Magic Keyboard" title="iMac 24 M1 - Magic Keyboard" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-      <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/9.webp" alt="PS5 Gaming Console" title="PS5 Gaming Console" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-      <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/10.webp" alt="Asus ROG Phone - RGB Gaming" title="Asus ROG Phone - RGB Gaming" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-        <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/11.webp" alt="Asus ROG Phone - RGB Gaming" title="Asus ROG Phone - RGB Gaming" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-        <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/12.webp" alt="Asus ROG Phone - RGB Gaming" title="Asus ROG Phone - RGB Gaming" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-        <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/13.webp" alt="Asus ROG Phone - RGB Gaming" title="Asus ROG Phone - RGB Gaming" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-        <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/14.webp" alt="Asus ROG Phone - RGB Gaming" title="Asus ROG Phone - RGB Gaming" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-        <div class="card">
-        <img src="https://www.sellinseconds.in/dynamic/images/15.webp" alt="Asus ROG Phone - RGB Gaming" title="Asus ROG Phone - RGB Gaming" loading="lazy" onerror="this.closest('.card').remove()" />
-        <div class="description">Call 9886566379</div>
-      </div>
-    </div>
-
-    <!-- Floating WhatsApp Icon -->
     <a class="whatsapp-float" href="https://wa.me/919886566379" target="_blank" title="Chat on WhatsApp">
-      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.002 3.2c-7.072 0-12.8 5.728-12.8 12.8 0 2.24 0.608 4.416 1.728 6.336l-1.824 6.624 6.752-1.76c1.824 1.024 3.872 1.568 6.144 1.568h0.016c7.072 0 12.8-5.728 12.8-12.8s-5.728-12.8-12.8-12.8zM16 27.2h-0.016c-1.952 0-3.84-0.512-5.504-1.472l-0.384-0.224-4.016 1.056 1.072-3.936-0.256-0.4c-1.056-1.648-1.616-3.552-1.616-5.504 0-5.6 4.56-10.16 10.16-10.16s10.16 4.56 10.16 10.16c0 5.6-4.56 10.16-10.16 10.16zM22.4 20.4c-0.304-0.16-1.792-0.896-2.064-1.008s-0.48-0.16-0.688 0.16-0.8 1.008-0.992 1.216c-0.176 0.192-0.352 0.224-0.656 0.064-0.32-0.16-1.344-0.496-2.56-1.584-0.944-0.848-1.584-1.888-1.76-2.208-0.176-0.32-0.016-0.48 0.128-0.64 0.128-0.128 0.288-0.32 0.432-0.48 0.144-0.16 0.192-0.288 0.288-0.48s0.048-0.352-0.016-0.48c-0.064-0.128-0.688-1.648-0.944-2.272-0.24-0.576-0.48-0.496-0.688-0.496s-0.384-0.032-0.608-0.032c-0.224 0-0.576 0.064-0.88 0.384-0.304 0.32-1.152 1.12-1.152 2.72s1.184 3.168 1.344 3.392c0.16 0.224 2.336 3.552 5.664 4.976 0.8 0.352 1.424 0.56 1.92 0.72 0.8 0.256 1.52 0.224 2.096 0.128 0.64-0.096 1.792-0.736 2.048-1.44s0.256-1.312 0.176-1.44c-0.08-0.128-0.288-0.208-0.592-0.352z"/></svg>
+        <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Scroll to Top -->
-    <button id="scrollToTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">⬆ Top</button>
+    <button id="scrollToTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script>
       window.addEventListener('scroll', () => {
         const btn = document.getElementById('scrollToTopBtn');
         btn.style.display = window.scrollY > 300 ? 'block' : 'none';
       });
+
+      // Add fade-in animation to cards
+      document.addEventListener('DOMContentLoaded', () => {
+        const cards = document.querySelectorAll('.card');
+        cards.forEach((card, index) => {
+          setTimeout(() => {
+            card.style.opacity = '0';
+            card.style.animation = 'fadeIn 0.5s forwards';
+            card.style.animationDelay = `${index * 0.1}s`;
+          }, 100);
+        });
+      });
+
+      // Add animation to CSS
+      const style = document.createElement('style');
+      style.innerHTML = `
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .card {
+          opacity: 0;
+        }
+      `;
+      document.head.appendChild(style);
     </script>
 </body>
 </html>
