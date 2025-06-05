@@ -6,6 +6,19 @@
     <title>SellInSeconds - Clean Gallery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon"/>
+
+    <meta property="og:title" content="SellInSeconds - Clean Gallery">
+    <meta property="og:description" content="Explore a clean gallery of products from SellInSeconds.">
+    <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/1.webp"> <meta property="og:url" content="https://www.sellinseconds.in/"> <meta property="og:type" content="website">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="SellInSeconds Header Image">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@YourTwitterHandle"> <meta name="twitter:title" content="SellInSeconds - Clean Gallery">
+    <meta name="twitter:description" content="Explore a clean gallery of products from SellInSeconds.">
+    <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/1.webp"> <meta name="twitter:image:alt" content="SellInSeconds Header Image">
+
     <style>
       * {
         margin: 0;
@@ -36,273 +49,477 @@
         z-index: 1000;
         width: 100%;
         box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        align-items: center;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        overflow: hidden; /* Ensure content stays within bounds */
+        height: 100px; /* Set a fixed height for the banner */
       }
 
-      .header-banner {
+      .marquee-container {
+        width: 100%;
+        height: 100%;
         overflow: hidden;
-        border-radius: 12px;
-        height: 25vh;
-        min-height: 150px;
-        max-height: 250px;
+        position: relative;
       }
 
       .marquee-track {
-  display: flex;
-  height: 100%;
-  /* Remove animation as we want to center, not scroll */
-  /* animation: single-marquee-scroll 20s linear infinite; */
-  justify-content: center; /* Center horizontally */
-  align-items: center;   /* Center vertically */
-}
-
-.marquee-image {
-  height: 100%;
-  width: auto;
-  object-fit: contain;
-  display: block;
-  /* flex-shrink: 0; If you want to allow shrinking, remove this */
-}
-
-/* Remove the keyframe animation as it's no longer needed for centering */
-/*
-@keyframes single-marquee-scroll {
-  0% { transform: translateX(100vw); }
-  100% { transform: translateX(-100%); }
-}
-*/
-
-      @keyframes single-marquee-scroll {
-        0% { transform: translateX(100vw); }
-        100% { transform: translateX(-100%); }
+        display: flex;
+        height: 100%;
+        justify-content: center; /* Center horizontally */
+        align-items: center;   /* Center vertically */
       }
 
-      .grid {
+      .marquee-image {
+        height: 100%;
+        width: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 2rem;
-        margin: 2rem auto 0;
-        padding: 0 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        padding-top: 1rem;
       }
 
       .card {
-        background: white;
-        border-radius: 16px;
+        background: #fff;
+        border-radius: 12px;
         overflow: hidden;
-        text-align: center;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        transition: transform 0.3s ease, box-shadow 0.4s ease;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
         display: flex;
         flex-direction: column;
-        aspect-ratio: 1/1;
+        opacity: 0; /* Initially hidden for animation */
       }
 
       .card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.15);
       }
 
       .card-img-container {
-        flex: 1;
-        display: flex;
+        width: 100%;
+        padding-top: 75%; /* 4:3 Aspect Ratio */
+        position: relative;
         overflow: hidden;
-        background: #fdfdfd; /* Added background for letterboxing */
+        border-bottom: 1px solid #eee;
       }
 
-      .card img {
+      .card-img-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        object-fit: contain; /* Changed from cover to contain */
-        transition: transform 0.2s ease;
+        object-fit: cover;
+        transition: transform 0.3s ease;
       }
 
-      .card:hover img {
+      .card:hover .card-img-container img {
         transform: scale(1.05);
       }
 
-      .card h3, .card .description {
-        display: none;
+      .card-content {
+        padding: 1.25rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
       }
 
-      .whatsapp-float {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(to bottom, #25D366, #128C7E);
-        border-radius: 50%;
+      .card-title {
+        font-size: 1.3rem;
+        color: #333;
+        margin-bottom: 0.6rem;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      .card-description {
+        font-size: 0.95rem;
+        color: #555;
+        margin-bottom: 1rem;
+        flex-grow: 1;
+      }
+
+      .card-footer {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        justify-content: center;
+        margin-top: 0.75rem;
+      }
+
+      .card-price {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #007bff;
+      }
+
+      .btn-buy {
+        background-color: #007bff;
+        color: #fff;
+        padding: 0.6rem 1.2rem;
+        border-radius: 8px;
         text-decoration: none;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-        z-index: 1000;
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-
-      .whatsapp-float:hover {
-        transform: scale(1.1);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-      }
-
-      .whatsapp-float i {
-        color: white;
-        font-size: 32px;
-      }
-
-      #scrollToTopBtn {
-        position: fixed;
-        bottom: 100px;
-        right: 25px;
-        background: linear-gradient(to bottom, #007bff, #0056b3);
-        color: white;
-        border: none;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        display: inline-flex;
         align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        transition: all 0.3s ease;
-        z-index: 999;
+        gap: 0.5rem;
       }
 
-      #scrollToTopBtn:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+      .btn-buy:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
       }
 
-      @media (max-width: 1024px) {
-        .grid {
-          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-          gap: 1.5rem;
-        }
-      }
-
+      /* Responsive adjustments */
       @media (max-width: 768px) {
-        .header-banner {
-          height: 20vh;
+        .gallery-grid {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         }
-        .grid {
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 1.5rem;
+        .card-title {
+          font-size: 1.2rem;
+        }
+        .card-price {
+          font-size: 1.1rem;
         }
       }
 
       @media (max-width: 480px) {
-        .grid {
+        .gallery-grid {
           grid-template-columns: 1fr;
-          gap: 1.5rem;
         }
-        .card {
-          aspect-ratio: 1/1;
+        .container {
+          padding: 0 0.75rem;
         }
-        .whatsapp-float, #scrollToTopBtn {
-          width: 50px;
-          height: 50px;
-          bottom: 20px;
-          right: 20px;
+        .card-content {
+          padding: 1rem;
         }
-        #scrollToTopBtn {
-          bottom: 85px;
+        .card-title {
+          font-size: 1.1rem;
         }
-        .whatsapp-float i {
-          font-size: 28px;
+        .card-description {
+          font-size: 0.9rem;
         }
+        .card-price {
+          font-size: 1rem;
+        }
+        .btn-buy {
+          padding: 0.5rem 1rem;
+          font-size: 0.9rem;
+        }
+      }
+
+      .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: #fff;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.3s ease;
+      }
+
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+      }
+
+      .whatsapp-float i {
+        color: #fff;
+      }
+
+      #scrollToTopBtn {
+        display: none; /* Hidden by default */
+        position: fixed; /* Fixed position */
+        bottom: 110px; /* Place button above WhatsApp float */
+        right: 40px; /* Same right margin as WhatsApp float */
+        z-index: 999; /* Higher z-index to be on top */
+        background-color: #007bff; /* Blue background */
+        color: white; /* White text */
+        border: none; /* No border */
+        border-radius: 50%; /* Circular shape */
+        width: 50px; /* Set width */
+        height: 50px; /* Set height */
+        font-size: 24px; /* Icon size */
+        cursor: pointer; /* Pointer on hover */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #scrollToTopBtn:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+        transform: translateY(-3px); /* Slight lift effect */
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
       }
     </style>
 </head>
 <body>
-<header>
-  <div class="header-banner">
-    <div class="marquee-track">
-      <img src="https://www.sellinseconds.in/sellhead.webp" alt="SellInSeconds Banner" class="marquee-image">
-    </div>
-  </div>
-</header>
-
     <div class="container">
-        <div class="grid">
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/1.webp" alt="iPhone 12 - Mint Condition" loading="lazy" onerror="this.closest('.card').remove()">
+        <header>
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <img class="marquee-image" src="https://www.sellinseconds.in/dynamic/images/1.webp" alt="Header Image">
                 </div>
             </div>
+        </header>
+
+        <div class="gallery-grid">
             <div class="card">
                 <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/2.webp" alt="Samsung S21 - Phantom Gray" loading="lazy" onerror="this.closest('.card').remove()">
+                    <img src="https://www.sellinseconds.in/dynamic/images/1.webp" alt="Dell XPS 15" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Dell XPS 15</h3>
+                    <p class="card-description">Powerful laptop with stunning InfinityEdge display.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹1,25,000</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20Dell%20XPS%2015" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/3.webp" alt="MacBook Pro M1 - 256GB SSD" loading="lazy" onerror="this.closest('.card').remove()">
+                    <img src="https://www.sellinseconds.in/dynamic/images/2.webp" alt="Apple MacBook Pro 14" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Apple MacBook Pro 14</h3>
+                    <p class="card-description">M2 Pro chip, Liquid Retina XDR display.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹1,89,999</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20Apple%20MacBook%20Pro%2014" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/4.webp" alt="iPad Air - Space Gray" loading="lazy" onerror="this.closest('.card').remove()">
+                    <img src="https://www.sellinseconds.in/dynamic/images/3.webp" alt="HP Spectre x360" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">HP Spectre x360</h3>
+                    <p class="card-description">Versatile 2-in-1 laptop with premium design.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹1,10,000</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20HP%20Spectre%20x360" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/5.webp" alt="OnePlus Nord - Blue Marble" loading="lazy" onerror="this.closest('.card').remove()">
+                    <img src="https://www.sellinseconds.in/dynamic/images/4.webp" alt="Lenovo ThinkPad X1 Carbon" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Lenovo ThinkPad X1 Carbon</h3>
+                    <p class="card-description">Lightweight business laptop, robust performance.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹1,30,000</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20Lenovo%20ThinkPad%20X1%20Carbon" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/6.webp" alt="Apple Watch Series 7 - GPS" loading="lazy" onerror="this.closest('.card').remove()">
+                    <img src="https://www.sellinseconds.in/dynamic/images/5.webp" alt="Acer Swift 5" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Acer Swift 5</h3>
+                    <p class="card-description">Ultra-portable, stylish, and powerful laptop.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹85,000</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20Acer%20Swift%205" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/7.webp" alt="AirPods Pro - Noise Cancelling" loading="lazy" onerror="this.closest('.card').remove()">
+                    <img src="https://www.sellinseconds.in/dynamic/images/6.webp" alt="ASUS ROG Zephyrus G14" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">ASUS ROG Zephyrus G14</h3>
+                    <p class="card-description">Compact gaming laptop with impressive performance.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹1,40,000</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20ASUS%20ROG%20Zephyrus%20G14" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/8.webp" alt="iMac 24 M1 - Magic Keyboard" loading="lazy" onerror="this.closest('.card').remove()">
+                    <img src="https://www.sellinseconds.in/dynamic/images/7.webp" alt="Microsoft Surface Laptop 5" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Microsoft Surface Laptop 5</h3>
+                    <p class="card-description">Sleek design, touchscreen, and fast performance.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹1,05,000</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20Microsoft%20Surface%20Laptop%205" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/9.webp" alt="PS5 Gaming Console" loading="lazy" onerror="this.closest('.card').remove()">
+                    <img src="https://www.sellinseconds.in/dynamic/images/8.webp" alt="Razer Blade 15" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Razer Blade 15</h3>
+                    <p class="card-description">High-performance gaming laptop with sleek aesthetics.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹1,95,000</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20Razer%20Blade%2015" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/10.webp" alt="Asus ROG Phone - RGB Gaming" loading="lazy" onerror="this.closest('.card').remove()">
+                    <img src="https://www.sellinseconds.in/dynamic/images/9.webp" alt="Alienware m18" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Alienware m18</h3>
+                    <p class="card-description">Ultimate gaming beast with a large display.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹2,50,000</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20Alienware%20m18" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/11.webp" alt="Sony WH-1000XM4 Headphones" loading="lazy" onerror="this.closest('.card').remove()">
+                    <img src="https://www.sellinseconds.in/dynamic/images/10.webp" alt="MSI Creator M16" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">MSI Creator M16</h3>
+                    <p class="card-description">Designed for creators with powerful specs.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹1,35,000</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20MSI%20Creator%20M16" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/12.webp" alt="DJI Mavic Air 2 Drone" loading="lazy" onerror="this.closest('.card').remove()">
+                    <img src="https://www.sellinseconds.in/dynamic/images/11.webp" alt="Google Pixelbook Go" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Google Pixelbook Go</h3>
+                    <p class="card-description">Lightweight Chromebook for on-the-go productivity.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹70,000</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20Google%20Pixelbook%20Go" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/13.webp" alt="GoPro HERO9 Black" loading="lazy" onerror="this.closest('.card').remove()">
+                    <img src="https://www.sellinseconds.in/dynamic/images/12.webp" alt="Samsung Galaxy Book3 Pro" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Samsung Galaxy Book3 Pro</h3>
+                    <p class="card-description">Slim and powerful, perfect for everyday use.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹1,15,000</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20Samsung%20Galaxy%20Book3%20Pro" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/14.webp" alt="Nintendo Switch OLED" loading="lazy" onerror="this.closest('.card').remove()">
+                    <img src="https://www.sellinseconds.in/dynamic/images/13.webp" alt="Lenovo Yoga 7i" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Lenovo Yoga 7i</h3>
+                    <p class="card-description">Flexible 2-in-1 laptop with solid performance.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹90,000</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20Lenovo%20Yoga%207i" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://www.sellinseconds.in/dynamic/images/14.webp" alt="Dell Inspiron 16" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Dell Inspiron 16</h3>
+                    <p class="card-description">Large display for immersive viewing and productivity.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹75,000</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20Dell%20Inspiron%2016" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card-img-container">
                     <img src="https://www.sellinseconds.in/dynamic/images/15.webp" alt="Samsung Galaxy Tab S7+" loading="lazy" onerror="this.closest('.card').remove()">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Samsung Galaxy Tab S7+</h3>
+                    <p class="card-description">Premium Android tablet with stunning display and S Pen support.</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹65,000</span>
+                        <a href="https://wa.me/919886566379?text=I%27m%20interested%20in%20Samsung%20Galaxy%20Tab%20S7%2B" target="_blank" class="btn-buy">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -326,21 +543,12 @@
         const cards = document.querySelectorAll('.card');
         cards.forEach((card, index) => {
           setTimeout(() => {
-            card.style.opacity = '0';
+            card.style.opacity = '0'; // Set initial opacity to 0
             card.style.animation = 'fadeIn 0.5s forwards';
             card.style.animationDelay = `${index * 0.1}s`;
           }, 100);
         });
       });
-
-      const style = document.createElement('style');
-      style.innerHTML = `
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `;
-      document.head.appendChild(style);
     </script>
 </body>
 </html>
