@@ -1440,19 +1440,34 @@
       }
       containers.forEach((container) => {
         container.addEventListener('click', () => {
+          
+          const gadgetInterest = container.getAttribute('data-gadget-name') || '';
+          
+          // **MODIFICATION START: Show popup for selling/trading gadgets**
+          const isSellingOrTrading = !gadgetInterest.toLowerCase().includes("buy") &&
+                                    !gadgetInterest.toLowerCase().includes("repair") &&
+                                    !gadgetInterest.toLowerCase().includes("software") &&
+                                    !gadgetInterest.toLowerCase().includes("diagnosis") &&
+                                    !gadgetInterest.toLowerCase().includes("servicing");
+
+          if (isSellingOrTrading) {
+            const popupMessage = "We don't ask any Questions about your device because Direct interaction builds trust, captures emotion, reveals true intent, and adapts in real time—far beyond what any online Questionnaire can feel, fix, or replicate.";
+            showModal(popupMessage);
+          }
+          // **MODIFICATION END**
+
           containers.forEach(c => {
             c.classList.remove('selected');
             c.setAttribute('aria-pressed', 'false');
           });
           container.classList.add('selected');
           container.setAttribute('aria-pressed', 'true');
-          const gadgetInterest = container.getAttribute('data-gadget-name') || 'Selected Gadget';
           interestInput.value = gadgetInterest;
           let message;
           if (gadgetInterest.toLowerCase().includes("buy")) {
             message = `List of devices will be shared on your WhatsApp`;
             submitButton.textContent = "See Available Gadgets";
-          } else if (gadgetInterest.toLowerCase().includes("repair")) {
+          } else if (gadgetInterest.toLowerCase().includes("repair") || gadgetInterest.toLowerCase().includes("servicing")) {
             message = `Need a repair? We can help!`;
             submitButton.textContent = "Book Repair Service";
           } else if (gadgetInterest.toLowerCase().includes("software fix")) {
