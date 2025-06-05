@@ -707,6 +707,8 @@
       background-color: #fefefe; margin: 5% auto; padding: 30px; border: 1px solid #888;
       width: 85%; max-width: 480px; border-radius: var(--radius); box-shadow: var(--shadow-hover); text-align: center;
       animation: slideInModal 0.4s ease-out;
+      /* NEW: Added transition for box-shadow for a smoother glow */
+      transition: box-shadow 0.3s ease-out;
     }
     @keyframes slideInModal { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     .modal-content p { margin-bottom: 25px; font-size: 1.15rem; line-height: 1.6; }
@@ -791,7 +793,7 @@
         min-height: unset;
         padding-top: 10.68%;
       }
-      .header-image { 
+      .header-image {
         object-fit: contain;
         object-position: center 45%;
       }
@@ -872,11 +874,6 @@
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 1rem;
       }
-      .image-grid-row1-row2.glowing-border {
-        box-shadow: 0 0 8px rgba(66, 133, 244, 0.6), 0 0 15px rgba(66, 133, 244, 0.4);
-        border: 1px solid var(--main-accent-color);
-      }
-      .image-container { min-height: auto; }
       .image-card-inner { height: 240px; }
       .image-card-front figcaption { font-size: 0.95rem; }
       .image-description { font-size: 0.8rem; padding: 8px 10px; min-height: 50px; }
@@ -1037,6 +1034,25 @@
     gap: 1rem;
   }
 }
+    /* NEW: Glow effect for modal border - Corrected rgba syntax */
+    @keyframes beautifulGlow {
+        0% {
+            box-shadow: 0 0 0px rgba(66, 133, 244, 0.7), 0 0 0px rgba(66, 133, 244, 0.2);
+        }
+        30% {
+            box-shadow: 0 0 20px rgba(66, 133, 244, 1), 0 0 40px rgba(66, 133, 244, 0.6);
+        }
+        70% {
+            box-shadow: 0 0 10px rgba(66, 133, 244, 0.5), 0 0 20px rgba(66, 133, 244, 0.3);
+        }
+        100% {
+            box-shadow: 0 0 0px rgba(66, 133, 244, 0), 0 0 0px rgba(66, 133, 244, 0); /* Glow completely fades out */
+        }
+    }
+
+    .modal-content.pop-glow {
+        animation: beautifulGlow 2s ease-out forwards; /* 2 seconds duration, plays once and stays at end state */
+    }
 </style>
 <link href="/manifest.json" rel="manifest"/>
 <script type="application/ld+json">{
@@ -1321,7 +1337,7 @@
 <img alt="Instagram logo" class="social-icon" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"/>
 </a>
 <a aria-label="Subscribe to our YouTube channel" href="https://www.youtube.com/@telwin9616" rel="noopener noreferrer" target="_blank">
-<img alt="YouTube logo" class="social-icon" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/YouTube_social_white_squircle_%282024%29.svg"/>
+<img alt="YouTube logo" class="social-icon" src="https://www.sellinseconds.in/youtube.webp"/>
 </a>
 </div>
 <p class="small-text">Designed & Developed by Thanveer P</p>
@@ -1358,12 +1374,35 @@
     const nameError = document.getElementById('name-error');
     const mobileError = document.getElementById('mobile-error');
     const mobileInput = document.getElementById('mobile');
+
+    // MODAL FUNCTIONS START
     function showModal(message) {
       modalMessage.textContent = message;
       modal.style.display = 'block';
+
+      // Get the modal content element
+      const modalContent = document.querySelector('#customModal .modal-content');
+
+      // Remove any previous glow class to reset the animation
+      modalContent.classList.remove('pop-glow');
+
+      // Add glow class after a tiny delay to ensure CSS re-application and animation restart
+      setTimeout(() => {
+          modalContent.classList.add('pop-glow');
+      }, 50); // Small delay (e.g., 50ms) to allow browser to clear previous animation state
     }
-    modalCloseButton.onclick = function() { modal.style.display = 'none'; }
-    window.onclick = function(event) { if (event.target == modal) { modal.style.display = 'none'; } }
+
+    function hideModal() {
+      modal.style.display = 'none';
+      // Optional: Remove the glow class after hiding if it's not already removed by animation forwards
+      const modalContent = document.querySelector('#customModal .modal-content');
+      modalContent.classList.remove('pop-glow');
+    }
+
+    modalCloseButton.onclick = function() { hideModal(); }
+    window.onclick = function(event) { if (event.target == modal) { hideModal(); } }
+    // MODAL FUNCTIONS END
+
     function setBodyPadding() {
       requestAnimationFrame(() => {
         if (headerElement) {
