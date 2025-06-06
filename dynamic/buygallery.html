@@ -173,11 +173,18 @@
     </header>
 
     <div class="gallery-grid">
-      <!-- Gallery Cards -->
-      <!-- Replace or generate below -->
-      <!-- Example for 30 -->
-      <!-- Repeat pattern for descending from 30 to 1 -->
-      <!-- Add actual HTML blocks here -->
+ ${[...Array(30)].map((_, i) => {
+    const n = 30 - i;
+    return `
+    <div class="card">
+      <div class="card-img-container">
+        <img src="https://www.sellinseconds.in/dynamic/images/${n}.webp"
+             alt="Product ${n}"
+             loading="lazy"
+             onerror="this.closest('.card').remove()">
+      </div>
+    </div>`;
+  }).join('\n')}
     </div>
   </div>
 
