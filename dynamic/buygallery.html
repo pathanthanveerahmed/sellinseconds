@@ -1,346 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SellInSeconds - Clean Gallery</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly</title>
 
-    <meta property="og:title" content="SellInSeconds - Clean Gallery">
-    <meta property="og:description" content="Explore a clean gallery of products from SellInSeconds.">
-    <meta property="og:image" content="https://www.sellinseconds.in/sellhead.webp">
-    <meta property="og:url" content="https://www.sellinseconds.in/">
-    <meta property="og:type" content="website">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="SellInSeconds Header Banner">
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
+  <meta name="keywords" content="sell used phone, sell used laptop, pre-owned gadgets, instant gadget quote, sell smartphones online, second hand mobiles, sell laptop instantly">
+  <meta name="author" content="SellInSeconds">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.sellinseconds.in/test.html">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@YourTwitterHandle">
-    <meta name="twitter:title" content="SellInSeconds - Clean Gallery">
-    <meta name="twitter:description" content="Explore a clean gallery of products from SellInSeconds.">
-    <meta name="twitter:image" content="https://www.sellinseconds.in/sellhead.webp">
-    <meta name="twitter:image:alt" content="SellInSeconds Header Banner">
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly">
+  <meta property="og:description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
+  <meta property="og:image" content="https://www.sellinseconds.in/sellhead.webp">
+  <meta property="og:url" content="https://www.sellinseconds.in/test.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SellInSeconds Header Banner">
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly">
+  <meta name="twitter:description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
+  <meta name="twitter:image" content="https://www.sellinseconds.in/sellhead.webp">
 
-      body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
-        color: #333;
-        line-height: 1.6;
-        padding-bottom: 2rem;
-      }
+  <!-- Favicon -->
+  <link rel="icon" href="https://www.sellinseconds.in/fevicon.ico" type="image/x-icon">
 
-      .container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 1rem;
-      }
+  <!-- Google Tag Manager (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QMV442HBWL');
+  </script>
 
-      /* Header with a single column */
-      header {
-        background: #fff;
-        padding: 1rem;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        width: 100%;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        border-radius: 8px;
-        margin-bottom: 1.5rem;
-        text-align: center;
-        overflow: hidden; /* Ensure content stays within bounds */
-        height: 200px; /* Set a fixed height for the header banner, making it more visible */
-      }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-      .marquee-container {
-        width: 100%;
-        height: 100%; /* Make container take full height of header */
-        overflow: hidden;
-        position: relative;
-      }
-
-      .marquee-track {
-        display: flex;
-        height: 100%; /* Make track take full height of container */
-        justify-content: center; /* Center horizontally */
-        align-items: center;   /* Center vertically */
-      }
-
-      .marquee-image {
-        height: 100%; /* Make image take full height of track, scaling proportionately */
-        width: auto; /* Allow width to be determined by content or aspect ratio */
-        max-width: 100%; /* Ensure image doesn't overflow its container */
-        object-fit: contain; /* Ensure the entire image is visible without cropping */
-        display: block;
-      }
-
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
+      color: #333;
+      line-height: 1.6;
+      padding-bottom: 2rem;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    header {
+      background: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      overflow: hidden;
+      height: 200px;
+    }
+    .marquee-container { width: 100%; height: 100%; overflow: hidden; position: relative; }
+    .marquee-track {
+      display: flex; height: 100%;
+      justify-content: center; align-items: center;
+    }
+    .marquee-image {
+      height: 100%; width: auto;
+      max-width: 100%; object-fit: contain;
+      display: block;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding-top: 1rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    .card-img-container {
+      width: 100%;
+      padding-top: 75%;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-img-container img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+    .card:hover .card-img-container img {
+      transform: scale(1.05);
+    }
+    @media (max-width: 768px) {
       .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-        padding-top: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       }
-
-      .card {
-        background: #fff;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        display: flex; /* Keep flex to maintain vertical stacking if needed */
-        flex-direction: column;
-        opacity: 0; /* Initially hidden for animation */
-      }
-
-      .card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-      }
-
-      .card-img-container {
-        width: 100%;
-        padding-top: 75%; /* 4:3 Aspect Ratio for the container */
-        position: relative;
-        overflow: hidden;
-        /* Removed border-bottom as there's no content below it */
-      }
-
-      .card-img-container img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain; /* Changed from cover to contain to display fully without cropping */
-        transition: transform 0.3s ease;
-      }
-
-      .card:hover .card-img-container img {
-        transform: scale(1.05);
-      }
-
-      /* Removed .card-content, .card-title, .card-description, .card-footer styles as elements are removed from HTML */
-
-      /* Responsive adjustments */
-      @media (max-width: 768px) {
-        .gallery-grid {
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        }
-      }
-
-      @media (max-width: 480px) {
-        .gallery-grid {
-          grid-template-columns: 1fr;
-        }
-        .container {
-          padding: 0 0.75rem;
-        }
-      }
-
-      .whatsapp-float {
-        position: fixed;
-        width: 60px;
-        height: 60px;
-        bottom: 40px;
-        right: 40px;
-        background-color: #25d366;
-        color: #fff;
-        border-radius: 50px;
-        text-align: center;
-        font-size: 30px;
-        box-shadow: 2px 2px 3px #999;
-        z-index: 1000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: transform 0.3s ease;
-      }
-
-      .whatsapp-float:hover {
-        transform: scale(1.1);
-      }
-
-      .whatsapp-float i {
-        color: #fff;
-      }
-
-      #scrollToTopBtn {
-        display: none; /* Hidden by default */
-        position: fixed; /* Fixed position */
-        bottom: 110px; /* Place button above WhatsApp float */
-        right: 40px; /* Same right margin as WhatsApp float */
-        z-index: 999; /* Higher z-index to be on top */
-        background-color: #007bff; /* Blue background */
-        color: white; /* White text */
-        border: none; /* No border */
-        border-radius: 50%; /* Circular shape */
-        width: 50px; /* Set width */
-        height: 50px; /* Set height */
-        font-size: 24px; /* Icon size */
-        cursor: pointer; /* Pointer on hover */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      #scrollToTopBtn:hover {
-        background-color: #0056b3; /* Darker blue on hover */
-        transform: translateY(-3px); /* Slight lift effect */
-      }
-
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-    </style>
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .container { padding: 0 0.75rem; }
+    }
+    .whatsapp-float {
+      position: fixed; width: 60px; height: 60px;
+      bottom: 40px; right: 40px;
+      background-color: #25d366; color: #fff;
+      border-radius: 50px; text-align: center;
+      font-size: 30px; box-shadow: 2px 2px 3px #999;
+      z-index: 1000;
+      display: flex; justify-content: center; align-items: center;
+      transition: transform 0.3s ease;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+    .whatsapp-float i { color: #fff; }
+    #scrollToTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 110px; right: 40px;
+      z-index: 999;
+      background-color: #007bff;
+      color: white; border: none;
+      border-radius: 50%;
+      width: 50px; height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      display: flex; justify-content: center; align-items: center;
+    }
+    #scrollToTopBtn:hover {
+      background-color: #0056b3;
+      transform: translateY(-3px);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="marquee-container">
-                <div class="marquee-track">
-                    <img class="marquee-image" src="https://www.sellinseconds.in/sellhead.webp" alt="SellInSeconds Header Banner">
-                </div>
-            </div>
-        </header>
-
-        <div class="gallery-grid">
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/1.webp" alt="Dell XPS 15" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
-
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/2.webp" alt="Apple MacBook Pro 14" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/3.webp" alt="HP Spectre x360" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/4.webp" alt="Lenovo ThinkPad X1 Carbon" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/5.webp" alt="Acer Swift 5" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/6.webp" alt="ASUS ROG Zephyrus G14" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/7.webp" alt="Microsoft Surface Laptop 5" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/8.webp" alt="Razer Blade 15" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/9.webp" alt="Alienware m18" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/10.webp" alt="MSI Creator M16" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/11.webp" alt="Google Pixelbook Go" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/12.webp" alt="Samsung Galaxy Book3 Pro" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/13.webp" alt="Lenovo Yoga 7i" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/14.webp" alt="Dell Inspiron 16" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="https://www.sellinseconds.in/dynamic/images/15.webp" alt="Samsung Galaxy Tab S7+" loading="lazy" onerror="this.closest('.card').remove()">
-                </div>
-            </div>
+  <div class="container">
+    <header>
+      <div class="marquee-container">
+        <div class="marquee-track">
+          <img class="marquee-image" src="https://www.sellinseconds.in/sellhead.webp" alt="SellInSeconds Header Banner">
         </div>
+      </div>
+    </header>
+
+    <div class="gallery-grid">
+      <!-- Gallery Cards -->
+      <!-- Replace or generate below -->
+      <!-- Example for 30 -->
+      <!-- Repeat pattern for descending from 30 to 1 -->
+      <!-- Add actual HTML blocks here -->
     </div>
+  </div>
 
-    <a class="whatsapp-float" href="https://wa.me/919886566379" target="_blank" title="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+  <a class="whatsapp-float" href="https://wa.me/919886566379" target="_blank" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-    <button id="scrollToTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+  <button id="scrollToTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
-    <script>
-      window.addEventListener('scroll', () => {
-        const btn = document.getElementById('scrollToTopBtn');
-        btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+  <script>
+    window.addEventListener('scroll', () => {
+      const btn = document.getElementById('scrollToTopBtn');
+      btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.style.opacity = '0';
+          card.style.animation = 'fadeIn 0.5s forwards';
+          card.style.animationDelay = `${index * 0.1}s`;
+        }, 100);
       });
-
-      document.addEventListener('DOMContentLoaded', () => {
-        const cards = document.querySelectorAll('.card');
-        cards.forEach((card, index) => {
-          setTimeout(() => {
-            card.style.opacity = '0';
-            card.style.animation = 'fadeIn 0.5s forwards';
-            card.style.animationDelay = `${index * 0.1}s`;
-          }, 100);
-        });
-      });
-
-      const style = document.createElement('style');
-      style.innerHTML = `
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `;
-      document.head.appendChild(style);
-    </script>
+    });
+  </script>
 </body>
 </html>
