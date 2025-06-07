@@ -95,29 +95,42 @@
       padding-top: 1rem;
     }
 
-    /* Individual Card Styling */
-    .card-wrapper { /* New wrapper for card and whatsapp button */
+    /* Individual Card Wrapper Styling (now holds the border and shadow) */
+    .card-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center; /* Center content horizontally */
+        opacity: 0; /* Set initial opacity to 0 for fade-in animation */
+        background: #fff; /* Background for the whole wrapper */
+        border-radius: 12px;
+        overflow: hidden; /* Ensures contents respect border-radius */
+        /* Moved border and shadow from .card to .card-wrapper */
+        border: 3px solid #b3d9ff; /* A soft blue border */
+        box-shadow: 0 6px 18px rgba(0,0,0,0.1), 0 0 15px rgba(0, 123, 255, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .card {
-      background: #fff;
-      border-radius: 12px;
+    .card-wrapper:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15), 0 0 20px rgba(0, 123, 255, 0.4); /* Enhanced shadow on hover */
+    }
+
+    .card { /* The inner card, no longer holds the main border/shadow */
+      /* Removed border and main box-shadow from here */
+      /* background: #fff; */ /* Already set on .card-wrapper */
+      border-radius: 0; /* No need for radius here, handled by wrapper */
       overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      /* Removed box-shadow: 0 6px 18px rgba(0,0,0,0.1); */
+      transition: none; /* No transform transition needed here */
       display: flex;
       flex-direction: column;
-      opacity: 0; /* Initially hidden for animation */
       width: 100%; /* Ensure card takes full width of its wrapper */
-      margin-bottom: 1rem; /* Space between card and new WhatsApp button */
+      margin-bottom: 0; /* Space between card and new WhatsApp button, now handled by button margin-top */
     }
 
     .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+      transform: none; /* No transform here, handled by .card-wrapper:hover */
+      box-shadow: none; /* No shadow here, handled by .card-wrapper:hover */
     }
 
     /* Image Container within Card */
@@ -136,7 +149,7 @@
       transition: transform 0.3s ease;
     }
 
-    .card:hover .card-img-container img {
+    .card-wrapper:hover .card-img-container img { /* Changed to hover on wrapper */
       transform: scale(1.05);
     }
 
@@ -193,7 +206,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* NEW: WhatsApp Button below each image */
+    /* WhatsApp Button below each image */
     .whatsapp-card-btn {
         display: inline-flex;
         align-items: center;
@@ -209,12 +222,17 @@
         transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
         cursor: pointer;
         border: none; /* Remove default button border */
+        /* Beautiful border for the WhatsApp button */
+        border: 2px solid #1da851; /* A slightly darker green border */
+        box-shadow: 0 0 10px rgba(37, 211, 102, 0.2);
+        margin-top: 1rem; /* Space between card and button */
+        margin-bottom: 1rem; /* Space below the button */
     }
 
     .whatsapp-card-btn:hover {
         background-color: #1da851; /* Darker green on hover */
         transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15), 0 0 15px rgba(37, 211, 102, 0.6); /* Enhanced shadow on hover */
     }
 
     .whatsapp-card-btn i {
@@ -241,10 +259,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/30.webp"
                alt="Product 30"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()"> <!-- Remove whole wrapper on error -->
+               onerror="this.closest('.card-wrapper').style.display='none';"> <!-- Modified onerror -->
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 30">
+      <button class="whatsapp-card-btn" data-product-img-name="30">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -255,10 +273,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/29.webp"
                alt="Product 29"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 29">
+      <button class="whatsapp-card-btn" data-product-img-name="29">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -269,10 +287,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/28.webp"
                alt="Product 28"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 28">
+      <button class="whatsapp-card-btn" data-product-img-name="28">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -283,10 +301,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/27.webp"
                alt="Product 27"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 27">
+      <button class="whatsapp-card-btn" data-product-img-name="27">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -297,10 +315,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/26.webp"
                alt="Product 26"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 26">
+      <button class="whatsapp-card-btn" data-product-img-name="26">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -311,10 +329,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/25.webp"
                alt="Product 25"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 25">
+      <button class="whatsapp-card-btn" data-product-img-name="25">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -325,10 +343,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/24.webp"
                alt="Product 24"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 24">
+      <button class="whatsapp-card-btn" data-product-img-name="24">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -339,10 +357,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/23.webp"
                alt="Product 23"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 23">
+      <button class="whatsapp-card-btn" data-product-img-name="23">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -353,10 +371,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/22.webp"
                alt="Product 22"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 22">
+      <button class="whatsapp-card-btn" data-product-img-name="22">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -367,10 +385,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/21.webp"
                alt="Product 21"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 21">
+      <button class="whatsapp-card-btn" data-product-img-name="21">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -381,10 +399,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/20.webp"
                alt="Product 20"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 20">
+      <button class="whatsapp-card-btn" data-product-img-name="20">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -395,10 +413,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/19.webp"
                alt="Product 19"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 19">
+      <button class="whatsapp-card-btn" data-product-img-name="19">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -409,10 +427,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/18.webp"
                alt="Product 18"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 18">
+      <button class="whatsapp-card-btn" data-product-img-name="18">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -423,10 +441,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/17.webp"
                alt="Product 17"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 17">
+      <button class="whatsapp-card-btn" data-product-img-name="17">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -437,10 +455,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/16.webp"
                alt="Product 16"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 16">
+      <button class="whatsapp-card-btn" data-product-img-name="16">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -451,10 +469,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/15.webp"
                alt="Product 15"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 15">
+      <button class="whatsapp-card-btn" data-product-img-name="15">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -465,10 +483,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/14.webp"
                alt="Product 14"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 14">
+      <button class="whatsapp-card-btn" data-product-img-name="14">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -479,10 +497,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/13.webp"
                alt="Product 13"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 13">
+      <button class="whatsapp-card-btn" data-product-img-name="13">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -493,10 +511,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/12.webp"
                alt="Product 12"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 12">
+      <button class="whatsapp-card-btn" data-product-img-name="12">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -507,10 +525,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/11.webp"
                alt="Product 11"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 11">
+      <button class="whatsapp-card-btn" data-product-img-name="11">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -521,10 +539,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/10.webp"
                alt="Product 10"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 10">
+      <button class="whatsapp-card-btn" data-product-img-name="10">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -535,10 +553,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/9.webp"
                alt="Product 9"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 9">
+      <button class="whatsapp-card-btn" data-product-img-name="9">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -549,10 +567,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/8.webp"
                alt="Product 8"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 8">
+      <button class="whatsapp-card-btn" data-product-img-name="8">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -563,10 +581,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/7.webp"
                alt="Product 7"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 7">
+      <button class="whatsapp-card-btn" data-product-img-name="7">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -577,10 +595,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/6.webp"
                alt="Product 6"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 6">
+      <button class="whatsapp-card-btn" data-product-img-name="6">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -591,10 +609,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/5.webp"
                alt="Product 5"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 5">
+      <button class="whatsapp-card-btn" data-product-img-name="5">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -605,10 +623,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/4.webp"
                alt="Product 4"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 4">
+      <button class="whatsapp-card-btn" data-product-img-name="4">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -619,10 +637,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/3.webp"
                alt="Product 3"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 3">
+      <button class="whatsapp-card-btn" data-product-img-name="3">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -633,10 +651,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/2.webp"
                alt="Product 2"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 2">
+      <button class="whatsapp-card-btn" data-product-img-name="2">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -647,10 +665,10 @@
           <img src="https://www.sellinseconds.in/dynamic/images/1.webp"
                alt="Product 1"
                loading="lazy"
-               onerror="this.closest('.card-wrapper').remove()">
+               onerror="this.closest('.card-wrapper').style.display='none';">
         </div>
       </div>
-      <button class="whatsapp-card-btn" data-product-alt="Product 1">
+      <button class="whatsapp-card-btn" data-product-img-name="1">
         <i class="fab fa-whatsapp"></i> I am interested in this device
       </button>
     </div>
@@ -675,11 +693,9 @@
     document.addEventListener('DOMContentLoaded', () => {
       const cardWrappers = document.querySelectorAll('.card-wrapper');
       cardWrappers.forEach((wrapper, index) => {
-        setTimeout(() => {
-          wrapper.style.opacity = '0'; // Set initial opacity to 0
-          wrapper.style.animation = 'fadeIn 0.5s forwards';
-          wrapper.style.animationDelay = `${index * 0.1}s`;
-        }, 100);
+        // Only apply animation properties, initial opacity is now in CSS
+        wrapper.style.animation = 'fadeIn 0.5s forwards';
+        wrapper.style.animationDelay = `${index * 0.1}s`;
       });
 
       // Add event listeners for the new WhatsApp buttons
@@ -687,8 +703,12 @@
       whatsappButtons.forEach(button => {
         button.addEventListener('click', () => {
           const phoneNumber = '919886566379'; // Your WhatsApp number
-          const productAltText = button.getAttribute('data-product-alt') || 'this device';
-          const message = encodeURIComponent(`I am interested in ${productAltText}.`);
+          // Get the image name (e.g., '30' from 'Product 30')
+          const productImageName = button.getAttribute('data-product-img-name');
+          // Construct the URL to the HTML page
+          const productHtmlUrl = `https://www.sellinseconds.in/dynamic/wacust/${productImageName}.html`;
+          
+          const message = encodeURIComponent(`I am interested in this device. ${productHtmlUrl}`); // Include the HTML page URL
           const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
           window.open(whatsappUrl, '_blank');
         });
