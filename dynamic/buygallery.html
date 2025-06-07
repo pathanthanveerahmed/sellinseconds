@@ -12,21 +12,21 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.sellinseconds.in/buygallery.html">
 
-  <!-- Open Graph Tags -->
+  <!-- Open Graph Tags (Updated by JS for newest image thumbnail) -->
   <meta property="og:title" content="SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly">
   <meta property="og:description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
-  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/1.webp">
+  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/1.webp"> <!-- Placeholder, will be updated by JS -->
   <meta property="og:url" content="https://www.sellinseconds.in/buygallery.html">
   <meta property="og:type" content="website">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Latest Used Device on SellInSeconds">
 
-  <!-- Twitter Card -->
+  <!-- Twitter Card (Updated by JS for newest image thumbnail) -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly">
   <meta name="twitter:description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
-  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/1.webp">
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/1.webp"> <!-- Placeholder, will be updated by JS -->
 
   <!-- Google Tag Manager (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
@@ -41,7 +41,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    /* Universal Box-Sizing */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Body Styling */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
@@ -49,7 +52,11 @@
       line-height: 1.6;
       padding-bottom: 2rem;
     }
+
+    /* Main Container for Content */
     .container { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
+
+    /* Header Styling */
     header {
       background: #fff;
       padding: 1rem;
@@ -71,12 +78,16 @@
     .marquee-image {
       height: 100%; width: auto; max-width: 100%; object-fit: contain; display: block;
     }
+
+    /* Gallery Grid Layout */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
       padding-top: 1rem;
     }
+
+    /* Individual Card Wrapper Styling (now holds the border and shadow) */
     .card-wrapper {
       display: flex;
       flex-direction: column;
@@ -84,18 +95,49 @@
       background: #fff;
       border-radius: 12px;
       overflow: hidden;
-      border: 3px solid #b3d9ff;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1), 0 0 15px rgba(0, 123, 255, 0.1);
+      position: relative; /* Needed for absolute positioning of the badge */
+      /* Double border using multiple box-shadows */
+      box-shadow: 0 0 0 3px #e0e0e0, /* Outer light gray border */
+                  0 0 0 6px #b3d9ff, /* Inner soft blue border */
+                  0 6px 18px rgba(0,0,0,0.1); /* Main shadow */
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .card-wrapper:hover {
       transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.15), 0 0 20px rgba(0, 123, 255, 0.4);
+      box-shadow: 0 0 0 3px #e0e0e0,
+                  0 0 0 6px #8cc6ff, /* Slightly darker blue on hover */
+                  0 12px 24px rgba(0,0,0,0.15);
     }
+
+    /* Top-most card specific styling (for the new badge) */
     .card-wrapper.top-most {
-      border: 5px double #007bff;
+      box-shadow: 0 0 0 3px #e0e0e0,
+                  0 0 0 6px #007bff, /* Distinct blue for the "new" border */
+                  0 6px 18px rgba(0,0,0,0.1);
     }
-    .card { width: 100%; display: flex; flex-direction: column; }
+
+    .card-wrapper.top-most::before {
+      content: 'NEW';
+      position: absolute;
+      top: 10px;
+      right: -10px; /* Position slightly outside to create a ribbon effect */
+      background-color: #ff4d4d; /* Bright red for "NEW" */
+      color: white;
+      padding: 5px 15px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border-radius: 5px;
+      transform: rotate(20deg); /* Tilt the badge for visual appeal */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 10; /* Ensure it's above other elements */
+    }
+
+    .card { /* The inner card, no longer holds the main border/shadow */
+      width: 100%; display: flex; flex-direction: column;
+    }
+
+    /* Image Container within Card */
     .card-img-container { width: 100%; padding-top: 75%; position: relative; overflow: hidden; }
     .card-img-container img {
       position: absolute; top: 0; left: 0;
@@ -104,6 +146,8 @@
       transition: transform 0.3s ease;
     }
     .card-wrapper:hover .card-img-container img { transform: scale(1.05); }
+
+    /* WhatsApp Card Button */
     .whatsapp-card-btn {
       display: inline-flex;
       align-items: center;
@@ -112,45 +156,55 @@
       color: #fff;
       padding: 0.75rem 1.5rem;
       border-radius: 8px;
+      text-decoration: none;
       font-weight: 600;
       font-size: 1rem;
-      border: 2px solid #1da851;
-      margin: 1rem 0;
+      border: 2px solid #1da851; /* Border for the button */
+      box-shadow: 0 0 10px rgba(37, 211, 102, 0.2);
+      margin: 1rem 0; /* Space above and below the button within the wrapper */
       cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     }
     .whatsapp-card-btn:hover {
       background-color: #1da851;
       transform: translateY(-2px);
       box-shadow: 0 6px 12px rgba(0,0,0,0.15), 0 0 15px rgba(37, 211, 102, 0.6);
     }
+    .whatsapp-card-btn i { font-size: 1.1rem; }
+
+    /* Floating WhatsApp Button */
     .whatsapp-float {
-      position: fixed;
-      width: 60px; height: 60px;
+      position: fixed; width: 60px; height: 60px;
       bottom: 40px; right: 40px;
-      background-color: #25d366;
-      color: #fff;
-      border-radius: 50px;
-      font-size: 30px;
+      background-color: #25d366; color: #fff;
+      border-radius: 50px; text-align: center;
+      font-size: 30px; box-shadow: 2px 2px 3px #999;
       z-index: 1000;
       display: flex; justify-content: center; align-items: center;
+      transition: transform 0.3s ease;
     }
+    .whatsapp-float:hover { transform: scale(1.1); }
+
+    /* Scroll to Top Button */
     #scrollToTopBtn {
       display: none;
       position: fixed;
       bottom: 110px; right: 40px;
       z-index: 999;
       background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 50px; height: 50px;
+      color: white; border: none;
+      border-radius: 50%; width: 50px; height: 50px;
       font-size: 24px;
       cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.3s ease;
     }
     #scrollToTopBtn:hover {
       background-color: #0056b3;
       transform: translateY(-3px);
     }
+
+    /* Fade-in Animation for Cards */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -158,26 +212,47 @@
   </style>
 
   <script>
-    async function detectNewestImageURL(max) {
+    // Function to detect the newest image by checking file availability
+    async function detectNewestImageNumber(max) {
       for (let i = 1; i <= max; i++) {
+        // Append a cache-busting parameter to ensure fresh request
         const url = `https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${Date.now()}`;
         try {
-          const res = await fetch(url, { method: 'HEAD' });
-          if (!res.ok) return `https://www.sellinseconds.in/dynamic/images/${i - 1}.webp`;
-        } catch {
-          return `https://www.sellinseconds.in/dynamic/images/${i - 1}.webp`;
+          // Use HEAD request to check for file existence without downloading content
+          const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+          if (!res.ok) {
+            // If we hit a non-existent image, the previous one was the newest available
+            return i - 1;
+          }
+        } catch (error) {
+          // Network errors or other issues, assume the previous one was the newest
+          console.warn(`Error checking image ${i}: ${error.message}. Assuming previous is newest.`);
+          return i - 1;
         }
       }
-      return `https://www.sellinseconds.in/dynamic/images/${max}.webp`;
+      return max; // All images up to max are available, so max is the newest
     }
 
-    (async function updateOGThumbnail() {
-      const newestURL = await detectNewestImageURL(30);
+    // Function to update Open Graph and Twitter Card meta tags for link sharing
+    async function updateOGThumbnail() {
+      const newestNum = await detectNewestImageNumber(30);
+      const newestURL = `https://www.sellinseconds.in/dynamic/images/${newestNum}.webp`;
+
       const ogImage = document.querySelector('meta[property="og:image"]');
       const twitterImage = document.querySelector('meta[name="twitter:image"]');
+      
       if (ogImage) ogImage.setAttribute('content', newestURL);
       if (twitterImage) twitterImage.setAttribute('content', newestURL);
-    })();
+
+      // NO LONGER UPDATING HEADER IMAGE: Removed the line below
+      // const marqueeImage = document.querySelector('.marquee-image');
+      // if (marqueeImage) marqueeImage.src = newestURL;
+    }
+
+    // This immediately calls the function to update the thumbnail as soon as possible
+    // (even before DOMContentLoaded for better perceived performance of meta tags)
+    updateOGThumbnail();
+
   </script>
 </head>
 <body>
@@ -185,6 +260,7 @@
     <header>
       <div class="marquee-container">
         <div class="marquee-track">
+          <!-- The src for this image is now fixed to sellhead.webp as per your request -->
           <img class="marquee-image" src="https://www.sellinseconds.in/sellhead.webp" alt="SellInSeconds Header Banner">
         </div>
       </div>
@@ -201,34 +277,25 @@
   </button>
 
   <script>
+    // Scroll to top button visibility logic
     window.addEventListener('scroll', () => {
-      document.getElementById('scrollToTopBtn').style.display = window.scrollY > 300 ? 'block' : 'none';
+      document.getElementById('scrollToTopBtn').style.display = window.scrollY > 300 ? 'flex' : 'none';
     });
-
-    async function detectNewestImage(max) {
-      for (let i = 1; i <= max; i++) {
-        const url = `https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${Date.now()}`;
-        try {
-          const res = await fetch(url, { method: 'HEAD' });
-          if (!res.ok) return i - 1;
-        } catch {
-          return i - 1;
-        }
-      }
-      return max;
-    }
 
     document.addEventListener("DOMContentLoaded", async () => {
       const maxImages = 30;
       const gallery = document.querySelector(".gallery-grid");
-      const newestImageNumber = await detectNewestImage(maxImages);
+      const newestImageNumber = await detectNewestImageNumber(maxImages); // Re-use the optimized function
 
       const orderedImages = [];
+      // This logic ensures the newest image is always at the top,
+      // and then cycles through the rest of the images in descending order.
+      // If newestImageNumber is 5, it will be 5, 4, 3, 2, 1, 30, 29, ..., 6
       for (let i = newestImageNumber; i >= 1; i--) orderedImages.push(i);
       for (let i = maxImages; i > newestImageNumber; i--) orderedImages.push(i);
 
       gallery.innerHTML = orderedImages.map((num, index) => `
-        <div class="card-wrapper ${index === 0 ? 'top-most' : ''}" style="animation: fadeIn 0.5s forwards ${index * 0.1}s">
+        <div class="card-wrapper ${index === 0 ? 'top-most' : ''}">
           <div class="card">
             <div class="card-img-container">
               <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp" alt="Product ${num}" loading="lazy"
@@ -241,11 +308,14 @@
         </div>
       `).join('');
 
+      // Add event listeners for the WhatsApp buttons
       gallery.addEventListener('click', function (e) {
         const button = e.target.closest(".whatsapp-card-btn");
         if (button) {
           const productImageName = button.getAttribute('data-product-img-name');
-          const message = encodeURIComponent(`I am interested in this device. https://www.sellinseconds.in/dynamic/wacust/${productImageName}.html`);
+          const productHtmlUrl = `https://www.sellinseconds.in/dynamic/wacust/${productImageName}.html`;
+          
+          const message = encodeURIComponent(`I am interested in this device. ${productHtmlUrl}`);
           window.open(`https://wa.me/919886566379?text=${message}`, '_blank');
         }
       });
