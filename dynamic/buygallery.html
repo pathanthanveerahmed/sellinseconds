@@ -34,6 +34,17 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-QMV442HBWL');
+    
+    // Define the function in global scope to be called immediately
+    function updateOGThumbnail(imageUrl) {
+      const ogImage = document.getElementById('ogImage');
+      const twitterImage = document.getElementById('twitterImage');
+      
+      if (ogImage) ogImage.setAttribute('content', imageUrl);
+      if (twitterImage) twitterImage.setAttribute('content', imageUrl);
+      
+      console.log('Updated thumbnail to:', imageUrl);
+    }
   </script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -362,6 +373,19 @@
       max-height: 100%;
       object-fit: contain;
     }
+    
+    .fixed-thumbnail {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+      z-index: 1001;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
 <body>
@@ -373,6 +397,10 @@
   <!-- Thumbnail status indicator -->
   <div class="thumbnail-status" id="thumbnailStatus">
     Top image set as sharing thumbnail
+  </div>
+  
+  <div class="fixed-thumbnail">
+    <i class="fas fa-check-circle"></i> Top image is thumbnail
   </div>
 
   <div class="container">
@@ -390,7 +418,7 @@
     <!-- Thumbnail confirmation area -->
     <div class="thumbnail-confirmation">
       <h3>Sharing Thumbnail Confirmation</h3>
-      <p>This is the image that will be used as the thumbnail when sharing this page:</p>
+      <p>The image below will be used as the thumbnail when sharing this page on WhatsApp:</p>
       <div class="thumbnail-preview" id="thumbnailPreview">
         <img id="thumbnailImage" src="" alt="Thumbnail preview">
       </div>
@@ -486,7 +514,13 @@
         // Set the top image as the thumbnail
         const topImage = document.querySelector('.top-most .card-img-container img');
         if (topImage) {
+          // IMPORTANT: Set the thumbnail BEFORE the image loads
           updateOGThumbnail(topImage.src);
+          
+          // Add an event listener to update again after image loads (in case of caching)
+          topImage.onload = function() {
+            updateOGThumbnail(this.src);
+          };
         } else {
           console.warn('Top image not found in the gallery');
         }
@@ -528,6 +562,14 @@
         }
       });
     });
+    
+    // Immediately update the thumbnail to the newest image
+    (async function() {
+      const maxImages = 30;
+      const newestImageNumber = await detectNewestImageNumber(maxImages);
+      const newestImageURL = `https://www.sellinseconds.in/dynamic/images/${newestImageNumber}.webp`;
+      updateOGThumbnail(newestImageURL);
+    })();
   </script>
 </body>
 </html>
