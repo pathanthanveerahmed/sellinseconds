@@ -15,18 +15,18 @@
   <!-- Open Graph Tags -->
   <meta property="og:title" content="SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly">
   <meta property="og:description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
-  <meta property="og:image" content="https://www.sellinseconds.in/sellhead.webp">
+  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/1.webp">
   <meta property="og:url" content="https://www.sellinseconds.in/test.html">
   <meta property="og:type" content="website">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="SellInSeconds Header Banner">
+  <meta property="og:image:alt" content="Latest Used Device on SellInSeconds">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly">
   <meta name="twitter:description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
-  <meta name="twitter:image" content="https://www.sellinseconds.in/sellhead.webp">
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/1.webp">
 
   <!-- Google Tag Manager (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
@@ -37,13 +37,11 @@
     gtag('config', 'G-QMV442HBWL');
   </script>
 
+  <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* Universal Box-Sizing */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    /* Body Styling */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
@@ -51,15 +49,7 @@
       line-height: 1.6;
       padding-bottom: 2rem;
     }
-
-    /* Main Container for Content */
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    /* Header Styling */
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
     header {
       background: #fff;
       padding: 1rem;
@@ -72,173 +62,120 @@
       margin-bottom: 1.5rem;
       text-align: center;
       overflow: hidden;
-      height: 200px; /* Fixed height for the header banner */
+      height: 200px;
     }
-
-    /* Marquee Container for Header Image */
     .marquee-container { width: 100%; height: 100%; overflow: hidden; position: relative; }
     .marquee-track {
-      display: flex; height: 100%;
-      justify-content: center; align-items: center;
+      display: flex; height: 100%; justify-content: center; align-items: center;
     }
     .marquee-image {
-      height: 100%; width: auto;
-      max-width: 100%; object-fit: contain; /* Ensure image is fully visible */
-      display: block;
+      height: 100%; width: auto; max-width: 100%; object-fit: contain; display: block;
     }
-
-    /* Gallery Grid Layout */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
       padding-top: 1rem;
     }
-
-    /* Individual Card Wrapper Styling (now holds the border and shadow) */
     .card-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Center content horizontally */
-        opacity: 0; /* Set initial opacity to 0 for fade-in animation */
-        background: #fff; /* Background for the whole wrapper */
-        border-radius: 12px;
-        overflow: hidden; /* Ensures contents respect border-radius */
-        /* Moved border and shadow from .card to .card-wrapper */
-        border: 3px solid #b3d9ff; /* A soft blue border */
-        box-shadow: 0 6px 18px rgba(0,0,0,0.1), 0 0 15px rgba(0, 123, 255, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card-wrapper:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.15), 0 0 20px rgba(0, 123, 255, 0.4); /* Enhanced shadow on hover */
-    }
-
-    .card { /* The inner card, no longer holds the main border/shadow */
-      /* Removed border and main box-shadow from here */
-      /* background: #fff; */ /* Already set on .card-wrapper */
-      border-radius: 0; /* No need for radius here, handled by wrapper */
-      overflow: hidden;
-      /* Removed box-shadow: 0 6px 18px rgba(0,0,0,0.1); */
-      transition: none; /* No transform transition needed here */
       display: flex;
       flex-direction: column;
-      width: 100%; /* Ensure card takes full width of its wrapper */
-      margin-bottom: 0; /* Space between card and new WhatsApp button, now handled by button margin-top */
-    }
-
-    .card:hover {
-      transform: none; /* No transform here, handled by .card-wrapper:hover */
-      box-shadow: none; /* No shadow here, handled by .card-wrapper:hover */
-    }
-
-    /* Image Container within Card */
-    .card-img-container {
-      width: 100%;
-      padding-top: 75%; /* 4:3 Aspect Ratio for the container */
-      position: relative;
+      align-items: center;
+      background: #fff;
+      border-radius: 12px;
       overflow: hidden;
+      border: 3px solid #b3d9ff;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1), 0 0 15px rgba(0, 123, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
+    .card-wrapper:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15), 0 0 20px rgba(0, 123, 255, 0.4);
+    }
+    .card { width: 100%; display: flex; flex-direction: column; }
+    .card-img-container { width: 100%; padding-top: 75%; position: relative; overflow: hidden; }
     .card-img-container img {
-      position: absolute;
-      top: 0; left: 0;
+      position: absolute; top: 0; left: 0;
       width: 100%; height: 100%;
-      object-fit: contain; /* Ensures entire image is visible without cropping */
+      object-fit: contain;
       transition: transform 0.3s ease;
     }
-
-    .card-wrapper:hover .card-img-container img { /* Changed to hover on wrapper */
-      transform: scale(1.05);
+    .card-wrapper:hover .card-img-container img { transform: scale(1.05); }
+    .whatsapp-card-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #25d366;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid #1da851;
+      margin: 1rem 0;
+      cursor: pointer;
     }
-
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      }
+    .whatsapp-card-btn:hover {
+      background-color: #1da851;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15), 0 0 15px rgba(37, 211, 102, 0.6);
     }
-
-    @media (max-width: 480px) {
-      .gallery-grid { grid-template-columns: 1fr; }
-      .container { padding: 0 0.75rem; }
-    }
-
-    /* Floating WhatsApp Button */
     .whatsapp-float {
-      position: fixed; width: 60px; height: 60px;
+      position: fixed;
+      width: 60px; height: 60px;
       bottom: 40px; right: 40px;
-      background-color: #25d366; color: #fff;
-      border-radius: 50px; text-align: center;
-      font-size: 30px; box-shadow: 2px 2px 3px #999;
+      background-color: #25d366;
+      color: #fff;
+      border-radius: 50px;
+      font-size: 30px;
       z-index: 1000;
       display: flex; justify-content: center; align-items: center;
-      transition: transform 0.3s ease;
     }
-    .whatsapp-float:hover { transform: scale(1.1); }
-    .whatsapp-float i { color: #fff; }
-
-    /* Scroll to Top Button */
     #scrollToTopBtn {
-      display: none; /* Hidden by default */
-      position: fixed; /* Fixed position */
-      bottom: 110px; right: 40px; /* Place button above WhatsApp float */
-      z-index: 999; /* Higher z-index to be on top */
-      background-color: #007bff; /* Blue background */
-      color: white; border: none;
+      display: none;
+      position: fixed;
+      bottom: 110px; right: 40px;
+      z-index: 999;
+      background-color: #007bff;
+      color: white;
+      border: none;
       border-radius: 50%;
       width: 50px; height: 50px;
       font-size: 24px;
       cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s ease, transform 0.3s ease;
-      display: flex; justify-content: center; align-items: center;
     }
     #scrollToTopBtn:hover {
       background-color: #0056b3;
       transform: translateY(-3px);
     }
-
-    /* Fade-in Animation for Cards */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    /* WhatsApp Button below each image */
-    .whatsapp-card-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        background-color: #25d366;
-        color: #fff;
-        padding: 0.75rem 1.5rem;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1rem;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-        cursor: pointer;
-        border: none; /* Remove default button border */
-        /* Beautiful border for the WhatsApp button */
-        border: 2px solid #1da851; /* A slightly darker green border */
-        box-shadow: 0 0 10px rgba(37, 211, 102, 0.2);
-        margin-top: 1rem; /* Space between card and button */
-        margin-bottom: 1rem; /* Space below the button */
-    }
-
-    .whatsapp-card-btn:hover {
-        background-color: #1da851; /* Darker green on hover */
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.15), 0 0 15px rgba(37, 211, 102, 0.6); /* Enhanced shadow on hover */
-    }
-
-    .whatsapp-card-btn i {
-        font-size: 1.1rem;
-    }
   </style>
+
+  <script>
+    async function detectNewestImageURL(max) {
+      for (let i = 1; i <= max; i++) {
+        const url = `https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${Date.now()}`;
+        try {
+          const res = await fetch(url, { method: 'HEAD' });
+          if (!res.ok) return `https://www.sellinseconds.in/dynamic/images/${i - 1}.webp`;
+        } catch {
+          return `https://www.sellinseconds.in/dynamic/images/${i - 1}.webp`;
+        }
+      }
+      return `https://www.sellinseconds.in/dynamic/images/${max}.webp`;
+    }
+
+    (async function updateOGThumbnail() {
+      const newestURL = await detectNewestImageURL(30);
+      const ogImage = document.querySelector('meta[property="og:image"]');
+      const twitterImage = document.querySelector('meta[name="twitter:image"]');
+      if (ogImage) ogImage.setAttribute('content', newestURL);
+      if (twitterImage) twitterImage.setAttribute('content', newestURL);
+    })();
+  </script>
 </head>
 <body>
   <div class="container">
@@ -249,431 +186,7 @@
         </div>
       </div>
     </header>
-
-    <div class="gallery-grid">
-
-    <!-- Each product card now wrapped in a .card-wrapper div -->
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/30.webp"
-               alt="Product 30"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';"> <!-- Modified onerror -->
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="30">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/29.webp"
-               alt="Product 29"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="29">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/28.webp"
-               alt="Product 28"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="28">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/27.webp"
-               alt="Product 27"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="27">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/26.webp"
-               alt="Product 26"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="26">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/25.webp"
-               alt="Product 25"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="25">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/24.webp"
-               alt="Product 24"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="24">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/23.webp"
-               alt="Product 23"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="23">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/22.webp"
-               alt="Product 22"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="22">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/21.webp"
-               alt="Product 21"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="21">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/20.webp"
-               alt="Product 20"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="20">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/19.webp"
-               alt="Product 19"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="19">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/18.webp"
-               alt="Product 18"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="18">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/17.webp"
-               alt="Product 17"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="17">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/16.webp"
-               alt="Product 16"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="16">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/15.webp"
-               alt="Product 15"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="15">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/14.webp"
-               alt="Product 14"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="14">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/13.webp"
-               alt="Product 13"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="13">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/12.webp"
-               alt="Product 12"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="12">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/11.webp"
-               alt="Product 11"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="11">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/10.webp"
-               alt="Product 10"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="10">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/9.webp"
-               alt="Product 9"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="9">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/8.webp"
-               alt="Product 8"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="8">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/7.webp"
-               alt="Product 7"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="7">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/6.webp"
-               alt="Product 6"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="6">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/5.webp"
-               alt="Product 5"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="5">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/4.webp"
-               alt="Product 4"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="4">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/3.webp"
-               alt="Product 3"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="3">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/2.webp"
-               alt="Product 2"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="2">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://www.sellinseconds.in/dynamic/images/1.webp"
-               alt="Product 1"
-               loading="lazy"
-               onerror="this.closest('.card-wrapper').style.display='none';">
-        </div>
-      </div>
-      <button class="whatsapp-card-btn" data-product-img-name="1">
-        <i class="fab fa-whatsapp"></i> I am interested in this device
-      </button>
-    </div>
-
-    </div>
+    <div class="gallery-grid"></div>
   </div>
 
   <a class="whatsapp-float" href="https://wa.me/919886566379" target="_blank" title="Chat on WhatsApp">
@@ -686,44 +199,54 @@
 
   <script>
     window.addEventListener('scroll', () => {
-      const btn = document.getElementById('scrollToTopBtn');
-      btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+      document.getElementById('scrollToTopBtn').style.display = window.scrollY > 300 ? 'block' : 'none';
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const cardWrappers = document.querySelectorAll('.card-wrapper');
-      cardWrappers.forEach((wrapper, index) => {
-        // Only apply animation properties, initial opacity is now in CSS
-        wrapper.style.animation = 'fadeIn 0.5s forwards';
-        wrapper.style.animationDelay = `${index * 0.1}s`;
-      });
-
-      // Add event listeners for the new WhatsApp buttons
-      const whatsappButtons = document.querySelectorAll('.whatsapp-card-btn');
-      whatsappButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const phoneNumber = '919886566379'; // Your WhatsApp number
-          // Get the image name (e.g., '30' from 'Product 30')
-          const productImageName = button.getAttribute('data-product-img-name');
-          // Construct the URL to the HTML page
-          const productHtmlUrl = `https://www.sellinseconds.in/dynamic/wacust/${productImageName}.html`;
-          
-          const message = encodeURIComponent(`I am interested in this device. ${productHtmlUrl}`); // Include the HTML page URL
-          const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-          window.open(whatsappUrl, '_blank');
-        });
-      });
-    });
-
-    // Append fadeIn keyframes to the document head
-    const style = document.createElement('style');
-    style.innerHTML = `
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+    async function detectNewestImage(max) {
+      for (let i = 1; i <= max; i++) {
+        const url = `https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${Date.now()}`;
+        try {
+          const res = await fetch(url, { method: 'HEAD' });
+          if (!res.ok) return i - 1;
+        } catch {
+          return i - 1;
+        }
       }
-    `;
-    document.head.appendChild(style);
+      return max;
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const maxImages = 30;
+      const gallery = document.querySelector(".gallery-grid");
+      const newestImageNumber = await detectNewestImage(maxImages);
+
+      const orderedImages = [];
+      for (let i = newestImageNumber; i >= 1; i--) orderedImages.push(i);
+      for (let i = maxImages; i > newestImageNumber; i--) orderedImages.push(i);
+
+      gallery.innerHTML = orderedImages.map((num, index) => `
+        <div class="card-wrapper" style="animation: fadeIn 0.5s forwards ${index * 0.1}s">
+          <div class="card">
+            <div class="card-img-container">
+              <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp" alt="Product ${num}" loading="lazy"
+                   onerror="this.closest('.card-wrapper').style.display='none';">
+            </div>
+          </div>
+          <button class="whatsapp-card-btn" data-product-img-name="${num}">
+            <i class="fab fa-whatsapp"></i> I am interested in this device
+          </button>
+        </div>
+      `).join('');
+
+      gallery.addEventListener('click', function (e) {
+        const button = e.target.closest(".whatsapp-card-btn");
+        if (button) {
+          const productImageName = button.getAttribute('data-product-img-name');
+          const message = encodeURIComponent(`I am interested in this device. https://www.sellinseconds.in/dynamic/wacust/${productImageName}.html`);
+          window.open(`https://wa.me/919886566379?text=${message}`, '_blank');
+        }
+      });
+    });
   </script>
 </body>
 </html>
