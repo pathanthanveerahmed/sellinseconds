@@ -5,31 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly</title>
 
-  <!-- SEO Meta Tags -->
   <meta name="description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
   <meta name="keywords" content="sell used phone, sell used laptop, pre-owned gadgets, instant gadget quote, sell smartphones online, second hand mobiles, sell laptop instantly">
   <meta name="author" content="SellInSeconds">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.sellinseconds.in/buygallery.html">
 
-  <!-- Open Graph Tags (Updated by JS for newest image thumbnail) -->
   <meta property="og:title" content="SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly">
   <meta property="og:description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
-  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/1.webp"> <!-- Placeholder, will be updated by JS -->
-  <meta property="og:url" content="https://www.sellinseconds.in/buygallery.html">
+  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/1.webp"> <meta property="og:url" content="https://www.sellinseconds.in/buygallery.html">
   <meta property="og:type" content="website">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Latest Used Device on SellInSeconds">
 
-  <!-- Twitter Card (Updated by JS for newest image thumbnail) -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly">
   <meta name="twitter:description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
-  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/1.webp"> <!-- Placeholder, will be updated by JS -->
-
-  <!-- Google Tag Manager (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/1.webp"> <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -37,7 +30,6 @@
     gtag('config', 'G-QMV442HBWL');
   </script>
 
-  <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -270,8 +262,10 @@
 
     // Function to update Open Graph and Twitter Card meta tags for link sharing
     async function updateOGThumbnail() {
-      const newestNum = await detectNewestImageNumber(30);
-      const newestURL = `https://www.sellinseconds.in/dynamic/images/${newestNum}.webp`;
+      // Use the same logic as used for the first displayed card
+      const maxImages = 30; // Define maxImages here as well
+      const newestNumForDisplay = await detectNewestImageNumber(maxImages);
+      const newestURL = `https://www.sellinseconds.in/dynamic/images/${newestNumForDisplay}.webp`;
 
       const ogImage = document.querySelector('meta[property="og:image"]');
       const twitterImage = document.querySelector('meta[name="twitter:image"]');
@@ -290,7 +284,6 @@
     <header>
       <div class="marquee-container">
         <div class="marquee-track">
-          <!-- The src for this image is fixed to sellhead.webp as per your request -->
           <img class="marquee-image" src="https://www.sellinseconds.in/sellhead.webp" alt="SellInSeconds Header Banner">
         </div>
       </div>
