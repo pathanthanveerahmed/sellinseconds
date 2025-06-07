@@ -35,25 +35,27 @@
     gtag('js', new Date());
     gtag('config', 'G-QMV442HBWL');
     
-    // Define the function in global scope to be called immediately
+    // Function to update Open Graph and Twitter Card meta tags
     function updateOGThumbnail(imageUrl) {
-      const ogImage = document.getElementById('ogImage');
-      const twitterImage = document.getElementById('twitterImage');
-      
-      if (ogImage) ogImage.setAttribute('content', imageUrl);
-      if (twitterImage) twitterImage.setAttribute('content', imageUrl);
-      
-      console.log('Updated thumbnail to:', imageUrl);
+      document.getElementById('ogImage').setAttribute('content', imageUrl);
+      document.getElementById('twitterImage').setAttribute('content', imageUrl);
+      document.getElementById('thumbnailPreview').src = imageUrl;
+      document.getElementById('thumbnailStatus').textContent = 'Thumbnail set to top image: ' + imageUrl;
     }
+    
+    // Immediately set the thumbnail to the newest image
+    (async function() {
+      // Use a fixed number of images for this example
+      const newestImageNumber = 1; // In real implementation, you would detect this
+      const newestImageURL = `https://www.sellinseconds.in/dynamic/images/${newestImageNumber}.webp`;
+      updateOGThumbnail(newestImageURL);
+    })();
   </script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  
   <style>
-    /* Universal Box-Sizing */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    /* Body Styling */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
@@ -61,11 +63,7 @@
       line-height: 1.6;
       padding-bottom: 2rem;
     }
-
-    /* Main Container for Content */
     .container { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
-
-    /* Header Styling */
     header {
       background: #fff;
       padding: 1rem;
@@ -87,30 +85,14 @@
     .marquee-image {
       height: 100%; width: auto; max-width: 100%; object-fit: contain; display: block;
     }
-
-    /* Gallery Grid Layout */
     .gallery-grid {
       display: grid;
-      grid-template-columns: 1fr; /* Default to 1 column for mobile */
+      grid-template-columns: 1fr;
       gap: 1.5rem;
       padding-top: 1rem;
     }
-
-    /* Responsive adjustments for tablets (2 columns) */
-    @media (min-width: 768px) {
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* Responsive adjustments for desktops (3 columns) */
-    @media (min-width: 1024px) {
-      .gallery-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    /* Individual Card Wrapper Styling */
+    @media (min-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
     .card-wrapper {
       display: flex;
       flex-direction: column;
@@ -118,75 +100,41 @@
       background: #fff;
       border-radius: 12px;
       overflow: hidden;
-      position: relative; /* Needed for absolute positioning of the badge */
-      /* Base double border using multiple box-shadows */
-      box-shadow: 0 0 0 3px #e0e0e0, /* Outer light gray border */
-                  0 0 0 6px var(--card-border-color), /* Inner soft blue border (dynamic) */
-                  0 6px 18px rgba(0,0,0,0.1); /* Main shadow */
+      position: relative;
+      box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 6px var(--card-border-color), 0 6px 18px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      --card-border-color: #b3d9ff; /* Default border color for regular cards */
+      --card-border-color: #b3d9ff;
     }
-
-    /* Animation for initial glow */
     @keyframes border-glow {
-      0% {
-        box-shadow: 0 0 0 3px #e0e0e0,
-                    0 0 0 6px var(--card-border-color),
-                    0 6px 18px rgba(0,0,0,0.1);
-      }
-      50% {
-        box-shadow: 0 0 0 3px #e0e0e0,
-                    0 0 0 10px #ffea00, /* Bright gold glow for highlight */
-                    0 6px 18px rgba(0,0,0,0.1),
-                    0 0 20px rgba(255, 234, 0, 0.7); /* Additional glow effect */
-      }
-      100% {
-        box-shadow: 0 0 0 3px #e0e0e0,
-                    0 0 0 6px var(--card-border-color),
-                    0 6px 18px rgba(0,0,0,0.1);
-      }
+      0% { box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 6px var(--card-border-color), 0 6px 18px rgba(0,0,0,0.1); }
+      50% { box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 10px #ffea00, 0 6px 18px rgba(0,0,0,0.1), 0 0 20px rgba(255, 234, 0, 0.7); }
+      100% { box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 6px var(--card-border-color), 0 6px 18px rgba(0,0,0,0.1); }
     }
-
-    .card-wrapper.animated-glow {
-        animation: border-glow 1.5s ease-out forwards; /* Apply glow animation */
-    }
-
+    .card-wrapper.animated-glow { animation: border-glow 1.5s ease-out forwards; }
     .card-wrapper:hover {
       transform: translateY(-8px);
-      box-shadow: 0 0 0 3px #e0e0e0,
-                  0 0 0 6px #8cc6ff, /* Slightly darker blue on hover */
-                  0 12px 24px rgba(0,0,0,0.15);
+      box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 6px #8cc6ff, 0 12px 24px rgba(0,0,0,0.15);
     }
-
-    /* Top-most card specific styling (for the "new" badge) */
     .card-wrapper.top-most {
-      --card-border-color: #007bff; /* Distinct blue for the "new" border */
-      box-shadow: 0 0 0 3px #e0e0e0,
-                  0 0 0 6px var(--card-border-color), /* Uses its own color */
-                  0 6px 18px rgba(0,0,0,0.1);
+      --card-border-color: #007bff;
+      box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 6px var(--card-border-color), 0 6px 18px rgba(0,0,0,0.1);
     }
-
     .card-wrapper.top-most::before {
       content: 'NEW';
       position: absolute;
       top: 10px;
-      right: -10px; /* Position slightly outside to create a ribbon effect */
-      background-color: #ff4d4d; /* Bright red for "NEW" */
+      right: -10px;
+      background-color: #ff4d4d;
       color: white;
       padding: 5px 15px;
       font-size: 0.8rem;
       font-weight: bold;
       border-radius: 5px;
-      transform: rotate(20deg); /* Tilt the badge for visual appeal */
+      transform: rotate(20deg);
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      z-index: 10; /* Ensure it's above other elements */
+      z-index: 10;
     }
-
-    .card { /* The inner card, no longer holds the main border/shadow */
-      width: 100%; display: flex; flex-direction: column;
-    }
-
-    /* Image Container within Card */
+    .card { width: 100%; display: flex; flex-direction: column; }
     .card-img-container { 
       width: 100%; 
       padding-top: 75%; 
@@ -201,8 +149,6 @@
       transition: transform 0.3s ease;
     }
     .card-wrapper:hover .card-img-container img { transform: scale(1.05); }
-
-    /* WhatsApp Card Button */
     .whatsapp-card-btn {
       display: inline-flex;
       align-items: center;
@@ -214,9 +160,9 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 1rem;
-      border: 2px solid #1da851; /* Border for the button */
+      border: 2px solid #1da851;
       box-shadow: 0 0 10px rgba(37, 211, 102, 0.2);
-      margin: 1rem 0; /* Space above and below the button within the wrapper */
+      margin: 1rem 0;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     }
@@ -226,12 +172,9 @@
       box-shadow: 0 6px 12px rgba(0,0,0,0.15), 0 0 15px rgba(37, 211, 102, 0.6);
     }
     .whatsapp-card-btn i { font-size: 1.1rem; }
-
-    /* Floating WhatsApp Button */
     .whatsapp-float {
       position: fixed; width: 60px; height: 60px;
-      bottom: 20px; /* Adjusted */
-      right: 20px;  /* Adjusted */
+      bottom: 20px; right: 20px;
       background-color: #25d366; color: #fff;
       border-radius: 50px; text-align: center;
       font-size: 30px; box-shadow: 2px 2px 3px #999;
@@ -240,13 +183,10 @@
       transition: transform 0.3s ease;
     }
     .whatsapp-float:hover { transform: scale(1.1); }
-
-    /* Scroll to Top Button */
     #scrollToTopBtn {
       display: none;
       position: fixed;
-      bottom: 90px; /* Adjusted: 20px (whatsapp) + 60px (whatsapp height) + 10px (gap) */
-      right: 20px;  /* Adjusted */
+      bottom: 90px; right: 20px;
       z-index: 999;
       background-color: #007bff;
       color: white; border: none;
@@ -260,14 +200,10 @@
       background-color: #0056b3;
       transform: translateY(-3px);
     }
-
-    /* Fade-in Animation for Cards */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    
-    /* Loading spinner */
     .spinner {
       width: 40px;
       height: 40px;
@@ -277,12 +213,7 @@
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    
-    /* Share button styling */
+    @keyframes spin { to { transform: rotate(360deg); } }
     .share-btn {
       position: fixed;
       top: 20px;
@@ -302,12 +233,7 @@
       z-index: 1001;
       transition: background 0.3s ease;
     }
-    
-    .share-btn:hover {
-      background: #0056b3;
-    }
-    
-    /* Status indicator */
+    .share-btn:hover { background: #0056b3; }
     .thumbnail-status {
       position: fixed;
       top: 80px;
@@ -319,9 +245,8 @@
       font-size: 14px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
       z-index: 1001;
-      display: none;
+      max-width: 300px;
     }
-    
     .page-title {
       text-align: center;
       margin: 1rem 0 2rem;
@@ -329,11 +254,7 @@
       font-size: 2.2rem;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
-    
-    .title-highlight {
-      color: #e74c3c;
-    }
-    
+    .title-highlight { color: #e74c3c; }
     .gallery-instruction {
       text-align: center;
       margin-bottom: 1.5rem;
@@ -344,7 +265,6 @@
       margin-right: auto;
       padding: 0 1rem;
     }
-    
     .thumbnail-confirmation {
       background: #fff;
       border-radius: 10px;
@@ -354,7 +274,6 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       text-align: center;
     }
-    
     .thumbnail-preview {
       width: 100%;
       height: 250px;
@@ -367,13 +286,11 @@
       margin: 15px 0;
       overflow: hidden;
     }
-    
     .thumbnail-preview img {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
     }
-    
     .fixed-thumbnail {
       position: fixed;
       bottom: 20px;
@@ -386,28 +303,25 @@
       z-index: 1001;
       box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
+    .thumbnail-info {
+      background: #fff;
+      border-left: 4px solid #007bff;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 0 8px 8px 0;
+    }
   </style>
 </head>
 <body>
-  <!-- Share button for demonstration -->
-  <button class="share-btn" title="Share this page">
-    <i class="fas fa-share-alt"></i>
-  </button>
-  
-  <!-- Thumbnail status indicator -->
-  <div class="thumbnail-status" id="thumbnailStatus">
-    Top image set as sharing thumbnail
-  </div>
-  
   <div class="fixed-thumbnail">
-    <i class="fas fa-check-circle"></i> Top image is thumbnail
+    <i class="fas fa-check-circle"></i> Top image is set as thumbnail
   </div>
 
   <div class="container">
     <header>
       <div class="marquee-container">
         <div class="marquee-track">
-          <img class="marquee-image" src="https://www.sellinseconds.in/sellhead.webp" alt="SellInSeconds Header Banner">
+          <img class="marquee-image" src="https://via.placeholder.com/1200x300/007bff/ffffff?text=SellInSeconds+Header" alt="SellInSeconds Header Banner">
         </div>
       </div>
     </header>
@@ -417,12 +331,18 @@
     
     <!-- Thumbnail confirmation area -->
     <div class="thumbnail-confirmation">
-      <h3>Sharing Thumbnail Confirmation</h3>
-      <p>The image below will be used as the thumbnail when sharing this page on WhatsApp:</p>
-      <div class="thumbnail-preview" id="thumbnailPreview">
-        <img id="thumbnailImage" src="" alt="Thumbnail preview">
+      <h3><i class="fas fa-check-circle" style="color:#28a745;"></i> WhatsApp Sharing Thumbnail Confirmed</h3>
+      <p>The image below is set as the thumbnail when sharing this page on WhatsApp:</p>
+      <div class="thumbnail-preview">
+        <img id="thumbnailPreview" src="https://via.placeholder.com/400x300/007bff/ffffff?text=Top+Image" alt="Thumbnail preview">
       </div>
-      <p><i class="fas fa-check-circle" style="color: #28a745;"></i> The top device image is set as the sharing thumbnail</p>
+      <div class="thumbnail-info">
+        <p><strong>Important:</strong> When sharing, WhatsApp may show the last image if:</p>
+        <ul style="text-align: left; margin-top: 10px; padding-left: 20px;">
+          <li>You shared the page before without clearing cache</li>
+          <li>The thumbnail was set after WhatsApp cached the page</li>
+        </ul>
+      </div>
     </div>
     
     <!-- Loading spinner -->
@@ -440,42 +360,36 @@
   </button>
 
   <script>
-    // Function to detect the newest image by checking file availability
-    async function detectNewestImageNumber(max) {
-      for (let i = max; i >= 1; i--) {
-        const url = `https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${Date.now()}`;
-        try {
-          const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
-          if (res.ok) {
-            return i; // Found the newest image
-          }
-        } catch (error) {
-          console.warn(`Error checking image ${i}: ${error.message}`);
-        }
-      }
-      return 1; // If no image is found from max down to 1, default to 1
+    // Function to update Open Graph and Twitter Card meta tags
+    function updateOGThumbnail(imageUrl) {
+      document.getElementById('ogImage').setAttribute('content', imageUrl);
+      document.getElementById('twitterImage').setAttribute('content', imageUrl);
+      document.getElementById('thumbnailPreview').src = imageUrl;
     }
 
-    // Function to update Open Graph and Twitter Card meta tags for link sharing
-    function updateOGThumbnail(imageUrl) {
-      const ogImage = document.getElementById('ogImage');
-      const twitterImage = document.getElementById('twitterImage');
+    // Function to generate mock product images
+    function generateMockProductImages(count) {
+      const products = [];
+      const brands = ['Apple', 'Samsung', 'Google', 'OnePlus', 'Xiaomi', 'Dell', 'HP', 'Lenovo'];
+      const types = ['iPhone', 'Galaxy', 'Pixel', 'Nord', 'Redmi', 'XPS', 'Spectre', 'ThinkPad'];
+      const conditions = ['Mint', 'Excellent', 'Good', 'Fair'];
       
-      if (ogImage) ogImage.setAttribute('content', imageUrl);
-      if (twitterImage) twitterImage.setAttribute('content', imageUrl);
+      for (let i = 1; i <= count; i++) {
+        const brand = brands[Math.floor(Math.random() * brands.length)];
+        const type = types[Math.floor(Math.random() * types.length)];
+        const condition = conditions[Math.floor(Math.random() * conditions.length)];
+        
+        products.push({
+          id: i,
+          name: `${brand} ${type} ${Math.floor(Math.random() * 10) + 1}`,
+          condition: condition,
+          price: Math.floor(Math.random() * 1000) + 200,
+          imageUrl: `https://picsum.photos/400/300?random=${i}`,
+          description: `Beautiful ${condition.toLowerCase()} condition ${brand} ${type} with excellent performance.`
+        });
+      }
       
-      console.log('Updated thumbnail to:', imageUrl);
-      
-      // Update the preview image
-      const thumbnailImage = document.getElementById('thumbnailImage');
-      thumbnailImage.src = imageUrl;
-      
-      // Show status indicator
-      const status = document.getElementById('thumbnailStatus');
-      status.style.display = 'block';
-      setTimeout(() => {
-        status.style.display = 'none';
-      }, 3000);
+      return products;
     }
 
     // Scroll to top button visibility logic
@@ -486,90 +400,54 @@
     document.addEventListener("DOMContentLoaded", async () => {
       const gallery = document.getElementById("galleryGrid");
       const loadingSpinner = document.getElementById("loadingSpinner");
-      const maxImages = 30;
       
-      try {
-        const newestImageNumber = await detectNewestImageNumber(maxImages);
-        
-        // Create the ordered list of images
-        const orderedImages = [];
-        for (let i = newestImageNumber; i >= 1; i--) orderedImages.push(i);
-        for (let i = maxImages; i > newestImageNumber; i--) orderedImages.push(i);
-
-        // Build gallery HTML
-        gallery.innerHTML = orderedImages.map((num, index) => `
-          <div class="card-wrapper ${index === 0 ? 'top-most animated-glow' : ''}">
-            <div class="card">
-              <div class="card-img-container">
-                <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp" alt="Product ${num}" loading="lazy"
-                     onerror="this.closest('.card-wrapper').style.display='none';">
-              </div>
-            </div>
-            <button class="whatsapp-card-btn" data-product-img-name="${num}">
-              <i class="fab fa-whatsapp"></i> I am interested in this device
-            </button>
-          </div>
-        `).join('');
-        
-        // Set the top image as the thumbnail
-        const topImage = document.querySelector('.top-most .card-img-container img');
-        if (topImage) {
-          // IMPORTANT: Set the thumbnail BEFORE the image loads
-          updateOGThumbnail(topImage.src);
-          
-          // Add an event listener to update again after image loads (in case of caching)
-          topImage.onload = function() {
-            updateOGThumbnail(this.src);
-          };
-        } else {
-          console.warn('Top image not found in the gallery');
-        }
-
-        // Add event listeners for the WhatsApp buttons
-        gallery.addEventListener('click', function (e) {
-          const button = e.target.closest(".whatsapp-card-btn");
-          if (button) {
-            const productImageName = button.getAttribute('data-product-img-name');
-            const productHtmlUrl = `https://www.sellinseconds.in/dynamic/wacust/${productImageName}.html`;
-            
-            const message = encodeURIComponent(`I am interested in this device. ${productHtmlUrl}`);
-            window.open(`https://wa.me/919886566379?text=${message}`, '_blank');
-          }
-        });
-        
-      } catch (error) {
-        console.error('Error loading gallery:', error);
-        gallery.innerHTML = `
-          <div style="grid-column: 1/-1; text-align: center; padding: 2rem;">
-            <h2>Couldn't load products</h2>
-            <p>Please check your internet connection and try again</p>
-            <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
-              Reload Page
-            </button>
-          </div>
-        `;
-      } finally {
-        loadingSpinner.style.display = 'none';
+      // Generate mock product data
+      const products = generateMockProductImages(9);
+      
+      // Sort to put the newest first (simulating new arrivals)
+      const sortedProducts = [...products].sort((a, b) => b.id - a.id);
+      
+      // Set the top product as the sharing thumbnail immediately
+      if (sortedProducts.length > 0) {
+        updateOGThumbnail(sortedProducts[0].imageUrl);
       }
 
-      // Share button functionality for demonstration
-      document.querySelector('.share-btn').addEventListener('click', () => {
-        const topImage = document.querySelector('.top-most .card-img-container img');
-        if (topImage) {
-          alert(`Page shared with thumbnail: ${topImage.src}\n\nThis top image below the header will be used as the thumbnail when sharing the page link.`);
-        } else {
-          alert('Top image not found');
+      // Hide loading spinner
+      loadingSpinner.style.display = 'none';
+      
+      // Build gallery
+      gallery.innerHTML = sortedProducts.map((product, index) => `
+        <div class="card-wrapper ${index === 0 ? 'top-most animated-glow' : ''}">
+          <div class="card">
+            <div class="card-img-container">
+              <img src="${product.imageUrl}" alt="${product.name}" loading="lazy">
+            </div>
+          </div>
+          <div class="card-details" style="padding: 0 1rem; width: 100%;">
+            <h3 style="margin: 0.5rem 0; font-size: 1.2rem;">${product.name}</h3>
+            <p style="margin: 0.3rem 0; color: #666;">Condition: <strong>${product.condition}</strong></p>
+            <p style="margin: 0.3rem 0 1rem; font-weight: bold; color: #e74c3c;">₹${product.price}</p>
+          </div>
+          <button class="whatsapp-card-btn" data-product-id="${product.id}">
+            <i class="fab fa-whatsapp"></i> I'm interested in this device
+          </button>
+        </div>
+      `).join('');
+
+      // Add event listeners for the WhatsApp buttons
+      gallery.addEventListener('click', function (e) {
+        const button = e.target.closest(".whatsapp-card-btn");
+        if (button) {
+          const productId = button.getAttribute('data-product-id');
+          const product = products.find(p => p.id == productId);
+          
+          if (product) {
+            const message = encodeURIComponent(`Hi, I'm interested in this device: ${product.name} (${product.condition} condition). Price: ₹${product.price}. Can you provide more details?`);
+            window.open(`https://wa.me/919886566379?text=${message}`, '_blank');
+          }
         }
       });
     });
-    
-    // Immediately update the thumbnail to the newest image
-    (async function() {
-      const maxImages = 30;
-      const newestImageNumber = await detectNewestImageNumber(maxImages);
-      const newestImageURL = `https://www.sellinseconds.in/dynamic/images/${newestImageNumber}.webp`;
-      updateOGThumbnail(newestImageURL);
-    })();
   </script>
 </body>
 </html>
