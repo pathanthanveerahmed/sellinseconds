@@ -82,9 +82,23 @@
     /* Gallery Grid Layout */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: 1fr; /* Default to 1 column for mobile */
       gap: 1.5rem;
       padding-top: 1rem;
+    }
+
+    /* Responsive adjustments for tablets (2 columns) */
+    @media (min-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Responsive adjustments for desktops (3 columns) */
+    @media (min-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
     /* Individual Card Wrapper Styling (now holds the border and shadow) */
@@ -96,11 +110,36 @@
       border-radius: 12px;
       overflow: hidden;
       position: relative; /* Needed for absolute positioning of the badge */
-      /* Double border using multiple box-shadows */
+      /* Base double border using multiple box-shadows */
       box-shadow: 0 0 0 3px #e0e0e0, /* Outer light gray border */
-                  0 0 0 6px #b3d9ff, /* Inner soft blue border */
+                  0 0 0 6px var(--card-border-color), /* Inner soft blue border (dynamic) */
                   0 6px 18px rgba(0,0,0,0.1); /* Main shadow */
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      --card-border-color: #b3d9ff; /* Default border color for regular cards */
+    }
+
+    /* Animation for initial glow */
+    @keyframes border-glow {
+      0% {
+        box-shadow: 0 0 0 3px #e0e0e0,
+                    0 0 0 6px var(--card-border-color),
+                    0 6px 18px rgba(0,0,0,0.1);
+      }
+      50% {
+        box-shadow: 0 0 0 3px #e0e0e0,
+                    0 0 0 10px #ffea00, /* Bright gold glow for highlight */
+                    0 6px 18px rgba(0,0,0,0.1),
+                    0 0 20px rgba(255, 234, 0, 0.7); /* Additional glow effect */
+      }
+      100% {
+        box-shadow: 0 0 0 3px #e0e0e0,
+                    0 0 0 6px var(--card-border-color),
+                    0 6px 18px rgba(0,0,0,0.1);
+      }
+    }
+
+    .card-wrapper.animated-glow {
+        animation: border-glow 1.5s ease-out forwards; /* Apply glow animation */
     }
 
     .card-wrapper:hover {
@@ -112,8 +151,9 @@
 
     /* Top-most card specific styling (for the new badge) */
     .card-wrapper.top-most {
+      --card-border-color: #007bff; /* Distinct blue for the "new" border */
       box-shadow: 0 0 0 3px #e0e0e0,
-                  0 0 0 6px #007bff, /* Distinct blue for the "new" border */
+                  0 0 0 6px var(--card-border-color), /* Uses its own color */
                   0 6px 18px rgba(0,0,0,0.1);
     }
 
@@ -214,23 +254,18 @@
   <script>
     // Function to detect the newest image by checking file availability
     async function detectNewestImageNumber(max) {
-      for (let i = 1; i <= max; i++) {
-        // Append a cache-busting parameter to ensure fresh request
+      for (let i = max; i >= 1; i--) {
         const url = `https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${Date.now()}`;
         try {
-          // Use HEAD request to check for file existence without downloading content
           const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
-          if (!res.ok) {
-            // If we hit a non-existent image, the previous one was the newest available
-            return i - 1;
+          if (res.ok) {
+            return i; // Found the newest image
           }
         } catch (error) {
-          // Network errors or other issues, assume the previous one was the newest
-          console.warn(`Error checking image ${i}: ${error.message}. Assuming previous is newest.`);
-          return i - 1;
+          console.warn(`Error checking image ${i}: ${error.message}`);
         }
       }
-      return max; // All images up to max are available, so max is the newest
+      return 1; // If no image is found from max down to 1, default to 1 (or handle as no images)
     }
 
     // Function to update Open Graph and Twitter Card meta tags for link sharing
@@ -243,14 +278,9 @@
       
       if (ogImage) ogImage.setAttribute('content', newestURL);
       if (twitterImage) twitterImage.setAttribute('content', newestURL);
-
-      // NO LONGER UPDATING HEADER IMAGE: Removed the line below
-      // const marqueeImage = document.querySelector('.marquee-image');
-      // if (marqueeImage) marqueeImage.src = newestURL;
     }
 
     // This immediately calls the function to update the thumbnail as soon as possible
-    // (even before DOMContentLoaded for better perceived performance of meta tags)
     updateOGThumbnail();
 
   </script>
@@ -260,7 +290,7 @@
     <header>
       <div class="marquee-container">
         <div class="marquee-track">
-          <!-- The src for this image is now fixed to sellhead.webp as per your request -->
+          <!-- The src for this image is fixed to sellhead.webp as per your request -->
           <img class="marquee-image" src="https://www.sellinseconds.in/sellhead.webp" alt="SellInSeconds Header Banner">
         </div>
       </div>
@@ -285,17 +315,14 @@
     document.addEventListener("DOMContentLoaded", async () => {
       const maxImages = 30;
       const gallery = document.querySelector(".gallery-grid");
-      const newestImageNumber = await detectNewestImageNumber(maxImages); // Re-use the optimized function
+      const newestImageNumber = await detectNewestImageNumber(maxImages);
 
       const orderedImages = [];
-      // This logic ensures the newest image is always at the top,
-      // and then cycles through the rest of the images in descending order.
-      // If newestImageNumber is 5, it will be 5, 4, 3, 2, 1, 30, 29, ..., 6
       for (let i = newestImageNumber; i >= 1; i--) orderedImages.push(i);
       for (let i = maxImages; i > newestImageNumber; i--) orderedImages.push(i);
 
       gallery.innerHTML = orderedImages.map((num, index) => `
-        <div class="card-wrapper ${index === 0 ? 'top-most' : ''}">
+        <div class="card-wrapper ${index === 0 ? 'top-most animated-glow' : ''}">
           <div class="card">
             <div class="card-img-container">
               <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp" alt="Product ${num}" loading="lazy"
