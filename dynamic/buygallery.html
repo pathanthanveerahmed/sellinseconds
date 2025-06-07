@@ -10,13 +10,13 @@
   <meta name="keywords" content="sell used phone, sell used laptop, pre-owned gadgets, instant gadget quote, sell smartphones online, second hand mobiles, sell laptop instantly">
   <meta name="author" content="SellInSeconds">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.sellinseconds.in/test.html">
+  <link rel="canonical" href="https://www.sellinseconds.in/buygallery.html">
 
   <!-- Open Graph Tags -->
   <meta property="og:title" content="SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly">
   <meta property="og:description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
   <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/1.webp">
-  <meta property="og:url" content="https://www.sellinseconds.in/test.html">
+  <meta property="og:url" content="https://www.sellinseconds.in/buygallery.html">
   <meta property="og:type" content="website">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -91,6 +91,9 @@
     .card-wrapper:hover {
       transform: translateY(-8px);
       box-shadow: 0 12px 24px rgba(0,0,0,0.15), 0 0 20px rgba(0, 123, 255, 0.4);
+    }
+    .card-wrapper.top-most {
+      border: 5px double #007bff;
     }
     .card { width: 100%; display: flex; flex-direction: column; }
     .card-img-container { width: 100%; padding-top: 75%; position: relative; overflow: hidden; }
@@ -225,7 +228,7 @@
       for (let i = maxImages; i > newestImageNumber; i--) orderedImages.push(i);
 
       gallery.innerHTML = orderedImages.map((num, index) => `
-        <div class="card-wrapper" style="animation: fadeIn 0.5s forwards ${index * 0.1}s">
+        <div class="card-wrapper ${index === 0 ? 'top-most' : ''}" style="animation: fadeIn 0.5s forwards ${index * 0.1}s">
           <div class="card">
             <div class="card-img-container">
               <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp" alt="Product ${num}" loading="lazy"
