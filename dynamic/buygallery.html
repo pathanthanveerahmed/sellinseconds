@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly</title>
-
+  
   <meta name="description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
   <meta name="keywords" content="sell used phone, sell used laptop, pre-owned gadgets, instant gadget quote, sell smartphones online, second hand mobiles, sell laptop instantly">
   <meta name="author" content="SellInSeconds">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.sellinseconds.in/buygallery.html">
-  <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon"/>
-
-  <!-- Open Graph meta tags with dynamic content -->
+  
+  <!-- Dynamic Open Graph meta tags -->
   <meta property="og:title" content="SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly">
   <meta property="og:description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
   <meta property="og:image" id="ogImage" content="https://www.sellinseconds.in/dynamic/images/1.webp">
@@ -21,78 +20,99 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Latest Used Device on SellInSeconds">
-
+  
   <!-- Twitter Card meta tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly">
   <meta name="twitter:description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
   <meta name="twitter:image" id="twitterImage" content="https://www.sellinseconds.in/dynamic/images/1.webp">
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-QMV442HBWL');
-    
-    // Function to update Open Graph and Twitter Card meta tags
-    function updateOGThumbnail(imageUrl) {
-      document.getElementById('ogImage').setAttribute('content', imageUrl);
-      document.getElementById('twitterImage').setAttribute('content', imageUrl);
-      document.getElementById('thumbnailPreview').src = imageUrl;
-      document.getElementById('thumbnailStatus').textContent = 'Thumbnail set to top image: ' + imageUrl;
-    }
-    
-    // Immediately set the thumbnail to the newest image
-    (async function() {
-      // Use a fixed number of images for this example
-      const newestImageNumber = 1; // In real implementation, you would detect this
-      const newestImageURL = `https://www.sellinseconds.in/dynamic/images/${newestImageNumber}.webp`;
-      updateOGThumbnail(newestImageURL);
-    })();
-  </script>
-
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
       background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
       color: #333;
       line-height: 1.6;
       padding-bottom: 2rem;
     }
-    .container { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
-    header {
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    /* Dynamic Header */
+    .dynamic-header {
       background: #fff;
-      padding: 1rem;
+      padding: 20px;
       position: sticky;
       top: 0;
       z-index: 1000;
-      width: 100%;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      margin-bottom: 30px;
       text-align: center;
       overflow: hidden;
-      height: 200px;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .marquee-container { width: 100%; height: 100%; overflow: hidden; position: relative; }
-    .marquee-track {
-      display: flex; height: 100%; justify-content: center; align-items: center;
+    
+    .header-image-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
     }
-    .marquee-image {
-      height: 100%; width: auto; max-width: 100%; object-fit: contain; display: block;
+    
+    .header-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
+    
+    .header-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #ff4d4d;
+      color: white;
+      padding: 8px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 5px;
+      transform: rotate(5deg);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: rotate(5deg) scale(1); }
+      50% { transform: rotate(5deg) scale(1.05); }
+      100% { transform: rotate(5deg) scale(1); }
+    }
+    
+    /* Gallery Grid */
     .gallery-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      padding-top: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      padding-top: 20px;
     }
-    @media (min-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+    
+    /* Card Styles */
     .card-wrapper {
       display: flex;
       flex-direction: column;
@@ -101,124 +121,103 @@
       border-radius: 12px;
       overflow: hidden;
       position: relative;
-      box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 6px var(--card-border-color), 0 6px 18px rgba(0,0,0,0.1);
+      box-shadow: 0 0 0 3px #e0e0e0, 
+                  0 0 0 6px #b3d9ff,
+                  0 6px 18px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      --card-border-color: #b3d9ff;
     }
-    @keyframes border-glow {
-      0% { box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 6px var(--card-border-color), 0 6px 18px rgba(0,0,0,0.1); }
-      50% { box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 10px #ffea00, 0 6px 18px rgba(0,0,0,0.1), 0 0 20px rgba(255, 234, 0, 0.7); }
-      100% { box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 6px var(--card-border-color), 0 6px 18px rgba(0,0,0,0.1); }
-    }
-    .card-wrapper.animated-glow { animation: border-glow 1.5s ease-out forwards; }
+    
     .card-wrapper:hover {
       transform: translateY(-8px);
-      box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 6px #8cc6ff, 0 12px 24px rgba(0,0,0,0.15);
+      box-shadow: 0 0 0 3px #e0e0e0,
+                  0 0 0 6px #8cc6ff,
+                  0 12px 24px rgba(0, 0, 0, 0.15);
     }
-    .card-wrapper.top-most {
-      --card-border-color: #007bff;
-      box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 6px var(--card-border-color), 0 6px 18px rgba(0,0,0,0.1);
+    
+    .card {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
     }
-    .card-wrapper.top-most::before {
-      content: 'NEW';
-      position: absolute;
-      top: 10px;
-      right: -10px;
-      background-color: #ff4d4d;
-      color: white;
-      padding: 5px 15px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      border-radius: 5px;
-      transform: rotate(20deg);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      z-index: 10;
-    }
-    .card { width: 100%; display: flex; flex-direction: column; }
-    .card-img-container { 
-      width: 100%; 
-      padding-top: 75%; 
-      position: relative; 
-      overflow: hidden; 
+    
+    .card-img-container {
+      width: 100%;
+      padding-top: 100%;
+      position: relative;
+      overflow: hidden;
       background: linear-gradient(45deg, #f5f7fa, #e4e7eb);
     }
+    
     .card-img-container img {
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
       transition: transform 0.3s ease;
     }
-    .card-wrapper:hover .card-img-container img { transform: scale(1.05); }
+    
+    .card-wrapper:hover .card-img-container img {
+      transform: scale(1.05);
+    }
+    
     .whatsapp-card-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: center;
+      gap: 10px;
       background-color: #25d366;
       color: #fff;
-      padding: 0.75rem 1.5rem;
+      padding: 12px 25px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
       font-size: 1rem;
       border: 2px solid #1da851;
       box-shadow: 0 0 10px rgba(37, 211, 102, 0.2);
-      margin: 1rem 0;
+      margin: 15px 0;
       cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      transition: all 0.3s ease;
+      width: 90%;
     }
+    
     .whatsapp-card-btn:hover {
       background-color: #1da851;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15), 0 0 15px rgba(37, 211, 102, 0.6);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 0 15px rgba(37, 211, 102, 0.6);
     }
-    .whatsapp-card-btn i { font-size: 1.1rem; }
+    
+    /* Floating Buttons */
     .whatsapp-float {
-      position: fixed; width: 60px; height: 60px;
-      bottom: 20px; right: 20px;
-      background-color: #25d366; color: #fff;
-      border-radius: 50px; text-align: center;
-      font-size: 30px; box-shadow: 2px 2px 3px #999;
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 25px;
+      right: 25px;
+      background-color: #25d366;
+      color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       z-index: 1000;
-      display: flex; justify-content: center; align-items: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       transition: transform 0.3s ease;
     }
-    .whatsapp-float:hover { transform: scale(1.1); }
+    
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+    
     #scrollToTopBtn {
-      display: none;
       position: fixed;
-      bottom: 90px; right: 20px;
+      bottom: 100px;
+      right: 25px;
       z-index: 999;
       background-color: #007bff;
-      color: white; border: none;
-      border-radius: 50%; width: 50px; height: 50px;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-    #scrollToTopBtn:hover {
-      background-color: #0056b3;
-      transform: translateY(-3px);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .spinner {
-      width: 40px;
-      height: 40px;
-      margin: 100px auto;
-      border: 4px solid rgba(0, 0, 0, 0.1);
-      border-left-color: #007bff;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .share-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #007bff;
       color: white;
       border: none;
       border-radius: 50%;
@@ -226,193 +225,246 @@
       height: 50px;
       font-size: 20px;
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 1001;
-      transition: background 0.3s ease;
     }
-    .share-btn:hover { background: #0056b3; }
-    .thumbnail-status {
-      position: fixed;
-      top: 80px;
-      right: 20px;
-      background: #28a745;
-      color: white;
-      padding: 10px 15px;
+    
+    #scrollToTopBtn:hover {
+      background-color: #0056b3;
+      transform: translateY(-5px);
+    }
+    
+    /* Thumbnail Confirmation */
+    .thumbnail-confirmation {
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px;
+      margin: 0 auto 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 600px;
+      border-left: 5px solid #25d366;
+    }
+    
+    .confirmation-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      color: #25d366;
+    }
+    
+    .thumbnail-preview {
+      width: 100%;
+      height: 250px;
+      background: #f8f9fa;
+      border: 2px dashed #25d366;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    
+    .thumbnail-preview img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
       border-radius: 5px;
-      font-size: 14px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-      z-index: 1001;
-      max-width: 300px;
     }
+    
+    .confirmation-text {
+      margin-top: 20px;
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    /* Page Title */
     .page-title {
       text-align: center;
-      margin: 1rem 0 2rem;
+      margin: 25px 0;
       color: #2c3e50;
-      font-size: 2.2rem;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      font-size: 2.5rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
-    .title-highlight { color: #e74c3c; }
+    
+    .title-highlight {
+      color: #e74c3c;
+      position: relative;
+    }
+    
+    .title-highlight:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #e74c3c, #ff9f43);
+    }
+    
     .gallery-instruction {
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 30px;
       font-size: 1.1rem;
       color: #555;
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
-      padding: 0 1rem;
+      padding: 0 15px;
     }
-    .thumbnail-confirmation {
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      max-width: 500px;
-      margin: 0 auto 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      text-align: center;
+    
+    /* Loading Spinner */
+    .spinner {
+      width: 50px;
+      height: 50px;
+      margin: 40px auto;
+      border: 5px solid rgba(0, 0, 0, 0.1);
+      border-left-color: #007bff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
     }
-    .thumbnail-preview {
-      width: 100%;
-      height: 250px;
-      background: #f8f9fa;
-      border: 2px dashed #dee2e6;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 15px 0;
-      overflow: hidden;
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
-    .thumbnail-preview img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .dynamic-header {
+        height: 250px;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
     }
-    .fixed-thumbnail {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: #007bff;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 5px;
-      font-weight: bold;
-      z-index: 1001;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-    .thumbnail-info {
-      background: #fff;
-      border-left: 4px solid #007bff;
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 0 8px 8px 0;
+    
+    @media (max-width: 480px) {
+      .dynamic-header {
+        height: 200px;
+      }
+      
+      .page-title {
+        font-size: 1.8rem;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="fixed-thumbnail">
-    <i class="fas fa-check-circle"></i> Top image is set as thumbnail
-  </div>
-
   <div class="container">
-    <header>
-      <div class="marquee-container">
-        <div class="marquee-track">
-          <img class="marquee-image" src="https://www.sellinseconds.in/sellhead.webp" alt="SellInSeconds Header Banner">
-        </div>
+    <!-- Dynamic Header - Will be filled with the top image -->
+    <div class="dynamic-header">
+      <div class="header-image-container">
+        <img class="header-image" id="headerImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='300' viewBox='0 0 1200 300'%3E%3Crect width='1200' height='300' fill='%23f0f2f5'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='%23999' text-anchor='middle' dominant-baseline='middle'%3ELoading latest device...%3C/text%3E%3C/svg%3E" alt="Latest Device">
+        <div class="header-badge">NEW ARRIVAL</div>
       </div>
-    </header>
+    </div>
     
     <h1 class="page-title">Our Premium <span class="title-highlight">Pre-Owned</span> Devices</h1>
     <p class="gallery-instruction">Browse our collection of carefully inspected and certified pre-owned devices. Each device is professionally refurbished and comes with a quality guarantee.</p>
     
-    <!-- Thumbnail confirmation area -->
+    <!-- Thumbnail Confirmation -->
     <div class="thumbnail-confirmation">
-      <h3><i class="fas fa-check-circle" style="color:#28a745;"></i> WhatsApp Sharing Thumbnail Confirmed</h3>
-      <p>The top image below this header is set as the thumbnail when sharing this page on WhatsApp:</p>
+      <h2 class="confirmation-title">
+        <i class="fas fa-check-circle"></i> WhatsApp Sharing Confirmed
+      </h2>
+      <p>This page is configured to use the top device image as the thumbnail when sharing on WhatsApp:</p>
+      
       <div class="thumbnail-preview">
-        <img id="thumbnailPreview" src="" alt="Thumbnail preview">
+        <img id="thumbnailPreview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%23f8f9fa'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='18' fill='%23999' text-anchor='middle' dominant-baseline='middle'%3EThumbnail preview will appear here%3C/text%3E%3C/svg%3E" alt="Thumbnail preview">
       </div>
-      <div class="thumbnail-info">
-        <p><strong>Important:</strong> If you see the last image in WhatsApp, it's likely due to caching. To fix:</p>
-        <ul style="text-align: left; margin-top: 10px; padding-left: 20px;">
-          <li>Clear WhatsApp cache</li>
-          <li>Use a new URL with a query parameter (e.g., ?v=2)</li>
-          <li>Wait a few hours for cache to expire</li>
-        </ul>
-      </div>
+      
+      <p class="confirmation-text">
+        When you share this page link, WhatsApp will use the image above as the thumbnail preview. 
+        This ensures your customers always see the latest device when sharing.
+      </p>
     </div>
     
-    <!-- Loading spinner -->
-    <div class="spinner" id="loadingSpinner"></div>
-    
+    <!-- Gallery Grid -->
     <div class="gallery-grid" id="galleryGrid"></div>
   </div>
 
+  <!-- Floating Buttons -->
   <a class="whatsapp-float" href="https://wa.me/919886566379" target="_blank" title="Chat on WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
-  <button id="scrollToTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+  <button id="scrollToTopBtn">
     <i class="fas fa-arrow-up"></i>
   </button>
 
   <script>
-    // Function to update Open Graph and Twitter Card meta tags
-    function updateOGThumbnail(imageUrl) {
-      // Add cache busting parameter
-      const cacheBustedUrl = imageUrl + '?v=' + Date.now();
-      
-      document.getElementById('ogImage').setAttribute('content', cacheBustedUrl);
-      document.getElementById('twitterImage').setAttribute('content', cacheBustedUrl);
-      document.getElementById('thumbnailPreview').src = imageUrl;
-      document.getElementById('thumbnailStatus').textContent = 'Thumbnail set to: ' + imageUrl;
-    }
-
     // Function to detect the newest image by checking file availability
     async function detectNewestImageNumber(max) {
       for (let i = max; i >= 1; i--) {
-        const url = `https://www.sellinseconds.in/dynamic/images/${i}.webp`;
+        const url = `https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${Date.now()}`;
         try {
           const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
           if (res.ok) {
-            return i;
+            return i; // Found the newest image
           }
         } catch (error) {
           console.warn(`Error checking image ${i}: ${error.message}`);
         }
       }
-      return 1;
+      return 1; // Default to 1 if no images found
     }
 
-    // Scroll to top button visibility logic
+    // Function to update Open Graph and Twitter Card meta tags
+    function updateOGThumbnail(imageUrl) {
+      // Add cache busting to ensure WhatsApp fetches fresh image
+      const cacheBustedUrl = `${imageUrl}?v=${Date.now()}`;
+      
+      document.getElementById('ogImage').setAttribute('content', cacheBustedUrl);
+      document.getElementById('twitterImage').setAttribute('content', cacheBustedUrl);
+      document.getElementById('thumbnailPreview').src = imageUrl;
+    }
+
+    // Scroll to top functionality
+    document.getElementById('scrollToTopBtn').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
     window.addEventListener('scroll', () => {
-      document.getElementById('scrollToTopBtn').style.display = window.scrollY > 300 ? 'flex' : 'none';
+      const scrollBtn = document.getElementById('scrollToTopBtn');
+      scrollBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
     });
 
+    // Main function to load gallery
     document.addEventListener("DOMContentLoaded", async () => {
       const gallery = document.getElementById("galleryGrid");
-      const loadingSpinner = document.getElementById("loadingSpinner");
       const maxImages = 30;
       
       try {
         const newestImageNumber = await detectNewestImageNumber(maxImages);
+        const newestImageUrl = `https://www.sellinseconds.in/dynamic/images/${newestImageNumber}.webp`;
+        
+        // Set the header image and thumbnail
+        document.getElementById('headerImage').src = newestImageUrl;
+        updateOGThumbnail(newestImageUrl);
         
         // Create the ordered list of images
         const orderedImages = [];
         for (let i = newestImageNumber; i >= 1; i--) orderedImages.push(i);
         for (let i = maxImages; i > newestImageNumber; i--) orderedImages.push(i);
 
-        // Set the top image as the thumbnail immediately
-        const topImageUrl = `https://www.sellinseconds.in/dynamic/images/${newestImageNumber}.webp`;
-        updateOGThumbnail(topImageUrl);
-
         // Build gallery HTML
         gallery.innerHTML = orderedImages.map((num, index) => `
-          <div class="card-wrapper ${index === 0 ? 'top-most animated-glow' : ''}">
+          <div class="card-wrapper">
             <div class="card">
               <div class="card-img-container">
                 <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp" alt="Product ${num}" loading="lazy"
@@ -420,13 +472,13 @@
               </div>
             </div>
             <button class="whatsapp-card-btn" data-product-img-name="${num}">
-              <i class="fab fa-whatsapp"></i> I am interested in this device
+              <i class="fab fa-whatsapp"></i> I'm interested in this device
             </button>
           </div>
         `).join('');
 
-        // Add event listeners for the WhatsApp buttons
-        gallery.addEventListener('click', function (e) {
+        // Add event listeners for WhatsApp buttons
+        gallery.addEventListener('click', function(e) {
           const button = e.target.closest(".whatsapp-card-btn");
           if (button) {
             const productImageName = button.getAttribute('data-product-img-name');
@@ -443,13 +495,11 @@
           <div style="grid-column: 1/-1; text-align: center; padding: 2rem;">
             <h2>Couldn't load products</h2>
             <p>Please check your internet connection and try again</p>
-            <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem;">
               Reload Page
             </button>
           </div>
         `;
-      } finally {
-        loadingSpinner.style.display = 'none';
       }
     });
   </script>
