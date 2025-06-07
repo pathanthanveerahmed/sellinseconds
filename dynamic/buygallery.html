@@ -321,7 +321,7 @@
     <header>
       <div class="marquee-container">
         <div class="marquee-track">
-          <img class="marquee-image" src="https://via.placeholder.com/1200x300/007bff/ffffff?text=SellInSeconds+Header" alt="SellInSeconds Header Banner">
+          <img class="marquee-image" src="https://www.sellinseconds.in/sellhead.webp" alt="SellInSeconds Header Banner">
         </div>
       </div>
     </header>
@@ -332,15 +332,16 @@
     <!-- Thumbnail confirmation area -->
     <div class="thumbnail-confirmation">
       <h3><i class="fas fa-check-circle" style="color:#28a745;"></i> WhatsApp Sharing Thumbnail Confirmed</h3>
-      <p>The image below is set as the thumbnail when sharing this page on WhatsApp:</p>
+      <p>The top image below this header is set as the thumbnail when sharing this page on WhatsApp:</p>
       <div class="thumbnail-preview">
-        <img id="thumbnailPreview" src="https://via.placeholder.com/400x300/007bff/ffffff?text=Top+Image" alt="Thumbnail preview">
+        <img id="thumbnailPreview" src="" alt="Thumbnail preview">
       </div>
       <div class="thumbnail-info">
-        <p><strong>Important:</strong> When sharing, WhatsApp may show the last image if:</p>
+        <p><strong>Important:</strong> If you see the last image in WhatsApp, it's likely due to caching. To fix:</p>
         <ul style="text-align: left; margin-top: 10px; padding-left: 20px;">
-          <li>You shared the page before without clearing cache</li>
-          <li>The thumbnail was set after WhatsApp cached the page</li>
+          <li>Clear WhatsApp cache</li>
+          <li>Use a new URL with a query parameter (e.g., ?v=2)</li>
+          <li>Wait a few hours for cache to expire</li>
         </ul>
       </div>
     </div>
@@ -362,34 +363,29 @@
   <script>
     // Function to update Open Graph and Twitter Card meta tags
     function updateOGThumbnail(imageUrl) {
-      document.getElementById('ogImage').setAttribute('content', imageUrl);
-      document.getElementById('twitterImage').setAttribute('content', imageUrl);
+      // Add cache busting parameter
+      const cacheBustedUrl = imageUrl + '?v=' + Date.now();
+      
+      document.getElementById('ogImage').setAttribute('content', cacheBustedUrl);
+      document.getElementById('twitterImage').setAttribute('content', cacheBustedUrl);
       document.getElementById('thumbnailPreview').src = imageUrl;
+      document.getElementById('thumbnailStatus').textContent = 'Thumbnail set to: ' + imageUrl;
     }
 
-    // Function to generate mock product images
-    function generateMockProductImages(count) {
-      const products = [];
-      const brands = ['Apple', 'Samsung', 'Google', 'OnePlus', 'Xiaomi', 'Dell', 'HP', 'Lenovo'];
-      const types = ['iPhone', 'Galaxy', 'Pixel', 'Nord', 'Redmi', 'XPS', 'Spectre', 'ThinkPad'];
-      const conditions = ['Mint', 'Excellent', 'Good', 'Fair'];
-      
-      for (let i = 1; i <= count; i++) {
-        const brand = brands[Math.floor(Math.random() * brands.length)];
-        const type = types[Math.floor(Math.random() * types.length)];
-        const condition = conditions[Math.floor(Math.random() * conditions.length)];
-        
-        products.push({
-          id: i,
-          name: `${brand} ${type} ${Math.floor(Math.random() * 10) + 1}`,
-          condition: condition,
-          price: Math.floor(Math.random() * 1000) + 200,
-          imageUrl: `https://picsum.photos/400/300?random=${i}`,
-          description: `Beautiful ${condition.toLowerCase()} condition ${brand} ${type} with excellent performance.`
-        });
+    // Function to detect the newest image by checking file availability
+    async function detectNewestImageNumber(max) {
+      for (let i = max; i >= 1; i--) {
+        const url = `https://www.sellinseconds.in/dynamic/images/${i}.webp`;
+        try {
+          const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+          if (res.ok) {
+            return i;
+          }
+        } catch (error) {
+          console.warn(`Error checking image ${i}: ${error.message}`);
+        }
       }
-      
-      return products;
+      return 1;
     }
 
     // Scroll to top button visibility logic
@@ -400,53 +396,61 @@
     document.addEventListener("DOMContentLoaded", async () => {
       const gallery = document.getElementById("galleryGrid");
       const loadingSpinner = document.getElementById("loadingSpinner");
+      const maxImages = 30;
       
-      // Generate mock product data
-      const products = generateMockProductImages(9);
-      
-      // Sort to put the newest first (simulating new arrivals)
-      const sortedProducts = [...products].sort((a, b) => b.id - a.id);
-      
-      // Set the top product as the sharing thumbnail immediately
-      if (sortedProducts.length > 0) {
-        updateOGThumbnail(sortedProducts[0].imageUrl);
-      }
+      try {
+        const newestImageNumber = await detectNewestImageNumber(maxImages);
+        
+        // Create the ordered list of images
+        const orderedImages = [];
+        for (let i = newestImageNumber; i >= 1; i--) orderedImages.push(i);
+        for (let i = maxImages; i > newestImageNumber; i--) orderedImages.push(i);
 
-      // Hide loading spinner
-      loadingSpinner.style.display = 'none';
-      
-      // Build gallery
-      gallery.innerHTML = sortedProducts.map((product, index) => `
-        <div class="card-wrapper ${index === 0 ? 'top-most animated-glow' : ''}">
-          <div class="card">
-            <div class="card-img-container">
-              <img src="${product.imageUrl}" alt="${product.name}" loading="lazy">
+        // Set the top image as the thumbnail immediately
+        const topImageUrl = `https://www.sellinseconds.in/dynamic/images/${newestImageNumber}.webp`;
+        updateOGThumbnail(topImageUrl);
+
+        // Build gallery HTML
+        gallery.innerHTML = orderedImages.map((num, index) => `
+          <div class="card-wrapper ${index === 0 ? 'top-most animated-glow' : ''}">
+            <div class="card">
+              <div class="card-img-container">
+                <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp" alt="Product ${num}" loading="lazy"
+                     onerror="this.closest('.card-wrapper').style.display='none';">
+              </div>
             </div>
+            <button class="whatsapp-card-btn" data-product-img-name="${num}">
+              <i class="fab fa-whatsapp"></i> I am interested in this device
+            </button>
           </div>
-          <div class="card-details" style="padding: 0 1rem; width: 100%;">
-            <h3 style="margin: 0.5rem 0; font-size: 1.2rem;">${product.name}</h3>
-            <p style="margin: 0.3rem 0; color: #666;">Condition: <strong>${product.condition}</strong></p>
-            <p style="margin: 0.3rem 0 1rem; font-weight: bold; color: #e74c3c;">₹${product.price}</p>
-          </div>
-          <button class="whatsapp-card-btn" data-product-id="${product.id}">
-            <i class="fab fa-whatsapp"></i> I'm interested in this device
-          </button>
-        </div>
-      `).join('');
+        `).join('');
 
-      // Add event listeners for the WhatsApp buttons
-      gallery.addEventListener('click', function (e) {
-        const button = e.target.closest(".whatsapp-card-btn");
-        if (button) {
-          const productId = button.getAttribute('data-product-id');
-          const product = products.find(p => p.id == productId);
-          
-          if (product) {
-            const message = encodeURIComponent(`Hi, I'm interested in this device: ${product.name} (${product.condition} condition). Price: ₹${product.price}. Can you provide more details?`);
+        // Add event listeners for the WhatsApp buttons
+        gallery.addEventListener('click', function (e) {
+          const button = e.target.closest(".whatsapp-card-btn");
+          if (button) {
+            const productImageName = button.getAttribute('data-product-img-name');
+            const productHtmlUrl = `https://www.sellinseconds.in/dynamic/wacust/${productImageName}.html`;
+            
+            const message = encodeURIComponent(`I am interested in this device. ${productHtmlUrl}`);
             window.open(`https://wa.me/919886566379?text=${message}`, '_blank');
           }
-        }
-      });
+        });
+        
+      } catch (error) {
+        console.error('Error loading gallery:', error);
+        gallery.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+            <h2>Couldn't load products</h2>
+            <p>Please check your internet connection and try again</p>
+            <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+              Reload Page
+            </button>
+          </div>
+        `;
+      } finally {
+        loadingSpinner.style.display = 'none';
+      }
     });
   </script>
 </body>
