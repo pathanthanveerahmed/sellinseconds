@@ -47,6 +47,29 @@
     /* Main Container for Content */
     .container { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
 
+    /* Loading Indicator */
+    .loading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 300px;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(0, 123, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #007bff;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     /* Gallery Grid Layout */
     .gallery-grid {
       display: grid;
@@ -69,7 +92,7 @@
       }
     }
 
-    /* Individual Card Wrapper Styling (now holds the border and shadow) */
+    /* Individual Card Wrapper Styling */
     .card-wrapper {
       display: flex;
       flex-direction: column;
@@ -77,13 +100,12 @@
       background: #fff;
       border-radius: 12px;
       overflow: hidden;
-      position: relative; /* Needed for absolute positioning of the badge */
-      /* Base double border using multiple box-shadows */
-      box-shadow: 0 0 0 3px #e0e0e0, /* Outer light gray border */
-                  0 0 0 6px var(--card-border-color), /* Inner soft blue border (dynamic) */
-                  0 6px 18px rgba(0,0,0,0.1); /* Main shadow */
+      position: relative;
+      box-shadow: 0 0 0 3px #e0e0e0, 
+                  0 0 0 6px var(--card-border-color),
+                  0 6px 18px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      --card-border-color: #b3d9ff; /* Default border color for regular cards */
+      --card-border-color: #b3d9ff;
     }
 
     /* Animation for initial glow */
@@ -95,9 +117,9 @@
       }
       50% {
         box-shadow: 0 0 0 3px #e0e0e0,
-                    0 0 0 10px #ffea00, /* Bright gold glow for highlight */
+                    0 0 0 10px #ffea00,
                     0 6px 18px rgba(0,0,0,0.1),
-                    0 0 20px rgba(255, 234, 0, 0.7); /* Additional glow effect */
+                    0 0 20px rgba(255, 234, 0, 0.7);
       }
       100% {
         box-shadow: 0 0 0 3px #e0e0e0,
@@ -107,21 +129,21 @@
     }
 
     .card-wrapper.animated-glow {
-        animation: border-glow 1.5s ease-out forwards; /* Apply glow animation */
+        animation: border-glow 1.5s ease-out forwards;
     }
 
     .card-wrapper:hover {
       transform: translateY(-8px);
       box-shadow: 0 0 0 3px #e0e0e0,
-                  0 0 0 6px #8cc6ff, /* Slightly darker blue on hover */
+                  0 0 0 6px #8cc6ff,
                   0 12px 24px rgba(0,0,0,0.15);
     }
 
-    /* Top-most card specific styling (for the new badge) */
+    /* Top-most card specific styling */
     .card-wrapper.top-most {
-      --card-border-color: #007bff; /* Distinct blue for the "new" border */
+      --card-border-color: #007bff;
       box-shadow: 0 0 0 3px #e0e0e0,
-                  0 0 0 6px var(--card-border-color), /* Uses its own color */
+                  0 0 0 6px var(--card-border-color),
                   0 6px 18px rgba(0,0,0,0.1);
     }
 
@@ -129,27 +151,26 @@
       content: 'NEWLY ADDED';
       position: absolute;
       top: 10px;
-      right: -10px; /* Position slightly outside to create a ribbon effect */
-      background-color: #ff4d4d; /* Bright red for "NEW" */
+      right: -10px;
+      background-color: #ff4d4d;
       color: white;
       padding: 5px 15px;
       font-size: 0.8rem;
       font-weight: bold;
       border-radius: 5px;
-      transform: rotateY(0deg) rotate(20deg); /* Initial state for flip */
+      transform: rotateY(0deg) rotate(20deg);
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      z-index: 10; /* Ensure it's above other elements */
-      /* NEW: Animation for flipping badge */
+      z-index: 10;
       animation: flip-badge 0.8s ease-out forwards;
     }
 
-    /* NEW: Keyframes for badge flip animation */
+    /* Keyframes for badge flip animation */
     @keyframes flip-badge {
         0% { transform: rotateY(0deg) rotate(20deg); opacity: 0; }
         100% { transform: rotateY(360deg) rotate(20deg); opacity: 1; }
     }
 
-    .card { /* The inner card, no longer holds the main border/shadow */
+    .card { 
       width: 100%; display: flex; flex-direction: column;
     }
 
@@ -170,7 +191,7 @@
       align-items: center;
       padding: 1rem;
       width: 100%;
-      gap: 10px; /* Space between buttons */
+      gap: 10px;
     }
 
     /* Common Button Styles */
@@ -189,7 +210,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      flex-grow: 1; /* Make buttons expand to fill space */
+      flex-grow: 1;
     }
 
     .whatsapp-action-btn {
@@ -250,44 +271,14 @@
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
-
-  <script>
-    // Function to detect the newest image by checking file availability
-    async function detectNewestImageNumber(max) {
-      for (let i = max; i >= 1; i--) {
-        const url = https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${Date.now()};
-        try {
-          const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
-          if (res.ok) {
-            return i; // Found the newest image
-          }
-        } catch (error) {
-          console.warn(Error checking image ${i}: ${error.message});
-        }
-      }
-      return 1; // If no image is found from max down to 1, default to 1
-    }
-
-    // Function to update Open Graph and Twitter Card meta tags for link sharing
-    async function updateOGThumbnail() {
-      const newestNum = await detectNewestImageNumber(30);
-      const newestURL = https://www.sellinseconds.in/dynamic/images/${newestNum}.webp;
-
-      const ogImage = document.querySelector('meta[property="og:image"]');
-      const twitterImage = document.querySelector('meta[name="twitter:image"]');
-      
-      if (ogImage) ogImage.setAttribute('content', newestURL);
-      if (twitterImage) twitterImage.setAttribute('content', newestURL);
-    }
-
-    // This immediately calls the function to update the thumbnail as soon as possible
-    updateOGThumbnail();
-
-  </script>
 </head>
 <body>
   <div class="container">
-    <div class="gallery-grid"></div>
+    <div id="loading" class="loading-container">
+      <div class="spinner"></div>
+      <p>Loading the latest gadgets...</p>
+    </div>
+    <div class="gallery-grid" style="display: none;"></div>
   </div>
 
   <a class="whatsapp-float" href="https://wa.me/919886566379" target="_blank" title="Chat on WhatsApp">
@@ -304,42 +295,97 @@
       document.getElementById('scrollToTopBtn').style.display = window.scrollY > 300 ? 'flex' : 'none';
     });
 
+    // Function to get image metadata (last modified date)
+    async function getImageMetadata(imageNumber) {
+      const url = `https://www.sellinseconds.in/dynamic/images/${imageNumber}.webp?_=${Date.now()}`;
+      try {
+        const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+        if (res.ok) {
+          const lastModified = res.headers.get('Last-Modified');
+          if (lastModified) {
+            return {
+              num: imageNumber,
+              date: new Date(lastModified)
+            };
+          }
+        }
+      } catch (error) {
+        console.warn(`Error checking image ${imageNumber}: ${error.message}`);
+      }
+      return null;
+    }
+
+    // Function to sort images by modification date (newest first)
+    async function getSortedImageList(maxImages) {
+      const imageNumbers = Array.from({ length: maxImages }, (_, i) => i + 1);
+      const promises = imageNumbers.map(num => getImageMetadata(num));
+      const results = await Promise.allSettled(promises);
+      
+      const images = results
+        .map(result => result.status === 'fulfilled' ? result.value : null)
+        .filter(img => img !== null)
+        .sort((a, b) => b.date - a.date);
+      
+      return images.map(img => img.num);
+    }
+
+    // Function to update Open Graph and Twitter Card meta tags
+    function updateOGThumbnail(imageNum) {
+      const imageURL = `https://www.sellinseconds.in/dynamic/images/${imageNum}.webp`;
+      
+      const ogImage = document.querySelector('meta[property="og:image"]');
+      const twitterImage = document.querySelector('meta[name="twitter:image"]');
+      
+      if (ogImage) ogImage.setAttribute('content', imageURL);
+      if (twitterImage) twitterImage.setAttribute('content', imageURL);
+    }
+
     document.addEventListener("DOMContentLoaded", async () => {
       const maxImages = 30;
       const gallery = document.querySelector(".gallery-grid");
-      const newestImageNumber = await detectNewestImageNumber(maxImages);
-
-      const orderedImages = [];
-      for (let i = newestImageNumber; i >= 1; i--) orderedImages.push(i);
-      for (let i = maxImages; i > newestImageNumber; i--) orderedImages.push(i);
-
-      gallery.innerHTML = orderedImages.map((num, index) => 
-        <div class="card-wrapper ${index === 0 ? 'top-most animated-glow' : ''}">
-          <div class="card-img-container">
-            <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp?_=${Date.now()}" alt="Product ${num}" loading="lazy"
-                 onerror="this.closest('.card-wrapper').style.display='none';">
-          </div>
-          <div class="card-actions">
-            <a href="https://wa.me/919886566379?text=${encodeURIComponent('I am interested in this device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
-              <i class="fab fa-whatsapp"></i> I'm Interested
-            </a>
-            <a href="tel:+919886566379" class="action-btn call-action-btn">
-              <i class="fas fa-phone"></i> Call Now
-            </a>
-          </div>
-        </div>
-      ).join('');
-
-      // Add fade-in animation to all cards after they are rendered
-      const cards = document.querySelectorAll('.card-wrapper');
-      cards.forEach((card, index) => {
-          card.style.animation = fadeIn 0.5s forwards ${index * 0.1}s; // Existing fade-in
-          if (card.classList.contains('top-most')) {
-              // The border-glow animation is already defined for .card-wrapper.animated-glow
-              // No need to re-apply it here, as it's already in the HTML template for top-most
-              // and the badge flip animation is in the CSS for .top-most::before
-          }
-      });
+      const loading = document.getElementById("loading");
+      
+      try {
+        const sortedImageNumbers = await getSortedImageList(maxImages);
+        
+        // Update OG thumbnail with the newest image
+        if (sortedImageNumbers.length > 0) {
+          updateOGThumbnail(sortedImageNumbers[0]);
+        }
+        
+        // Generate gallery HTML
+        gallery.innerHTML = sortedImageNumbers.map((num, index) => 
+          `<div class="card-wrapper ${index === 0 ? 'top-most animated-glow' : ''}">
+            <div class="card-img-container">
+              <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp?_=${Date.now()}" 
+                   alt="Product ${num}" loading="lazy"
+                   onerror="this.closest('.card-wrapper').style.display='none';">
+            </div>
+            <div class="card-actions">
+              <a href="https://wa.me/919886566379?text=${encodeURIComponent('I am interested in this device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" 
+                 target="_blank" class="action-btn whatsapp-action-btn">
+                <i class="fab fa-whatsapp"></i> I'm Interested
+              </a>
+              <a href="tel:+919886566379" class="action-btn call-action-btn">
+                <i class="fas fa-phone"></i> Call Now
+              </a>
+            </div>
+          </div>`
+        ).join('');
+        
+        // Add fade-in animation to all cards after they are rendered
+        const cards = document.querySelectorAll('.card-wrapper');
+        cards.forEach((card, index) => {
+          card.style.animation = `fadeIn 0.5s forwards ${index * 0.1}s`;
+        });
+        
+        // Show gallery and hide loading
+        gallery.style.display = 'grid';
+        loading.style.display = 'none';
+      } catch (error) {
+        console.error('Failed to load gallery:', error);
+        loading.innerHTML = '<p>⚠️ Failed to load products. Please try again later.</p>';
+      }
     });
   </script>
 </body>
