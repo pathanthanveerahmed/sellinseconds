@@ -1,140 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta http-equiv="refresh" content="300">
-  <title>Buy Used Devices - SellInSeconds</title>
-
-  <!-- SEO Tags -->
-  <meta name="description" content="Explore our most recently added pre-owned smartphones, laptops, and tablets. Updated automatically every few minutes.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
+  <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
+  <meta name="keywords" content="sell used phone, buy used phone, used laptop, pre-owned smartphones, second hand mobiles, electronic gadgets, sell laptop online, instant gadget quote">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html"/>
+  <meta name="author" content="SellInSeconds">
+  <link rel="canonical" href="https://www.sellinseconds.in/buygallery.html">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Buy Used Devices - SellInSeconds"/>
-  <meta property="og:description" content="Browse our dynamic gallery of top used smartphones, laptops, and tablets. Updated frequently."/>
-  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/30.webp"/>
-  <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html"/>
+  <meta property="og:title" content="Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds">
+  <meta property="og:description" content="Browse or list certified used devices on SellInSeconds. Quality gadgets, fast pickup, great prices.">
+  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp">
+  <meta property="og:url" content="https://www.sellinseconds.in/buygallery.html">
+  <meta property="og:type" content="website">
 
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds">
+  <meta name="twitter:description" content="Browse or list certified used devices on SellInSeconds. Quality gadgets, fast pickup, great prices.">
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QMV442HBWL');
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon"/>
   <style>
+    /* Universal Box-Sizing */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Body Styling */
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f2f2f2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
       color: #333;
+      line-height: 1.6;
+      padding-bottom: 2rem;
     }
 
-    h1 {
-      text-align: center;
-      padding: 1rem;
-      color: #2a2a2a;
+    /* Main Container for Content */
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
+
+    /* Gallery Grid Layout */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr; /* Default to 1 column for mobile */
+      gap: 1.5rem;
+      padding-top: 1rem;
     }
 
-    .gallery {
+    /* Responsive adjustments for tablets (2 columns) */
+    @media (min-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Responsive adjustments for desktops (3 columns) */
+    @media (min-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Individual Card Wrapper Styling (now holds the border and shadow) */
+    .card-wrapper {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
-      padding: 1rem;
-    }
-
-    .card {
+      flex-direction: column;
+      align-items: center;
       background: #fff;
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       overflow: hidden;
-      width: calc(100% / 2.2);
-      max-width: 180px;
-      text-align: center;
-      position: relative;
-      transition: transform 0.2s ease;
+      position: relative; /* Needed for absolute positioning of the badge */
+      /* Base double border using multiple box-shadows */
+      box-shadow: 0 0 0 3px #e0e0e0, /* Outer light gray border */
+                  0 0 0 6px var(--card-border-color), /* Inner soft blue border (dynamic) */
+                  0 6px 18px rgba(0,0,0,0.1); /* Main shadow */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      --card-border-color: #b3d9ff; /* Default border color for regular cards */
     }
 
-    .card:hover {
-      transform: translateY(-4px);
+    /* Animation for initial glow */
+    @keyframes border-glow {
+      0% {
+        box-shadow: 0 0 0 3px #e0e0e0,
+                    0 0 0 6px var(--card-border-color),
+                    0 6px 18px rgba(0,0,0,0.1);
+      }
+      50% {
+        box-shadow: 0 0 0 3px #e0e0e0,
+                    0 0 0 10px #ffea00, /* Bright gold glow for highlight */
+                    0 6px 18px rgba(0,0,0,0.1),
+                    0 0 20px rgba(255, 234, 0, 0.7); /* Additional glow effect */
+      }
+      100% {
+        box-shadow: 0 0 0 3px #e0e0e0,
+                    0 0 0 6px var(--card-border-color),
+                    0 6px 18px rgba(0,0,0,0.1);
+      }
     }
 
-    .card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 8px;
+    .card-wrapper.animated-glow {
+        animation: border-glow 1.5s ease-out forwards; /* Apply glow animation */
     }
 
-    .badge {
+    .card-wrapper:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 0 3px #e0e0e0,
+                  0 0 0 6px #8cc6ff, /* Slightly darker blue on hover */
+                  0 12px 24px rgba(0,0,0,0.15);
+    }
+
+    /* Top-most card specific styling (for the new badge) */
+    .card-wrapper.top-most {
+      --card-border-color: #007bff; /* Distinct blue for the "new" border */
+      box-shadow: 0 0 0 3px #e0e0e0,
+                  0 0 0 6px var(--card-border-color), /* Uses its own color */
+                  0 6px 18px rgba(0,0,0,0.1);
+    }
+
+    .card-wrapper.top-most::before {
+      content: 'NEWLY ADDED';
       position: absolute;
-      top: 8px;
-      left: 8px;
-      background: #ff4081;
+      top: 10px;
+      right: -10px; /* Position slightly outside to create a ribbon effect */
+      background-color: #ff4d4d; /* Bright red for "NEW" */
       color: white;
-      padding: 4px 8px;
-      font-size: 12px;
+      padding: 5px 15px;
+      font-size: 0.8rem;
       font-weight: bold;
       border-radius: 5px;
-      z-index: 2;
+      transform: rotateY(0deg) rotate(20deg); /* Initial state for flip */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 10; /* Ensure it's above other elements */
+      /* NEW: Animation for flipping badge */
+      animation: flip-badge 0.8s ease-out forwards;
     }
 
-    .double-border {
-      border: 3px solid blue;
-      box-shadow: 0 0 0 4px #ffc107; /* outer yellow border */
+    /* NEW: Keyframes for badge flip animation */
+    @keyframes flip-badge {
+        0% { transform: rotateY(0deg) rotate(20deg); opacity: 0; }
+        100% { transform: rotateY(360deg) rotate(20deg); opacity: 1; }
     }
 
-    figcaption {
-      font-size: 14px;
-      padding: 6px;
-      background: #fafafa;
-      border-top: 1px solid #eee;
+    .card { /* The inner card, no longer holds the main border/shadow */
+      width: 100%; display: flex; flex-direction: column;
     }
 
-    @media (min-width: 600px) {
-      .card { width: calc(100% / 3.5); }
+    /* Image Container within Card */
+    .card-img-container { width: 100%; padding-top: 75%; position: relative; overflow: hidden; }
+    .card-img-container img {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+    .card-wrapper:hover .card-img-container img { transform: scale(1.05); }
+
+    /* Button Container within Card */
+    .card-actions {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 1rem;
+      width: 100%;
+      gap: 10px; /* Space between buttons */
     }
 
-    @media (min-width: 900px) {
-      .card { width: calc(100% / 5.5); }
+    /* Common Button Styles */
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: #fff;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      flex-grow: 1; /* Make buttons expand to fill space */
+    }
+
+    .whatsapp-action-btn {
+      background-color: #25d366;
+      border: 2px solid #1da851;
+    }
+    .whatsapp-action-btn:hover {
+      background-color: #1da851;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 10px rgba(37, 211, 102, 0.4);
+    }
+
+    .call-action-btn {
+      background-color: #007bff;
+      border: 2px solid #0056b3;
+    }
+    .call-action-btn:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 10px rgba(0, 123, 255, 0.4);
+    }
+
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed; width: 60px; height: 60px;
+      bottom: 40px; right: 40px;
+      background-color: #25d366; color: #fff;
+      border-radius: 50px; text-align: center;
+      font-size: 30px; box-shadow: 2px 2px 3px #999;
+      z-index: 1000;
+      display: flex; justify-content: center; align-items: center;
+      transition: transform 0.3s ease;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+
+    /* Scroll to Top Button */
+    #scrollToTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 110px; right: 40px;
+      z-index: 999;
+      background-color: #007bff;
+      color: white; border: none;
+      border-radius: 50%; width: 50px; height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    #scrollToTopBtn:hover {
+      background-color: #0056b3;
+      transform: translateY(-3px);
+    }
+
+    /* Fade-in Animation for Cards */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
-</head>
-<body>
-  <h1>Added Recently</h1>
-  <div class="gallery">
-    <!-- JavaScript will insert image cards here -->
-  </div>
 
   <script>
-    const gallery = document.querySelector('.gallery');
-    const totalImages = 30;
-
-    for (let i = totalImages; i >= 1; i--) {
-      const imgNum = i.toString();
-      const imgSrc = `https://www.sellinseconds.in/dynamic/images/${imgNum}.webp`;
-
-      const card = document.createElement('figure');
-      card.classList.add('card');
-      if (i === totalImages) {
-        card.classList.add('double-border');
+    // Function to detect the newest image by checking file availability
+    async function detectNewestImageNumber(max) {
+      for (let i = max; i >= 1; i--) {
+        const url = https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${Date.now()};
+        try {
+          const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+          if (res.ok) {
+            return i; // Found the newest image
+          }
+        } catch (error) {
+          console.warn(Error checking image ${i}: ${error.message});
+        }
       }
-
-      const img = document.createElement('img');
-      img.src = imgSrc;
-      img.alt = `Pre-owned device ${imgNum}`;
-      img.loading = 'lazy';
-
-      const caption = document.createElement('figcaption');
-      caption.textContent = `Device #${imgNum}`;
-
-      if (i === totalImages) {
-        const badge = document.createElement('div');
-        badge.className = 'badge';
-        badge.textContent = 'Added Recently';
-        card.appendChild(badge);
-      }
-
-      card.appendChild(img);
-      card.appendChild(caption);
-      gallery.appendChild(card);
+      return 1; // If no image is found from max down to 1, default to 1
     }
+
+    // Function to update Open Graph and Twitter Card meta tags for link sharing
+    async function updateOGThumbnail() {
+      const newestNum = await detectNewestImageNumber(30);
+      const newestURL = https://www.sellinseconds.in/dynamic/images/${newestNum}.webp;
+
+      const ogImage = document.querySelector('meta[property="og:image"]');
+      const twitterImage = document.querySelector('meta[name="twitter:image"]');
+      
+      if (ogImage) ogImage.setAttribute('content', newestURL);
+      if (twitterImage) twitterImage.setAttribute('content', newestURL);
+    }
+
+    // This immediately calls the function to update the thumbnail as soon as possible
+    updateOGThumbnail();
+
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="gallery-grid"></div>
+  </div>
+
+  <a class="whatsapp-float" href="https://wa.me/919886566379" target="_blank" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <button id="scrollToTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Scroll to top button visibility logic
+    window.addEventListener('scroll', () => {
+      document.getElementById('scrollToTopBtn').style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const maxImages = 30;
+      const gallery = document.querySelector(".gallery-grid");
+      const newestImageNumber = await detectNewestImageNumber(maxImages);
+
+      const orderedImages = [];
+      for (let i = newestImageNumber; i >= 1; i--) orderedImages.push(i);
+      for (let i = maxImages; i > newestImageNumber; i--) orderedImages.push(i);
+
+      gallery.innerHTML = orderedImages.map((num, index) => 
+        <div class="card-wrapper ${index === 0 ? 'top-most animated-glow' : ''}">
+          <div class="card-img-container">
+            <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp?_=${Date.now()}" alt="Product ${num}" loading="lazy"
+                 onerror="this.closest('.card-wrapper').style.display='none';">
+          </div>
+          <div class="card-actions">
+            <a href="https://wa.me/919886566379?text=${encodeURIComponent('I am interested in this device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
+              <i class="fab fa-whatsapp"></i> I'm Interested
+            </a>
+            <a href="tel:+919886566379" class="action-btn call-action-btn">
+              <i class="fas fa-phone"></i> Call Now
+            </a>
+          </div>
+        </div>
+      ).join('');
+
+      // Add fade-in animation to all cards after they are rendered
+      const cards = document.querySelectorAll('.card-wrapper');
+      cards.forEach((card, index) => {
+          card.style.animation = fadeIn 0.5s forwards ${index * 0.1}s; // Existing fade-in
+          if (card.classList.contains('top-most')) {
+              // The border-glow animation is already defined for .card-wrapper.animated-glow
+              // No need to re-apply it here, as it's already in the HTML template for top-most
+              // and the badge flip animation is in the CSS for .top-most::before
+          }
+      });
+    });
   </script>
 </body>
 </html>
