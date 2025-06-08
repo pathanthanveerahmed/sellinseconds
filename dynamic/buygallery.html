@@ -160,15 +160,15 @@
   <script>
     async function detectNewestImageURL(max) {
       for (let i = 1; i <= max; i++) {
-        const url = https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${Date.now()};
+        const url = `https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${Date.now()}`;
         try {
           const res = await fetch(url, { method: 'HEAD' });
-          if (!res.ok) return https://www.sellinseconds.in/dynamic/images/${i - 1}.webp;
+          if (!res.ok) return `https://www.sellinseconds.in/dynamic/images/${i - 1}.webp`;
         } catch {
-          return https://www.sellinseconds.in/dynamic/images/${i - 1}.webp;
+          return `https://www.sellinseconds.in/dynamic/images/${i - 1}.webp`;
         }
       }
-      return https://www.sellinseconds.in/dynamic/images/${max}.webp;
+      return `https://www.sellinseconds.in/dynamic/images/${max}.webp`;
     }
 
     (async function updateOGThumbnail() {
@@ -207,7 +207,7 @@
 
     async function detectNewestImage(max) {
       for (let i = 1; i <= max; i++) {
-        const url = https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${Date.now()};
+        const url = `https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${Date.now()}`;
         try {
           const res = await fetch(url, { method: 'HEAD' });
           if (!res.ok) return i - 1;
@@ -228,7 +228,7 @@
       for (let i = maxImages; i > newestImageNumber; i--) orderedImages.push(i);
 
       gallery.innerHTML = orderedImages.map((num, index) => 
-        <div class="card-wrapper ${index === 0 ? 'top-most' : ''}" style="animation: fadeIn 0.5s forwards ${index * 0.1}s">
+        `<div class="card-wrapper ${index === 0 ? 'top-most' : ''}" style="animation: fadeIn 0.5s forwards ${index * 0.1}s">
           <div class="card">
             <div class="card-img-container">
               <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp" alt="Product ${num}" loading="lazy"
@@ -238,15 +238,15 @@
           <button class="whatsapp-card-btn" data-product-img-name="${num}">
             <i class="fab fa-whatsapp"></i> I am interested in this device
           </button>
-        </div>
+        </div>`
       ).join('');
 
       gallery.addEventListener('click', function (e) {
         const button = e.target.closest(".whatsapp-card-btn");
         if (button) {
           const productImageName = button.getAttribute('data-product-img-name');
-          const message = encodeURIComponent(I am interested in this device. https://www.sellinseconds.in/dynamic/wacust/${productImageName}.html);
-          window.open(https://wa.me/919886566379?text=${message}, '_blank');
+          const message = encodeURIComponent(`I am interested in this device. https://www.sellinseconds.in/dynamic/wacust/${productImageName}.html`);
+          window.open(`https://wa.me/919886566379?text=${message}`, '_blank');
         }
       });
     });
