@@ -83,6 +83,32 @@
     /* Main Container for Content */
     .container { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
 
+    /* Gallery Controls */
+    .gallery-controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .control-btn {
+      padding: 10px 20px;
+      background: white;
+      border: 2px solid #007bff;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .control-btn:hover, .control-btn.active {
+      background: #007bff;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
     /* Loading Indicator */
     .loading-container {
       display: flex;
@@ -337,6 +363,15 @@
       align-items: center;
       gap: 8px;
     }
+    
+    .info-box {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 800px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
   </style>
 </head>
 <body>
@@ -353,6 +388,23 @@
   </header>
 
   <div class="container">
+    <div class="info-box">
+      <h2>Smart Image Sequencing</h2>
+      <p>This gallery automatically detects the newest images regardless of their numeric value. The algorithm:</p>
+      <ol>
+        <li>Checks all images from 1 to 30</li>
+        <li>Identifies the newest image by its modification date</li>
+        <li>Creates a sequence starting from the newest image</li>
+        <li>Wraps around to the beginning after image 30</li>
+      </ol>
+    </div>
+    
+    <div class="gallery-controls">
+      <button class="control-btn active" data-sort="newest">Newest First</button>
+      <button class="control-btn" data-sort="oldest">Oldest First</button>
+      <button class="control-btn" data-sort="numeric">Numeric Order</button>
+    </div>
+    
     <div id="loading" class="loading-container">
       <div class="spinner"></div>
       <p>Scanning our inventory for the latest gadgets...</p>
@@ -423,22 +475,38 @@
       }
     }
 
-    // Function to sort images by modification date (newest first)
-    async function getSortedImageList(maxImages) {
+    // Function to get the newest image number
+    async function getNewestImageNumber(maxImages) {
       const imageNumbers = Array.from({ length: maxImages }, (_, i) => i + 1);
       const promises = imageNumbers.map(num => getImageMetadata(num));
       const results = await Promise.allSettled(promises);
       
-      // Extract valid image metadata
-      const images = results
-        .filter(result => result.status === 'fulfilled')
+      // Find newest image by date
+      const newestImage = results
+        .filter(result => result.status === 'fulfilled' && result.value.exists)
         .map(result => result.value)
-        .filter(img => img.exists);
+        .reduce((newest, current) => {
+          return current.date > newest.date ? current : newest;
+        }, { date: new Date(0) });
       
-      // Sort by date descending (newest first)
-      images.sort((a, b) => b.date - a.date);
+      return newestImage.num || 1;
+    }
+
+    // Function to create a sequence starting from the newest image
+    function createSequence(start, maxImages) {
+      const sequence = [];
       
-      return images.map(img => img.num);
+      // Start from the newest image and go to maxImages
+      for (let i = start; i <= maxImages; i++) {
+        sequence.push(i);
+      }
+      
+      // Then continue from 1 to the image before the newest
+      for (let i = 1; i < start; i++) {
+        sequence.push(i);
+      }
+      
+      return sequence;
     }
 
     // Function to update Open Graph and Twitter Card meta tags
@@ -452,17 +520,17 @@
       if (twitterImage) twitterImage.setAttribute('content', imageURL);
     }
 
-    // Function to create gallery cards with delay for animation
-    function createGalleryCards(sortedImageNumbers) {
+    // Function to create gallery cards
+    function createGalleryCards(imageNumbers, sortMethod = 'sequence') {
       const gallery = document.querySelector(".gallery-grid");
       
       // Clear gallery
       gallery.innerHTML = '';
       
       // Create each card with sequential animation delay
-      sortedImageNumbers.forEach((num, index) => {
+      imageNumbers.forEach((num, index) => {
         const card = document.createElement('div');
-        card.className = `card-wrapper ${index === 0 ? 'top-most animated-glow' : ''}`;
+        card.className = `card-wrapper ${index === 0 && sortMethod === 'sequence' ? 'top-most animated-glow' : ''}`;
         card.style.animationDelay = `${index * 0.1}s`;
         
         card.innerHTML = `
@@ -486,26 +554,64 @@
       });
     }
 
+    // Sort buttons functionality
+    function setupSortButtons() {
+      const buttons = document.querySelectorAll('.control-btn');
+      let currentSequence = [];
+      
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Update active state
+          buttons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          
+          const sortMethod = button.dataset.sort;
+          
+          if (sortMethod === 'newest') {
+            // Keep the original sequence (newest first)
+            createGalleryCards(currentSequence, 'sequence');
+          } else if (sortMethod === 'oldest') {
+            // Reverse the sequence (oldest first)
+            createGalleryCards([...currentSequence].reverse(), 'oldest');
+          } else if (sortMethod === 'numeric') {
+            // Sort numerically
+            const numericSequence = [...currentSequence].sort((a, b) => a - b);
+            createGalleryCards(numericSequence, 'numeric');
+          }
+        });
+      });
+      
+      return currentSequence;
+    }
+
     document.addEventListener("DOMContentLoaded", async () => {
       const maxImages = 30;
       const gallery = document.querySelector(".gallery-grid");
       const loading = document.getElementById("loading");
       
       try {
-        // Get sorted image list by modification date
-        const sortedImageNumbers = await getSortedImageList(maxImages);
+        // Find the newest image
+        const newestImage = await getNewestImageNumber(maxImages);
+        
+        // Create sequence starting from the newest image
+        const sequence = createSequence(newestImage, maxImages);
+        
+        // Set up sort buttons and store sequence
+        const currentSequence = setupSortButtons();
+        currentSequence.push(...sequence);
         
         // Update OG thumbnail with the newest image
-        if (sortedImageNumbers.length > 0) {
-          updateOGThumbnail(sortedImageNumbers[0]);
-        }
+        updateOGThumbnail(newestImage);
         
         // Create gallery cards
-        createGalleryCards(sortedImageNumbers);
+        createGalleryCards(sequence);
         
         // Show gallery and hide loading
         gallery.style.display = 'grid';
         loading.style.display = 'none';
+        
+        console.log(`Newest image: ${newestImage}`);
+        console.log('Image sequence:', sequence);
       } catch (error) {
         console.error('Failed to load gallery:', error);
         loading.innerHTML = '<p>⚠️ Failed to load products. Please try again later or contact us.</p>';
