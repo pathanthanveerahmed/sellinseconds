@@ -4,124 +4,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly</title>
-
-  <meta name="description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
-  <meta name="keywords" content="sell used phone, sell used laptop, pre-owned gadgets, instant gadget quote, sell smartphones online, second hand mobiles, sell laptop instantly">
-  <meta name="author" content="SellInSeconds">
+  <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
+  <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
+  <meta name="keywords" content="sell used phone, buy used phone, used laptop, pre-owned smartphones, second hand mobiles, refurbished gadgets, sell laptop online, instant gadget quote">
   <meta name="robots" content="index, follow">
+  <meta name="author" content="SellInSeconds">
   <link rel="canonical" href="https://www.sellinseconds.in/buygallery.html">
-  <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon"/>
-  <!-- Open Graph -->
+
+  <!-- Open Graph for WhatsApp and Facebook -->
+  <meta property="og:title" content="Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds">
+  <meta property="og:description" content="Browse or list certified used devices on SellInSeconds. Quality gadgets, fast pickup, great prices.">
   <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp">
-  <meta property="og:title" content="SellInSeconds - Buy & Sell Used Smartphones, Laptops & Tablets Instantly">
-  <meta property="og:description" content="Instantly buy or sell pre-owned mobile phones, laptops, and tablets with SellInSeconds. Get the best price, fast service, and hassle-free pickup!">
   <meta property="og:url" content="https://www.sellinseconds.in/buygallery.html">
   <meta property="og:type" content="website">
 
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds">
+  <meta name="twitter:description" content="Explore great deals on quality used gadgets. SellInSeconds makes buying and selling seamless.">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon"/>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body {
-      background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f9;
       color: #333;
-      line-height: 1.6;
-      padding-bottom: 2rem;
-      min-height: 100vh;
     }
-    .container { max-width: 1400px; margin: 0 auto; padding: 0 15px; }
+    .container {
+      max-width: 1400px;
+      margin: auto;
+      padding: 0 1rem;
+    }
     .header {
       background: #fff;
-      padding: 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      border-radius: 12px;
-      margin: 20px 0 30px;
+      padding: 1rem;
       text-align: center;
     }
     .logo {
-      max-width: 300px;
-      margin: 0 auto 20px;
+      max-width: 280px;
+      margin: 1rem auto;
       display: block;
-    }
-    .page-title {
-      text-align: center;
-      margin: 0;
-      color: #2c3e50;
-      font-size: 2.5rem;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    }
-    .title-highlight {
-      color: #e74c3c;
-      position: relative;
-    }
-    .title-highlight:after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, #e74c3c, #ff9f43);
     }
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 25px;
-      padding-top: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      padding: 1rem 0 3rem;
     }
     .card-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      position: relative;
       background: #fff;
       border-radius: 12px;
       overflow: hidden;
-      position: relative;
-      box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 6px #b3d9ff, 0 6px 18px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 6px #b3d9ff, 0 6px 18px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
     }
     .card-wrapper.featured {
-      animation: border-glow 1.8s ease-out forwards;
+      animation: border-glow 2s ease-out forwards;
     }
     .card-wrapper.featured::before {
-      content: "New";
+      content: "Added Recently";
       position: absolute;
-      top: 12px;
-      left: 12px;
-      background: #ff3e3e;
-      color: white;
-      font-size: 0.85rem;
-      padding: 4px 8px;
-      border-radius: 4px;
+      top: 15px;
+      right: 15px;
+      background: #ff5722;
+      color: #fff;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      border-radius: 50px;
       z-index: 10;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
     @keyframes border-glow {
-      0% { box-shadow: 0 0 0 0px #ff9800; }
-      50% { box-shadow: 0 0 12px 6px #ffc107; }
+      0% { box-shadow: 0 0 0 0 #ffa726; }
+      50% { box-shadow: 0 0 12px 8px #ffc107; }
       100% { box-shadow: 0 0 0 3px #e0e0e0, 0 0 0 6px #ff9f43; }
-    }
-    .card {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
     }
     .card-img-container {
       width: 100%;
-      padding-top: 100%;
+      aspect-ratio: 4 / 3;
+      background: #f9f9f9;
       position: relative;
-      overflow: hidden;
-      background: linear-gradient(45deg, #f5f7fa, #e4e7eb);
     }
     .card-img-container img {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
+      display: block;
     }
     .spinner {
       width: 50px; height: 50px;
@@ -135,12 +108,45 @@
       to { transform: rotate(360deg); }
     }
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Used Smartphones, Laptops & Tablets for Sale",
+  "description": "Browse a curated collection of certified pre-owned devices including smartphones, laptops, and tablets from various brands like Apple, Samsung, Lenovo, and more.",
+  "url": "https://www.sellinseconds.in/buygallery.html",
+  "hasPart": {
+    "@type": "Product",
+    "name": "Pre-owned Gadgets - Dynamic Selection",
+    "image": "https://www.sellinseconds.in/dynamic/images/thumbnail.webp",
+    "description": "Our gallery showcases up to 30 carefully inspected pre=owned gadgets, changing regularly to reflect the latest inventory.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Multiple Brands"
+    },
+    "itemCondition": "https://schema.org/UsedCondition",
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "4999",
+      "highPrice": "199999",
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock",
+      "offerCount": "30",
+      "seller": {
+        "@type": "Organization",
+        "name": "SellInSeconds",
+        "url": "https://www.sellinseconds.in"
+      }
+    }
+  }
+}
+</script>
+
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <img class="logo" src="https://www.sellinseconds.in/sellhead.webp" alt="SellInSeconds Logo">
-      <h1 class="page-title">Our Premium <span class="title-highlight">Pre-Owned</span> Devices</h1>
+      <img class="logo" src="https://www.sellinseconds.in/sellhead.webp" alt="SellInSeconds Logo" loading="lazy">
     </div>
     <div class="gallery-grid" id="galleryGrid">
       <div class="spinner" id="loadingSpinner"></div>
@@ -149,7 +155,8 @@
   <script>
     async function detectNewestImageNumber(max) {
       for (let i = max; i >= 1; i--) {
-        const url = `https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${Date.now()}`;
+        const dateHash = new Date().toISOString().slice(0, 16);
+        const url = `https://www.sellinseconds.in/dynamic/images/${i}.webp?_=${dateHash}`;
         try {
           const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
           if (res.ok) return i;
@@ -160,7 +167,7 @@
 
     async function loadGallery() {
       const gallery = document.getElementById("galleryGrid");
-      const loadingSpinner = document.getElementById("loadingSpinner");
+      const spinner = document.getElementById("loadingSpinner");
       const maxImages = 30;
       try {
         const newest = await detectNewestImageNumber(maxImages);
@@ -169,21 +176,22 @@
         for (let i = maxImages; i > newest; i--) ordered.push(i);
         gallery.innerHTML = ordered.map((num, index) => `
           <div class="card-wrapper ${index === 0 ? 'featured' : ''}">
-            <div class="card">
-              <div class="card-img-container">
-                <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp" alt="Product ${num}" loading="lazy"
-                     onerror="this.closest('.card-wrapper').style.display='none';">
-              </div>
+            <div class="card-img-container">
+              <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp?_=${Date.now()}" alt="Used Device ${num}" loading="lazy"
+                   onerror="this.closest('.card-wrapper').style.display='none';">
             </div>
           </div>`).join('');
       } catch (e) {
         gallery.innerHTML = "<p style='text-align:center;'>Failed to load gallery.</p>";
       } finally {
-        loadingSpinner.style.display = 'none';
+        spinner.style.display = 'none';
       }
     }
 
-    document.addEventListener("DOMContentLoaded", loadGallery);
+    document.addEventListener("DOMContentLoaded", () => {
+      loadGallery();
+      setInterval(loadGallery, 5 * 60 * 1000);
+    });
   </script>
 </body>
 </html>
