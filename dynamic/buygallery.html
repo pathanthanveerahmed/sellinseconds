@@ -44,6 +44,42 @@
       padding-bottom: 2rem;
     }
 
+    /* Header Styling */
+    header {
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      color: white;
+      padding: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .logo {
+      font-size: 2.5rem;
+      color: #ffcc00;
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+    
+    .tagline {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
     /* Main Container for Content */
     .container { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
 
@@ -106,6 +142,7 @@
                   0 6px 18px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       --card-border-color: #b3d9ff;
+      animation: fadeIn 0.5s forwards;
     }
 
     /* Animation for initial glow */
@@ -152,13 +189,13 @@
       position: absolute;
       top: 10px;
       right: -10px;
-      background-color: #ff4d4d;
+      background: linear-gradient(135deg, #ff4d4d, #ff1a1a);
       color: white;
       padding: 5px 15px;
       font-size: 0.8rem;
       font-weight: bold;
       border-radius: 5px;
-      transform: rotateY(0deg) rotate(20deg);
+      transform: rotate(20deg);
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       z-index: 10;
       animation: flip-badge 0.8s ease-out forwards;
@@ -175,12 +212,19 @@
     }
 
     /* Image Container within Card */
-    .card-img-container { width: 100%; padding-top: 75%; position: relative; overflow: hidden; }
+    .card-img-container { 
+      width: 100%; 
+      padding-top: 75%; 
+      position: relative; 
+      overflow: hidden; 
+      background: #f8f9fa;
+    }
     .card-img-container img {
       position: absolute; top: 0; left: 0;
       width: 100%; height: 100%;
       object-fit: contain;
       transition: transform 0.3s ease;
+      padding: 15px;
     }
     .card-wrapper:hover .card-img-container img { transform: scale(1.05); }
 
@@ -214,21 +258,21 @@
     }
 
     .whatsapp-action-btn {
-      background-color: #25d366;
+      background: linear-gradient(135deg, #25d366, #1da851);
       border: 2px solid #1da851;
     }
     .whatsapp-action-btn:hover {
-      background-color: #1da851;
+      background: linear-gradient(135deg, #1da851, #25d366);
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 10px rgba(37, 211, 102, 0.4);
     }
 
     .call-action-btn {
-      background-color: #007bff;
+      background: linear-gradient(135deg, #007bff, #0056b3);
       border: 2px solid #0056b3;
     }
     .call-action-btn:hover {
-      background-color: #0056b3;
+      background: linear-gradient(135deg, #0056b3, #007bff);
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 10px rgba(0, 123, 255, 0.4);
     }
@@ -237,7 +281,8 @@
     .whatsapp-float {
       position: fixed; width: 60px; height: 60px;
       bottom: 40px; right: 40px;
-      background-color: #25d366; color: #fff;
+      background: linear-gradient(135deg, #25d366, #1da851);
+      color: #fff;
       border-radius: 50px; text-align: center;
       font-size: 30px; box-shadow: 2px 2px 3px #999;
       z-index: 1000;
@@ -252,7 +297,7 @@
       position: fixed;
       bottom: 110px; right: 40px;
       z-index: 999;
-      background-color: #007bff;
+      background: linear-gradient(135deg, #007bff, #0056b3);
       color: white; border: none;
       border-radius: 50%; width: 50px; height: 50px;
       font-size: 24px;
@@ -261,7 +306,6 @@
       transition: background-color 0.3s ease, transform 0.3s ease;
     }
     #scrollToTopBtn:hover {
-      background-color: #0056b3;
       transform: translateY(-3px);
     }
 
@@ -270,16 +314,71 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      color: #666;
+      border-top: 1px solid #eee;
+    }
+    
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <div class="container">
+      <div class="logo-container">
+        <i class="fas fa-mobile-alt logo"></i>
+        <div>
+          <h1>SellInSeconds</h1>
+          <p class="tagline">Buy & sell certified pre-owned smartphones, laptops, and tablets with instant quotes and fast service</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
   <div class="container">
     <div id="loading" class="loading-container">
       <div class="spinner"></div>
-      <p>Loading the latest gadgets...</p>
+      <p>Scanning our inventory for the latest gadgets...</p>
     </div>
     <div class="gallery-grid" style="display: none;"></div>
   </div>
+
+  <footer>
+    <div class="container">
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span>+91 98865 66379</span>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-whatsapp"></i>
+          <span>WhatsApp: +91 98865 66379</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>contact@sellinseconds.in</span>
+        </div>
+      </div>
+      <p>© 2023 SellInSeconds. All rights reserved. Certified pre-owned devices with quality guarantee.</p>
+    </div>
+  </footer>
 
   <a class="whatsapp-float" href="https://wa.me/919886566379" target="_blank" title="Chat on WhatsApp">
     <i class="fab fa-whatsapp"></i>
@@ -302,17 +401,26 @@
         const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
         if (res.ok) {
           const lastModified = res.headers.get('Last-Modified');
-          if (lastModified) {
-            return {
-              num: imageNumber,
-              date: new Date(lastModified)
-            };
-          }
+          return {
+            num: imageNumber,
+            date: lastModified ? new Date(lastModified) : new Date(0),
+            exists: true
+          };
+        } else {
+          return {
+            num: imageNumber,
+            date: new Date(0),
+            exists: false
+          };
         }
       } catch (error) {
         console.warn(`Error checking image ${imageNumber}: ${error.message}`);
+        return {
+          num: imageNumber,
+          date: new Date(0),
+          exists: false
+        };
       }
-      return null;
     }
 
     // Function to sort images by modification date (newest first)
@@ -321,10 +429,14 @@
       const promises = imageNumbers.map(num => getImageMetadata(num));
       const results = await Promise.allSettled(promises);
       
+      // Extract valid image metadata
       const images = results
-        .map(result => result.status === 'fulfilled' ? result.value : null)
-        .filter(img => img !== null)
-        .sort((a, b) => b.date - a.date);
+        .filter(result => result.status === 'fulfilled')
+        .map(result => result.value)
+        .filter(img => img.exists);
+      
+      // Sort by date descending (newest first)
+      images.sort((a, b) => b.date - a.date);
       
       return images.map(img => img.num);
     }
@@ -340,12 +452,47 @@
       if (twitterImage) twitterImage.setAttribute('content', imageURL);
     }
 
+    // Function to create gallery cards with delay for animation
+    function createGalleryCards(sortedImageNumbers) {
+      const gallery = document.querySelector(".gallery-grid");
+      
+      // Clear gallery
+      gallery.innerHTML = '';
+      
+      // Create each card with sequential animation delay
+      sortedImageNumbers.forEach((num, index) => {
+        const card = document.createElement('div');
+        card.className = `card-wrapper ${index === 0 ? 'top-most animated-glow' : ''}`;
+        card.style.animationDelay = `${index * 0.1}s`;
+        
+        card.innerHTML = `
+          <div class="card-img-container">
+            <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp?_=${Date.now()}" 
+                 alt="Product ${num}" loading="lazy"
+                 onerror="this.closest('.card-wrapper').style.display='none';">
+          </div>
+          <div class="card-actions">
+            <a href="https://wa.me/919886566379?text=${encodeURIComponent('I am interested in this device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" 
+               target="_blank" class="action-btn whatsapp-action-btn">
+              <i class="fab fa-whatsapp"></i> I'm Interested
+            </a>
+            <a href="tel:+919886566379" class="action-btn call-action-btn">
+              <i class="fas fa-phone"></i> Call Now
+            </a>
+          </div>
+        `;
+        
+        gallery.appendChild(card);
+      });
+    }
+
     document.addEventListener("DOMContentLoaded", async () => {
       const maxImages = 30;
       const gallery = document.querySelector(".gallery-grid");
       const loading = document.getElementById("loading");
       
       try {
+        // Get sorted image list by modification date
         const sortedImageNumbers = await getSortedImageList(maxImages);
         
         // Update OG thumbnail with the newest image
@@ -353,38 +500,15 @@
           updateOGThumbnail(sortedImageNumbers[0]);
         }
         
-        // Generate gallery HTML
-        gallery.innerHTML = sortedImageNumbers.map((num, index) => 
-          `<div class="card-wrapper ${index === 0 ? 'top-most animated-glow' : ''}">
-            <div class="card-img-container">
-              <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp?_=${Date.now()}" 
-                   alt="Product ${num}" loading="lazy"
-                   onerror="this.closest('.card-wrapper').style.display='none';">
-            </div>
-            <div class="card-actions">
-              <a href="https://wa.me/919886566379?text=${encodeURIComponent('I am interested in this device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" 
-                 target="_blank" class="action-btn whatsapp-action-btn">
-                <i class="fab fa-whatsapp"></i> I'm Interested
-              </a>
-              <a href="tel:+919886566379" class="action-btn call-action-btn">
-                <i class="fas fa-phone"></i> Call Now
-              </a>
-            </div>
-          </div>`
-        ).join('');
-        
-        // Add fade-in animation to all cards after they are rendered
-        const cards = document.querySelectorAll('.card-wrapper');
-        cards.forEach((card, index) => {
-          card.style.animation = `fadeIn 0.5s forwards ${index * 0.1}s`;
-        });
+        // Create gallery cards
+        createGalleryCards(sortedImageNumbers);
         
         // Show gallery and hide loading
         gallery.style.display = 'grid';
         loading.style.display = 'none';
       } catch (error) {
         console.error('Failed to load gallery:', error);
-        loading.innerHTML = '<p>⚠️ Failed to load products. Please try again later.</p>';
+        loading.innerHTML = '<p>⚠️ Failed to load products. Please try again later or contact us.</p>';
       }
     });
   </script>
