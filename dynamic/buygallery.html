@@ -44,93 +44,8 @@
       padding-bottom: 2rem;
     }
 
-    /* Header Styling */
-    header {
-      background: linear-gradient(135deg, #007bff, #0056b3);
-      color: white;
-      padding: 1.5rem 0;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      margin-bottom: 2rem;
-    }
-    
-    .logo-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-    }
-    
-    .logo {
-      font-size: 2.5rem;
-      color: #ffcc00;
-    }
-    
-    h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    }
-    
-    .tagline {
-      font-size: 1.1rem;
-      opacity: 0.9;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
     /* Main Container for Content */
     .container { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
-
-    /* Gallery Controls */
-    .gallery-controls {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    
-    .control-btn {
-      padding: 10px 20px;
-      background: white;
-      border: 2px solid #007bff;
-      border-radius: 30px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .control-btn:hover, .control-btn.active {
-      background: #007bff;
-      color: white;
-      transform: translateY(-3px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    /* Loading Indicator */
-    .loading-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 300px;
-      flex-direction: column;
-      gap: 20px;
-    }
-    
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 5px solid rgba(0, 123, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: #007bff;
-      animation: spin 1s ease-in-out infinite;
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
 
     /* Gallery Grid Layout */
     .gallery-grid {
@@ -154,7 +69,7 @@
       }
     }
 
-    /* Individual Card Wrapper Styling */
+    /* Individual Card Wrapper Styling (now holds the border and shadow) */
     .card-wrapper {
       display: flex;
       flex-direction: column;
@@ -162,13 +77,13 @@
       background: #fff;
       border-radius: 12px;
       overflow: hidden;
-      position: relative;
-      box-shadow: 0 0 0 3px #e0e0e0, 
-                  0 0 0 6px var(--card-border-color),
-                  0 6px 18px rgba(0,0,0,0.1);
+      position: relative; /* Needed for absolute positioning of the badge */
+      /* Base double border using multiple box-shadows */
+      box-shadow: 0 0 0 3px #e0e0e0, /* Outer light gray border */
+                  0 0 0 6px var(--card-border-color), /* Inner soft blue border (dynamic) */
+                  0 6px 18px rgba(0,0,0,0.1); /* Main shadow */
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      --card-border-color: #b3d9ff;
-      animation: fadeIn 0.5s forwards;
+      --card-border-color: #b3d9ff; /* Default border color for regular cards */
     }
 
     /* Animation for initial glow */
@@ -180,9 +95,9 @@
       }
       50% {
         box-shadow: 0 0 0 3px #e0e0e0,
-                    0 0 0 10px #ffea00,
+                    0 0 0 10px #ffea00, /* Bright gold glow for highlight */
                     0 6px 18px rgba(0,0,0,0.1),
-                    0 0 20px rgba(255, 234, 0, 0.7);
+                    0 0 20px rgba(255, 234, 0, 0.7); /* Additional glow effect */
       }
       100% {
         box-shadow: 0 0 0 3px #e0e0e0,
@@ -192,21 +107,21 @@
     }
 
     .card-wrapper.animated-glow {
-        animation: border-glow 1.5s ease-out forwards;
+        animation: border-glow 1.5s ease-out forwards; /* Apply glow animation */
     }
 
     .card-wrapper:hover {
       transform: translateY(-8px);
       box-shadow: 0 0 0 3px #e0e0e0,
-                  0 0 0 6px #8cc6ff,
+                  0 0 0 6px #8cc6ff, /* Slightly darker blue on hover */
                   0 12px 24px rgba(0,0,0,0.15);
     }
 
-    /* Top-most card specific styling */
+    /* Top-most card specific styling (for the new badge) */
     .card-wrapper.top-most {
-      --card-border-color: #007bff;
+      --card-border-color: #007bff; /* Distinct blue for the "new" border */
       box-shadow: 0 0 0 3px #e0e0e0,
-                  0 0 0 6px var(--card-border-color),
+                  0 0 0 6px var(--card-border-color), /* Uses its own color */
                   0 6px 18px rgba(0,0,0,0.1);
     }
 
@@ -214,43 +129,37 @@
       content: 'NEWLY ADDED';
       position: absolute;
       top: 10px;
-      right: -10px;
-      background: linear-gradient(135deg, #ff4d4d, #ff1a1a);
+      right: -10px; /* Position slightly outside to create a ribbon effect */
+      background-color: #ff4d4d; /* Bright red for "NEW" */
       color: white;
       padding: 5px 15px;
       font-size: 0.8rem;
       font-weight: bold;
       border-radius: 5px;
-      transform: rotate(20deg);
+      transform: rotateY(0deg) rotate(20deg); /* Initial state for flip */
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      z-index: 10;
+      z-index: 10; /* Ensure it's above other elements */
+      /* NEW: Animation for flipping badge */
       animation: flip-badge 0.8s ease-out forwards;
     }
 
-    /* Keyframes for badge flip animation */
+    /* NEW: Keyframes for badge flip animation */
     @keyframes flip-badge {
         0% { transform: rotateY(0deg) rotate(20deg); opacity: 0; }
         100% { transform: rotateY(360deg) rotate(20deg); opacity: 1; }
     }
 
-    .card { 
+    .card { /* The inner card, no longer holds the main border/shadow */
       width: 100%; display: flex; flex-direction: column;
     }
 
     /* Image Container within Card */
-    .card-img-container { 
-      width: 100%; 
-      padding-top: 75%; 
-      position: relative; 
-      overflow: hidden; 
-      background: #f8f9fa;
-    }
+    .card-img-container { width: 100%; padding-top: 75%; position: relative; overflow: hidden; }
     .card-img-container img {
       position: absolute; top: 0; left: 0;
       width: 100%; height: 100%;
       object-fit: contain;
       transition: transform 0.3s ease;
-      padding: 15px;
     }
     .card-wrapper:hover .card-img-container img { transform: scale(1.05); }
 
@@ -261,7 +170,7 @@
       align-items: center;
       padding: 1rem;
       width: 100%;
-      gap: 10px;
+      gap: 10px; /* Space between buttons */
     }
 
     /* Common Button Styles */
@@ -280,25 +189,25 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      flex-grow: 1;
+      flex-grow: 1; /* Make buttons expand to fill space */
     }
 
     .whatsapp-action-btn {
-      background: linear-gradient(135deg, #25d366, #1da851);
+      background-color: #25d366;
       border: 2px solid #1da851;
     }
     .whatsapp-action-btn:hover {
-      background: linear-gradient(135deg, #1da851, #25d366);
+      background-color: #1da851;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 10px rgba(37, 211, 102, 0.4);
     }
 
     .call-action-btn {
-      background: linear-gradient(135deg, #007bff, #0056b3);
+      background-color: #007bff;
       border: 2px solid #0056b3;
     }
     .call-action-btn:hover {
-      background: linear-gradient(135deg, #0056b3, #007bff);
+      background-color: #0056b3;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 10px rgba(0, 123, 255, 0.4);
     }
@@ -307,8 +216,7 @@
     .whatsapp-float {
       position: fixed; width: 60px; height: 60px;
       bottom: 40px; right: 40px;
-      background: linear-gradient(135deg, #25d366, #1da851);
-      color: #fff;
+      background-color: #25d366; color: #fff;
       border-radius: 50px; text-align: center;
       font-size: 30px; box-shadow: 2px 2px 3px #999;
       z-index: 1000;
@@ -323,7 +231,7 @@
       position: fixed;
       bottom: 110px; right: 40px;
       z-index: 999;
-      background: linear-gradient(135deg, #007bff, #0056b3);
+      background-color: #007bff;
       color: white; border: none;
       border-radius: 50%; width: 50px; height: 50px;
       font-size: 24px;
@@ -332,6 +240,7 @@
       transition: background-color 0.3s ease, transform 0.3s ease;
     }
     #scrollToTopBtn:hover {
+      background-color: #0056b3;
       transform: translateY(-3px);
     }
 
@@ -340,97 +249,49 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 2rem 0;
-      margin-top: 3rem;
-      color: #666;
-      border-top: 1px solid #eee;
-    }
-    
-    .contact-info {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .info-box {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 800px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
   </style>
+
+  <script>
+    const IMAGE_BASE_URL = "https://www.sellinseconds.in/dynamic/images/";
+    const MAX_IMAGES = 30; // Define max images as a constant
+
+    // Function to detect the newest image by checking file availability in reverse order
+    async function detectHighestExistingImageNumber() {
+      for (let i = MAX_IMAGES; i >= 1; i--) {
+        const url = `${IMAGE_BASE_URL}${i}.webp?_=${Date.now()}`;
+        try {
+          const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+          if (res.ok) {
+            return i; // Found the highest existing image number
+          }
+        } catch (error) {
+          console.warn(`Error checking image ${i}: ${error.message}`);
+        }
+      }
+      return 1; // If no image is found from max down to 1, default to 1
+    }
+
+    // Function to update Open Graph and Twitter Card meta tags for link sharing
+    async function updateOGThumbnail() {
+      const highestNum = await detectHighestExistingImageNumber();
+      const newestURL = `${IMAGE_BASE_URL}${highestNum}.webp`;
+
+      const ogImage = document.querySelector('meta[property="og:image"]');
+      const twitterImage = document.querySelector('meta[name="twitter:image"]');
+      
+      if (ogImage) ogImage.setAttribute('content', newestURL);
+      if (twitterImage) twitterImage.setAttribute('content', newestURL);
+    }
+
+    // This immediately calls the function to update the thumbnail as soon as possible
+    updateOGThumbnail();
+
+  </script>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <div class="logo-container">
-        <i class="fas fa-mobile-alt logo"></i>
-        <div>
-          <h1>SellInSeconds</h1>
-          <p class="tagline">Buy & sell certified pre-owned smartphones, laptops, and tablets with instant quotes and fast service</p>
-        </div>
-      </div>
-    </div>
-  </header>
-
   <div class="container">
-    <div class="info-box">
-      <h2>Smart Image Sequencing</h2>
-      <p>This gallery automatically detects the newest images regardless of their numeric value. The algorithm:</p>
-      <ol>
-        <li>Checks all images from 1 to 30</li>
-        <li>Identifies the newest image by its modification date</li>
-        <li>Creates a sequence starting from the newest image</li>
-        <li>Wraps around to the beginning after image 30</li>
-      </ol>
-    </div>
-    
-    <div class="gallery-controls">
-      <button class="control-btn active" data-sort="newest">Newest First</button>
-      <button class="control-btn" data-sort="oldest">Oldest First</button>
-      <button class="control-btn" data-sort="numeric">Numeric Order</button>
-    </div>
-    
-    <div id="loading" class="loading-container">
-      <div class="spinner"></div>
-      <p>Scanning our inventory for the latest gadgets...</p>
-    </div>
-    <div class="gallery-grid" style="display: none;"></div>
+    <div class="gallery-grid"></div>
   </div>
-
-  <footer>
-    <div class="container">
-      <div class="contact-info">
-        <div class="contact-item">
-          <i class="fas fa-phone"></i>
-          <span>+91 98865 66379</span>
-        </div>
-        <div class="contact-item">
-          <i class="fab fa-whatsapp"></i>
-          <span>WhatsApp: +91 98865 66379</span>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-envelope"></i>
-          <span>contact@sellinseconds.in</span>
-        </div>
-      </div>
-      <p>© 2023 SellInSeconds. All rights reserved. Certified pre-owned devices with quality guarantee.</p>
-    </div>
-  </footer>
 
   <a class="whatsapp-float" href="https://wa.me/919886566379" target="_blank" title="Chat on WhatsApp">
     <i class="fab fa-whatsapp"></i>
@@ -446,176 +307,55 @@
       document.getElementById('scrollToTopBtn').style.display = window.scrollY > 300 ? 'flex' : 'none';
     });
 
-    // Function to get image metadata (last modified date)
-    async function getImageMetadata(imageNumber) {
-      const url = `https://www.sellinseconds.in/dynamic/images/${imageNumber}.webp?_=${Date.now()}`;
-      try {
-        const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
-        if (res.ok) {
-          const lastModified = res.headers.get('Last-Modified');
-          return {
-            num: imageNumber,
-            date: lastModified ? new Date(lastModified) : new Date(0),
-            exists: true
-          };
-        } else {
-          return {
-            num: imageNumber,
-            date: new Date(0),
-            exists: false
-          };
-        }
-      } catch (error) {
-        console.warn(`Error checking image ${imageNumber}: ${error.message}`);
-        return {
-          num: imageNumber,
-          date: new Date(0),
-          exists: false
-        };
-      }
-    }
-
-    // Function to get the newest image number
-    async function getNewestImageNumber(maxImages) {
-      const imageNumbers = Array.from({ length: maxImages }, (_, i) => i + 1);
-      const promises = imageNumbers.map(num => getImageMetadata(num));
-      const results = await Promise.allSettled(promises);
-      
-      // Find newest image by date
-      const newestImage = results
-        .filter(result => result.status === 'fulfilled' && result.value.exists)
-        .map(result => result.value)
-        .reduce((newest, current) => {
-          return current.date > newest.date ? current : newest;
-        }, { date: new Date(0) });
-      
-      return newestImage.num || 1;
-    }
-
-    // Function to create a sequence starting from the newest image
-    function createSequence(start, maxImages) {
-      const sequence = [];
-      
-      // Start from the newest image and go to maxImages
-      for (let i = start; i <= maxImages; i++) {
-        sequence.push(i);
-      }
-      
-      // Then continue from 1 to the image before the newest
-      for (let i = 1; i < start; i++) {
-        sequence.push(i);
-      }
-      
-      return sequence;
-    }
-
-    // Function to update Open Graph and Twitter Card meta tags
-    function updateOGThumbnail(imageNum) {
-      const imageURL = `https://www.sellinseconds.in/dynamic/images/${imageNum}.webp`;
-      
-      const ogImage = document.querySelector('meta[property="og:image"]');
-      const twitterImage = document.querySelector('meta[name="twitter:image"]');
-      
-      if (ogImage) ogImage.setAttribute('content', imageURL);
-      if (twitterImage) twitterImage.setAttribute('content', imageURL);
-    }
-
-    // Function to create gallery cards
-    function createGalleryCards(imageNumbers, sortMethod = 'sequence') {
+    document.addEventListener("DOMContentLoaded", async () => {
       const gallery = document.querySelector(".gallery-grid");
+      const highestExistingImageNumber = await detectHighestExistingImageNumber();
+
+      const orderedImages = [];
+
+      // Add images from the highest existing down to 1
+      for (let i = highestExistingImageNumber; i >= 1; i--) {
+        orderedImages.push(i);
+      }
+
+      // If the highest existing number is not MAX_IMAGES,
+      // add the remaining numbers from MAX_IMAGES down to (highestExistingImageNumber + 1)
+      // This creates the "wrap around" effect
+      for (let i = MAX_IMAGES; i > highestExistingImageNumber; i--) {
+        orderedImages.push(i);
+      }
       
-      // Clear gallery
-      gallery.innerHTML = '';
-      
-      // Create each card with sequential animation delay
-      imageNumbers.forEach((num, index) => {
-        const card = document.createElement('div');
-        card.className = `card-wrapper ${index === 0 && sortMethod === 'sequence' ? 'top-most animated-glow' : ''}`;
-        card.style.animationDelay = `${index * 0.1}s`;
-        
-        card.innerHTML = `
-          <div class="card-img-container">
-            <img src="https://www.sellinseconds.in/dynamic/images/${num}.webp?_=${Date.now()}" 
-                 alt="Product ${num}" loading="lazy"
-                 onerror="this.closest('.card-wrapper').style.display='none';">
-          </div>
-          <div class="card-actions">
-            <a href="https://wa.me/919886566379?text=${encodeURIComponent('I am interested in this device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" 
-               target="_blank" class="action-btn whatsapp-action-btn">
-              <i class="fab fa-whatsapp"></i> I'm Interested
-            </a>
-            <a href="tel:+919886566379" class="action-btn call-action-btn">
-              <i class="fas fa-phone"></i> Call Now
-            </a>
+      // Filter out duplicates if any, though the logic above should prevent it
+      const uniqueOrderedImages = [...new Set(orderedImages)];
+
+
+      gallery.innerHTML = uniqueOrderedImages.map((num, index) => {
+        const imageUrl = `${IMAGE_BASE_URL}${num}.webp?_=${Date.now()}`;
+        const isTopMost = (index === 0); // The first image in the ordered list is the top-most
+
+        return `
+          <div class="card-wrapper ${isTopMost ? 'top-most animated-glow' : ''}">
+            <div class="card-img-container">
+              <img src="${imageUrl}" alt="Product ${num}" loading="lazy"
+                   onerror="this.closest('.card-wrapper').style.display='none';">
+            </div>
+            <div class="card-actions">
+              <a href="https://wa.me/919886566379?text=${encodeURIComponent('I am interested in this device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
+                <i class="fab fa-whatsapp"></i> I'm Interested
+              </a>
+              <a href="tel:+919886566379" class="action-btn call-action-btn">
+                <i class="fas fa-phone"></i> Call Now
+              </a>
+            </div>
           </div>
         `;
-        
-        gallery.appendChild(card);
-      });
-    }
+      }).join('');
 
-    // Sort buttons functionality
-    function setupSortButtons() {
-      const buttons = document.querySelectorAll('.control-btn');
-      let currentSequence = [];
-      
-      buttons.forEach(button => {
-        button.addEventListener('click', () => {
-          // Update active state
-          buttons.forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-          
-          const sortMethod = button.dataset.sort;
-          
-          if (sortMethod === 'newest') {
-            // Keep the original sequence (newest first)
-            createGalleryCards(currentSequence, 'sequence');
-          } else if (sortMethod === 'oldest') {
-            // Reverse the sequence (oldest first)
-            createGalleryCards([...currentSequence].reverse(), 'oldest');
-          } else if (sortMethod === 'numeric') {
-            // Sort numerically
-            const numericSequence = [...currentSequence].sort((a, b) => a - b);
-            createGalleryCards(numericSequence, 'numeric');
-          }
-        });
+      // Add fade-in animation to all cards after they are rendered
+      const cards = document.querySelectorAll('.card-wrapper');
+      cards.forEach((card, index) => {
+          card.style.animation = `fadeIn 0.5s forwards ${index * 0.1}s`;
       });
-      
-      return currentSequence;
-    }
-
-    document.addEventListener("DOMContentLoaded", async () => {
-      const maxImages = 30;
-      const gallery = document.querySelector(".gallery-grid");
-      const loading = document.getElementById("loading");
-      
-      try {
-        // Find the newest image
-        const newestImage = await getNewestImageNumber(maxImages);
-        
-        // Create sequence starting from the newest image
-        const sequence = createSequence(newestImage, maxImages);
-        
-        // Set up sort buttons and store sequence
-        const currentSequence = setupSortButtons();
-        currentSequence.push(...sequence);
-        
-        // Update OG thumbnail with the newest image
-        updateOGThumbnail(newestImage);
-        
-        // Create gallery cards
-        createGalleryCards(sequence);
-        
-        // Show gallery and hide loading
-        gallery.style.display = 'grid';
-        loading.style.display = 'none';
-        
-        console.log(`Newest image: ${newestImage}`);
-        console.log('Image sequence:', sequence);
-      } catch (error) {
-        console.error('Failed to load gallery:', error);
-        loading.innerHTML = '<p>⚠️ Failed to load products. Please try again later or contact us.</p>';
-      }
     });
   </script>
 </body>
