@@ -257,37 +257,37 @@
 
     /**
      * Detects the highest numbered image that currently exists on the server.
-     * This highest number is considered the "newest" in your sequential, cyclic system.
+     * This highest number is considered the "newest" and serves as the starting point.
      * @returns {Promise<number>} The highest existing image number, defaults to 1 if none found.
      */
     async function detectHighestExistingImageNumber() {
       for (let i = MAX_IMAGES; i >= 1; i--) {
-        const url = `${IMAGE_BASE_URL}${i}.webp?_=${Date.now()}`; // Add cache-buster
+        const url = `${IMAGE_BASE_URL}${i}.webp?_=${Date.now()}`; // Add cache-buster to ensure fresh check
         try {
-          // Use HEAD request for efficiency as we only care if it exists
+          // Use HEAD request for efficiency as we only care if the file exists
           const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
           if (res.ok) {
             return i; // Found the highest existing image number
           }
         } catch (error) {
-          console.warn(`Error checking image ${i}: ${error.message}`);
+          // console.warn(`Error checking image ${i}: ${error.message}`); // Suppress console warning for cleaner output
         }
       }
       return 1; // If no image is found from max down to 1, default to 1
     }
 
     /**
-     * Updates Open Graph and Twitter Card meta tags with the URL of the newest image.
+     * Updates Open Graph and Twitter Card meta tags with the URL of the topmost image.
      */
     async function updateOGThumbnail() {
-      const highestNum = await detectHighestExistingImageNumber();
-      const newestURL = `${IMAGE_BASE_URL}${highestNum}.webp`;
+      const detectedTopmostNumber = await detectHighestExistingImageNumber();
+      const topmostURL = `${IMAGE_BASE_URL}${detectedTopmostNumber}.webp`;
 
       const ogImage = document.querySelector('meta[property="og:image"]');
       const twitterImage = document.querySelector('meta[name="twitter:image"]');
       
-      if (ogImage) ogImage.setAttribute('content', newestURL);
-      if (twitterImage) twitterImage.setAttribute('content', newestURL);
+      if (ogImage) ogImage.setAttribute('content', topmostURL);
+      if (twitterImage) twitterImage.setAttribute('content', topmostURL);
     }
 
     // Immediately call the function to update the thumbnail as soon as possible
@@ -316,28 +316,40 @@
 
     document.addEventListener("DOMContentLoaded", async () => {
       const gallery = document.querySelector(".gallery-grid");
-      const highestExistingImageNumber = await detectHighestExistingImageNumber();
+      const detectedTopmostImageNumber = await detectHighestExistingImageNumber(); // Our dynamic starting point
 
-      const orderedImages = [];
+      const orderedImages = []; // This array will hold the final display order
 
-      // Start the order with the highest existing number, then count down to 1
-      for (let i = highestExistingImageNumber; i >= 1; i--) {
+      // --- HARDCODED LOGIC FOR IMAGE SEQUENCE GENERATION ---
+      // This logic defines how images are ordered relative to the detected topmost image.
+
+      // 1. Add images from the detected topmost number down to 1.
+      // This ensures the current "newest" and its preceding numbers appear first.
+      for (let i = detectedTopmostImageNumber; i >= 1; i--) {
         orderedImages.push(i);
       }
 
-      // Then, loop from MAX_IMAGES down to (highestExistingImageNumber + 1)
-      // This creates the desired wrap-around effect, placing older images after the "newest" cycle
-      for (let i = MAX_IMAGES; i > highestExistingImageNumber; i--) {
+      // 2. Add the remaining images from MAX_IMAGES down to (detectedTopmostImageNumber + 1).
+      // This creates a circular, wrap-around effect, placing the numerically higher
+      // (and thus older in this cycle) images after the current "newest" sequence.
+      // This explicitly defines the 'renaming sequence' for display.
+      for (let i = MAX_IMAGES; i > detectedTopmostImageNumber; i--) {
         orderedImages.push(i);
       }
       
-      // Ensure no duplicates, though the logic above should prevent it
+      // Optional: Ensure no duplicates if the logic ever allowed them (shouldn't happen with current logic)
       const uniqueOrderedImages = [...new Set(orderedImages)];
 
-      // Generate the HTML for the gallery grid
+      // Check if any images were found
+      if (uniqueOrderedImages.length === 0) {
+        gallery.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">No images found in the gallery. Please upload images (1.webp to 30.webp) to the /dynamic/images/ folder.</p>';
+        return; // Exit if no images are available
+      }
+
+      // Generate the HTML for the gallery grid using the hardcoded display order
       gallery.innerHTML = uniqueOrderedImages.map((num, index) => {
-        const imageUrl = `${IMAGE_BASE_URL}${num}.webp?_=${Date.now()}`;
-        const isTopMost = (index === 0); // The very first image in our ordered list is the top-most
+        const imageUrl = `${IMAGE_BASE_URL}${num}.webp?_=${Date.now()}`; // Add cache-buster to each image URL
+        const isTopMost = (index === 0); // The very first image in our generated list is the "newest"
 
         return `
           <div class="card-wrapper ${isTopMost ? 'top-most animated-glow' : ''}">
@@ -360,7 +372,7 @@
       // Add fade-in animation to all cards after they are rendered
       const cards = document.querySelectorAll('.card-wrapper');
       cards.forEach((card, index) => {
-          // Apply fade-in with a delay based on its position
+          // Apply fade-in with a staggered delay for a smoother effect
           card.style.animation = `fadeIn 0.5s forwards ${index * 0.1}s`;
       });
     });
