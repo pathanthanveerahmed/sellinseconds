@@ -1,25 +1,39 @@
-# BEGIN Cache-Control
-
-<IfModule mod_headers.c>
-
-# Disable caching for HTML files (force latest)
-<FilesMatch "\.(html|htm)$">
-  Header set Cache-Control "no-cache, no-store, must-revalidate"
-  Header set Pragma "no-cache"
-  Header set Expires 0
-</FilesMatch>
-
-# Enable long-term caching for static assets (images, CSS, JS)
-<FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|css|js|woff2?)$">
-  Header set Cache-Control "public, max-age=2592000"
-</FilesMatch>
-
-</IfModule>
-
-# Enable gzip compression
+# Enable Compression
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/plain text/html text/css application/javascript application/json
+  AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css application/json application/javascript application/x-javascript application/xml image/svg+xml
 </IfModule>
-ErrorDocument 404 /404.html
 
-# END Cache-Control
+# Enable Browser Caching
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 7 days"
+  ExpiresByType text/html "access plus 1 hour"
+  ExpiresByType text/css "access plus 30 days"
+  ExpiresByType text/javascript "access plus 30 days"
+  ExpiresByType application/javascript "access plus 30 days"
+  ExpiresByType application/x-javascript "access plus 30 days"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+</IfModule>
+
+# Cache-Control Headers
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ico|jpg|jpeg|png|webp|gif|js|css|woff2)$">
+    Header set Cache-Control "max-age=31536000, public"
+  </FilesMatch>
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "max-age=3600, public"
+  </FilesMatch>
+</IfModule>
+
+# GZIP Compression fallback for older browsers
+AddEncoding gzip .gz
+
+# Remove ETags (optional)
+Header unset ETag
+FileETag None
