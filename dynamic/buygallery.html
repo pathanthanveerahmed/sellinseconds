@@ -253,41 +253,93 @@
 
   <script>
     const IMAGE_BASE_URL = "https://www.sellinseconds.in/dynamic/images/";
-    const MAX_IMAGES = 30; // Define max images as a constant
+    const MAX_IMAGES = 30; // Maximum number of images
+    const STARTING_IMAGE_KEY = 'current_gallery_start_image'; // localStorage key
 
     /**
-     * Detects the highest numbered image that currently exists on the server.
-     * This highest number is considered the "newest" and serves as the starting point.
-     * @returns {Promise<number>} The highest existing image number, defaults to 1 if none found.
+     * Hardcoded logic to generate a cyclic image order based on a starting number.
+     * Example: if startNum = 1, order is [1, 30, 29, ..., 2]
+     * Example: if startNum = 2, order is [2, 1, 30, 29, ..., 3]
+     * @param {number} startNum - The number that should appear first in the sequence (1 to MAX_IMAGES).
+     * @returns {number[]} An array of image numbers in the desired display order.
      */
-    async function detectHighestExistingImageNumber() {
-      for (let i = MAX_IMAGES; i >= 1; i--) {
-        const url = `${IMAGE_BASE_URL}${i}.webp?_=${Date.now()}`; // Add cache-buster to ensure fresh check
-        try {
-          // Use HEAD request for efficiency as we only care if the file exists
-          const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
-          if (res.ok) {
-            return i; // Found the highest existing image number
-          }
-        } catch (error) {
-          // console.warn(`Error checking image ${i}: ${error.message}`); // Suppress console warning for cleaner output
-        }
+    function generateCyclicImageOrder(startNum) {
+      const order = [];
+      order.push(startNum); // The starting point goes first
+
+      // Add numbers descending from startNum - 1 down to 1
+      for (let i = startNum - 1; i >= 1; i--) {
+        order.push(i);
       }
-      return 1; // If no image is found from max down to 1, default to 1
+
+      // Add numbers descending from MAX_IMAGES down to startNum + 1
+      // This creates the wrap-around effect
+      for (let i = MAX_IMAGES; i > startNum; i--) {
+        order.push(i);
+      }
+      return order;
     }
 
     /**
-     * Updates Open Graph and Twitter Card meta tags with the URL of the topmost image.
+     * Determines the current starting image number for the display sequence.
+     * This number cycles (1, 2, 3, ... 30, then back to 1) using localStorage.
+     * @returns {number} The current image number that should be at the top of the gallery.
+     */
+    function getAndUpdateCurrentStartingImage() {
+      let currentNum = parseInt(localStorage.getItem(STARTING_IMAGE_KEY));
+
+      // If no number in localStorage, or invalid, start at 1.
+      if (isNaN(currentNum) || currentNum < 1 || currentNum > MAX_IMAGES) {
+        currentNum = 1;
+      } else {
+        // Otherwise, increment for the next load
+        currentNum++;
+        if (currentNum > MAX_IMAGES) {
+          currentNum = 1; // Cycle back to 1
+        }
+      }
+      localStorage.setItem(STARTING_IMAGE_KEY, currentNum); // Save the updated number
+      return currentNum;
+    }
+
+    /**
+     * Filters a list of image numbers to only include those that actually exist on the server.
+     * Adds a cache-buster for fresh checks.
+     * @param {number[]} numbers - An array of image numbers to check.
+     * @returns {Promise<number[]>} A promise that resolves to an array of existing image numbers.
+     */
+    async function filterExistingImages(numbers) {
+      const existingImages = [];
+      for (const num of numbers) {
+        const url = `${IMAGE_BASE_URL}${num}.webp?_=${Date.now()}`;
+        try {
+          // Use HEAD request for efficiency (only checks existence, doesn't download content)
+          const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+          if (res.ok) {
+            existingImages.push(num);
+          }
+        } catch (error) {
+          // Error means the file probably doesn't exist or there's a network issue.
+          // console.warn(`Image ${num}.webp might not exist or network error: ${error.message}`);
+        }
+      }
+      return existingImages;
+    }
+
+    /**
+     * Updates Open Graph and Twitter Card meta tags with the URL of the first image in the upcoming sequence.
+     * This is an estimate as the actual first image might be filtered out if it doesn't exist.
      */
     async function updateOGThumbnail() {
-      const detectedTopmostNumber = await detectHighestExistingImageNumber();
-      const topmostURL = `${IMAGE_BASE_URL}${detectedTopmostNumber}.webp`;
+        const initialStartingNum = parseInt(localStorage.getItem(STARTING_IMAGE_KEY)) || 1;
+        const estimatedFirstImage = generateCyclicImageOrder(initialStartingNum)[0]; // Get the first image *before* the cycle update
+        const thumbnailURL = `${IMAGE_BASE_URL}${estimatedFirstImage}.webp`;
 
-      const ogImage = document.querySelector('meta[property="og:image"]');
-      const twitterImage = document.querySelector('meta[name="twitter:image"]');
-      
-      if (ogImage) ogImage.setAttribute('content', topmostURL);
-      if (twitterImage) twitterImage.setAttribute('content', topmostURL);
+        const ogImage = document.querySelector('meta[property="og:image"]');
+        const twitterImage = document.querySelector('meta[name="twitter:image"]');
+        
+        if (ogImage) ogImage.setAttribute('content', thumbnailURL);
+        if (twitterImage) twitterImage.setAttribute('content', thumbnailURL);
     }
 
     // Immediately call the function to update the thumbnail as soon as possible
@@ -316,39 +368,24 @@
 
     document.addEventListener("DOMContentLoaded", async () => {
       const gallery = document.querySelector(".gallery-grid");
-      const detectedTopmostImageNumber = await detectHighestExistingImageNumber(); // Our dynamic starting point
 
-      const orderedImages = []; // This array will hold the final display order
+      // 1. Determine the current starting image number and prepare for the next cycle
+      const currentStartingImage = getAndUpdateCurrentStartingImage();
 
-      // --- HARDCODED LOGIC FOR IMAGE SEQUENCE GENERATION ---
-      // This logic defines how images are ordered relative to the detected topmost image.
+      // 2. Generate the full theoretical order based on the current starting image
+      const theoreticalOrder = generateCyclicImageOrder(currentStartingImage);
 
-      // 1. Add images from the detected topmost number down to 1.
-      // This ensures the current "newest" and its preceding numbers appear first.
-      for (let i = detectedTopmostImageNumber; i >= 1; i--) {
-        orderedImages.push(i);
-      }
+      // 3. Filter the theoretical order to only include images that actually exist on the server
+      const orderedImages = await filterExistingImages(theoreticalOrder);
 
-      // 2. Add the remaining images from MAX_IMAGES down to (detectedTopmostImageNumber + 1).
-      // This creates a circular, wrap-around effect, placing the numerically higher
-      // (and thus older in this cycle) images after the current "newest" sequence.
-      // This explicitly defines the 'renaming sequence' for display.
-      for (let i = MAX_IMAGES; i > detectedTopmostImageNumber; i--) {
-        orderedImages.push(i);
-      }
-      
-      // Optional: Ensure no duplicates if the logic ever allowed them (shouldn't happen with current logic)
-      const uniqueOrderedImages = [...new Set(orderedImages)];
-
-      // Check if any images were found
-      if (uniqueOrderedImages.length === 0) {
-        gallery.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">No images found in the gallery. Please upload images (1.webp to 30.webp) to the /dynamic/images/ folder.</p>';
+      if (orderedImages.length === 0) {
+        gallery.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">No images found in the gallery. Please ensure images (1.webp to 30.webp) exist in the /dynamic/images/ folder.</p>';
         return; // Exit if no images are available
       }
 
-      // Generate the HTML for the gallery grid using the hardcoded display order
-      gallery.innerHTML = uniqueOrderedImages.map((num, index) => {
-        const imageUrl = `${IMAGE_BASE_URL}${num}.webp?_=${Date.now()}`; // Add cache-buster to each image URL
+      // Generate the HTML for the gallery grid using the determined display order
+      gallery.innerHTML = orderedImages.map((num, index) => {
+        const imageUrl = `${IMAGE_BASE_URL}${num}.webp?_=${Date.now()}`; // Add cache-buster to image URL
         const isTopMost = (index === 0); // The very first image in our generated list is the "newest"
 
         return `
