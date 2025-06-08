@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Cache-Control meta tags to prevent browser caching -->
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
@@ -26,21 +21,16 @@
   <meta name="twitter:description" content="Browse or list certified used devices on SellInSeconds. Quality gadgets, fast pickup, great prices.">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp">
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL?cb=${Math.random()}"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
   <script>
-    // Cache busting for analytics script
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-QMV442HBWL');
   </script>
 
-  <!-- Cache busting for Font Awesome with random query parameter -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css?cb=${Math.random()}">
-  
-  <!-- Cache busting for favicon with version parameter -->
-  <link href="https://www.sellinseconds.in/fevicon.ico?v=2" rel="icon" type="image/x-icon"/>
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon"/>
   <style>
     /* Universal Box-Sizing */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -54,87 +44,8 @@
       padding-bottom: 2rem;
     }
 
-    /* Header styles */
-    header {
-      background: linear-gradient(90deg, #1a2a6c, #b21f1f, #1a2a6c);
-      color: white;
-      padding: 1.5rem 0;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    
-    .header-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-    
-    .logo {
-      font-size: 2.2rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    
-    .logo i {
-      color: #4CAF50;
-      filter: drop-shadow(0 0 4px rgba(76, 175, 80, 0.7));
-    }
-    
-    .tagline {
-      font-size: 1.1rem;
-      max-width: 600px;
-      opacity: 0.9;
-    }
-    
-    .contact-info {
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 0.5rem;
-    }
-    
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1rem;
-    }
-    
-    .contact-item i {
-      color: #FFD700;
-    }
-
     /* Main Container for Content */
-    .container { 
-      max-width: 1400px; 
-      margin: 2rem auto;
-      padding: 0 1rem; 
-    }
-    
-    .page-title {
-      text-align: center;
-      margin: 1.5rem 0 2.5rem;
-      color: #1a2a6c;
-      position: relative;
-    }
-    
-    .page-title::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(90deg, #1a2a6c, #b21f1f);
-      margin: 0.8rem auto;
-      border-radius: 2px;
-    }
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
 
     /* Gallery Grid Layout */
     .gallery-grid {
@@ -219,7 +130,7 @@
       position: absolute;
       top: 10px;
       right: -10px; /* Position slightly outside to create a ribbon effect */
-      background: linear-gradient(45deg, #ff4d4d, #ff8c00);
+      background-color: #ff4d4d; /* Bright red for "NEW" */
       color: white;
       padding: 5px 15px;
       font-size: 0.8rem;
@@ -243,62 +154,14 @@
     }
 
     /* Image Container within Card */
-    .card-img-container { 
-      width: 100%; 
-      padding-top: 75%; 
-      position: relative; 
-      overflow: hidden; 
-      background: #f8f9fa;
-    }
-    
+    .card-img-container { width: 100%; padding-top: 75%; position: relative; overflow: hidden; }
     .card-img-container img {
-      position: absolute; 
-      top: 0; 
-      left: 0;
-      width: 100%; 
-      height: 100%;
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
       object-fit: contain;
       transition: transform 0.3s ease;
-      background: linear-gradient(45deg, #f5f7fa, #e4e7eb);
-      padding: 15px;
     }
-    
-    .card-wrapper:hover .card-img-container img { 
-      transform: scale(1.05); 
-    }
-
-    /* Device info */
-    .device-info {
-      padding: 1rem;
-      text-align: center;
-      width: 100%;
-      border-top: 1px solid #f0f0f0;
-      background: #fafafa;
-    }
-    
-    .device-name {
-      font-weight: 600;
-      color: #1a2a6c;
-      margin-bottom: 0.3rem;
-      font-size: 1.1rem;
-    }
-    
-    .device-price {
-      font-weight: 700;
-      color: #b21f1f;
-      font-size: 1.3rem;
-      margin: 0.5rem 0;
-    }
-    
-    .device-condition {
-      display: inline-block;
-      background: #e8f4ff;
-      color: #1a73e8;
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      margin-top: 0.3rem;
-    }
+    .card-wrapper:hover .card-img-container img { transform: scale(1.05); }
 
     /* Button Container within Card */
     .card-actions {
@@ -308,7 +171,6 @@
       padding: 1rem;
       width: 100%;
       gap: 10px; /* Space between buttons */
-      background: #fff;
     }
 
     /* Common Button Styles */
@@ -331,137 +193,55 @@
     }
 
     .whatsapp-action-btn {
-      background: linear-gradient(135deg, #25d366, #1da851);
+      background-color: #25d366;
       border: 2px solid #1da851;
     }
-    
     .whatsapp-action-btn:hover {
-      background: linear-gradient(135deg, #1da851, #168c43);
+      background-color: #1da851;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 10px rgba(37, 211, 102, 0.4);
     }
 
     .call-action-btn {
-      background: linear-gradient(135deg, #007bff, #0056b3);
+      background-color: #007bff;
       border: 2px solid #0056b3;
     }
-    
     .call-action-btn:hover {
-      background: linear-gradient(135deg, #0056b3, #00408c);
+      background-color: #0056b3;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 10px rgba(0, 123, 255, 0.4);
-    }
-    
-    /* Cache warning banner */
-    .cache-warning {
-      background: #fff8e1;
-      border: 1px solid #ffd54f;
-      border-radius: 8px;
-      padding: 1rem;
-      margin: 1.5rem auto;
-      max-width: 800px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    
-    .cache-warning h3 {
-      color: #b21f1f;
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-    
-    .cache-busting-info {
-      background: #e3f2fd;
-      border-radius: 8px;
-      padding: 1.2rem;
-      margin: 2rem 0;
-      border-left: 4px solid #2196F3;
-    }
-    
-    .cache-busting-info h3 {
-      color: #0d47a1;
-      margin-bottom: 0.8rem;
-    }
-    
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.2rem;
-      margin-top: 1rem;
-    }
-    
-    .info-item {
-      background: white;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-    
-    .info-item h4 {
-      color: #1a2a6c;
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
     }
 
     /* Floating WhatsApp Button */
     .whatsapp-float {
-      position: fixed; 
-      width: 60px; 
-      height: 60px;
-      bottom: 40px; 
-      right: 40px;
-      background: radial-gradient(circle, #25d366, #128C7E);
-      color: #fff;
-      border-radius: 50px; 
-      text-align: center;
-      font-size: 30px; 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      position: fixed; width: 60px; height: 60px;
+      bottom: 40px; right: 40px;
+      background-color: #25d366; color: #fff;
+      border-radius: 50px; text-align: center;
+      font-size: 30px; box-shadow: 2px 2px 3px #999;
       z-index: 1000;
-      display: flex; 
-      justify-content: center; 
-      align-items: center;
+      display: flex; justify-content: center; align-items: center;
       transition: transform 0.3s ease;
-      animation: pulse 1.5s infinite;
     }
-    
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-    }
-    
-    .whatsapp-float:hover { 
-      transform: scale(1.1); 
-      animation: none;
-    }
+    .whatsapp-float:hover { transform: scale(1.1); }
 
     /* Scroll to Top Button */
     #scrollToTopBtn {
       display: none;
       position: fixed;
-      bottom: 110px; 
-      right: 40px;
+      bottom: 110px; right: 40px;
       z-index: 999;
-      background: linear-gradient(135deg, #007bff, #0056b3);
-      color: white; 
-      border: none;
-      border-radius: 50%; 
-      width: 50px; 
-      height: 50px;
+      background-color: #007bff;
+      color: white; border: none;
+      border-radius: 50%; width: 50px; height: 50px;
       font-size: 24px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       transition: background-color 0.3s ease, transform 0.3s ease;
     }
-    
     #scrollToTopBtn:hover {
-      background: linear-gradient(135deg, #0056b3, #00408c);
-      transform: translateY(-3px) scale(1.05);
+      background-color: #0056b3;
+      transform: translateY(-3px);
     }
 
     /* Fade-in Animation for Cards */
@@ -469,125 +249,107 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    
-    /* Footer styles */
-    footer {
-      background: linear-gradient(90deg, #1a2a6c, #0d1b44);
-      color: white;
-      padding: 2.5rem 1rem;
-      margin-top: 3rem;
-    }
-    
-    .footer-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    
-    .footer-section h3 {
-      font-size: 1.3rem;
-      margin-bottom: 1.2rem;
-      position: relative;
-      padding-bottom: 0.5rem;
-    }
-    
-    .footer-section h3::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background: #ff8c00;
-    }
-    
-    .footer-links {
-      list-style: none;
-    }
-    
-    .footer-links li {
-      margin-bottom: 0.7rem;
-    }
-    
-    .footer-links a {
-      color: #e0e0e0;
-      text-decoration: none;
-      transition: color 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .footer-links a:hover {
-      color: #ff8c00;
-    }
-    
-    .copyright {
-      text-align: center;
-      padding-top: 2rem;
-      margin-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      color: #a0a0a0;
-      font-size: 0.9rem;
-    }
   </style>
+
+  <script>
+    const IMAGE_BASE_URL = "https://www.sellinseconds.in/dynamic/images/";
+    const MAX_IMAGES = 30; // Maximum number of images
+    const STARTING_IMAGE_KEY = 'current_gallery_start_image'; // localStorage key
+
+    /**
+     * Hardcoded logic to generate a cyclic image order based on a starting number.
+     * Example: if startNum = 1, order is [1, 30, 29, ..., 2]
+     * Example: if startNum = 2, order is [2, 1, 30, 29, ..., 3]
+     * @param {number} startNum - The number that should appear first in the sequence (1 to MAX_IMAGES).
+     * @returns {number[]} An array of image numbers in the desired display order.
+     */
+    function generateCyclicImageOrder(startNum) {
+      const order = [];
+      order.push(startNum); // The starting point goes first
+
+      // Add numbers descending from startNum - 1 down to 1
+      for (let i = startNum - 1; i >= 1; i--) {
+        order.push(i);
+      }
+
+      // Add numbers descending from MAX_IMAGES down to startNum + 1
+      // This creates the wrap-around effect
+      for (let i = MAX_IMAGES; i > startNum; i--) {
+        order.push(i);
+      }
+      return order;
+    }
+
+    /**
+     * Determines the current starting image number for the display sequence.
+     * This number cycles (1, 2, 3, ... 30, then back to 1) using localStorage.
+     * @returns {number} The current image number that should be at the top of the gallery.
+     */
+    function getAndUpdateCurrentStartingImage() {
+      let currentNum = parseInt(localStorage.getItem(STARTING_IMAGE_KEY));
+
+      // If no number in localStorage, or invalid, start at 1.
+      if (isNaN(currentNum) || currentNum < 1 || currentNum > MAX_IMAGES) {
+        currentNum = 1;
+      } else {
+        // Otherwise, increment for the next load
+        currentNum++;
+        if (currentNum > MAX_IMAGES) {
+          currentNum = 1; // Cycle back to 1
+        }
+      }
+      localStorage.setItem(STARTING_IMAGE_KEY, currentNum); // Save the updated number
+      return currentNum;
+    }
+
+    /**
+     * Filters a list of image numbers to only include those that actually exist on the server.
+     * Adds a cache-buster for fresh checks.
+     * @param {number[]} numbers - An array of image numbers to check.
+     * @returns {Promise<number[]>} A promise that resolves to an array of existing image numbers.
+     */
+    async function filterExistingImages(numbers) {
+      const existingImages = [];
+      for (const num of numbers) {
+        const url = `${IMAGE_BASE_URL}${num}.webp?_=${Date.now()}`;
+        try {
+          // Use HEAD request for efficiency (only checks existence, doesn't download content)
+          const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+          if (res.ok) {
+            existingImages.push(num);
+          }
+        } catch (error) {
+          // Error means the file probably doesn't exist or there's a network issue.
+          // console.warn(`Image ${num}.webp might not exist or network error: ${error.message}`);
+        }
+      }
+      return existingImages;
+    }
+
+    /**
+     * Updates Open Graph and Twitter Card meta tags with the URL of the first image in the upcoming sequence.
+     * This is an estimate as the actual first image might be filtered out if it doesn't exist.
+     */
+    async function updateOGThumbnail() {
+        const initialStartingNum = parseInt(localStorage.getItem(STARTING_IMAGE_KEY)) || 1;
+        const estimatedFirstImage = generateCyclicImageOrder(initialStartingNum)[0]; // Get the first image *before* the cycle update
+        const thumbnailURL = `${IMAGE_BASE_URL}${estimatedFirstImage}.webp`;
+
+        const ogImage = document.querySelector('meta[property="og:image"]');
+        const twitterImage = document.querySelector('meta[name="twitter:image"]');
+        
+        if (ogImage) ogImage.setAttribute('content', thumbnailURL);
+        if (twitterImage) twitterImage.setAttribute('content', thumbnailURL);
+    }
+
+    // Immediately call the function to update the thumbnail as soon as possible
+    updateOGThumbnail();
+
+  </script>
 </head>
 <body>
-  <header>
-    <div class="header-content">
-      <div class="logo">
-        <i class="fas fa-sync-alt"></i>
-        <span>SellInSeconds</span>
-      </div>
-      <p class="tagline">Instant quotes • Fast payments • Quality guaranteed</p>
-      <div class="contact-info">
-        <div class="contact-item">
-          <i class="fas fa-phone-alt"></i>
-          <span>+91 98865 66379</span>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-envelope"></i>
-          <span>contact@sellinseconds.in</span>
-        </div>
-      </div>
-    </div>
-  </header>
-
   <div class="container">
-    <h1 class="page-title">Premium Pre-Owned Devices Gallery</h1>
-    
-    <div class="cache-warning">
-      <h3><i class="fas fa-exclamation-triangle"></i> Cache Busting Active</h3>
-      <p>This page implements strong cache control measures to ensure you always see the latest devices. 
-        If you experience any display issues, please refresh your browser.</p>
-    </div>
-    
     <div class="gallery-grid"></div>
-    
-    <div class="cache-busting-info">
-      <h3>Cache Busting Implementation</h3>
-      <p>This page uses multiple techniques to prevent browser caching:</p>
-      <div class="info-grid">
-        <div class="info-item">
-          <h4><i class="fas fa-code"></i> Meta Tags</h4>
-          <p>Cache-Control, Pragma, and Expires headers to prevent caching</p>
-        </div>
-        <div class="info-item">
-          <h4><i class="fas fa-random"></i> Query Strings</h4>
-          <p>Random parameters added to resource URLs</p>
-        </div>
-        <div class="info-item">
-          <h4><i class="fas fa-history"></i> Timestamps</h4>
-          <p>Dynamic timestamps for image loading</p>
-        </div>
-        <div class="info-item">
-          <h4><i class="fas fa-sync-alt"></i> Versioning</h4>
-          <p>Version parameters for static resources</p>
-        </div>
-      </div>
-    </div>
   </div>
 
   <a class="whatsapp-float" href="https://wa.me/919886566379" target="_blank" title="Chat on WhatsApp">
@@ -597,65 +359,15 @@
   <button id="scrollToTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
     <i class="fas fa-arrow-up"></i>
   </button>
-  
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul class="footer-links">
-          <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
-          <li><a href="#"><i class="fas fa-chevron-right"></i> Sell Your Device</a></li>
-          <li><a href="#"><i class="fas fa-chevron-right"></i> Buy Pre-Owned</a></li>
-          <li><a href="#"><i class="fas fa-chevron-right"></i> Pricing Guide</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Device Categories</h3>
-        <ul class="footer-links">
-          <li><a href="#"><i class="fas fa-mobile-alt"></i> Smartphones</a></li>
-          <li><a href="#"><i class="fas fa-laptop"></i> Laptops</a></li>
-          <li><a href="#"><i class="fas fa-tablet-alt"></i> Tablets</a></li>
-          <li><a href="#"><i class="fas fa-headphones"></i> Accessories</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Contact Us</h3>
-        <ul class="footer-links">
-          <li><a href="tel:+919886566379"><i class="fas fa-phone-alt"></i> +91 98865 66379</a></li>
-          <li><a href="mailto:contact@sellinseconds.in"><i class="fas fa-envelope"></i> contact@sellinseconds.in</a></li>
-          <li><a href="#"><i class="fas fa-map-marker-alt"></i> Bangalore, India</a></li>
-          <li><a href="https://wa.me/919886566379"><i class="fab fa-whatsapp"></i> WhatsApp Chat</a></li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="copyright">
-      &copy; 2023 SellInSeconds. All rights reserved. | This page uses strong cache busting techniques
-    </div>
-  </footer>
 
   <script>
-    // Add cache-busting parameter to the current URL
-    const cacheBuster = `?cb=${Math.random()}`;
-    if (!window.location.search.includes('cb=')) {
-      window.history.replaceState({}, document.title, window.location.pathname + cacheBuster);
-    }
-
     // Scroll to top button visibility logic
     window.addEventListener('scroll', () => {
       document.getElementById('scrollToTopBtn').style.display = window.scrollY > 300 ? 'flex' : 'none';
     });
 
     document.addEventListener("DOMContentLoaded", async () => {
-      // Cache-busting notification
-      console.log('Cache-busting applied with parameter:', cacheBuster);
-      
       const gallery = document.querySelector(".gallery-grid");
-      const IMAGE_BASE_URL = "https://www.sellinseconds.in/dynamic/images/";
-      const MAX_IMAGES = 30;
-      const STARTING_IMAGE_KEY = 'current_gallery_start_image';
 
       // 1. Determine the current starting image number and prepare for the next cycle
       const currentStartingImage = getAndUpdateCurrentStartingImage();
@@ -673,34 +385,14 @@
 
       // Generate the HTML for the gallery grid using the determined display order
       gallery.innerHTML = orderedImages.map((num, index) => {
-        // Add cache-busting parameter to image URL
-        const imageUrl = `${IMAGE_BASE_URL}${num}.webp?cb=${Date.now()}`;
-        const isTopMost = (index === 0); // The very first image is the "newest"
-        
-        // Device details for the example
-        const deviceNames = [
-          "Apple iPhone 13 Pro Max", "Samsung Galaxy S22 Ultra", 
-          "OnePlus 10 Pro", "Google Pixel 7 Pro", "Xiaomi 12 Pro",
-          "Apple MacBook Pro M1", "Dell XPS 13", "Lenovo ThinkPad X1 Carbon",
-          "iPad Pro 12.9-inch", "Samsung Galaxy Tab S8 Ultra"
-        ];
-        const conditions = ["Excellent", "Good", "Like New", "Mint Condition"];
-        const prices = ["₹52,999", "₹47,500", "₹38,999", "₹42,800", "₹35,500", "₹89,999", "₹72,500", "₹65,000", "₹64,999", "₹58,500"];
-        
-        const randomDevice = deviceNames[Math.floor(Math.random() * deviceNames.length)];
-        const randomPrice = prices[Math.floor(Math.random() * prices.length)];
-        const randomCondition = conditions[Math.floor(Math.random() * conditions.length)];
+        const imageUrl = `${IMAGE_BASE_URL}${num}.webp?_=${Date.now()}`; // Add cache-buster to image URL
+        const isTopMost = (index === 0); // The very first image in our generated list is the "newest"
 
         return `
           <div class="card-wrapper ${isTopMost ? 'top-most animated-glow' : ''}">
             <div class="card-img-container">
               <img src="${imageUrl}" alt="Product ${num}" loading="lazy"
                    onerror="this.closest('.card-wrapper').style.display='none';">
-            </div>
-            <div class="device-info">
-              <div class="device-name">${randomDevice}</div>
-              <div class="device-price">${randomPrice}</div>
-              <div class="device-condition">${randomCondition}</div>
             </div>
             <div class="card-actions">
               <a href="https://wa.me/919886566379?text=${encodeURIComponent('I am interested in this device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
@@ -720,70 +412,6 @@
           // Apply fade-in with a staggered delay for a smoother effect
           card.style.animation = `fadeIn 0.5s forwards ${index * 0.1}s`;
       });
-      
-      /**
-       * Hardcoded logic to generate a cyclic image order based on a starting number.
-       * @param {number} startNum - The number that should appear first in the sequence (1 to MAX_IMAGES).
-       * @returns {number[]} An array of image numbers in the desired display order.
-       */
-      function generateCyclicImageOrder(startNum) {
-        const order = [];
-        order.push(startNum); // The starting point goes first
-
-        // Add numbers descending from startNum - 1 down to 1
-        for (let i = startNum - 1; i >= 1; i--) {
-          order.push(i);
-        }
-
-        // Add numbers descending from MAX_IMAGES down to startNum + 1
-        for (let i = MAX_IMAGES; i > startNum; i--) {
-          order.push(i);
-        }
-        return order;
-      }
-
-      /**
-       * Determines the current starting image number for the display sequence.
-       * @returns {number} The current image number that should be at the top of the gallery.
-       */
-      function getAndUpdateCurrentStartingImage() {
-        let currentNum = parseInt(localStorage.getItem(STARTING_IMAGE_KEY));
-
-        // If no number in localStorage, or invalid, start at 1.
-        if (isNaN(currentNum) || currentNum < 1 || currentNum > MAX_IMAGES) {
-          currentNum = 1;
-        } else {
-          // Otherwise, increment for the next load
-          currentNum++;
-          if (currentNum > MAX_IMAGES) {
-            currentNum = 1; // Cycle back to 1
-          }
-        }
-        localStorage.setItem(STARTING_IMAGE_KEY, currentNum); // Save the updated number
-        return currentNum;
-      }
-
-      /**
-       * Filters a list of image numbers to only include those that actually exist on the server.
-       * @param {number[]} numbers - An array of image numbers to check.
-       * @returns {Promise<number[]>} A promise that resolves to an array of existing image numbers.
-       */
-      async function filterExistingImages(numbers) {
-        const existingImages = [];
-        for (const num of numbers) {
-          // Add cache-busting parameter to URL
-          const url = `${IMAGE_BASE_URL}${num}.webp?cb=${Date.now()}`;
-          try {
-            const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
-            if (res.ok) {
-              existingImages.push(num);
-            }
-          } catch (error) {
-            // Skip if there's an error
-          }
-        }
-        return existingImages;
-      }
     });
   </script>
 </body>
