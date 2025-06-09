@@ -161,6 +161,18 @@
       document.querySelector(".gallery-grid").innerHTML = `<p style="text-align: center; color: #888;">Gallery failed to load.</p>`;
     }
   }
+// Auto scroll hint on mobile portrait view
+window.addEventListener("load", () => {
+  const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
+  if (isMobilePortrait) {
+    setTimeout(() => {
+      window.scrollTo({ top: 80, behavior: 'smooth' }); // scroll down slightly
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // scroll back up
+      }, 1000);
+    }, 1000); // wait for 1s before scrolling
+  }
+});
 
   window.addEventListener("DOMContentLoaded", loadImagesFromJson);
 </script>
