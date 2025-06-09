@@ -5,22 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
   <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
+  <meta name="keywords" content="sell used phone, buy used phone, used laptop, pre-owned smartphones, second hand mobiles, electronic gadgets, sell laptop online, instant gadget quote">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="SellInSeconds">
   <link rel="canonical" href="https://www.sellinseconds.in/buygallery.html" />
-  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp" />
-  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds">
+  <meta property="og:description" content="Instantly buy or sell pre-owned smartphones, laptops & tablets. Great prices. Free pickup. Certified devices.">
+  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp">
+  <meta property="og:url" content="https://www.sellinseconds.in/buygallery.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds">
+  <meta name="twitter:description" content="Buy certified used smartphones and laptops online at SellInSeconds. Fast pickup, best rates.">
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp">
+
+  <!-- Schema JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Buy & Sell Used Smartphones, Laptops & Tablets",
+    "url": "https://www.sellinseconds.in/buygallery.html",
+    "description": "SellInSeconds lets you instantly buy or sell used smartphones, laptops, and tablets. Certified gadgets, fast service, and top offers.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "SellInSeconds",
+      "url": "https://www.sellinseconds.in"
+    }
+  }
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QMV442HBWL');
+  </script>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon" />
+
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
     }
+
     .container {
       max-width: 1400px;
       margin: auto;
       padding: 1rem;
     }
+
     .gallery-grid {
       display: grid;
       gap: 1.5rem;
@@ -34,24 +78,6 @@
       }
     }
 
-    .card-img-container {
-      width: 100%;
-      aspect-ratio: 4 / 3; /* maintains consistent shape */
-      position: relative;
-      overflow: hidden;
-      background-color: #fff;
-    }
-
-    .card-img-container img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      padding: 10px; /* prevents overlap with borders */
-    }
-
     .card-wrapper {
       background: #fff;
       border-radius: 12px;
@@ -60,16 +86,17 @@
       box-shadow: 0 0 0 3px #e0e0e0,
                   0 0 0 6px var(--card-border-color, #b3d9ff),
                   0 6px 18px rgba(0,0,0,0.1);
-      transition: 0.3s ease;
+      transition: transform 0.3s ease;
     }
+
     .card-wrapper:hover {
       transform: translateY(-8px);
     }
+
     .card-wrapper.top-most {
       --card-border-color: #007bff;
     }
 
-    /* Newly Added Badge Styling */
     .card-wrapper.top-most::before {
       content: 'NEWLY ADDED';
       position: absolute;
@@ -81,44 +108,45 @@
       font-size: 0.8rem;
       font-weight: bold;
       border-radius: 5px;
-      transform: rotate(20deg) scaleX(0); /* Start scaled down to 0 for flip effect */
+      transform: rotate(20deg) scaleX(0);
       transform-origin: center center;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       z-index: 10;
     }
 
-    /* Animation for the badge, applied via JS */
     .card-wrapper.top-most.animate-badge::before {
-      animation: flipIn 1s forwards; /* Animation for the flip effect */
+      animation: flipIn 1s forwards;
     }
 
     @keyframes flipIn {
-      0% {
-        transform: rotate(20deg) scaleX(0);
-      }
-      50% {
-        transform: rotate(20deg) scaleX(1.2); /* Overshoot for a "bounce" effect */
-      }
-      100% {
-        transform: rotate(20deg) scaleX(1);
-      }
+      0%   { transform: rotate(20deg) scaleX(0); }
+      50%  { transform: rotate(20deg) scaleX(1.2); }
+      100% { transform: rotate(20deg) scaleX(1); }
     }
 
     .card-img-container {
       width: 100%;
-      padding-top: 75%;
+      aspect-ratio: 4/3;
       position: relative;
+      overflow: hidden;
     }
+
     .card-img-container img {
       position: absolute;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
+      padding: 10px;
     }
+
     .card-actions {
       display: flex;
       justify-content: space-around;
       padding: 1rem;
     }
+
     .action-btn {
       color: #fff;
       padding: 0.6rem 1rem;
@@ -128,39 +156,27 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .whatsapp-action-btn {
-      background-color: #25d366;
-    }
-    .call-action-btn {
-      background-color: #007bff;
+      transition: background-color 0.3s ease;
     }
 
-    /* Glow Effect for Buttons */
+    .whatsapp-action-btn { background-color: #25d366; }
+    .call-action-btn { background-color: #007bff; }
+
     .action-btn.glow {
       animation: glow 1.5s infinite alternate;
     }
 
     .whatsapp-action-btn.glow {
-        background-color: #25d366; /* Base color remains */
-        /* Magenta glow */
-        box-shadow: 0 0 20px 8px rgba(255, 0, 255, 0.8) !important;
+      box-shadow: 0 0 20px 8px rgba(255, 0, 255, 0.8);
     }
 
     .call-action-btn.glow {
-        background-color: #007bff; /* Base color remains */
-        /* Changed glow color to a vibrant orange */
-        box-shadow: 0 0 20px 8px rgba(255, 165, 0, 0.8) !important; /* Vibrant Orange */
+      box-shadow: 0 0 20px 8px rgba(255, 165, 0, 0.8);
     }
 
     @keyframes glow {
-      0% {
-        box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.7) !important;
-      }
-      100% {
-        box-shadow: 0 0 30px 10px rgba(255, 255, 255, 1) !important;
-      }
+      0%   { box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.7); }
+      100% { box-shadow: 0 0 30px 10px rgba(255, 255, 255, 1); }
     }
   </style>
 </head>
@@ -173,44 +189,23 @@
   const IMAGE_BASE = "https://www.sellinseconds.in/dynamic/images/";
   const SEQ_JSON_URL = "https://www.sellinseconds.in/dynamic/seq.json";
 
-  let observer;
-
   async function loadImagesFromJson() {
-    console.log("loadImagesFromJson started.");
     try {
       const res = await fetch(SEQ_JSON_URL, { cache: "no-store" });
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
       const json = await res.json();
-
       const rowIndex = parseInt(json.active) - 1;
-
       const imageNumbers = json.sequences[rowIndex];
 
-      if (!Array.isArray(imageNumbers)) {
-        throw new Error("Invalid image row: imageNumbers is not an array");
-      }
-      if (imageNumbers.length === 0) {
-        throw new Error("No image numbers found in the sequence.");
-      }
-
       const gallery = document.querySelector(".gallery-grid");
-      if (!gallery) {
-        console.error("Error: .gallery-grid element not found.");
-        return;
-      }
-
       gallery.innerHTML = imageNumbers.map((num, i) => {
-        const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
         return `
           <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
             <div class="card-img-container">
-              <img src="${imgSrc}" alt="Device ${num}" loading="lazy"
+              <img src="${IMAGE_BASE}${num}.webp?_=${Date.now()}" alt="Device ${num}" loading="lazy"
                 onerror="this.closest('.card-wrapper').style.display='none';">
             </div>
             <div class="card-actions">
-              <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
+              <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
                 <i class="fab fa-whatsapp"></i> I'm Interested
               </a>
               <a href="tel:+919886566379" class="action-btn call-action-btn">
@@ -219,107 +214,48 @@
             </div>
           </div>`;
       }).join('');
-      console.log("Gallery populated with", imageNumbers.length, "cards.");
 
-      handleMobileScrollAndBadgeAnimation();
+      setTimeout(() => {
+        const isMobile = window.innerWidth < 600;
+        const topCard = document.querySelector('.top-most');
+        if (isMobile && document.body.scrollHeight > window.innerHeight + 100) {
+          window.scrollTo({ top: 180, behavior: 'smooth' });
+          setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (topCard) topCard.classList.add('animate-badge');
+          }, 1500);
+        } else {
+          if (topCard) topCard.classList.add('animate-badge');
+        }
+      }, 1000);
 
-      setTimeout(setupIntersectionObserver, 500);
+      setupGlowObserver();
 
     } catch (err) {
-      console.error("Error loading JSON or rendering gallery:", err);
-      const gallery = document.querySelector(".gallery-grid");
-      if (gallery) {
-        gallery.innerHTML = `<p style="text-align: center; color: #888;">Gallery failed to load: ${err.message}</p>`;
-      }
+      document.querySelector(".gallery-grid").innerHTML = `<p style="text-align:center;color:#888;">Error loading gallery: ${err.message}</p>`;
     }
   }
 
-  function handleMobileScrollAndBadgeAnimation() {
-    const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
-    const topMostCard = document.querySelector('.card-wrapper.top-most');
-    const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100;
-
-    if (isMobilePortrait && hasEnoughContentToScroll) {
-      console.log("Mobile portrait detected with enough content to scroll.");
-      setTimeout(() => {
-        window.scrollTo({ top: 150, behavior: 'smooth' });
-        console.log("Scrolled down to 150px.");
-        setTimeout(() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          console.log("Scrolled back up to 0px.");
-          if (topMostCard) {
-            topMostCard.classList.add('animate-badge');
-            console.log("Added 'animate-badge' class to top-most card.");
-          }
-        }, 1500);
-      }, 1000);
-    } else {
-      console.log("Not mobile portrait or not enough content to scroll, animating badge directly.");
-      if (topMostCard) {
-        setTimeout(() => {
-          topMostCard.classList.add('animate-badge');
-          console.log("Added 'animate-badge' class to top-most card directly.");
-        }, 500);
-      }
-    }
-  }
-
-  function setupIntersectionObserver() {
-    const cardWrappers = document.querySelectorAll('.card-wrapper');
-
-    if (cardWrappers.length === 0) {
-      console.warn("No card wrappers found for Intersection Observer. Retrying in 1 second.");
-      setTimeout(setupIntersectionObserver, 1000);
-      return;
-    }
-
-    if (observer) {
-      observer.disconnect();
-      console.log("Disconnected existing Intersection Observer.");
-    }
-
-    observer = new IntersectionObserver((entries) => {
+  function setupGlowObserver() {
+    const cards = document.querySelectorAll('.card-wrapper');
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        const cardId = entry.target.dataset.imageId || 'N/A';
-        const whatsappBtn = entry.target.querySelector('.whatsapp-action-btn');
-        const callBtn = entry.target.querySelector('.call-action-btn');
-
+        const card = entry.target;
+        const wBtn = card.querySelector('.whatsapp-action-btn');
+        const cBtn = card.querySelector('.call-action-btn');
         if (entry.isIntersecting) {
-          console.log(`Card ${cardId} is intersecting. Adding 'glow' class.`);
-          if (whatsappBtn) {
-            whatsappBtn.classList.add('glow');
-            console.log(`- WhatsApp button for ${cardId}: 'glow' added.`);
-          }
-          if (callBtn) {
-            callBtn.classList.add('glow');
-            console.log(`- Call button for ${cardId}: 'glow' added.`);
-          }
+          wBtn?.classList.add('glow');
+          cBtn?.classList.add('glow');
         } else {
-          console.log(`Card ${cardId} is NOT intersecting. Removing 'glow' class.`);
-          if (whatsappBtn) {
-            whatsappBtn.classList.remove('glow');
-            console.log(`- WhatsApp button for ${cardId}: 'glow' removed.`);
-          }
-          if (callBtn) {
-            callBtn.classList.remove('glow');
-            console.log(`- Call button for ${cardId}: 'glow' removed.`);
-          }
+          wBtn?.classList.remove('glow');
+          cBtn?.classList.remove('glow');
         }
       });
-    }, {
-      root: null,
-      rootMargin: '-40% 0px -40% 0px',
-      threshold: 0.01
-    });
-
-    cardWrappers.forEach(card => {
-      observer.observe(card);
-    });
-    console.log("Intersection Observer set up for", cardWrappers.length, "cards.");
+    }, { rootMargin: '-40% 0px -40% 0px', threshold: 0.01 });
+    cards.forEach(c => observer.observe(c));
   }
 
   window.addEventListener("DOMContentLoaded", loadImagesFromJson);
 </script>
-
 </body>
 </html>
