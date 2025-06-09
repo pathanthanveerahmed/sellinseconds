@@ -63,6 +63,18 @@
     <priority>1.0</priority>
   </url>
 
+  <url>
+    <loc>https://www.sellinseconds.in/terms-conditions.html</loc>
+    <lastmod>2025-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.sellinseconds.in/privacy-polict.html</loc>
+    <lastmod>2025-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- Dynamic WACUST Pages (1–30) -->
   <!-- Each page self-canonicalizes; priority set uniformly-->
   <url><loc>https://www.sellinseconds.in/dynamic/wacust/1.html</loc><lastmod>2025-06-09</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
