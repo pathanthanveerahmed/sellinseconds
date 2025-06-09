@@ -21,36 +21,36 @@
       margin: auto;
       padding: 1rem;
     }
-    .gallery-grid {
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: 1fr;
-      padding-top: 1rem;
-    }
+   .gallery-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  padding-top: 1rem;
+}
 
-    @media (min-width: 768px) {
-      .gallery-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
+@media (min-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
-    .card-img-container {
-      width: 100%;
-      aspect-ratio: 4 / 3; /* maintains consistent shape */
-      position: relative;
-      overflow: hidden;
-      background-color: #fff;
-    }
+.card-img-container {
+  width: 100%;
+  aspect-ratio: 4 / 3; /* maintains consistent shape */
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+}
 
-    .card-img-container img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      padding: 10px; /* prevents overlap with borders */
-    }
+.card-img-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px; /* prevents overlap with borders */
+}
 
     .card-wrapper {
       background: #fff;
@@ -68,8 +68,6 @@
     .card-wrapper.top-most {
       --card-border-color: #007bff;
     }
-
-    /* Newly Added Badge Styling and Animation */
     .card-wrapper.top-most::before {
       content: 'NEWLY ADDED';
       position: absolute;
@@ -81,41 +79,28 @@
       font-size: 0.8rem;
       font-weight: bold;
       border-radius: 5px;
-      transform: rotate(20deg) scaleX(0); /* Start scaled down to 0 for flip effect */
-      transform-origin: center center;
+      transform: rotate(20deg);
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       z-index: 10;
-      animation: flipIn 1s forwards; /* Animation for the flip effect */
-      animation-delay: 0.5s; /* Delay the animation slightly */
+      animation: badgeFlip 1.5s ease-out;
     }
-
-    @keyframes flipIn {
+    
+    /* Flip animation for badge */
+    @keyframes badgeFlip {
       0% {
-        transform: rotate(20deg) scaleX(0);
+        transform: rotateY(0deg) rotate(20deg) scale(0.1);
+        opacity: 0;
       }
       50% {
-        transform: rotate(20deg) scaleX(1.2); /* Overshoot for a "bounce" effect */
+        transform: rotateY(180deg) rotate(20deg) scale(1.2);
+        opacity: 1;
       }
       100% {
-        transform: rotate(20deg) scaleX(1);
+        transform: rotateY(360deg) rotate(20deg) scale(1);
       }
     }
-
-    .card-img-container {
-      width: 100%;
-      padding-top: 75%;
-      position: relative;
-    }
-    .card-img-container img {
-      position: absolute;
-      width: 100%; height: 100%;
-      object-fit: contain;
-    }
-    .card-actions {
-      display: flex;
-      justify-content: space-around;
-      padding: 1rem;
-    }
+    
+    /* Button glow effect */
     .action-btn {
       color: #fff;
       padding: 0.6rem 1rem;
@@ -125,37 +110,24 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.4s ease;
     }
+    
+    .card-wrapper.in-view .whatsapp-action-btn {
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.8);
+      transform: scale(1.05);
+    }
+    
+    .card-wrapper.in-view .call-action-btn {
+      box-shadow: 0 0 15px rgba(0, 123, 255, 0.8);
+      transform: scale(1.05);
+    }
+    
     .whatsapp-action-btn {
       background-color: #25d366;
     }
     .call-action-btn {
       background-color: #007bff;
-    }
-
-    /* Glow Effect for Buttons */
-    .action-btn.glow {
-      animation: glow 1.5s infinite alternate;
-    }
-
-    .whatsapp-action-btn.glow {
-        background-color: #25d366; /* Ensure base color is maintained during glow */
-        box-shadow: 0 0 15px rgba(37, 211, 102, 0.8);
-    }
-
-    .call-action-btn.glow {
-        background-color: #007bff; /* Ensure base color is maintained during glow */
-        box-shadow: 0 0 15px rgba(0, 123, 255, 0.8);
-    }
-
-    @keyframes glow {
-      0% {
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-      }
-      100% {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 1);
-      }
     }
   </style>
 </head>
@@ -173,7 +145,7 @@
       const res = await fetch(SEQ_JSON_URL, { cache: "no-store" });
       const json = await res.json();
 
-      const rowIndex = parseInt(json.active) - 1; // 👈 subtract 1 to match 0-based index
+      const rowIndex = parseInt(json.active) - 1;
 
       const imageNumbers = json.sequences[rowIndex];
 
@@ -183,7 +155,7 @@
       gallery.innerHTML = imageNumbers.map((num, i) => {
         const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
         return `
-          <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
+          <div class="card-wrapper ${i === 0 ? 'top-most animated-glow' : ''}">
             <div class="card-img-container">
               <img src="${imgSrc}" alt="Device ${num}" loading="lazy"
                 onerror="this.closest('.card-wrapper').style.display='none';">
@@ -198,53 +170,47 @@
             </div>
           </div>`;
       }).join('');
-
-      // Initialize Intersection Observer after images are loaded
-      setupIntersectionObserver();
-
+      
+      // Setup intersection observer after cards are loaded
+      setupButtonGlowEffect();
     } catch (err) {
       console.error("Error loading JSON:", err);
       document.querySelector(".gallery-grid").innerHTML = `<p style="text-align: center; color: #888;">Gallery failed to load.</p>`;
     }
   }
 
-  // --- Auto scroll hint on mobile portrait view ---
+  // Auto scroll hint on mobile portrait view
   window.addEventListener("load", () => {
     const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
     if (isMobilePortrait) {
       setTimeout(() => {
-        window.scrollTo({ top: 80, behavior: 'smooth' }); // scroll down slightly
+        // Scroll down and then up
+        window.scrollTo({ top: 150, behavior: 'smooth' });
         setTimeout(() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' }); // scroll back up
-        }, 1000);
-      }, 1000); // wait for 1s before scrolling
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 800);
+      }, 1000);
     }
   });
-
-  // --- Intersection Observer for button glowing ---
-  function setupIntersectionObserver() {
-    const cardWrappers = document.querySelectorAll('.card-wrapper');
-
+  
+  // Button glow effect when cards are in view
+  function setupButtonGlowEffect() {
+    const cards = document.querySelectorAll('.card-wrapper');
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        const whatsappBtn = entry.target.querySelector('.whatsapp-action-btn');
-        const callBtn = entry.target.querySelector('.call-action-btn');
-
         if (entry.isIntersecting) {
-          // Add glow class when element is in view
-          whatsappBtn.classList.add('glow');
-          callBtn.classList.add('glow');
+          entry.target.classList.add('in-view');
         } else {
-          // Remove glow class when element is out of view
-          whatsappBtn.classList.remove('glow');
-          callBtn.classList.remove('glow');
+          entry.target.classList.remove('in-view');
         }
       });
     }, {
-      threshold: 0.7 // Trigger when 70% of the item is visible
+      threshold: 0.4, // Trigger when 40% of card is visible
+      rootMargin: '0px 0px -50px 0px' // Adjust trigger point
     });
 
-    cardWrappers.forEach(card => {
+    cards.forEach(card => {
       observer.observe(card);
     });
   }
