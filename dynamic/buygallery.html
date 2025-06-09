@@ -1,418 +1,138 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
   <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
-  <meta name="keywords" content="sell used phone, buy used phone, used laptop, pre-owned smartphones, second hand mobiles, electronic gadgets, sell laptop online, instant gadget quote">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="SellInSeconds">
-  <link rel="canonical" href="https://www.sellinseconds.in/buygallery.html">
-
-  <meta property="og:title" content="Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds">
-  <meta property="og:description" content="Browse or list certified used devices on SellInSeconds. Quality gadgets, fast pickup, great prices.">
-  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp">
-  <meta property="og:url" content="https://www.sellinseconds.in/buygallery.html">
-  <meta property="og:type" content="website">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds">
-  <meta name="twitter:description" content="Browse or list certified used devices on SellInSeconds. Quality gadgets, fast pickup, great prices.">
-  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp">
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-QMV442HBWL');
-  </script>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon"/>
+  <link rel="canonical" href="https://www.sellinseconds.in/buygallery.html" />
+  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp" />
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon" />
   <style>
-    /* Universal Box-Sizing */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    /* Body Styling */
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
       background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
-      color: #333;
-      line-height: 1.6;
-      padding-bottom: 2rem;
+      margin: 0; padding: 0;
     }
-
-    /* Main Container for Content */
-    .container { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
-
-    /* Gallery Grid Layout */
+    .container {
+      max-width: 1400px;
+      margin: auto;
+      padding: 1rem;
+    }
     .gallery-grid {
       display: grid;
-      grid-template-columns: 1fr; /* Default to 1 column for mobile */
       gap: 1.5rem;
-      padding-top: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
-
-    /* Responsive adjustments for tablets (2 columns) */
-    @media (min-width: 768px) {
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* Responsive adjustments for desktops (3 columns) */
-    @media (min-width: 1024px) {
-      .gallery-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    /* Individual Card Wrapper Styling (now holds the border and shadow) */
     .card-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       background: #fff;
       border-radius: 12px;
       overflow: hidden;
-      position: relative; /* Needed for absolute positioning of the badge */
-      /* Base double border using multiple box-shadows */
-      box-shadow: 0 0 0 3px #e0e0e0, /* Outer light gray border */
-                  0 0 0 6px var(--card-border-color), /* Inner soft blue border (dynamic) */
-                  0 6px 18px rgba(0,0,0,0.1); /* Main shadow */
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      --card-border-color: #b3d9ff; /* Default border color for regular cards */
+      position: relative;
+      box-shadow: 0 0 0 3px #e0e0e0,
+                  0 0 0 6px var(--card-border-color, #b3d9ff),
+                  0 6px 18px rgba(0,0,0,0.1);
+      transition: 0.3s ease;
     }
-
-    /* Animation for initial glow */
-    @keyframes border-glow {
-      0% {
-        box-shadow: 0 0 0 3px #e0e0e0,
-                    0 0 0 6px var(--card-border-color),
-                    0 6px 18px rgba(0,0,0,0.1);
-      }
-      50% {
-        box-shadow: 0 0 0 3px #e0e0e0,
-                    0 0 0 10px #ffea00, /* Bright gold glow for highlight */
-                    0 6px 18px rgba(0,0,0,0.1),
-                    0 0 20px rgba(255, 234, 0, 0.7); /* Additional glow effect */
-      }
-      100% {
-        box-shadow: 0 0 0 3px #e0e0e0,
-                    0 0 0 6px var(--card-border-color),
-                    0 6px 18px rgba(0,0,0,0.1);
-      }
-    }
-
-    .card-wrapper.animated-glow {
-        animation: border-glow 1.5s ease-out forwards; /* Apply glow animation */
-    }
-
     .card-wrapper:hover {
       transform: translateY(-8px);
-      box-shadow: 0 0 0 3px #e0e0e0,
-                  0 0 0 6px #8cc6ff, /* Slightly darker blue on hover */
-                  0 12px 24px rgba(0,0,0,0.15);
     }
-
-    /* Top-most card specific styling (for the new badge) */
     .card-wrapper.top-most {
-      --card-border-color: #007bff; /* Distinct blue for the "new" border */
-      box-shadow: 0 0 0 3px #e0e0e0,
-                  0 0 0 6px var(--card-border-color), /* Uses its own color */
-                  0 6px 18px rgba(0,0,0,0.1);
+      --card-border-color: #007bff;
     }
-
     .card-wrapper.top-most::before {
       content: 'NEWLY ADDED';
       position: absolute;
       top: 10px;
-      right: -10px; /* Position slightly outside to create a ribbon effect */
-      background-color: #ff4d4d; /* Bright red for "NEW" */
+      right: -10px;
+      background-color: #ff4d4d;
       color: white;
       padding: 5px 15px;
       font-size: 0.8rem;
       font-weight: bold;
       border-radius: 5px;
-      transform: rotateY(0deg) rotate(20deg); /* Initial state for flip */
+      transform: rotate(20deg);
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      z-index: 10; /* Ensure it's above other elements */
-      /* NEW: Animation for flipping badge */
-      animation: flip-badge 0.8s ease-out forwards;
+      z-index: 10;
     }
-
-    /* NEW: Keyframes for badge flip animation */
-    @keyframes flip-badge {
-        0% { transform: rotateY(0deg) rotate(20deg); opacity: 0; }
-        100% { transform: rotateY(360deg) rotate(20deg); opacity: 1; }
+    .card-img-container {
+      width: 100%;
+      padding-top: 75%;
+      position: relative;
     }
-
-    .card { /* The inner card, no longer holds the main border/shadow */
-      width: 100%; display: flex; flex-direction: column;
-    }
-
-    /* Image Container within Card */
-    .card-img-container { width: 100%; padding-top: 75%; position: relative; overflow: hidden; }
     .card-img-container img {
-      position: absolute; top: 0; left: 0;
+      position: absolute;
       width: 100%; height: 100%;
       object-fit: contain;
-      transition: transform 0.3s ease;
     }
-    .card-wrapper:hover .card-img-container img { transform: scale(1.05); }
-
-    /* Button Container within Card */
     .card-actions {
       display: flex;
       justify-content: space-around;
-      align-items: center;
       padding: 1rem;
-      width: 100%;
-      gap: 10px; /* Space between buttons */
     }
-
-    /* Common Button Styles */
     .action-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
       color: #fff;
-      padding: 0.75rem 1rem;
+      padding: 0.6rem 1rem;
       border-radius: 8px;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      border: none;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      flex-grow: 1; /* Make buttons expand to fill space */
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-
     .whatsapp-action-btn {
       background-color: #25d366;
-      border: 2px solid #1da851;
     }
-    .whatsapp-action-btn:hover {
-      background-color: #1da851;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 10px rgba(37, 211, 102, 0.4);
-    }
-
     .call-action-btn {
       background-color: #007bff;
-      border: 2px solid #0056b3;
-    }
-    .call-action-btn:hover {
-      background-color: #0056b3;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 10px rgba(0, 123, 255, 0.4);
-    }
-
-    /* Floating WhatsApp Button */
-    .whatsapp-float {
-      position: fixed; width: 60px; height: 60px;
-      bottom: 40px; right: 40px;
-      background-color: #25d366; color: #fff;
-      border-radius: 50px; text-align: center;
-      font-size: 30px; box-shadow: 2px 2px 3px #999;
-      z-index: 1000;
-      display: flex; justify-content: center; align-items: center;
-      transition: transform 0.3s ease;
-    }
-    .whatsapp-float:hover { transform: scale(1.1); }
-
-    /* Scroll to Top Button */
-    #scrollToTopBtn {
-      display: none;
-      position: fixed;
-      bottom: 110px; right: 40px;
-      z-index: 999;
-      background-color: #007bff;
-      color: white; border: none;
-      border-radius: 50%; width: 50px; height: 50px;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-    #scrollToTopBtn:hover {
-      background-color: #0056b3;
-      transform: translateY(-3px);
-    }
-
-    /* Fade-in Animation for Cards */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
     }
   </style>
-
-  <script>
-    const IMAGE_BASE_URL = "https://www.sellinseconds.in/dynamic/images/";
-    const MAX_IMAGES = 30; // Maximum number of images
-    const STARTING_IMAGE_KEY = 'current_gallery_start_image'; // localStorage key
-
-    /**
-     * Hardcoded logic to generate a cyclic image order based on a starting number.
-     * Example: if startNum = 1, order is [1, 30, 29, ..., 2]
-     * Example: if startNum = 2, order is [2, 1, 30, 29, ..., 3]
-     * @param {number} startNum - The number that should appear first in the sequence (1 to MAX_IMAGES).
-     * @returns {number[]} An array of image numbers in the desired display order.
-     */
-    function generateCyclicImageOrder(startNum) {
-      const order = [];
-      order.push(startNum); // The starting point goes first
-
-      // Add numbers descending from startNum - 1 down to 1
-      for (let i = startNum - 1; i >= 1; i--) {
-        order.push(i);
-      }
-
-      // Add numbers descending from MAX_IMAGES down to startNum + 1
-      // This creates the wrap-around effect
-      for (let i = MAX_IMAGES; i > startNum; i--) {
-        order.push(i);
-      }
-      return order;
-    }
-
-    /**
-     * Determines the current starting image number for the display sequence.
-     * This number cycles (1, 2, 3, ... 30, then back to 1) using localStorage.
-     * @returns {number} The current image number that should be at the top of the gallery.
-     */
-    function getAndUpdateCurrentStartingImage() {
-      let currentNum = parseInt(localStorage.getItem(STARTING_IMAGE_KEY));
-
-      // If no number in localStorage, or invalid, start at 1.
-      if (isNaN(currentNum) || currentNum < 1 || currentNum > MAX_IMAGES) {
-        currentNum = 1;
-      } else {
-        // Otherwise, increment for the next load
-        currentNum++;
-        if (currentNum > MAX_IMAGES) {
-          currentNum = 1; // Cycle back to 1
-        }
-      }
-      localStorage.setItem(STARTING_IMAGE_KEY, currentNum); // Save the updated number
-      return currentNum;
-    }
-
-    /**
-     * Filters a list of image numbers to only include those that actually exist on the server.
-     * Adds a cache-buster for fresh checks.
-     * @param {number[]} numbers - An array of image numbers to check.
-     * @returns {Promise<number[]>} A promise that resolves to an array of existing image numbers.
-     */
-    async function filterExistingImages(numbers) {
-      const existingImages = [];
-      for (const num of numbers) {
-        const url = `${IMAGE_BASE_URL}${num}.webp?_=${Date.now()}`;
-        try {
-          // Use HEAD request for efficiency (only checks existence, doesn't download content)
-          const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
-          if (res.ok) {
-            existingImages.push(num);
-          }
-        } catch (error) {
-          // Error means the file probably doesn't exist or there's a network issue.
-          // console.warn(`Image ${num}.webp might not exist or network error: ${error.message}`);
-        }
-      }
-      return existingImages;
-    }
-
-    /**
-     * Updates Open Graph and Twitter Card meta tags with the URL of the first image in the upcoming sequence.
-     * This is an estimate as the actual first image might be filtered out if it doesn't exist.
-     */
-    async function updateOGThumbnail() {
-        const initialStartingNum = parseInt(localStorage.getItem(STARTING_IMAGE_KEY)) || 1;
-        const estimatedFirstImage = generateCyclicImageOrder(initialStartingNum)[0]; // Get the first image *before* the cycle update
-        const thumbnailURL = `${IMAGE_BASE_URL}${estimatedFirstImage}.webp`;
-
-        const ogImage = document.querySelector('meta[property="og:image"]');
-        const twitterImage = document.querySelector('meta[name="twitter:image"]');
-        
-        if (ogImage) ogImage.setAttribute('content', thumbnailURL);
-        if (twitterImage) twitterImage.setAttribute('content', thumbnailURL);
-    }
-
-    // Immediately call the function to update the thumbnail as soon as possible
-    updateOGThumbnail();
-
-  </script>
 </head>
 <body>
   <div class="container">
-    <div class="gallery-grid"></div>
+    <div class="gallery-grid" id="gallery"></div>
   </div>
 
-  <a class="whatsapp-float" href="https://wa.me/919886566379" target="_blank" title="Chat on WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-
-  <button id="scrollToTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
   <script>
-    // Scroll to top button visibility logic
-    window.addEventListener('scroll', () => {
-      document.getElementById('scrollToTopBtn').style.display = window.scrollY > 300 ? 'flex' : 'none';
-    });
+    const IMAGE_BASE = "https://www.sellinseconds.in/dynamic/images/";
+    const SEQ_JSON_URL = "https://www.sellinseconds.in/dynamic/seq.json";
 
-    document.addEventListener("DOMContentLoaded", async () => {
-      const gallery = document.querySelector(".gallery-grid");
+    async function loadImagesFromJson() {
+      try {
+        const res = await fetch(SEQ_JSON_URL, { cache: "no-store" });
+        const data = await res.json();
+        const imageNumbers = data[0]; // Use only the first uncommented row
 
-      // 1. Determine the current starting image number and prepare for the next cycle
-      const currentStartingImage = getAndUpdateCurrentStartingImage();
-
-      // 2. Generate the full theoretical order based on the current starting image
-      const theoreticalOrder = generateCyclicImageOrder(currentStartingImage);
-
-      // 3. Filter the theoretical order to only include images that actually exist on the server
-      const orderedImages = await filterExistingImages(theoreticalOrder);
-
-      if (orderedImages.length === 0) {
-        gallery.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">No images found in the gallery. Please ensure images (1.webp to 30.webp) exist in the /dynamic/images/ folder.</p>';
-        return; // Exit if no images are available
+        const gallery = document.getElementById("gallery");
+        gallery.innerHTML = imageNumbers.map((num, index) => {
+          const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
+          return `
+            <div class="card-wrapper ${index === 0 ? "top-most" : ""}">
+              <div class="card-img-container">
+                <img src="${imgSrc}" alt="Device ${num}" loading="lazy"
+                     onerror="this.closest('.card-wrapper').style.display='none';" />
+              </div>
+              <div class="card-actions">
+                <a href="https://wa.me/919886566379?text=${encodeURIComponent("Interested in device: https://www.sellinseconds.in/dynamic/wacust/" + num + ".html")}" target="_blank" class="action-btn whatsapp-action-btn">
+                  <i class="fab fa-whatsapp"></i> I'm Interested
+                </a>
+                <a href="tel:+919886566379" class="action-btn call-action-btn">
+                  <i class="fas fa-phone"></i> Call Now
+                </a>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (error) {
+        document.getElementById("gallery").innerHTML = `<p style="text-align:center;color:#888;">Failed to load gallery.</p>`;
+        console.error("Error loading JSON:", error);
       }
+    }
 
-      // Generate the HTML for the gallery grid using the determined display order
-      gallery.innerHTML = orderedImages.map((num, index) => {
-        const imageUrl = `${IMAGE_BASE_URL}${num}.webp?_=${Date.now()}`; // Add cache-buster to image URL
-        const isTopMost = (index === 0); // The very first image in our generated list is the "newest"
-
-        return `
-          <div class="card-wrapper ${isTopMost ? 'top-most animated-glow' : ''}">
-            <div class="card-img-container">
-              <img src="${imageUrl}" alt="Product ${num}" loading="lazy"
-                   onerror="this.closest('.card-wrapper').style.display='none';">
-            </div>
-            <div class="card-actions">
-              <a href="https://wa.me/919886566379?text=${encodeURIComponent('I am interested in this device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
-                <i class="fab fa-whatsapp"></i> I'm Interested
-              </a>
-              <a href="tel:+919886566379" class="action-btn call-action-btn">
-                <i class="fas fa-phone"></i> Call Now
-              </a>
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      // Add fade-in animation to all cards after they are rendered
-      const cards = document.querySelectorAll('.card-wrapper');
-      cards.forEach((card, index) => {
-          // Apply fade-in with a staggered delay for a smoother effect
-          card.style.animation = `fadeIn 0.5s forwards ${index * 0.1}s`;
-      });
-    });
+    window.addEventListener("DOMContentLoaded", loadImagesFromJson);
   </script>
 </body>
 </html>
