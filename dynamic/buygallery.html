@@ -143,24 +143,20 @@
     }
 
     .whatsapp-action-btn.glow {
-        background-color: #25d366; /* Base color remains */
-        /* Increased blur and spread, changed color to a vibrant pink/magenta */
+        background-color: #25d366;
         box-shadow: 0 0 20px 8px rgba(255, 0, 255, 0.8) !important; /* Magenta */
     }
 
     .call-action-btn.glow {
-        background-color: #007bff; /* Base color remains */
-        /* Increased blur and spread, changed color to a vibrant yellow/orange */
+        background-color: #007bff;
         box-shadow: 0 0 20px 8px rgba(255, 255, 0, 0.8) !important; /* Yellow */
     }
 
     @keyframes glow {
       0% {
-        /* This generic glow is less relevant if specific button glows are used, but good to keep for fallback */
         box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.7) !important;
       }
       100% {
-        /* This generic glow is less relevant if specific button glows are used */
         box-shadow: 0 0 30px 10px rgba(255, 255, 255, 1) !important;
       }
     }
@@ -309,9 +305,9 @@
         }
       });
     }, {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.2
+      root: null, // default is the viewport
+      rootMargin: '-40% 0px -40% 0px', // <--- THIS IS THE KEY CHANGE
+      threshold: 0.01 // <--- Small threshold to trigger immediately within the rootMargin zone
     });
 
     cardWrappers.forEach(card => {
