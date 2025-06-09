@@ -138,27 +138,26 @@
     }
 
     /* Glow Effect for Buttons */
-    /* !IMPORTANT: Added !important to box-shadow for higher specificity */
     .action-btn.glow {
       animation: glow 1.5s infinite alternate;
     }
 
     .whatsapp-action-btn.glow {
-        background-color: #25d366; /* Ensure base color is maintained during glow */
-        box-shadow: 0 0 15px rgba(37, 211, 102, 0.8) !important; /* Added !important */
+        background-color: #25d366;
+        box-shadow: 0 0 15px rgba(37, 211, 102, 0.8) !important;
     }
 
     .call-action-btn.glow {
-        background-color: #007bff; /* Ensure base color is maintained during glow */
-        box-shadow: 0 0 15px rgba(0, 123, 255, 0.8) !important; /* Added !important */
+        background-color: #007bff;
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.8) !important;
     }
 
     @keyframes glow {
       0% {
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5) !important; /* Added !important */
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5) !important;
       }
       100% {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 1) !important; /* Added !important */
+        box-shadow: 0 0 20px rgba(255, 255, 255, 1) !important;
       }
     }
   </style>
@@ -172,7 +171,7 @@
   const IMAGE_BASE = "https://www.sellinseconds.in/dynamic/images/";
   const SEQ_JSON_URL = "https://www.sellinseconds.in/dynamic/seq.json";
 
-  let observer; // Declare observer globally to disconnect if needed
+  let observer;
 
   async function loadImagesFromJson() {
     console.log("loadImagesFromJson started.");
@@ -183,7 +182,7 @@
       }
       const json = await res.json();
 
-      const rowIndex = parseInt(json.active) - 1; // 👈 subtract 1 to match 0-based index
+      const rowIndex = parseInt(json.active) - 1;
 
       const imageNumbers = json.sequences[rowIndex];
 
@@ -220,12 +219,9 @@
       }).join('');
       console.log("Gallery populated with", imageNumbers.length, "cards.");
 
-      // Auto scroll hint on mobile portrait view and then trigger badge animation
       handleMobileScrollAndBadgeAnimation();
 
-      // Setup Intersection Observer after initial animations and DOM is ready
-      // Give a slight delay to ensure all elements are rendered and stable
-      setTimeout(setupIntersectionObserver, 500); // Increased delay for safety
+      setTimeout(setupIntersectionObserver, 500);
 
     } catch (err) {
       console.error("Error loading JSON or rendering gallery:", err);
@@ -236,11 +232,10 @@
     }
   }
 
-  // --- Handle Mobile Scroll and Badge Animation ---
   function handleMobileScrollAndBadgeAnimation() {
     const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
     const topMostCard = document.querySelector('.card-wrapper.top-most');
-    const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100; // Added 100px buffer
+    const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100;
 
     if (isMobilePortrait && hasEnoughContentToScroll) {
       console.log("Mobile portrait detected with enough content to scroll.");
@@ -267,13 +262,12 @@
     }
   }
 
-  // --- Intersection Observer for button glowing ---
   function setupIntersectionObserver() {
     const cardWrappers = document.querySelectorAll('.card-wrapper');
 
     if (cardWrappers.length === 0) {
       console.warn("No card wrappers found for Intersection Observer. Retrying in 1 second.");
-      setTimeout(setupIntersectionObserver, 1000); // Retry if elements aren't ready
+      setTimeout(setupIntersectionObserver, 1000);
       return;
     }
 
@@ -311,9 +305,9 @@
         }
       });
     }, {
-      root: null, // default is the viewport
+      root: null,
       rootMargin: '0px',
-      threshold: 0.6 // Trigger when 60% of the item is visible.
+      threshold: 0.2 // <--- CHANGED THIS VALUE to make it glow earlier
     });
 
     cardWrappers.forEach(card => {
