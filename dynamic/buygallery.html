@@ -176,15 +176,28 @@
   async function loadImagesFromJson() {
     try {
       const res = await fetch(SEQ_JSON_URL, { cache: "no-store" });
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
       const json = await res.json();
 
       const rowIndex = parseInt(json.active) - 1; // 👈 subtract 1 to match 0-based index
 
       const imageNumbers = json.sequences[rowIndex];
 
-      if (!Array.isArray(imageNumbers)) throw new Error("Invalid image row");
+      if (!Array.isArray(imageNumbers)) {
+        throw new Error("Invalid image row: imageNumbers is not an array");
+      }
+      if (imageNumbers.length === 0) {
+        throw new Error("No image numbers found in the sequence.");
+      }
 
       const gallery = document.querySelector(".gallery-grid");
+      if (!gallery) {
+        console.error("Error: .gallery-grid element not found.");
+        return;
+      }
+
       gallery.innerHTML = imageNumbers.map((num, i) => {
         const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
         return `
@@ -208,11 +221,15 @@
       handleMobileScrollAndBadgeAnimation();
 
       // Setup Intersection Observer after initial animations and DOM is ready
-      setupIntersectionObserver();
+      // Give a slight delay to ensure all elements are rendered and stable
+      setTimeout(setupIntersectionObserver, 300);
 
     } catch (err) {
-      console.error("Error loading JSON:", err);
-      document.querySelector(".gallery-grid").innerHTML = `<p style="text-align: center; color: #888;">Gallery failed to load.</p>`;
+      console.error("Error loading JSON or rendering gallery:", err);
+      const gallery = document.querySelector(".gallery-grid");
+      if (gallery) {
+        gallery.innerHTML = `<p style="text-align: center; color: #888;">Gallery failed to load: ${err.message}</p>`;
+      }
     }
   }
 
@@ -221,7 +238,10 @@
     const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
     const topMostCard = document.querySelector('.card-wrapper.top-most');
 
-    if (isMobilePortrait) {
+    // Only apply scroll animation if there's enough content to scroll
+    const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight;
+
+    if (isMobilePortrait && hasEnoughContentToScroll) {
       setTimeout(() => {
         // Scroll down a bit more, maybe 150px
         window.scrollTo({ top: 150, behavior: 'smooth' });
@@ -233,10 +253,10 @@
           if (topMostCard) {
             topMostCard.classList.add('animate-badge');
           }
-        }, 1200); // Wait a bit longer for the scroll down animation to complete
+        }, 1500); // Wait a bit longer for the scroll down animation to complete
       }, 1000); // Initial delay before starting the scroll
     } else {
-      // If not mobile portrait, animate badge immediately (or after a slight delay)
+      // If not mobile portrait or not enough content, animate badge immediately (or after a slight delay)
       if (topMostCard) {
         setTimeout(() => {
           topMostCard.classList.add('animate-badge');
@@ -250,6 +270,11 @@
   function setupIntersectionObserver() {
     const cardWrappers = document.querySelectorAll('.card-wrapper');
 
+    if (cardWrappers.length === 0) {
+      console.warn("No card wrappers found for Intersection Observer.");
+      return;
+    }
+
     // Disconnect previous observer if it exists
     if (observer) {
       observer.disconnect();
@@ -262,25 +287,29 @@
 
         if (entry.isIntersecting) {
           // Add glow class when element is in view
-          whatsappBtn.classList.add('glow');
-          callBtn.classList.add('glow');
+          if (whatsappBtn) whatsappBtn.classList.add('glow');
+          if (callBtn) callBtn.classList.add('glow');
         } else {
           // Remove glow class when element is out of view
-          whatsappBtn.classList.remove('glow');
-          callBtn.classList.remove('glow');
+          if (whatsappBtn) whatsappBtn.classList.remove('glow');
+          if (callBtn) callBtn.classList.remove('glow');
         }
       });
     }, {
-      threshold: 0.5 // Trigger when 50% of the item is visible. Adjusted for better glow timing.
+      root: null, // default is the viewport
+      rootMargin: '0px',
+      threshold: 0.6 // Trigger when 60% of the item is visible. Adjusted for better glow timing.
     });
 
     cardWrappers.forEach(card => {
       observer.observe(card);
     });
+    console.log("Intersection Observer set up for", cardWrappers.length, "cards.");
   }
 
   // Ensure DOM content is fully loaded before trying to fetch and render
   window.addEventListener("DOMContentLoaded", loadImagesFromJson);
 </script>
+
 </body>
 </html>
