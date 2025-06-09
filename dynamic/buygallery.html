@@ -184,7 +184,7 @@
       }
       const json = await res.json();
 
-      const rowIndex = parseInt(json.active) - 1;
+      const rowIndex = parseInt(json.active);
 
       const imageNumbers = json.sequences[rowIndex];
 
