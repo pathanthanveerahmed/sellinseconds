@@ -1,12 +1,9 @@
 # Force HTTPS and www
 RewriteEngine On
 
-# Redirect non-www to www
-RewriteCond %{HTTP_HOST} ^sellinseconds\.in [NC]
-RewriteRule ^(.*)$ https://www.sellinseconds.in/$1 [L,R=301]
-
-# Redirect HTTP to HTTPS
-RewriteCond %{HTTPS} off
+# Redirect all to https://www.sellinseconds.in
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\.sellinseconds\.in$ [NC]
 RewriteRule ^(.*)$ https://www.sellinseconds.in/$1 [L,R=301]
 
 # Enable Compression
