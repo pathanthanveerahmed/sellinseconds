@@ -138,26 +138,27 @@
     }
 
     /* Glow Effect for Buttons */
+    /* !IMPORTANT: Added !important to box-shadow for higher specificity */
     .action-btn.glow {
       animation: glow 1.5s infinite alternate;
     }
 
     .whatsapp-action-btn.glow {
         background-color: #25d366; /* Ensure base color is maintained during glow */
-        box-shadow: 0 0 15px rgba(37, 211, 102, 0.8);
+        box-shadow: 0 0 15px rgba(37, 211, 102, 0.8) !important; /* Added !important */
     }
 
     .call-action-btn.glow {
         background-color: #007bff; /* Ensure base color is maintained during glow */
-        box-shadow: 0 0 15px rgba(0, 123, 255, 0.8);
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.8) !important; /* Added !important */
     }
 
     @keyframes glow {
       0% {
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5) !important; /* Added !important */
       }
       100% {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 1) !important; /* Added !important */
       }
     }
   </style>
@@ -174,6 +175,7 @@
   let observer; // Declare observer globally to disconnect if needed
 
   async function loadImagesFromJson() {
+    console.log("loadImagesFromJson started.");
     try {
       const res = await fetch(SEQ_JSON_URL, { cache: "no-store" });
       if (!res.ok) {
@@ -216,13 +218,14 @@
             </div>
           </div>`;
       }).join('');
+      console.log("Gallery populated with", imageNumbers.length, "cards.");
 
       // Auto scroll hint on mobile portrait view and then trigger badge animation
       handleMobileScrollAndBadgeAnimation();
 
       // Setup Intersection Observer after initial animations and DOM is ready
       // Give a slight delay to ensure all elements are rendered and stable
-      setTimeout(setupIntersectionObserver, 300);
+      setTimeout(setupIntersectionObserver, 500); // Increased delay for safety
 
     } catch (err) {
       console.error("Error loading JSON or rendering gallery:", err);
@@ -237,68 +240,80 @@
   function handleMobileScrollAndBadgeAnimation() {
     const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
     const topMostCard = document.querySelector('.card-wrapper.top-most');
-
-    // Only apply scroll animation if there's enough content to scroll
-    const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight;
+    const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100; // Added 100px buffer
 
     if (isMobilePortrait && hasEnoughContentToScroll) {
+      console.log("Mobile portrait detected with enough content to scroll.");
       setTimeout(() => {
-        // Scroll down a bit more, maybe 150px
         window.scrollTo({ top: 150, behavior: 'smooth' });
+        console.log("Scrolled down to 150px.");
         setTimeout(() => {
-          // Scroll back up
           window.scrollTo({ top: 0, behavior: 'smooth' });
-
-          // After scroll up, animate the badge
+          console.log("Scrolled back up to 0px.");
           if (topMostCard) {
             topMostCard.classList.add('animate-badge');
+            console.log("Added 'animate-badge' class to top-most card.");
           }
-        }, 1500); // Wait a bit longer for the scroll down animation to complete
-      }, 1000); // Initial delay before starting the scroll
+        }, 1500);
+      }, 1000);
     } else {
-      // If not mobile portrait or not enough content, animate badge immediately (or after a slight delay)
+      console.log("Not mobile portrait or not enough content to scroll, animating badge directly.");
       if (topMostCard) {
         setTimeout(() => {
           topMostCard.classList.add('animate-badge');
-        }, 500); // Slight delay for non-mobile animation
+          console.log("Added 'animate-badge' class to top-most card directly.");
+        }, 500);
       }
     }
   }
-
 
   // --- Intersection Observer for button glowing ---
   function setupIntersectionObserver() {
     const cardWrappers = document.querySelectorAll('.card-wrapper');
 
     if (cardWrappers.length === 0) {
-      console.warn("No card wrappers found for Intersection Observer.");
+      console.warn("No card wrappers found for Intersection Observer. Retrying in 1 second.");
+      setTimeout(setupIntersectionObserver, 1000); // Retry if elements aren't ready
       return;
     }
 
-    // Disconnect previous observer if it exists
     if (observer) {
       observer.disconnect();
+      console.log("Disconnected existing Intersection Observer.");
     }
 
     observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
+        const cardId = entry.target.dataset.imageId || 'N/A';
         const whatsappBtn = entry.target.querySelector('.whatsapp-action-btn');
         const callBtn = entry.target.querySelector('.call-action-btn');
 
         if (entry.isIntersecting) {
-          // Add glow class when element is in view
-          if (whatsappBtn) whatsappBtn.classList.add('glow');
-          if (callBtn) callBtn.classList.add('glow');
+          console.log(`Card ${cardId} is intersecting. Adding 'glow' class.`);
+          if (whatsappBtn) {
+            whatsappBtn.classList.add('glow');
+            console.log(`- WhatsApp button for ${cardId}: 'glow' added.`);
+          }
+          if (callBtn) {
+            callBtn.classList.add('glow');
+            console.log(`- Call button for ${cardId}: 'glow' added.`);
+          }
         } else {
-          // Remove glow class when element is out of view
-          if (whatsappBtn) whatsappBtn.classList.remove('glow');
-          if (callBtn) callBtn.classList.remove('glow');
+          console.log(`Card ${cardId} is NOT intersecting. Removing 'glow' class.`);
+          if (whatsappBtn) {
+            whatsappBtn.classList.remove('glow');
+            console.log(`- WhatsApp button for ${cardId}: 'glow' removed.`);
+          }
+          if (callBtn) {
+            callBtn.classList.remove('glow');
+            console.log(`- Call button for ${cardId}: 'glow' removed.`);
+          }
         }
       });
     }, {
       root: null, // default is the viewport
       rootMargin: '0px',
-      threshold: 0.6 // Trigger when 60% of the item is visible. Adjusted for better glow timing.
+      threshold: 0.6 // Trigger when 60% of the item is visible.
     });
 
     cardWrappers.forEach(card => {
@@ -307,7 +322,6 @@
     console.log("Intersection Observer set up for", cardWrappers.length, "cards.");
   }
 
-  // Ensure DOM content is fully loaded before trying to fetch and render
   window.addEventListener("DOMContentLoaded", loadImagesFromJson);
 </script>
 
