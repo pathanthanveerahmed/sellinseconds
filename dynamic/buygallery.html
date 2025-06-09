@@ -143,13 +143,15 @@
     }
 
     .whatsapp-action-btn.glow {
-        background-color: #25d366;
-        box-shadow: 0 0 20px 8px rgba(255, 0, 255, 0.8) !important; /* Magenta */
+        background-color: #25d366; /* Base color remains */
+        /* Magenta glow */
+        box-shadow: 0 0 20px 8px rgba(255, 0, 255, 0.8) !important;
     }
 
     .call-action-btn.glow {
-        background-color: #007bff;
-        box-shadow: 0 0 20px 8px rgba(255, 255, 0, 0.8) !important; /* Yellow */
+        background-color: #007bff; /* Base color remains */
+        /* Changed glow color to a vibrant orange */
+        box-shadow: 0 0 20px 8px rgba(255, 165, 0, 0.8) !important; /* Vibrant Orange */
     }
 
     @keyframes glow {
@@ -305,9 +307,9 @@
         }
       });
     }, {
-      root: null, // default is the viewport
-      rootMargin: '-40% 0px -40% 0px', // <--- THIS IS THE KEY CHANGE
-      threshold: 0.01 // <--- Small threshold to trigger immediately within the rootMargin zone
+      root: null,
+      rootMargin: '-40% 0px -40% 0px',
+      threshold: 0.01
     });
 
     cardWrappers.forEach(card => {
