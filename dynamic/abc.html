@@ -44,10 +44,11 @@
       }
     }
 
-    /* --- IMPORTANT: Using the exact view from your reference code for image container --- */
+    /* --- IMPORTANT: Exact CSS for .card-img-container from your reference code --- */
+    /* The order and redundancy here are specifically to match your exact reference */
     .card-img-container {
       width: 100%;
-      padding-top: 75%; /* This was the key to your desired view */
+      aspect-ratio: 4 / 3; /* maintains consistent shape */
       position: relative;
       overflow: hidden;
       background-color: #fff;
@@ -59,11 +60,27 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Ensures the image fits without cropping */
+      object-fit: contain; /* Ensures the image fits within the container without cropping */
       padding: 10px; /* prevents overlap with borders */
     }
-    /* --------------------------------------------------------------------------------- */
 
+    /* This rule will override the aspect-ratio above for height calculation */
+    /* This setup precisely matches your reference code's behavior for image sizing */
+    .card-img-container {
+      width: 100%;
+      padding-top: 75%; /* This was the key to your desired view's fixed ratio */
+      position: relative; /* Already defined, but kept for exact match */
+    }
+    .card-img-container img {
+      position: absolute; /* Already defined, but kept for exact match */
+      width: 100%; height: 100%; /* Already defined, but kept for exact match */
+      object-fit: contain; /* Already defined, but kept for exact match */
+    }
+    /* ----------------------------------------------------------------------------- */
+
+
+    /* --- IMPORTANT: Removed display:flex and flex-direction from .card-wrapper --- */
+    /* This matches your reference code's .card-wrapper styling precisely */
     .card-wrapper {
       background: #fff;
       border-radius: 12px;
@@ -73,9 +90,7 @@
                   0 0 0 6px var(--card-border-color, #b3d9ff),
                   0 6px 18px rgba(0,0,0,0.1);
       transition: 0.3s ease;
-      /* Keeping flex properties as they don't negatively impact the view */
-      display: flex;
-      flex-direction: column;
+      /* Removed display:flex and flex-direction:column to match your reference view */
     }
     .card-wrapper:hover {
       transform: translateY(-8px);
@@ -119,14 +134,14 @@
       }
     }
 
-    /* --- REMOVED .card-description CSS as per your reference code's view --- */
+    /* --- REMOVED .card-description CSS, as the HTML block for it is also removed --- */
     /* This section is intentionally left out to match the view */
 
     .card-actions {
       display: flex;
       justify-content: space-around;
       padding: 1rem;
-      margin-top: auto; /* Pushes buttons to the bottom of the card */
+      /* margin-top: auto; is removed because .card-wrapper is no longer flex-column */
     }
     .action-btn {
       color: #fff;
@@ -178,7 +193,7 @@
 
 <script>
   const IMAGE_BASE = "https://www.sellinseconds.in/dynamic/images/";
-  // --- IMPORTANT: Using the local JSON data provided in the first code ---
+  // Using the local JSON data provided in the first code
   const jsonData = {
     "active": 13, // Active sequence ID is 13
     "sequences": [
@@ -246,7 +261,6 @@
       { "id": 30, "name": "", "description": "" }
     ]
   };
-  // -------------------------------------------------------------------------
 
   let observer;
 
@@ -311,7 +325,7 @@
 
       gallery.innerHTML = imageNumbers.map((num, i) => {
         const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
-        // --- IMPORTANT: Removed the .card-description block as per your reference code's view ---
+        // Removed the .card-description block to match your reference code's view
         return `
           <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
             <div class="card-img-container">
@@ -330,9 +344,8 @@
       }).join('');
       console.log("Gallery populated with", imageNumbers.length, "cards.");
 
-      // --- IMPORTANT: Reverted scroll animation parameters to match your reference code ---
+      // Reverted scroll animation parameters to match your reference code
       handleMobileScrollAndBadgeAnimation();
-      // ----------------------------------------------------------------------------------
 
       setTimeout(setupIntersectionObserver, 500);
 
@@ -348,13 +361,13 @@
   function handleMobileScrollAndBadgeAnimation() {
     const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
     const topMostCard = document.querySelector('.card-wrapper.top-most');
-    // --- IMPORTANT: Reverted scroll content check to match your reference code ---
+    // Reverted scroll content check to match your reference code
     const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100;
 
     if (isMobilePortrait && hasEnoughContentToScroll) {
       console.log("Mobile portrait detected with enough content to scroll.");
       setTimeout(() => {
-        // --- IMPORTANT: Reverted scroll amount to match your reference code (150px) ---
+        // Reverted scroll amount to match your reference code (150px)
         window.scrollTo({ top: 150, behavior: 'smooth' });
         console.log("Scrolled down to 150px.");
         setTimeout(() => {
@@ -364,7 +377,7 @@
             topMostCard.classList.add('animate-badge');
             console.log("Added 'animate-badge' class to top-most card.");
           }
-        }, 1500); // --- IMPORTANT: Reverted delay to match your reference code (1500ms) ---
+        }, 1500); // Reverted delay to match your reference code (1500ms)
       }, 1000);
     } else {
       console.log("Not mobile portrait or not enough content to scroll, animating badge directly.");
