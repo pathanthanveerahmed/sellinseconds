@@ -6,11 +6,22 @@
   <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
   <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
+  
+  <meta property="og:title" content="Featured Device at SellInSeconds" id="og-title-meta" />
+  <meta property="og:description" content="Check out our latest certified pre-owned devices!" id="og-description-meta" />
   <meta property="og:image" content="" id="og-image-meta" />
+  <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html" />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Featured Device at SellInSeconds" id="twitter-title-meta" />
+  <meta name="twitter:description" content="Check out our latest certified pre-owned devices!" id="twitter-description-meta" />
   <meta name="twitter:image" content="" id="twitter-image-meta" />
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon" />
   <style>
+    /* Your existing CSS remains the same */
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
@@ -295,23 +306,39 @@
         return;
       }
 
+      // Identify the top-most image for the meta tags
+      const topMostImageId = imageNumbers[0];
+      const topMostDevice = imageMap.get(topMostImageId);
+      const topMostDescription = topMostDevice && topMostDevice.description ? topMostDevice.description : "Latest certified pre-owned devices at SellInSeconds!";
+      const topMostImageSrc = `${IMAGE_BASE}${topMostImageId}.webp`;
+      const pageUrl = window.location.protocol + '//' + window.location.host + window.location.pathname; // Get the full URL of the current page
+
+      // Set Open Graph and Twitter meta tags for the top-most image
+      const ogImageMeta = document.getElementById('og-image-meta');
+      const twitterImageMeta = document.getElementById('twitter-image-meta');
+      const ogTitleMeta = document.getElementById('og-title-meta');
+      const twitterTitleMeta = document.getElementById('twitter-title-meta');
+      const ogDescriptionMeta = document.getElementById('og-description-meta');
+      const twitterDescriptionMeta = document.getElementById('twitter-description-meta');
+      const ogUrlMeta = document.querySelector('meta[property="og:url"]'); // Get the og:url meta tag
+
+      if (ogImageMeta) ogImageMeta.setAttribute('content', `${window.location.protocol}//${window.location.host}${topMostImageSrc}`);
+      if (twitterImageMeta) twitterImageMeta.setAttribute('content', `${window.location.protocol}//${window.location.host}${topMostImageSrc}`);
+      if (ogTitleMeta) ogTitleMeta.setAttribute('content', topMostDevice.name || "Newly Added Device");
+      if (twitterTitleMeta) twitterTitleMeta.setAttribute('content', topMostDevice.name || "Newly Added Device");
+      if (ogDescriptionMeta) ogDescriptionMeta.setAttribute('content', topMostDescription);
+      if (twitterDescriptionMeta) twitterDescriptionMeta.setAttribute('content', topMostDescription);
+      if (ogUrlMeta) ogUrlMeta.setAttribute('content', pageUrl); // Set the canonical URL as og:url
+
+      console.log("Open Graph and Twitter meta tags updated:");
+      console.log("  og:title:", ogTitleMeta ? ogTitleMeta.content : 'N/A');
+      console.log("  og:description:", ogDescriptionMeta ? ogDescriptionMeta.content : 'N/A');
+      console.log("  og:image:", ogImageMeta ? ogImageMeta.content : 'N/A');
+
       gallery.innerHTML = imageNumbers.map((num, i) => {
         const device = imageMap.get(num);
-        // Ensure description is used, with a fallback
         const description = device && device.description ? device.description : `Device ID ${num} (No Description)`;
         const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
-
-        // Set Open Graph and Twitter image/description for the first card
-        // This is primarily for browser-side updates, not for social media scrapers
-        if (i === 0) {
-          const ogImageMeta = document.getElementById('og-image-meta');
-          const twitterImageMeta = document.getElementById('twitter-image-meta');
-          const descriptionMeta = document.querySelector('meta[name="description"]');
-
-          if (ogImageMeta) ogImageMeta.setAttribute('content', location.protocol + '//' + location.host + imgSrc);
-          if (twitterImageMeta) twitterImageMeta.setAttribute('content', location.protocol + '//' + location.host + imgSrc);
-          if (descriptionMeta) descriptionMeta.setAttribute('content', description);
-        }
 
         return `
           <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
