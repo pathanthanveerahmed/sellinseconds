@@ -3,217 +3,426 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buy Used Devices | SellInSeconds</title>
-
-  <meta name="description" content="Buy certified used phones, laptops, and tablets with full quality checks." id="meta-desc" />
-  <meta property="og:title" content="Buy Certified Used Devices - SellInSeconds" />
-  <meta property="og:description" content="" id="og-desc" />
-  <meta property="og:image" content="" id="og-image" />
-  <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
+  <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
-
+  <meta property="og:image" content="" id="og-image-meta" />
+  <meta name="twitter:image" content="" id="twitter-image-meta" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon" />
   <style>
     body {
-      margin: 0;
-      font-family: system-ui, sans-serif;
-      background: #fff;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
+      margin: 0; padding: 0;
     }
-    .gallery {
+    .container {
+      max-width: 1400px;
+      margin: auto;
+      padding: 1rem;
+    }
+    .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 14px;
-      padding: 12px;
+      gap: 1.5rem;
+      grid-template-columns: 1fr;
+      padding-top: 1rem;
     }
-    .card {
-      position: relative;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      background: #fff;
-      transition: transform 0.3s;
+
+    @media (min-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
-    .card:hover {
-      transform: scale(1.03);
-    }
-    .card img {
+
+    .card-img-container {
       width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
+      aspect-ratio: 4 / 3; /* maintains consistent shape */
+      position: relative;
+      overflow: hidden;
+      background-color: #fff;
     }
-    .caption {
-      padding: 8px;
-      font-size: 14px;
-      color: #333;
-      text-align: center;
-    }
-    .newly-added {
+
+    .card-img-container img {
       position: absolute;
-      top: 6px;
-      left: 6px;
-      background: linear-gradient(to right, #2196f3, #4caf50);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 10px; /* prevents overlap with borders */
+    }
+
+    .card-wrapper {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 0 3px #e0e0e0,
+                  0 0 0 6px var(--card-border-color, #b3d9ff),
+                  0 6px 18px rgba(0,0,0,0.1);
+      transition: 0.3s ease;
+    }
+    .card-wrapper:hover {
+      transform: translateY(-8px);
+    }
+    .card-wrapper.top-most {
+      --card-border-color: #007bff;
+    }
+
+    /* Newly Added Badge Styling */
+    .card-wrapper.top-most::before {
+      content: 'NEWLY ADDED';
+      position: absolute;
+      top: 10px;
+      right: -10px;
+      background-color: #ff4d4d;
       color: white;
-      padding: 2px 6px;
-      font-size: 11px;
+      padding: 5px 15px;
+      font-size: 0.8rem;
       font-weight: bold;
-      border-radius: 4px;
-      animation: glow 1s infinite alternate;
+      border-radius: 5px;
+      transform: rotate(20deg) scaleX(0); /* Start scaled down to 0 for flip effect */
+      transform-origin: center center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 10;
     }
-    .top-card {
-      border: 2px solid #2196f3;
-      box-shadow: 0 0 0 4px #4caf50;
+
+    /* Animation for the badge, applied via JS */
+    .card-wrapper.top-most.animate-badge::before {
+      animation: flipIn 1s forwards; /* Animation for the flip effect */
     }
+
+    @keyframes flipIn {
+      0% {
+        transform: rotate(20deg) scaleX(0);
+      }
+      50% {
+        transform: rotate(20deg) scaleX(1.2); /* Overshoot for a "bounce" effect */
+      }
+      100% {
+        transform: rotate(20deg) scaleX(1);
+      }
+    }
+
+    .card-img-container {
+      width: 100%;
+      padding-top: 75%;
+      position: relative;
+    }
+    .card-img-container img {
+      position: absolute;
+      width: 100%; height: 100%;
+      object-fit: contain;
+    }
+    .card-actions {
+      display: flex;
+      justify-content: space-around;
+      padding: 1rem;
+    }
+    .action-btn {
+      color: #fff;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .whatsapp-action-btn {
+      background-color: #25d366;
+    }
+    .call-action-btn {
+      background-color: #007bff;
+    }
+
+    /* Glow Effect for Buttons */
+    .action-btn.glow {
+      animation: glow 1.5s infinite alternate;
+    }
+
+    .whatsapp-action-btn.glow {
+        background-color: #25d366; /* Base color remains */
+        /* Magenta glow */
+        box-shadow: 0 0 20px 8px rgba(255, 0, 255, 0.8) !important;
+    }
+
+    .call-action-btn.glow {
+        background-color: #007bff; /* Base color remains */
+        /* Changed glow color to a vibrant orange */
+        box-shadow: 0 0 20px 8px rgba(255, 165, 0, 0.8) !important; /* Vibrant Orange */
+    }
+
     @keyframes glow {
-      from { opacity: 0.8; }
-      to { opacity: 1; }
+      0% {
+        box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.7) !important;
+      }
+      100% {
+        box-shadow: 0 0 30px 10px rgba(255, 255, 255, 1) !important;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="gallery" id="gallery"></div>
+  <div class="container">
+    <div class="gallery-grid" id="gallery"></div>
+  </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const data = {
-        "active": 13,
-        "sequences": [
-          [30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],
-          [1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2],
-          [2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3],
-          [3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4],
-          [4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5],
-          [5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6],
-          [6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7],
-          [7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8],
-          [8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9],
-          [9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10],
-          [10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11],
-          [11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12],
-          [12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13], // This sequence starts with 12
-          [13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14],
-          [14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15],
-          [15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16],
-          [16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17],
-          [17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18],
-          [18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19],
-          [19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20],
-          [20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21],
-          [21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22],
-          [22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23],
-          [23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24],
-          [24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25],
-          [25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26],
-          [26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27],
-          [27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28],
-          [28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29],
-          [29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30]
-        ],
-        "images": [
-          { "id": 1, "name": "", "description": "" },
-          { "id": 2, "name": "", "description": "" },
-          { "id": 3, "name": "", "description": "" },
-          { "id": 4, "name": "", "description": "" },
-          { "id": 5, "name": "", "description": "" },
-          { "id": 6, "name": "", "description": "" },
-          { "id": 7, "name": "", "description": "" },
-          { "id": 8, "name": "", "description": "" },
-          { "id": 9, "name": "", "description": "" },
-          { "id": 10, "name": "", "description": "" },
-          { "id": 11, "name": "", "description": "" },
-          { "id": 12, "name": "", "description": "" },
-          { "id": 13, "name": " iPhone 16 PRO MAX", "description": " iPhone 16 PRO MAX, 1 TB, 100% BATTERY HEALTH, 2 MONTHS OLD, INDIAN VARIANT ₹135000" },
-          { "id": 14, "name": "", "description": "" },
-          { "id": 15, "name": "", "description": "" },
-          { "id": 16, "name": "", "description": "" },
-          { "id": 17, "name": "", "description": "" },
-          { "id": 18, "name": "", "description": "" },
-          { "id": 19, "name": "", "description": "" },
-          { "id": 20, "name": "", "description": "" },
-          { "id": 21, "name": "", "description": "" },
-          { "id": 22, "name": "", "description": "" },
-          { "id": 23, "name": "", "description": "" },
-          { "id": 24, "name": "", "description": "" },
-          { "id": 25, "name": "", "description": "" },
-          { "id": 26, "name": "", "description": "" },
-          { "id": 27, "name": "", "description": "" },
-          { "id": 28, "name": "", "description": "" },
-          { "id": 29, "name": "", "description": "" },
-          { "id": 30, "name": "", "description": "" }
-        ]
-      };
+<script>
+  const IMAGE_BASE = "https://www.sellinseconds.in/dynamic/images/";
+  // Hardcoding the JSON data for local demonstration as per previous context.
+  // In a real production scenario, you would fetch this from a server using the SEQ_JSON_URL.
+  const jsonData = {
+    "active": 12,
+    "sequences": [
+      [30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],
+      [1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2],
+      [2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3],
+      [3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4],
+      [4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5],
+      [5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6],
+      [6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7],
+      [7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8],
+      [8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9],
+      [9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10],
+      [10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11],
+      [11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12],
+      [12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13], // This sequence starts with 12
+      [13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14],
+      [14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15],
+      [15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16],
+      [16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17],
+      [17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18],
+      [18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19],
+      [19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20],
+      [20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21],
+      [21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22],
+      [22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23],
+      [23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24],
+      [24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25],
+      [25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26],
+      [26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27],
+      [27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28],
+      [28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29],
+      [29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30]
+    ],
+    "images": [
+      { "id": 1, "name": "", "description": "" },
+      { "id": 2, "name": "", "description": "" },
+      { "id": 3, "name": "", "description": "" },
+      { "id": 4, "name": "", "description": "" },
+      { "id": 5, "name": "", "description": "" },
+      { "id": 6, "name": "", "description": "" },
+      { "id": 7, "name": "", "description": "" },
+      { "id": 8, "name": "", "description": "" },
+      { "id": 9, "name": "", "description": "" },
+      { "id": 10, "name": "", "description": "" },
+      { "id": 11, "name": "", "description": "" },
+      { "id": 12, "name": " iPhone 16 PRO MAX", "description": " iPhone 16 PRO MAX, 1 TB, 100% BATTERY HEALTH, 2 MONTHS OLD, INDIAN VARIANT ₹135000" },
+      { "id": 13, "name": "", "description": "" },
+      { "id": 14, "name": "", "description": "" },
+      { "id": 15, "name": "", "description": "" },
+      { "id": 16, "name": "", "description": "" },
+      { "id": 17, "name": "", "description": "" },
+      { "id": 18, "name": "", "description": "" },
+      { "id": 19, "name": "", "description": "" },
+      { "id": 20, "name": "", "description": "" },
+      { "id": 21, "name": "", "description": "" },
+      { "id": 22, "name": "", "description": "" },
+      { "id": 23, "name": "", "description": "" },
+      { "id": 24, "name": "", "description": "" },
+      { "id": 25, "name": "", "description": "" },
+      { "id": 26, "name": "", "description": "" },
+      { "id": 27, "name": "", "description": "" },
+      { "id": 28, "name": "", "description": "" },
+      { "id": 29, "name": "", "description": "" },
+      { "id": 30, "name": "", "description": "" }
+    ]
+  };
 
-      const gallery = document.getElementById('gallery');
+  let observer;
 
-      // 1. Create a map for quick lookup of image details by ID
-      const imageMap = new Map(data.images.map(img => [img.id, img]));
+  async function loadImagesFromJson() {
+    console.log("loadImagesFromJson started.");
+    try {
+      // Instead of fetching, use the hardcoded jsonData directly
+      const json = jsonData;
 
-      // 2. Find the active sequence based on the 'active' property
-      // We are looking for the sequence whose first element matches 'data.active'.
-      let imageOrder = null;
-      for (let i = 0; i < data.sequences.length; i++) {
-        if (data.sequences[i][0] === data.active) {
-          imageOrder = data.sequences[i];
-          break; // Found the sequence, no need to continue searching
+      // Create a map for quick lookup of image details by ID
+      const imageMap = new Map(json.images.map(img => [img.id, img]));
+
+      // Find the active sequence based on the 'active' property
+      // We look for the sequence whose first element matches 'json.active'.
+      let imageNumbers = null;
+      for (let i = 0; i < json.sequences.length; i++) {
+        if (json.sequences[i][0] === json.active) {
+          imageNumbers = json.sequences[i];
+          break;
         }
       }
 
-      // 3. Fallback if no specific sequence is found or the data is invalid
-      if (!imageOrder || imageOrder.length === 0) {
-        // If 'active' doesn't correspond to the first element of any sequence,
-        // we can default to the first sequence in the 'sequences' array, or display an error.
-        console.warn(`No sequence found starting with ID ${data.active}. Defaulting to the first available sequence.`);
-        imageOrder = data.sequences[0]; // Fallback to the very first sequence
-        if (!imageOrder || imageOrder.length === 0) {
-          gallery.innerHTML = '<p style="padding:20px; color:red;">⚠️ No displayable devices. Sequences data is missing or empty.</p>';
+      // Fallback if no specific sequence is found or the data is invalid
+      if (!imageNumbers || imageNumbers.length === 0) {
+        console.warn(`No sequence found starting with ID ${json.active}. Defaulting to the first available sequence.`);
+        imageNumbers = json.sequences[0]; // Fallback to the very first sequence
+        if (!imageNumbers || imageNumbers.length === 0) {
+          const gallery = document.querySelector(".gallery-grid");
+          if (gallery) {
+            gallery.innerHTML = `<p style="text-align: center; color: #888;">⚠️ No displayable devices. Sequences data is missing or empty.</p>`;
+          }
           return;
         }
       }
 
-      // 4. Populate the gallery using the determined imageOrder
-      imageOrder.forEach((imageId, index) => {
-        const device = imageMap.get(imageId);
+      const gallery = document.querySelector(".gallery-grid");
+      if (!gallery) {
+        console.error("Error: .gallery-grid element not found.");
+        return;
+      }
 
-        // Ensure we have details for the current image ID
-        if (!device) {
-          console.warn(`Image details for ID ${imageId} not found in the images data. Skipping this card.`);
-          return; // Skip this iteration if image details are missing
+      gallery.innerHTML = imageNumbers.map((num, i) => {
+        const device = imageMap.get(num);
+        const description = device ? device.description || `Device ID ${num}` : `Device ID ${num} (Details Missing)`;
+        const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
+
+        // Set Open Graph and Twitter image/description for the first card
+        if (i === 0) {
+          const ogImageMeta = document.getElementById('og-image-meta');
+          const twitterImageMeta = document.getElementById('twitter-image-meta');
+          const descriptionMeta = document.querySelector('meta[name="description"]');
+
+          if (ogImageMeta) ogImageMeta.setAttribute('content', location.protocol + '//' + location.host + imgSrc);
+          if (twitterImageMeta) twitterImageMeta.setAttribute('content', location.protocol + '//' + location.host + imgSrc);
+          if (descriptionMeta) descriptionMeta.setAttribute('content', description); // Update meta description for WhatsApp thumbnail
         }
 
-        const imgSrc = `/dynamic/images/${device.id}.webp`; // Use device.id for image source
-        const caption = device.description || "Pre-owned Device (No Description)"; // Fallback caption
+        return `
+          <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
+            <div class="card-img-container">
+              <img src="${imgSrc}" alt="${description}" loading="lazy"
+                onerror="this.closest('.card-wrapper').style.display='none';">
+            </div>
+            <div class="card-actions">
+              <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
+                <i class="fab fa-whatsapp"></i> I'm Interested
+              </a>
+              <a href="tel:+919886566379" class="action-btn call-action-btn">
+                <i class="fas fa-phone"></i> Call Now
+              </a>
+            </div>
+          </div>`;
+      }).join('');
+      console.log("Gallery populated with", imageNumbers.length, "cards.");
 
-        const card = document.createElement('div');
-        card.className = 'card';
-        if (index === 0) card.classList.add('top-card'); // First image in the *chosen sequence* gets top-card style
+      handleMobileScrollAndBadgeAnimation();
 
-        const img = document.createElement('img');
-        img.src = imgSrc;
-        img.alt = caption;
+      setTimeout(setupIntersectionObserver, 500);
 
-        const cap = document.createElement('div');
-        cap.className = 'caption';
-        cap.textContent = caption;
+    } catch (err) {
+      console.error("Error loading JSON or rendering gallery:", err);
+      const gallery = document.querySelector(".gallery-grid");
+      if (gallery) {
+        gallery.innerHTML = `<p style="text-align: center; color: red;">⚠️ Gallery failed to load: ${err.message}. Please try again.</p>`;
+      }
+    }
+  }
 
-        card.appendChild(img);
-        card.appendChild(cap);
+  function handleMobileScrollAndBadgeAnimation() {
+    const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
+    const topMostCard = document.querySelector('.card-wrapper.top-most');
+    // Check if there's enough content to scroll based on gallery height instead of body scroll height
+    const galleryHeight = topMostCard ? topMostCard.offsetHeight : 0;
+    const hasEnoughContentToScroll = galleryHeight > (window.innerHeight / 2); // Check if one card is at least half the screen height
 
-        if (index === 0) {
-          const badge = document.createElement('div');
-          badge.className = 'newly-added';
-          badge.textContent = 'NEWLY ADDED';
-          card.appendChild(badge);
-
-          // Set SEO/OG tags for the first image in the chosen sequence
-          const fullImageUrl = location.origin + imgSrc;
-          document.getElementById('og-image')?.setAttribute('content', fullImageUrl);
-          document.getElementById('meta-desc')?.setAttribute('content', caption);
-          document.getElementById('og-desc')?.setAttribute('content', caption);
+    if (isMobilePortrait && hasEnoughContentToScroll) {
+      console.log("Mobile portrait detected with enough content to scroll.");
+      // Small scroll down and back up to trigger visibility for badge
+      window.scrollTo({ top: 50, behavior: 'smooth' }); // Scroll a small amount down
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll back to top
+        if (topMostCard) {
+          setTimeout(() => { // Small delay before animating badge
+            topMostCard.classList.add('animate-badge');
+            console.log("Added 'animate-badge' class to top-most card after scroll.");
+          }, 200); // Give a moment for the scroll to settle
         }
+      }, 700); // Time for the initial scroll down
+    } else {
+      console.log("Not mobile portrait or not enough content to scroll, animating badge directly.");
+      if (topMostCard) {
+        setTimeout(() => {
+          topMostCard.classList.add('animate-badge');
+          console.log("Added 'animate-badge' class to top-most card directly.");
+        }, 500);
+      }
+    }
+  }
 
-        gallery.appendChild(card);
+
+  function setupIntersectionObserver() {
+    const cardWrappers = document.querySelectorAll('.card-wrapper');
+
+    if (cardWrappers.length === 0) {
+      console.warn("No card wrappers found for Intersection Observer. Retrying in 1 second.");
+      setTimeout(setupIntersectionObserver, 1000); // Retry if cards aren't ready
+      return;
+    }
+
+    if (observer) {
+      observer.disconnect();
+      console.log("Disconnected existing Intersection Observer.");
+    }
+
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const cardId = entry.target.dataset.imageId || 'N/A';
+        const whatsappBtn = entry.target.querySelector('.whatsapp-action-btn');
+        const callBtn = entry.target.querySelector('.call-action-btn');
+
+        if (entry.isIntersecting) {
+          console.log(`Card ${cardId} is intersecting. Adding 'glow' class.`);
+          if (whatsappBtn) {
+            whatsappBtn.classList.add('glow');
+            // console.log(`- WhatsApp button for ${cardId}: 'glow' added.`); // Removed for less console noise
+          }
+          if (callBtn) {
+            callBtn.classList.add('glow');
+            // console.log(`- Call button for ${cardId}: 'glow' added.`); // Removed for less console noise
+          }
+        } else {
+          console.log(`Card ${cardId} is NOT intersecting. Removing 'glow' class.`);
+          if (whatsappBtn) {
+            whatsappBtn.classList.remove('glow');
+            // console.log(`- WhatsApp button for ${cardId}: 'glow' removed.`); // Removed for less console noise
+          }
+          if (callBtn) {
+            callBtn.classList.remove('glow');
+            // console.log(`- Call button for ${cardId}: 'glow' removed.`); // Removed for less console noise
+          }
+        }
       });
+    }, {
+      root: null, // relative to the viewport
+      rootMargin: '-40% 0px -40% 0px', // Shrink the viewport's bounds
+      threshold: 0.01 // Trigger when even 1% of the target is visible
     });
-  </script>
+
+    cardWrappers.forEach(card => {
+      observer.observe(card);
+    });
+    console.log("Intersection Observer set up for", cardWrappers.length, "cards.");
+  }
+
+  // Ensure scripts run after the DOM is fully loaded
+  window.addEventListener("DOMContentLoaded", loadImagesFromJson);
+
+  // Optional: Re-run setupIntersectionObserver on window resize to adjust visibility, if needed
+  // window.addEventListener("resize", () => {
+  //   if (observer) observer.disconnect();
+  //   setTimeout(setupIntersectionObserver, 200); // Debounce
+  // });
+</script>
+
 </body>
 </html>
