@@ -174,7 +174,7 @@
   // Hardcoding the JSON data for local demonstration as per previous context.
   // In a real production scenario, you would fetch this from a server using the SEQ_JSON_URL.
   const jsonData = {
-    "active": 13, // Changed from 12 to 13
+    "active": 13, // Active sequence ID is 13
     "sequences": [
       [30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],
       [1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2],
@@ -219,8 +219,8 @@
       { "id": 9, "name": "", "description": "" },
       { "id": 10, "name": "", "description": "" },
       { "id": 11, "name": "", "description": "" },
-      { "id": 12, "name": "", "description": "" }, // Original ID 12 description is now empty
-      { "id": 13, "name": " iPhone 16 PRO MAX", "description": " iPhone 16 PRO MAX, 1 TB, 100% BATTERY HEALTH, 2 MONTHS OLD, INDIAN VARIANT ₹135000" }, // iPhone 16 Pro Max is now ID 13
+      { "id": 12, "name": "", "description": "" }, // Description for ID 12 is now intentionally empty
+      { "id": 13, "name": " iPhone 16 PRO MAX", "description": " iPhone 16 PRO MAX, 1 TB, 100% BATTERY HEALTH, 2 MONTHS OLD, INDIAN VARIANT ₹135000" }, // iPhone 16 Pro Max with description is now ID 13
       { "id": 14, "name": "", "description": "" },
       { "id": 15, "name": "", "description": "" },
       { "id": 16, "name": "", "description": "" },
@@ -283,7 +283,8 @@
 
       gallery.innerHTML = imageNumbers.map((num, i) => {
         const device = imageMap.get(num);
-        const description = device ? device.description || `Device ID ${num}` : `Device ID ${num} (Details Missing)`;
+        // Ensure description is used, with a fallback
+        const description = device && device.description ? device.description : `Device ID ${num} (No Description)`;
         const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
 
         // Set Open Graph and Twitter image/description for the first card
