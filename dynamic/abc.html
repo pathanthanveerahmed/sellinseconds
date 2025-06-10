@@ -144,15 +144,33 @@
       };
 
       const gallery = document.getElementById('gallery');
-      const imagesToDisplay = data.images.slice(0, 30); // Use the 'images' array from the provided data
 
-      imagesToDisplay.forEach((device, index) => {
+      // Find the active sequence based on the 'active' property
+      const activeSequenceIndex = data.active - 1; // Adjust for 0-based array index
+      const imageOrder = data.sequences[activeSequenceIndex];
+
+      // Create a map for quick lookup of image details by ID
+      const imageMap = new Map(data.images.map(img => [img.id, img]));
+
+      if (!imageOrder || imageOrder.length === 0) {
+        gallery.innerHTML = '<p style="padding:20px; color:red;">⚠️ No active sequence found or sequence is empty.</p>';
+        return;
+      }
+
+      imageOrder.forEach((imageId, index) => {
+        const device = imageMap.get(imageId);
+
+        if (!device) {
+          console.warn(`Image with ID ${imageId} not found in the images data.`);
+          return; // Skip if image details are missing
+        }
+
         const imgSrc = `/dynamic/images/${device.id}.webp`;
         const caption = device.description || "Pre-owned Device";
 
         const card = document.createElement('div');
         card.className = 'card';
-        if (index === 0) card.classList.add('top-card');
+        if (index === 0) card.classList.add('top-card'); // First image in the *active sequence* gets top-card style
 
         const img = document.createElement('img');
         img.src = imgSrc;
@@ -171,6 +189,7 @@
           badge.textContent = 'NEWLY ADDED';
           card.appendChild(badge);
 
+          // Set SEO/OG tags for the first image in the active sequence
           const fullImageUrl = location.origin + imgSrc;
           document.getElementById('og-image')?.setAttribute('content', fullImageUrl);
           document.getElementById('meta-desc')?.setAttribute('content', caption);
@@ -179,11 +198,6 @@
 
         gallery.appendChild(card);
       });
-
-      // Handle fallback if no images are loaded (though with direct data, this is less likely)
-      if (imagesToDisplay.length === 0) {
-        gallery.innerHTML = '<p style="padding:20px; color:red;">⚠️ No devices to display.</p>';
-      }
     });
   </script>
 </body>
