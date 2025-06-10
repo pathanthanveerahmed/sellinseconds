@@ -90,7 +90,7 @@
           [9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10],
           [10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11],
           [11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12],
-          [12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13],
+          [12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13], // This sequence starts with 12
           [13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14],
           [14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15],
           [15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16],
@@ -145,32 +145,47 @@
 
       const gallery = document.getElementById('gallery');
 
-      // Find the active sequence based on the 'active' property
-      const activeSequenceIndex = data.active - 1; // Adjust for 0-based array index
-      const imageOrder = data.sequences[activeSequenceIndex];
-
-      // Create a map for quick lookup of image details by ID
+      // 1. Create a map for quick lookup of image details by ID
       const imageMap = new Map(data.images.map(img => [img.id, img]));
 
-      if (!imageOrder || imageOrder.length === 0) {
-        gallery.innerHTML = '<p style="padding:20px; color:red;">⚠️ No active sequence found or sequence is empty.</p>';
-        return;
+      // 2. Find the active sequence based on the 'active' property
+      // We are looking for the sequence whose first element matches 'data.active'.
+      let imageOrder = null;
+      for (let i = 0; i < data.sequences.length; i++) {
+        if (data.sequences[i][0] === data.active) {
+          imageOrder = data.sequences[i];
+          break; // Found the sequence, no need to continue searching
+        }
       }
 
+      // 3. Fallback if no specific sequence is found or the data is invalid
+      if (!imageOrder || imageOrder.length === 0) {
+        // If 'active' doesn't correspond to the first element of any sequence,
+        // we can default to the first sequence in the 'sequences' array, or display an error.
+        console.warn(`No sequence found starting with ID ${data.active}. Defaulting to the first available sequence.`);
+        imageOrder = data.sequences[0]; // Fallback to the very first sequence
+        if (!imageOrder || imageOrder.length === 0) {
+          gallery.innerHTML = '<p style="padding:20px; color:red;">⚠️ No displayable devices. Sequences data is missing or empty.</p>';
+          return;
+        }
+      }
+
+      // 4. Populate the gallery using the determined imageOrder
       imageOrder.forEach((imageId, index) => {
         const device = imageMap.get(imageId);
 
+        // Ensure we have details for the current image ID
         if (!device) {
-          console.warn(`Image with ID ${imageId} not found in the images data.`);
-          return; // Skip if image details are missing
+          console.warn(`Image details for ID ${imageId} not found in the images data. Skipping this card.`);
+          return; // Skip this iteration if image details are missing
         }
 
-        const imgSrc = `/dynamic/images/${device.id}.webp`;
-        const caption = device.description || "Pre-owned Device";
+        const imgSrc = `/dynamic/images/${device.id}.webp`; // Use device.id for image source
+        const caption = device.description || "Pre-owned Device (No Description)"; // Fallback caption
 
         const card = document.createElement('div');
         card.className = 'card';
-        if (index === 0) card.classList.add('top-card'); // First image in the *active sequence* gets top-card style
+        if (index === 0) card.classList.add('top-card'); // First image in the *chosen sequence* gets top-card style
 
         const img = document.createElement('img');
         img.src = imgSrc;
@@ -189,7 +204,7 @@
           badge.textContent = 'NEWLY ADDED';
           card.appendChild(badge);
 
-          // Set SEO/OG tags for the first image in the active sequence
+          // Set SEO/OG tags for the first image in the chosen sequence
           const fullImageUrl = location.origin + imgSrc;
           document.getElementById('og-image')?.setAttribute('content', fullImageUrl);
           document.getElementById('meta-desc')?.setAttribute('content', caption);
