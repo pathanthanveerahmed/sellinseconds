@@ -75,49 +75,54 @@
   <div class="gallery" id="gallery"></div>
 
   <script>
-    fetch('/dynamic/imagedata.json')
-      .then(res => res.json())
-      .then(data => {
-        const gallery = document.getElementById('gallery');
-        data.slice(0, 30).forEach((device, index) => {
-          const imgSrc = `/dynamic/images/${device.id}.webp`;
-          const caption = device.description || "Pre-owned Device";
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch('/dynamic/imagedata.json')
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to fetch');
+          return res.json();
+        })
+        .then(data => {
+          const gallery = document.getElementById('gallery');
+          data.slice(0, 30).forEach((device, index) => {
+            const imgSrc = `/dynamic/images/${device.id}.webp`;
+            const caption = device.description || "Pre-owned Device";
 
-          const card = document.createElement('div');
-          card.className = 'card';
-          if (index === 0) card.classList.add('top-card');
+            const card = document.createElement('div');
+            card.className = 'card';
+            if (index === 0) card.classList.add('top-card');
 
-          const img = document.createElement('img');
-          img.src = imgSrc;
-          img.alt = caption;
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.alt = caption;
 
-          const cap = document.createElement('div');
-          cap.className = 'caption';
-          cap.textContent = caption;
+            const cap = document.createElement('div');
+            cap.className = 'caption';
+            cap.textContent = caption;
 
-          card.appendChild(img);
-          card.appendChild(cap);
+            card.appendChild(img);
+            card.appendChild(cap);
 
-          if (index === 0) {
-            const badge = document.createElement('div');
-            badge.className = 'newly-added';
-            badge.textContent = 'NEWLY ADDED';
-            card.appendChild(badge);
+            if (index === 0) {
+              const badge = document.createElement('div');
+              badge.className = 'newly-added';
+              badge.textContent = 'NEWLY ADDED';
+              card.appendChild(badge);
 
-            // Update OG meta tags
-            document.getElementById('og-image').setAttribute('content', location.origin + imgSrc);
-            document.getElementById('meta-desc').setAttribute('content', caption);
-            document.getElementById('og-desc').setAttribute('content', caption);
-          }
+              // Update OG meta tags
+              const fullImageUrl = location.origin + imgSrc;
+              document.getElementById('og-image')?.setAttribute('content', fullImageUrl);
+              document.getElementById('meta-desc')?.setAttribute('content', caption);
+              document.getElementById('og-desc')?.setAttribute('content', caption);
+            }
 
-          gallery.appendChild(card);
+            gallery.appendChild(card);
+          });
+        })
+        .catch(err => {
+          document.getElementById('gallery').innerHTML = '<p style="padding:20px; color:red;">⚠️ Failed to load devices. Please try again later.</p>';
+          console.error("Device load failed:", err);
         });
-      })
-      .catch(err => {
-        const gallery = document.getElementById('gallery');
-        gallery.innerHTML = '<p style="padding:20px; color:red;">⚠️ Failed to load devices. Please try again later.</p>';
-        console.error("Device load failed:", err);
-      });
+    });
   </script>
 </body>
 </html>
