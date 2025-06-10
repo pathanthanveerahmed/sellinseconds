@@ -5,97 +5,119 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buy Used Devices | SellInSeconds</title>
 
-  <!-- Dynamic Meta: OpenGraph, Twitter, SEO -->
-  <meta name="description" content="" id="meta-desc" />
+  <!-- SEO & Social Metadata -->
+  <meta name="description" content="Buy certified used phones, laptops, and tablets with full quality checks." id="meta-desc" />
+  <meta property="og:title" content="Buy Certified Used Devices - SellInSeconds" />
+  <meta property="og:description" content="" id="og-desc" />
+  <meta property="og:image" content="" id="og-image" />
+  <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
 
-  <meta property="og:title" content="Buy Used Devices | SellInSeconds" />
-  <meta property="og:description" content="" id="og-desc" />
-  <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html" />
-  <meta property="og:image" content="" id="og-img" />
-  <meta property="og:type" content="website" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Buy Used Devices | SellInSeconds" />
-  <meta name="twitter:description" content="" id="tw-desc" />
-  <meta name="twitter:image" content="" id="tw-img" />
-
-  <!-- Styles (Unchanged from Original) -->
   <style>
-    body { font-family:sans-serif; background:#f8f8f8; margin:0; padding:10px; }
-    #gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:12px; }
-    .card-wrapper { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 0 10px rgba(0,0,0,0.08); position:relative; }
-    .card-wrapper img { width:100%; display:block; }
-    .top-most { border:3px double transparent; background-image:linear-gradient(white,white),linear-gradient(45deg,#3498db,#e91e63); background-origin:border-box; background-clip:content-box,border-box; }
-    .card-wrapper::before { content:""; position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; }
-    .card-wrapper.animate-badge::before {
-      content:"NEWLY ADDED"; background:#e91e63; color:#fff; font-size:11px;
-      padding:2px 6px; border-radius:0 0 4px 0; position:absolute; top:0; left:0;
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #fff;
     }
-    .card-actions { display:flex; justify-content:space-around; padding:10px; }
-    .action-btn { font-size:13px; padding:6px 10px; border-radius:4px; color:#fff; text-decoration:none; }
-    .whatsapp-action-btn { background:#25D366; }
-    .call-action-btn { background:#3498db; }
-    .glow { animation:glow 1.5s infinite alternate; }
-    @keyframes glow { 0% { box-shadow:0 0 5px #fff; } 100% { box-shadow:0 0 15px #0ff; } }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
+      padding: 12px;
+    }
+    .card {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      background: #fff;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    .caption {
+      padding: 8px;
+      font-size: 14px;
+      color: #333;
+      text-align: center;
+    }
+    .newly-added {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: linear-gradient(to right, #2196f3, #4caf50);
+      color: white;
+      padding: 2px 6px;
+      font-size: 11px;
+      font-weight: bold;
+      border-radius: 4px;
+      animation: glow 1s infinite alternate;
+    }
+    .top-card {
+      border: 2px solid #2196f3;
+      box-shadow: 0 0 0 4px #4caf50;
+    }
+    @keyframes glow {
+      from { opacity: 0.8; }
+      to { opacity: 1; }
+    }
   </style>
 </head>
 <body>
-
-  <div id="gallery">Loading devices...</div>
+  <div class="gallery" id="gallery"></div>
 
   <script>
-    const gallery = document.getElementById("gallery");
-    const JSON_URL = "/dynamic/imagedata.json";
-    const IMG_BASE = "https://www.sellinseconds.in/dynamic/images/";
-
-    fetch(JSON_URL, { cache: "no-store" })
+    fetch('/dynamic/imagedata.json')
       .then(res => res.json())
       .then(data => {
-        const { active, sequences, images } = data;
-        const seq = sequences[active];
-        const metaMap = Object.fromEntries(images.map(img => [img.id, img]));
-        let html = "";
+        const gallery = document.getElementById('gallery');
+        data.slice(0, 30).forEach((device, index) => {
+          const imgSrc = `/dynamic/images/${device.id}.webp`;
+          const caption = device.description || "Pre-owned Device";
 
-        seq.forEach((id, idx) => {
-          const info = metaMap[id] || { name: `Device ${id}`, description: "" };
-          const imgSrc = `${IMG_BASE}${id}.webp?_=${Date.now()}`;
-          const shareText = `Interested in: ${info.name} - ${info.description}\nhttps://www.sellinseconds.in/dynamic/wacust/${id}.html`;
+          const card = document.createElement('div');
+          card.className = 'card';
+          if (index === 0) card.classList.add('top-card');
 
-          if (idx === 0) {
-            document.title = `${info.name} – Buy Now | SellInSeconds`;
-            document.getElementById("meta-desc").content = info.description;
-            document.getElementById("og-desc").content = info.description;
-            document.getElementById("tw-desc").content = info.description;
-            document.getElementById("og-img").content = imgSrc;
-            document.getElementById("tw-img").content = imgSrc;
+          const img = document.createElement('img');
+          img.src = imgSrc;
+          img.alt = caption;
+
+          const cap = document.createElement('div');
+          cap.className = 'caption';
+          cap.textContent = caption;
+
+          card.appendChild(img);
+          card.appendChild(cap);
+
+          if (index === 0) {
+            const badge = document.createElement('div');
+            badge.className = 'newly-added';
+            badge.textContent = 'NEWLY ADDED';
+            card.appendChild(badge);
+
+            // Update OG meta tags
+            document.getElementById('og-image').setAttribute('content', location.origin + imgSrc);
+            document.getElementById('meta-desc').setAttribute('content', caption);
+            document.getElementById('og-desc').setAttribute('content', caption);
           }
 
-          html += `
-            <div class="card-wrapper ${idx === 0 ? 'top-most animate-badge' : ''}">
-              <img src="${imgSrc}" alt="${info.name}" loading="lazy">
-              <div class="card-actions">
-                <a href="https://wa.me/918700976002?text=${encodeURIComponent(shareText)}"
-                   target="_blank" class="action-btn whatsapp-action-btn glow">
-                  <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-                <a href="tel:+919886566378" class="action-btn call-action-btn glow">
-                  <i class="fas fa-phone-alt"></i> Call
-                </a>
-              </div>
-            </div>
-          `;
+          gallery.appendChild(card);
         });
-
-        gallery.innerHTML = html;
       })
       .catch(err => {
-        console.error("Error loading gallery:", err);
-        gallery.innerHTML = `<p style="color:red">Failed to load devices.</p>`;
+        const gallery = document.getElementById('gallery');
+        gallery.innerHTML = '<p style="padding:20px; color:red;">⚠️ Failed to load devices. Please try again later.</p>';
+        console.error("Device load failed:", err);
       });
   </script>
-
-  <!-- FontAwesome Icons -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
