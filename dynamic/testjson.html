@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>JSON Test</title></head>
+<body>
+  <div id="status">Loading...</div>
+  <script>
+    fetch('/dynamic/imagedata.json')
+      .then(res => res.text())
+      .then(text => document.getElementById('status').innerText = text)
+      .catch(err => document.getElementById('status').innerText = "❌ Error: " + err);
+  </script>
+</body>
+</html>
