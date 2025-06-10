@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buy Used Devices | SellInSeconds</title>
 
-  <!-- SEO & Social Metadata -->
   <meta name="description" content="Buy certified used phones, laptops, and tablets with full quality checks." id="meta-desc" />
   <meta property="og:title" content="Buy Certified Used Devices - SellInSeconds" />
   <meta property="og:description" content="" id="og-desc" />
@@ -76,14 +75,78 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-  fetch('https://www.sellinseconds.in/dynamic/imagedata.json')
-    .then(res => {
-      if (!res.ok) throw new Error('Failed to fetch');
-      return res.json();
-    })
-    .then(data => {
+      const data = {
+        "active": 12,
+        "sequences": [
+          [30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],
+          [1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2],
+          [2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3],
+          [3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4],
+          [4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5],
+          [5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6],
+          [6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7],
+          [7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8],
+          [8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9],
+          [9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10],
+          [10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11],
+          [11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12],
+          [12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13],
+          [13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14],
+          [14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15],
+          [15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16],
+          [16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17],
+          [17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18],
+          [18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19],
+          [19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20],
+          [20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21],
+          [21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22],
+          [22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23],
+          [23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24],
+          [24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25],
+          [25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26],
+          [26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27],
+          [27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28],
+          [28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29],
+          [29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30]
+        ],
+        "images": [
+          { "id": 1, "name": "", "description": "" },
+          { "id": 2, "name": "", "description": "" },
+          { "id": 3, "name": "", "description": "" },
+          { "id": 4, "name": "", "description": "" },
+          { "id": 5, "name": "", "description": "" },
+          { "id": 6, "name": "", "description": "" },
+          { "id": 7, "name": "", "description": "" },
+          { "id": 8, "name": "", "description": "" },
+          { "id": 9, "name": "", "description": "" },
+          { "id": 10, "name": "", "description": "" },
+          { "id": 11, "name": "", "description": "" },
+          { "id": 12, "name": " iPhone 16 PRO MAX", "description": " iPhone 16 PRO MAX, 1 TB, 100% BATTERY HEALTH, 2 MONTHS OLD, INDIAN VARIANT ₹135000" },
+          { "id": 13, "name": "", "description": "" },
+          { "id": 14, "name": "", "description": "" },
+          { "id": 15, "name": "", "description": "" },
+          { "id": 16, "name": "", "description": "" },
+          { "id": 17, "name": "", "description": "" },
+          { "id": 18, "name": "", "description": "" },
+          { "id": 19, "name": "", "description": "" },
+          { "id": 20, "name": "", "description": "" },
+          { "id": 21, "name": "", "description": "" },
+          { "id": 22, "name": "", "description": "" },
+          { "id": 23, "name": "", "description": "" },
+          { "id": 24, "name": "", "description": "" },
+          { "id": 25, "name": "", "description": "" },
+          { "id": 26, "name": "", "description": "" },
+          { "id": 27, "name": "", "description": "" },
+          { "id": 28, "name": "", "description": "" },
+          { "id": 29, "name": "", "description": "" },
+          { "id": 30, "name": "", "description": "" }
+        ]
+      };
+
       const gallery = document.getElementById('gallery');
-      data.slice(0, 30).forEach((device, index) => {
+      const imagesToDisplay = data.images.slice(0, 30); // Use the 'images' array from the provided data
+
+      imagesToDisplay.forEach((device, index) => {
         const imgSrc = `/dynamic/images/${device.id}.webp`;
         const caption = device.description || "Pre-owned Device";
 
@@ -116,12 +179,12 @@
 
         gallery.appendChild(card);
       });
-    })
-    .catch(err => {
-      document.getElementById('gallery').innerHTML = '<p style="padding:20px; color:red;">⚠️ Failed to load devices. Please try again later.</p>';
-      console.error("Device load failed:", err);
+
+      // Handle fallback if no images are loaded (though with direct data, this is less likely)
+      if (imagesToDisplay.length === 0) {
+        gallery.innerHTML = '<p style="padding:20px; color:red;">⚠️ No devices to display.</p>';
+      }
     });
-});
   </script>
 </body>
 </html>
