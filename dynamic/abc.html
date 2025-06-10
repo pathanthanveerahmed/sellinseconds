@@ -21,7 +21,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon" />
   <style>
-    /* Your existing CSS remains the same */
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
@@ -45,10 +44,10 @@
       }
     }
 
+    /* --- IMPORTANT: Using the exact view from your reference code for image container --- */
     .card-img-container {
-      /* This ensures all image containers have a consistent 4:3 aspect ratio */
       width: 100%;
-      aspect-ratio: 4 / 3; /* maintains consistent shape */
+      padding-top: 75%; /* This was the key to your desired view */
       position: relative;
       overflow: hidden;
       background-color: #fff;
@@ -60,9 +59,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Ensures the image fits within the container without cropping */
+      object-fit: contain; /* Ensures the image fits without cropping */
       padding: 10px; /* prevents overlap with borders */
     }
+    /* --------------------------------------------------------------------------------- */
 
     .card-wrapper {
       background: #fff;
@@ -73,8 +73,9 @@
                   0 0 0 6px var(--card-border-color, #b3d9ff),
                   0 6px 18px rgba(0,0,0,0.1);
       transition: 0.3s ease;
-      display: flex; /* Added for flexbox layout of card content */
-      flex-direction: column; /* Stack content vertically */
+      /* Keeping flex properties as they don't negatively impact the view */
+      display: flex;
+      flex-direction: column;
     }
     .card-wrapper:hover {
       transform: translateY(-8px);
@@ -118,41 +119,14 @@
       }
     }
 
-    /* Original padding-top based aspect ratio, now replaced by aspect-ratio property */
-    /* .card-img-container {
-      width: 100%;
-      padding-top: 75%;
-      position: relative;
-    }
-    .card-img-container img {
-      position: absolute;
-      width: 100%; height: 100%;
-      object-fit: contain;
-    } */
-
-    .card-description {
-      padding: 0 1rem; /* Add padding for the description text */
-      margin-top: 0.5rem; /* Space between image and description */
-      font-size: 0.95rem;
-      color: #333;
-      text-align: center; /* Center the description */
-      flex-grow: 1; /* Allow description to take up available space */
-      display: flex; /* Use flex to vertically center text if needed */
-      align-items: center; /* Vertically center text if it's a single line */
-      justify-content: center; /* Horizontally center text */
-      min-height: 50px; /* Ensure a minimum height for consistent layout */
-      overflow: hidden; /* Hide overflow if description is too long */
-      text-overflow: ellipsis; /* Add ellipsis for long descriptions */
-      display: -webkit-box; /* For multi-line ellipsis */
-      -webkit-line-clamp: 3; /* Limit to 3 lines */
-      -webkit-box-orient: vertical;
-    }
+    /* --- REMOVED .card-description CSS as per your reference code's view --- */
+    /* This section is intentionally left out to match the view */
 
     .card-actions {
       display: flex;
       justify-content: space-around;
       padding: 1rem;
-      margin-top: auto; /* Push buttons to the bottom of the card */
+      margin-top: auto; /* Pushes buttons to the bottom of the card */
     }
     .action-btn {
       color: #fff;
@@ -179,13 +153,11 @@
 
     .whatsapp-action-btn.glow {
         background-color: #25d366; /* Base color remains */
-        /* Magenta glow */
-        box-shadow: 0 0 20px 8px rgba(255, 0, 255, 0.8) !important;
+        box-shadow: 0 0 20px 8px rgba(255, 0, 255, 0.8) !important; /* Magenta glow */
     }
 
     .call-action-btn.glow {
         background-color: #007bff; /* Base color remains */
-        /* Changed glow color to a vibrant orange */
         box-shadow: 0 0 20px 8px rgba(255, 165, 0, 0.8) !important; /* Vibrant Orange */
     }
 
@@ -206,6 +178,7 @@
 
 <script>
   const IMAGE_BASE = "https://www.sellinseconds.in/dynamic/images/";
+  // --- IMPORTANT: Using the local JSON data provided in the first code ---
   const jsonData = {
     "active": 13, // Active sequence ID is 13
     "sequences": [
@@ -273,12 +246,14 @@
       { "id": 30, "name": "", "description": "" }
     ]
   };
+  // -------------------------------------------------------------------------
 
   let observer;
 
   async function loadImagesFromJson() {
     console.log("loadImagesFromJson started.");
     try {
+      // Using the local jsonData variable directly
       const json = jsonData;
       const imageMap = new Map(json.images.map(img => [img.id, img]));
 
@@ -313,16 +288,16 @@
       const topMostDevice = imageMap.get(topMostImageId);
       const topMostDescription = topMostDevice && topMostDevice.description ? topMostDevice.description : "Latest certified pre-owned devices at SellInSeconds!";
       const topMostImageSrc = `${IMAGE_BASE}${topMostImageId}.webp`;
-      const pageUrl = window.location.protocol + '//' + window.location.host + window.location.pathname; // Get the full URL of the current page
+      const pageUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
 
-      // Set Open Graph and Twitter meta tags for the top-most image
+      // Set Open Graph and Twitter meta tags for the top-most image (keeping this functionality)
       const ogImageMeta = document.getElementById('og-image-meta');
       const twitterImageMeta = document.getElementById('twitter-image-meta');
       const ogTitleMeta = document.getElementById('og-title-meta');
       const twitterTitleMeta = document.getElementById('twitter-title-meta');
       const ogDescriptionMeta = document.getElementById('og-description-meta');
       const twitterDescriptionMeta = document.getElementById('twitter-description-meta');
-      const ogUrlMeta = document.querySelector('meta[property="og:url"]'); // Get the og:url meta tag
+      const ogUrlMeta = document.querySelector('meta[property="og:url"]');
 
       if (ogImageMeta) ogImageMeta.setAttribute('content', `${window.location.protocol}//${window.location.host}${topMostImageSrc}`);
       if (twitterImageMeta) twitterImageMeta.setAttribute('content', `${window.location.protocol}//${window.location.host}${topMostImageSrc}`);
@@ -330,26 +305,18 @@
       if (twitterTitleMeta) twitterTitleMeta.setAttribute('content', topMostDevice.name || "Newly Added Device");
       if (ogDescriptionMeta) ogDescriptionMeta.setAttribute('content', topMostDescription);
       if (twitterDescriptionMeta) twitterDescriptionMeta.setAttribute('content', topMostDescription);
-      if (ogUrlMeta) ogUrlMeta.setAttribute('content', pageUrl); // Set the canonical URL as og:url
+      if (ogUrlMeta) ogUrlMeta.setAttribute('content', pageUrl);
 
-      console.log("Open Graph and Twitter meta tags updated:");
-      console.log("  og:title:", ogTitleMeta ? ogTitleMeta.content : 'N/A');
-      console.log("  og:description:", ogDescriptionMeta ? ogDescriptionMeta.content : 'N/A');
-      console.log("  og:image:", ogImageMeta ? ogImageMeta.content : 'N/A');
+      console.log("Open Graph and Twitter meta tags updated.");
 
       gallery.innerHTML = imageNumbers.map((num, i) => {
-        const device = imageMap.get(num);
-        const description = device && device.description ? device.description : `Device ID ${num} (No Description)`;
         const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
-
+        // --- IMPORTANT: Removed the .card-description block as per your reference code's view ---
         return `
           <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
             <div class="card-img-container">
-              <img src="${imgSrc}" alt="${description}" loading="lazy"
+              <img src="${imgSrc}" alt="Device ${num}" loading="lazy"
                 onerror="this.closest('.card-wrapper').style.display='none';">
-            </div>
-            <div class="card-description">
-                ${description}
             </div>
             <div class="card-actions">
               <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
@@ -359,13 +326,13 @@
                 <i class="fas fa-phone"></i> Call Now
               </a>
             </div>
-          </div>
-        `;
+          </div>`;
       }).join('');
       console.log("Gallery populated with", imageNumbers.length, "cards.");
 
-      // Call the function to handle mobile scroll and badge animation
+      // --- IMPORTANT: Reverted scroll animation parameters to match your reference code ---
       handleMobileScrollAndBadgeAnimation();
+      // ----------------------------------------------------------------------------------
 
       setTimeout(setupIntersectionObserver, 500);
 
@@ -373,42 +340,39 @@
       console.error("Error loading JSON or rendering gallery:", err);
       const gallery = document.querySelector(".gallery-grid");
       if (gallery) {
-        gallery.innerHTML = `<p style="text-align: center; color: red;">⚠️ Gallery failed to load: ${err.message}. Please try again.</p>`;
+        gallery.innerHTML = `<p style="text-align: center; color: #888;">Gallery failed to load: ${err.message}</p>`;
       }
     }
   }
 
   function handleMobileScrollAndBadgeAnimation() {
-    // Check if it's a mobile portrait view (e.g., width < 600px and height > width)
     const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
     const topMostCard = document.querySelector('.card-wrapper.top-most');
-    const gallery = document.querySelector('.gallery-grid');
-    // Estimate if there's enough content to scroll by checking if gallery height exceeds viewport height
-    const hasEnoughContentToScroll = gallery && gallery.offsetHeight > (window.innerHeight * 0.9); // Check if gallery height is significantly larger than viewport
+    // --- IMPORTANT: Reverted scroll content check to match your reference code ---
+    const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100;
 
     if (isMobilePortrait && hasEnoughContentToScroll) {
-      console.log("Mobile portrait detected with enough content to scroll. Initiating scroll animation.");
-      // Scroll down a bit
-      window.scrollTo({ top: 50, behavior: 'smooth' });
-      // Then scroll back up after a delay
+      console.log("Mobile portrait detected with enough content to scroll.");
       setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        // After scrolling back up, animate the badge
-        if (topMostCard) {
-          setTimeout(() => {
+        // --- IMPORTANT: Reverted scroll amount to match your reference code (150px) ---
+        window.scrollTo({ top: 150, behavior: 'smooth' });
+        console.log("Scrolled down to 150px.");
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          console.log("Scrolled back up to 0px.");
+          if (topMostCard) {
             topMostCard.classList.add('animate-badge');
-            console.log("Added 'animate-badge' class to top-most card after scroll.");
-          }, 200); // Small delay to let scroll finish
-        }
-      }, 700); // Adjust this delay to control how long the scroll-down lasts
+            console.log("Added 'animate-badge' class to top-most card.");
+          }
+        }, 1500); // --- IMPORTANT: Reverted delay to match your reference code (1500ms) ---
+      }, 1000);
     } else {
       console.log("Not mobile portrait or not enough content to scroll, animating badge directly.");
       if (topMostCard) {
-        // Animate the badge directly if no scroll animation is needed
         setTimeout(() => {
           topMostCard.classList.add('animate-badge');
           console.log("Added 'animate-badge' class to top-most card directly.");
-        }, 500); // Delay before badge animation starts
+        }, 500);
       }
     }
   }
@@ -437,24 +401,28 @@
           console.log(`Card ${cardId} is intersecting. Adding 'glow' class.`);
           if (whatsappBtn) {
             whatsappBtn.classList.add('glow');
+            console.log(`- WhatsApp button for ${cardId}: 'glow' added.`);
           }
           if (callBtn) {
             callBtn.classList.add('glow');
+            console.log(`- Call button for ${cardId}: 'glow' added.`);
           }
         } else {
           console.log(`Card ${cardId} is NOT intersecting. Removing 'glow' class.`);
           if (whatsappBtn) {
             whatsappBtn.classList.remove('glow');
+            console.log(`- WhatsApp button for ${cardId}: 'glow' removed.`);
           }
           if (callBtn) {
             callBtn.classList.remove('glow');
+            console.log(`- Call button for ${cardId}: 'glow' removed.`);
           }
         }
       });
     }, {
-      root: null, // relative to the viewport
-      rootMargin: '-40% 0px -40% 0px', // Shrink the viewport's bounds
-      threshold: 0.01 // Trigger when even 1% of the target is visible
+      root: null,
+      rootMargin: '-40% 0px -40% 0px',
+      threshold: 0.01
     });
 
     cardWrappers.forEach(card => {
@@ -463,7 +431,6 @@
     console.log("Intersection Observer set up for", cardWrappers.length, "cards.");
   }
 
-  // Ensure scripts run after the DOM is fully loaded
   window.addEventListener("DOMContentLoaded", loadImagesFromJson);
 </script>
 
