@@ -6,18 +6,18 @@
   <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
   <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
-  
+
   <meta property="og:title" content="Featured Device at SellInSeconds" id="og-title-meta" />
   <meta property="og:description" content="Check out our latest certified pre-owned devices!" id="og-description-meta" />
-  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp" id="og-image-meta" />
+  <meta property="og:image" content="" id="og-image-meta" />
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html" />
   <meta property="og:type" content="website" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Featured Device at SellInSeconds" id="twitter-title-meta" />
   <meta name="twitter:description" content="Check out our latest certified pre-owned devices!" id="twitter-description-meta" />
- <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.webp" id="twitter-image-meta" />
-  
+  <meta name="twitter:image" content="" id="twitter-image-meta" />
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon" />
   <style>
@@ -46,6 +46,7 @@
     }
 
     .card-img-container {
+      /* This ensures all image containers have a consistent 4:3 aspect ratio */
       width: 100%;
       aspect-ratio: 4 / 3; /* maintains consistent shape */
       position: relative;
@@ -59,7 +60,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: contain; /* Ensures the image fits within the container without cropping */
       padding: 10px; /* prevents overlap with borders */
     }
 
@@ -117,7 +118,8 @@
       }
     }
 
-    .card-img-container {
+    /* Original padding-top based aspect ratio, now replaced by aspect-ratio property */
+    /* .card-img-container {
       width: 100%;
       padding-top: 75%;
       position: relative;
@@ -126,7 +128,7 @@
       position: absolute;
       width: 100%; height: 100%;
       object-fit: contain;
-    }
+    } */
 
     .card-description {
       padding: 0 1rem; /* Add padding for the description text */
@@ -347,7 +349,8 @@
                 onerror="this.closest('.card-wrapper').style.display='none';">
             </div>
             <div class="card-description">
-                ${description} </div>
+                ${description}
+            </div>
             <div class="card-actions">
               <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
                 <i class="fab fa-whatsapp"></i> I'm Interested
@@ -356,10 +359,12 @@
                 <i class="fas fa-phone"></i> Call Now
               </a>
             </div>
-          </div>`;
+          </div>
+        `;
       }).join('');
       console.log("Gallery populated with", imageNumbers.length, "cards.");
 
+      // Call the function to handle mobile scroll and badge animation
       handleMobileScrollAndBadgeAnimation();
 
       setTimeout(setupIntersectionObserver, 500);
@@ -374,30 +379,36 @@
   }
 
   function handleMobileScrollAndBadgeAnimation() {
+    // Check if it's a mobile portrait view (e.g., width < 600px and height > width)
     const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
     const topMostCard = document.querySelector('.card-wrapper.top-most');
-    const galleryHeight = topMostCard ? topMostCard.offsetHeight : 0;
-    const hasEnoughContentToScroll = galleryHeight > (window.innerHeight / 2);
+    const gallery = document.querySelector('.gallery-grid');
+    // Estimate if there's enough content to scroll by checking if gallery height exceeds viewport height
+    const hasEnoughContentToScroll = gallery && gallery.offsetHeight > (window.innerHeight * 0.9); // Check if gallery height is significantly larger than viewport
 
     if (isMobilePortrait && hasEnoughContentToScroll) {
-      console.log("Mobile portrait detected with enough content to scroll.");
+      console.log("Mobile portrait detected with enough content to scroll. Initiating scroll animation.");
+      // Scroll down a bit
       window.scrollTo({ top: 50, behavior: 'smooth' });
+      // Then scroll back up after a delay
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        // After scrolling back up, animate the badge
         if (topMostCard) {
           setTimeout(() => {
             topMostCard.classList.add('animate-badge');
             console.log("Added 'animate-badge' class to top-most card after scroll.");
-          }, 200);
+          }, 200); // Small delay to let scroll finish
         }
-      }, 700);
+      }, 700); // Adjust this delay to control how long the scroll-down lasts
     } else {
       console.log("Not mobile portrait or not enough content to scroll, animating badge directly.");
       if (topMostCard) {
+        // Animate the badge directly if no scroll animation is needed
         setTimeout(() => {
           topMostCard.classList.add('animate-badge');
           console.log("Added 'animate-badge' class to top-most card directly.");
-        }, 500);
+        }, 500); // Delay before badge animation starts
       }
     }
   }
