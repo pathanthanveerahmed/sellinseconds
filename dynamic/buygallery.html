@@ -76,7 +76,7 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      fetch('/dynamic/imagedata.json')
+      fetch('https://www.sellinseconds.in/dynamic/imagedata.json')
         .then(res => {
           if (!res.ok) throw new Error('Failed to fetch');
           return res.json();
