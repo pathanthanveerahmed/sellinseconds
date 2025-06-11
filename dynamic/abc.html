@@ -88,14 +88,14 @@
       box-shadow: 0 0 0 3px #e0e0e0,
                   0 0 0 6px var(--card-border-color, #b3d9ff),
                   0 6px 18px rgba(0,0,0,0.1);
-      transition: 0.3s ease, transform 0.3s ease, box-shadow 0.4s ease;
+      transition: box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
     }
 
     .card-wrapper:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 18px rgba(0,0,0,0.1);
+      /* ✅ No transform to prevent image shrinking */
+      box-shadow: 0 10px 18px rgba(0,0,0,0.15);
     }
 
     .card-wrapper.top-most {
@@ -171,7 +171,6 @@
     .action-btn:hover {
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
       border: 1px solid rgba(255, 255, 255, 0.4);
-      transform: translateY(-1px);
     }
 
     .whatsapp-action-btn {
@@ -203,7 +202,6 @@
         if (scrollDownTimeoutId) clearTimeout(scrollDownTimeoutId);
         if (scrollUpTimeoutId) clearTimeout(scrollUpTimeoutId);
         if (badgeAnimationTimeoutId) clearTimeout(badgeAnimationTimeoutId);
-
         window.scrollTo({ top: 0, behavior: 'auto' });
 
         const topCard = document.querySelector('.card-wrapper.top-most');
@@ -220,6 +218,7 @@
 
         const imageMap = new Map(jsonData.images.map(img => [img.id, img]));
         const imageNumbers = jsonData.sequences.find(seq => seq[0] === jsonData.active) || jsonData.sequences[0];
+
         const gallery = document.querySelector(".gallery-grid");
 
         const topMostImageId = imageNumbers[0];
