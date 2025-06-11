@@ -6,23 +6,26 @@
   <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
   <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
-  <meta property="og:title" content="Featured Device at SellInSeconds" />
-  <meta property="og:description" content="Check out our latest certified pre-owned devices!" />
-  <meta property="og:image" content="" />
+
+  <meta property="og:title" content="Featured Device at SellInSeconds" id="og-title-meta" />
+  <meta property="og:description" content="Check out our latest certified pre-owned devices!" id="og-description-meta" />
+  <meta property="og:image" content="" id="og-image-meta" />
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html" />
   <meta property="og:type" content="website" />
+
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Featured Device at SellInSeconds" />
-  <meta name="twitter:description" content="Check out our latest certified pre-owned devices!" />
-  <meta name="twitter:image" content="" />
+  <meta name="twitter:title" content="Featured Device at SellInSeconds" id="twitter-title-meta" />
+  <meta name="twitter:description" content="Check out our latest certified pre-owned devices!" id="twitter-description-meta" />
+  <meta name="twitter:image" content="" id="twitter-image-meta" />
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon" />
+
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
     }
 
     .container {
@@ -44,10 +47,12 @@
       }
     }
 
+    /* Consistent image container sizing */
     .card-img-container {
       width: 100%;
-      padding-top: 75%;
+      aspect-ratio: 4 / 3;
       position: relative;
+      overflow: hidden;
       background-color: #fff;
     }
 
@@ -82,6 +87,7 @@
       --card-border-color: #007bff;
     }
 
+    /* Newly Added Badge Styling */
     .card-wrapper.top-most::before {
       content: 'NEWLY ADDED';
       position: absolute;
@@ -93,9 +99,20 @@
       font-size: 0.8rem;
       font-weight: bold;
       border-radius: 5px;
-      transform: rotate(20deg);
+      transform: rotate(20deg) scaleX(0);
+      transform-origin: center center;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       z-index: 10;
+    }
+
+    .card-wrapper.top-most.animate-badge::before {
+      animation: flipIn 1s forwards;
+    }
+
+    @keyframes flipIn {
+      0% { transform: rotate(20deg) scaleX(0); }
+      50% { transform: rotate(20deg) scaleX(1.2); }
+      100% { transform: rotate(20deg) scaleX(1); }
     }
 
     .card-description {
@@ -133,13 +150,13 @@
       align-items: center;
       gap: 0.5rem;
       position: relative;
-      transition: background-color 0.3s ease, box-shadow 0.5s ease, border-color 0.5s ease;
-      border: 2px solid transparent;
+      transition: background-color 0.3s ease;
+      border: 1px solid transparent;
     }
 
     .action-btn:hover {
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-      border-color: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.6);
     }
 
     .whatsapp-action-btn {
@@ -160,16 +177,21 @@
     const IMAGE_BASE = "https://www.sellinseconds.in/dynamic/images/";
     const JSON_DATA_URL = "data.json";
 
-    let scrollDownTimeoutId, scrollUpTimeoutId, badgeAnimationTimeoutId;
+    let observer;
     let userInterruptedAnimation = false;
+    let scrollDownTimeoutId = null;
+    let scrollUpTimeoutId = null;
+    let badgeAnimationTimeoutId = null;
 
     window.addEventListener('scroll', () => {
       if (!userInterruptedAnimation && (scrollDownTimeoutId || scrollUpTimeoutId || badgeAnimationTimeoutId)) {
         userInterruptedAnimation = true;
-        clearTimeout(scrollDownTimeoutId);
-        clearTimeout(scrollUpTimeoutId);
-        clearTimeout(badgeAnimationTimeoutId);
+        if (scrollDownTimeoutId) clearTimeout(scrollDownTimeoutId);
+        if (scrollUpTimeoutId) clearTimeout(scrollUpTimeoutId);
+        if (badgeAnimationTimeoutId) clearTimeout(badgeAnimationTimeoutId);
+
         window.scrollTo({ top: 0, behavior: 'auto' });
+
         const topCard = document.querySelector('.card-wrapper.top-most');
         if (topCard && !topCard.classList.contains('animate-badge')) {
           topCard.classList.add('animate-badge');
@@ -184,18 +206,36 @@
 
         const imageMap = new Map(jsonData.images.map(img => [img.id, img]));
         const imageNumbers = jsonData.sequences.find(seq => seq[0] === jsonData.active) || jsonData.sequences[0];
+
         const gallery = document.querySelector(".gallery-grid");
+        if (!gallery) return;
+
+        const topMostImageId = imageNumbers[0];
+        const topMostDevice = imageMap.get(topMostImageId);
+        const topMostDescription = topMostDevice?.description || "Latest certified pre-owned devices at SellInSeconds!";
+        const topMostImageSrc = `${IMAGE_BASE}${topMostImageId}.webp`;
+        const pageUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+
+        document.getElementById('og-image-meta')?.setAttribute('content', topMostImageSrc);
+        document.getElementById('twitter-image-meta')?.setAttribute('content', topMostImageSrc);
+        document.getElementById('og-title-meta')?.setAttribute('content', topMostDevice?.name || "Newly Added Device");
+        document.getElementById('twitter-title-meta')?.setAttribute('content', topMostDevice?.name || "Newly Added Device");
+        document.getElementById('og-description-meta')?.setAttribute('content', topMostDescription);
+        document.getElementById('twitter-description-meta')?.setAttribute('content', topMostDescription);
+        document.querySelector('meta[property="og:url"]')?.setAttribute('content', pageUrl);
 
         gallery.innerHTML = imageNumbers.map((num, i) => {
           const device = imageMap.get(num);
-          const description = device?.description || "";
+          const description = device?.description || '';
           const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
+
           return `
             <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
               <div class="card-img-container">
-                <img src="${imgSrc}" alt="${description}" loading="lazy" onerror="this.closest('.card-wrapper').style.display='none';" />
+                <img src="${imgSrc}" alt="${description || `Device ID ${num}`}" loading="lazy"
+                  onerror="this.closest('.card-wrapper').style.display='none';">
               </div>
-              ${description ? `<div class="card-description"><strong>${description}</strong></div>` : ""}
+              ${description ? `<div class="card-description"><strong>${description}</strong></div>` : ''}
               <div class="card-actions">
                 <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
                   <i class="fab fa-whatsapp"></i> I'm Interested
@@ -206,25 +246,33 @@
               </div>
             </div>`;
         }).join('');
-
-        setTimeout(() => {
+                setTimeout(() => {
           if (!userInterruptedAnimation) {
             handleMobileScrollAndBadgeAnimation();
+          } else {
+            const topMostCard = document.querySelector('.card-wrapper.top-most');
+            if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
+              topMostCard.classList.add('animate-badge');
+            }
           }
         }, 1000);
 
+        setTimeout(setupIntersectionObserver, 500);
       } catch (err) {
-        document.querySelector(".gallery-grid").innerHTML = `<p style="text-align:center; color:#888;">⚠️ Unable to load gallery.</p>`;
-        console.error("Gallery loading error:", err);
+        console.error("Error loading JSON or rendering gallery:", err);
+        const gallery = document.querySelector(".gallery-grid");
+        if (gallery) {
+          gallery.innerHTML = `<p style="text-align: center; color: #888;">⚠️ Gallery failed to load: ${err.message}. Please try again.</p>`;
+        }
       }
     }
 
     function handleMobileScrollAndBadgeAnimation() {
-      const isMobile = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
-      const hasEnoughContent = document.body.scrollHeight > window.innerHeight + 100;
-      const topCard = document.querySelector('.card-wrapper.top-most');
+      const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
+      const topMostCard = document.querySelector('.card-wrapper.top-most');
+      const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100;
 
-      if (isMobile && hasEnoughContent) {
+      if (isMobilePortrait && hasEnoughContentToScroll) {
         scrollDownTimeoutId = setTimeout(() => {
           if (userInterruptedAnimation) return;
           window.scrollTo({ top: 150, behavior: 'smooth' });
@@ -235,8 +283,8 @@
 
             badgeAnimationTimeoutId = setTimeout(() => {
               if (userInterruptedAnimation) return;
-              if (topCard && !topCard.classList.contains('animate-badge')) {
-                topCard.classList.add('animate-badge');
+              if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
+                topMostCard.classList.add('animate-badge');
               }
             }, 200);
           }, 1500);
@@ -244,11 +292,38 @@
       } else {
         badgeAnimationTimeoutId = setTimeout(() => {
           if (userInterruptedAnimation) return;
-          if (topCard && !topCard.classList.contains('animate-badge')) {
-            topCard.classList.add('animate-badge');
+          if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
+            topMostCard.classList.add('animate-badge');
           }
         }, 500);
       }
+    }
+
+    function setupIntersectionObserver() {
+      const cards = document.querySelectorAll('.card-wrapper');
+      if (observer) observer.disconnect();
+
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const card = entry.target;
+          const waBtn = card.querySelector('.whatsapp-action-btn');
+          const callBtn = card.querySelector('.call-action-btn');
+
+          if (entry.isIntersecting) {
+            waBtn?.classList.add('glow');
+            callBtn?.classList.add('glow');
+          } else {
+            waBtn?.classList.remove('glow');
+            callBtn?.classList.remove('glow');
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '-10% 0px -10% 0px',
+        threshold: 0.01
+      });
+
+      cards.forEach(card => observer.observe(card));
     }
 
     window.addEventListener("DOMContentLoaded", loadImagesFromJson);
