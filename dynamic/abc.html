@@ -7,12 +7,12 @@
   <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
 
-  <!-- Open Graph / Twitter Meta -->
   <meta property="og:title" content="Featured Device at SellInSeconds" id="og-title-meta" />
   <meta property="og:description" content="Check out our latest certified pre-owned devices!" id="og-description-meta" />
   <meta property="og:image" content="" id="og-image-meta" />
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html" />
   <meta property="og:type" content="website" />
+
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Featured Device at SellInSeconds" id="twitter-title-meta" />
   <meta name="twitter:description" content="Check out our latest certified pre-owned devices!" id="twitter-description-meta" />
@@ -20,20 +20,17 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon" />
-
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
       margin: 0; padding: 0;
     }
-
     .container {
       max-width: 1400px;
       margin: auto;
       padding: 1rem;
     }
-
     .gallery-grid {
       display: grid;
       gap: 1.5rem;
@@ -47,6 +44,7 @@
       }
     }
 
+    /* Consistent image container sizing */
     .card-img-container {
       width: 100%;
       aspect-ratio: 4 / 3;
@@ -57,11 +55,23 @@
 
     .card-img-container img {
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       object-fit: contain;
       padding: 10px;
+    }
+
+    .card-img-container {
+      width: 100%;
+      padding-top: 75%;
+      position: relative;
+    }
+    .card-img-container img {
+      position: absolute;
+      width: 100%; height: 100%;
+      object-fit: contain;
     }
 
     .card-wrapper {
@@ -76,15 +86,14 @@
       display: flex;
       flex-direction: column;
     }
-
     .card-wrapper:hover {
       transform: translateY(-8px);
     }
-
     .card-wrapper.top-most {
       --card-border-color: #007bff;
     }
 
+    /* Newly Added Badge Styling */
     .card-wrapper.top-most::before {
       content: 'NEWLY ADDED';
       position: absolute;
@@ -102,16 +111,24 @@
       z-index: 10;
     }
 
+    /* Animation for the badge, applied via JS */
     .card-wrapper.top-most.animate-badge::before {
       animation: flipIn 1s forwards;
     }
 
     @keyframes flipIn {
-      0% { transform: rotate(20deg) scaleX(0); }
-      50% { transform: rotate(20deg) scaleX(1.2); }
-      100% { transform: rotate(20deg) scaleX(1); }
+      0% {
+        transform: rotate(20deg) scaleX(0);
+      }
+      50% {
+        transform: rotate(20deg) scaleX(1.2);
+      }
+      100% {
+        transform: rotate(20deg) scaleX(1);
+      }
     }
 
+    /* Styles for the image description */
     .card-description {
       padding: 0 1rem;
       margin-top: 0.5rem;
@@ -122,7 +139,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 50px;
+      min-height: 50px; /* Still maintains space if description is empty and div exists */
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
@@ -136,7 +153,6 @@
       padding: 1rem;
       margin-top: auto;
     }
-
     .action-btn {
       color: #fff;
       padding: 0.6rem 1rem;
@@ -147,18 +163,20 @@
       align-items: center;
       gap: 0.5rem;
       position: relative;
-      overflow: hidden;
-      z-index: 1;
+      overflow: hidden; /* Crucial for clipping the expanding ring */
+      transition: background-color 0.3s ease;
+      z-index: 1; /* Ensure button content is above the ring */
     }
 
+    /* Reverted button colors */
     .whatsapp-action-btn {
       background-color: #25d366;
     }
-
     .call-action-btn {
       background-color: #007bff;
     }
 
+    /* Energy Ring Animation */
     .action-btn.glow::before {
       content: '';
       position: absolute;
@@ -168,38 +186,39 @@
       height: 0;
       border-radius: 50%;
       opacity: 0;
-      z-index: -1;
-      transform: translate(-50%, -50%);
-      animation: pulse-ring 2s infinite alternate;
+      z-index: -1; /* Place behind the button text */
+      transform: translate(-50%, -50%); /* Center the ring */
+      animation: pulse-ring 2s infinite alternate; /* Increased duration */
     }
 
+    /* Energy Ring colors matching previous button colors */
     .whatsapp-action-btn.glow::before {
-      background-color: rgba(37, 211, 102, 0.8);
+        background-color: rgba(37, 211, 102, 0.8); /* Green for WhatsApp */
     }
 
     .call-action-btn.glow::before {
-      background-color: rgba(0, 123, 255, 0.8);
+        background-color: rgba(0, 123, 255, 0.8); /* Blue for Call */
     }
 
     @keyframes pulse-ring {
-      0% {
-        width: 0;
-        height: 0;
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(0);
-      }
-      50% {
-        width: 200%;
-        height: 200%;
-        opacity: 0.6;
-        transform: translate(-50%, -50%) scale(1.8);
-      }
-      100% {
-        width: 300%;
-        height: 300%;
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(2.8);
-      }
+        0% {
+            width: 0;
+            height: 0;
+            opacity: 1; /* Starts fully opaque */
+            transform: translate(-50%, -50%) scale(0);
+        }
+        50% {
+            width: 200%; /* Expands to 200% of button size */
+            height: 200%;
+            opacity: 0.6; /* Fades out slightly */
+            transform: translate(-50%, -50%) scale(1.8);
+        }
+        100% {
+            width: 300%; /* Expands to 300% of button size */
+            height: 300%;
+            opacity: 0; /* Fades out completely */
+            transform: translate(-50%, -50%) scale(2.8);
+        }
     }
   </style>
 </head>
@@ -207,7 +226,8 @@
   <div class="container">
     <div class="gallery-grid" id="gallery"></div>
   </div>
-  <script>
+
+<script>
   const IMAGE_BASE = "https://www.sellinseconds.in/dynamic/images/";
   const jsonData = {
     "active": 13, // Active sequence ID is 13
@@ -256,7 +276,7 @@
       { "id": 10, "name": "", "description": "" },
       { "id": 11, "name": "", "description": "" },
       { "id": 12, "name": "", "description": "" },
-      { "id": 13, "name": "ï£¿ iPhone 16 PRO MAX", "description": "ï£¿ iPhone 16 PRO MAX, 1 TB, 100% BATTERY HEALTH, 2 MONTHS OLD, INDIAN VARIANT â¹135000" },
+      { "id": 13, "name": " iPhone 16 PRO MAX", "description": " iPhone 16 PRO MAX, 1 TB, 100% BATTERY HEALTH, 2 MONTHS OLD, INDIAN VARIANT ₹135000" },
       { "id": 14, "name": "", "description": "" },
       { "id": 15, "name": "", "description": "" },
       { "id": 16, "name": "", "description": "" },
@@ -277,70 +297,275 @@
     ]
   };
 
-  function loadImagesFromJson() {
-    const gallery = document.querySelector(".gallery-grid");
-    const map = new Map(jsonData.images.map(img => [img.id, img]));
-    const sequence = jsonData.sequences.find(seq => seq[0] === jsonData.active) || jsonData.sequences[0];
+  let observer;
+  let userInterruptedAnimation = false; // Flag to track if user has manually scrolled and interrupted
+  let scrollDownTimeoutId = null; // To store timeout ID for scroll down animation
+  let scrollUpTimeoutId = null;    // To store timeout ID for scroll up animation
+  let badgeAnimationTimeoutId = null; // To store timeout ID for badge animation
 
-    gallery.innerHTML = sequence.map((num, i) => {
-      const device = map.get(num);
-      const desc = device?.description || "";
-      const imgSrc = IMAGE_BASE + num + ".webp?_=" + Date.now();
+  // Global scroll listener to detect user interaction and interrupt animations
+  window.addEventListener('scroll', () => {
+    // Only react to the first manual scroll that interrupts an animation
+    if (!userInterruptedAnimation && (scrollDownTimeoutId || scrollUpTimeoutId || badgeAnimationTimeoutId)) {
+      userInterruptedAnimation = true; // Mark that user has interrupted
+      console.log("User scrolled, interrupting ongoing initial page animations.");
 
-      return `
-        <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
-          <div class="card-img-container">
-            <img src="${imgSrc}" alt="${desc || 'Device ' + num}" loading="lazy" onerror="this.closest('.card-wrapper').style.display='none';">
-          </div>
-          ${desc ? `<div class="card-description"><strong>${desc}</strong></div>` : ''}
-          <div class="card-actions">
-            <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
-              <i class="fab fa-whatsapp"></i> I'm Interested
-            </a>
-            <a href="tel:+919886566379" class="action-btn call-action-btn">
-              <i class="fas fa-phone"></i> Call Now
-            </a>
-          </div>
-        </div>`;
-    }).join('');
-
-    // ✅ Glow animation fix: Apply to buttons already in view on load
-    document.querySelectorAll('.card-wrapper').forEach(card => {
-      const rect = card.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight && rect.bottom > 0;
-      if (inView) {
-        card.querySelector('.whatsapp-action-btn')?.classList.add('glow');
-        card.querySelector('.call-action-btn')?.classList.add('glow');
+      // Clear any pending scroll timeouts
+      if (scrollDownTimeoutId) {
+        clearTimeout(scrollDownTimeoutId);
+        scrollDownTimeoutId = null;
+        console.log("Cleared scrollDownTimeoutId.");
       }
-    });
+      if (scrollUpTimeoutId) {
+        clearTimeout(scrollUpTimeoutId);
+        scrollUpTimeoutId = null;
+        console.log("Cleared scrollUpTimeoutId.");
+      }
+      if (badgeAnimationTimeoutId) {
+        clearTimeout(badgeAnimationTimeoutId);
+        badgeAnimationTimeoutId = null;
+        console.log("Cleared badgeAnimationTimeoutId.");
+      }
 
-    // Start observer
-    setTimeout(setupIntersectionObserver, 500);
+      // Immediately reset scroll position and ensure badge animation plays
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      console.log("Page scroll reset to top instantly.");
+
+      const topMostCard = document.querySelector('.card-wrapper.top-most');
+      if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
+          topMostCard.classList.add('animate-badge');
+          console.log("Applied 'animate-badge' immediately due to user scroll interruption.");
+      }
+    }
+  }, { passive: true, once: true }); // Use passive listener for better scroll performance; 'once' ensures it fires only on first scroll
+
+  async function loadImagesFromJson() {
+    console.log("loadImagesFromJson started.");
+    try {
+      const json = jsonData;
+      const imageMap = new Map(json.images.map(img => [img.id, img]));
+
+      let imageNumbers = null;
+      for (let i = 0; i < json.sequences.length; i++) {
+        if (json.sequences[i][0] === json.active) {
+          imageNumbers = json.sequences[i];
+          break;
+        }
+      }
+
+      if (!imageNumbers || imageNumbers.length === 0) {
+        console.warn(No sequence found starting with ID ${json.active}. Defaulting to the first available sequence.);
+        imageNumbers = json.sequences[0];
+        if (!imageNumbers || imageNumbers.length === 0) {
+          const gallery = document.querySelector(".gallery-grid");
+          if (gallery) {
+            gallery.innerHTML = <p style="text-align: center; color: #888;">⚠️ No displayable devices. Sequences data is missing or empty.</p>;
+          }
+          return;
+        }
+      }
+
+      const gallery = document.querySelector(".gallery-grid");
+      if (!gallery) {
+        console.error("Error: .gallery-grid element not found.");
+        return;
+      }
+
+      // Identify the top-most image for the meta tags
+      const topMostImageId = imageNumbers[0];
+      const topMostDevice = imageMap.get(topMostImageId);
+      const topMostDescription = topMostDevice && topMostDevice.description ? topMostDevice.description : "Latest certified pre-owned devices at SellInSeconds!";
+      const topMostImageSrc = ${IMAGE_BASE}${topMostImageId}.webp;
+      const pageUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+
+      // Set Open Graph and Twitter meta tags for the top-most image
+      const ogImageMeta = document.getElementById('og-image-meta');
+      const twitterImageMeta = document.getElementById('twitter-image-meta');
+      const ogTitleMeta = document.getElementById('og-title-meta');
+      const twitterTitleMeta = document.getElementById('twitter-title-meta');
+      const ogDescriptionMeta = document.getElementById('og-description-meta');
+      const twitterDescriptionMeta = document.getElementById('twitter-description-meta');
+      const ogUrlMeta = document.querySelector('meta[property="og:url"]');
+
+      if (ogImageMeta) ogImageMeta.setAttribute('content', ${window.location.protocol}//${window.location.host}${topMostImageSrc});
+      if (twitterImageMeta) twitterImageMeta.setAttribute('content', ${window.location.protocol}//${window.location.host}${topMostImageSrc});
+      if (ogTitleMeta) ogTitleMeta.setAttribute('content', topMostDevice.name || "Newly Added Device");
+      if (twitterTitleMeta) twitterTitleMeta.setAttribute('content', topMostDevice.name || "Newly Added Device");
+      if (ogDescriptionMeta) ogDescriptionMeta.setAttribute('content', topMostDescription);
+      if (twitterDescriptionMeta) twitterDescriptionMeta.setAttribute('content', topMostDescription);
+      if (ogUrlMeta) ogUrlMeta.setAttribute('content', pageUrl);
+
+      console.log("Open Graph and Twitter meta tags updated.");
+
+      gallery.innerHTML = imageNumbers.map((num, i) => {
+        const device = imageMap.get(num);
+        const descriptionText = device && device.description ? device.description : '';
+        const imgSrc = ${IMAGE_BASE}${num}.webp?_=${Date.now()};
+
+        // Conditionally render the description div only if descriptionText is not empty
+        const descriptionHtml = descriptionText ? 
+            <div class="card-description">
+                <strong>${descriptionText}</strong>
+            </div> : '';
+
+        return 
+          <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
+            <div class="card-img-container">
+              <img src="${imgSrc}" alt="${descriptionText || Device ID ${num}}" loading="lazy"
+                onerror="this.closest('.card-wrapper').style.display='none';">
+            </div>
+            ${descriptionHtml}
+            <div class="card-actions">
+              <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
+                <i class="fab fa-whatsapp"></i> I'm Interested
+              </a>
+              <a href="tel:+919886566379" class="action-btn call-action-btn">
+                <i class="fas fa-phone"></i> Call Now
+              </a>
+            </div>
+          </div>;
+      }).join('');
+      console.log("Gallery populated with", imageNumbers.length, "cards.");
+
+      // Delay initial animation check to allow for immediate user scroll detection after page load
+      setTimeout(() => {
+        if (!userInterruptedAnimation) { // Only proceed if user hasn't scrolled yet
+          handleMobileScrollAndBadgeAnimation();
+        } else {
+          console.log("User already scrolled before initial animation check. Initial scroll animation skipped.");
+          const topMostCard = document.querySelector('.card-wrapper.top-most');
+          if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
+            topMostCard.classList.add('animate-badge'); // Ensure badge animates even if scroll is skipped
+          }
+        }
+      }, 1000); // 1 second delay to allow initial user input
+
+      // Setup Intersection Observer regardless of initial scroll animation
+      setTimeout(setupIntersectionObserver, 500);
+
+    } catch (err) {
+      console.error("Error loading JSON or rendering gallery:", err);
+      const gallery = document.querySelector(".gallery-grid");
+      if (gallery) {
+        gallery.innerHTML = <p style="text-align: center; color: #888;">⚠️ Gallery failed to load: ${err.message}. Please try again.</p>;
+      }
+    }
+  }
+
+  function handleMobileScrollAndBadgeAnimation() {
+    const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
+    const topMostCard = document.querySelector('.card-wrapper.top-most');
+    const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100;
+
+    if (isMobilePortrait && hasEnoughContentToScroll) {
+      console.log("Mobile portrait detected with enough content to scroll. Initiating scroll animation sequence.");
+
+      scrollDownTimeoutId = setTimeout(() => {
+        if (userInterruptedAnimation) { // Check if user interrupted before executing this step
+          console.log("Scroll down skipped: User interrupted animation.");
+          return;
+        }
+        window.scrollTo({ top: 150, behavior: 'smooth' }); // Scroll down a bit
+        console.log("Page scrolled down to 150px.");
+
+        scrollUpTimeoutId = setTimeout(() => {
+          if (userInterruptedAnimation) { // Check if user interrupted before executing this step
+            console.log("Scroll up skipped: User interrupted animation.");
+            return;
+          }
+          window.scrollTo({ top: 0, behavior: 'smooth' }); // Then scroll back up
+          console.log("Page scrolled back up to 0px.");
+
+          badgeAnimationTimeoutId = setTimeout(() => {
+            if (userInterruptedAnimation) { // Check if user interrupted before executing this step
+              console.log("Badge animation skipped: User interrupted animation during badge animation.");
+              return;
+            }
+            if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
+              topMostCard.classList.add('animate-badge'); // Animate badge after scroll finishes
+              console.log("Added 'animate-badge' class to top-most card after scroll sequence.");
+            }
+            // Clear all timeout IDs after the full sequence is complete
+            scrollDownTimeoutId = null;
+            scrollUpTimeoutId = null;
+            badgeAnimationTimeoutId = null;
+            console.log("Scroll animation sequence completed and cleaned up.");
+          }, 200); // Small delay to let scroll finish before badge animates
+        }, 1500); // Delay before scrolling back up (controls how long it stays scrolled down)
+      }, 0); // Start the first scroll part immediately if conditions met
+    } else {
+      console.log("Not mobile portrait or not enough content to scroll for full animation. Animating badge directly.");
+      if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
+        badgeAnimationTimeoutId = setTimeout(() => {
+          if (userInterruptedAnimation) { // Check if user interrupted before executing this step
+            console.log("Badge animation skipped: User interrupted animation during direct badge animation.");
+            return;
+          }
+          topMostCard.classList.add('animate-badge'); // Animate the badge directly
+          console.log("Added 'animate-badge' class to top-most card directly (no scroll).");
+          badgeAnimationTimeoutId = null; // Clear timeout ID
+          console.log("Direct badge animation completed and cleaned up.");
+        }, 500); // Delay before badge animation starts (if no scroll animation)
+      }
+    }
   }
 
   function setupIntersectionObserver() {
-    const observer = new IntersectionObserver(entries => {
+    const cardWrappers = document.querySelectorAll('.card-wrapper');
+
+    if (cardWrappers.length === 0) {
+      console.warn("No card wrappers found for Intersection Observer. Retrying in 1 second.");
+      setTimeout(setupIntersectionObserver, 1000);
+      return;
+    }
+
+    if (observer) {
+      observer.disconnect();
+      console.log("Disconnected existing Intersection Observer.");
+    }
+
+    observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        const card = entry.target;
-        const whatsappBtn = card.querySelector('.whatsapp-action-btn');
-        const callBtn = card.querySelector('.call-action-btn');
+        const cardId = entry.target.dataset.imageId || 'N/A';
+        const whatsappBtn = entry.target.querySelector('.whatsapp-action-btn');
+        const callBtn = entry.target.querySelector('.call-action-btn');
+
         if (entry.isIntersecting) {
-          whatsappBtn?.classList.add('glow');
-          callBtn?.classList.add('glow');
+          console.log(Card ${cardId} is intersecting. Adding 'glow' class.);
+          if (whatsappBtn) {
+            whatsappBtn.classList.add('glow');
+            // Force reflow/repaint to restart animation if needed (though 'alternate' handles most cases)
+            void whatsappBtn.offsetWidth;
+          }
+          if (callBtn) {
+            callBtn.classList.add('glow');
+            void callBtn.offsetWidth;
+          }
         } else {
-          whatsappBtn?.classList.remove('glow');
-          callBtn?.classList.remove('glow');
+          console.log(Card ${cardId} is NOT intersecting. Removing 'glow' class.);
+          if (whatsappBtn) {
+            whatsappBtn.classList.remove('glow');
+          }
+          if (callBtn) {
+            callBtn.classList.remove('glow');
+          }
         }
       });
     }, {
-      threshold: 0.01,
-      rootMargin: '-10% 0px -10% 0px'
+      root: null, // relative to the viewport
+      rootMargin: '-10% 0px -10% 0px', // Adjusted to make animation more visible earlier
+      threshold: 0.01 // Trigger when even 1% of the target is visible
     });
 
-    document.querySelectorAll('.card-wrapper').forEach(card => observer.observe(card));
+    cardWrappers.forEach(card => {
+      observer.observe(card);
+    });
+    console.log("Intersection Observer set up for", cardWrappers.length, "cards.");
   }
 
+  // Ensure scripts run after the DOM is fully loaded
   window.addEventListener("DOMContentLoaded", loadImagesFromJson);
 </script>
+
 </body>
 </html>
