@@ -163,7 +163,7 @@
       align-items: center;
       gap: 0.5rem;
       position: relative;
-      overflow: hidden;
+      overflow: hidden; /* Crucial for clipping the expanding ring */
       transition: background-color 0.3s ease;
       z-index: 1; /* Ensure button content is above the ring */
     }
@@ -188,7 +188,7 @@
       opacity: 0;
       z-index: -1; /* Place behind the button text */
       transform: translate(-50%, -50%); /* Center the ring */
-      animation: pulse-ring 1.5s infinite alternate;
+      animation: pulse-ring 2s infinite alternate; /* Increased duration */
     }
 
     /* Energy Ring colors matching previous button colors */
@@ -204,20 +204,20 @@
         0% {
             width: 0;
             height: 0;
-            opacity: 0.8;
+            opacity: 1; /* Starts fully opaque */
             transform: translate(-50%, -50%) scale(0);
         }
         50% {
-            width: 150%; /* Adjust size as needed */
-            height: 150%;
-            opacity: 0.4;
-            transform: translate(-50%, -50%) scale(1.2);
+            width: 200%; /* Expands to 200% of button size */
+            height: 200%;
+            opacity: 0.6; /* Fades out slightly */
+            transform: translate(-50%, -50%) scale(1.8);
         }
         100% {
-            width: 200%; /* Adjust size as needed */
-            height: 200%;
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(1.5);
+            width: 300%; /* Expands to 300% of button size */
+            height: 300%;
+            opacity: 0; /* Fades out completely */
+            transform: translate(-50%, -50%) scale(2.8);
         }
     }
   </style>
@@ -478,7 +478,7 @@
 
           badgeAnimationTimeoutId = setTimeout(() => {
             if (userInterruptedAnimation) { // Check if user interrupted before executing this step
-              console.log("Badge animation skipped: User interrupted animation.");
+              console.log("Badge animation skipped: User interrupted animation during badge animation.");
               return;
             }
             if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
