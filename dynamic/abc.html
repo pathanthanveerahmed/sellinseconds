@@ -46,7 +46,7 @@
 
     .card-img-container {
       width: 100%;
-      padding-top: 75%; /* 4:3 Aspect Ratio (3/4 * 100%) */
+      padding-top: 75%; /* Sets a 4:3 aspect ratio based on width */
       position: relative;
       overflow: hidden;
       background-color: #fff;
@@ -58,8 +58,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      padding: 10px; /* To prevent images from touching edges */
+      object-fit: contain; /* Keep contain if you don't want cropping */
+      /* Removed padding: 10px; from here */
     }
 
     .card-wrapper {
@@ -217,7 +217,7 @@
   const IMAGE_BASE = "https://www.sellinseconds.in/dynamic/images/";
   const JSON_DATA_URL = "data.json";
 
-  let observer; // Keep observer for IntersectionObserver
+  let observer;
 
   async function loadImagesFromJson() {
     try {
@@ -231,7 +231,6 @@
       let imageNumbers = jsonData.sequences.find(seq => seq[0] === jsonData.active);
 
       if (!imageNumbers || imageNumbers.length === 0) {
-        // Fallback to the first sequence if `active` isn't found or sequence is empty
         console.warn(`No sequence found starting with ID ${jsonData.active}. Defaulting to the first available sequence.`);
         imageNumbers = jsonData.sequences[0];
         if (!imageNumbers || imageNumbers.length === 0) {
@@ -246,7 +245,6 @@
         return;
       }
 
-      // Update Open Graph and Twitter meta tags using the first device in the sequence
       const topMostImageId = imageNumbers[0];
       const topMostDevice = imageMap.get(topMostImageId);
 
@@ -295,7 +293,6 @@
           </div>`;
       }).join('');
 
-      // Directly apply badge animation and set up Intersection Observer
       document.querySelector('.card-wrapper.top-most')?.classList.add('animate-badge');
       setupIntersectionObserver();
 
@@ -313,7 +310,6 @@
       return;
     }
 
-    // Disconnect any existing observer to prevent duplicates if function is called multiple times
     if (observer) {
       observer.disconnect();
     }
