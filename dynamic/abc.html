@@ -440,7 +440,15 @@
           }
         }
       }, 1000); // 1 second delay to allow initial user input
-
+// Ensure glow class for buttons visible on load
+document.querySelectorAll('.card-wrapper').forEach(card => {
+  const rect = card.getBoundingClientRect();
+  const inView = rect.top < window.innerHeight && rect.bottom > 0;
+  if (inView) {
+    card.querySelector('.whatsapp-action-btn')?.classList.add('glow');
+    card.querySelector('.call-action-btn')?.classList.add('glow');
+  }
+});
       // Setup Intersection Observer regardless of initial scroll animation
       setTimeout(setupIntersectionObserver, 500);
 
@@ -512,18 +520,6 @@
   }
 
   function setupIntersectionObserver() {
-  // Apply glow to buttons that are initially visible
-const initialVisibleCards = document.querySelectorAll('.card-wrapper');
-initialVisibleCards.forEach(card => {
-  const rect = card.getBoundingClientRect();
-  const inView = rect.top < window.innerHeight && rect.bottom > 0;
-  if (inView) {
-    const whatsappBtn = card.querySelector('.whatsapp-action-btn');
-    const callBtn = card.querySelector('.call-action-btn');
-    if (whatsappBtn) whatsappBtn.classList.add('glow');
-    if (callBtn) callBtn.classList.add('glow');
-  }
-});
     const cardWrappers = document.querySelectorAll('.card-wrapper');
 
     if (cardWrappers.length === 0) {
