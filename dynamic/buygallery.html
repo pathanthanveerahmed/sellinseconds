@@ -9,14 +9,14 @@
 
   <meta property="og:title" content="Featured Device at SellInSeconds" id="og-title-meta" />
   <meta property="og:description" content="Check out our latest certified pre-owned devices!" id="og-description-meta" />
- <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.jpeg" />
+ <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.jpg" />
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html" />
   <meta property="og:type" content="website" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Featured Device at SellInSeconds" id="twitter-title-meta" />
   <meta name="twitter:description" content="Check out our latest certified pre-owned devices!" id="twitter-description-meta" />
- <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.jpeg" />
+ <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/thumbnail.jpg" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon" />
@@ -311,7 +311,7 @@
       const topMostImageId = imageNumbers[0];
       const topMostDevice = imageMap.get(topMostImageId);
       const topMostDescription = topMostDevice && topMostDevice.description ? topMostDevice.description : "Latest certified pre-owned devices at SellInSeconds!";
-      const topMostImageSrc = `${IMAGE_BASE}${topMostImageId}.jpeg`;
+      const topMostImageSrc = `${IMAGE_BASE}${topMostImageId}.jpg`;
       const pageUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
 
       const ogImageMeta = document.getElementById('og-image-meta');
@@ -334,7 +334,7 @@
       gallery.innerHTML = imageNumbers.map((num, i) => {
         const device = imageMap.get(num);
         const descriptionText = device && device.description ? device.description : '';
-        const imgSrc = `${IMAGE_BASE}${num}.jpeg?_=${Date.now()}`;
+        const imgSrc = `${IMAGE_BASE}${num}.jpg?_=${Date.now()}`;
 
         const descriptionHtml = descriptionText ? `
             <div class="card-description">
