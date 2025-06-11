@@ -44,8 +44,7 @@
       }
     }
 
-    /* --- IMPORTANT: Exact CSS for .card-img-container from your reference code --- */
-    /* The order and redundancy here are specifically to match your exact reference */
+    /* Consistent image container sizing (retains previous logic) */
     .card-img-container {
       width: 100%;
       aspect-ratio: 4 / 3; /* maintains consistent shape */
@@ -64,23 +63,22 @@
       padding: 10px; /* prevents overlap with borders */
     }
 
-    /* This rule will override the aspect-ratio above for height calculation,
-       matching your reference code's behavior for image sizing precisely. */
+    /* This rule overrides aspect-ratio to ensure 4:3 fixed height with padding-top method
+       This matches your reference code's precise behavior for image sizing. */
     .card-img-container {
       width: 100%;
-      padding-top: 75%; /* This was the key to your desired view's fixed ratio */
-      position: relative; /* Redefined, kept for exact match with reference */
+      padding-top: 75%;
+      position: relative;
     }
     .card-img-container img {
-      position: absolute; /* Redefined, kept for exact match with reference */
-      width: 100%; height: 100%; /* Redefined, kept for exact match with reference */
-      object-fit: contain; /* Redefined, kept for exact match with reference */
+      position: absolute;
+      width: 100%; height: 100%;
+      object-fit: contain;
     }
-    /* ----------------------------------------------------------------------------- */
 
 
-    /* --- IMPORTANT: Removed display:flex and flex-direction from .card-wrapper --- */
-    /* This matches your reference code's .card-wrapper styling precisely */
+    /* --- IMPORTANT: Re-added flex properties for .card-wrapper --- */
+    /* This allows the description to take space and buttons to push to bottom */
     .card-wrapper {
       background: #fff;
       border-radius: 12px;
@@ -90,7 +88,8 @@
                   0 0 0 6px var(--card-border-color, #b3d9ff),
                   0 6px 18px rgba(0,0,0,0.1);
       transition: 0.3s ease;
-      /* Removed display:flex and flex-direction:column to match your reference view */
+      display: flex; /* Re-added */
+      flex-direction: column; /* Re-added */
     }
     .card-wrapper:hover {
       transform: translateY(-8px);
@@ -134,14 +133,30 @@
       }
     }
 
-    /* --- REMOVED .card-description CSS, as the HTML block for it is also removed --- */
-    /* This section is intentionally left out to match the reference view */
+    /* --- IMPORTANT: Re-added .card-description CSS --- */
+    .card-description {
+      padding: 0 1rem; /* Add padding for the description text */
+      margin-top: 0.5rem; /* Space between image and description */
+      font-size: 0.95rem;
+      color: #333;
+      text-align: center; /* Center the description */
+      flex-grow: 1; /* Allow description to take up available space */
+      display: flex; /* Use flex to vertically center text if needed */
+      align-items: center; /* Vertically center text if it's a single line */
+      justify-content: center; /* Horizontally center text */
+      min-height: 50px; /* Ensure a minimum height for consistent layout */
+      overflow: hidden; /* Hide overflow if description is too long */
+      text-overflow: ellipsis; /* Add ellipsis for long descriptions */
+      display: -webkit-box; /* For multi-line ellipsis */
+      -webkit-line-clamp: 3; /* Limit to 3 lines */
+      -webkit-box-orient: vertical;
+    }
 
     .card-actions {
       display: flex;
       justify-content: space-around;
       padding: 1rem;
-      /* margin-top: auto; is removed because .card-wrapper is no longer flex-column */
+      margin-top: auto; /* Re-added: Push buttons to the bottom of the card */
     }
     .action-btn {
       color: #fff;
@@ -267,7 +282,6 @@
   async function loadImagesFromJson() {
     console.log("loadImagesFromJson started.");
     try {
-      // Using the local jsonData variable directly
       const json = jsonData;
       const imageMap = new Map(json.images.map(img => [img.id, img]));
 
@@ -324,13 +338,19 @@
       console.log("Open Graph and Twitter meta tags updated.");
 
       gallery.innerHTML = imageNumbers.map((num, i) => {
+        const device = imageMap.get(num);
+        // Get the description, default if not found
+        const description = device && device.description ? device.description : `Device ID ${num} (No Description)`;
         const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
-        // Removed the .card-description block to match your reference code's view
+
         return `
           <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
             <div class="card-img-container">
-              <img src="${imgSrc}" alt="Device ${num}" loading="lazy"
+              <img src="${imgSrc}" alt="${description}" loading="lazy"
                 onerror="this.closest('.card-wrapper').style.display='none';">
+            </div>
+            <div class="card-description">
+                ${description}
             </div>
             <div class="card-actions">
               <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
@@ -361,7 +381,6 @@
   function handleMobileScrollAndBadgeAnimation() {
     const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
     const topMostCard = document.querySelector('.card-wrapper.top-most');
-    // Using the original body.scrollHeight check for content
     const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100;
 
     if (isMobilePortrait && hasEnoughContentToScroll) {
