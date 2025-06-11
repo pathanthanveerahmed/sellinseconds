@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -163,7 +164,7 @@
       align-items: center;
       gap: 0.5rem;
       position: relative;
-      /* REMOVED: overflow: hidden; */
+      overflow: hidden; /* Crucial for clipping the expanding ring */
       transition: background-color 0.3s ease;
       z-index: 1; /* Ensure button content is above the ring */
     }
@@ -189,7 +190,6 @@
       z-index: -1; /* Place behind the button text */
       transform: translate(-50%, -50%); /* Center the ring */
       animation: pulse-ring 2s infinite alternate; /* Increased duration */
-      overflow: visible; /* ADDED THIS LINE */
     }
 
     /* Energy Ring colors matching previous button colors */
@@ -512,6 +512,18 @@
   }
 
   function setupIntersectionObserver() {
+  // Apply glow to buttons that are initially visible
+const initialVisibleCards = document.querySelectorAll('.card-wrapper');
+initialVisibleCards.forEach(card => {
+  const rect = card.getBoundingClientRect();
+  const inView = rect.top < window.innerHeight && rect.bottom > 0;
+  if (inView) {
+    const whatsappBtn = card.querySelector('.whatsapp-action-btn');
+    const callBtn = card.querySelector('.call-action-btn');
+    if (whatsappBtn) whatsappBtn.classList.add('glow');
+    if (callBtn) callBtn.classList.add('glow');
+  }
+});
     const cardWrappers = document.querySelectorAll('.card-wrapper');
 
     if (cardWrappers.length === 0) {
