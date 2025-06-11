@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-M" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
   <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
@@ -47,7 +47,7 @@
     /* Consistent image container sizing */
     .card-img-container {
       width: 100%;
-      aspect-ratio: 4 / 3; /* maintains consistent shape */
+      aspect-ratio: 4 / 3;
       position: relative;
       overflow: hidden;
       background-color: #fff;
@@ -59,11 +59,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Ensures the image fits within the container without cropping */
-      padding: 10px; /* prevents overlap with borders */
+      object-fit: contain;
+      padding: 10px;
     }
 
-    /* This rule overrides aspect-ratio to ensure 4:3 fixed height with padding-top method */
     .card-img-container {
       width: 100%;
       padding-top: 75%;
@@ -74,7 +73,6 @@
       width: 100%; height: 100%;
       object-fit: contain;
     }
-
 
     .card-wrapper {
       background: #fff;
@@ -107,7 +105,7 @@
       font-size: 0.8rem;
       font-weight: bold;
       border-radius: 5px;
-      transform: rotate(20deg) scaleX(0); /* Start scaled down to 0 for flip effect */
+      transform: rotate(20deg) scaleX(0);
       transform-origin: center center;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       z-index: 10;
@@ -115,7 +113,7 @@
 
     /* Animation for the badge, applied via JS */
     .card-wrapper.top-most.animate-badge::before {
-      animation: flipIn 1s forwards; /* Animation for the flip effect */
+      animation: flipIn 1s forwards;
     }
 
     @keyframes flipIn {
@@ -123,7 +121,7 @@
         transform: rotate(20deg) scaleX(0);
       }
       50% {
-        transform: rotate(20deg) scaleX(1.2); /* Overshoot for a "bounce" effect */
+        transform: rotate(20deg) scaleX(1.2);
       }
       100% {
         transform: rotate(20deg) scaleX(1);
@@ -164,10 +162,18 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      position: relative; /* Needed for pseudo-elements */
-      overflow: hidden; /* Hide parts of the ring that expand too far */
+      position: relative;
+      overflow: hidden;
       transition: background-color 0.3s ease;
       z-index: 1; /* Ensure button content is above the ring */
+    }
+
+    /* Reverted button colors */
+    .whatsapp-action-btn {
+      background-color: #25d366;
+    }
+    .call-action-btn {
+      background-color: #007bff;
     }
 
     /* Energy Ring Animation */
@@ -185,13 +191,13 @@
       animation: pulse-ring 1.5s infinite alternate;
     }
 
-    /* Specific colors for the energy rings */
+    /* Energy Ring colors matching previous button colors */
     .whatsapp-action-btn.glow::before {
-        background-color: rgba(255, 0, 255, 0.8); /* Magenta for WhatsApp */
+        background-color: rgba(37, 211, 102, 0.8); /* Green for WhatsApp */
     }
 
     .call-action-btn.glow::before {
-        background-color: rgba(255, 165, 0, 0.8); /* Vibrant Orange for Call */
+        background-color: rgba(0, 123, 255, 0.8); /* Blue for Call */
     }
 
     @keyframes pulse-ring {
@@ -239,7 +245,7 @@
       [10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11],
       [11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12],
       [12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13],
-      [13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14], // This sequence now starts with 13
+      [13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14],
       [14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15],
       [15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16],
       [16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,30,29,28,27,26,25,24,23,22,21,20,19,18,17],
@@ -269,8 +275,8 @@
       { "id": 9, "name": "", "description": "" },
       { "id": 10, "name": "", "description": "" },
       { "id": 11, "name": "", "description": "" },
-      { "id": 12, "name": "", "description": "" }, // Description for ID 12 is intentionally empty
-      { "id": 13, "name": " iPhone 16 PRO MAX", "description": " iPhone 16 PRO MAX, 1 TB, 100% BATTERY HEALTH, 2 MONTHS OLD, INDIAN VARIANT ₹135000" }, // iPhone 16 Pro Max with description is now ID 13
+      { "id": 12, "name": "", "description": "" },
+      { "id": 13, "name": " iPhone 16 PRO MAX", "description": " iPhone 16 PRO MAX, 1 TB, 100% BATTERY HEALTH, 2 MONTHS OLD, INDIAN VARIANT ₹135000" },
       { "id": 14, "name": "", "description": "" },
       { "id": 15, "name": "", "description": "" },
       { "id": 16, "name": "", "description": "" },
@@ -292,12 +298,44 @@
   };
 
   let observer;
-  let hasUserScrolled = false; // Flag to track user scroll activity
+  let hasUserScrolled = false; // Flag to track if user has scrolled at any point
+  let scrollDownTimeoutId = null; // To store timeout ID for scroll down animation
+  let scrollUpTimeoutId = null;    // To store timeout ID for scroll up animation
+  let badgeAnimationTimeoutId = null; // To store timeout ID for badge animation
 
-  // Listen for any scroll event
+  // Global scroll listener to detect user interaction and interrupt animations
   window.addEventListener('scroll', () => {
-    hasUserScrolled = true;
-  }, { once: true }); // Only need to detect the first scroll
+    // This check ensures we only react to the first manual scroll during the animation window
+    if (!hasUserScrolled) {
+      hasUserScrolled = true; // Mark that user has scrolled
+      console.log("User scrolled, attempting to interrupt initial page animations.");
+
+      // Clear any pending scroll timeouts
+      if (scrollDownTimeoutId) {
+        clearTimeout(scrollDownTimeoutId);
+        scrollDownTimeoutId = null;
+        console.log("Cleared scrollDownTimeoutId.");
+      }
+      if (scrollUpTimeoutId) {
+        clearTimeout(scrollUpTimeoutId);
+        scrollUpTimeoutId = null;
+        console.log("Cleared scrollUpTimeoutId.");
+      }
+      // If the badge animation was tied to the interrupted scroll sequence, trigger it immediately
+      if (badgeAnimationTimeoutId) {
+        clearTimeout(badgeAnimationTimeoutId);
+        badgeAnimationTimeoutId = null;
+        console.log("Cleared badgeAnimationTimeoutId.");
+      }
+
+      // Ensure the badge animation still plays on the top-most card if it hasn't yet
+      const topMostCard = document.querySelector('.card-wrapper.top-most');
+      if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
+          topMostCard.classList.add('animate-badge');
+          console.log("Applied 'animate-badge' immediately due to user scroll interruption.");
+      }
+    }
+  }, { passive: true }); // Use passive listener for better scroll performance
 
   async function loadImagesFromJson() {
     console.log("loadImagesFromJson started.");
@@ -369,7 +407,8 @@
                 onerror="this.closest('.card-wrapper').style.display='none';">
             </div>
             <div class="card-description">
-                <strong>${description}</strong> </div>
+                <strong>${description}</strong>
+            </div>
             <div class="card-actions">
               <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
                 <i class="fab fa-whatsapp"></i> I'm Interested
@@ -382,20 +421,20 @@
       }).join('');
       console.log("Gallery populated with", imageNumbers.length, "cards.");
 
-      // Check for user scroll before initiating animations
+      // Delay initial animation check to allow for user scroll detection right after page load
       setTimeout(() => {
-        if (!hasUserScrolled) {
+        if (!hasUserScrolled) { // Only proceed if user hasn't scrolled yet
           handleMobileScrollAndBadgeAnimation();
         } else {
-          console.log("User scrolled, skipping initial scroll and badge animation.");
+          console.log("User already scrolled before initial animation check. Initial scroll animation skipped.");
           const topMostCard = document.querySelector('.card-wrapper.top-most');
-          if (topMostCard) {
-            // If user scrolled, still animate the badge immediately without scroll to ensure visibility
-            topMostCard.classList.add('animate-badge');
+          if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
+            topMostCard.classList.add('animate-badge'); // Ensure badge animates even if scroll is skipped
           }
         }
-      }, 1000); // Give 1 second for user scroll detection
+      }, 1000); // 1 second delay to allow initial user scroll input
 
+      // Setup Intersection Observer regardless of initial scroll animation
       setTimeout(setupIntersectionObserver, 500);
 
     } catch (err) {
@@ -410,29 +449,43 @@
   function handleMobileScrollAndBadgeAnimation() {
     const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
     const topMostCard = document.querySelector('.card-wrapper.top-most');
+    // Check if there's enough content to scroll to begin with
     const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100;
 
     if (isMobilePortrait && hasEnoughContentToScroll) {
-      console.log("Mobile portrait detected with enough content to scroll. Initiating scroll animation.");
-      window.scrollTo({ top: 150, behavior: 'smooth' }); // Scroll down a bit
-      console.log("Scrolled down to 150px.");
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // Then scroll back up
-        console.log("Scrolled back up to 0px.");
-        if (topMostCard) {
-          setTimeout(() => {
-            topMostCard.classList.add('animate-badge'); // Animate badge after scroll finishes
-            console.log("Added 'animate-badge' class to top-most card after scroll.");
-          }, 200); // Small delay to let scroll finish
-        }
-      }, 1500); // Adjust this delay to control how long the scroll-down lasts
+      console.log("Mobile portrait detected with enough content to scroll. Initiating scroll animation sequence.");
+
+      scrollDownTimeoutId = setTimeout(() => {
+        if (hasUserScrolled) return; // Exit if user scrolled during this delay
+        window.scrollTo({ top: 150, behavior: 'smooth' }); // Scroll down a bit
+        console.log("Page scrolled down to 150px.");
+
+        scrollUpTimeoutId = setTimeout(() => {
+          if (hasUserScrolled) return; // Exit if user scrolled during scroll-down phase
+          window.scrollTo({ top: 0, behavior: 'smooth' }); // Then scroll back up
+          console.log("Page scrolled back up to 0px.");
+
+          badgeAnimationTimeoutId = setTimeout(() => {
+            if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
+              topMostCard.classList.add('animate-badge'); // Animate badge after scroll finishes
+              console.log("Added 'animate-badge' class to top-most card after scroll sequence.");
+            }
+            // Clear all timeout IDs after the full sequence is complete
+            scrollDownTimeoutId = null;
+            scrollUpTimeoutId = null;
+            badgeAnimationTimeoutId = null;
+          }, 200); // Small delay to let scroll finish before badge animates
+        }, 1500); // Delay before scrolling back up (controls how long it stays scrolled down)
+      }, 0); // Start the first scroll part immediately if conditions met
     } else {
-      console.log("Not mobile portrait or not enough content to scroll, animating badge directly.");
-      if (topMostCard) {
-        setTimeout(() => {
-          topMostCard.classList.add('animate-badge'); // Animate the badge directly if no scroll animation is needed
-          console.log("Added 'animate-badge' class to top-most card directly.");
-        }, 500); // Delay before badge animation starts
+      console.log("Not mobile portrait or not enough content to scroll for full animation. Animating badge directly.");
+      if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
+        badgeAnimationTimeoutId = setTimeout(() => {
+          if (hasUserScrolled) return; // Exit if user scrolled during this delay
+          topMostCard.classList.add('animate-badge'); // Animate the badge directly
+          console.log("Added 'animate-badge' class to top-most card directly (no scroll).");
+          badgeAnimationTimeoutId = null; // Clear timeout ID
+        }, 500); // Delay before badge animation starts (if no scroll animation)
       }
     }
   }
@@ -461,27 +514,26 @@
           console.log(`Card ${cardId} is intersecting. Adding 'glow' class.`);
           if (whatsappBtn) {
             whatsappBtn.classList.add('glow');
-            console.log(`- WhatsApp button for ${cardId}: 'glow' added.`);
+            // Force reflow/repaint to restart animation if needed (though 'alternate' handles most cases)
+            void whatsappBtn.offsetWidth;
           }
           if (callBtn) {
             callBtn.classList.add('glow');
-            console.log(`- Call button for ${cardId}: 'glow' added.`);
+            void callBtn.offsetWidth;
           }
         } else {
           console.log(`Card ${cardId} is NOT intersecting. Removing 'glow' class.`);
           if (whatsappBtn) {
             whatsappBtn.classList.remove('glow');
-            console.log(`- WhatsApp button for ${cardId}: 'glow' removed.`);
           }
           if (callBtn) {
             callBtn.classList.remove('glow');
-            console.log(`- Call button for ${cardId}: 'glow' removed.`);
           }
         }
       });
     }, {
       root: null, // relative to the viewport
-      rootMargin: '-40% 0px -40% 0px', // Shrink the viewport's bounds
+      rootMargin: '-40% 0px -40% 0px', // Shrink the viewport's bounds to make intersection harder
       threshold: 0.01 // Trigger when even 1% of the target is visible
     });
 
