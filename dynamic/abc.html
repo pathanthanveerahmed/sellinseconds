@@ -4,33 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
-  <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
+  <meta name="description" content="Get instant deals on certified pre-owned smartphones, tablets, and laptops at SellInSeconds. Fast pickup, verified devices, great prices.">
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://www.sellinseconds.in" crossorigin />
 
-  <meta property="og:title" content="Featured Device at SellInSeconds" id="og-title-meta" />
-  <meta property="og:description" content="Check out our latest certified pre-owned devices!" id="og-description-meta" />
-  <meta property="og:image" content="" id="og-image-meta" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Buy & Sell Pre-Owned Smartphones & Gadgets | SellInSeconds" />
+  <meta property="og:description" content="Great deals on certified used smartphones and gadgets. Fast pickup & instant quote." />
+  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/1.webp" id="og-image-meta" />
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html" />
   <meta property="og:type" content="website" />
 
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Featured Device at SellInSeconds" id="twitter-title-meta" />
-  <meta name="twitter:description" content="Check out our latest certified pre-owned devices!" id="twitter-description-meta" />
-  <meta name="twitter:image" content="" id="twitter-image-meta" />
+  <meta name="twitter:title" content="Buy & Sell Pre-Owned Devices | SellInSeconds" />
+  <meta name="twitter:description" content="Instant deals on certified used gadgets. Fast pickup & verified devices." />
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/1.webp" id="twitter-image-meta" />
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProductCollectionPage",
+    "name": "SellInSeconds - Pre-Owned Gadgets",
+    "description": "Certified used phones, tablets, and laptops. Get an instant quote or buy pre-owned devices from trusted sellers.",
+    "url": "https://www.sellinseconds.in/dynamic/buygallery.html"
+  }
+  </script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon" />
-  <style>
+    <style>
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
     }
+
     .container {
       max-width: 1400px;
       margin: auto;
       padding: 1rem;
     }
+
     .gallery-grid {
       display: grid;
       gap: 1.5rem;
@@ -44,10 +62,9 @@
       }
     }
 
-    /* Consistent image container sizing */
     .card-img-container {
       width: 100%;
-      aspect-ratio: 4 / 3;
+      height: 240px;
       position: relative;
       overflow: hidden;
       background-color: #fff;
@@ -55,24 +72,10 @@
 
     .card-img-container img {
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       object-fit: contain;
       padding: 10px;
-    }
-
-    .card-img-container {
-      width: 100%;
-      padding-top: 75%;
-      position: relative;
-    }
-    .card-img-container img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
     }
 
     .card-wrapper {
@@ -87,14 +90,11 @@
       display: flex;
       flex-direction: column;
     }
-    .card-wrapper:hover {
-      transform: translateY(-8px);
-    }
+
     .card-wrapper.top-most {
       --card-border-color: #007bff;
     }
 
-    /* Newly Added Badge Styling */
     .card-wrapper.top-most::before {
       content: 'NEWLY ADDED';
       position: absolute;
@@ -112,41 +112,26 @@
       z-index: 10;
     }
 
-    /* Animation for the badge, applied via JS */
     .card-wrapper.top-most.animate-badge::before {
       animation: flipIn 1s forwards;
     }
 
     @keyframes flipIn {
-      0% {
-        transform: rotate(20deg) scaleX(0);
-      }
-      50% {
-        transform: rotate(20deg) scaleX(1.2);
-      }
-      100% {
-        transform: rotate(20deg) scaleX(1);
-      }
+      0% { transform: rotate(20deg) scaleX(0); }
+      50% { transform: rotate(20deg) scaleX(1.2); }
+      100% { transform: rotate(20deg) scaleX(1); }
     }
 
-    /* Styles for the image description */
     .card-description {
       padding: 0 1rem;
       margin-top: 0.5rem;
       font-size: 0.95rem;
       color: #333;
       text-align: center;
-      flex-grow: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       min-height: 50px;
-      /* Still maintains space if description is empty and div exists */
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
+      line-height: 1.4;
+      white-space: normal;
+      overflow: visible;
     }
 
     .card-actions {
@@ -155,6 +140,7 @@
       padding: 1rem;
       margin-top: auto;
     }
+
     .action-btn {
       color: #fff;
       padding: 0.6rem 1rem;
@@ -165,62 +151,21 @@
       align-items: center;
       gap: 0.5rem;
       position: relative;
-      overflow: hidden;
-      transition: background-color 0.3s ease;
-      z-index: 1; /* Ensure button content is above the ring */
+      border: 1px solid transparent;
+      transition: background-color 0.3s ease, box-shadow 0.4s ease, border-color 0.4s ease;
     }
 
-    /* Reverted button colors */
+    .action-btn:hover {
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
     .whatsapp-action-btn {
       background-color: #25d366;
     }
+
     .call-action-btn {
       background-color: #007bff;
-    }
-
-    /* Energy Ring Animation */
-    .action-btn.glow::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      opacity: 0;
-      z-index: -1; /* Place behind the button text */
-      transform: translate(-50%, -50%); /* Center the ring */
-      animation: pulse-ring 1.5s infinite alternate;
-    }
-
-    /* Energy Ring colors matching previous button colors */
-    .whatsapp-action-btn.glow::before {
-        background-color: rgba(37, 211, 102, 0.8); /* Green for WhatsApp */
-    }
-
-    .call-action-btn.glow::before {
-        background-color: rgba(0, 123, 255, 0.8); /* Blue for Call */
-    }
-
-    @keyframes pulse-ring {
-        0% {
-            width: 0;
-            height: 0;
-            opacity: 0.8;
-            transform: translate(-50%, -50%) scale(0);
-        }
-        50% {
-            width: 150%; /* Adjust size as needed */
-            height: 150%;
-            opacity: 0.4;
-            transform: translate(-50%, -50%) scale(1.2);
-        }
-        100% {
-            width: 200%; /* Adjust size as needed */
-            height: 200%;
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(1.5);
-        }
     }
   </style>
 </head>
@@ -229,266 +174,128 @@
     <div class="gallery-grid" id="gallery"></div>
   </div>
 
-<script>
-  const IMAGE_BASE = "https://www.sellinseconds.in/dynamic/images/";
-  const JSON_DATA_URL = "data.json"; // Path to your external JSON file
+  <script>
+    const IMAGE_BASE = "https://www.sellinseconds.in/dynamic/images/";
+    const JSON_DATA_URL = "data.json";
 
-  let observer;
-  let userInterruptedAnimation = false;
-  let scrollDownTimeoutId = null;
-  let scrollUpTimeoutId = null;
-  let badgeAnimationTimeoutId = null;
+    let scrollDownTimeoutId = null;
+    let scrollUpTimeoutId = null;
+    let badgeAnimationTimeoutId = null;
+    let userInterruptedAnimation = false;
 
-  window.addEventListener('scroll', () => {
-    if (!userInterruptedAnimation && (scrollDownTimeoutId || scrollUpTimeoutId || badgeAnimationTimeoutId)) {
-      userInterruptedAnimation = true;
-      console.log("User scrolled, interrupting ongoing initial page animations.");
+    window.addEventListener('scroll', () => {
+      if (!userInterruptedAnimation && (scrollDownTimeoutId || scrollUpTimeoutId || badgeAnimationTimeoutId)) {
+        userInterruptedAnimation = true;
+        if (scrollDownTimeoutId) clearTimeout(scrollDownTimeoutId);
+        if (scrollUpTimeoutId) clearTimeout(scrollUpTimeoutId);
+        if (badgeAnimationTimeoutId) clearTimeout(badgeAnimationTimeoutId);
+        window.scrollTo({ top: 0, behavior: 'auto' });
 
-      if (scrollDownTimeoutId) {
-        clearTimeout(scrollDownTimeoutId);
-        scrollDownTimeoutId = null;
-        console.log("Cleared scrollDownTimeoutId.");
+        const topCard = document.querySelector('.card-wrapper.top-most');
+        if (topCard && !topCard.classList.contains('animate-badge')) {
+          topCard.classList.add('animate-badge');
+        }
       }
-      if (scrollUpTimeoutId) {
-        clearTimeout(scrollUpTimeoutId);
-        scrollUpTimeoutId = null;
-        console.log("Cleared scrollUpTimeoutId.");
-      }
-      if (badgeAnimationTimeoutId) {
-        clearTimeout(badgeAnimationTimeoutId);
-        badgeAnimationTimeoutId = null;
-        console.log("Cleared badgeAnimationTimeoutId.");
-      }
+    }, { passive: true, once: true });
 
-      window.scrollTo({ top: 0, behavior: 'auto' });
-      console.log("Page scroll reset to top instantly.");
+    async function loadImagesFromJson() {
+      try {
+        const response = await fetch(JSON_DATA_URL);
+        const jsonData = await response.json();
 
-      const topMostCard = document.querySelector('.card-wrapper.top-most');
-      if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
-          topMostCard.classList.add('animate-badge');
-          console.log("Applied 'animate-badge' immediately due to user scroll interruption.");
+        const imageMap = new Map(jsonData.images.map(img => [img.id, img]));
+        const imageNumbers = jsonData.sequences.find(seq => seq[0] === jsonData.active) || jsonData.sequences[0];
+
+        const gallery = document.querySelector(".gallery-grid");
+
+        const topMostImageId = imageNumbers[0];
+        const topMostDevice = imageMap.get(topMostImageId);
+        const topMostDescription = topMostDevice?.description || "Latest certified pre-owned devices at SellInSeconds!";
+        const topMostImageSrc = `${IMAGE_BASE}${topMostImageId}.webp`;
+        const pageUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+
+        document.getElementById('og-image-meta')?.setAttribute('content', topMostImageSrc);
+        document.getElementById('twitter-image-meta')?.setAttribute('content', topMostImageSrc);
+        document.getElementById('og-title-meta')?.setAttribute('content', topMostDevice?.name || "Newly Added Device");
+        document.getElementById('twitter-title-meta')?.setAttribute('content', topMostDevice?.name || "Newly Added Device");
+        document.getElementById('og-description-meta')?.setAttribute('content', topMostDescription);
+        document.getElementById('twitter-description-meta')?.setAttribute('content', topMostDescription);
+        document.querySelector('meta[property="og:url"]')?.setAttribute('content', pageUrl);
+
+        gallery.innerHTML = imageNumbers.map((num, i) => {
+          const device = imageMap.get(num);
+          const description = device?.description || '';
+          const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
+
+          return `
+            <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
+              <div class="card-img-container">
+                <img src="${imgSrc}" alt="${description}" loading="lazy"
+                  onerror="this.closest('.card-wrapper').style.display='none';" />
+              </div>
+              ${description ? `<div class="card-description"><strong>${description}</strong></div>` : ""}
+              <div class="card-actions">
+                <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
+                  <i class="fab fa-whatsapp"></i> I'm Interested
+                </a>
+                <a href="tel:+919886566379" class="action-btn call-action-btn">
+                  <i class="fas fa-phone"></i> Call Now
+                </a>
+              </div>
+            </div>`;
+        }).join('');
+
+        setTimeout(() => {
+          if (!userInterruptedAnimation) {
+            handleMobileScrollAndBadgeAnimation();
+          } else {
+            const topMostCard = document.querySelector('.card-wrapper.top-most');
+            if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
+              topMostCard.classList.add('animate-badge');
+            }
+          }
+        }, 1000);
+      } catch (err) {
+        const gallery = document.querySelector(".gallery-grid");
+        if (gallery) {
+          gallery.innerHTML = `<p style="text-align: center; color: #888;">⚠️ Gallery failed to load: ${err.message}. Please try again.</p>`;
+        }
       }
     }
-  }, { passive: true, once: true });
 
-  async function loadImagesFromJson() {
-    console.log("loadImagesFromJson started.");
-    try {
-      // Fetch the JSON data from the external file
-      const response = await fetch(JSON_DATA_URL);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const jsonData = await response.json();
+    function handleMobileScrollAndBadgeAnimation() {
+      const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
+      const topMostCard = document.querySelector('.card-wrapper.top-most');
+      const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100;
 
-      const imageMap = new Map(jsonData.images.map(img => [img.id, img]));
-      let imageNumbers = null;
-      for (let i = 0; i < jsonData.sequences.length; i++) {
-        if (jsonData.sequences[i][0] === jsonData.active) {
-          imageNumbers = jsonData.sequences[i];
-          break;
-        }
-      }
+      if (isMobilePortrait && hasEnoughContentToScroll) {
+        scrollDownTimeoutId = setTimeout(() => {
+          if (userInterruptedAnimation) return;
+          window.scrollTo({ top: 150, behavior: 'smooth' });
 
-      if (!imageNumbers || imageNumbers.length === 0) {
-        console.warn(`No sequence found starting with ID ${jsonData.active}. Defaulting to the first available sequence.`);
-        imageNumbers = jsonData.sequences[0];
-        if (!imageNumbers || imageNumbers.length === 0) {
-          const gallery = document.querySelector(".gallery-grid");
-          if (gallery) {
-            gallery.innerHTML = `<p style="text-align: center; color: #888;">â ï¸ No displayable devices. Sequences data is missing or empty.</p>`;
-          }
-          return;
-        }
-      }
+          scrollUpTimeoutId = setTimeout(() => {
+            if (userInterruptedAnimation) return;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      const gallery = document.querySelector(".gallery-grid");
-      if (!gallery) {
-        console.error("Error: .gallery-grid element not found.");
-        return;
-      }
-
-      const topMostImageId = imageNumbers[0];
-      const topMostDevice = imageMap.get(topMostImageId);
-      const topMostDescription = topMostDevice && topMostDevice.description ? topMostDevice.description : "Latest certified pre-owned devices at SellInSeconds!";
-      const topMostImageSrc = `${IMAGE_BASE}${topMostImageId}.webp`;
-      const pageUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
-
-      const ogImageMeta = document.getElementById('og-image-meta');
-      const twitterImageMeta = document.getElementById('twitter-image-meta');
-      const ogTitleMeta = document.getElementById('og-title-meta');
-      const twitterTitleMeta = document.getElementById('twitter-title-meta');
-      const ogDescriptionMeta = document.getElementById('og-description-meta');
-      const twitterDescriptionMeta = document.getElementById('twitter-description-meta');
-      const ogUrlMeta = document.querySelector('meta[property="og:url"]');
-
-      if (ogImageMeta) ogImageMeta.setAttribute('content', `${window.location.protocol}//${window.location.host}${topMostImageSrc}`);
-      if (twitterImageMeta) twitterImageMeta.setAttribute('content', `${window.location.protocol}//${window.location.host}${topMostImageSrc}`);
-      if (ogTitleMeta) ogTitleMeta.setAttribute('content', topMostDevice.name || "Newly Added Device");
-      if (twitterTitleMeta) twitterTitleMeta.setAttribute('content', topMostDevice.name || "Newly Added Device");
-      if (ogDescriptionMeta) ogDescriptionMeta.setAttribute('content', topMostDescription);
-      if (twitterDescriptionMeta) twitterDescriptionMeta.setAttribute('content', topMostDescription);
-      if (ogUrlMeta) ogUrlMeta.setAttribute('content', pageUrl);
-      console.log("Open Graph and Twitter meta tags updated.");
-
-      gallery.innerHTML = imageNumbers.map((num, i) => {
-        const device = imageMap.get(num);
-        const descriptionText = device && device.description ? device.description : '';
-        const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
-
-        const descriptionHtml = descriptionText ? `
-            <div class="card-description">
-                <strong>${descriptionText}</strong>
-            </div>` : '';
-
-        return `
-          <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
-            <div class="card-img-container">
-              <img src="${imgSrc}" alt="${descriptionText || `Device ID ${num}`}" loading="lazy"
-                onerror="this.closest('.card-wrapper').style.display='none';">
-            </div>
-            ${descriptionHtml}
-            <div class="card-actions">
-              <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
-                <i class="fab fa-whatsapp"></i> I'm Interested
-              </a>
-              <a href="tel:+919886566379" class="action-btn call-action-btn">
-                <i class="fas fa-phone"></i> Call Now
-              </a>
-            </div>
-          </div>`;
-      }).join('');
-      console.log("Gallery populated with", imageNumbers.length, "cards.");
-
-      setTimeout(() => {
-        if (!userInterruptedAnimation) {
-          handleMobileScrollAndBadgeAnimation();
-        } else {
-          console.log("User already scrolled before initial animation check. Initial scroll animation skipped.");
-          const topMostCard = document.querySelector('.card-wrapper.top-most');
+            badgeAnimationTimeoutId = setTimeout(() => {
+              if (userInterruptedAnimation) return;
+              if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
+                topMostCard.classList.add('animate-badge');
+              }
+            }, 200);
+          }, 1500);
+        }, 0);
+      } else {
+        badgeAnimationTimeoutId = setTimeout(() => {
+          if (userInterruptedAnimation) return;
           if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
             topMostCard.classList.add('animate-badge');
           }
-        }
-      }, 1000);
-
-      setTimeout(setupIntersectionObserver, 500);
-    } catch (err) {
-      console.error("Error loading JSON or rendering gallery:", err);
-      const gallery = document.querySelector(".gallery-grid");
-      if (gallery) {
-        gallery.innerHTML = `<p style="text-align: center; color: #888;">â ï¸ Gallery failed to load: ${err.message}. Please try again.</p>`;
-      }
-    }
-  }
-
-  function handleMobileScrollAndBadgeAnimation() {
-    const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
-    const topMostCard = document.querySelector('.card-wrapper.top-most');
-    const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100;
-    if (isMobilePortrait && hasEnoughContentToScroll) {
-      console.log("Mobile portrait detected with enough content to scroll. Initiating scroll animation sequence.");
-      scrollDownTimeoutId = setTimeout(() => {
-        if (userInterruptedAnimation) {
-          console.log("Scroll down skipped: User interrupted animation.");
-          return;
-        }
-        window.scrollTo({ top: 150, behavior: 'smooth' });
-        console.log("Page scrolled down to 150px.");
-
-        scrollUpTimeoutId = setTimeout(() => {
-          if (userInterruptedAnimation) {
-            console.log("Scroll up skipped: User interrupted animation.");
-            return;
-          }
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          console.log("Page scrolled back up to 0px.");
-
-          badgeAnimationTimeoutId = setTimeout(() => {
-            if (userInterruptedAnimation) {
-              console.log("Badge animation skipped: User interrupted animation.");
-              return;
-            }
-            if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
-              topMostCard.classList.add('animate-badge');
-              console.log("Added 'animate-badge' class to top-most card after scroll sequence.");
-            }
-            scrollDownTimeoutId = null;
-            scrollUpTimeoutId = null;
-            badgeAnimationTimeoutId = null;
-            console.log("Scroll animation sequence completed and cleaned up.");
-          }, 200);
-        }, 1500);
-      }, 0);
-    } else {
-      console.log("Not mobile portrait or not enough content to scroll for full animation. Animating badge directly.");
-      if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
-        badgeAnimationTimeoutId = setTimeout(() => {
-          if (userInterruptedAnimation) {
-            console.log("Badge animation skipped: User interrupted animation during direct badge animation.");
-            return;
-          }
-          topMostCard.classList.add('animate-badge');
-          console.log("Added 'animate-badge' class to top-most card directly (no scroll).");
-          badgeAnimationTimeoutId = null;
-          console.log("Direct badge animation completed and cleaned up.");
         }, 500);
       }
     }
-  }
 
-  function setupIntersectionObserver() {
-    const cardWrappers = document.querySelectorAll('.card-wrapper');
-    if (cardWrappers.length === 0) {
-      console.warn("No card wrappers found for Intersection Observer. Retrying in 1 second.");
-      setTimeout(setupIntersectionObserver, 1000);
-      return;
-    }
-
-    if (observer) {
-      observer.disconnect();
-      console.log("Disconnected existing Intersection Observer.");
-    }
-
-    observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const cardId = entry.target.dataset.imageId || 'N/A';
-        const whatsappBtn = entry.target.querySelector('.whatsapp-action-btn');
-        const callBtn = entry.target.querySelector('.call-action-btn');
-
-        if (entry.isIntersecting) {
-          console.log(`Card ${cardId} is intersecting. Adding 'glow' class.`);
-          if (whatsappBtn) {
-            whatsappBtn.classList.add('glow');
-            void whatsappBtn.offsetWidth;
-          }
-          if (callBtn) {
-            callBtn.classList.add('glow');
-            void callBtn.offsetWidth;
-          }
-        } else {
-          console.log(`Card ${cardId} is NOT intersecting. Removing 'glow' class.`);
-          if (whatsappBtn) {
-            whatsappBtn.classList.remove('glow');
-          }
-          if (callBtn) {
-            callBtn.classList.remove('glow');
-          }
-        }
-      });
-    }, {
-      root: null,
-      rootMargin: '-10% 0px -10% 0px',
-      threshold: 0.01
-    });
-    cardWrappers.forEach(card => {
-      observer.observe(card);
-    });
-    console.log("Intersection Observer set up for", cardWrappers.length, "cards.");
-  }
-
-  window.addEventListener("DOMContentLoaded", loadImagesFromJson);
-</script>
-
+    window.addEventListener("DOMContentLoaded", loadImagesFromJson);
+  </script>
 </body>
 </html>
