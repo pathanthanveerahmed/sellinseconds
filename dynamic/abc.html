@@ -58,8 +58,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Keep contain if you don't want cropping */
-      /* Removed padding: 10px; from here */
+      object-fit: cover; /* CHANGED from 'contain' to 'cover' */
+      /* No padding here, as it was effectively removed by original CSS cascade */
     }
 
     .card-wrapper {
