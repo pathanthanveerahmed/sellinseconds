@@ -44,23 +44,28 @@
       }
     }
 
-    .card-img-container {
-      width: 100%;
-      padding-top: 75%; /* Sets a 4:3 aspect ratio based on width */
-      position: relative;
-      overflow: hidden;
-      background-color: #fff;
-    }
+ .card-img-container {
+  width: 100%;
+  padding-top: 80%; /* Slightly taller than 4:3 for better spacing */
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+}
 
-    .card-img-container img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* CHANGED from 'contain' to 'cover' */
-      /* No padding here, as it was effectively removed by original CSS cascade */
-    }
+.card-img-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;        /* Prevents zoom/crop */
+  padding: 10px;              /* Clean spacing inside container */
+  transition: transform 0.3s ease; /* Smooth animation */
+}
+
+.card-img-container:hover img {
+  transform: scale(1.03); /* Slight zoom effect */
+}
 
     .card-wrapper {
       background: #fff;
