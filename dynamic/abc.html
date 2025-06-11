@@ -47,19 +47,7 @@
       }
     }
 
-    .card-wrapper {
-      background: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 0 0 3px #e0e0e0,
-                  0 0 0 6px var(--card-border-color, #b3d9ff),
-                  0 6px 18px rgba(0,0,0,0.1);
-      transition: 0.3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-
+    /* ✅ Proper aspect-ratio maintained, no image size shrink */
     .card-img-container {
       width: 100%;
       aspect-ratio: 4 / 3;
@@ -76,6 +64,55 @@
       height: 100%;
       object-fit: contain;
       padding: 10px;
+    }
+
+    .card-wrapper {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 0 3px #e0e0e0,
+                  0 0 0 6px var(--card-border-color, #b3d9ff),
+                  0 6px 18px rgba(0,0,0,0.1);
+      transition: 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-wrapper:hover {
+      transform: translateY(-8px);
+    }
+
+    .card-wrapper.top-most {
+      --card-border-color: #007bff;
+    }
+
+    /* ✅ Visible, animated "NEWLY ADDED" badge */
+    .card-wrapper.top-most::before {
+      content: 'NEWLY ADDED';
+      position: absolute;
+      top: 10px;
+      right: -10px;
+      background-color: #ff4d4d;
+      color: white;
+      padding: 5px 15px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border-radius: 5px;
+      transform: rotate(20deg) scaleX(0);
+      transform-origin: center center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+
+    .card-wrapper.top-most.animate-badge::before {
+      animation: flipIn 1s forwards;
+    }
+
+    @keyframes flipIn {
+      0% { transform: rotate(20deg) scaleX(0); }
+      50% { transform: rotate(20deg) scaleX(1.2); }
+      100% { transform: rotate(20deg) scaleX(1); }
     }
 
     .card-description {
@@ -101,6 +138,8 @@
       justify-content: space-around;
       padding: 1rem;
       margin-top: auto;
+      position: relative;
+      overflow: hidden;
     }
 
     .action-btn {
@@ -126,7 +165,7 @@
       background-color: #007bff;
     }
 
-    /* ✅ Elegant White Border Sweep — Subtle Ray */
+    /* ✅ Subtle white border sweep on load */
     .action-btn::before {
       content: "";
       position: absolute;
@@ -165,15 +204,34 @@
 </head>
 <body>
   <div class="container">
-    <div class="gallery-grid" id="gallery">
-      <!-- Cards will be inserted here dynamically -->
-    </div>
+    <div class="gallery-grid" id="gallery"></div>
   </div>
 
   <script>
     const IMAGE_BASE = "https://www.sellinseconds.in/dynamic/images/";
     const JSON_DATA_URL = "data.json";
+
     let observer;
+    let userInterruptedAnimation = false;
+    let scrollDownTimeoutId = null;
+    let scrollUpTimeoutId = null;
+    let badgeAnimationTimeoutId = null;
+
+    window.addEventListener('scroll', () => {
+      if (!userInterruptedAnimation && (scrollDownTimeoutId || scrollUpTimeoutId || badgeAnimationTimeoutId)) {
+        userInterruptedAnimation = true;
+        if (scrollDownTimeoutId) clearTimeout(scrollDownTimeoutId);
+        if (scrollUpTimeoutId) clearTimeout(scrollUpTimeoutId);
+        if (badgeAnimationTimeoutId) clearTimeout(badgeAnimationTimeoutId);
+
+        window.scrollTo({ top: 0, behavior: 'auto' });
+
+        const topCard = document.querySelector('.card-wrapper.top-most');
+        if (topCard && !topCard.classList.contains('animate-badge')) {
+          topCard.classList.add('animate-badge');
+        }
+      }
+    }, { passive: true, once: true });
 
     async function loadImagesFromJson() {
       try {
@@ -181,22 +239,20 @@
         const jsonData = await response.json();
 
         const imageMap = new Map(jsonData.images.map(img => [img.id, img]));
-        const sequence = jsonData.sequences.find(seq => seq[0] === jsonData.active) || jsonData.sequences[0];
-
+        const imageNumbers = jsonData.sequences.find(seq => seq[0] === jsonData.active) || jsonData.sequences[0];
         const gallery = document.querySelector(".gallery-grid");
 
-        gallery.innerHTML = sequence.map((num, i) => {
+        gallery.innerHTML = imageNumbers.map((num, i) => {
           const device = imageMap.get(num);
-          const desc = device?.description || "";
+          const description = device?.description || "";
           const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
-
           return `
             <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
               <div class="card-img-container">
-                <img src="${imgSrc}" alt="${desc}" loading="lazy"
+                <img src="${imgSrc}" alt="${description}" loading="lazy"
                   onerror="this.closest('.card-wrapper').style.display='none';" />
               </div>
-              ${desc ? `<div class="card-description"><strong>${desc}</strong></div>` : ""}
+              ${description ? `<div class="card-description"><strong>${description}</strong></div>` : ""}
               <div class="card-actions">
                 <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
                   <i class="fab fa-whatsapp"></i> I'm Interested
@@ -205,24 +261,70 @@
                   <i class="fas fa-phone"></i> Call Now
                 </a>
               </div>
-            </div>
-          `;
+            </div>`;
         }).join('');
-                setTimeout(setupIntersectionObserver, 500);
+                setTimeout(() => {
+          if (!userInterruptedAnimation) {
+            handleMobileScrollAndBadgeAnimation();
+          } else {
+            const topCard = document.querySelector('.card-wrapper.top-most');
+            if (topCard && !topCard.classList.contains('animate-badge')) {
+              topCard.classList.add('animate-badge');
+            }
+          }
+        }, 1000);
+
+        setTimeout(setupIntersectionObserver, 500);
 
       } catch (err) {
-        document.querySelector(".gallery-grid").innerHTML = `
-          <p style="text-align:center; color:#888;">⚠️ Unable to load gallery. Please try again later.</p>`;
-        console.error("Error loading JSON:", err);
+        const gallery = document.querySelector(".gallery-grid");
+        gallery.innerHTML = `<p style="text-align: center; color: #888;">⚠️ Failed to load gallery.</p>`;
+        console.error("Error loading or rendering gallery:", err);
+      }
+    }
+
+    function handleMobileScrollAndBadgeAnimation() {
+      const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
+      const hasScrollableContent = document.body.scrollHeight > window.innerHeight + 100;
+      const topCard = document.querySelector('.card-wrapper.top-most');
+
+      if (isMobilePortrait && hasScrollableContent) {
+        scrollDownTimeoutId = setTimeout(() => {
+          if (userInterruptedAnimation) return;
+          window.scrollTo({ top: 150, behavior: 'smooth' });
+
+          scrollUpTimeoutId = setTimeout(() => {
+            if (userInterruptedAnimation) return;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            badgeAnimationTimeoutId = setTimeout(() => {
+              if (userInterruptedAnimation) return;
+              if (topCard && !topCard.classList.contains('animate-badge')) {
+                topCard.classList.add('animate-badge');
+              }
+            }, 200);
+          }, 1500);
+        }, 0);
+      } else {
+        // Just animate badge directly
+        badgeAnimationTimeoutId = setTimeout(() => {
+          if (userInterruptedAnimation) return;
+          if (topCard && !topCard.classList.contains('animate-badge')) {
+            topCard.classList.add('animate-badge');
+          }
+        }, 500);
       }
     }
 
     function setupIntersectionObserver() {
+      const cards = document.querySelectorAll('.card-wrapper');
+      if (observer) observer.disconnect();
+
       observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          const el = entry.target;
-          const waBtn = el.querySelector('.whatsapp-action-btn');
-          const callBtn = el.querySelector('.call-action-btn');
+          const card = entry.target;
+          const waBtn = card.querySelector('.whatsapp-action-btn');
+          const callBtn = card.querySelector('.call-action-btn');
 
           if (entry.isIntersecting) {
             waBtn?.classList.add('glow');
@@ -233,11 +335,12 @@
           }
         });
       }, {
+        root: null,
         rootMargin: '-10% 0px -10% 0px',
         threshold: 0.01
       });
 
-      document.querySelectorAll('.card-wrapper').forEach(card => observer.observe(card));
+      cards.forEach(card => observer.observe(card));
     }
 
     window.addEventListener("DOMContentLoaded", loadImagesFromJson);
