@@ -6,7 +6,6 @@
   <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
   <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
-
   <meta property="og:title" content="Featured Device at SellInSeconds" id="og-title-meta" />
   <meta property="og:description" content="Check out our latest certified pre-owned devices!" id="og-description-meta" />
   <meta property="og:image" content="" id="og-image-meta" />
@@ -16,7 +15,6 @@
   <meta name="twitter:title" content="Featured Device at SellInSeconds" id="twitter-title-meta" />
   <meta name="twitter:description" content="Check out our latest certified pre-owned devices!" id="twitter-description-meta" />
   <meta name="twitter:image" content="" id="twitter-image-meta" />
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://www.sellinseconds.in/fevicon.ico" rel="icon" type="image/x-icon" />
 
@@ -47,7 +45,6 @@
       }
     }
 
-    /* ✅ Proper aspect-ratio maintained, no image size shrink */
     .card-img-container {
       width: 100%;
       aspect-ratio: 4 / 3;
@@ -87,7 +84,6 @@
       --card-border-color: #007bff;
     }
 
-    /* ✅ Visible, animated "NEWLY ADDED" badge */
     .card-wrapper.top-most::before {
       content: 'NEWLY ADDED';
       position: absolute;
@@ -165,7 +161,7 @@
       background-color: #007bff;
     }
 
-    /* ✅ Subtle white border sweep on load */
+    /* ✅ Initial white border sweep */
     .action-btn::before {
       content: "";
       position: absolute;
@@ -200,8 +196,46 @@
         opacity: 0;
       }
     }
-      </style>
-</head>
+
+    /* ✅ Continuous glow while in viewport */
+    .action-btn.glow::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      opacity: 0.6;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      animation: pulse-ring 2s infinite ease-in-out;
+      background-color: rgba(255, 255, 255, 0.3);
+      pointer-events: none;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0);
+      }
+      50% {
+        width: 180%;
+        height: 180%;
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+      100% {
+        width: 240%;
+        height: 240%;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.6);
+      }
+    }
+  </style>
+  </head>
 <body>
   <div class="container">
     <div class="gallery-grid" id="gallery"></div>
@@ -240,6 +274,7 @@
 
         const imageMap = new Map(jsonData.images.map(img => [img.id, img]));
         const imageNumbers = jsonData.sequences.find(seq => seq[0] === jsonData.active) || jsonData.sequences[0];
+
         const gallery = document.querySelector(".gallery-grid");
 
         gallery.innerHTML = imageNumbers.map((num, i) => {
@@ -306,7 +341,7 @@
           }, 1500);
         }, 0);
       } else {
-        // Just animate badge directly
+        // Animate badge directly without scroll
         badgeAnimationTimeoutId = setTimeout(() => {
           if (userInterruptedAnimation) return;
           if (topCard && !topCard.classList.contains('animate-badge')) {
