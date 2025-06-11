@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Glow Animation Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0; padding: 2rem;
+    }
+
+    .card-actions {
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: visible;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
+    .action-btn {
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+      background-color: #25d366;
+      z-index: 1;
+    }
+
+    .action-btn.glow::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      opacity: 0.6;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      animation: pulse-ring 1.5s infinite ease-in-out;
+      background-color: rgba(37, 211, 102, 0.6);
+      pointer-events: none;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        width: 0;
+        height: 0;
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(0);
+      }
+      50% {
+        width: 180%;
+        height: 180%;
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+      100% {
+        width: 250%;
+        height: 250%;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-actions">
+    <a href="#" class="action-btn glow">
+      <i class="fab fa-whatsapp"></i> I'm Interested
+    </a>
+  </div>
+
+</body>
+</html>
