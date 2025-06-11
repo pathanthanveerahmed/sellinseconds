@@ -266,3 +266,83 @@
             card.querySelector('.call-action-btn')?.classList.add('glow');
           }
         });
+                // Continue loadImagesFromJson after glow
+        setTimeout(() => {
+          if (!userInterruptedAnimation) {
+            handleMobileScrollAndBadgeAnimation();
+          } else {
+            const topMostCard = document.querySelector('.card-wrapper.top-most');
+            topMostCard?.classList.add('animate-badge');
+          }
+        }, 1000);
+
+        setTimeout(setupIntersectionObserver, 500);
+      } catch (err) {
+        console.error("Error loading JSON or rendering gallery:", err);
+        const gallery = document.querySelector(".gallery-grid");
+        if (gallery) {
+          gallery.innerHTML = `<p style="text-align: center; color: #888;">⚠️ Gallery failed to load: ${err.message}. Please try again.</p>`;
+        }
+      }
+    }
+
+    function handleMobileScrollAndBadgeAnimation() {
+      const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
+      const topMostCard = document.querySelector('.card-wrapper.top-most');
+      const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100;
+      if (isMobilePortrait && hasEnoughContentToScroll) {
+        scrollDownTimeoutId = setTimeout(() => {
+          if (userInterruptedAnimation) return;
+          window.scrollTo({ top: 150, behavior: 'smooth' });
+
+          scrollUpTimeoutId = setTimeout(() => {
+            if (userInterruptedAnimation) return;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            badgeAnimationTimeoutId = setTimeout(() => {
+              if (userInterruptedAnimation) return;
+              topMostCard?.classList.add('animate-badge');
+            }, 200);
+          }, 1500);
+        }, 0);
+      } else {
+        badgeAnimationTimeoutId = setTimeout(() => {
+          if (userInterruptedAnimation) return;
+          topMostCard?.classList.add('animate-badge');
+        }, 500);
+      }
+    }
+
+    function setupIntersectionObserver() {
+      const cardWrappers = document.querySelectorAll('.card-wrapper');
+      if (!cardWrappers.length) return;
+
+      if (observer) observer.disconnect();
+
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const card = entry.target;
+          const whatsappBtn = card.querySelector('.whatsapp-action-btn');
+          const callBtn = card.querySelector('.call-action-btn');
+
+          if (entry.isIntersecting) {
+            whatsappBtn?.classList.add('glow');
+            callBtn?.classList.add('glow');
+          } else {
+            whatsappBtn?.classList.remove('glow');
+            callBtn?.classList.remove('glow');
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '-10% 0px -10% 0px',
+        threshold: 0.01
+      });
+
+      cardWrappers.forEach(card => observer.observe(card));
+    }
+
+    window.addEventListener("DOMContentLoaded", loadImagesFromJson);
+  </script>
+</body>
+</html>
