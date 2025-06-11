@@ -190,6 +190,40 @@
     opacity: 0;
   }
 }
+/* ✅ Clean border animation using a real child element */
+.border-anim {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  z-index: 0;
+  animation: borderSweepAnim 4s ease-in-out infinite;
+}
+
+@keyframes borderSweepAnim {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
 </style>
 </head>
 <body>
@@ -317,12 +351,15 @@
             </div>
             ${descriptionHtml}
             <div class="card-actions">
-              <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
-                <i class="fab fa-whatsapp"></i> I'm Interested
-              </a>
-              <a href="tel:+919886566379" class="action-btn call-action-btn">
-                <i class="fas fa-phone"></i> Call Now
-              </a>
+              <a href="https://wa.me/919886566379?text=Interested..." target="_blank" class="action-btn whatsapp-action-btn">
+  <span class="border-anim"></span>
+  <i class="fab fa-whatsapp"></i> I'm Interested
+</a>
+
+<a href="tel:+919886566379" class="action-btn call-action-btn">
+  <span class="border-anim"></span>
+  <i class="fas fa-phone"></i> Call Now
+</a>
             </div>
           </div>`;
       }).join('');
