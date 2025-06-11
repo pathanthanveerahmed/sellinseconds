@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-M" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
   <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
@@ -44,7 +44,7 @@
       }
     }
 
-    /* Consistent image container sizing (retains previous logic) */
+    /* Consistent image container sizing */
     .card-img-container {
       width: 100%;
       aspect-ratio: 4 / 3; /* maintains consistent shape */
@@ -63,8 +63,7 @@
       padding: 10px; /* prevents overlap with borders */
     }
 
-    /* This rule overrides aspect-ratio to ensure 4:3 fixed height with padding-top method
-       This matches your reference code's precise behavior for image sizing. */
+    /* This rule overrides aspect-ratio to ensure 4:3 fixed height with padding-top method */
     .card-img-container {
       width: 100%;
       padding-top: 75%;
@@ -77,8 +76,6 @@
     }
 
 
-    /* --- IMPORTANT: Re-added flex properties for .card-wrapper --- */
-    /* This allows the description to take space and buttons to push to bottom */
     .card-wrapper {
       background: #fff;
       border-radius: 12px;
@@ -88,8 +85,8 @@
                   0 0 0 6px var(--card-border-color, #b3d9ff),
                   0 6px 18px rgba(0,0,0,0.1);
       transition: 0.3s ease;
-      display: flex; /* Re-added */
-      flex-direction: column; /* Re-added */
+      display: flex;
+      flex-direction: column;
     }
     .card-wrapper:hover {
       transform: translateY(-8px);
@@ -133,22 +130,22 @@
       }
     }
 
-    /* --- IMPORTANT: Re-added .card-description CSS --- */
+    /* Styles for the image description */
     .card-description {
-      padding: 0 1rem; /* Add padding for the description text */
-      margin-top: 0.5rem; /* Space between image and description */
+      padding: 0 1rem;
+      margin-top: 0.5rem;
       font-size: 0.95rem;
       color: #333;
-      text-align: center; /* Center the description */
-      flex-grow: 1; /* Allow description to take up available space */
-      display: flex; /* Use flex to vertically center text if needed */
-      align-items: center; /* Vertically center text if it's a single line */
-      justify-content: center; /* Horizontally center text */
-      min-height: 50px; /* Ensure a minimum height for consistent layout */
-      overflow: hidden; /* Hide overflow if description is too long */
-      text-overflow: ellipsis; /* Add ellipsis for long descriptions */
-      display: -webkit-box; /* For multi-line ellipsis */
-      -webkit-line-clamp: 3; /* Limit to 3 lines */
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
     }
 
@@ -156,7 +153,7 @@
       display: flex;
       justify-content: space-around;
       padding: 1rem;
-      margin-top: auto; /* Re-added: Push buttons to the bottom of the card */
+      margin-top: auto;
     }
     .action-btn {
       color: #fff;
@@ -167,37 +164,55 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .whatsapp-action-btn {
-      background-color: #25d366;
-    }
-    .call-action-btn {
-      background-color: #007bff;
+      position: relative; /* Needed for pseudo-elements */
+      overflow: hidden; /* Hide parts of the ring that expand too far */
+      transition: background-color 0.3s ease;
+      z-index: 1; /* Ensure button content is above the ring */
     }
 
-    /* Glow Effect for Buttons */
-    .action-btn.glow {
-      animation: glow 1.5s infinite alternate;
+    /* Energy Ring Animation */
+    .action-btn.glow::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      opacity: 0;
+      z-index: -1; /* Place behind the button text */
+      transform: translate(-50%, -50%); /* Center the ring */
+      animation: pulse-ring 1.5s infinite alternate;
     }
 
-    .whatsapp-action-btn.glow {
-        background-color: #25d366; /* Base color remains */
-        box-shadow: 0 0 20px 8px rgba(255, 0, 255, 0.8) !important; /* Magenta glow */
+    /* Specific colors for the energy rings */
+    .whatsapp-action-btn.glow::before {
+        background-color: rgba(255, 0, 255, 0.8); /* Magenta for WhatsApp */
     }
 
-    .call-action-btn.glow {
-        background-color: #007bff; /* Base color remains */
-        box-shadow: 0 0 20px 8px rgba(255, 165, 0, 0.8) !important; /* Vibrant Orange */
+    .call-action-btn.glow::before {
+        background-color: rgba(255, 165, 0, 0.8); /* Vibrant Orange for Call */
     }
 
-    @keyframes glow {
-      0% {
-        box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.7) !important;
-      }
-      100% {
-        box-shadow: 0 0 30px 10px rgba(255, 255, 255, 1) !important;
-      }
+    @keyframes pulse-ring {
+        0% {
+            width: 0;
+            height: 0;
+            opacity: 0.8;
+            transform: translate(-50%, -50%) scale(0);
+        }
+        50% {
+            width: 150%; /* Adjust size as needed */
+            height: 150%;
+            opacity: 0.4;
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+        100% {
+            width: 200%; /* Adjust size as needed */
+            height: 200%;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1.5);
+        }
     }
   </style>
 </head>
@@ -208,7 +223,6 @@
 
 <script>
   const IMAGE_BASE = "https://www.sellinseconds.in/dynamic/images/";
-  // Keeping the local JSON data as requested
   const jsonData = {
     "active": 13, // Active sequence ID is 13
     "sequences": [
@@ -278,6 +292,12 @@
   };
 
   let observer;
+  let hasUserScrolled = false; // Flag to track user scroll activity
+
+  // Listen for any scroll event
+  window.addEventListener('scroll', () => {
+    hasUserScrolled = true;
+  }, { once: true }); // Only need to detect the first scroll
 
   async function loadImagesFromJson() {
     console.log("loadImagesFromJson started.");
@@ -318,7 +338,7 @@
       const topMostImageSrc = `${IMAGE_BASE}${topMostImageId}.webp`;
       const pageUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
 
-      // Set Open Graph and Twitter meta tags for the top-most image (keeping this functionality)
+      // Set Open Graph and Twitter meta tags for the top-most image
       const ogImageMeta = document.getElementById('og-image-meta');
       const twitterImageMeta = document.getElementById('twitter-image-meta');
       const ogTitleMeta = document.getElementById('og-title-meta');
@@ -339,7 +359,6 @@
 
       gallery.innerHTML = imageNumbers.map((num, i) => {
         const device = imageMap.get(num);
-        // Get the description, default if not found
         const description = device && device.description ? device.description : `Device ID ${num} (No Description)`;
         const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
 
@@ -350,8 +369,7 @@
                 onerror="this.closest('.card-wrapper').style.display='none';">
             </div>
             <div class="card-description">
-                ${description}
-            </div>
+                <strong>${description}</strong> </div>
             <div class="card-actions">
               <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
                 <i class="fab fa-whatsapp"></i> I'm Interested
@@ -364,8 +382,19 @@
       }).join('');
       console.log("Gallery populated with", imageNumbers.length, "cards.");
 
-      // Reverted scroll animation parameters to match your reference code
-      handleMobileScrollAndBadgeAnimation();
+      // Check for user scroll before initiating animations
+      setTimeout(() => {
+        if (!hasUserScrolled) {
+          handleMobileScrollAndBadgeAnimation();
+        } else {
+          console.log("User scrolled, skipping initial scroll and badge animation.");
+          const topMostCard = document.querySelector('.card-wrapper.top-most');
+          if (topMostCard) {
+            // If user scrolled, still animate the badge immediately without scroll to ensure visibility
+            topMostCard.classList.add('animate-badge');
+          }
+        }
+      }, 1000); // Give 1 second for user scroll detection
 
       setTimeout(setupIntersectionObserver, 500);
 
@@ -373,7 +402,7 @@
       console.error("Error loading JSON or rendering gallery:", err);
       const gallery = document.querySelector(".gallery-grid");
       if (gallery) {
-        gallery.innerHTML = `<p style="text-align: center; color: #888;">Gallery failed to load: ${err.message}</p>`;
+        gallery.innerHTML = `<p style="text-align: center; color: #888;">⚠️ Gallery failed to load: ${err.message}. Please try again.</p>`;
       }
     }
   }
@@ -384,27 +413,26 @@
     const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100;
 
     if (isMobilePortrait && hasEnoughContentToScroll) {
-      console.log("Mobile portrait detected with enough content to scroll.");
+      console.log("Mobile portrait detected with enough content to scroll. Initiating scroll animation.");
+      window.scrollTo({ top: 150, behavior: 'smooth' }); // Scroll down a bit
+      console.log("Scrolled down to 150px.");
       setTimeout(() => {
-        // Reverted scroll amount to match your reference code (150px)
-        window.scrollTo({ top: 150, behavior: 'smooth' });
-        console.log("Scrolled down to 150px.");
-        setTimeout(() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          console.log("Scrolled back up to 0px.");
-          if (topMostCard) {
-            topMostCard.classList.add('animate-badge');
-            console.log("Added 'animate-badge' class to top-most card.");
-          }
-        }, 1500); // Reverted delay to match your reference code (1500ms)
-      }, 1000); // Reverted initial delay to match your reference code (1000ms)
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // Then scroll back up
+        console.log("Scrolled back up to 0px.");
+        if (topMostCard) {
+          setTimeout(() => {
+            topMostCard.classList.add('animate-badge'); // Animate badge after scroll finishes
+            console.log("Added 'animate-badge' class to top-most card after scroll.");
+          }, 200); // Small delay to let scroll finish
+        }
+      }, 1500); // Adjust this delay to control how long the scroll-down lasts
     } else {
       console.log("Not mobile portrait or not enough content to scroll, animating badge directly.");
       if (topMostCard) {
         setTimeout(() => {
-          topMostCard.classList.add('animate-badge');
+          topMostCard.classList.add('animate-badge'); // Animate the badge directly if no scroll animation is needed
           console.log("Added 'animate-badge' class to top-most card directly.");
-        }, 500); // Reverted delay to match your reference code (500ms)
+        }, 500); // Delay before badge animation starts
       }
     }
   }
@@ -452,9 +480,9 @@
         }
       });
     }, {
-      root: null,
-      rootMargin: '-40% 0px -40% 0px',
-      threshold: 0.01
+      root: null, // relative to the viewport
+      rootMargin: '-40% 0px -40% 0px', // Shrink the viewport's bounds
+      threshold: 0.01 // Trigger when even 1% of the target is visible
     });
 
     cardWrappers.forEach(card => {
@@ -463,6 +491,7 @@
     console.log("Intersection Observer set up for", cardWrappers.length, "cards.");
   }
 
+  // Ensure scripts run after the DOM is fully loaded
   window.addEventListener("DOMContentLoaded", loadImagesFromJson);
 </script>
 
