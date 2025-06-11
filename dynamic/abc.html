@@ -139,7 +139,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 50px;
+      min-height: 50px; /* Still maintains space if description is empty and div exists */
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
@@ -298,17 +298,17 @@
   };
 
   let observer;
-  let hasUserScrolled = false; // Flag to track if user has scrolled at any point
+  let userInterruptedAnimation = false; // Flag to track if user has manually scrolled and interrupted
   let scrollDownTimeoutId = null; // To store timeout ID for scroll down animation
   let scrollUpTimeoutId = null;    // To store timeout ID for scroll up animation
   let badgeAnimationTimeoutId = null; // To store timeout ID for badge animation
 
   // Global scroll listener to detect user interaction and interrupt animations
   window.addEventListener('scroll', () => {
-    // This check ensures we only react to the first manual scroll during the animation window
-    if (!hasUserScrolled) {
-      hasUserScrolled = true; // Mark that user has scrolled
-      console.log("User scrolled, attempting to interrupt initial page animations.");
+    // Only react to the first manual scroll that interrupts an animation
+    if (!userInterruptedAnimation && (scrollDownTimeoutId || scrollUpTimeoutId || badgeAnimationTimeoutId)) {
+      userInterruptedAnimation = true; // Mark that user has interrupted
+      console.log("User scrolled, interrupting ongoing initial page animations.");
 
       // Clear any pending scroll timeouts
       if (scrollDownTimeoutId) {
@@ -321,21 +321,23 @@
         scrollUpTimeoutId = null;
         console.log("Cleared scrollUpTimeoutId.");
       }
-      // If the badge animation was tied to the interrupted scroll sequence, trigger it immediately
       if (badgeAnimationTimeoutId) {
         clearTimeout(badgeAnimationTimeoutId);
         badgeAnimationTimeoutId = null;
         console.log("Cleared badgeAnimationTimeoutId.");
       }
 
-      // Ensure the badge animation still plays on the top-most card if it hasn't yet
+      // Immediately reset scroll position and ensure badge animation plays
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      console.log("Page scroll reset to top instantly.");
+
       const topMostCard = document.querySelector('.card-wrapper.top-most');
       if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
           topMostCard.classList.add('animate-badge');
           console.log("Applied 'animate-badge' immediately due to user scroll interruption.");
       }
     }
-  }, { passive: true }); // Use passive listener for better scroll performance
+  }, { passive: true, once: true }); // Use passive listener for better scroll performance; 'once' ensures it fires only on first scroll
 
   async function loadImagesFromJson() {
     console.log("loadImagesFromJson started.");
@@ -397,18 +399,22 @@
 
       gallery.innerHTML = imageNumbers.map((num, i) => {
         const device = imageMap.get(num);
-        const description = device && device.description ? device.description : `Device ID ${num} (No Description)`;
+        const descriptionText = device && device.description ? device.description : '';
         const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
+
+        // Conditionally render the description div only if descriptionText is not empty
+        const descriptionHtml = descriptionText ? `
+            <div class="card-description">
+                <strong>${descriptionText}</strong>
+            </div>` : '';
 
         return `
           <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
             <div class="card-img-container">
-              <img src="${imgSrc}" alt="${description}" loading="lazy"
+              <img src="${imgSrc}" alt="${descriptionText || `Device ID ${num}`}" loading="lazy"
                 onerror="this.closest('.card-wrapper').style.display='none';">
             </div>
-            <div class="card-description">
-                <strong>${description}</strong>
-            </div>
+            ${descriptionHtml}
             <div class="card-actions">
               <a href="https://wa.me/919886566379?text=${encodeURIComponent('Interested in device: https://www.sellinseconds.in/dynamic/wacust/' + num + '.html')}" target="_blank" class="action-btn whatsapp-action-btn">
                 <i class="fab fa-whatsapp"></i> I'm Interested
@@ -421,9 +427,9 @@
       }).join('');
       console.log("Gallery populated with", imageNumbers.length, "cards.");
 
-      // Delay initial animation check to allow for user scroll detection right after page load
+      // Delay initial animation check to allow for immediate user scroll detection after page load
       setTimeout(() => {
-        if (!hasUserScrolled) { // Only proceed if user hasn't scrolled yet
+        if (!userInterruptedAnimation) { // Only proceed if user hasn't scrolled yet
           handleMobileScrollAndBadgeAnimation();
         } else {
           console.log("User already scrolled before initial animation check. Initial scroll animation skipped.");
@@ -432,7 +438,7 @@
             topMostCard.classList.add('animate-badge'); // Ensure badge animates even if scroll is skipped
           }
         }
-      }, 1000); // 1 second delay to allow initial user scroll input
+      }, 1000); // 1 second delay to allow initial user input
 
       // Setup Intersection Observer regardless of initial scroll animation
       setTimeout(setupIntersectionObserver, 500);
@@ -449,23 +455,32 @@
   function handleMobileScrollAndBadgeAnimation() {
     const isMobilePortrait = window.innerWidth < 600 && window.innerHeight > window.innerWidth;
     const topMostCard = document.querySelector('.card-wrapper.top-most');
-    // Check if there's enough content to scroll to begin with
     const hasEnoughContentToScroll = document.body.scrollHeight > window.innerHeight + 100;
 
     if (isMobilePortrait && hasEnoughContentToScroll) {
       console.log("Mobile portrait detected with enough content to scroll. Initiating scroll animation sequence.");
 
       scrollDownTimeoutId = setTimeout(() => {
-        if (hasUserScrolled) return; // Exit if user scrolled during this delay
+        if (userInterruptedAnimation) { // Check if user interrupted before executing this step
+          console.log("Scroll down skipped: User interrupted animation.");
+          return;
+        }
         window.scrollTo({ top: 150, behavior: 'smooth' }); // Scroll down a bit
         console.log("Page scrolled down to 150px.");
 
         scrollUpTimeoutId = setTimeout(() => {
-          if (hasUserScrolled) return; // Exit if user scrolled during scroll-down phase
+          if (userInterruptedAnimation) { // Check if user interrupted before executing this step
+            console.log("Scroll up skipped: User interrupted animation.");
+            return;
+          }
           window.scrollTo({ top: 0, behavior: 'smooth' }); // Then scroll back up
           console.log("Page scrolled back up to 0px.");
 
           badgeAnimationTimeoutId = setTimeout(() => {
+            if (userInterruptedAnimation) { // Check if user interrupted before executing this step
+              console.log("Badge animation skipped: User interrupted animation.");
+              return;
+            }
             if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
               topMostCard.classList.add('animate-badge'); // Animate badge after scroll finishes
               console.log("Added 'animate-badge' class to top-most card after scroll sequence.");
@@ -474,6 +489,7 @@
             scrollDownTimeoutId = null;
             scrollUpTimeoutId = null;
             badgeAnimationTimeoutId = null;
+            console.log("Scroll animation sequence completed and cleaned up.");
           }, 200); // Small delay to let scroll finish before badge animates
         }, 1500); // Delay before scrolling back up (controls how long it stays scrolled down)
       }, 0); // Start the first scroll part immediately if conditions met
@@ -481,10 +497,14 @@
       console.log("Not mobile portrait or not enough content to scroll for full animation. Animating badge directly.");
       if (topMostCard && !topMostCard.classList.contains('animate-badge')) {
         badgeAnimationTimeoutId = setTimeout(() => {
-          if (hasUserScrolled) return; // Exit if user scrolled during this delay
+          if (userInterruptedAnimation) { // Check if user interrupted before executing this step
+            console.log("Badge animation skipped: User interrupted animation during direct badge animation.");
+            return;
+          }
           topMostCard.classList.add('animate-badge'); // Animate the badge directly
           console.log("Added 'animate-badge' class to top-most card directly (no scroll).");
           badgeAnimationTimeoutId = null; // Clear timeout ID
+          console.log("Direct badge animation completed and cleaned up.");
         }, 500); // Delay before badge animation starts (if no scroll animation)
       }
     }
@@ -533,7 +553,7 @@
       });
     }, {
       root: null, // relative to the viewport
-      rootMargin: '-40% 0px -40% 0px', // Shrink the viewport's bounds to make intersection harder
+      rootMargin: '-10% 0px -10% 0px', // Adjusted to make animation more visible earlier
       threshold: 0.01 // Trigger when even 1% of the target is visible
     });
 
