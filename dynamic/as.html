@@ -2,27 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Subtle Border Light Sweep</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neon Dot Around Button</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background: #000;
+      background: #111;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
     }
 
     .action-btn {
       position: relative;
-      display: inline-block;
-      padding: 1rem 2rem;
+      padding: 0.8rem 1.6rem;
       font-size: 1rem;
       font-weight: bold;
-      border-radius: 10px;
-      color: #fff;
-      background-color: #25d366; /* Green for WhatsApp */
+      border-radius: 12px;
+      color: white;
+      background-color: #25d366; /* WhatsApp green */
       border: none;
       cursor: pointer;
       overflow: hidden;
@@ -30,40 +28,27 @@
     }
 
     .action-btn.call {
-      background-color: #007bff; /* Blue for Call */
+      background-color: #007bff; /* Call blue */
     }
 
     .action-btn::before {
-      content: "";
+      content: '';
       position: absolute;
-      top: -2px;
-      left: -2px;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
-      border-radius: 12px;
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.6) 50%,
-        transparent 100%
-      );
-      background-size: 300% 100%;
-      z-index: -1;
-      animation: borderLightSweep 2s ease-out forwards;
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+      animation: sweep-dot 2s linear forwards;
+      z-index: 2;
     }
 
-    @keyframes borderLightSweep {
-      0% {
-        background-position: 300% 0;
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      100% {
-        background-position: 0% 0;
-        opacity: 0;
-      }
+    @keyframes sweep-dot {
+      0%   { top: -4px;  left: 10%; }
+      25%  { top: 50%;   left: 100%; transform: translateY(-50%); }
+      50%  { top: 100%;  left: 90%;  transform: translate(-50%, -50%); }
+      75%  { top: 50%;   left: 0%;   transform: translateY(-50%); }
+      100% { top: -4px;  left: 10%;  transform: none; }
     }
   </style>
 </head>
