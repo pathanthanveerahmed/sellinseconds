@@ -27,6 +27,16 @@
   <style>
     /* Your entire CSS is unchanged */
   <style>
+  .card-title {
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.card-detail {
+  font-size: 14px;
+  color: #555;
+}
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: linear-gradient(135deg, #f0f2f5, #e6e9ef);
@@ -343,9 +353,10 @@
         const imgSrc = `${IMAGE_BASE}${num}.webp?_=${Date.now()}`;
 
         const descriptionHtml = descriptionText ? `
-            <div class="card-description">
-                <strong>${descriptionText}</strong>
-            </div>` : '';
+          <div class="card-description">
+  <div class="card-title">${nameText}</div>
+  <div class="card-detail">${descriptionText}</div>
+</div>` : '';
 
         return `
           <div class="card-wrapper ${i === 0 ? 'top-most' : ''}" data-image-id="${num}">
