@@ -35,20 +35,16 @@
   </form>
 
   <script>
-  function base64EncodeUnicode(str) {
-  // First, encode the string into UTF-8 bytes
-  const utf8Bytes = new TextEncoder().encode(str);
-
-  // Convert the Uint8Array to a "binary string" where each character's code point
-  // corresponds to a single byte. This is safe for btoa.
-  let binaryString = '';
-  for (let i = 0; i < utf8Bytes.length; i++) {
-    binaryString += String.fromCharCode(utf8Bytes[i]);
-  }
-
-  // Now, btoa can safely encode this binary string
-  return btoa(binaryString);
+function base64EncodeUnicode(str) {
+  // First, encode the string into UTF-8, then to Base64
+  // encodeURIComponent treats the string as UTF-8
+  // btoa then encodes the resulting "binary string"
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+    function toSolidBytes(match, p1) {
+      return String.fromCharCode('0x' + p1);
+    }));
 }
+
 
     const token = "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"; // Embedded token (safe for public repo use)
     const repo = "pathanthanveerahmed/sellinseconds";
