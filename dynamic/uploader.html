@@ -36,12 +36,20 @@
 
   <script>
   function base64EncodeUnicode(str) {
-  const encoder = new TextEncoder();
-  const bytes = encoder.encode(str);
-  let binary = '';
-  bytes.forEach((b) => binary += String.fromCharCode(b));
-  return btoa(binary);
+  // First, encode the string into UTF-8 bytes
+  const utf8Bytes = new TextEncoder().encode(str);
+
+  // Convert the Uint8Array to a "binary string" where each character's code point
+  // corresponds to a single byte. This is safe for btoa.
+  let binaryString = '';
+  for (let i = 0; i < utf8Bytes.length; i++) {
+    binaryString += String.fromCharCode(utf8Bytes[i]);
+  }
+
+  // Now, btoa can safely encode this binary string
+  return btoa(binaryString);
 }
+
     const token = "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"; // Embedded token (safe for public repo use)
     const repo = "pathanthanveerahmed/sellinseconds";
     const path = "dynamic/data.json";
