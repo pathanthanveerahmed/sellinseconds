@@ -36,11 +36,11 @@
 
   <script>
   function base64EncodeUnicode(str) {
-  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
-    function(match, p1) {
-      return String.fromCharCode('0x' + p1);
-    }
-  ));
+  const encoder = new TextEncoder();
+  const bytes = encoder.encode(str);
+  let binary = '';
+  bytes.forEach((b) => binary += String.fromCharCode(b));
+  return btoa(binary);
 }
     const token = "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"; // Embedded token (safe for public repo use)
     const repo = "pathanthanveerahmed/sellinseconds";
