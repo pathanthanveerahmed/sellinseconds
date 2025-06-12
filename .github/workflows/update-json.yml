@@ -1,0 +1,32 @@
+name: Update data.json
+
+on:
+  repository_dispatch:
+    types: [update-json]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Update JSON
+        run: |
+          echo "$PAYLOAD" > temp.json
+          jq '. as $update | (input | .images |= 
+              (map(if .id == $update.id then $update else . end) +
+              if any(.id == $update.id) | not then [$update] else [] end))' \
+              temp.json dynamic/data.json > updated.json
+          mv updated.json dynamic/data.json
+        env:
+          PAYLOAD: ${{ github.event.client_payload.json }}
+
+      - name: Commit and Push
+        run: |
+          git config user.name "Uploader Bot"
+          git config user.email "bot@sellinseconds.in"
+          git add dynamic/data.json
+          git commit -m "Auto update via webhook"
+          git push
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
