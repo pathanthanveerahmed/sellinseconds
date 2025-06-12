@@ -1,5 +1,5 @@
 {
-  "active": 15,
+  "active": 16,
   "sequences": [
     [30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
     [1, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
@@ -48,7 +48,7 @@
     { "id": 13, "name": " iPhone 16 PRO MAX", "description": " iPhone 16 PRO MAX, 1 TB, 100% BATTERY HEALTH, 2 MONTHS OLD, INDIAN VARIANT ₹135000" },
     { "id": 14, "name": "Apple AirPods MAX", "description": "Apple AirPods MAX, FULL KIT, 7 MONTHS OLD ₹36000" },
     { "id": 15, "name": "HP Laptop", "description": "HP Pavilion Intel Core i7 9th Gen - 8 GB/1 TB HDD/256 GB SSD/4 GB Graphics/NVIDIA GeForce GTX 1650 Gaming Laptop 15.6 inch ₹41000" },
-    { "id": 16, "name": "", "description": "" },
+    { "id": 16, "name": "iPhone 12 PRO MAX", "description": " iPhone 12 PRO MAX, 128 GB, 86% BATTERY HEALTH, FULL KIT ₹30000" },
     { "id": 17, "name": "", "description": "" },
     { "id": 18, "name": "", "description": "" },
     { "id": 19, "name": "", "description": "" },
