@@ -35,18 +35,27 @@
   </form>
 
   <script>
-function base64EncodeUnicode(str) {
-  // First, encode the string into UTF-8, then to Base64
-  // encodeURIComponent treats the string as UTF-8
-  // btoa then encodes the resulting "binary string"
-  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
-    function toSolidBytes(match, p1) {
-      return String.fromCharCode('0x' + p1);
-    }));
-}
+  // **THE MOST ROBUST base64EncodeUnicode FUNCTION**
+  function base64EncodeUnicode(str) {
+    // Convert the string to a Uint8Array using UTF-8 encoding
+    const utf8Bytes = new TextEncoder().encode(str);
 
+    // Create a "binary string" from the Uint8Array.
+    // Each byte in the Uint8Array becomes a character in the string,
+    // ensuring all character codes are <= 255, which btoa requires.
+    let binaryString = '';
+    for (let i = 0; i < utf8Bytes.length; i++) {
+      binaryString += String.fromCharCode(utf8Bytes[i]);
+    }
 
-    const token = "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"; // Embedded token (safe for public repo use)
+    // Now, btoa can safely encode this binary string
+    return btoa(binaryString);
+  }
+
+    // IMPORTANT: For production, NEVER embed tokens directly in client-side code.
+    // This token is visible to anyone inspecting your page.
+    // Use a backend server to handle GitHub API calls.
+    const token = "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";
     const repo = "pathanthanveerahmed/sellinseconds";
     const path = "dynamic/data.json";
     const branch = "main";
@@ -55,51 +64,87 @@ function base64EncodeUnicode(str) {
       e.preventDefault();
 
       const id = parseInt(document.getElementById("id").value.trim());
-      const model = document.getElementById("model").value.trim().replace(//g, "");
+      // Removed  replacement as it's not standard and might interfere
+      const model = document.getElementById("model").value.trim();
       let price = document.getElementById("price").value.trim();
-      const description = document.getElementById("description").value.trim().replace(//g, "");
+      // Removed  replacement
+      const description = document.getElementById("description").value.trim();
 
       if (!price.startsWith("₹")) price = "₹" + price;
 
       const statusEl = document.getElementById("status");
       statusEl.textContent = "⏳ Updating GitHub...";
 
-      const api = "https://api.github.com/repos/" + repo + "/contents/" + path;
+      const api = `https://api.github.com/repos/${repo}/contents/${path}`;
 
       try {
+        // Fetch current content to get SHA
         const res = await fetch(api, {
-          headers: { Authorization: "token " + token }
+          headers: { Authorization: `token ${token}` }
         });
 
-        const json = await res.json();
-        const sha = json.sha;
-        const content = atob(json.content);
+        if (!res.ok) {
+            // Handle cases where the file doesn't exist (e.g., first upload)
+            if (res.status === 404) {
+                console.log("File not found, creating new file.");
+                // We'll proceed without a SHA for a new file
+            } else {
+                const errorText = await res.text();
+                throw new Error(`GitHub API fetch error: ${res.status} - ${errorText}`);
+            }
+        }
 
-        let data = JSON.parse(content);
+        const json = await res.json();
+        const sha = json.sha; // Will be undefined if file not found initially
+        let content = '';
+        if (json.content) {
+            content = atob(json.content);
+        } else {
+            // Initialize with an empty images array if the file didn't exist or was empty
+            content = JSON.stringify({ images: [] }, null, 2);
+        }
+
+        let data;
+        try {
+            data = JSON.parse(content);
+            if (!data.images) {
+                data.images = []; // Ensure images array exists
+            }
+        } catch (parseError) {
+            console.warn("Failed to parse existing data.json, initializing with empty array.", parseError);
+            data = { images: [] }; // Fallback to empty if parsing fails
+        }
+
         const newEntry = {
           id,
-          name: model + " – " + price,
+          name: `${model} – ${price}`,
           description
         };
 
         const index = data.images.findIndex(p => p.id === id);
         if (index >= 0) {
-          data.images[index] = newEntry;
+          data.images[index] = newEntry; // Update existing entry
         } else {
-          data.images.push(newEntry);
+          data.images.push(newEntry); // Add new entry
         }
+
+        const updatedContentString = JSON.stringify(data, null, 2);
 
         const updated = {
           message: `Auto-add ID ${id} – ${model}`,
-          content: base64EncodeUnicode(JSON.stringify(data, null, 2)),
-          sha,
-          branch
+          content: base64EncodeUnicode(updatedContentString),
+          branch: branch
         };
+
+        // Add SHA only if it exists (for updates, not initial creation)
+        if (sha) {
+            updated.sha = sha;
+        }
 
         const uploadRes = await fetch(api, {
           method: "PUT",
           headers: {
-            Authorization: "token " + token,
+            Authorization: `token ${token}`,
             "Content-Type": "application/json"
           },
           body: JSON.stringify(updated)
@@ -109,10 +154,13 @@ function base64EncodeUnicode(str) {
           statusEl.textContent = "✅ Product updated successfully!";
           document.getElementById("productForm").reset();
         } else {
-          statusEl.textContent = "❌ Upload failed. Check token or repo path.";
+            const errorBody = await uploadRes.json(); // Get more detailed error from GitHub
+            statusEl.textContent = `❌ Upload failed. GitHub error: ${uploadRes.status} - ${errorBody.message || JSON.stringify(errorBody)}`;
+            console.error("GitHub API response error:", errorBody);
         }
       } catch (err) {
         statusEl.textContent = "❌ Error: " + err.message;
+        console.error("Caught error:", err);
       }
     });
   </script>
