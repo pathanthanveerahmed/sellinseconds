@@ -1,1 +1,31 @@
+name: Update OG Meta Tags
 
+on:
+  push:
+    paths:
+      - 'dynamic/data.json'  # ✅ Triggers on changes to this file
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Generate updated HTML
+        run: |
+          node generate-html.js
+
+      - name: Commit changes
+        run: |
+          git config user.name "OG Meta Bot"
+          git config user.email "bot@sellinseconds.in"
+          git add dynamic/buygallery.html
+          git commit -m "Auto-update OG meta from data.json"
+          git push
