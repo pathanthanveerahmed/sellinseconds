@@ -1,5 +1,5 @@
 {
-  "active": 19,
+  "active": 20,
   "sequences": [
     [30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
     [1, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
@@ -52,7 +52,7 @@
     { "id": 17, "name": "Apple iPhone 12 PRO", "description": " iPhone 12 PRO, 128 GB, 89% BATTERY HEALTH, FULL KIT ₹29000" },
     { "id": 18, "name": "SAMSUNG FLIP 5", "description": "SAMSUNG FLIP 5,256 GB, FULL KIT ₹35000" },
     { "id": 19, "name": "samsung s25 ultra", "description": "Samsung s25 ultra, 1 tb, Titanium, 1 month old, full kit, Indian ₹121000" },
-    { "id": 20, "name": "", "description": "" },
+    { "id": 20, "name": "iPhone 16 PLUS", "description": " iPhone 16 PLUS, 128 GB, 6 DAYS OLD ₹67000" },
     { "id": 21, "name": "", "description": "" },
     { "id": 22, "name": "", "description": "" },
     { "id": 23, "name": "", "description": "" },
