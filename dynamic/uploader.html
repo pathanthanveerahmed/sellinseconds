@@ -35,6 +35,9 @@
   </form>
 
   <script>
+  function encodeUtf8Base64(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
     const token = "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"; // Embedded token (safe for public repo use)
     const repo = "pathanthanveerahmed/sellinseconds";
     const path = "dynamic/data.json";
@@ -80,7 +83,7 @@
 
         const updated = {
           message: `Auto-add ID ${id} – ${model}`,
-          content: btoa(JSON.stringify(data, null, 2)),
+          content: encodeUtf8Base64(JSON.stringify(data, null, 2)),
           sha,
           branch
         };
