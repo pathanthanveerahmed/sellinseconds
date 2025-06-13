@@ -5,16 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{{TITLE}}</title>
   <meta name="description" content="{{DESCRIPTION}}">
+  
+  <!-- OpenGraph & Twitter Meta -->
   <meta property="og:title" content="{{TITLE}}">
   <meta property="og:description" content="{{DESCRIPTION}}">
   <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/{{IMAGE}}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html">
+
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{TITLE}}">
   <meta name="twitter:description" content="{{DESCRIPTION}}">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{IMAGE}}">
+  
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
+
   <style>
     body {
       margin: 0;
@@ -65,7 +70,9 @@
       if (targetId) {
         const el = document.getElementById(`product-${targetId}`);
         if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          setTimeout(() => {
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 300); // Wait to ensure layout is ready
         }
       }
     });
