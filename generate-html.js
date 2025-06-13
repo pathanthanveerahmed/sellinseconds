@@ -24,7 +24,7 @@ sequence.forEach(id => {
     <div class="card" id="product-${id}">
       <picture>
         <source srcset="/dynamic/images/${id}.webp" type="image/webp">
-        <img src="/dynamic/images/${id}.webp" alt="${nameText}" loading="lazy">
+        <img src="/dynamic/images/${id}.webp?v=${Date.now()}" alt="${nameText}" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">${nameText}</div>
