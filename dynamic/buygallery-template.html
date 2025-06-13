@@ -63,19 +63,37 @@
     {{CARDS}}
   </div>
 
-  <script>
-    window.addEventListener('load', () => {
-      const params = new URLSearchParams(window.location.search);
-      const targetId = params.get('id');
-      if (targetId) {
-        const el = document.getElementById(`product-${targetId}`);
-        if (el) {
-          setTimeout(() => {
-            el.scrollIntoView({ behavior: "smooth", block: "start" });
-          }, 300); // Wait to ensure layout is ready
-        }
+<script>
+  window.addEventListener("load", () => {
+    const params = new URLSearchParams(window.location.search);
+    const targetId = params.get("id");
+    if (!targetId) return;
+
+    const targetEl = document.getElementById(`product-${targetId}`);
+    if (!targetEl) return;
+
+    // Wait for all images to load
+    const images = document.querySelectorAll("img");
+    let loaded = 0;
+
+    images.forEach((img) => {
+      if (img.complete) {
+        loaded++;
+      } else {
+        img.addEventListener("load", () => {
+          loaded++;
+          if (loaded === images.length) {
+            targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
       }
     });
-  </script>
+
+    // Fallback: scroll after delay even if image load fails
+    setTimeout(() => {
+      targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 2000);
+  });
+</script>
 </body>
 </html>
