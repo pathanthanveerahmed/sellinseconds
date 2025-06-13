@@ -62,19 +62,21 @@
 <body>
   <div class="gallery">
     {{CARDS}}
-    <script>
-  const params = new URLSearchParams(location.search);
-  const id = params.get("id");
-
-  if (id) {
-    window.addEventListener("load", () => {
-      const card = document.querySelector(`img[src*="/${id}.webp"]`)?.closest(".card");
-      if (card) {
-        card.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-  }
-</script>
   </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+
+    if (id) {
+      window.addEventListener("load", () => {
+        const card = document.querySelector(`img[src*="/${id}.webp"]`)?.closest(".card");
+        if (card) {
+          card.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    }
+  </script>
 </body>
+</html>
 </html>
