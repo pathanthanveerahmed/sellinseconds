@@ -3,24 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <!-- Open Graph & Twitter Meta Tags First -->
+  <title>{{TITLE}}</title>
+  <meta name="description" content="{{DESCRIPTION}}">
   <meta property="og:title" content="{{TITLE}}">
   <meta property="og:description" content="{{DESCRIPTION}}">
   <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/{{IMAGE}}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.sellinseconds.in/buygallery.html">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{TITLE}}">
   <meta name="twitter:description" content="{{DESCRIPTION}}">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{IMAGE}}">
-
-  <!-- SEO Basics -->
-  <title>{{TITLE}}</title>
-  <meta name="description" content="{{DESCRIPTION}}">
   <link rel="canonical" href="https://www.sellinseconds.in/buygallery.html" />
-
   <style>
     body {
       margin: 0;
@@ -65,18 +59,15 @@
   </div>
 
   <script>
-    const params = new URLSearchParams(location.search);
-    const id = params.get("id");
-
-    if (id) {
-      window.addEventListener("load", () => {
-        const card = document.querySelector(`img[src*="/${id}.webp"]`)?.closest(".card");
-        if (card) {
-          card.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      });
-    }
+    // Scroll to product if ?id= is provided in the URL
+    window.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+      if (id) {
+        const el = document.getElementById(`product-${id}`);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
   </script>
 </body>
-</html>
 </html>
