@@ -9,8 +9,8 @@ const topId = sequence && sequence.length ? sequence[0] : data.images[0].id;
 
 // Get top image data
 const topItem = data.images.find(img => img.id === topId) || {
-  name: 'Newly Added Device',
-  description: 'Latest certified pre-owned devices at SellInSeconds!',
+  name: '',
+  description: '',
 };
 
 // Generate image cards HTML
