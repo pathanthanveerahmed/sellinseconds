@@ -5,24 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{{TITLE}}</title>
   <meta name="description" content="{{DESCRIPTION}}">
-
-  <!-- Facebook Meta Tags -->
-  <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html">
-  <meta property="og:type" content="website">
   <meta property="og:title" content="{{TITLE}}">
   <meta property="og:description" content="{{DESCRIPTION}}">
   <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/{{IMAGE}}">
-
-  <!-- Twitter Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.sellinseconds.in/buygallery.html">
   <meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:domain" content="sellinseconds.in">
-  <meta property="twitter:url" content="https://www.sellinseconds.in/dynamic/buygallery.html">
   <meta name="twitter:title" content="{{TITLE}}">
   <meta name="twitter:description" content="{{DESCRIPTION}}">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{IMAGE}}">
-
-  <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
-
+  <link rel="canonical" href="https://www.sellinseconds.in/buygallery.html" />
   <style>
     body {
       margin: 0;
@@ -30,7 +22,6 @@
       background: #f9f9f9;
       color: #111;
     }
-
     .card {
       margin: 10px auto;
       max-width: 95%;
@@ -40,28 +31,23 @@
       background: white;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
-
     .card picture img {
       width: 100%;
       height: auto;
       display: block;
     }
-
     .card-description {
       padding: 10px;
     }
-
     .card-title {
       font-weight: bold;
       font-size: 18px;
     }
-
     .card-detail {
       font-size: 15px;
       color: #444;
       margin-top: 4px;
     }
-
     @media (min-width: 600px) {
       .card { max-width: 500px; }
     }
@@ -72,18 +58,15 @@
     {{CARDS}}
   </div>
 
+  <!-- Scroll to Product by ID if ?id=XX is passed -->
   <script>
-    // Scroll to specific product if ?id= is present
-    window.addEventListener("load", function () {
+    window.addEventListener("DOMContentLoaded", () => {
       const params = new URLSearchParams(window.location.search);
       const id = params.get("id");
-
       if (id) {
         const el = document.getElementById("product-" + id);
         if (el) {
-          setTimeout(() => {
-            el.scrollIntoView({ behavior: "smooth", block: "start" });
-          }, 400);
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }
     });
