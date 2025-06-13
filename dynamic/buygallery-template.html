@@ -9,22 +9,18 @@
   <meta property="og:description" content="{{DESCRIPTION}}">
   <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/{{IMAGE}}">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.sellinseconds.in/buygallery.html">
+  <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{TITLE}}">
   <meta name="twitter:description" content="{{DESCRIPTION}}">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{IMAGE}}">
-  <link rel="canonical" href="https://www.sellinseconds.in/buygallery.html" />
-
+  <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
   <style>
     body {
       margin: 0;
       font-family: system-ui, sans-serif;
       background: #f9f9f9;
       color: #111;
-    }
-    .gallery {
-      padding: 10px;
     }
     .card {
       margin: 10px auto;
@@ -62,22 +58,14 @@
     {{CARDS}}
   </div>
 
-  <!-- Scroll to active product -->
   <script>
-    window.addEventListener("load", () => {
+    window.addEventListener('load', () => {
       const params = new URLSearchParams(window.location.search);
-      const id = params.get("id");
-      if (id) {
-        const el = document.getElementById("product-" + id);
+      const targetId = params.get('id');
+      if (targetId) {
+        const el = document.getElementById(`product-${targetId}`);
         if (el) {
           el.scrollIntoView({ behavior: "smooth", block: "start" });
-
-          // Optional highlight
-          el.style.transition = "box-shadow 0.3s ease-in-out";
-          el.style.boxShadow = "0 0 10px 4px #28a745";
-          setTimeout(() => {
-            el.style.boxShadow = "";
-          }, 2000);
         }
       }
     });
