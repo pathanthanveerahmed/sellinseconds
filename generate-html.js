@@ -39,7 +39,7 @@ let template = fs.readFileSync('dynamic/buygallery-template.html', 'utf8');
 template = template
   .replace(/{{TITLE}}/g, topItem.name)
   .replace(/{{DESCRIPTION}}/g, topItem.description)
-  .replace(/{{IMAGE}}/g, `${topId}.webp`)
+ .replace(/{{IMAGE}}/g, `${topId}.webp?v=${Date.now()}`)
   .replace(/{{CARDS}}/g, cardsHTML);
 
 // Save final HTML
