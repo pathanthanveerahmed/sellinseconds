@@ -1,5 +1,38 @@
 const fs = require('fs');
+const fs = require('fs');
+const path = require('path');
 
+const data = JSON.parse(fs.readFileSync('dynamic/data.json', 'utf8'));
+const htmlDir = 'dynamic/wacust';
+
+if (!fs.existsSync(htmlDir)) fs.mkdirSync(htmlDir, { recursive: true });
+
+for (let id = 1; id <= 30; id++) {
+  const item = data.images.find(i => i.id === id);
+  if (!item || !item.name || !item.description) continue;
+
+  const content = `
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="refresh" content="0; URL=/dynamic/buygallery.html" />
+    <script>
+      localStorage.setItem("scrollToProduct", "${id}");
+      location.href = "/dynamic/buygallery.html";
+    </script>
+  </head>
+  <body>
+    <!-- Updated at ${new Date().toISOString()} -->
+    Redirecting to product ${id}...
+  </body>
+</html>`.trim();
+
+  fs.writeFileSync(path.join(htmlDir, `${id}.html`), content, 'utf8');
+}
+
+console.log("✅ WACUST HTML files updated.");
 const data = JSON.parse(fs.readFileSync('dynamic/data.json', 'utf8'));
 const galleryUrl = "https://www.sellinseconds.in/dynamic/buygallery.html";
 
