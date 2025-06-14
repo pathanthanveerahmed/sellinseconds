@@ -5,20 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{{TITLE}}</title>
   <meta name="description" content="{{DESCRIPTION}}">
-  
+
   <!-- OpenGraph & Twitter Meta -->
   <meta property="og:title" content="{{TITLE}}">
   <meta property="og:description" content="{{DESCRIPTION}}">
   <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/{{IMAGE}}">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="product">
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{TITLE}}">
   <meta name="twitter:description" content="{{DESCRIPTION}}">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{IMAGE}}">
-  
+
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "{{TITLE}}",
+    "description": "{{DESCRIPTION}}",
+    "image": "https://www.sellinseconds.in/dynamic/images/{{IMAGE}}",
+    "brand": {
+      "@type": "Brand",
+      "name": "SellInSeconds"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.sellinseconds.in/dynamic/buygallery.html",
+      "priceCurrency": "INR",
+      "price": "{{PRICE}}",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
 
   <style>
     body {
@@ -63,37 +85,35 @@
     {{CARDS}}
   </div>
 
-<script>
-  window.addEventListener("load", () => {
-    const params = new URLSearchParams(window.location.search);
-    const targetId = params.get("id");
-    if (!targetId) return;
+  <script>
+    window.addEventListener("load", () => {
+      const params = new URLSearchParams(window.location.search);
+      const targetId = params.get("id");
+      if (!targetId) return;
 
-    const targetEl = document.getElementById(`product-${targetId}`);
-    if (!targetEl) return;
+      const targetEl = document.getElementById(`product-${targetId}`);
+      if (!targetEl) return;
 
-    // Wait for all images to load
-    const images = document.querySelectorAll("img");
-    let loaded = 0;
+      const images = document.querySelectorAll("img");
+      let loaded = 0;
 
-    images.forEach((img) => {
-      if (img.complete) {
-        loaded++;
-      } else {
-        img.addEventListener("load", () => {
+      images.forEach((img) => {
+        if (img.complete) {
           loaded++;
-          if (loaded === images.length) {
-            targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        });
-      }
-    });
+        } else {
+          img.addEventListener("load", () => {
+            loaded++;
+            if (loaded === images.length) {
+              targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          });
+        }
+      });
 
-    // Fallback: scroll after delay even if image load fails
-    setTimeout(() => {
-      targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 2000);
-  });
-</script>
+      setTimeout(() => {
+        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 2000);
+    });
+  </script>
 </body>
 </html>
