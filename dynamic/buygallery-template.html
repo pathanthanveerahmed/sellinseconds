@@ -41,6 +41,7 @@
     }
   }
   </script>
+
   <style>
     body {
       margin: 0;
@@ -84,38 +85,7 @@
     {{CARDS}}
   </div>
 
-  <script>
-    window.addEventListener("load", () => {
-      const storedId = localStorage.getItem("scrollToId");
-      if (!storedId) return;
-
-      localStorage.removeItem("scrollToId");
-
-      const targetEl = document.getElementById(`product-${storedId}`);
-      if (!targetEl) return;
-
-      const images = document.querySelectorAll("img");
-      let loaded = 0;
-
-      images.forEach((img) => {
-        if (img.complete) {
-          loaded++;
-        } else {
-          img.addEventListener("load", () => {
-            loaded++;
-            if (loaded === images.length) {
-              targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-          });
-        }
-      });
-
-      setTimeout(() => {
-        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 2000);
-    });
-  </script>
-    <!-- Your entire gallery content ends here -->
+  <!-- Scroll to target product if ID exists in localStorage -->
   <script>
     window.addEventListener("load", () => {
       const targetId = localStorage.getItem("scrollToProduct");
@@ -124,12 +94,11 @@
       const targetEl = document.getElementById(`product-${targetId}`);
       if (!targetEl) return;
 
-      // Optional bounce scroll
       targetEl.scrollIntoView({ behavior: "auto", block: "start" });
       setTimeout(() => {
-        window.scrollBy(0, -60); // scroll slightly up
+        window.scrollBy(0, -60);
         setTimeout(() => {
-          window.scrollBy(0, 60); // and back down for user visibility
+          window.scrollBy(0, 60);
         }, 300);
       }, 300);
 
