@@ -28,7 +28,10 @@
     "name": "{{TITLE}}",
     "description": "{{DESCRIPTION}}",
     "image": "https://www.sellinseconds.in/dynamic/images/{{IMAGE}}",
-    "brand": { "@type": "Brand", "name": "SellInSeconds" },
+    "brand": {
+      "@type": "Brand",
+      "name": "SellInSeconds"
+    },
     "offers": {
       "@type": "Offer",
       "url": "https://www.sellinseconds.in/dynamic/buygallery.html",
@@ -46,6 +49,7 @@
       background: #f9f9f9;
       color: #111;
     }
+
     .card {
       margin: 10px auto;
       max-width: 95%;
@@ -56,10 +60,12 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
+
     .card.highlight {
       animation: fadein 0.8s ease;
       box-shadow: 0 0 10px #4caf50aa;
     }
+
     @keyframes fadein {
       0% { opacity: 0; transform: scale(0.96); }
       100% { opacity: 1; transform: scale(1); }
@@ -70,13 +76,16 @@
       height: auto;
       display: block;
     }
+
     .card-description {
       padding: 10px;
     }
+
     .card-title {
       font-weight: bold;
       font-size: 18px;
     }
+
     .card-detail {
       font-size: 15px;
       color: #444;
@@ -116,12 +125,15 @@
     }
   </style>
 </head>
+
 <body>
+  <!-- Loader -->
   <div class="loading-overlay" id="loading">
     Welcome to Sell in Seconds... Just a moment please
     <div class="spinner"></div>
   </div>
 
+  <!-- Cards -->
   <div class="gallery">
     {{CARDS}}
   </div>
@@ -142,11 +154,11 @@
         return;
       }
 
-      const images = document.querySelectorAll("img");
+      let images = document.querySelectorAll("img");
       let loaded = 0;
       let finished = false;
 
-      function finishScroll() {
+      const finish = () => {
         if (finished) return;
         finished = true;
         loadingEl.style.display = "none";
@@ -156,21 +168,20 @@
           setTimeout(() => {
             window.scrollBy(0, 60);
           }, 300);
-        }, 300);
+        }, 200);
         targetEl.classList.add("highlight");
         localStorage.removeItem("scrollToProduct");
-      }
+      };
 
       images.forEach(img => {
         if (img.complete) loaded++;
         else img.addEventListener("load", () => {
           loaded++;
-          if (loaded === images.length) finishScroll();
+          if (loaded === images.length) finish();
         });
       });
 
-      // Fallback after 1.2 sec
-      setTimeout(() => finishScroll(), 1200);
+      setTimeout(() => finish(), 1000);
     });
   </script>
 </body>
