@@ -85,7 +85,7 @@
     {{CARDS}}
   </div>
 
-  <!-- Scroll to target product if ID exists in localStorage -->
+  <!-- Scroll to specific product based on scrollToProduct localStorage -->
   <script>
     window.addEventListener("load", () => {
       const targetId = localStorage.getItem("scrollToProduct");
@@ -94,15 +94,36 @@
       const targetEl = document.getElementById(`product-${targetId}`);
       if (!targetEl) return;
 
-      targetEl.scrollIntoView({ behavior: "auto", block: "start" });
-      setTimeout(() => {
-        window.scrollBy(0, -60);
-        setTimeout(() => {
-          window.scrollBy(0, 60);
-        }, 300);
-      }, 300);
+      const images = document.querySelectorAll("img");
+      let loaded = 0;
 
-      localStorage.removeItem("scrollToProduct");
+      images.forEach((img) => {
+        if (img.complete) {
+          loaded++;
+        } else {
+          img.addEventListener("load", () => {
+            loaded++;
+            if (loaded === images.length) {
+              triggerScroll();
+            }
+          });
+        }
+      });
+
+      // Fallback if images don't load in time
+      setTimeout(triggerScroll, 2000);
+
+      function triggerScroll() {
+        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        // Slight bounce for attention
+        setTimeout(() => {
+          window.scrollBy(0, -60);
+          setTimeout(() => {
+            window.scrollBy(0, 60);
+          }, 300);
+        }, 300);
+        localStorage.removeItem("scrollToProduct");
+      }
     });
   </script>
 </body>
