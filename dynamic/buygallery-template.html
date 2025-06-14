@@ -87,11 +87,12 @@
 
   <script>
     window.addEventListener("load", () => {
-      const params = new URLSearchParams(window.location.search);
-      const targetId = params.get("id");
-      if (!targetId) return;
+      const storedId = localStorage.getItem("scrollToId");
+      if (!storedId) return;
 
-      const targetEl = document.getElementById(`product-${targetId}`);
+      localStorage.removeItem("scrollToId");
+
+      const targetEl = document.getElementById(`product-${storedId}`);
       if (!targetEl) return;
 
       const images = document.querySelectorAll("img");
