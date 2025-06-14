@@ -1,19 +1,23 @@
 const fs = require('fs');
 
-// Load JSON data
+// Load data.json
 const data = JSON.parse(fs.readFileSync('dynamic/data.json', 'utf8'));
 
 // Find active sequence
 const sequence = data.sequences.find(seq => seq[0] === data.active);
 const topId = sequence?.[0] || data.images[0].id;
 
-// Find top product details
+// Find product
 const topItem = data.images.find(img => img.id === topId) || {
   name: 'Newly Added Device',
   description: 'Latest certified pre-owned devices at SellInSeconds!',
 };
 
-// Build product cards HTML
+// Extract price from name if present
+const match = topItem.name?.match(/Rs\.?\s?(\d+)/i);
+const priceValue = match ? match[1] : "0";
+
+// Build product cards
 let cardsHTML = '';
 sequence.forEach(id => {
   const img = data.images.find(image => image.id === id) || {};
@@ -34,12 +38,13 @@ sequence.forEach(id => {
   `;
 });
 
-// Load and inject into template
+// Inject into template
 let template = fs.readFileSync('dynamic/buygallery-template.html', 'utf8');
 template = template
   .replace(/{{TITLE}}/g, topItem.name)
   .replace(/{{DESCRIPTION}}/g, topItem.description)
- .replace(/{{IMAGE}}/g, `${topId}.webp?v=${Date.now()}`)
+  .replace(/{{IMAGE}}/g, `${topId}.webp?v=${Date.now()}`)
+  .replace(/{{PRICE}}/g, priceValue)
   .replace(/{{CARDS}}/g, cardsHTML);
 
 // Save final HTML
