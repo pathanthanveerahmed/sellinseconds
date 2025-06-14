@@ -41,7 +41,48 @@
     }
   }
   </script>
+<script>
+  window.addEventListener("load", () => {
+    const params = new URLSearchParams(window.location.search);
+    const targetId = params.get("id");
+    if (!targetId) return;
 
+    const targetEl = document.getElementById(`product-${targetId}`);
+    if (!targetEl) return;
+
+    const scrollToAdjustedTarget = () => {
+      const offset = -80;
+      const top = targetEl.getBoundingClientRect().top + window.scrollY + offset;
+
+      window.scrollTo({ top, behavior: "smooth" });
+
+      // Bounce effect to attract attention
+      setTimeout(() => {
+        window.scrollBy({ top: -50, behavior: "smooth" });
+        setTimeout(() => {
+          window.scrollBy({ top: 100, behavior: "smooth" });
+        }, 300);
+      }, 1000);
+    };
+
+    const images = document.querySelectorAll("img");
+    let loaded = 0;
+
+    images.forEach((img) => {
+      if (img.complete) {
+        loaded++;
+      } else {
+        img.addEventListener("load", () => {
+          loaded++;
+          if (loaded === images.length) scrollToAdjustedTarget();
+        });
+      }
+    });
+
+    // Fallback if image loading fails or is slow
+    setTimeout(scrollToAdjustedTarget, 2000);
+  });
+</script>
   <style>
     body {
       margin: 0;
