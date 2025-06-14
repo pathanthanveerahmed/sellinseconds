@@ -9,14 +9,14 @@
   <!-- OpenGraph & Twitter Meta -->
   <meta property="og:title" content="SAMSUNG NOTE 20 ULTRA – Rs.25000">
   <meta property="og:description" content="5G, 12 GB, 256 GB">
-  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/28.webp?v=1749876866397">
+  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/28.webp?v=1749878502618">
   <meta property="og:type" content="product">
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SAMSUNG NOTE 20 ULTRA – Rs.25000">
   <meta name="twitter:description" content="5G, 12 GB, 256 GB">
-  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/28.webp?v=1749876866397">
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/28.webp?v=1749878502618">
 
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
 
@@ -27,11 +27,8 @@
     "@type": "Product",
     "name": "SAMSUNG NOTE 20 ULTRA – Rs.25000",
     "description": "5G, 12 GB, 256 GB",
-    "image": "https://www.sellinseconds.in/dynamic/images/28.webp?v=1749876866397",
-    "brand": {
-      "@type": "Brand",
-      "name": "SellInSeconds"
-    },
+    "image": "https://www.sellinseconds.in/dynamic/images/28.webp?v=1749878502618",
+    "brand": { "@type": "Brand", "name": "SellInSeconds" },
     "offers": {
       "@type": "Offer",
       "url": "https://www.sellinseconds.in/dynamic/buygallery.html",
@@ -57,7 +54,17 @@
       overflow: hidden;
       background: white;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
+    .card.highlight {
+      animation: fadein 0.8s ease;
+      box-shadow: 0 0 10px #4caf50aa;
+    }
+    @keyframes fadein {
+      0% { opacity: 0; transform: scale(0.96); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
     .card picture img {
       width: 100%;
       height: auto;
@@ -75,18 +82,52 @@
       color: #444;
       margin-top: 4px;
     }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .spinner {
+      margin-top: 15px;
+      width: 24px;
+      height: 24px;
+      border: 3px solid #ccc;
+      border-top: 3px solid #28a745;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     @media (min-width: 600px) {
       .card { max-width: 500px; }
     }
   </style>
 </head>
 <body>
+  <div class="loading-overlay" id="loading">
+    Welcome to Sell in Seconds... Just a moment please
+    <div class="spinner"></div>
+  </div>
+
   <div class="gallery">
     
     <div class="card" id="product-28">
       <picture>
         <source srcset="/dynamic/images/28.webp" type="image/webp">
-        <img src="/dynamic/images/28.webp?v=1749876866397" alt="SAMSUNG NOTE 20 ULTRA – Rs.25000" loading="lazy">
+        <img src="/dynamic/images/28.webp?v=1749878502618" alt="SAMSUNG NOTE 20 ULTRA – Rs.25000" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">SAMSUNG NOTE 20 ULTRA – Rs.25000</div>
@@ -97,7 +138,7 @@
     <div class="card" id="product-27">
       <picture>
         <source srcset="/dynamic/images/27.webp" type="image/webp">
-        <img src="/dynamic/images/27.webp?v=1749876866397" alt="Apple Magic Keyboards, Price on request" loading="lazy">
+        <img src="/dynamic/images/27.webp?v=1749878502618" alt="Apple Magic Keyboards, Price on request" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">Apple Magic Keyboards, Price on request</div>
@@ -108,7 +149,7 @@
     <div class="card" id="product-26">
       <picture>
         <source srcset="/dynamic/images/26.webp" type="image/webp">
-        <img src="/dynamic/images/26.webp?v=1749876866397" alt="iPhone 15 PRO Rs. 60000" loading="lazy">
+        <img src="/dynamic/images/26.webp?v=1749878502618" alt="iPhone 15 PRO Rs. 60000" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">iPhone 15 PRO Rs. 60000</div>
@@ -119,7 +160,7 @@
     <div class="card" id="product-25">
       <picture>
         <source srcset="/dynamic/images/25.webp" type="image/webp">
-        <img src="/dynamic/images/25.webp?v=1749876866397" alt="Apple MacBook Air M1 Rs.39000" loading="lazy">
+        <img src="/dynamic/images/25.webp?v=1749878502618" alt="Apple MacBook Air M1 Rs.39000" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">Apple MacBook Air M1 Rs.39000</div>
@@ -130,7 +171,7 @@
     <div class="card" id="product-24">
       <picture>
         <source srcset="/dynamic/images/24.webp" type="image/webp">
-        <img src="/dynamic/images/24.webp?v=1749876866397" alt="Microsoft SURFACE 8 PRO Rs.45000" loading="lazy">
+        <img src="/dynamic/images/24.webp?v=1749878502618" alt="Microsoft SURFACE 8 PRO Rs.45000" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">Microsoft SURFACE 8 PRO Rs.45000</div>
@@ -141,7 +182,7 @@
     <div class="card" id="product-23">
       <picture>
         <source srcset="/dynamic/images/23.webp" type="image/webp">
-        <img src="/dynamic/images/23.webp?v=1749876866397" alt="Apple iPhone 13-256 GB - Rs.30000" loading="lazy">
+        <img src="/dynamic/images/23.webp?v=1749878502618" alt="Apple iPhone 13-256 GB - Rs.30000" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">Apple iPhone 13-256 GB - Rs.30000</div>
@@ -152,7 +193,7 @@
     <div class="card" id="product-22">
       <picture>
         <source srcset="/dynamic/images/22.webp" type="image/webp">
-        <img src="/dynamic/images/22.webp?v=1749876866397" alt="Samsung Galaxy tab S9 Ultra Rs.70000" loading="lazy">
+        <img src="/dynamic/images/22.webp?v=1749878502618" alt="Samsung Galaxy tab S9 Ultra Rs.70000" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">Samsung Galaxy tab S9 Ultra Rs.70000</div>
@@ -163,7 +204,7 @@
     <div class="card" id="product-21">
       <picture>
         <source srcset="/dynamic/images/21.webp" type="image/webp">
-        <img src="/dynamic/images/21.webp?v=1749876866397" alt="LENOVO T480 Rs.15000" loading="lazy">
+        <img src="/dynamic/images/21.webp?v=1749878502618" alt="LENOVO T480 Rs.15000" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">LENOVO T480 Rs.15000</div>
@@ -174,7 +215,7 @@
     <div class="card" id="product-20">
       <picture>
         <source srcset="/dynamic/images/20.webp" type="image/webp">
-        <img src="/dynamic/images/20.webp?v=1749876866397" alt="iPhone 16 PLUS" loading="lazy">
+        <img src="/dynamic/images/20.webp?v=1749878502618" alt="iPhone 16 PLUS" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">iPhone 16 PLUS</div>
@@ -185,7 +226,7 @@
     <div class="card" id="product-19">
       <picture>
         <source srcset="/dynamic/images/19.webp" type="image/webp">
-        <img src="/dynamic/images/19.webp?v=1749876866397" alt="samsung s25 ultra" loading="lazy">
+        <img src="/dynamic/images/19.webp?v=1749878502618" alt="samsung s25 ultra" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">samsung s25 ultra</div>
@@ -196,7 +237,7 @@
     <div class="card" id="product-18">
       <picture>
         <source srcset="/dynamic/images/18.webp" type="image/webp">
-        <img src="/dynamic/images/18.webp?v=1749876866397" alt="SAMSUNG FLIP 5" loading="lazy">
+        <img src="/dynamic/images/18.webp?v=1749878502618" alt="SAMSUNG FLIP 5" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">SAMSUNG FLIP 5</div>
@@ -207,7 +248,7 @@
     <div class="card" id="product-17">
       <picture>
         <source srcset="/dynamic/images/17.webp" type="image/webp">
-        <img src="/dynamic/images/17.webp?v=1749876866397" alt="Apple iPhone 12 PRO" loading="lazy">
+        <img src="/dynamic/images/17.webp?v=1749878502618" alt="Apple iPhone 12 PRO" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">Apple iPhone 12 PRO</div>
@@ -218,7 +259,7 @@
     <div class="card" id="product-16">
       <picture>
         <source srcset="/dynamic/images/16.webp" type="image/webp">
-        <img src="/dynamic/images/16.webp?v=1749876866397" alt="iPhone 12 PRO MAX" loading="lazy">
+        <img src="/dynamic/images/16.webp?v=1749878502618" alt="iPhone 12 PRO MAX" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">iPhone 12 PRO MAX</div>
@@ -229,7 +270,7 @@
     <div class="card" id="product-15">
       <picture>
         <source srcset="/dynamic/images/15.webp" type="image/webp">
-        <img src="/dynamic/images/15.webp?v=1749876866397" alt="HP Laptop" loading="lazy">
+        <img src="/dynamic/images/15.webp?v=1749878502618" alt="HP Laptop" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">HP Laptop</div>
@@ -240,7 +281,7 @@
     <div class="card" id="product-14">
       <picture>
         <source srcset="/dynamic/images/14.webp" type="image/webp">
-        <img src="/dynamic/images/14.webp?v=1749876866397" alt="Apple AirPods MAX" loading="lazy">
+        <img src="/dynamic/images/14.webp?v=1749878502618" alt="Apple AirPods MAX" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">Apple AirPods MAX</div>
@@ -251,7 +292,7 @@
     <div class="card" id="product-13">
       <picture>
         <source srcset="/dynamic/images/13.webp" type="image/webp">
-        <img src="/dynamic/images/13.webp?v=1749876866397" alt="iPhone 16 PRO MAX" loading="lazy">
+        <img src="/dynamic/images/13.webp?v=1749878502618" alt="iPhone 16 PRO MAX" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">iPhone 16 PRO MAX</div>
@@ -262,7 +303,7 @@
     <div class="card" id="product-12">
       <picture>
         <source srcset="/dynamic/images/12.webp" type="image/webp">
-        <img src="/dynamic/images/12.webp?v=1749876866397" alt="Apple iMac" loading="lazy">
+        <img src="/dynamic/images/12.webp?v=1749878502618" alt="Apple iMac" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title">Apple iMac</div>
@@ -273,7 +314,7 @@
     <div class="card" id="product-11">
       <picture>
         <source srcset="/dynamic/images/11.webp" type="image/webp">
-        <img src="/dynamic/images/11.webp?v=1749876866397" alt="" loading="lazy">
+        <img src="/dynamic/images/11.webp?v=1749878502618" alt="" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title"></div>
@@ -284,7 +325,7 @@
     <div class="card" id="product-10">
       <picture>
         <source srcset="/dynamic/images/10.webp" type="image/webp">
-        <img src="/dynamic/images/10.webp?v=1749876866397" alt="" loading="lazy">
+        <img src="/dynamic/images/10.webp?v=1749878502618" alt="" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title"></div>
@@ -295,7 +336,7 @@
     <div class="card" id="product-9">
       <picture>
         <source srcset="/dynamic/images/9.webp" type="image/webp">
-        <img src="/dynamic/images/9.webp?v=1749876866397" alt="" loading="lazy">
+        <img src="/dynamic/images/9.webp?v=1749878502618" alt="" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title"></div>
@@ -306,7 +347,7 @@
     <div class="card" id="product-8">
       <picture>
         <source srcset="/dynamic/images/8.webp" type="image/webp">
-        <img src="/dynamic/images/8.webp?v=1749876866397" alt="" loading="lazy">
+        <img src="/dynamic/images/8.webp?v=1749878502618" alt="" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title"></div>
@@ -317,7 +358,7 @@
     <div class="card" id="product-7">
       <picture>
         <source srcset="/dynamic/images/7.webp" type="image/webp">
-        <img src="/dynamic/images/7.webp?v=1749876866397" alt="" loading="lazy">
+        <img src="/dynamic/images/7.webp?v=1749878502618" alt="" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title"></div>
@@ -328,7 +369,7 @@
     <div class="card" id="product-6">
       <picture>
         <source srcset="/dynamic/images/6.webp" type="image/webp">
-        <img src="/dynamic/images/6.webp?v=1749876866397" alt="" loading="lazy">
+        <img src="/dynamic/images/6.webp?v=1749878502618" alt="" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title"></div>
@@ -339,7 +380,7 @@
     <div class="card" id="product-5">
       <picture>
         <source srcset="/dynamic/images/5.webp" type="image/webp">
-        <img src="/dynamic/images/5.webp?v=1749876866397" alt="" loading="lazy">
+        <img src="/dynamic/images/5.webp?v=1749878502618" alt="" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title"></div>
@@ -350,7 +391,7 @@
     <div class="card" id="product-4">
       <picture>
         <source srcset="/dynamic/images/4.webp" type="image/webp">
-        <img src="/dynamic/images/4.webp?v=1749876866397" alt="" loading="lazy">
+        <img src="/dynamic/images/4.webp?v=1749878502618" alt="" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title"></div>
@@ -361,7 +402,7 @@
     <div class="card" id="product-3">
       <picture>
         <source srcset="/dynamic/images/3.webp" type="image/webp">
-        <img src="/dynamic/images/3.webp?v=1749876866397" alt="" loading="lazy">
+        <img src="/dynamic/images/3.webp?v=1749878502618" alt="" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title"></div>
@@ -372,7 +413,7 @@
     <div class="card" id="product-2">
       <picture>
         <source srcset="/dynamic/images/2.webp" type="image/webp">
-        <img src="/dynamic/images/2.webp?v=1749876866397" alt="" loading="lazy">
+        <img src="/dynamic/images/2.webp?v=1749878502618" alt="" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title"></div>
@@ -383,7 +424,7 @@
     <div class="card" id="product-1">
       <picture>
         <source srcset="/dynamic/images/1.webp" type="image/webp">
-        <img src="/dynamic/images/1.webp?v=1749876866397" alt="" loading="lazy">
+        <img src="/dynamic/images/1.webp?v=1749878502618" alt="" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title"></div>
@@ -394,7 +435,7 @@
     <div class="card" id="product-30">
       <picture>
         <source srcset="/dynamic/images/30.webp" type="image/webp">
-        <img src="/dynamic/images/30.webp?v=1749876866397" alt="" loading="lazy">
+        <img src="/dynamic/images/30.webp?v=1749878502618" alt="" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title"></div>
@@ -405,7 +446,7 @@
     <div class="card" id="product-29">
       <picture>
         <source srcset="/dynamic/images/29.webp" type="image/webp">
-        <img src="/dynamic/images/29.webp?v=1749876866397" alt="" loading="lazy">
+        <img src="/dynamic/images/29.webp?v=1749878502618" alt="" loading="lazy">
       </picture>
       <div class="card-description">
         <div class="card-title"></div>
@@ -415,45 +456,51 @@
   
   </div>
 
-  <!-- Scroll to specific product based on scrollToProduct localStorage -->
   <script>
     window.addEventListener("load", () => {
       const targetId = localStorage.getItem("scrollToProduct");
-      if (!targetId) return;
+      const loadingEl = document.getElementById("loading");
+
+      if (!targetId) {
+        loadingEl.style.display = "none";
+        return;
+      }
 
       const targetEl = document.getElementById(`product-${targetId}`);
-      if (!targetEl) return;
+      if (!targetEl) {
+        loadingEl.style.display = "none";
+        return;
+      }
 
       const images = document.querySelectorAll("img");
       let loaded = 0;
+      let finished = false;
 
-      images.forEach((img) => {
-        if (img.complete) {
-          loaded++;
-        } else {
-          img.addEventListener("load", () => {
-            loaded++;
-            if (loaded === images.length) {
-              triggerScroll();
-            }
-          });
-        }
-      });
-
-      // Fallback if images don't load in time
-      setTimeout(triggerScroll, 2000);
-
-      function triggerScroll() {
-        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
-        // Slight bounce for attention
+      function finishScroll() {
+        if (finished) return;
+        finished = true;
+        loadingEl.style.display = "none";
+        targetEl.scrollIntoView({ behavior: "auto", block: "start" });
         setTimeout(() => {
           window.scrollBy(0, -60);
           setTimeout(() => {
             window.scrollBy(0, 60);
           }, 300);
         }, 300);
+        targetEl.classList.add("highlight");
         localStorage.removeItem("scrollToProduct");
       }
+
+      images.forEach(img => {
+        if (img.complete) loaded++;
+        else img.addEventListener("load", () => {
+          loaded++;
+          if (loaded === images.length) finishScroll();
+        });
+      });
+
+      // Fallback after 1.2 sec
+      setTimeout(() => finishScroll(), 1200);
     });
   </script>
 </body>
