@@ -1,5 +1,5 @@
 {
-  "active": 29,
+  "active": 1,
   "sequences": [
     [
       30,
@@ -965,8 +965,8 @@
   "images": [
     {
       "id": 1,
-      "name": "iPhone 11 PRO MAX â Rs.25000",
-      "description": "256 GB, 86% BATTERY HEALTH"
+      "name": "",
+      "description": ""
     },
     {
       "id": 2,
@@ -1100,13 +1100,13 @@
     },
     {
       "id": 28,
-      "name": "SAMSUNG NOTE 20 ULTRA Ã¢ÂÂ Rs.25000",
+      "name": "SAMSUNG NOTE 20 ULTRA â Rs.25000",
       "description": "5G, 12 GB, 256 GB"
     },
     {
       "id": 29,
-      "name": "iPhone 11 PRO MAX – Rs.25000",
-      "description": "256 GB, 86% BATTERY HEALTH"
+      "name": "",
+      "description": ""
     },
     {
       "id": 30,
