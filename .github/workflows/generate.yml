@@ -19,8 +19,7 @@ jobs:
         with:
           node-version: 18
 
-      - name: Generate buygallery.html
-        run: node dynamic/generate-html.js
+    
 
       - name: Generate wacust/1–30.html
         run: node dynamic/generate-wacust.js
