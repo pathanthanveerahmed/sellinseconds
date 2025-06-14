@@ -28,10 +28,7 @@
     "name": "{{TITLE}}",
     "description": "{{DESCRIPTION}}",
     "image": "https://www.sellinseconds.in/dynamic/images/{{IMAGE}}",
-    "brand": {
-      "@type": "Brand",
-      "name": "SellInSeconds"
-    },
+    "brand": { "@type": "Brand", "name": "SellInSeconds" },
     "offers": {
       "@type": "Offer",
       "url": "https://www.sellinseconds.in/dynamic/buygallery.html",
@@ -57,7 +54,17 @@
       overflow: hidden;
       background: white;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
+    .card.highlight {
+      animation: fadein 0.8s ease;
+      box-shadow: 0 0 10px #4caf50aa;
+    }
+    @keyframes fadein {
+      0% { opacity: 0; transform: scale(0.96); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
     .card picture img {
       width: 100%;
       height: auto;
@@ -75,88 +82,95 @@
       color: #444;
       margin-top: 4px;
     }
-    @media (min-width: 600px) {
-      .card { max-width: 500px; }
-    }
 
-    /* Loading overlay */
-    #loadingOverlay {
+    .loading-overlay {
       position: fixed;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.95);
-      z-index: 9999;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255, 255, 255, 0.9);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: system-ui, sans-serif;
-      transition: opacity 0.4s ease;
-    }
-
-    .loading-content {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 16px;
-      font-weight: bold;
+      flex-direction: column;
+      z-index: 9999;
+      font-size: 18px;
       color: #333;
     }
 
     .spinner {
+      margin-top: 15px;
       width: 24px;
       height: 24px;
+      border: 3px solid #ccc;
+      border-top: 3px solid #28a745;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (min-width: 600px) {
+      .card { max-width: 500px; }
     }
   </style>
 </head>
 <body>
+  <div class="loading-overlay" id="loading">
+    Welcome to Sell in Seconds... Just a moment please
+    <div class="spinner"></div>
+  </div>
+
   <div class="gallery">
     {{CARDS}}
   </div>
 
-  <!-- Loading Overlay -->
-  <div id="loadingOverlay">
-    <div class="loading-content">
-      <img src="/loading.gif" alt="Loading..." class="spinner" />
-      <span class="loading-text">Welcome to SellInSeconds... Just a moment please</span>
-    </div>
-  </div>
-
-  <!-- Scroll to product and hide overlay -->
   <script>
     window.addEventListener("load", () => {
       const targetId = localStorage.getItem("scrollToProduct");
-      const overlay = document.getElementById("loadingOverlay");
+      const loadingEl = document.getElementById("loading");
 
       if (!targetId) {
-        overlay.style.opacity = 0;
-        setTimeout(() => overlay.remove(), 500);
+        loadingEl.style.display = "none";
         return;
       }
 
       const targetEl = document.getElementById(`product-${targetId}`);
       if (!targetEl) {
-        overlay.style.opacity = 0;
-        setTimeout(() => overlay.remove(), 500);
+        loadingEl.style.display = "none";
         return;
       }
 
-      // Scroll quickly to item
-      targetEl.scrollIntoView({ behavior: "auto", block: "start" });
+      const images = document.querySelectorAll("img");
+      let loaded = 0;
+      let finished = false;
 
-      // Brief scroll bounce
-      setTimeout(() => {
-        window.scrollBy(0, -60);
+      function finishScroll() {
+        if (finished) return;
+        finished = true;
+        loadingEl.style.display = "none";
+        targetEl.scrollIntoView({ behavior: "auto", block: "start" });
         setTimeout(() => {
-          window.scrollBy(0, 60);
-        }, 200);
-      }, 200);
+          window.scrollBy(0, -60);
+          setTimeout(() => {
+            window.scrollBy(0, 60);
+          }, 300);
+        }, 300);
+        targetEl.classList.add("highlight");
+        localStorage.removeItem("scrollToProduct");
+      }
 
-      // Remove overlay
-      setTimeout(() => {
-        overlay.style.opacity = 0;
-        setTimeout(() => overlay.remove(), 500);
-      }, 600);
+      images.forEach(img => {
+        if (img.complete) loaded++;
+        else img.addEventListener("load", () => {
+          loaded++;
+          if (loaded === images.length) finishScroll();
+        });
+      });
 
-      localStorage.removeItem("scrollToProduct");
+      // Fallback after 1.2 sec
+      setTimeout(() => finishScroll(), 1200);
     });
   </script>
 </body>
