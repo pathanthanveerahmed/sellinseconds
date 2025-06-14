@@ -78,6 +78,33 @@
     @media (min-width: 600px) {
       .card { max-width: 500px; }
     }
+
+    /* Loading overlay */
+    #loadingOverlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.95);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, sans-serif;
+      transition: opacity 0.4s ease;
+    }
+
+    .loading-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .spinner {
+      width: 24px;
+      height: 24px;
+    }
   </style>
 </head>
 <body>
@@ -85,45 +112,51 @@
     {{CARDS}}
   </div>
 
-  <!-- Scroll to specific product based on scrollToProduct localStorage -->
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay">
+    <div class="loading-content">
+      <img src="/loading.gif" alt="Loading..." class="spinner" />
+      <span class="loading-text">Welcome to SellInSeconds... Just a moment please</span>
+    </div>
+  </div>
+
+  <!-- Scroll to product and hide overlay -->
   <script>
     window.addEventListener("load", () => {
       const targetId = localStorage.getItem("scrollToProduct");
-      if (!targetId) return;
+      const overlay = document.getElementById("loadingOverlay");
+
+      if (!targetId) {
+        overlay.style.opacity = 0;
+        setTimeout(() => overlay.remove(), 500);
+        return;
+      }
 
       const targetEl = document.getElementById(`product-${targetId}`);
-      if (!targetEl) return;
-
-      const images = document.querySelectorAll("img");
-      let loaded = 0;
-
-      images.forEach((img) => {
-        if (img.complete) {
-          loaded++;
-        } else {
-          img.addEventListener("load", () => {
-            loaded++;
-            if (loaded === images.length) {
-              triggerScroll();
-            }
-          });
-        }
-      });
-
-      // Fallback if images don't load in time
-      setTimeout(triggerScroll, 2000);
-
-      function triggerScroll() {
-        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
-        // Slight bounce for attention
-        setTimeout(() => {
-          window.scrollBy(0, -60);
-          setTimeout(() => {
-            window.scrollBy(0, 60);
-          }, 300);
-        }, 300);
-        localStorage.removeItem("scrollToProduct");
+      if (!targetEl) {
+        overlay.style.opacity = 0;
+        setTimeout(() => overlay.remove(), 500);
+        return;
       }
+
+      // Scroll quickly to item
+      targetEl.scrollIntoView({ behavior: "auto", block: "start" });
+
+      // Brief scroll bounce
+      setTimeout(() => {
+        window.scrollBy(0, -60);
+        setTimeout(() => {
+          window.scrollBy(0, 60);
+        }, 200);
+      }, 200);
+
+      // Remove overlay
+      setTimeout(() => {
+        overlay.style.opacity = 0;
+        setTimeout(() => overlay.remove(), 500);
+      }, 600);
+
+      localStorage.removeItem("scrollToProduct");
     });
   </script>
 </body>
