@@ -1,6 +1,5 @@
-
 {
-  "active": 1,
+  "active": 2,
   "sequences": [
     [
       30,
@@ -971,8 +970,8 @@
     },
     {
       "id": 2,
-      "name": "",
-      "description": ""
+      "name": "MacBook Air APPLE M2 CHIP – Rs.56000",
+      "description": "Apple M2 CHIP, 8 GB, 256 GB, APPLE CARE PLUS TILL DECEMBER, 385 BATTERY CYCLE COUNT"
     },
     {
       "id": 3,
