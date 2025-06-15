@@ -1,5 +1,5 @@
 {
-  "active": 3,
+  "active": 1,
   "sequences": [
     [
       30,
@@ -965,18 +965,18 @@
   "images": [
     {
       "id": 1,
-      "name": "ALIENWARE M15 R3 Ã¢ÂÂ Rs.140000",
+      "name": "ALIENWARE M15 R3 Rs.140000",
       "description": "HIGH END GAMING LAPTOP"
     },
     {
       "id": 2,
-      "name": "Apple iPhone 15 Pro Max â Rs.80000",
-      "description": "256GB, Battery Health 88%, Apple Care + till September 2025, Indian Unit"
+      "name": "",
+      "description": ""
     },
     {
       "id": 3,
-      "name": "Test – Rs.1",
-      "description": "Test"
+      "name": "",
+      "description": ""
     },
     {
       "id": 4,
