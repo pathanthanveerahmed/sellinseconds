@@ -1,4 +1,4 @@
-// generate-wacust.js
+// dynamic/generate-wacust.js
 
 const fs = require('fs');
 
@@ -12,6 +12,7 @@ for (let id = 1; id <= 30; id++) {
 
   const htmlPath = `dynamic/wacust/${id}.html`;
 
+  const timestamp = Date.now();
   let html = `<!DOCTYPE html>
 <html>
   <head>
@@ -19,7 +20,8 @@ for (let id = 1; id <= 30; id++) {
     <meta name="robots" content="noindex, nofollow">
     <meta property="og:title" content="${product.name}">
     <meta property="og:description" content="${product.description}">
-    <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/${id}.webp">
+    <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/${id}.webp?v=${timestamp}">
+    <meta property="og:image:secure_url" content="https://www.sellinseconds.in/dynamic/images/${id}.webp?v=${timestamp}">
     <meta http-equiv="refresh" content="0; URL=/dynamic/buygallery.html">
     <script>
       localStorage.setItem("scrollToProduct", "${id}");
@@ -28,12 +30,9 @@ for (let id = 1; id <= 30; id++) {
   </head>
   <body>
     Redirecting to Product ${id}...
+    <!-- Updated at ${new Date().toISOString()} -->
   </body>
 </html>`;
-
-  // ✅ Inject timestamp to force GitHub to recognize as changed
-  const timestampComment = `<!-- Updated at ${new Date().toISOString()} -->`;
-  html = html.replace('</body>', `${timestampComment}\n</body>`);
 
   fs.writeFileSync(htmlPath, html);
   console.log(`✅ Updated wacust/${id}.html`);
