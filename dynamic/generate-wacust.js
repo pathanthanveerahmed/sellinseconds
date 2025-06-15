@@ -10,7 +10,7 @@ for (let id = 1; id <= 30; id++) {
 
   const htmlPath = `dynamic/wacust/${id}.html`;
 
-  let html = `<!DOCTYPE html>
+  const html = `<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -19,10 +19,10 @@ for (let id = 1; id <= 30; id++) {
     <meta property="og:description" content="${product.description}">
     <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/${id}.webp">
     <meta property="og:image:secure_url" content="https://www.sellinseconds.in/dynamic/images/${id}.webp">
-    <meta property="og:type" content="product">
     <meta property="og:url" content="https://www.sellinseconds.in/dynamic/wacust/${id}.html">
-    <!-- <meta property="fb:app_id" content="YOUR_APP_ID"> -->
-    <meta http-equiv="refresh" content="0; URL=/dynamic/buygallery.html">
+    <meta property="og:type" content="product">
+    <meta property="fb:app_id" content="112233445566778"> <!-- Replace with your real fb:app_id -->
+
     <script>
       localStorage.setItem("scrollToProduct", "${id}");
       location.href = "/dynamic/buygallery.html";
@@ -30,13 +30,10 @@ for (let id = 1; id <= 30; id++) {
   </head>
   <body>
     Redirecting to Product ${id}...
+    <!-- Updated at ${new Date().toISOString()} -->
   </body>
 </html>`;
 
-  // ✅ Inject timestamp so GitHub detects changes
-  const timestampComment = `<!-- Updated at ${new Date().toISOString()} -->`;
-  html = html.replace('</body>', `${timestampComment}\n</body>`);
-
   fs.writeFileSync(htmlPath, html);
-  console.log(`✅ Updated wacust/${id}.html`);
+  console.log(`✅ Generated dynamic/wacust/${id}.html`);
 }
