@@ -17,8 +17,8 @@ for (let id = 1; id <= 30; id++) {
     <meta name="robots" content="noindex, nofollow">
     <meta property="og:title" content="${product.name}">
     <meta property="og:description" content="${product.description}">
-    <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/${id}.webp?v=${Date.now()}">
-    <meta property="og:image:secure_url" content="https://www.sellinseconds.in/dynamic/images/${id}.webp?v=${Date.now()}">
+    <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/${id}.webp">
+    <meta property="og:image:secure_url" content="https://www.sellinseconds.in/dynamic/images/${id}.webp">
     <meta http-equiv="refresh" content="0; URL=/dynamic/buygallery.html">
     <script>
       localStorage.setItem("scrollToProduct", "${id}");
