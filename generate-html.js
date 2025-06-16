@@ -48,5 +48,5 @@ template = template
   .replace(/{{CARDS}}/g, cardsHTML);
 
 // Save final HTML
-fs.writeFileSync('dynamic/buygallery.html', template);
+fs.writeFileSync('dynamic/buygallery.html', template, 'utf8');
 console.log(`✅ buygallery.html generated with active ID ${topId}`);
