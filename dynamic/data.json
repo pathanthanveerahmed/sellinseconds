@@ -1,5 +1,5 @@
 {
-  "active": 7,
+  "active": 8,
   "sequences": [
     [
       30,
@@ -995,13 +995,14 @@
     },
     {
       "id": 7,
-      "name": "HP LAPTOP – Rs.5000",
+      "name": "HP LAPTOP â Rs.5000",
       "description": "intel CORE i3, 4 GB RAM, 500 HDD, BATTERY NOT WORKING"
     },
     {
       "id": 8,
-      "name": "",
-      "description": ""
+      "name": "Test – Rs.1",
+      "description": "Test 💫🔋✨",
+      "filename": "8-1750090103500.webp"
     },
     {
       "id": 9,
@@ -1114,5 +1115,5 @@
       "description": "512 GB, JUST SEAL CUT, 1 YEAR WARRANTY"
     }
   ],
-  "updated": 1750071030242
+  "updated": 1750090107009
 }
