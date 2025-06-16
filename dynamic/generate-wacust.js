@@ -1,39 +1,22 @@
-const fs = require('fs');
+const fs = require("fs");
+const data = JSON.parse(fs.readFileSync("dynamic/data.json", "utf8"));
+const images = data.images;
+const template = fs.readFileSync("dynamic/1to30-template.html", "utf8");
 
-// Load JSON data
-const data = JSON.parse(fs.readFileSync('dynamic/data.json', 'utf8'));
+for (let i = 1; i <= 30; i++) {
+  const item = images.find(img => parseInt(img.id) === i);
+  if (!item) continue;
 
-// Loop through IDs 1 to 30
-for (let id = 1; id <= 30; id++) {
-  const product = data.images.find(img => img.id === id);
-  if (!product || (!product.name && !product.description)) continue;
+  const title = item.name || "Device on SellInSeconds";
+  const desc = item.description || "Certified device available";
+  const filename = item.filename || "og.png";
 
-  const htmlPath = `dynamic/wacust/${id}.html`;
+  const html = template
+    .replace(/{{TITLE}}/g, title)
+    .replace(/{{DESCRIPTION}}/g, desc)
+    .replace(/{{FILENAME}}/g, filename)
+    .replace(/{{PAGE}}/g, i);
 
-  const html = `<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="robots" content="noindex, nofollow">
-    <meta property="og:title" content="${product.name}">
-    <meta property="og:description" content="${product.description}">
-    <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/${id}.webp">
-    <meta property="og:image:secure_url" content="https://www.sellinseconds.in/dynamic/images/${id}.webp">
-    <meta property="og:url" content="https://www.sellinseconds.in/dynamic/wacust/${id}.html">
-    <meta property="og:type" content="product">
-    <meta property="fb:app_id" content="112233445566778"> <!-- Replace with your real fb:app_id -->
-
-    <script>
-      localStorage.setItem("scrollToProduct", "${id}");
-      location.href = "/dynamic/buygallery.html";
-    </script>
-  </head>
-  <body>
-    Redirecting to Product ${id}...
-    <!-- Updated at ${new Date().toISOString()} -->
-  </body>
-</html>`;
-
-  fs.writeFileSync(htmlPath, html);
-  console.log(`✅ Generated dynamic/wacust/${id}.html`);
+  fs.writeFileSync(`dynamic/wacust/${i}.html`, html, "utf8");
+  console.log(`✅ Generated wacust/${i}.html`);
 }
