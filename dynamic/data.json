@@ -1,6 +1,5 @@
-
 {
-  "active": 6,
+  "active": 7,
   "sequences": [
     [
       30,
@@ -991,13 +990,13 @@
     },
     {
       "id": 6,
-      "name": "Google Pixel 9 PRO XL SEALED – Rs.85000",
+      "name": "Google Pixel 9 PRO XL SEALED â Rs.85000",
       "description": "INDIAN VARIANT, 256 GB"
     },
     {
       "id": 7,
-      "name": "",
-      "description": ""
+      "name": "HP LAPTOP – Rs.5000",
+      "description": "intel CORE i3, 4 GB RAM, 500 HDD, BATTERY NOT WORKING"
     },
     {
       "id": 8,
@@ -1114,5 +1113,6 @@
       "name": "SAMSUNG S24 ULTRA Rs.80000",
       "description": "512 GB, JUST SEAL CUT, 1 YEAR WARRANTY"
     }
-  ]
+  ],
+  "updated": 1750071030242
 }
