@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const description = card.querySelector('.card-detail')?.textContent.trim();
     const img = card.querySelector('img')?.src;
 
-    const msg = `🔥 ${title}\n${description}\n📸 ${img}`;
+    const msg = `${title}\n${description}\n📸 ${img}`;
     const waLink = `https://wa.me/?text=${encodeURIComponent(msg)}`;
 
     const shareDiv = document.createElement('div');
