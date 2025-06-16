@@ -1,6 +1,5 @@
-
 {
-  "active": 6,
+  "active": 7,
   "sequences": [
     [
       30,
@@ -987,17 +986,17 @@
     {
       "id": 5,
       "name": "Apple iPhone 14 PRO MAX Rs.57000",
-      "description": "256 GB, 84% BATTERY HELTHð, FULL KIT,  EXCELLENT CONDITION"
+      "description": "256 GB, 84% BATTERY HELTHÃ°ÂÂÂ, FULL KIT,  EXCELLENT CONDITION"
     },
     {
       "id": 6,
-      "name": "Google Pixel 9 PRO XL SEALED – Rs.85000",
+      "name": "Google Pixel 9 PRO XL SEALED â Rs.85000",
       "description": "INDIAN VARIANT, 256 GB"
     },
     {
       "id": 7,
-      "name": "",
-      "description": ""
+      "name": "HP LAPTOP – Rs.5000",
+      "description": "intel CORE i3, 4 GB RAM, 500 GB HDD, BATTERY NOT WORKING"
     },
     {
       "id": 8,
@@ -1114,5 +1113,6 @@
       "name": "SAMSUNG S24 ULTRA Rs.80000",
       "description": "512 GB, JUST SEAL CUT, 1 YEAR WARRANTY"
     }
-  ]
+  ],
+  "updated": 1750070495303
 }
