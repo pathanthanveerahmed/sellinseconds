@@ -10,7 +10,7 @@ for (let i = 1; i <= 30; i++) {
 
   const title = item.name || "Device on SellInSeconds";
   const desc = item.description || "Certified device available";
-  const filename = item.filename || `${i}.webp`;
+  const filename = item.filename || "og.png";
   const html = template
     .replace(/{{TITLE}}/g, title)
     .replace(/{{DESCRIPTION}}/g, desc)
