@@ -184,5 +184,35 @@
       setTimeout(() => finish(), 1000);
     });
   </script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    const title = card.querySelector('.title')?.textContent.trim();
+    const description = card.querySelector('.description')?.textContent.trim();
+    const img = card.querySelector('img')?.src;
+
+    const msg = `🔥 ${title}\n${description}\n📸 ${img}`;
+    const waLink = `https://wa.me/?text=${encodeURIComponent(msg)}`;
+
+    const shareDiv = document.createElement('div');
+    shareDiv.style.textAlign = 'right';
+    shareDiv.style.marginTop = '0.5rem';
+
+    const waBtn = document.createElement('a');
+    waBtn.href = waLink;
+    waBtn.target = '_blank';
+    waBtn.textContent = '📤 Share on WhatsApp';
+    waBtn.style.color = '#25D366';
+    waBtn.style.fontWeight = '600';
+    waBtn.style.fontSize = '0.9rem';
+    waBtn.style.textDecoration = 'none';
+
+    shareDiv.appendChild(waBtn);
+    const desc = card.querySelector('.description');
+    if (desc) desc.insertAdjacentElement('afterend', shareDiv);
+  });
+});
+</script>
 </body>
 </html>
