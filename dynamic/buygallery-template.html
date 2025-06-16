@@ -184,12 +184,13 @@
       setTimeout(() => finish(), 1000);
     });
   </script>
-  <script>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
   const cards = document.querySelectorAll('.card');
+
   cards.forEach(card => {
-    const title = card.querySelector('.title')?.textContent.trim();
-    const description = card.querySelector('.description')?.textContent.trim();
+    const title = card.querySelector('.card-title')?.textContent.trim();
+    const description = card.querySelector('.card-detail')?.textContent.trim();
     const img = card.querySelector('img')?.src;
 
     const msg = `🔥 ${title}\n${description}\n📸 ${img}`;
@@ -209,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
     waBtn.style.textDecoration = 'none';
 
     shareDiv.appendChild(waBtn);
-    const desc = card.querySelector('.description');
+    const desc = card.querySelector('.card-detail');
     if (desc) desc.insertAdjacentElement('afterend', shareDiv);
   });
 });
