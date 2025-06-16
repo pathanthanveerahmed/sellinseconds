@@ -197,23 +197,49 @@ document.addEventListener('DOMContentLoaded', () => {
     const fullImageURL = `https://www.sellinseconds.in${cleanImageURL}`;
 
     const msg = `${title}\n${description}\n\n${fullImageURL}`;
-    const waLink = `https://wa.me/?text=${encodeURIComponent(msg)}`;
-
-    const shareDiv = document.createElement('div');
-    shareDiv.style.textAlign = 'right';
-    shareDiv.style.marginTop = '0.5rem';
+    const waShareLink = `https://wa.me/?text=${encodeURIComponent(msg)}`;
 
     const waBtn = document.createElement('a');
-    waBtn.href = waLink;
+    waBtn.href = waShareLink;
     waBtn.target = '_blank';
     waBtn.title = 'Share on WhatsApp';
     waBtn.setAttribute('aria-label', 'Share this product on WhatsApp');
-    waBtn.innerHTML = '<img src="https://img.icons8.com/color/24/000000/whatsapp--v1.png" alt="WhatsApp" style="vertical-align:middle;">';
+    waBtn.innerHTML = '<img src="https://img.icons8.com/color/20/000000/whatsapp--v1.png" alt="WhatsApp" style="vertical-align:middle; margin-right:4px;"> Share to others on WhatsApp';
+    waBtn.style.color = '#25D366';
+    waBtn.style.fontWeight = '600';
+    waBtn.style.fontSize = '0.9rem';
+    waBtn.style.textDecoration = 'none';
 
-    shareDiv.appendChild(waBtn);
+    const shareHint = document.createElement('small');
+    shareHint.textContent = '💡 Tap to edit price and share with your customers';
+    shareHint.style.color = '#555';
+    shareHint.style.fontSize = '0.75rem';
+    shareHint.style.display = 'block';
+    shareHint.style.marginTop = '4px';
+    waBtn.appendChild(shareHint);
+
+    const contactText = `Hi! I'm interested in:\n${title}\n${description}`;
+    const waContactLink = `https://wa.me/919886566379?text=${encodeURIComponent(contactText)}`;
+
+    const contactBtn = document.createElement('a');
+    contactBtn.href = waContactLink;
+    contactBtn.target = '_blank';
+    contactBtn.innerHTML = 'Contact SellInSeconds 9886566379';
+    contactBtn.style.color = '#075e54';
+    contactBtn.style.fontWeight = '600';
+    contactBtn.style.fontSize = '0.9rem';
+    contactBtn.style.textDecoration = 'none';
+
+    const actionRow = document.createElement('div');
+    actionRow.style.display = 'flex';
+    actionRow.style.justifyContent = 'space-between';
+    actionRow.style.marginTop = '0.5rem';
+
+    actionRow.appendChild(contactBtn);
+    actionRow.appendChild(waBtn);
 
     const desc = card.querySelector('.card-detail');
-    if (desc) desc.insertAdjacentElement('afterend', shareDiv);
+    if (desc) desc.insertAdjacentElement('afterend', actionRow);
   });
 });
 </script>
