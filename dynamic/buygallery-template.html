@@ -193,11 +193,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const description = card.querySelector('.card-detail')?.textContent.trim();
     const img = card.querySelector('img')?.getAttribute('src');
 
-    // Remove query parameters from image src
     const cleanImageURL = img.split('?')[0];
     const fullImageURL = `https://www.sellinseconds.in${cleanImageURL}`;
 
-    // Message: title + description + image URL on new line (thumbnail-safe)
     const msg = `${title}\n${description}\n\n${fullImageURL}`;
     const waLink = `https://wa.me/?text=${encodeURIComponent(msg)}`;
 
@@ -208,13 +206,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const waBtn = document.createElement('a');
     waBtn.href = waLink;
     waBtn.target = '_blank';
-    waBtn.textContent = 'Share on WhatsApp';
-    waBtn.style.color = '#25D366';
-    waBtn.style.fontWeight = '600';
-    waBtn.style.fontSize = '0.9rem';
-    waBtn.style.textDecoration = 'none';
+    waBtn.title = 'Share on WhatsApp';
+    waBtn.setAttribute('aria-label', 'Share this product on WhatsApp');
+    waBtn.innerHTML = '<img src="https://img.icons8.com/color/24/000000/whatsapp--v1.png" alt="WhatsApp" style="vertical-align:middle;">';
 
     shareDiv.appendChild(waBtn);
+
     const desc = card.querySelector('.card-detail');
     if (desc) desc.insertAdjacentElement('afterend', shareDiv);
   });
