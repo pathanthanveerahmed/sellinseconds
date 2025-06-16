@@ -191,9 +191,14 @@ document.addEventListener('DOMContentLoaded', () => {
   cards.forEach(card => {
     const title = card.querySelector('.card-title')?.textContent.trim();
     const description = card.querySelector('.card-detail')?.textContent.trim();
-    const img = card.querySelector('img')?.src;
+    const img = card.querySelector('img')?.getAttribute('src');
 
-    const msg = `${title}\n${description}\n📸 ${img}`;
+    // Remove query parameters from image src
+    const cleanImageURL = img.split('?')[0];
+    const fullImageURL = `https://www.sellinseconds.in${cleanImageURL}`;
+
+    // Message: title + description + image URL on new line (thumbnail-safe)
+    const msg = `${title}\n${description}\n\n${fullImageURL}`;
     const waLink = `https://wa.me/?text=${encodeURIComponent(msg)}`;
 
     const shareDiv = document.createElement('div');
@@ -203,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const waBtn = document.createElement('a');
     waBtn.href = waLink;
     waBtn.target = '_blank';
-    waBtn.textContent = '📤 Share on WhatsApp';
+    waBtn.textContent = 'Share on WhatsApp';
     waBtn.style.color = '#25D366';
     waBtn.style.fontWeight = '600';
     waBtn.style.fontSize = '0.9rem';
