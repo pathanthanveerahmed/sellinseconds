@@ -215,7 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // RIGHT: Smart Share Button
     const shareBtn = document.createElement('button');
-    shareBtn.textContent = '📤 Share on WhatsApp';
+    shareBtn.innerHTML = `
+  <img src="https://img.icons8.com/color/20/000000/whatsapp--v1.png"
+       alt="WhatsApp" style="vertical-align:middle; margin-right:6px;">
+  Edit & Share
+`;
     Object.assign(shareBtn.style, {
       backgroundColor: '#25D366',
       color: 'white',
