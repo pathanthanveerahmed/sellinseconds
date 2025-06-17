@@ -1,7 +1,7 @@
 const fs = require("fs");
-const data = JSON.parse(fs.readFileSync("dynamic/data.json", "utf8"));
+const data = JSON.parse(fs.readFileSync("data.json", "utf8"));
 const images = data.images;
-const template = fs.readFileSync("dynamic/1to30-template.html", "utf8");
+const template = fs.readFileSync("1to30-template.html", "utf8");
 
 for (let i = 1; i <= 30; i++) {
   const item = images.find(img => parseInt(img.id) === i);
