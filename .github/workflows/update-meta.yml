@@ -20,7 +20,7 @@ jobs:
 
       - name: Generate updated HTML
         run: |
-          node generate-html.js
+  node dynamic/generate-html-with-versioned-images.js
 
       - name: Commit changes
         run: |
