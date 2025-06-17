@@ -5,7 +5,7 @@ on:
     paths:
       - 'dynamic/data.json'
       - 'dynamic/images/**'
-      - 'dynamic/generate-html.js'
+      - 'dynamic/generate-html-with-versioned-images.js'
 
 jobs:
   build:
