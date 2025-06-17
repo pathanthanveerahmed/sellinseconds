@@ -1,7 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
-// This script is located in dynamic/, so __dirname points to .../dynamic
+// This script is located in dynamic/ folder
+// __dirname points to the absolute path of dynamic/
+
 // Paths relative to dynamic/
 const dataPath = path.join(__dirname, "data.json");
 const templatePath = path.join(__dirname, "1to30-template.html");
@@ -19,7 +21,7 @@ const template = fs.readFileSync(templatePath, "utf8");
 // Version string for cache-busting
 const version = Date.now();
 
-// Clean temp directory
+// Ensure temp directory is clean
 if (fs.existsSync(tempDir)) {
   fs.rmSync(tempDir, { recursive: true, force: true });
 }
@@ -36,23 +38,27 @@ images.forEach(item => {
   const imgPath = path.join(imgDir, filename);
 
   // Fallback if image missing
-  if (!fs.existsSync(imgPath)) filename = "og.png";
+  if (!fs.existsSync(imgPath)) {
+    filename = "og.png";
+  }
 
-  // Append version for caching
+  // Append version for cache-busting
   const fileWithVer = `${filename}?v=${version}`;
 
+  // Replace placeholders in template
   const html = template
     .replace(/{{TITLE}}/g, title)
     .replace(/{{DESCRIPTION}}/g, desc)
     .replace(/{{FILENAME}}/g, fileWithVer)
     .replace(/{{PAGE}}/g, idx);
 
+  // Write out
   const outFile = path.join(tempDir, `${idx}.html`);
   fs.writeFileSync(outFile, html, "utf8");
   console.log(`✅ Generated ${outFile}`);
 });
 
-// Replace final wacust with temp atomically
+// Atomically swap temp to final
 if (fs.existsSync(finalDir)) {
   fs.rmSync(finalDir, { recursive: true, force: true });
 }
