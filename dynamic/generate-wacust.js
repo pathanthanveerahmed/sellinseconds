@@ -11,7 +11,7 @@ for (let i = 1; i <= 30; i++) {
   const desc = item.description || "Certified device available";
   const filename = item.filename || "og.png";
 
-  // ✅ Don't append ?v=timestamp to OG URLs
+  // ✅ Avoid versioning in OG thumbnails
   const html = template
     .replace(/{{TITLE}}/g, title)
     .replace(/{{DESCRIPTION}}/g, desc)
