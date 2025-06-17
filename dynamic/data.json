@@ -1,6 +1,5 @@
-
 {
-  "active": 12,
+  "active": 13,
   "sequences": [
     [
       30,
@@ -1031,8 +1030,9 @@
     },
     {
       "id": 13,
-      "name": "iPhone 16 PRO MAX",
-      "description": "iPhone 16 PRO MAX, 1 TB, 100% BATTERY HEALTH, 2 MONTHS OLD, INDIAN VARIANT Rs.135000"
+      "name": "Apple iPhone 14 PRO MAX – Rs.59000",
+      "description": "256 GB, DUAL PHYSICAL SIM 🗂️, 90% BATTERY HEALTH",
+      "filename": "13-1750155139519.webp"
     },
     {
       "id": 14,
@@ -1120,5 +1120,5 @@
       "description": "512 GB, JUST SEAL CUT, 1 YEAR WARRANTY"
     }
   ],
-  "updated": 1750151726689
+  "updated": 1750155154509
 }
