@@ -1,5 +1,5 @@
 {
-  "active": 10,
+  "active": 7,
   "sequences": [
     [
       30,
@@ -1000,21 +1000,21 @@
     },
     {
       "id": 8,
-      "name": "Golang – Rs.1",
-      "description": "Test",
-      "filename": "8-1750124616098.webp"
+      "name": "",
+      "description": "",
+      "filename": ""
     },
     {
       "id": 9,
-      "name": "Hd – Rs.5",
-      "description": "Hd",
-      "filename": "9-1750127899144.webp"
+      "name": "",
+      "description": "",
+      "filename": ""
     },
     {
       "id": 10,
-      "name": "Hh – Rs.6",
-      "description": "Bhj",
-      "filename": "10-1750128024094.webp"
+      "name": "",
+      "description": "",
+      "filename": ""
     },
     {
       "id": 11,
