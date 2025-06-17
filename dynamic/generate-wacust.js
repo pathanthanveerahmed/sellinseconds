@@ -12,6 +12,9 @@ const imgDir = path.join(__dirname, "dynamic/images");
 const tempDir = path.join(__dirname, "dynamic/wacust-temp");
 const finalDir = path.join(__dirname, "dynamic/wacust");
 
+// Generate a version string to bust cache
+const version = Date.now();
+
 // Ensure temp directory is clean
 if (fs.existsSync(tempDir)) {
   fs.rmSync(tempDir, { recursive: true, force: true });
@@ -32,11 +35,13 @@ images.forEach(item => {
   if (!fs.existsSync(fullImgPath)) {
     filename = "og.png";
   }
+  // Append version to bust cache
+  const filenameWithVersion = `${filename}?v=${version}`;
 
   const html = template
     .replace(/{{TITLE}}/g, title)
     .replace(/{{DESCRIPTION}}/g, desc)
-    .replace(/{{FILENAME}}/g, filename)
+    .replace(/{{FILENAME}}/g, filenameWithVersion)
     .replace(/{{PAGE}}/g, i);
 
   const outPath = path.join(tempDir, `${i}.html`);
