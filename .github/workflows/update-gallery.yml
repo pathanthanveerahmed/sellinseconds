@@ -22,7 +22,7 @@ jobs:
 
     - name: Run HTML Generator
       run: |
-        node dynamic/generate-html.js
+  node dynamic/generate-html-with-versioned-images.js
 
     - name: Commit and Push changes
       run: |
