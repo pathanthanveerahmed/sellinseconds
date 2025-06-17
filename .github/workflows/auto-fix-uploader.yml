@@ -5,7 +5,7 @@ on:
     paths:
       - 'dynamic/data.json'
       - 'dynamic/images/**'
-      - 'dynamic/generate-html.js'
+      - 'dynamic/generate-html-with-versioned-images.js'
       - 'dynamic/generate-wacust.js'
       - 'dynamic/buygallery-template.html'
       - 'dynamic/1to30-template.html'
@@ -29,7 +29,7 @@ jobs:
         run: sleep 5
 
       - name: ⚙️ Generate buygallery.html
-        run: node dynamic/generate-html.js
+        run: node dynamic/generate-html-with-versioned-images.js
 
       - name: ⚙️ Generate wacust/1–30.html
         run: node dynamic/generate-wacust.js
