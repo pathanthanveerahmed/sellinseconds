@@ -38,17 +38,18 @@ data.images.forEach(img => {
 
   if (!fs.existsSync(path.join(imgDir, filename))) filename = "og.png";
 
-  const versionedFilename = `${filename}?v=${version}`;
+  const versionedFilename = `${filename}?v=${version}`; // used for <img>
+  const jpgFilename = filename.replace(/\.webp$/, ".jpg"); // used for OG tags
 
   const html = template
     .replace(/{{TITLE}}/g, name)
     .replace(/{{DESCRIPTION}}/g, desc)
-    .replace(/{{FILENAME}}/g, versionedFilename) // used for <img>
-    .replace(/{{FILENAME_NO_VERSION}}/g, filename) // used for OG/Twitter
+    .replace(/{{FILENAME}}/g, versionedFilename)
+    .replace(/{{JPG_FILENAME}}/g, jpgFilename)
     .replace(/{{PAGE}}/g, id);
 
   fs.writeFileSync(path.join(tempDir, `${id}.html`), html, "utf8");
-  console.log(`✅ Wrote ${id}.html`);
+  console.log(`✅ Wrote wacust/${id}.html`);
 });
 
 if (fs.existsSync(finalDir)) fs.rmSync(finalDir, { recursive: true });
