@@ -18,6 +18,6 @@ for (let i = 1; i <= 30; i++) {
     .replace(/{{FILENAME}}/g, filename)
     .replace(/{{PAGE}}/g, i);
 
-  fs.writeFileSync(`dynamic/wacust/${i}.html`, html, "utf8");
+  fs.writeFileSync(`wacust/${i}.html`, html, "utf8");
   console.log(`✅ Generated wacust/${i}.html`);
 }
