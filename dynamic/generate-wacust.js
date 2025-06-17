@@ -24,6 +24,7 @@ try {
   process.exit(1);
 }
 
+const version = Date.now();
 if (fs.existsSync(tempDir)) fs.rmSync(tempDir, { recursive: true });
 fs.mkdirSync(tempDir, { recursive: true });
 
@@ -31,22 +32,23 @@ data.images.forEach(img => {
   const id = parseInt(img.id, 10);
   if (!id || id < 1 || id > 30) return;
 
-  const title = img.name || "Device on SellInSeconds";
+  const name = img.name || "Device on SellInSeconds";
   const desc = img.description || "Certified device available";
-  let filenameWebp = img.filename || "og.png";
-  let filenameJpg = filenameWebp + ".jpg";
+  let filename = img.filename || "og.png";
 
-  const jpgPath = path.join(imgDir, filenameJpg);
-  const usedThumbnail = fs.existsSync(jpgPath) ? filenameJpg : "og.png";
+  const jpgFilename = `${filename}.jpg`;
+  if (!fs.existsSync(path.join(imgDir, jpgFilename))) {
+    console.warn(`⚠️ JPG fallback missing for ID ${id}: ${jpgFilename}`);
+  }
 
   const html = template
-    .replace(/{{TITLE}}/g, title)
+    .replace(/{{TITLE}}/g, name)
     .replace(/{{DESCRIPTION}}/g, desc)
-    .replace(/{{FILENAME}}/g, usedThumbnail)
+    .replace(/{{FILENAME_JPG}}/g, jpgFilename)
     .replace(/{{PAGE}}/g, id);
 
   fs.writeFileSync(path.join(tempDir, `${id}.html`), html, "utf8");
-  console.log(`✅ Wrote ${id}.html with ${usedThumbnail}`);
+  console.log(`✅ Wrote ${id}.html`);
 });
 
 if (fs.existsSync(finalDir)) fs.rmSync(finalDir, { recursive: true });
