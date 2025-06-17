@@ -1,31 +1,32 @@
-name: Update OG Meta Tags
+name: 🖼️ Update OG Meta Tags
 
 on:
   push:
     paths:
-      - 'dynamic/data.json'  # ✅ Triggers on changes to this file
+      - 'dynamic/data.json'                     # Triggers on JSON updates
+      - 'dynamic/generate-html-with-versioned-images.js'  # Triggers if script changes
+      - 'dynamic/buygallery-template.html'      # Optional: if template changes
 
 jobs:
-  build:
+  update-meta:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: 🛠️ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Generate updated HTML
-        run: |
-  node dynamic/generate-html-with-versioned-images.js
+      - name: 🧾 Generate buygallery.html (versioned)
+        run: node dynamic/generate-html-with-versioned-images.js
 
-      - name: Commit changes
+      - name: ✅ Commit and Push
         run: |
           git config user.name "OG Meta Bot"
           git config user.email "bot@sellinseconds.in"
           git add dynamic/buygallery.html
-          git commit -m "Auto-update OG meta from data.json"
-          git push
+          git commit -m "♻️ Auto-update OG meta with versioned images" || echo "Nothing to commit"
+          git push || echo "Nothing to push"
