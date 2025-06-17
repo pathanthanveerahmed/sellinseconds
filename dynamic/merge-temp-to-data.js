@@ -1,41 +1,66 @@
 const fs = require("fs");
+const path = require("path");
 
-const tempPath = "dynamic/temp.json";
-const dataPath = "dynamic/data.json";
+const tempPath = path.join(__dirname, "temp.json");
+const dataPath = path.join(__dirname, "data.json");
 
+// Utility to normalize UTF-8 characters
 function cleanUTF(str) {
-  return new TextDecoder("utf-8").decode(new TextEncoder().encode(str || '')).normalize("NFC");
+  return (str || "").normalize("NFC");
 }
 
+// Ensure structure is valid and fields are trimmed
 function cleanEntry(entry) {
   return {
-    id: entry.id,
-    name: cleanUTF(entry.name),
-    description: cleanUTF(entry.description),
-    filename: entry.filename
+    id: parseInt(entry.id),
+    name: cleanUTF(entry.name).trim(),
+    description: cleanUTF(entry.description).trim(),
+    filename: cleanUTF(entry.filename).trim()
   };
 }
 
-const temp = JSON.parse(fs.readFileSync(tempPath, "utf8"));
-console.log("➡️ Temp Entry:", temp);
+let temp, data;
 
-const data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
-console.log("📦 Current Entries:", data.images.length);
+try {
+  temp = JSON.parse(fs.readFileSync(tempPath, "utf8"));
+} catch (err) {
+  console.error("❌ Failed to read temp.json:", err.message);
+  process.exit(1);
+}
+
+try {
+  data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+} catch (err) {
+  console.error("❌ Failed to read data.json:", err.message);
+  process.exit(1);
+}
+
+if (!data.images || !Array.isArray(data.images)) data.images = [];
 
 const newEntry = cleanEntry(temp);
-const index = data.images.findIndex(p => p.id === newEntry.id);
+const index = data.images.findIndex(item => item.id === newEntry.id);
 
 if (index >= 0) {
-  console.log(`✏️ Updating existing entry ID ${newEntry.id}`);
+  console.log(`✏️ Updating entry ID ${newEntry.id}`);
   data.images[index] = newEntry;
 } else {
   console.log(`➕ Adding new entry ID ${newEntry.id}`);
   data.images.push(newEntry);
 }
 
+// Sort by ID to prevent chaos
+data.images.sort((a, b) => a.id - b.id);
+
+// Final clean & update flags
 data.active = newEntry.id;
 data.updated = Date.now();
 data.images = data.images.map(cleanEntry);
 
-fs.writeFileSync(dataPath, JSON.stringify(data, null, 2), "utf8");
-console.log("✅ Merged successfully into data.json");
+// Write safely
+try {
+  fs.writeFileSync(dataPath, JSON.stringify(data, null, 2), "utf8");
+  console.log("✅ data.json updated cleanly and safely");
+} catch (err) {
+  console.error("❌ Failed to write data.json:", err.message);
+  process.exit(1);
+}
