@@ -1,0 +1,38 @@
+name: 🛡️ Merge + Regenerate + Debug
+
+on:
+  push:
+    paths:
+      - 'dynamic/temp.json'
+
+jobs:
+  merge-temp:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: 🧼 Merge temp.json → data.json
+        run: |
+          node dynamic/merge-temp-to-data.js
+          echo "✅ Cleaned and updated data.json:"
+          cat dynamic/data.json
+
+      - name: 🧾 Generate updated buygallery.html
+        run: |
+          node dynamic/generate-html.js
+          echo "✅ Generated buygallery.html"
+
+      - name: 🔁 Commit and Push changes
+        run: |
+          git config user.name "Merge Bot"
+          git config user.email "bot@sellinseconds.in"
+          git add dynamic/data.json dynamic/buygallery.html || true
+          git commit -m "✅ Merged + regenerated HTML (debug)" || echo "ℹ️ Nothing to commit"
+          git push || echo "⚠️ Nothing pushed or already up to date"
