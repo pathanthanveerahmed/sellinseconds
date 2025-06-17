@@ -1,33 +1,31 @@
-name: 🛠️ Update BuyGallery
+name: Update OG Meta Tags
 
 on:
   push:
     paths:
       - 'dynamic/data.json'
-      - 'dynamic/images/**'
-      - 'dynamic/generate-html-with-versioned-images.js'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-    - name: Run HTML Generator
-      run: |
-  node dynamic/generate-html-with-versioned-images.js
+      - name: Generate updated HTML
+        run: |
+          node dynamic/generate-html-with-versioned-images.js
 
-    - name: Commit and Push changes
-      run: |
-        git config user.name "Auto Bot"
-        git config user.email "actions@github.com"
-        git add dynamic/buygallery.html
-        git commit -m "🔁 Auto-generated buygallery.html"
-        git push
+      - name: Commit changes
+        run: |
+          git config user.name "OG Meta Bot"
+          git config user.email "bot@sellinseconds.in"
+          git add dynamic/buygallery.html
+          git commit -m "Auto-update OG meta from data.json" || echo "No changes"
+          git push || echo "Already up to date"
