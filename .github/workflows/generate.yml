@@ -5,6 +5,8 @@ on:
     paths:
       - 'dynamic/data.json'
       - 'dynamic/generate-wacust.js'
+      - 'dynamic/1to30-template.html'
+      - 'dynamic/images/*.jpg'  # ✅ include JPG triggers
 
 jobs:
   generate-wacust:
@@ -28,10 +30,8 @@ jobs:
         run: |
           git config user.name "OG Meta Bot"
           git config user.email "bot@sellinseconds.in"
-          
           git add dynamic/wacust/*.html
           git commit -m "Auto-update dynamic wacust HTMLs from data.json" || echo "No changes to commit"
-
           n=0
           until [ $n -ge 3 ]
           do
