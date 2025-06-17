@@ -431,45 +431,56 @@
   </div>
 
   <script>
-    window.addEventListener("load", () => {
-      const targetId = localStorage.getItem("scrollToProduct");
-      const loadingEl = document.getElementById("loading");
-      if (!targetId) {
-        loadingEl.style.display = "none";
-        return;
-      }
-      const targetEl = document.getElementById(`product-${targetId}`);
-      if (!targetEl) {
-        loadingEl.style.display = "none";
-        return;
-      }
-      let images = document.querySelectorAll("img");
-      let loaded = 0;
-      let finished = false;
-      const finish = () => {
-        if (finished) return;
-        finished = true;
-        loadingEl.style.display = "none";
-        targetEl.scrollIntoView({ behavior: "auto", block: "start" });
+  function getIdFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("id");
+  }
+
+  window.addEventListener("load", () => {
+    const targetId = getIdFromUrl() || localStorage.getItem("scrollToProduct");
+    const loadingEl = document.getElementById("loading");
+
+    if (!targetId) {
+      loadingEl.style.display = "none";
+      return;
+    }
+
+    const targetEl = document.getElementById(`product-${targetId}`);
+    if (!targetEl) {
+      loadingEl.style.display = "none";
+      return;
+    }
+
+    let images = document.querySelectorAll("img");
+    let loaded = 0;
+    let finished = false;
+
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      loadingEl.style.display = "none";
+      targetEl.scrollIntoView({ behavior: "auto", block: "start" });
+      setTimeout(() => {
+        window.scrollBy(0, -60);
         setTimeout(() => {
-          window.scrollBy(0, -60);
-          setTimeout(() => {
-            window.scrollBy(0, 60);
-          }, 300);
-        }, 200);
-        targetEl.classList.add("highlight");
-        localStorage.removeItem("scrollToProduct");
-      };
-      images.forEach(img => {
-        if (img.complete) loaded++;
-        else img.addEventListener("load", () => {
-          loaded++;
-          if (loaded === images.length) finish();
-        });
+          window.scrollBy(0, 60);
+        }, 300);
+      }, 200);
+      targetEl.classList.add("highlight");
+      localStorage.removeItem("scrollToProduct");
+    };
+
+    images.forEach(img => {
+      if (img.complete) loaded++;
+      else img.addEventListener("load", () => {
+        loaded++;
+        if (loaded === images.length) finish();
       });
-      setTimeout(() => finish(), 1000);
     });
-  </script>
+
+    setTimeout(() => finish(), 1000);
+  });
+</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
