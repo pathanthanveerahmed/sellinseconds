@@ -1,27 +1,31 @@
 const fs = require("fs");
 const path = require("path");
 
-// Load data
-const data = JSON.parse(fs.readFileSync("dynamic/data.json", "utf8"));
+// Scripts resides in dynamic/, so use __dirname
+// Load data from dynamic/data.json
+const dataPath = path.join(__dirname, "data.json");
+const data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
 const images = data.images;
-// Read HTML template
-const template = fs.readFileSync("dynamic/1to30-template.html", "utf8");
 
-// Directories
-const imgDir = path.join(__dirname, "dynamic/images");
-const tempDir = path.join(__dirname, "dynamic/wacust-temp");
-const finalDir = path.join(__dirname, "dynamic/wacust");
+// Read HTML template from dynamic/
+const templatePath = path.join(__dirname, "1to30-template.html");
+const template = fs.readFileSync(templatePath, "utf8");
 
-// Generate a version string to bust cache
+// Directories under dynamic/
+const imgDir = path.join(__dirname, "images");
+const tempDir = path.join(__dirname, "wacust-temp");
+const finalDir = path.join(__dirname, "wacust");
+
+// Version string to bust cache
 const version = Date.now();
 
-// Ensure temp directory is clean
+// 1. Clean and recreate temp directory
 if (fs.existsSync(tempDir)) {
   fs.rmSync(tempDir, { recursive: true, force: true });
 }
 fs.mkdirSync(tempDir, { recursive: true });
 
-// Generate HTML into temp
+// 2. Generate HTML pages into temp
 images.forEach(item => {
   const i = parseInt(item.id, 10);
   if (isNaN(i) || i < 1 || i > 30) return;
@@ -31,7 +35,7 @@ images.forEach(item => {
   let filename = item.filename || "og.png";
   const fullImgPath = path.join(imgDir, filename);
 
-  // Fallback if image missing
+  // Use fallback if image missing
   if (!fs.existsSync(fullImgPath)) {
     filename = "og.png";
   }
@@ -49,7 +53,7 @@ images.forEach(item => {
   console.log(`✅ Generated ${outPath}`);
 });
 
-// Replace final directory
+// 3. Swap directories atomically
 if (fs.existsSync(finalDir)) {
   fs.rmSync(finalDir, { recursive: true, force: true });
 }
