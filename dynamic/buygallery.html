@@ -522,13 +522,13 @@
         info.style.fontSize = '14px';
         info.style.color = '#555';
         if (index === 0) {
-          info.textContent = '⬇️ More devices below';
+          info.textContent = '⬇️ More Devices';
           const badge = document.createElement('div');
           badge.className = 'badge';
           badge.textContent = 'New';
           card.appendChild(badge);
         } else if (index < cards.length - 1) {
-          info.textContent = '⬆️ More devices ⬇️';
+          info.textContent = '⬆️ More Devices ⬇️';
         } else {
           info.textContent = '';
         }
