@@ -24,7 +24,6 @@ try {
   process.exit(1);
 }
 
-const version = Date.now();
 if (fs.existsSync(tempDir)) fs.rmSync(tempDir, { recursive: true });
 fs.mkdirSync(tempDir, { recursive: true });
 
@@ -32,24 +31,22 @@ data.images.forEach(img => {
   const id = parseInt(img.id, 10);
   if (!id || id < 1 || id > 30) return;
 
-  const name = img.name || "Device on SellInSeconds";
+  const title = img.name || "Device on SellInSeconds";
   const desc = img.description || "Certified device available";
-  let filename = img.filename || "og.png";
+  let filenameWebp = img.filename || "og.png";
+  let filenameJpg = filenameWebp + ".jpg";
 
-  if (!fs.existsSync(path.join(imgDir, filename))) filename = "og.png";
-
-  const versionedFilename = `${filename}?v=${version}`; // used for <img>
-  const jpgFilename = filename.replace(/\.webp$/, ".jpg"); // used for OG tags
+  const jpgPath = path.join(imgDir, filenameJpg);
+  const usedThumbnail = fs.existsSync(jpgPath) ? filenameJpg : "og.png";
 
   const html = template
-    .replace(/{{TITLE}}/g, name)
+    .replace(/{{TITLE}}/g, title)
     .replace(/{{DESCRIPTION}}/g, desc)
-    .replace(/{{FILENAME}}/g, versionedFilename)
-    .replace(/{{JPG_FILENAME}}/g, jpgFilename)
+    .replace(/{{FILENAME}}/g, usedThumbnail)
     .replace(/{{PAGE}}/g, id);
 
   fs.writeFileSync(path.join(tempDir, `${id}.html`), html, "utf8");
-  console.log(`✅ Wrote wacust/${id}.html`);
+  console.log(`✅ Wrote ${id}.html with ${usedThumbnail}`);
 });
 
 if (fs.existsSync(finalDir)) fs.rmSync(finalDir, { recursive: true });
