@@ -1,0 +1,33 @@
+name: 🧼 Merge Clean Temp to Data & Update HTML
+
+on:
+  push:
+    paths:
+      - 'dynamic/temp.json'
+
+jobs:
+  merge-temp:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Run merge script
+        run: node dynamic/merge-temp-to-data.js
+
+      - name: Generate updated buygallery.html
+        run: node dynamic/generate-html.js
+
+      - name: Commit and Push all updates
+        run: |
+          git config user.name "Merge Bot"
+          git config user.email "bot@sellinseconds.in"
+          git add dynamic/data.json dynamic/buygallery.html
+          git commit -m "✅ Auto-merge temp.json + regenerate buygallery.html"
+          git push
