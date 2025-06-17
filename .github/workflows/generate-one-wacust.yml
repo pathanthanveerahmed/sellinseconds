@@ -1,0 +1,31 @@
+name: 🚀 Generate Single WACUST Page
+
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        description: 'Product ID'
+        required: true
+
+jobs:
+  generate-single:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🛠 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: 🔄 Generate wacust page for single ID
+        run: node dynamic/generate-one-wacust.js ${{ github.event.inputs.id }}
+
+      - name: 🚀 Commit and push
+        run: |
+          git config user.name "One-WACUST Bot"
+          git config user.email "bot@sellinseconds.in"
+          git add dynamic/wacust/${{ github.event.inputs.id }}.html
+          git commit -m "🔁 Auto-generated wacust/${{ github.event.inputs.id }}.html"
+          git push || echo "No changes to commit"
