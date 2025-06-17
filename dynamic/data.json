@@ -1,6 +1,5 @@
-
 {
-  "active": 17,
+  "active": 18,
   "sequences": [
     [
       30,
@@ -967,37 +966,44 @@
     {
       "id": 1,
       "name": "ALIENWARE M15 R3 Rs.140000",
-      "description": "HIGH END GAMING LAPTOP"
+      "description": "HIGH END GAMING LAPTOP",
+      "filename": ""
     },
     {
       "id": 2,
       "name": "Dell Latitude 5400 Rs.25000",
-      "description": "intel CORE i7 8th Gen Processor, 32 GB RAM, 512GB SSD, 14 inch (Touch screen)"
+      "description": "intel CORE i7 8th Gen Processor, 32 GB RAM, 512GB SSD, 14 inch (Touch screen)",
+      "filename": ""
     },
     {
       "id": 3,
       "name": "Apple iPhone 15 Rs.40000",
-      "description": "128 GB, 87% BATTERY HEALTH, FULL KIT"
+      "description": "128 GB, 87% BATTERY HEALTH, FULL KIT",
+      "filename": ""
     },
     {
       "id": 4,
       "name": "Apple iPhone 16 PLUS Rs.61000",
-      "description": "100% BATTERY HELTH, FULL KIT EXCEPT BOX, LIKE NEW CONDITION"
+      "description": "100% BATTERY HELTH, FULL KIT EXCEPT BOX, LIKE NEW CONDITION",
+      "filename": ""
     },
     {
       "id": 5,
       "name": "Apple iPhone 14 PRO MAX Rs.57000",
-      "description": "256 GB, 84% BATTERY HELTH, FULL KIT,  EXCELLENT CONDITION"
+      "description": "256 GB, 84% BATTERY HELTH, FULL KIT,  EXCELLENT CONDITION",
+      "filename": ""
     },
     {
       "id": 6,
       "name": "Google Pixel 9 PRO XL SEALED Rs.85000",
-      "description": "INDIAN VARIANT, 256 GB"
+      "description": "INDIAN VARIANT, 256 GB",
+      "filename": ""
     },
     {
       "id": 7,
       "name": "HP LAPTOP Rs.5000",
-      "description": "intel CORE i3, 4 GB RAM, 500 HDD, BATTERY NOT WORKING"
+      "description": "intel CORE i3, 4 GB RAM, 500 HDD, BATTERY NOT WORKING",
+      "filename": ""
     },
     {
       "id": 8,
@@ -1061,69 +1067,82 @@
     },
     {
       "id": 18,
-      "name": "SAMSUNG FLIP 5",
-      "description": "SAMSUNG FLIP 5,256 GB, FULL KIT Rs.35000"
+      "name": "C – Rs.Vvv",
+      "description": "Vvv",
+      "filename": "18-1750184501004.webp"
     },
     {
       "id": 19,
       "name": "samsung s25 ultra",
-      "description": "Samsung s25 ultra, 1 tb, Titanium, 1 month old, full kit, Indian Rs.121000"
+      "description": "Samsung s25 ultra, 1 tb, Titanium, 1 month old, full kit, Indian Rs.121000",
+      "filename": ""
     },
     {
       "id": 20,
       "name": "iPhone 16 PLUS",
-      "description": "iPhone 16 PLUS, 128 GB, 6 DAYS OLD Rs.67000"
+      "description": "iPhone 16 PLUS, 128 GB, 6 DAYS OLD Rs.67000",
+      "filename": ""
     },
     {
       "id": 21,
       "name": "LENOVO T480 Rs.15000",
-      "description": "intel i5-8th Gen, 16 GB RAM, 256 GB SSD, 14 INCH HD DISPLAY"
+      "description": "intel i5-8th Gen, 16 GB RAM, 256 GB SSD, 14 INCH HD DISPLAY",
+      "filename": ""
     },
     {
       "id": 22,
       "name": "Samsung Galaxy tab S9 Ultra Rs.70000",
-      "description": "Samsung Galaxy tab S9 Ultra, 512GB, WiFi, Samsung Keyboard"
+      "description": "Samsung Galaxy tab S9 Ultra, 512GB, WiFi, Samsung Keyboard",
+      "filename": ""
     },
     {
       "id": 23,
       "name": "Apple iPhone 13-256 GB - Rs.30000",
-      "description": "89% BATTERY HEALTH"
+      "description": "89% BATTERY HEALTH",
+      "filename": ""
     },
     {
       "id": 24,
       "name": "Microsoft SURFACE 8 PRO Rs.45000",
-      "description": "intel CORE i7-11th Generation, 16 GB RAM, 512 GB SSD, DETACHABLE KEYBOARD"
+      "description": "intel CORE i7-11th Generation, 16 GB RAM, 512 GB SSD, DETACHABLE KEYBOARD",
+      "filename": ""
     },
     {
       "id": 25,
       "name": "Apple MacBook Air M1 Rs.39000",
-      "description": "Apple M1 CHIP, 8 GB RAM, 256 GB SSD, 154 BATTERY CYCLE COUNT"
+      "description": "Apple M1 CHIP, 8 GB RAM, 256 GB SSD, 154 BATTERY CYCLE COUNT",
+      "filename": ""
     },
     {
       "id": 26,
       "name": "iPhone 15 PRO Rs. 60000",
-      "description": "128 GB, 90% BATTERY HEALTH, EXCELLENT CONDITION"
+      "description": "128 GB, 90% BATTERY HEALTH, EXCELLENT CONDITION",
+      "filename": ""
     },
     {
       "id": 27,
       "name": "Apple Magic Keyboards, Price on request",
-      "description": "All are in good condition"
+      "description": "All are in good condition",
+      "filename": ""
     },
     {
       "id": 28,
       "name": "SAMSUNG NOTE 20 ULTRA Rs.25000",
-      "description": "5G, 12 GB, 256 GB"
+      "description": "5G, 12 GB, 256 GB",
+      "filename": ""
     },
     {
       "id": 29,
       "name": "",
-      "description": ""
+      "description": "",
+      "filename": ""
     },
     {
       "id": 30,
       "name": "SAMSUNG S24 ULTRA Rs.80000",
-      "description": "512 GB, JUST SEAL CUT, 1 YEAR WARRANTY"
+      "description": "512 GB, JUST SEAL CUT, 1 YEAR WARRANTY",
+      "filename": ""
     }
   ],
-  "updated": 1750183728693
+  "updated": 1750184521176
 }
