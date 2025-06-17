@@ -1,6 +1,5 @@
-
 {
-  "active": 9,
+  "active": 10,
   "sequences": [
     [
       30,
@@ -1013,9 +1012,9 @@
     },
     {
       "id": 10,
-      "name": "",
-      "description": "",
-      "filename": ""
+      "name": "iPhone 14 PRO MAX – Rs.59000",
+      "description": "256 GB, DUAL PHYSICAL SIM 🗂️, 90% BATTERY HEALTH 🔋",
+      "filename": "10-1750168696990.webp"
     },
     {
       "id": 11,
@@ -1123,5 +1122,5 @@
       "description": "512 GB, JUST SEAL CUT, 1 YEAR WARRANTY"
     }
   ],
-  "updated": 1750163170185
+  "updated": 1750168711107
 }
