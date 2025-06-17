@@ -1,81 +1,56 @@
+// File: dynamic/generate-wacust.js
 const fs = require("fs");
 const path = require("path");
 
-// Script resides in dynamic/ folder
-// __dirname points to .../sellinseconds/dynamic
-
-// File paths relative to dynamic/
 const dataPath = path.join(__dirname, "data.json");
 const templatePath = path.join(__dirname, "1to30-template.html");
-
-// Subdirectories under dynamic/
 const imgDir = path.join(__dirname, "images");
 const tempDir = path.join(__dirname, "wacust-temp");
 const finalDir = path.join(__dirname, "wacust");
 
-// Load and parse data.json
 let data;
 try {
   data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
 } catch (err) {
-  console.error(`Error loading JSON at ${dataPath}:`, err);
+  console.error("❌ Failed to read data.json:", err);
   process.exit(1);
 }
-const images = Array.isArray(data.images) ? data.images : [];
 
-// Read the HTML template
 let template;
 try {
   template = fs.readFileSync(templatePath, "utf8");
 } catch (err) {
-  console.error(`Error loading template at ${templatePath}:`, err);
+  console.error("❌ Failed to read 1to30-template.html:", err);
   process.exit(1);
 }
 
-// Version timestamp for cache busting
 const version = Date.now();
-
-// Step 1: Clean/Create temp directory
-if (fs.existsSync(tempDir)) {
-  fs.rmSync(tempDir, { recursive: true, force: true });
-}
+if (fs.existsSync(tempDir)) fs.rmSync(tempDir, { recursive: true });
 fs.mkdirSync(tempDir, { recursive: true });
 
-// Step 2: Generate WACUST HTMLs
-images.forEach(item => {
-  const idx = parseInt(item.id, 10);
-  if (!idx || idx < 1 || idx > 30) return;
+data.images.forEach(img => {
+  const id = parseInt(img.id, 10);
+  if (!id || id < 1 || id > 30) return;
 
-  const title = item.name || "Device on SellInSeconds";
-  const desc = item.description || "Certified device available";
-  let filename = item.filename || "og.png";
+  const name = img.name || "Device on SellInSeconds";
+  const desc = img.description || "Certified device available";
+  let filename = img.filename || "og.png";
 
-  // Verify image exists, fallback if needed
-  const imagePath = path.join(imgDir, filename);
-  if (!fs.existsSync(imagePath)) {
-    console.warn(`Missing file: ${filename}, falling back to og.png`);
-    filename = "og.png";
-  }
+  if (!fs.existsSync(path.join(imgDir, filename))) filename = "og.png";
 
-  // Append version query to bust caches
-  const versioned = `${filename}?v=${version}`;
+  const versionedFilename = `${filename}?v=${version}`;
 
-  // Populate template placeholders
-  const htmlContent = template
-    .replace(/{{TITLE}}/g, title)
+  const html = template
+    .replace(/{{TITLE}}/g, name)
     .replace(/{{DESCRIPTION}}/g, desc)
-    .replace(/{{FILENAME}}/g, versioned)
-    .replace(/{{PAGE}}/g, idx);
+    .replace(/{{FILENAME}}/g, versionedFilename) // used for <img>
+    .replace(/{{FILENAME_NO_VERSION}}/g, filename) // used for OG/Twitter
+    .replace(/{{PAGE}}/g, id);
 
-  // Write to temp directory
-  const outFile = path.join(tempDir, `${idx}.html`);
-  fs.writeFileSync(outFile, htmlContent, "utf8");
-  console.log(`Generated ${outFile}`);
+  fs.writeFileSync(path.join(tempDir, `${id}.html`), html, "utf8");
+  console.log(`✅ Wrote ${id}.html`);
 });
 
-// Step 3: Atomic replace of final directory
-if (fs.existsSync(finalDir)) {
-  fs.rmSync(finalDir, { recursive: true, force: true });
-}
+if (fs.existsSync(finalDir)) fs.rmSync(finalDir, { recursive: true });
 fs.renameSync(tempDir, finalDir);
-console.log("WACUST directory updated successfully.");
+console.log("✅ WACUST pages regenerated successfully.");
