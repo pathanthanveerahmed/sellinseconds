@@ -4,77 +4,34 @@
   <meta charset="UTF-8" />
   <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Buy certified pre-owned smartphones, laptops, and tablets. Great prices, quality checked devices, instant WhatsApp sharing.">
+  <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
 
-  <!-- OG Tags -->
-  <meta property="og:title" content="Buy Now – Top Deals on Used Devices" />
-  <meta property="og:description" content="iPhones, Laptops, Tablets – Assured Quality, Fast Delivery. Check today's listings." />
-  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/og.png" />
+  <!-- OG Meta Tags -->
+  <meta property="og:title" content="{{TOP_TITLE}}" />
+  <meta property="og:description" content="{{TOP_DESC}}" />
+  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html" />
 
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{TOP_TITLE}}" />
+  <meta name="twitter:description" content="{{TOP_DESC}}" />
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}" />
+
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-    }
-
-    #gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-      padding: 20px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      padding: 12px;
-      transition: transform 0.2s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.02);
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-
-    .card h3 {
-      margin: 10px 0 5px;
-      font-size: 18px;
-    }
-
-    .card p {
-      margin: 0 0 10px;
-      font-size: 14px;
-      color: #555;
-    }
-
-    .whatsapp-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
+    body { font-family: sans-serif; padding: 1rem; background: #f5f5f5; }
+    .card { background: white; padding: 1rem; margin-bottom: 1rem; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .card img { width: 100%; max-width: 300px; border-radius: 8px; }
     .whatsapp-buttons a {
-      background: #25D366;
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: #25D366;
       color: white;
-      text-align: center;
-      padding: 10px;
-      border-radius: 5px;
       text-decoration: none;
-      font-weight: bold;
-    }
-
-    .whatsapp-buttons a:hover {
-      background: #1da851;
+      border-radius: 5px;
+      margin-right: 0.5rem;
     }
   </style>
 </head>
@@ -87,9 +44,7 @@
     const scrollToId = {{ACTIVE_ID}};
     window.onload = () => {
       const target = document.querySelector(`[data-id="${scrollToId}"]`);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
+      if (target) target.scrollIntoView({ behavior: "smooth" });
     };
   </script>
 </body>
