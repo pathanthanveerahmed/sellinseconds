@@ -1,16 +1,16 @@
-// File: dynamic/generate-one-wacust.js
 const fs = require("fs");
 const path = require("path");
 
 const data = JSON.parse(fs.readFileSync("dynamic/data.json", "utf8"));
 const template = fs.readFileSync("dynamic/1to30-template.html", "utf8");
 
-const imgDir = path.join(__dirname, "images");
-const finalDir = path.join(__dirname, "wacust");
+const imgDir = "dynamic/images";
+const finalDir = "dynamic/wacust";
 
-const id = parseInt(process.argv[2], 10);
+const id = parseInt(data.active, 10); // we always regenerate active ID
+
 if (!id || id < 1 || id > 30) {
-  console.error("❌ Please provide a valid product ID as argument.");
+  console.error("❌ Invalid ID in data.json");
   process.exit(1);
 }
 
@@ -21,10 +21,7 @@ if (!item) {
 }
 
 let filename = item.filename || "og.png";
-// ✅ Use only webp (we are not handling .jpg/.png fallback here anymore)
-if (!filename.endsWith(".webp") || !fs.existsSync(path.join(imgDir, filename))) {
-  filename = "og.png";
-}
+if (!fs.existsSync(path.join(imgDir, filename))) filename = "og.png";
 
 const html = template
   .replace(/{{TITLE}}/g, item.name || "Device on SellInSeconds")
@@ -32,5 +29,11 @@ const html = template
   .replace(/{{FILENAME}}/g, filename)
   .replace(/{{PAGE}}/g, id);
 
-fs.writeFileSync(path.join(finalDir, `${id}.html`), html, "utf8");
-console.log(`✅ Regenerated wacust/${id}.html`);
+const tempPath = `dynamic/wacust-temp/${id}.html`;
+fs.mkdirSync("dynamic/wacust-temp", { recursive: true });
+fs.writeFileSync(tempPath, html, "utf8");
+
+const finalPath = `dynamic/wacust/${id}.html`;
+if (fs.existsSync(finalPath)) fs.unlinkSync(finalPath);
+fs.renameSync(tempPath, finalPath);
+console.log(`✅ Wrote fresh HTML: wacust/${id}.html`);
