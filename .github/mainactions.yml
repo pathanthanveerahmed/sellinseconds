@@ -1,11 +1,9 @@
-# File: .github/workflows/mainactions.yml
-name: 🔁 Merge + Regenerate (BuyGallery + One WACUST)
+name: 🔁 Merge + Generate (BuyGallery + One WACUST)
 
 on:
   push:
     paths:
       - 'dynamic/temp.json'
-      - 'dynamic/data.json'  # Ensure actions also trigger on direct data.json changes
 
 jobs:
   merge-and-generate:
@@ -24,19 +22,17 @@ jobs:
         run: |
           node dynamic/merge-temp-to-data.js
           echo "✅ Merged temp.json into data.json"
-          cat dynamic/data.json
 
       - name: 🎨 Regenerate buygallery.html
         run: node dynamic/generate-html-with-versioned-images.js
 
-      - name: 🎯 Generate one WACUST/N.html
+      - name: 🎯 Generate ONE dynamic/wacust/N.html
         run: node dynamic/generate-one-wacust.js
 
-      - name: 🚀 Force Commit and Push (with timestamp)
+      - name: 🚀 Commit and Push
         run: |
           git config user.name "Auto Generator Bot"
           git config user.email "bot@sellinseconds.in"
-          git add dynamic/
-          timestamp=$(date +%s)
-          git commit -m "✅ Auto update at $timestamp" || echo "ℹ️ Nothing to commit"
-          git push || echo "🔁 Nothing pushed"
+          git add dynamic/data.json dynamic/buygallery.html dynamic/wacust/*.html
+          git commit -m "✅ Auto: Merge + buygallery + 1 WACUST HTML" || echo "ℹ️ Nothing to commit"
+          git push || echo "🔁 No changes pushed"
