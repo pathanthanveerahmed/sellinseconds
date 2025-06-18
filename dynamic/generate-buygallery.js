@@ -26,28 +26,38 @@ try {
 }
 
 // Generate each card
-const cardsHTML = images.map(item => {
+const cardsHTML = images.map((item, idx) => {
   if (!item.name || !item.filename) return ''; // skip incomplete entries
   const id = item.id;
   const name = item.name;
   const desc = item.description;
-  const imgSrc = `/dynamic/images/${item.filename}`;
+  const imgSrc = `https://www.sellinseconds.in/dynamic/images/${item.filename}`;
 
-  const badge = (id === active)
-    ? `<span style="background:#ff4081;color:white;padding:2px 8px;border-radius:4px;font-size:12px;margin-left:10px;">Newly Added</span>`
+  const isActive = id === active;
+  const isLast = idx === images.length - 1;
+
+  const badge = isActive
+    ? `<span class="badge">Newly Added</span>`
     : "";
+
+  const centerText = isLast
+    ? ""
+    : (isActive ? "More Devices Below ⬇️" : "⬆️ More Devices ⬇️");
 
   return `
     <div class="card" data-id="${id}">
-      <img src="${imgSrc}" alt="${name}" loading="lazy" />
-      <h3>${name}${badge}</h3>
+      <div class="img-wrapper">
+        ${badge}
+        <img src="${imgSrc}" alt="${name}" loading="lazy" />
+      </div>
+      <h3>${name}</h3>
       <p>${desc}</p>
-      <div class="whatsapp-buttons-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
-        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${id}.html" target="_blank" style="display:flex;align-items:center;gap:5px;background:#25D366;padding:5px 10px;border-radius:5px;color:white;text-decoration:none;">
+      <div class="whatsapp-buttons-row">
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${id}.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" /> Interested?
         </a>
-        <span style="font-weight:bold;">⬆️⬇️ More Devices Below ⬇️⬆️</span>
-        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${id}.html" target="_blank" style="display:flex;align-items:center;gap:5px;background:#25D366;padding:5px 10px;border-radius:5px;color:white;text-decoration:none;">
+        ${centerText ? `<span class="arrow-text">${centerText}</span>` : ""}
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${id}.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" /> Edit & Share
         </a>
       </div>
