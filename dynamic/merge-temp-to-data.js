@@ -1,15 +1,14 @@
+// File: dynamic/merge-temp-to-data.js
 const fs = require("fs");
 const path = require("path");
 
 const tempPath = path.join(__dirname, "temp.json");
 const dataPath = path.join(__dirname, "data.json");
 
-// Utility to normalize UTF-8 characters
 function cleanUTF(str) {
   return (str || "").normalize("NFC");
 }
 
-// Ensure structure is valid and fields are trimmed
 function cleanEntry(entry) {
   return {
     id: parseInt(entry.id),
@@ -23,6 +22,7 @@ let temp, data;
 
 try {
   temp = JSON.parse(fs.readFileSync(tempPath, "utf8"));
+  console.log("📥 temp.json loaded:", temp);
 } catch (err) {
   console.error("❌ Failed to read temp.json:", err.message);
   process.exit(1);
@@ -30,6 +30,7 @@ try {
 
 try {
   data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+  console.log("📦 data.json loaded (entries:", data.images?.length || 0, ")");
 } catch (err) {
   console.error("❌ Failed to read data.json:", err.message);
   process.exit(1);
@@ -48,18 +49,14 @@ if (index >= 0) {
   data.images.push(newEntry);
 }
 
-// Sort by ID to prevent chaos
 data.images.sort((a, b) => a.id - b.id);
-
-// Final clean & update flags
 data.active = newEntry.id;
 data.updated = Date.now();
 data.images = data.images.map(cleanEntry);
 
-// Write safely
 try {
   fs.writeFileSync(dataPath, JSON.stringify(data, null, 2), "utf8");
-  console.log("✅ data.json updated cleanly and safely");
+  console.log("✅ data.json updated cleanly and safely with entry ID:", newEntry.id);
 } catch (err) {
   console.error("❌ Failed to write data.json:", err.message);
   process.exit(1);
