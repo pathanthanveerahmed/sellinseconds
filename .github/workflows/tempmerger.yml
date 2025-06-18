@@ -24,19 +24,16 @@ jobs:
           echo "✅ Cleaned and updated data.json:"
           cat dynamic/data.json
 
-      - name: 🧾 Generate updated buygallery.html
+      - name: 🧾 Generate updated buygallery.html (OG + versioned)
         run: |
           node dynamic/generate-html-with-versioned-images.js
-          echo "✅ Generated buygallery.html"
+          echo "✅ buygallery.html regenerated with versioned OG image"
+          git add dynamic/buygallery.html || true
 
       - name: 🔁 Commit and Push changes
         run: |
           git config user.name "Merge Bot"
           git config user.email "bot@sellinseconds.in"
-          git add dynamic/data.json dynamic/buygallery.html || true
-          git commit -m "✅ Merged + regenerated HTML (debug)" || echo "ℹ️ Nothing to commit"
+          git add dynamic/data.json || true
+          git commit -m "✅ Merged temp → data + regenerated buygallery" || echo "ℹ️ Nothing to commit"
           git push || echo "⚠️ Nothing pushed or already up to date"
-
-      - name: 🧠 Generate WACUST HTMLs
-        run: |
-          node dynamic/generate-wacust.js
