@@ -25,49 +25,59 @@ try {
   process.exit(1);
 }
 
+// Get the top (active) card's data for OG meta
+const topCard = images.find(item => item.id === active && item.filename);
+const TOP_TITLE = topCard?.name || "SellInSeconds";
+const TOP_DESC = topCard?.description || "Certified devices, instant deals.";
+const TOP_FILENAME = topCard?.filename || "og.png";
+
 // Generate each card
-const cardsHTML = images.map((item, idx) => {
-  if (!item.name || !item.filename) return ''; // skip incomplete entries
+const cardsHTML = images.map((item, index) => {
+  if (!item.name || !item.filename) return '';
+
   const id = item.id;
   const name = item.name;
   const desc = item.description;
-  const imgSrc = `https://www.sellinseconds.in/dynamic/images/${item.filename}`;
+  const isTop = id === active;
+  const isBottom = index === images.length - 1;
 
-  const isActive = id === active;
-  const isLast = idx === images.length - 1;
+  const badge = isTop
+    ? '<span class="badge">Newly Added</span>'
+    : '';
 
-  const badge = isActive
-    ? `<span class="badge">Newly Added</span>`
-    : "";
-
-  const centerText = isLast
-    ? ""
-    : (isActive ? "More Devices Below ⬇️" : "⬆️ More Devices ⬇️");
+  const arrowText = isTop
+    ? '⬆️ More Devices Below ⬇️'
+    : isBottom
+      ? ''
+      : '⬇️ More Devices ⬆️';
 
   return `
     <div class="card" data-id="${id}">
       <div class="img-wrapper">
         ${badge}
-        <img src="${imgSrc}" alt="${name}" loading="lazy" />
+        <img src="https://www.sellinseconds.in/dynamic/images/${item.filename}" alt="${name}" loading="lazy" />
       </div>
       <h3>${name}</h3>
       <p>${desc}</p>
-      <div class="whatsapp-buttons-row">
+      <div class="whatsapp-buttons-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${id}.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" /> Interested?
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" height="20" /> Interested?
         </a>
-        ${centerText ? `<span class="arrow-text">${centerText}</span>` : ""}
+        ${arrowText ? `<span class="arrow-text">${arrowText}</span>` : ''}
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${id}.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" /> Edit & Share
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" height="20" /> Edit & Share
         </a>
       </div>
     </div>`;
 }).join("\n");
 
-// Inject cards + active ID
+// Inject cards + top meta data + active scroll ID
 const output = template
   .replace("{{CARDS}}", cardsHTML)
-  .replace("{{ACTIVE_ID}}", active);
+  .replace("{{ACTIVE_ID}}", active)
+  .replace("{{TOP_TITLE}}", TOP_TITLE)
+  .replace("{{TOP_DESC}}", TOP_DESC)
+  .replace("{{TOP_FILENAME}}", TOP_FILENAME);
 
 fs.writeFileSync(outputPath, output, "utf8");
-console.log("✅ buygallery.html regenerated with", images.length, "cards.");
+console.log(`✅ buygallery.html regenerated with ${images.length} cards. Active: ${active}`);
