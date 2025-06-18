@@ -36,3 +36,7 @@ jobs:
           git add dynamic/data.json dynamic/buygallery.html || true
           git commit -m "✅ Merged + regenerated HTML (debug)" || echo "ℹ️ Nothing to commit"
           git push || echo "⚠️ Nothing pushed or already up to date"
+
+      - name: 🧠 Generate WACUST HTMLs
+        run: |
+          node dynamic/generate-wacust.js
