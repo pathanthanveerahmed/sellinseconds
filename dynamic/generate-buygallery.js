@@ -5,7 +5,6 @@ const dataPath = "dynamic/data.json";
 const templatePath = "dynamic/buygallery-template.html";
 const outputPath = "dynamic/buygallery.html";
 
-// Load and parse data.json
 let data;
 try {
   data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
@@ -13,10 +12,11 @@ try {
   console.error("❌ Failed to read data.json:", err);
   process.exit(1);
 }
+
 const images = data.images || [];
 const active = data.active || 1;
 
-// Read the HTML template
+// Read template
 let template;
 try {
   template = fs.readFileSync(templatePath, "utf8");
@@ -25,29 +25,29 @@ try {
   process.exit(1);
 }
 
-// Generate each card
+// Find top card with valid name + filename
+const topCard = images.find(item => item.name && item.filename) || {
+  name: "SellInSeconds – Best Used Phones",
+  description: "Certified Devices with Warranty – Apple, Samsung, Dell and more.",
+  filename: "og.png"
+};
+
+// Build cards HTML
 const cardsHTML = images.map(item => {
-  if (!item.name || !item.filename) return ''; // skip incomplete entries
+  if (!item.name || !item.filename) return '';
   return `
     <div class="card" data-id="${item.id}">
       <img src="dynamic/images/${item.filename}" alt="${item.name}" loading="lazy" />
       <h3>${item.name}</h3>
       <p>${item.description}</p>
       <div class="whatsapp-buttons">
-        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">Share 🔽 More Devices Below</a>
-        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">🔼 More Devices 🔽</a>
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">📱 Share this Device</a>
+        <a href="https://wa.me/?text=Check more deals 👇👇 https://www.sellinseconds.in/dynamic/buygallery.html" target="_blank">📦 Browse More Devices</a>
       </div>
     </div>`;
 }).join("\n");
 
-// Pick top card for OG image (first complete card)
-const topCard = images.find(item => item.name && item.filename) || {
-  name: "SellInSeconds",
-  description: "Buy & Sell Certified Devices",
-  filename: "og.png"
-};
-
-// Inject SEO + cards into template
+// Inject dynamic content
 const output = template
   .replace("{{CARDS}}", cardsHTML)
   .replace("{{ACTIVE_ID}}", active)
@@ -56,4 +56,4 @@ const output = template
   .replace(/{{TOP_FILENAME}}/g, topCard.filename);
 
 fs.writeFileSync(outputPath, output, "utf8");
-console.log("✅ buygallery.html regenerated with", images.length, "cards.");
+console.log("✅ buygallery.html regenerated with", images.length, "cards. OG image =", topCard.filename);
