@@ -2,50 +2,113 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Buy & Sell Used Smartphones, Laptops & Tablets | SellInSeconds</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
+  <title>test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="test">
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
-  <!-- OG Meta Tags -->
-  <meta property="og:title" content="test" />
-  <meta property="og:description" content="test" />
-  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/4.webp" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html" />
+  <!-- OpenGraph & Twitter Meta -->
+  <meta property="og:title" content="{{TOP_TITLE}}">
+  <meta property="og:description" content="{{TOP_DESC}}">
+  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/4.webp">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="600">
+  <meta property="og:image:height" content="600">
+  <meta property="og:type" content="product">
+  <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html">
 
-  <!-- Twitter Meta -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{TOP_TITLE}}" />
-  <meta name="twitter:description" content="{{TOP_DESC}}" />
-  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{TOP_TITLE}}">
+  <meta name="twitter:description" content="{{TOP_DESC}}">
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}">
+
+  <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "{{TOP_TITLE}}",
+    "description": "{{TOP_DESC}}",
+    "image": "https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}",
+    "brand": { "@type": "Brand", "name": "SellInSeconds" },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.sellinseconds.in/dynamic/buygallery.html",
+      "priceCurrency": "INR",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
 
   <style>
     body {
-      font-family: sans-serif;
-      padding: 1rem;
-      background: #f5f5f5;
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #f9f9f9;
+      color: #111;
     }
     .card {
-      background: white;
-      padding: 1rem;
-      margin-bottom: 1rem;
+      margin: 10px auto;
+      max-width: 95%;
+      border: 2px solid #ccc;
       border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
+    .card.highlight {
+      animation: fadein 0.8s ease;
+      box-shadow: 0 0 10px #4caf50aa;
+    }
+    @keyframes fadein {
+      0% { opacity: 0; transform: scale(0.96); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    .card picture img,
     .card img {
       width: 100%;
-      max-width: none;
+      height: auto;
+      display: block;
       border-radius: 8px;
+    }
+    .card-description {
+      padding: 10px;
+    }
+    .card-title {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .card-detail {
+      font-size: 15px;
+      color: #444;
+      margin-top: 4px;
+    }
+    .badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background-color: red;
+      color: white;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .img-wrapper {
+      position: relative;
     }
     .whatsapp-buttons-row {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 10px;
-      flex-wrap: wrap;
       margin-top: 0.5rem;
+      padding: 0 10px 10px;
     }
     .whatsapp-buttons-row a {
       display: inline-flex;
@@ -62,49 +125,55 @@
       height: 20px;
       margin-right: 6px;
     }
-    .badge {
-      background-color: red;
-      color: white;
-      font-size: 12px;
-      padding: 2px 6px;
-      border-radius: 4px;
-      margin-bottom: 8px;
-      display: inline-block;
-      position: absolute;
-      top: 8px;
-      left: 8px;
-    }
-    .img-wrapper {
-      position: relative;
-      display: inline-block;
-    }
 
-    /* ✅ Landscape layout fix */
     @media (orientation: landscape) and (max-width: 900px) {
       .card {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        max-width: 95vw;
-        margin: auto;
+        max-width: 95%;
       }
       .card img {
-        width: 45%;
-        height: auto;
-        max-width: none;
-        flex-shrink: 0;
+        max-width: 100%;
       }
-      .card h3, .card p {
-        margin: 0;
-        width: 55%;
-      }
+    }
+
+    @media (min-width: 600px) {
+      .card { max-width: 500px; }
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
+      font-size: 18px;
+      color: #333;
+    }
+    .spinner {
+      margin-top: 15px;
+      width: 24px;
+      height: 24px;
+      border: 3px solid #ccc;
+      border-top: 3px solid #28a745;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
+
 <body>
-  <div id="gallery">
+  <div class="loading-overlay" id="loading">
+    Welcome to Sell in Seconds... Just a moment please
+    <div class="spinner"></div>
+  </div>
+
+  <div class="gallery">
     
     <div class="card" data-id="1">
       <div class="img-wrapper">
@@ -155,11 +224,41 @@
   </div>
 
   <script>
-    const scrollToId = 1;
-    window.onload = () => {
-      const target = document.querySelector(`[data-id="${scrollToId}"]`);
-      if (target) target.scrollIntoView({ behavior: "smooth" });
-    };
+    window.addEventListener("load", () => {
+      const targetId = 1;
+      const loadingEl = document.getElementById("loading");
+      if (!targetId) {
+        loadingEl.style.display = "none";
+        return;
+      }
+      const targetEl = document.querySelector(`[data-id="${targetId}"]`);
+      if (!targetEl) {
+        loadingEl.style.display = "none";
+        return;
+      }
+      let images = document.querySelectorAll("img");
+      let loaded = 0;
+      let finished = false;
+      const finish = () => {
+        if (finished) return;
+        finished = true;
+        loadingEl.style.display = "none";
+        targetEl.scrollIntoView({ behavior: "auto", block: "start" });
+        setTimeout(() => {
+          window.scrollBy(0, -60);
+          setTimeout(() => window.scrollBy(0, 60), 300);
+        }, 200);
+        targetEl.classList.add("highlight");
+      };
+      images.forEach(img => {
+        if (img.complete) loaded++;
+        else img.addEventListener("load", () => {
+          loaded++;
+          if (loaded === images.length) finish();
+        });
+      });
+      setTimeout(() => finish(), 1000);
+    });
   </script>
 </body>
 </html>
