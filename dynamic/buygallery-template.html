@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Buy & Sell Used Devices | SellInSeconds</title>
+  <title>Buy Gallery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Pre-owned iPhones, laptops, tablets, and more – all verified and priced to sell fast." />
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="gallery" data-active="{{ACTIVE_ID}}">
-    {{CARDS}}
-  </div>
+  <div id="gallery">{{CARDS}}</div>
+
+  <script>
+    const scrollToId = {{ACTIVE_ID}};
+    window.onload = () => {
+      const target = document.querySelector(`[data-id="${scrollToId}"]`);
+      if (target) target.scrollIntoView({ behavior: "smooth" });
+    };
+  </script>
 </body>
 </html>
