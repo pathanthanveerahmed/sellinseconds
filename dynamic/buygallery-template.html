@@ -22,29 +22,6 @@
   <meta name="twitter:description" content="{{TOP_DESC}}" />
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}" />
 
-  <!-- JSON-LD Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "{{TOP_TITLE}}",
-    "description": "{{TOP_DESC}}",
-    "image": "https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}",
-    "url": "https://www.sellinseconds.in/dynamic/buygallery.html",
-    "brand": {
-      "@type": "Brand",
-      "name": "SellInSeconds"
-    },
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "INR",
-      "availability": "https://schema.org/InStock",
-      "url": "https://www.sellinseconds.in/dynamic/buygallery.html",
-      "price": "1"
-    }
-  }
-  </script>
-
   <style>
     body {
       font-family: sans-serif;
@@ -58,10 +35,24 @@
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    .card img {
+    .img-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+    .img-wrapper img {
       width: 100%;
-      max-width: 340px;
+      max-width: 300px;
       border-radius: 8px;
+    }
+    .badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background-color: red;
+      color: white;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 4px;
     }
     .whatsapp-buttons-row {
       display: flex;
@@ -85,44 +76,8 @@
       height: 20px;
       margin-right: 6px;
     }
-    .badge {
-      background-color: red;
-      color: white;
-      font-size: 12px;
-      padding: 2px 6px;
-      border-radius: 4px;
-      position: absolute;
-      top: 8px;
-      left: 8px;
-    }
-    .img-wrapper {
-      position: relative;
-      display: inline-block;
-    }
 
-    /* Landscape on mobile: side-by-side */
-    @media (orientation: landscape) and (max-width: 900px) {
-      .card {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 20px;
-      }
-      .card img {
-        max-width: 200px;
-        flex-shrink: 0;
-      }
-      .card h3, .card p {
-        margin: 0;
-      }
-    }
-
-    /* Slightly enlarged for portrait */
-    @media (max-width: 500px) {
-      .card img {
-        max-width: 100%;
-      }
-    }
+    /* Removed landscape override — now portrait & landscape are same */
   </style>
 </head>
 <body>
