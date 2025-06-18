@@ -1,3 +1,4 @@
+```javascript
 // File: dynamic/generate-wacust.js
 const fs = require("fs");
 const path = require("path");
@@ -50,3 +51,4 @@ data.images.forEach(img => {
 if (fs.existsSync(finalDir)) fs.rmSync(finalDir, { recursive: true });
 fs.renameSync(tempDir, finalDir);
 console.log("✅ WACUST pages regenerated successfully.");
+```
