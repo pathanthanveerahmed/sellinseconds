@@ -4,32 +4,26 @@ const path = require("path");
 const data = JSON.parse(fs.readFileSync("dynamic/data.json", "utf8"));
 const template = fs.readFileSync("dynamic/1to30-template.html", "utf8");
 
-const imgDir = "dynamic/images";
-const tempDir = "dynamic/wacust-temp";
-const finalDir = "dynamic/wacust";
+const finalDir = "dynamic/wacust-temp";
+const outputDir = "dynamic/wacust";
 
-if (fs.existsSync(tempDir)) fs.rmSync(tempDir, { recursive: true });
-fs.mkdirSync(tempDir, { recursive: true });
+if (fs.existsSync(finalDir)) fs.rmSync(finalDir, { recursive: true });
+fs.mkdirSync(finalDir);
 
-(data.images || []).forEach(img => {
-  const id = parseInt(img.id, 10);
-  if (!id || id < 1 || id > 30) return;
-
-  const name = img.name || "Device on SellInSeconds";
-  const desc = img.description || "Certified device available";
-  let filename = img.filename || "og.png";
-  if (!fs.existsSync(path.join(imgDir, filename))) filename = "og.png";
+data.images.forEach(item => {
+  const id = parseInt(item.id, 10);
+  if (!id || !item.filename || !item.name) return;
 
   const html = template
-    .replace(/{{TITLE}}/g, name)
-    .replace(/{{DESCRIPTION}}/g, desc)
-    .replace(/{{FILENAME}}/g, filename)
+    .replace(/{{TITLE}}/g, item.name)
+    .replace(/{{DESCRIPTION}}/g, item.description)
+    .replace(/{{FILENAME}}/g, item.filename)
     .replace(/{{PAGE}}/g, id);
 
-  fs.writeFileSync(path.join(tempDir, `${id}.html`), html, "utf8");
+  fs.writeFileSync(path.join(finalDir, `${id}.html`), html);
   console.log(`✅ Wrote ${id}.html`);
 });
 
-if (fs.existsSync(finalDir)) fs.rmSync(finalDir, { recursive: true });
-fs.renameSync(tempDir, finalDir);
-console.log("✅ WACUST pages regenerated successfully");
+if (fs.existsSync(outputDir)) fs.rmSync(outputDir, { recursive: true });
+fs.renameSync(finalDir, outputDir);
+console.log("✅ All WACUST HTMLs regenerated");
