@@ -1,0 +1,42 @@
+name: 🔁 Merge + Regenerate (BuyGallery + One WACUST)
+
+on:
+  push:
+    paths:
+      - 'dynamic/temp.json'
+
+jobs:
+  merge-and-generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🛠 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: 🧼 Merge temp.json → data.json
+        run: |
+          node dynamic/merge-temp-to-data.js
+          echo "✅ Merged temp.json into data.json"
+          cat dynamic/data.json
+
+      - name: 🎨 Regenerate buygallery.html
+        run: node dynamic/generate-html-with-versioned-images.js
+
+      - name: 🎯 Generate ONE dynamic/wacust/N.html
+        run: |
+          ID=$(jq '.id' dynamic/temp.json)
+          echo "Generating wacust/$ID.html"
+          node dynamic/generate-one-wacust.js "$ID"
+
+      - name: 🚀 Commit and Push
+        run: |
+          git config user.name "Auto Generator Bot"
+          git config user.email "bot@sellinseconds.in"
+          git add dynamic/data.json dynamic/buygallery.html dynamic/wacust/*.html
+          git commit -m "✅ Auto: Merge + buygallery + 1 WACUST HTML" || echo "ℹ️ Nothing to commit"
+          git push || echo "🔁 No changes pushed"
