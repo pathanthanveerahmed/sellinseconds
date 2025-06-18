@@ -15,6 +15,7 @@ try {
 const images = data.images || [];
 const active = data.active || 1;
 
+// Read the HTML template
 let template;
 try {
   template = fs.readFileSync(templatePath, "utf8");
@@ -23,49 +24,55 @@ try {
   process.exit(1);
 }
 
-// Top card for OG
-const top = images.find(img => img.id === active && img.name && img.filename) || images.find(img => img.name && img.filename);
+// Pick top card for OG tags
+const top = images.find(img => img.id === active && img.name && img.filename)
+  || images.find(img => img.name && img.filename);
+
 const topTitle = top?.name || "Buy Certified Device";
 const topDesc = top?.description || "Trusted Pre-owned Devices at Best Prices";
 const topFilename = top?.filename || "og.png";
 const priceMatch = topTitle.match(/Rs\.?\s*(\d+)/i);
 const price = priceMatch ? priceMatch[1] : "0";
 
-const cardsHTML = images.map(item => {
-  if (!item.name || !item.filename) return '';
-  const id = item.id;
-  const name = item.name;
-  const desc = item.description;
-  const imgSrc = `/dynamic/images/${item.filename}`;
+// Generate cards in reverse order (latest first)
+const cardsHTML = [...images]
+  .sort((a, b) => b.id - a.id)
+  .map(item => {
+    if (!item.name || !item.filename) return '';
+    const id = item.id;
+    const name = item.name;
+    const desc = item.description;
+    const imgSrc = `/dynamic/images/${item.filename}`;
 
-  const badge = (id === active)
-    ? `<span class="badge">Newly Added</span>`
-    : "";
+    const badge = (id === active)
+      ? `<span class="badge">Newly Added</span>`
+      : "";
 
-  const arrowText = (id === active)
-    ? `<span class="arrow-text">More ⬇️</span>`
-    : (id !== 30 ? `<span class="arrow-text">⬇️ More ⬆️</span>` : "");
+    const arrowText = (id === active)
+      ? `<span class="arrow-text">More ⬇️</span>`
+      : (id !== 30 ? `<span class="arrow-text">⬇️ More ⬆️</span>` : "");
 
-  return `
-    <div class="card" data-id="${id}">
-      <div class="img-wrapper">
-        ${badge}
-        <img src="${imgSrc}" alt="Buy ${name} on SellInSeconds" loading="lazy" />
-      </div>
-      <h3>${name}</h3>
-      <p>${desc}</p>
-      <div class="whatsapp-buttons-row">
-        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${id}.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" /> Interested?
-        </a>
-        ${arrowText}
-        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${id}.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" /> Edit & Share
-        </a>
-      </div>
-    </div>`;
-}).join("\n");
+    return `
+      <div class="card" data-id="${id}">
+        <div class="img-wrapper">
+          ${badge}
+          <img src="${imgSrc}" alt="Buy ${name} on SellInSeconds" loading="lazy" />
+        </div>
+        <h3>${name}</h3>
+        <p>${desc}</p>
+        <div class="whatsapp-buttons-row">
+          <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${id}.html" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" /> Interested?
+          </a>
+          ${arrowText}
+          <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${id}.html" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" /> Edit & Share
+          </a>
+        </div>
+      </div>`;
+  }).join("\n");
 
+// Final replace in template
 const output = template
   .replace("{{CARDS}}", cardsHTML)
   .replace("{{ACTIVE_ID}}", active)
