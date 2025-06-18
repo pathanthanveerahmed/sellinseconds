@@ -1,9 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 
-const dataPath = path.join(__dirname, "data.json");
-const templatePath = path.join(__dirname, "buygallery-template.html");
-const outputPath = path.join(__dirname, "buygallery.html");
+const dataPath = "dynamic/data.json";
+const templatePath = "dynamic/buygallery-template.html";
+const outputPath = "dynamic/buygallery.html";
+
 
 // Load and parse data.json
 let data;
