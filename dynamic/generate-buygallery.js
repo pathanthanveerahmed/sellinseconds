@@ -46,10 +46,10 @@ const cardsHTML = images.map((item, index) => {
     : '';
 
   const arrowText = isTop
-    ? '⬆️ More Devices Below ⬇️'
+    ? 'More ⬇️'
     : isBottom
       ? ''
-      : '⬇️ More Devices ⬆️';
+      : '⬇️ More ⬆️';
 
   return `
     <div class="card" data-id="${id}">
