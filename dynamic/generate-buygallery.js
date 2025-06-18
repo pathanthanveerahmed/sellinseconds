@@ -37,7 +37,7 @@ const cardsHTML = images.map(item => {
   if (!item.name || !item.filename) return '';
   return `
     <div class="card" data-id="${item.id}">
-      <img src="dynamic/images/${item.filename}" alt="${item.name}" loading="lazy" />
+      <img src="/dynamic/images/${item.filename}" alt="${item.name}" loading="lazy" />
       <h3>${item.name}</h3>
       <p>${item.description}</p>
       <div class="whatsapp-buttons">
