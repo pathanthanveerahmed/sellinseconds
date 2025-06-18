@@ -1,4 +1,4 @@
-name: 🔁 Merge + Regenerate (One WACUST + BuyGallery)
+name: 🔁 Merge + Regenerate (BuyGallery + One WACUST)
 
 on:
   push:
@@ -27,13 +27,13 @@ jobs:
       - name: 🎨 Regenerate buygallery.html
         run: node dynamic/generate-html-with-versioned-images.js
 
-      - name: 🎯 Generate one wacust/N.html
-        run: node dynamic/generate-one-wacust.js
+      - name: 🎯 Generate ONE dynamic/wacust/N.html
+        run: node dynamic/generate-wacust.js
 
       - name: 🚀 Commit and Push
         run: |
           git config user.name "Auto Generator Bot"
           git config user.email "bot@sellinseconds.in"
           git add dynamic/data.json dynamic/buygallery.html dynamic/wacust/*.html
-          git commit -m "✅ Auto: Merge + buygallery + one wacust.html" || echo "ℹ️ Nothing to commit"
+          git commit -m "✅ Auto: Merge + buygallery + 1 WACUST HTML" || echo "ℹ️ Nothing to commit"
           git push || echo "🔁 No changes pushed"
