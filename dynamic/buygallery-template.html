@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="SellInSeconds helps you buy and sell certified pre-owned smartphones, laptops, and tablets instantly. Great deals, quick service, quality checked devices.">
 
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
   <!-- OG Meta Tags -->
   <meta property="og:title" content="{{TOP_TITLE}}" />
   <meta property="og:description" content="{{TOP_DESC}}" />
@@ -19,21 +22,6 @@
   <meta name="twitter:description" content="{{TOP_DESC}}" />
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}" />
 
-  <!-- Product Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org/",
-    "@type": "Product",
-    "name": "{{TOP_TITLE}}",
-    "description": "{{TOP_DESC}}",
-    "image": "https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}",
-    "brand": {
-      "@type": "Organization",
-      "name": "SellInSeconds"
-    }
-  }
-  </script>
-
   <style>
     body {
       font-family: sans-serif;
@@ -43,56 +31,68 @@
     .card {
       background: white;
       padding: 1rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
     }
-    .img-wrapper {
-      position: relative;
-    }
-    .img-wrapper img {
+    .card img {
       width: 100%;
+      max-width: 300px;
       border-radius: 8px;
-    }
-    .badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background-color: #ff4081;
-      color: white;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 12px;
     }
     .whatsapp-buttons-row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 10px;
       flex-wrap: wrap;
-      margin-top: 1rem;
-      gap: 0.5rem;
+      margin-top: 0.5rem;
     }
     .whatsapp-buttons-row a {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: #25D366;
       padding: 6px 12px;
-      border-radius: 6px;
+      background-color: #25D366;
       color: white;
       text-decoration: none;
+      border-radius: 5px;
       font-size: 14px;
     }
     .whatsapp-buttons-row img {
       width: 20px;
       height: 20px;
+      margin-right: 6px;
     }
-    .arrow-text {
-      font-weight: bold;
-      color: #333;
+    .badge {
+      background-color: red;
+      color: white;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      display: inline-block;
+      position: absolute;
+      top: 8px;
+      left: 8px;
+    }
+    .img-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    @media (orientation: landscape) and (max-width: 900px) {
+      .card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+      }
+      .card img {
+        max-width: 180px;
+        flex-shrink: 0;
+      }
+      .card h3, .card p {
+        margin: 0;
+      }
     }
   </style>
 </head>
