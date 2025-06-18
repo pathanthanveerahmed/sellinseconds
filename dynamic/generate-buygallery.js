@@ -31,7 +31,7 @@ const cardsHTML = images.map(item => {
   const id = item.id;
   const name = item.name;
   const desc = item.description;
-  const imgSrc = `dynamic/images/${item.filename}`;
+  const imgSrc = `/dynamic/images/${item.filename}`;
 
   const badge = (id === active)
     ? `<span style="background:#ff4081;color:white;padding:2px 8px;border-radius:4px;font-size:12px;margin-left:10px;">Newly Added</span>`
