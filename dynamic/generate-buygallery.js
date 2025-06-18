@@ -5,6 +5,7 @@ const dataPath = "dynamic/data.json";
 const templatePath = "dynamic/buygallery-template.html";
 const outputPath = "dynamic/buygallery.html";
 
+// Load and parse data.json
 let data;
 try {
   data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
@@ -15,50 +16,48 @@ try {
 const images = data.images || [];
 const active = data.active || 1;
 
-// Read template
+// Read the HTML template
 let template;
 try {
   template = fs.readFileSync(templatePath, "utf8");
 } catch (err) {
-  console.error("❌ Failed to read template:", err);
+  console.error("❌ Failed to read buygallery-template.html:", err);
   process.exit(1);
 }
 
+// Generate each card
 const cardsHTML = images.map(item => {
-  if (!item.name || !item.filename) return '';
+  if (!item.name || !item.filename) return ''; // skip incomplete entries
+  const id = item.id;
+  const name = item.name;
+  const desc = item.description;
+  const imgSrc = `dynamic/images/${item.filename}`;
 
-  const badge = item.id === active ? `<div class="badge">Newly Added</div>` : "";
+  const badge = (id === active)
+    ? `<span style="background:#ff4081;color:white;padding:2px 8px;border-radius:4px;font-size:12px;margin-left:10px;">Newly Added</span>`
+    : "";
 
   return `
-    <div class="card" data-id="${item.id}">
-      ${badge}
-      <img src="dynamic/images/${item.filename}" alt="${item.name}" loading="lazy" />
-      <h3>${item.name}</h3>
-      <p>${item.description}</p>
-      <div class="whatsapp-buttons">
-        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" />
-          Share on WhatsApp
+    <div class="card" data-id="${id}">
+      <img src="${imgSrc}" alt="${name}" loading="lazy" />
+      <h3>${name}${badge}</h3>
+      <p>${desc}</p>
+      <div class="whatsapp-buttons-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${id}.html" target="_blank" style="display:flex;align-items:center;gap:5px;background:#25D366;padding:5px 10px;border-radius:5px;color:white;text-decoration:none;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" /> Interested?
         </a>
-        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/buygallery.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" />
-          Browse More Devices
+        <span style="font-weight:bold;">⬆️⬇️ More Devices Below ⬇️⬆️</span>
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${id}.html" target="_blank" style="display:flex;align-items:center;gap:5px;background:#25D366;padding:5px 10px;border-radius:5px;color:white;text-decoration:none;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" /> Edit & Share
         </a>
       </div>
     </div>`;
 }).join("\n");
 
-const topItem = images.find(item => item.id === active && item.name && item.filename);
-const topTitle = topItem?.name || "SellInSeconds";
-const topDesc = topItem?.description || "Buy and Sell Smartphones, Laptops, Tablets";
-const topFilename = topItem?.filename || "og.png";
-
-const finalHTML = template
+// Inject cards + active ID
+const output = template
   .replace("{{CARDS}}", cardsHTML)
-  .replace("{{ACTIVE_ID}}", active)
-  .replace(/{{TOP_TITLE}}/g, topTitle)
-  .replace(/{{TOP_DESC}}/g, topDesc)
-  .replace(/{{TOP_FILENAME}}/g, topFilename);
+  .replace("{{ACTIVE_ID}}", active);
 
-fs.writeFileSync(outputPath, finalHTML, "utf8");
-console.log("✅ buygallery.html regenerated");
+fs.writeFileSync(outputPath, output, "utf8");
+console.log("✅ buygallery.html regenerated with", images.length, "cards.");
