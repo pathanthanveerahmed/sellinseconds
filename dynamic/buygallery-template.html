@@ -35,24 +35,10 @@
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    .img-wrapper {
-      position: relative;
-      display: inline-block;
-    }
-    .img-wrapper img {
+    .card img {
       width: 100%;
-      max-width: 300px;
+      max-width: none;
       border-radius: 8px;
-    }
-    .badge {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      background-color: red;
-      color: white;
-      font-size: 12px;
-      padding: 2px 6px;
-      border-radius: 4px;
     }
     .whatsapp-buttons-row {
       display: flex;
@@ -76,8 +62,45 @@
       height: 20px;
       margin-right: 6px;
     }
+    .badge {
+      background-color: red;
+      color: white;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      display: inline-block;
+      position: absolute;
+      top: 8px;
+      left: 8px;
+    }
+    .img-wrapper {
+      position: relative;
+      display: inline-block;
+    }
 
-    /* Removed landscape override — now portrait & landscape are same */
+    /* ✅ Landscape layout fix */
+    @media (orientation: landscape) and (max-width: 900px) {
+      .card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        max-width: 95vw;
+        margin: auto;
+      }
+      .card img {
+        width: 45%;
+        height: auto;
+        max-width: none;
+        flex-shrink: 0;
+      }
+      .card h3, .card p {
+        margin: 0;
+        width: 55%;
+      }
+    }
   </style>
 </head>
 <body>
