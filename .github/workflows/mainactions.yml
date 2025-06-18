@@ -1,0 +1,36 @@
+name: 🔁 Merge + Regenerate
+
+on:
+  push:
+    paths:
+      - 'dynamic/temp.json'
+
+jobs:
+  merge-and-generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🛠 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: 🔄 Merge temp → data
+        run: node dynamic/merge-temp-to-data.js
+
+      - name: 🧱 Generate buygallery
+        run: node dynamic/generate-buygallery.js
+
+      - name: 🎯 Generate wacust/N
+        run: node dynamic/generate-one-wacust.js
+
+      - name: 🚀 Push output
+        run: |
+          git config user.name "Bot"
+          git config user.email "bot@sellinseconds.in"
+          git add dynamic/data.json dynamic/buygallery.html dynamic/wacust/*.html
+          git commit -m "✅ Auto update from temp.json" || echo "ℹ️ Nothing to commit"
+          git push || echo "✔️ Already up to date"
