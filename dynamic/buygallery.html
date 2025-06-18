@@ -19,6 +19,21 @@
   <meta name="twitter:description" content="{{TOP_DESC}}" />
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}" />
 
+  <!-- Product Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "{{TOP_TITLE}}",
+    "description": "{{TOP_DESC}}",
+    "image": "https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}",
+    "brand": {
+      "@type": "Organization",
+      "name": "SellInSeconds"
+    }
+  }
+  </script>
+
   <style>
     body {
       font-family: sans-serif;
@@ -28,45 +43,47 @@
     .card {
       background: white;
       padding: 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .img-wrapper {
       position: relative;
-      width: fit-content;
     }
     .img-wrapper img {
       width: 100%;
-      max-width: 300px;
       border-radius: 8px;
     }
     .badge {
       position: absolute;
-      top: 8px;
-      left: 8px;
-      background-color: red;
+      top: 10px;
+      left: 10px;
+      background-color: #ff4081;
       color: white;
+      padding: 4px 10px;
+      border-radius: 6px;
       font-size: 12px;
-      padding: 2px 6px;
-      border-radius: 4px;
     }
     .whatsapp-buttons-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-top: 10px;
+      justify-content: space-between;
       flex-wrap: wrap;
+      margin-top: 1rem;
+      gap: 0.5rem;
     }
     .whatsapp-buttons-row a {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 6px;
+      background: #25D366;
       padding: 6px 12px;
-      background-color: #25D366;
+      border-radius: 6px;
       color: white;
       text-decoration: none;
-      border-radius: 5px;
       font-size: 14px;
     }
     .whatsapp-buttons-row img {
@@ -75,7 +92,6 @@
     }
     .arrow-text {
       font-weight: bold;
-      font-size: 14px;
       color: #333;
     }
   </style>
@@ -86,17 +102,17 @@
     <div class="card" data-id="1">
       <div class="img-wrapper">
         <span class="badge">Newly Added</span>
-        <img src="https://www.sellinseconds.in/dynamic/images/4.webp" alt="test" loading="lazy" />
+        <img src="/dynamic/images/4.webp" alt="Buy test on SellInSeconds" loading="lazy" />
       </div>
       <h3>test</h3>
       <p>test</p>
-      <div class="whatsapp-buttons-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
+      <div class="whatsapp-buttons-row">
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/1.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" height="20" /> Interested?
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" /> Interested?
         </a>
         <span class="arrow-text">More ⬇️</span>
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/1.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" height="20" /> Edit & Share
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" /> Edit & Share
         </a>
       </div>
     </div>
