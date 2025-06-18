@@ -40,10 +40,20 @@ const cardsHTML = images.map(item => {
     </div>`;
 }).join("\n");
 
-// Inject cards + active ID
+// Pick top card for OG image (first complete card)
+const topCard = images.find(item => item.name && item.filename) || {
+  name: "SellInSeconds",
+  description: "Buy & Sell Certified Devices",
+  filename: "og.png"
+};
+
+// Inject SEO + cards into template
 const output = template
   .replace("{{CARDS}}", cardsHTML)
-  .replace("{{ACTIVE_ID}}", active);
+  .replace("{{ACTIVE_ID}}", active)
+  .replace(/{{TOP_TITLE}}/g, topCard.name)
+  .replace(/{{TOP_DESC}}/g, topCard.description)
+  .replace(/{{TOP_FILENAME}}/g, topCard.filename);
 
 fs.writeFileSync(outputPath, output, "utf8");
 console.log("✅ buygallery.html regenerated with", images.length, "cards.");
