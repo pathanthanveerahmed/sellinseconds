@@ -1,4 +1,4 @@
-name: 🛡️ Merge + Regenerate + Debug
+name: 🔁 Merge + Generate All HTMLs
 
 on:
   push:
@@ -6,34 +6,34 @@ on:
       - 'dynamic/temp.json'
 
 jobs:
-  merge-temp:
+  merge-and-generate:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout code
+      - name: 📥 Checkout Code
         uses: actions/checkout@v4
 
-      - name: 🛠️ Setup Node.js
+      - name: 🛠 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: 🧼 Merge temp.json → data.json
+      - name: 🔄 Merge temp.json → data.json
         run: |
           node dynamic/merge-temp-to-data.js
-          echo "✅ Cleaned and updated data.json:"
+          echo "✅ Merged and updated data.json"
           cat dynamic/data.json
 
-      - name: 🧾 Generate updated buygallery.html (OG + versioned)
-        run: |
-          node dynamic/generate-html-with-versioned-images.js
-          echo "✅ buygallery.html regenerated with versioned OG image"
-          git add dynamic/buygallery.html || true
+      - name: 🎨 Generate buygallery.html
+        run: node dynamic/generate-html-with-versioned-images.js
 
-      - name: 🔁 Commit and Push changes
+      - name: 🧱 Generate all wacust/1–30.html files
+        run: node dynamic/generate-wacust.js
+
+      - name: 🚀 Commit and Push
         run: |
-          git config user.name "Merge Bot"
+          git config user.name "Auto Generator Bot"
           git config user.email "bot@sellinseconds.in"
-          git add dynamic/data.json || true
-          git commit -m "✅ Merged temp → data + regenerated buygallery" || echo "ℹ️ Nothing to commit"
-          git push || echo "⚠️ Nothing pushed or already up to date"
+          git add dynamic/data.json dynamic/buygallery.html dynamic/wacust/*.html
+          git commit -m "✅ Auto-merge and regenerate gallery + WACUST HTMLs" || echo "No changes to commit"
+          git push || echo "Already up to date"
