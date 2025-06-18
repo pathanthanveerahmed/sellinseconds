@@ -24,7 +24,6 @@ try {
   process.exit(1);
 }
 
-const version = Date.now();
 if (fs.existsSync(tempDir)) fs.rmSync(tempDir, { recursive: true });
 fs.mkdirSync(tempDir, { recursive: true });
 
@@ -36,15 +35,12 @@ data.images.forEach(img => {
   const desc = img.description || "Certified device available";
   let filename = img.filename || "og.png";
 
-  const jpgFilename = `${filename}.jpg`;
-  if (!fs.existsSync(path.join(imgDir, jpgFilename))) {
-    console.warn(`⚠️ JPG fallback missing for ID ${id}: ${jpgFilename}`);
-  }
+  if (!fs.existsSync(path.join(imgDir, filename))) filename = "og.png";
 
   const html = template
     .replace(/{{TITLE}}/g, name)
     .replace(/{{DESCRIPTION}}/g, desc)
-    .replace(/{{FILENAME_JPG}}/g, jpgFilename)
+    .replace(/{{FILENAME}}/g, filename)
     .replace(/{{PAGE}}/g, id);
 
   fs.writeFileSync(path.join(tempDir, `${id}.html`), html, "utf8");
