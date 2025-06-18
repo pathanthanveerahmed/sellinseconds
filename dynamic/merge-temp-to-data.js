@@ -1,9 +1,8 @@
 // File: dynamic/merge-temp-to-data.js
 const fs = require("fs");
-const path = require("path");
 
-const tempPath = path.join(__dirname, "temp.json");
-const dataPath = path.join(__dirname, "data.json");
+const tempPath = "dynamic/temp.json";
+const dataPath = "dynamic/data.json";
 
 function cleanUTF(str) {
   return (str || "").normalize("NFC");
