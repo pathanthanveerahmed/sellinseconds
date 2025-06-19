@@ -69,12 +69,14 @@
       100% { opacity: 1; transform: scale(1); }
     }
     .card picture img,
-    .card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 8px;
-    }
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  max-width: 480px;   /* ✅ New - increase visible size */
+  margin: 0 auto;     /* ✅ New - center image horizontally */
+}
     .card-description {
       padding: 10px;
     }
