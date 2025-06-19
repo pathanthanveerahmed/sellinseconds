@@ -13,7 +13,7 @@ try {
   console.error("❌ Failed to read data.json:", err);
   process.exit(1);
 }
-const images = data.images || [];
+const images = (data.images || []).slice().sort((a, b) => b.id - a.id);
 const active = data.active || 1;
 
 // Read template
