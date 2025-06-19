@@ -1,4 +1,3 @@
-// File: dynamic/generate-buygallery.js
 const fs = require("fs");
 
 const dataPath = "dynamic/data.json";
@@ -65,14 +64,14 @@ const cardsHTML = images.map(item => {
     </div>`;
 }).join("\n");
 
-// Inject data
+// Inject data - CRITICAL CHANGES HERE
 const output = template
   .replace("{{CARDS}}", cardsHTML)
   .replace("{{ACTIVE_ID}}", active)
-  .replace(/{{TOP_TITLE}}/g, topTitle)    // Added /g for global replacement
-  .replace(/{{TOP_DESC}}/g, topDesc)      // Added /g for global replacement
-  .replace(/{{TOP_FILENAME}}/g, topFilename) // Added /g for global replacement
-  .replace(/{{PRICE}}/g, price);          // Added /g for global replacement (good practice here too)
+  .replace(/{{TOP_TITLE}}/g, topTitle)    // <-- ADDED /g FOR GLOBAL REPLACEMENT
+  .replace(/{{TOP_DESC}}/g, topDesc)      // <-- ADDED /g FOR GLOBAL REPLACEMENT
+  .replace(/{{TOP_FILENAME}}/g, topFilename) // <-- ADDED /g FOR GLOBAL REPLACEMENT
+  .replace(/{{PRICE}}/g, price);          // <-- ADDED /g FOR GLOBAL REPLACEMENT
 
 fs.writeFileSync(outputPath, output, "utf8");
 console.log("✅ buygallery.html regenerated with", images.length, "cards.");
