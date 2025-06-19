@@ -17,6 +17,27 @@
   <meta name="twitter:description" content="{{DESCRIPTION}}">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{FILENAME}}">
   <meta http-equiv="refresh" content="0; url=/dynamic/buygallery.html?id={{PAGE}}">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "{{TITLE}}",
+    "image": "https://www.sellinseconds.in/dynamic/images/{{FILENAME}}",
+    "description": "{{DESCRIPTION}}",
+    "brand": {
+      "@type": "Brand",
+      "name": "SellInSeconds"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.sellinseconds.in/dynamic/wacust/{{PAGE}}.html",
+      "priceCurrency": "INR",
+      "price": "{{PRICE}}",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
 </head>
 <body>
   <p>Redirecting...</p>
