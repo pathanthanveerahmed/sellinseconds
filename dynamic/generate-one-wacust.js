@@ -1,4 +1,3 @@
-// File: dynamic/generate-one-wacust.js
 const fs = require("fs");
 
 const templatePath = "dynamic/1to30-template.html";
@@ -28,7 +27,7 @@ try {
 }
 
 sequences.forEach((sequence, i) => {
-  const targetId = i + 1;
+  const targetId = i + 1; // This is the ID for the current wacust page (e.g., 9 for 9.html)
   const cards = sequence.map(id => {
     const item = images.find(x => x.id === id);
     if (!item || !item.name || !item.filename) return '';
@@ -50,7 +49,8 @@ sequences.forEach((sequence, i) => {
     .replace(/{{DESCRIPTION}}/g, first?.description || "Best Used Phones, Tablets, Laptops")
     .replace(/{{FILENAME}}/g, first?.filename || "og.png")
     .replace(/{{PRICE}}/g, (first?.name.match(/Rs\.?\s*(\d+)/i)?.[1] || "0"))
-    .replace("{{CARDS}}", cards);
+    // === THIS IS THE CRUCIAL CHANGE ===
+    .replace(/{{PAGE}}/g, targetId); // Replace {{PAGE}} with the actual ID for og:url and http-equiv refresh
 
   fs.writeFileSync(`${outputDir}/${targetId}.html`, html, "utf8");
   console.log(`✅ Generated wacust/${targetId}.html`);
