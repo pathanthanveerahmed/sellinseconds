@@ -4,6 +4,7 @@ const dataPath = "dynamic/data.json";
 const templatePath = "dynamic/buygallery-template.html";
 const outputPath = "dynamic/buygallery.html";
 
+// Step 1: Load data.json
 let data;
 try {
   data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
@@ -15,6 +16,7 @@ try {
 const active = data.active || 1;
 const sequence = Array.isArray(data.sequences?.[active - 1]) ? data.sequences[active - 1] : [];
 
+// Step 2: Build image map
 const imageMap = {};
 (data.images || []).forEach(img => {
   if (img.name && img.description && img.filename) {
@@ -22,8 +24,10 @@ const imageMap = {};
   }
 });
 
+// Step 3: Filter valid cards from the active sequence
 const validCards = sequence.map(id => imageMap[id]).filter(Boolean);
 
+// Step 4: OG Metadata (top card)
 const top = validCards[0] || Object.values(imageMap)[0] || {};
 const topTitle = top.name || "Buy Certified Device";
 const topDesc = top.description || "Trusted Pre-owned Devices at Best Prices";
@@ -31,11 +35,15 @@ const topFilename = top.filename || "og.png";
 const priceMatch = topTitle.match(/Rs\.?\s*(\d+)/i);
 const price = priceMatch ? priceMatch[1] : "0";
 
-const cardsHTML = validCards.map(item => {
+// Step 5: Generate HTML cards
+const cardsHTML = validCards.map((item, index) => {
+  const isLastCard = index === validCards.length - 1;
   const badge = item.id === active ? `<span class="badge">Newly Added</span>` : "";
   const arrowText = item.id === active
     ? `<span class="arrow-text">More ⬇️</span>`
-    : item.id !== 30 ? `<span class="arrow-text">⬇️ More ⬆️</span>` : "";
+    : isLastCard
+      ? `<span class="arrow-text">⬆️</span>`
+      : `<span class="arrow-text">⬇️ More ⬆️</span>`;
 
   return `
     <div class="card" data-id="${item.id}">
@@ -57,6 +65,7 @@ const cardsHTML = validCards.map(item => {
     </div>`;
 }).join("\n");
 
+// Step 6: Read the HTML template
 let template;
 try {
   template = fs.readFileSync(templatePath, "utf8");
@@ -65,6 +74,7 @@ try {
   process.exit(1);
 }
 
+// Step 7: Inject values into template
 const output = template
   .replace("{{CARDS}}", cardsHTML)
   .replace("{{ACTIVE_ID}}", active)
@@ -73,5 +83,6 @@ const output = template
   .replace(/{{TOP_FILENAME}}/g, topFilename)
   .replace(/{{PRICE}}/g, price);
 
+// Step 8: Save final output
 fs.writeFileSync(outputPath, output, "utf8");
 console.log("✅ buygallery.html regenerated using locked sequence logic.");
