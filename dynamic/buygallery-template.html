@@ -5,10 +5,10 @@
   <title>Buy & Sell Used Smartphones | SellInSeconds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
-
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
 
+  <!-- OG Tags -->
   <meta property="og:title" content="SellInSeconds: Your Source for Quality Devices">
   <meta property="og:description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
   <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp">
@@ -17,7 +17,6 @@
   <meta property="og:image:height" content="600">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SellInSeconds: Your Source for Quality Devices">
   <meta name="twitter:description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
@@ -134,20 +133,25 @@
     async function loadGallery() {
       const res = await fetch("https://www.sellinseconds.in/dynamic/data.json?v=" + Date.now());
       const data = await res.json();
+
       const active = Number(String(data.active).trim());
-      const sequence = Array.isArray(data.sequences?.[active - 1]) ? data.sequences[active - 1] : [];
+      const sequenceIndex = active > data.sequences.length ? 0 : active - 1;
+      const sequence = Array.isArray(data.sequences?.[sequenceIndex])
+        ? data.sequences[sequenceIndex]
+        : [];
 
       const validCards = data.images.filter(x => x.name && x.description && x.filename);
       const cardMap = Object.fromEntries(validCards.map(x => [Number(String(x.id).trim()), x]));
 
       const cards = sequence.map(id => {
-        const item = cardMap[Number(String(id).trim())];
+        const cleanId = Number(String(id).trim());
+        const item = cardMap[cleanId];
         if (!item) return "";
 
         return `
           <div class="card" data-id="${item.id}">
             <div class="img-wrapper">
-              ${Number(String(item.id).trim()) === active ? `<span class="badge">Newly Added</span>` : ``}
+              ${cleanId === active ? `<span class="badge">Newly Added</span>` : ``}
               <img src="/dynamic/images/${item.filename}" alt="Buy ${item.name} on SellInSeconds" loading="lazy" />
             </div>
             <h3>${item.name}</h3>
@@ -199,7 +203,7 @@
         });
       });
 
-      setTimeout(finish, 1200);
+      setTimeout(finish, 1200); // fallback
     }
 
     window.addEventListener("load", loadGallery);
