@@ -4,7 +4,6 @@ const dataPath = "dynamic/data.json";
 const templatePath = "dynamic/buygallery-template.html";
 const outputPath = "dynamic/buygallery.html";
 
-// Read data
 let data;
 try {
   data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
@@ -12,47 +11,31 @@ try {
   console.error("❌ Failed to read data.json:", err);
   process.exit(1);
 }
-const active = data.active || 1;
-const sequence = data.sequences?.[active - 1] || [];
 
-// Create image map for lookup
+const active = data.active || 1;
+const sequence = Array.isArray(data.sequences?.[active - 1]) ? data.sequences[active - 1] : [];
+
 const imageMap = {};
-data.images.forEach(img => {
-  imageMap[img.id] = img;
+(data.images || []).forEach(img => {
+  if (img.name && img.description && img.filename) {
+    imageMap[parseInt(img.id)] = img;
+  }
 });
 
-// Read template
-let template;
-try {
-  template = fs.readFileSync(templatePath, "utf8");
-} catch (err) {
-  console.error("❌ Failed to read buygallery-template.html:", err);
-  process.exit(1);
-}
+const validCards = sequence.map(id => imageMap[id]).filter(Boolean);
 
-// Get valid cards in sequence order
-const validCards = sequence.map(id => {
-  const item = imageMap[id];
-  return item && item.name && item.filename ? item : null;
-}).filter(Boolean);
-
-// Top card for OG
-const top = validCards[0] || data.images.find(img => img.name && img.filename);
-const topTitle = top?.name || "Buy Certified Device";
-const topDesc = top?.description || "Trusted Pre-owned Devices at Best Prices";
-const topFilename = top?.filename || "og.png";
+const top = validCards[0] || Object.values(imageMap)[0] || {};
+const topTitle = top.name || "Buy Certified Device";
+const topDesc = top.description || "Trusted Pre-owned Devices at Best Prices";
+const topFilename = top.filename || "og.png";
 const priceMatch = topTitle.match(/Rs\.?\s*(\d+)/i);
 const price = priceMatch ? priceMatch[1] : "0";
 
-// Generate cards in sequence order
-const cardsHTML = sequence.map(id => {
-  const item = imageMap[id];
-  if (!item || !item.name || !item.filename) return '';
-  
-  const badge = (item.id === active) ? `<span class="badge">Newly Added</span>` : "";
-  const arrowText = (item.id === active)
+const cardsHTML = validCards.map(item => {
+  const badge = item.id === active ? `<span class="badge">Newly Added</span>` : "";
+  const arrowText = item.id === active
     ? `<span class="arrow-text">More ⬇️</span>`
-    : (item.id !== 30 ? `<span class="arrow-text">⬇️ More ⬆️</span>` : "");
+    : item.id !== 30 ? `<span class="arrow-text">⬇️ More ⬆️</span>` : "";
 
   return `
     <div class="card" data-id="${item.id}">
@@ -64,17 +47,24 @@ const cardsHTML = sequence.map(id => {
       <p>${item.description}</p>
       <div class="whatsapp-buttons-row">
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" /> Interested?
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
         </a>
         ${arrowText}
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" /> Edit & Share
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
         </a>
       </div>
     </div>`;
 }).join("\n");
 
-// Inject data
+let template;
+try {
+  template = fs.readFileSync(templatePath, "utf8");
+} catch (err) {
+  console.error("❌ Failed to read buygallery-template.html:", err);
+  process.exit(1);
+}
+
 const output = template
   .replace("{{CARDS}}", cardsHTML)
   .replace("{{ACTIVE_ID}}", active)
@@ -84,4 +74,4 @@ const output = template
   .replace(/{{PRICE}}/g, price);
 
 fs.writeFileSync(outputPath, output, "utf8");
-console.log("✅ buygallery.html regenerated with", validCards.length, "cards.");
+console.log("✅ buygallery.html regenerated using locked sequence logic.");
