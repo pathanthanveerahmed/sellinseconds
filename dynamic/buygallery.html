@@ -9,6 +9,7 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
 
+  <!-- OG Tags -->
   <meta property="og:title" content="SellInSeconds: Your Source for Quality Devices">
   <meta property="og:description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
   <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp">
@@ -135,14 +136,18 @@
       const res = await fetch("https://www.sellinseconds.in/dynamic/data.json?v=" + Date.now());
       const data = await res.json();
       const active = parseInt(data.active);
-      const sequence = Array.isArray(data.sequences?.[active - 1]) ? data.sequences[active - 1] : [];
+      const sequence = data.sequences[active - 1] || [];
 
+      // Step 1: Filter only valid cards
+      const validCards = data.images.filter(x => x.name && x.description && x.filename);
+
+      // Step 2: Build lookup map
+      const cardMap = Object.fromEntries(validCards.map(x => [parseInt(x.id), x]));
+
+      // Step 3: Build cards respecting sequence
       const cards = sequence.map(id => {
-        const item = data.images.find(x =>
-          parseInt(x.id) === id && !!x.name && !!x.description && !!x.filename
-        );
+        const item = cardMap[id];
         if (!item) return "";
-
         return `
           <div class="card" data-id="${item.id}">
             <div class="img-wrapper">
@@ -198,7 +203,7 @@
         });
       });
 
-      setTimeout(finish, 1200); // fallback
+      setTimeout(finish, 1200);
     }
 
     window.addEventListener("load", loadGallery);
