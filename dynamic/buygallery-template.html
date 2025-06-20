@@ -1,107 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- ... (head content remains unchanged) ... -->
+  <meta charset="UTF-8" />
+  <title>Buy & Sell Used Smartphones | SellInSeconds</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
+  <meta property="og:title" content="{{TOP_TITLE}}">
+  <meta property="og:description" content="{{TOP_DESC}}">
+  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="600">
+  <meta property="og:image:height" content="600">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{TOP_TITLE}}">
+  <meta name="twitter:description" content="{{TOP_DESC}}">
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}">
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #f9f9f9;
+      color: #111;
+    }
+    .card {
+      margin: 10px auto;
+      max-width: 95%;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .card img {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: red;
+      color: white;
+      padding: 4px 6px;
+      font-size: 12px;
+      border-radius: 4px;
+    }
+    .img-wrapper {
+      position: relative;
+    }
+    .whatsapp-buttons-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      gap: 10px;
+    }
+    .whatsapp-buttons-row a {
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+    .whatsapp-buttons-row img {
+      width: 20px;
+      height: 20px;
+      margin-right: 6px;
+    }
+  </style>
 </head>
-
 <body>
-  <!-- ... (body content remains unchanged) ... -->
-
+  <div id="gallery">
+    {{CARDS}}
+  </div>
   <script>
-    const gallery = document.getElementById("gallery");
-
-    async function loadGallery() {
-      const res = await fetch("https://www.sellinseconds.in/dynamic/data.json?v=" + Date.now());
-      const data = await res.json();
-      const active = Number(String(data.active).trim());
-      
-      // Find the correct sequence - the one that ends with the active card
-      let sequence = [];
-      for (let i = 0; i < data.sequences.length; i++) {
-        const seq = data.sequences[i];
-        if (seq.length > 0 && seq[seq.length - 1] === active) {
-          sequence = seq;
-          break;
-        }
-      }
-      
-      // Fallback if no matching sequence found
-      if (sequence.length === 0) {
-        const sequenceIndex = active > data.sequences.length ? 0 : active - 1;
-        sequence = Array.isArray(data.sequences?.[sequenceIndex]) 
-          ? data.sequences[sequenceIndex] 
-          : [];
-      }
-
-      const validCards = data.images.filter(x => x.name && x.description && x.filename);
-      const cardMap = Object.fromEntries(validCards.map(x => [Number(String(x.id).trim()), x]));
-
-      // Create cards in reverse order to put latest at top
-      const cards = [];
-      for (let i = sequence.length - 1; i >= 0; i--) {
-        const id = sequence[i];
-        const item = cardMap[Number(String(id).trim())];
-        if (!item) continue;
-
-        cards.push(`
-          <div class="card" data-id="${item.id}">
-            <div class="img-wrapper">
-              ${Number(String(item.id).trim()) === active ? `<span class="badge">Newly Added</span>` : ``}
-              <img src="/dynamic/images/${item.filename}" alt="Buy ${item.name} on SellInSeconds" loading="lazy" />
-            </div>
-            <h3>${item.name}</h3>
-            <p>${item.description}</p>
-            <div class="whatsapp-buttons-row">
-              <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
-              </a>
-              <span class="arrow-text">⬇️ More ⬆️</span>
-              <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
-              </a>
-            </div>
-          </div>`);
-      }
-
-      gallery.innerHTML = cards.join("");
-      setupScrollHighlight(active);
+    const active = {{ACTIVE_ID}};
+    const targetEl = document.querySelector('[data-id="' + active + '"]');
+    if (targetEl) {
+      window.scrollTo({ top: targetEl.offsetTop - 60, behavior: "smooth" });
+      setTimeout(() => window.scrollBy(0, 60), 300);
     }
-
-    function setupScrollHighlight(activeId) {
-      const loadingEl = document.getElementById("loading");
-      const targetEl = document.querySelector(`[data-id="${activeId}"]`);
-      if (!targetEl) {
-        loadingEl.style.display = "none";
-        return;
-      }
-
-      const imgs = document.querySelectorAll("img");
-      let loaded = 0, done = false;
-
-      const finish = () => {
-        if (done) return;
-        done = true;
-        loadingEl.style.display = "none";
-        targetEl.scrollIntoView({ behavior: "auto", block: "start" });
-        setTimeout(() => {
-          window.scrollBy(0, -60);
-          setTimeout(() => window.scrollBy(0, 60), 300);
-        }, 200);
-        targetEl.classList.add("highlight");
-      };
-
-      imgs.forEach(img => {
-        if (img.complete) loaded++;
-        else img.addEventListener("load", () => {
-          loaded++;
-          if (loaded === imgs.length) finish();
-        });
-      });
-
-      setTimeout(finish, 1200);
-    }
-
-    window.addEventListener("load", loadGallery);
   </script>
 </body>
 </html>
