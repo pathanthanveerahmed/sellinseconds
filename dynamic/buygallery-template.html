@@ -136,7 +136,7 @@
       const res = await fetch("https://www.sellinseconds.in/dynamic/data.json?v=" + Date.now());
       const data = await res.json();
       const active = parseInt(data.active);
-      const sequence = data.sequences[active - 1] || [];
+      const sequence = data.sequences[active] || [];
 
       // Step 1: Filter only valid cards
       const validCards = data.images.filter(x => x.name && x.description && x.filename);
