@@ -1,6 +1,7 @@
 {
-  "id": "10",
-  "name": "Microsoft SURFACE 8 PRO – 45000",
-  "description": "13 inch, intel CORE i7-11th Generation, 16 GB RAM, 512 GB SSD, DETACHABLE KEYBOARD, S PEN, intel iris GRAPHICS. BRAND NEW CONDITION ✨💫",
-  "filename": "10.webp"
+  "id": 11,
+  "name": "APPLE Mac PRO (Apple Mac Studio) – 40000",
+  "description": "3.5GHz 6-Core intel Xeon E5 with 12MB L3 cache, AMD FirePro D500 6 GB GRAPHICS, 32 GB RAM, 1 TB SSD",
+  "filename": "11.webp",
+  "finalize": true
 }
