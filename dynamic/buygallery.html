@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Apple iPhone 15 PLUS – 48000</title>
+  <title>Buy & Sell Used Smartphones | SellInSeconds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="128 GB 💾, 92% BATTERY HEALTH 🔋, FULL KIT">
+  <meta name="description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
+
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
 
+  <!-- OG / Social Preview Tags -->
   <meta property="og:title" content="SellInSeconds: Your Source for Quality Devices">
   <meta property="og:description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
   <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp">
@@ -22,25 +24,6 @@
   <meta name="twitter:description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "SellInSeconds: Your Source for Quality Devices",
-    "description": "Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.",
-    "image": "https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp",
-    "publisher": {
-      "@type": "Organization",
-      "name": "SellInSeconds",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp"
-      }
-    },
-    "url": "https://www.sellinseconds.in/dynamic/buygallery.html"
-  }
-  </script>
-
   <style>
     body {
       margin: 0;
@@ -48,9 +31,7 @@
       background: #f9f9f9;
       color: #111;
     }
-    .gallery {
-      padding-bottom: 50px;
-    }
+
     .card {
       margin: 10px auto;
       max-width: 95%;
@@ -61,31 +42,42 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
+
     .card.highlight {
       animation: fadein 0.8s ease;
       box-shadow: 0 0 10px #4caf50aa;
     }
+
     @keyframes fadein {
       0% { opacity: 0; transform: scale(0.96); }
       100% { opacity: 1; transform: scale(1); }
     }
+
+    .card picture img,
     .card img {
       width: 100%;
-      max-width: 480px;
       height: auto;
       display: block;
-      margin: 0 auto;
       border-radius: 8px;
+      max-width: 480px;
+      margin: 0 auto;
     }
-    .card h3 {
-      margin: 10px;
+
+    .card-description {
+      padding: 10px;
+    }
+
+    .card-title {
+      font-weight: bold;
       font-size: 18px;
     }
-    .card p {
-      margin: 0 10px 10px;
+
+    .card-detail {
       font-size: 15px;
       color: #444;
+      margin-top: 4px;
     }
+
     .badge {
       position: absolute;
       top: 8px;
@@ -96,9 +88,11 @@
       padding: 2px 6px;
       border-radius: 4px;
     }
+
     .img-wrapper {
       position: relative;
     }
+
     .whatsapp-buttons-row {
       display: flex;
       align-items: center;
@@ -107,6 +101,7 @@
       margin-top: 0.5rem;
       padding: 0 10px 10px;
     }
+
     .whatsapp-buttons-row a {
       display: inline-flex;
       align-items: center;
@@ -117,11 +112,22 @@
       border-radius: 5px;
       font-size: 14px;
     }
+
     .whatsapp-buttons-row img {
       width: 20px;
       height: 20px;
       margin-right: 6px;
     }
+
+    @media (orientation: landscape) and (max-width: 900px) {
+      .card { max-width: 95%; }
+      .card img { max-width: 100%; }
+    }
+
+    @media (min-width: 600px) {
+      .card { max-width: 500px; }
+    }
+
     .loading-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -135,6 +141,7 @@
       font-size: 18px;
       color: #333;
     }
+
     .spinner {
       margin-top: 15px;
       width: 24px;
@@ -144,6 +151,7 @@
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
+
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
@@ -159,70 +167,58 @@
   <div class="gallery" id="gallery"></div>
 
   <script>
-    async function loadCards() {
-      const gallery = document.getElementById("gallery");
-      const loading = document.getElementById("loading");
+    const gallery = document.getElementById("gallery");
 
-      try {
-        const res = await fetch("/dynamic/data.json?v=" + Date.now(), {
-          cache: "no-store"
-        });
-        const data = await res.json();
+    async function loadGallery() {
+      const res = await fetch("https://www.sellinseconds.in/dynamic/data.json?v=" + Date.now());
+      const data = await res.json();
+      const sequence = data.sequences[data.active - 1] || [];
+      const cards = [];
 
-        const sequence = data.sequences[data.active] || [];
-        const images = data.images || [];
+      for (let id of sequence) {
+        const item = data.images.find(x => parseInt(x.id) === id);
+        if (!item || !item.name || !item.description || !item.filename) continue;
 
-        for (const id of sequence) {
-          const item = images.find(x => parseInt(x.id) === id);
-          if (!item || !item.filename) continue;
-
-          const card = document.createElement("div");
-          card.className = "card";
-          card.dataset.id = item.id;
-
-          card.innerHTML = `
-            <div class="img-wrapper">
-              ${id === sequence[0] ? '<span class="badge">Newly Added</span>' : ""}
-              <img src="/dynamic/images/${item.filename}" alt="Buy ${item.name} on SellInSeconds" loading="lazy" />
-            </div>
-            <h3>${item.name}</h3>
-            <p>${item.description}</p>
-            <div class="whatsapp-buttons-row">
-              <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
-              </a>
-              <span class="arrow-text">⬇️ More ⬆️</span>
-              <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
-              </a>
-            </div>
-          `;
-          gallery.appendChild(card);
-        }
-
-        scrollToHighlightedCard();
-      } catch (err) {
-        console.error("Error loading cards:", err);
-      } finally {
-        loading.style.display = "none";
+        const card = `
+        <div class="card" data-id="${item.id}">
+          <div class="img-wrapper">
+            ${item.id == data.active ? `<span class="badge">Newly Added</span>` : ``}
+            <img src="/dynamic/images/${item.filename}" alt="Buy ${item.name} on SellInSeconds" loading="lazy" />
+          </div>
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>
+          <div class="whatsapp-buttons-row">
+            <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
+            </a>
+            <span class="arrow-text">⬇️ More ⬆️</span>
+            <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
+            </a>
+          </div>
+        </div>`;
+        cards.push(card);
       }
+
+      gallery.innerHTML = cards.join("");
+      setupScrollHighlight(data.active);
     }
 
-    function scrollToHighlightedCard() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const targetId = urlParams.get("id");
-      if (!targetId) return;
+    function setupScrollHighlight(activeId) {
+      const loadingEl = document.getElementById("loading");
+      const targetEl = document.querySelector(`[data-id="${activeId}"]`);
+      if (!targetEl) {
+        loadingEl.style.display = "none";
+        return;
+      }
 
-      const targetEl = document.querySelector(`[data-id="${targetId}"]`);
-      if (!targetEl) return;
-
-      const images = document.querySelectorAll("img");
-      let loaded = 0;
-      let finished = false;
+      const imgs = document.querySelectorAll("img");
+      let loaded = 0, done = false;
 
       const finish = () => {
-        if (finished) return;
-        finished = true;
+        if (done) return;
+        done = true;
+        loadingEl.style.display = "none";
         targetEl.scrollIntoView({ behavior: "auto", block: "start" });
         setTimeout(() => {
           window.scrollBy(0, -60);
@@ -231,18 +227,18 @@
         targetEl.classList.add("highlight");
       };
 
-      images.forEach(img => {
+      imgs.forEach(img => {
         if (img.complete) loaded++;
         else img.addEventListener("load", () => {
           loaded++;
-          if (loaded === images.length) finish();
+          if (loaded === imgs.length) finish();
         });
       });
 
-      setTimeout(() => finish(), 1200);
+      setTimeout(finish, 1200); // fallback
     }
 
-    window.addEventListener("load", loadCards);
+    window.addEventListener("load", loadGallery);
   </script>
 </body>
 </html>
