@@ -141,17 +141,17 @@
       // Step 1: Filter only valid cards
       const validCards = data.images.filter(x => x.name && x.description && x.filename);
 
-      // Step 2: Build lookup map
+      // Step 2: Create lookup map
       const cardMap = Object.fromEntries(validCards.map(x => [parseInt(x.id), x]));
 
-      // Step 3: Build cards respecting sequence
+      // Step 3: Render cards by sequence
       const cards = sequence.map(id => {
         const item = cardMap[id];
         if (!item) return "";
         return `
           <div class="card" data-id="${item.id}">
             <div class="img-wrapper">
-              ${item.id == active ? `<span class="badge">Newly Added</span>` : ``}
+              ${item.id === active ? `<span class="badge">Newly Added</span>` : ``}
               <img src="/dynamic/images/${item.filename}" alt="Buy ${item.name} on SellInSeconds" loading="lazy" />
             </div>
             <h3>${item.name}</h3>
