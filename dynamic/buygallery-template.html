@@ -136,7 +136,7 @@
       const res = await fetch("https://www.sellinseconds.in/dynamic/data.json?v=" + Date.now());
       const data = await res.json();
       const active = parseInt(data.active);
-      const sequence = Array.isArray(data.sequences?.[active]) ? data.sequences[active - 1] : [];
+      const sequence = Array.isArray(data.sequences?.[active]) ? data.sequences[active] : [];
 
       const cards = sequence.map(id => {
         const item = data.images.filter(img => !!img.name && !!img.description && !!img.filename)
