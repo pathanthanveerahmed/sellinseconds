@@ -8,21 +8,39 @@
 
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
+  <!-- SEO Meta -->
   <meta property="og:title" content="SellInSeconds: Your Source for Quality Devices">
   <meta property="og:description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
   <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp">
-  <meta property="og:image:type" content="image/webp">
-  <meta property="og:image:width" content="600">
-  <meta property="og:image:height" content="600">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SellInSeconds: Your Source for Quality Devices">
   <meta name="twitter:description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp">
-
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "SellInSeconds: Your Source for Quality Devices",
+    "description": "Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.",
+    "image": "https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp",
+    "publisher": {
+      "@type": "Organization",
+      "name": "SellInSeconds",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp"
+      }
+    },
+    "url": "https://www.sellinseconds.in/dynamic/buygallery.html"
+  }
+  </script>
+
+  <!-- Optional: prevent browser caching -->
+  <meta http-equiv="Cache-Control" content="no-store" />
 
   <style>
     body {
@@ -53,7 +71,9 @@
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 8px 8px 0 0;
+      border-radius: 8px;
+      max-width: 480px;
+      margin: 0 auto;
     }
     .card-description {
       padding: 10px;
@@ -103,17 +123,13 @@
       height: 20px;
       margin-right: 6px;
     }
-
     @media (orientation: landscape) and (max-width: 900px) {
-      .card {
-        max-width: 95%;
-      }
+      .card { max-width: 95%; }
+      .card img { max-width: 100%; }
     }
-
     @media (min-width: 600px) {
       .card { max-width: 500px; }
     }
-
     .loading-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -149,74 +165,71 @@
   </div>
 
   <div class="gallery" id="gallery">
-    <!-- Cards will be injected dynamically -->
+    <!-- Dynamic cards will be inserted here -->
   </div>
 
   <script>
-    const gallery = document.getElementById('gallery');
-    const loadingEl = document.getElementById("loading");
+    async function loadGallery() {
+      const res = await fetch('/dynamic/data.json?v=' + Date.now()); // Cache-busted fetch
+      const data = await res.json();
+      const container = document.getElementById('gallery');
+      const fragment = document.createDocumentFragment();
 
-    fetch("/dynamic/data.json")
-      .then(res => res.json())
-      .then(data => {
-        const active = parseInt(data.active);
-        if (!active || !data.images) {
-          loadingEl.innerText = "No products found.";
-          return;
+      const sorted = [...data.images];
+      if (data.active && data.active > 0) {
+        const index = sorted.findIndex(item => item.id == data.active);
+        if (index > 0) {
+          const [activeItem] = sorted.splice(index, 1);
+          sorted.unshift(activeItem);
         }
+      }
 
-        // Reverse order: latest product on top
-        const reversed = [...data.images]
-          .filter(img => parseInt(img.id) <= active)
-          .sort((a, b) => parseInt(b.id) - parseInt(a.id));
+      for (const item of sorted) {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.setAttribute('data-id', item.id);
 
-        for (const item of reversed) {
-          const card = document.createElement("div");
-          card.className = "card";
-          card.setAttribute("data-id", item.id);
+        div.innerHTML = `
+          <div class="img-wrapper">
+            ${item.id == data.active ? `<span class="badge">Newly Added</span>` : ''}
+            <img src="/dynamic/images/${item.id}.webp" alt="Buy ${item.name} on SellInSeconds" loading="lazy" />
+          </div>
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>
+          <div class="whatsapp-buttons-row">
+            <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
+            </a>
+            <span class="arrow-text">⬇️ More ⬆️</span>
+            <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
+            </a>
+          </div>
+        `;
 
-          card.innerHTML = `
-            <div class="img-wrapper">
-              <img src="/dynamic/images/${item.filename}" alt="Buy ${item.name} on SellInSeconds" loading="lazy" />
-            </div>
-            <h3>${item.name}</h3>
-            <p>${item.description}</p>
-            <div class="whatsapp-buttons-row">
-              <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
-              </a>
-              <span class="arrow-text">⬇️ More ⬆️</span>
-              <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
-              </a>
-            </div>
-          `;
-          gallery.appendChild(card);
+        fragment.appendChild(div);
+      }
+
+      container.innerHTML = ''; // Clear old cards if any
+      container.appendChild(fragment);
+
+      // Finish loading animation
+      document.getElementById("loading").style.display = "none";
+
+      // Scroll to card if ID present
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetId = urlParams.get("id");
+      if (targetId) {
+        const targetEl = document.querySelector(`[data-id="${targetId}"]`);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: "auto", block: "start" });
+          targetEl.classList.add("highlight");
+          setTimeout(() => window.scrollBy(0, -60), 150);
         }
+      }
+    }
 
-        // Scroll to ID if ?id=X is passed
-        const params = new URLSearchParams(window.location.search);
-        const targetId = params.get("id");
-        if (targetId) {
-          const target = document.querySelector(`[data-id="${targetId}"]`);
-          if (target) {
-            setTimeout(() => {
-              target.scrollIntoView({ behavior: "smooth", block: "start" });
-              setTimeout(() => {
-                window.scrollBy(0, -60);
-                setTimeout(() => window.scrollBy(0, 60), 300);
-              }, 200);
-              target.classList.add("highlight");
-            }, 100);
-          }
-        }
-
-        loadingEl.style.display = "none";
-      })
-      .catch(err => {
-        loadingEl.innerText = "Failed to load products.";
-        console.error("Error loading data.json:", err);
-      });
+    window.addEventListener("load", loadGallery);
   </script>
 </body>
 </html>
