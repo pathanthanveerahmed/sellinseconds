@@ -9,7 +9,6 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
 
-  <!-- OG Tags -->
   <meta property="og:title" content="SellInSeconds: Your Source for Quality Devices">
   <meta property="og:description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
   <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp">
@@ -136,11 +135,12 @@
       const res = await fetch("https://www.sellinseconds.in/dynamic/data.json?v=" + Date.now());
       const data = await res.json();
       const active = parseInt(data.active);
-      const sequence = Array.isArray(data.sequences?.[active]) ? data.sequences[active - 1] : [];
+      const sequence = Array.isArray(data.sequences?.[active - 1]) ? data.sequences[active - 1] : [];
 
       const cards = sequence.map(id => {
-        const item = data.images.filter(img => !!img.name && !!img.description && !!img.filename)
-                                .find(x => parseInt(x.id) === id);
+        const item = data.images.find(x =>
+          parseInt(x.id) === id && !!x.name && !!x.description && !!x.filename
+        );
         if (!item) return "";
 
         return `
