@@ -1,7 +1,6 @@
-
 {
-  "active": 10,
-  "updated": 1750424610987,
+  "active": 11,
+  "updated": 1750433469417,
   "sequences": [
     [
       30,
@@ -1027,9 +1026,9 @@
     },
     {
       "id": 11,
-      "name": "",
-      "description": "",
-      "filename": ""
+      "name": "APPLE Mac PRO (Apple Mac Studio) – 40000",
+      "description": "3.5GHz 6-Core intel Xeon E5 with 12MB L3 cache, AMD FirePro D500 6 GB GRAPHICS, 32 GB RAM, 1 TB SSD",
+      "filename": "11.webp"
     },
     {
       "id": 12,
