@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Google Pixel 9 – 58000</title>
+  <title>Apple iPhone 15 PLUS – 48000</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="256 GB 💾, JUST 1 WEEK OLD, INDIAN 🇮🇳 VARIANT">
-
+  <meta name="description" content="128 GB 💾, 92% BATTERY HEALTH 🔋, FULL KIT">
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
+
   <meta property="og:title" content="SellInSeconds: Your Source for Quality Devices">
   <meta property="og:description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
   <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp">
@@ -15,11 +16,11 @@
   <meta property="og:image:height" content="600">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html">
+
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SellInSeconds: Your Source for Quality Devices">
   <meta name="twitter:description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp">
-  <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
 
   <script type="application/ld+json">
   {
@@ -47,6 +48,9 @@
       background: #f9f9f9;
       color: #111;
     }
+    .gallery {
+      padding-bottom: 50px;
+    }
     .card {
       margin: 10px auto;
       max-width: 95%;
@@ -67,23 +71,20 @@
     }
     .card img {
       width: 100%;
+      max-width: 480px;
       height: auto;
       display: block;
-      border-radius: 8px;
-      max-width: 480px;
       margin: 0 auto;
+      border-radius: 8px;
     }
-    .card-description {
-      padding: 10px;
-    }
-    .card-title {
-      font-weight: bold;
+    .card h3 {
+      margin: 10px;
       font-size: 18px;
     }
-    .card-detail {
+    .card p {
+      margin: 0 10px 10px;
       font-size: 15px;
       color: #444;
-      margin-top: 4px;
     }
     .badge {
       position: absolute;
@@ -121,7 +122,6 @@
       height: 20px;
       margin-right: 6px;
     }
-
     .loading-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -159,30 +159,30 @@
   <div class="gallery" id="gallery"></div>
 
   <script>
-    async function fetchAndRenderCards() {
+    async function loadCards() {
+      const gallery = document.getElementById("gallery");
+      const loading = document.getElementById("loading");
+
       try {
-        const res = await fetch("https://www.sellinseconds.in/dynamic/data.json?v=" + Date.now());
-        const data = await res.json();
-        const activeId = data.active;
-        const cards = data.images;
-
-        const gallery = document.getElementById("gallery");
-        gallery.innerHTML = "";
-
-        const sorted = [...cards].sort((a, b) => {
-          if (parseInt(a.id) === activeId) return -1;
-          if (parseInt(b.id) === activeId) return 1;
-          return parseInt(b.id) - parseInt(a.id);
+        const res = await fetch("/dynamic/data.json?v=" + Date.now(), {
+          cache: "no-store"
         });
+        const data = await res.json();
 
-        for (const item of sorted) {
+        const sequence = data.sequences[data.active] || [];
+        const images = data.images || [];
+
+        for (const id of sequence) {
+          const item = images.find(x => parseInt(x.id) === id);
+          if (!item || !item.filename) continue;
+
           const card = document.createElement("div");
           card.className = "card";
-          card.setAttribute("data-id", item.id);
-          if (parseInt(item.id) === activeId) card.classList.add("highlight");
+          card.dataset.id = item.id;
 
           card.innerHTML = `
             <div class="img-wrapper">
+              ${id === sequence[0] ? '<span class="badge">Newly Added</span>' : ""}
               <img src="/dynamic/images/${item.filename}" alt="Buy ${item.name} on SellInSeconds" loading="lazy" />
             </div>
             <h3>${item.name}</h3>
@@ -200,14 +200,49 @@
           gallery.appendChild(card);
         }
 
-        document.getElementById("loading").style.display = "none";
+        scrollToHighlightedCard();
       } catch (err) {
-        console.error("Error loading data.json:", err);
-        document.getElementById("loading").textContent = "❌ Failed to load data.";
+        console.error("Error loading cards:", err);
+      } finally {
+        loading.style.display = "none";
       }
     }
 
-    fetchAndRenderCards();
+    function scrollToHighlightedCard() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetId = urlParams.get("id");
+      if (!targetId) return;
+
+      const targetEl = document.querySelector(`[data-id="${targetId}"]`);
+      if (!targetEl) return;
+
+      const images = document.querySelectorAll("img");
+      let loaded = 0;
+      let finished = false;
+
+      const finish = () => {
+        if (finished) return;
+        finished = true;
+        targetEl.scrollIntoView({ behavior: "auto", block: "start" });
+        setTimeout(() => {
+          window.scrollBy(0, -60);
+          setTimeout(() => window.scrollBy(0, 60), 300);
+        }, 200);
+        targetEl.classList.add("highlight");
+      };
+
+      images.forEach(img => {
+        if (img.complete) loaded++;
+        else img.addEventListener("load", () => {
+          loaded++;
+          if (loaded === images.length) finish();
+        });
+      });
+
+      setTimeout(() => finish(), 1200);
+    }
+
+    window.addEventListener("load", loadCards);
   </script>
 </body>
 </html>
