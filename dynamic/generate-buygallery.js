@@ -49,7 +49,7 @@ const cardsHTML = validCards.map((item, index) => {
     <div class="card" data-id="${item.id}">
       <div class="img-wrapper">
         ${badge}
-        <img src="/dynamic/images/${item.filename}" alt="Buy ${item.name} on SellInSeconds" loading="lazy" />
+        <img src="/dynamic/images/${item.filename}" alt="Buy ${item.name} on SellInSeconds" />
       </div>
       <h3>${item.name}</h3>
       <p>${item.description}</p>
