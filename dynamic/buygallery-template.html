@@ -85,17 +85,17 @@
   </div>
 
   <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      const scrollToId = sessionStorage.getItem("scrollToCard");
-      if (scrollToId) {
-        const el = document.querySelector('[data-id="' + scrollToId + '"]');
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-          setTimeout(() => window.scrollBy(0, -60), 300);
-        }
-        sessionStorage.removeItem("scrollToCard");
+  window.addEventListener("load", () => {
+    const scrollToId = sessionStorage.getItem("scrollToCard");
+    if (scrollToId) {
+      const el = document.querySelector('[data-id="' + scrollToId + '"]');
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(() => window.scrollBy(0, -60), 300);
       }
-    });
-  </script>
+      sessionStorage.removeItem("scrollToCard");
+    }
+  });
+</script>
 </body>
 </html>
