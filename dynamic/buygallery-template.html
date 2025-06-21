@@ -18,7 +18,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{TOP_TITLE}}">
   <meta name="twitter:description" content="{{TOP_DESC}}">
-  <meta name="twitter:image" content="{{TOP_FILENAME}}">
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}">
   <style>
     /* CSS Reset for consistent spacing across browsers */
     html, body {
@@ -112,20 +112,38 @@
 
       const tryScroll = () => {
         const selector = '[data-id="' + scrollToId + '"]';
-        console.log("DEBUG (buygallery): Attempting to query selector:", selector);
+        console.log("DEBUG (buygallery): Attempting to query selector: ", selector);
         const el = document.querySelector(selector);
 
         if (el) {
-          console.log("DEBUG (buygallery): Element found:", el);
-          // This will now use the scroll-margin-top CSS property for precise positioning
-          el.scrollIntoView({ behavior: "smooth", block: "start" }); 
-          
-          console.log("DEBUG (buygallery): Scrolled to element.");
-          // Clear the ID after successful scroll to prevent re-scrolling on refresh
-          sessionStorage.removeItem("scrollToCardId");
-          console.log("DEBUG (buygallery): Cleared scrollToCardId from sessionStorage.");
+          console.log("DEBUG (buygallery): Element found: ", el);
+          const img = el.querySelector('img'); // Get the image within the target card
+
+          const performScroll = () => {
+              el.scrollIntoView({ behavior: "smooth", block: "start" }); 
+              console.log("DEBUG (buygallery): Scrolled to element.");
+              sessionStorage.removeItem("scrollToCardId");
+              console.log("DEBUG (buygallery): Cleared scrollToCardId from sessionStorage.");
+          };
+
+          // Check if there's an image and if it's already complete
+          if (img && !img.complete) {
+              // Image is not yet loaded, wait for its 'load' event
+              console.log("DEBUG (buygallery): Image in target card not complete. Waiting for image load...");
+              img.addEventListener('load', performScroll);
+              img.addEventListener('error', () => {
+                  // If image fails to load, still attempt to scroll to prevent a stuck page
+                  console.warn("DEBUG (buygallery): Image load error, attempting scroll anyway.");
+                  performScroll(); 
+              });
+          } else {
+              // Image is already loaded, or no image exists in the card, so scroll immediately
+              console.log("DEBUG (buygallery): Image in target card already complete or no image. Performing scroll.");
+              performScroll();
+          }
+
         } else {
-          console.log("DEBUG (buygallery): Element NOT found for selector:", selector, ". Retrying in 100ms...");
+          console.log("DEBUG (buygallery): Element NOT found for selector: ", selector, ". Retrying in 100ms...");
           // Keep retrying if element is not yet in the DOM (e.g., if rendering is slow)
           setTimeout(tryScroll, 100);
         }
