@@ -1,5 +1,5 @@
 {
-  "active": 15,
+  "active": 14,
   "updated": 1750486086165,
   "sequences": [
     [
@@ -1050,9 +1050,9 @@
     },
     {
       "id": 15,
-      "name": "Bh – 7",
-      "description": "N",
-      "filename": "15.webp"
+      "name": "",
+      "description": "",
+      "filename": ""
     },
     {
       "id": 16,
