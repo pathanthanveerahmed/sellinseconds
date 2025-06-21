@@ -8,8 +8,8 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
   <meta property="og:title" content="B – 7">
-  <meta property="og:description" content="D">
-  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/23.webp">
+  <meta property="og:description" content="C">
+  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/24.webp">
   <meta property="og:image:type" content="image/webp">
   <meta property="og:image:width" content="600">
   <meta property="og:image:height" content="600">
@@ -17,15 +17,27 @@
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="B – 7">
-  <meta name="twitter:description" content="D">
-  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/23.webp">
+  <meta name="twitter:description" content="C">
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/24.webp">
   <style>
-    body {
+    /* CSS Reset for consistent spacing across browsers */
+    html, body {
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: system-ui, sans-serif;
       background: #f9f9f9;
       color: #111;
+      /* Removed padding from body as it's now on .content-wrapper */
     }
+
+    /* New wrapper for content to apply padding */
+    .content-wrapper {
+      padding: 20px; /* This gives your content 20px space from screen edges */
+    }
+
     .card {
       margin: 10px auto;
       max-width: 95%;
@@ -80,11 +92,29 @@
   </style>
 </head>
 <body>
-  <div id="gallery">
-    
-    <div class="card" data-id="23">
+  <div class="content-wrapper"> <div id="gallery">
+      
+    <div class="card" data-id="24">
       <div class="img-wrapper">
         <span class="badge">Newly Added</span>
+        <img src="/dynamic/images/24.webp" alt="Buy B – 7 on SellInSeconds" loading="lazy" />
+      </div>
+      <h3>B – 7</h3>
+      <p>C</p>
+      <div class="whatsapp-buttons-row">
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/24.html" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
+        </a>
+        <span class="arrow-text">More ⬇️</span>
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/24.html" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
+        </a>
+      </div>
+    </div>
+
+    <div class="card" data-id="23">
+      <div class="img-wrapper">
+        
         <img src="/dynamic/images/23.webp" alt="Buy B – 7 on SellInSeconds" loading="lazy" />
       </div>
       <h3>B – 7</h3>
@@ -93,7 +123,7 @@
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/23.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
         </a>
-        <span class="arrow-text">More ⬇️</span>
+        <span class="arrow-text">⬇️ More ⬆️</span>
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/23.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
         </a>
@@ -495,9 +525,8 @@
         </a>
       </div>
     </div>
-  </div>
-
-<script>
+    </div>
+  </div> <script>
   window.addEventListener("load", () => {
     const scrollToId = sessionStorage.getItem("scrollToCardId");
     console.log("DEBUG (buygallery): Retrieved scrollToId from sessionStorage:", scrollToId);
@@ -514,7 +543,9 @@
 
       if (el) {
         console.log("DEBUG (buygallery): Element found:", el);
+        // This should scroll the element's top to the very top of the viewport.
         el.scrollIntoView({ behavior: "smooth", block: "start" }); 
+        
         console.log("DEBUG (buygallery): Scrolled to element.");
         sessionStorage.removeItem("scrollToCardId");
         console.log("DEBUG (buygallery): Cleared scrollToCardId from sessionStorage.");
