@@ -84,9 +84,10 @@
     {{CARDS}}
   </div>
 
- <script>
+<script>
   window.addEventListener("load", () => {
-    const scrollToId = sessionStorage.getItem("scrollToCard");
+    // Corrected key from "scrollToCard" to "scrollToCardId"
+    const scrollToId = sessionStorage.getItem("scrollToCardId");
     if (!scrollToId) return;
 
     const tryScroll = () => {
@@ -94,7 +95,8 @@
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
         setTimeout(() => window.scrollBy(0, -60), 300);
-        sessionStorage.removeItem("scrollToCard");
+        // Corrected key for removal as well
+        sessionStorage.removeItem("scrollToCardId");
       } else {
         setTimeout(tryScroll, 100); // Retry after delay
       }
