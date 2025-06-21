@@ -2,14 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <script>
-    // Store the card number in sessionStorage
-    sessionStorage.setItem("scrollToCard", "7"); // Changed "scrollToCardId" to "scrollToCard"
-    // Redirect immediately to gallery
-    location.href = "/dynamic/buygallery.html";
+  <title>Redirecting...</title> <script>
+    // IMPORTANT: Temporarily setting key to "scrollToCard" based on your observation
+    // "Key: scrollToCard Value: 5". If your generate-one-wacust.js sets "scrollToCardId",
+    // please revert this to "scrollToCardId" after this test, and ensure consistency.
+    sessionStorage.setItem("scrollToCard", "7"); // Using "scrollToCard" for this test
+
+    console.log("DEBUG (1to30-template): sessionStorage set. Key:", "scrollToCard", "Value:", sessionStorage.getItem("scrollToCard"));
+
+    // Temporarily delay redirection to allow inspection
+    setTimeout(() => {
+      console.log("DEBUG (1to30-template): Redirecting now...");
+      location.href = "/dynamic/buygallery.html";
+    }, 2000); // 2-second delay for inspection
   </script>
 </head>
 <body>
-  <p>Redirecting...</p>
+  <p>Redirecting to buygallery.html...</p>
+  <p>Checking session storage for "scrollToCard"...</p>
 </body>
 </html>
