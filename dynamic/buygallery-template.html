@@ -84,17 +84,23 @@
     {{CARDS}}
   </div>
 
-  <script>
+ <script>
   window.addEventListener("load", () => {
     const scrollToId = sessionStorage.getItem("scrollToCard");
-    if (scrollToId) {
+    if (!scrollToId) return;
+
+    const tryScroll = () => {
       const el = document.querySelector('[data-id="' + scrollToId + '"]');
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
         setTimeout(() => window.scrollBy(0, -60), 300);
+        sessionStorage.removeItem("scrollToCard");
+      } else {
+        setTimeout(tryScroll, 100); // Retry after delay
       }
-      sessionStorage.removeItem("scrollToCard");
-    }
+    };
+
+    tryScroll();
   });
 </script>
 </body>
