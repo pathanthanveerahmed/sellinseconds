@@ -95,7 +95,8 @@
   <div class="content-wrapper"> <div id="gallery">
       {{CARDS}}
     </div>
-  </div> <script>
+  </div> 
+  <script>
   window.addEventListener("load", () => {
     const scrollToId = sessionStorage.getItem("scrollToCardId");
     console.log("DEBUG (buygallery): Retrieved scrollToId from sessionStorage:", scrollToId);
@@ -112,9 +113,17 @@
 
       if (el) {
         console.log("DEBUG (buygallery): Element found:", el);
-        // This should scroll the element's top to the very top of the viewport.
+        
+        // Step 1: Scroll the element into view
         el.scrollIntoView({ behavior: "smooth", block: "start" }); 
         
+        // Step 2: Add a small scroll adjustment to account for the card's 10px margin-top
+        // This will scroll the page down by 10 pixels, bringing the top margin into view
+        setTimeout(() => { // Use a small timeout to ensure scrollIntoView completes first
+            window.scrollBy(0, 10); // Scroll down by 10 pixels
+            console.log("DEBUG (buygallery): Applied 10px scroll adjustment.");
+        }, 100); // A small delay (e.g., 100ms) after scrollIntoView
+
         console.log("DEBUG (buygallery): Scrolled to element.");
         sessionStorage.removeItem("scrollToCardId");
         console.log("DEBUG (buygallery): Cleared scrollToCardId from sessionStorage.");
