@@ -98,79 +98,60 @@
       {{CARDS}}
     </div>
   </div> 
- <script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const scrollToId = sessionStorage.getItem("scrollToCardId");
-    console.log("DEBUG (buygallery): Retrieved scrollToId from sessionStorage:", scrollToId);
+  <script>
+    // Change from "load" to "DOMContentLoaded" for earlier execution
+    window.addEventListener("DOMContentLoaded", () => {
+      const scrollToId = sessionStorage.getItem("scrollToCardId");
+      console.log("DEBUG (buygallery): Retrieved scrollToId from sessionStorage:", scrollToId);
 
-    if (!scrollToId) {
-        console.log("DEBUG (buygallery): scrollToId is empty or null. SCROLLING WILL NOT HAPPEN.");
-        return; 
-    }
-
-    let retryCount = 0;
-    const MAX_RETRIES = 10; // Max number of times to retry if element/image isn't ready
-    const RETRY_DELAY = 100; // Milliseconds between retries
-
-    const tryScroll = () => {
-      const selector = '[data-id="' + scrollToId + '"]';
-      console.log("DEBUG (buygallery): Attempting to query selector: ", selector, " (Attempt: ", retryCount + 1, ")");
-      const el = document.querySelector(selector);
-
-      if (el) {
-        console.log("DEBUG (buygallery): Element found: ", el);
-        const img = el.querySelector('img');
-
-        const initiateScroll = () => {
-            // First, attempt the scroll
-            el.scrollIntoView({ behavior: "smooth", block: "start" }); 
-            console.log("DEBUG (buygallery): Initial scroll performed.");
-
-            // Add a small, immediate scrollBy to push it down slightly,
-            // as Safari might ignore scroll-margin-top or need a nudge on initial load
-            // This is a common workaround for iOS Safari.
-            setTimeout(() => {
-                window.scrollBy(0, 5); // Nudge down by 5 pixels
-                console.log("DEBUG (buygallery): Applied 5px nudge for Safari.");
-            }, 50); // Small delay to let initial scroll settle
-            
-            console.log("DEBUG (buygallery): Scrolled to element and applied nudge.");
-            sessionStorage.removeItem("scrollToCardId");
-            console.log("DEBUG (buygallery): Cleared scrollToCardId from sessionStorage.");
-        };
-
-        if (img && !img.complete) {
-            // If image isn't loaded, wait for it or retry if max retries not reached
-            if (retryCount < MAX_RETRIES) {
-                console.log("DEBUG (buygallery): Image in target card not complete. Retrying...");
-                retryCount++;
-                img.addEventListener('load', initiateScroll, { once: true }); // Ensure listener fires only once
-                img.addEventListener('error', initiateScroll, { once: true }); // On error, still try to scroll
-                setTimeout(tryScroll, RETRY_DELAY); // Re-run tryScroll to check state again
-            } else {
-                console.warn("DEBUG (buygallery): Max retries reached for image. Attempting scroll anyway.");
-                initiateScroll(); // Force scroll if image doesn't load after max retries
-            }
-        } else {
-            // Image is already loaded or there's no image, perform scroll immediately
-            console.log("DEBUG (buygallery): Image in target card already complete or no image. Performing scroll.");
-            initiateScroll();
-        }
-
-      } else {
-        // Element not found, retry if max retries not reached
-        if (retryCount < MAX_RETRIES) {
-            console.log("DEBUG (buygallery): Element NOT found for selector: ", selector, ". Retrying in ", RETRY_DELAY, "ms...");
-            retryCount++;
-            setTimeout(tryScroll, RETRY_DELAY);
-        } else {
-            console.warn("DEBUG (buygallery): Max retries reached for element. Cannot scroll.");
-        }
+      // If no ID is found, we should exit and let the page render naturally (which would be the first card)
+      if (!scrollToId) {
+          console.log("DEBUG (buygallery): scrollToId is empty or null. SCROLLING WILL NOT HAPPEN.");
+          return; 
       }
-    };
 
-    tryScroll();
-  });
-</script>
+      const tryScroll = () => {
+        const selector = '[data-id="' + scrollToId + '"]';
+        console.log("DEBUG (buygallery): Attempting to query selector: ", selector);
+        const el = document.querySelector(selector);
+
+        if (el) {
+          console.log("DEBUG (buygallery): Element found: ", el);
+          const img = el.querySelector('img'); // Get the image within the target card
+
+          const performScroll = () => {
+              el.scrollIntoView({ behavior: "smooth", block: "start" }); 
+              console.log("DEBUG (buygallery): Scrolled to element.");
+              sessionStorage.removeItem("scrollToCardId");
+              console.log("DEBUG (buygallery): Cleared scrollToCardId from sessionStorage.");
+          };
+
+          // Check if there's an image and if it's already complete
+          if (img && !img.complete) {
+              // Image is not yet loaded, wait for its 'load' event
+              console.log("DEBUG (buygallery): Image in target card not complete. Waiting for image load...");
+              img.addEventListener('load', performScroll);
+              img.addEventListener('error', () => {
+                  // If image fails to load, still attempt to scroll to prevent a stuck page
+                  console.warn("DEBUG (buygallery): Image load error, attempting scroll anyway.");
+                  performScroll(); 
+              });
+          } else {
+              // Image is already loaded, or no image exists in the card, so scroll immediately
+              console.log("DEBUG (buygallery): Image in target card already complete or no image. Performing scroll.");
+              performScroll();
+          }
+
+        } else {
+          console.log("DEBUG (buygallery): Element NOT found for selector: ", selector, ". Retrying in 100ms...");
+          // Keep retrying if element is not yet in the DOM (e.g., if rendering is slow)
+          setTimeout(tryScroll, 100);
+        }
+      };
+
+      // Start the scroll attempt immediately
+      tryScroll();
+    });
+  </script>
 </body>
 </html>
