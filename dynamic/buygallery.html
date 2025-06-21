@@ -7,18 +7,18 @@
   <meta name="description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
-  <meta property="og:title" content="Bb – 7">
-  <meta property="og:description" content="Bb">
-  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/20.webp">
+  <meta property="og:title" content="H – 8">
+  <meta property="og:description" content="V">
+  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/21.webp">
   <meta property="og:image:type" content="image/webp">
   <meta property="og:image:width" content="600">
   <meta property="og:image:height" content="600">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Bb – 7">
-  <meta name="twitter:description" content="Bb">
-  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/20.webp">
+  <meta name="twitter:title" content="H – 8">
+  <meta name="twitter:description" content="V">
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/21.webp">
   <style>
     body {
       margin: 0;
@@ -82,9 +82,27 @@
 <body>
   <div id="gallery">
     
-    <div class="card" data-id="20">
+    <div class="card" data-id="21">
       <div class="img-wrapper">
         <span class="badge">Newly Added</span>
+        <img src="/dynamic/images/21.webp" alt="Buy H – 8 on SellInSeconds" loading="lazy" />
+      </div>
+      <h3>H – 8</h3>
+      <p>V</p>
+      <div class="whatsapp-buttons-row">
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/21.html" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
+        </a>
+        <span class="arrow-text">More ⬇️</span>
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/21.html" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
+        </a>
+      </div>
+    </div>
+
+    <div class="card" data-id="20">
+      <div class="img-wrapper">
+        
         <img src="/dynamic/images/20.webp" alt="Buy Bb – 7 on SellInSeconds" loading="lazy" />
       </div>
       <h3>Bb – 7</h3>
@@ -93,7 +111,7 @@
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/20.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
         </a>
-        <span class="arrow-text">More ⬇️</span>
+        <span class="arrow-text">⬇️ More ⬆️</span>
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/20.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
         </a>
@@ -445,8 +463,7 @@
 
 <script>
   window.addEventListener("load", () => {
-    // IMPORTANT: Ensure this key matches what 1to30-template.html is setting
-    const scrollToId = sessionStorage.getItem("scrollToCard"); // Changed to "scrollToCard"
+    const scrollToId = sessionStorage.getItem("scrollToCard");
     console.log("DEBUG (buygallery): Retrieved scrollToId from sessionStorage:", scrollToId);
 
     if (!scrollToId) {
@@ -462,16 +479,16 @@
       if (el) {
         console.log("DEBUG (buygallery): Element found:", el);
         el.scrollIntoView({ behavior: "smooth", block: "start" });
-        setTimeout(() => {
-            window.scrollBy(0, -60);
-            console.log("DEBUG (buygallery): Scrolled and adjusted position.");
-        }, 300);
-        // Clear the session storage item after successful scroll (use the consistent key)
-        sessionStorage.removeItem("scrollToCard"); // Changed to "scrollToCard"
+        // TEMPORARILY COMMENT OUT THIS LINE FOR TESTING:
+        // setTimeout(() => {
+        //     window.scrollBy(0, -60);
+        //     console.log("DEBUG (buygallery): Scrolled and adjusted position.");
+        // }, 300);
+        sessionStorage.removeItem("scrollToCard");
         console.log("DEBUG (buygallery): Cleared scrollToCard from sessionStorage.");
       } else {
         console.log("DEBUG (buygallery): Element NOT found for selector:", selector, ". Retrying in 100ms...");
-        setTimeout(tryScroll, 100); // Retry after delay
+        setTimeout(tryScroll, 100);
       }
     };
 
