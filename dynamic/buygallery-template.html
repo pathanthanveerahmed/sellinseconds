@@ -77,6 +77,27 @@
       height: 20px;
       margin-right: 6px;
     }
+
+     html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Your existing CSS for .container, .card, etc. */
+  body {
+    font-family: system-ui, sans-serif;
+    background: #f9f9f9;
+    /* margin: 0;  <-- You can remove this specific line if you use the html, body reset above */
+    padding: 20px; /* This padding on body might be intentional, keep it if you want space around overall content */
+  }
+  .container {
+    max-width: 700px;
+    margin: auto;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
   </style>
 </head>
 <body>
