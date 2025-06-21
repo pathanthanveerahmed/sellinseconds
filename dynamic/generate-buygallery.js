@@ -35,15 +35,11 @@ const topFilename = top.filename || "og.png";
 const priceMatch = topTitle.match(/Rs\.?\s*(\d+)/i);
 const price = priceMatch ? priceMatch[1] : "0";
 
+
 // Step 5: Generate HTML cards
-const cardsHTML = validCards.map((item, index) => {
-  const isLastCard = index === validCards.length - 1;
-  const badge = item.id === active ? `<span class="badge">Newly Added</span>` : "";
-  const arrowText = item.id === active
-    ? `<span class="arrow-text">More ⬇️</span>`
-    : isLastCard
-      ? `<span class="arrow-text">⬆️</span>`
-      : `<span class="arrow-text">⬇️ More ⬆️</span>`;
+const cardsHTML = validCards.map(item => {
+  const badge = item.isNew ? `<span class="badge">NEW</span>` : '';
+  const arrowText = (item.id === top.id && validCards.length > 1) ? '<span class="arrow-text">⬆️</span>' : '';
 
   return `
     <div class="card" data-id="${item.id}">
@@ -81,8 +77,13 @@ const output = template
   .replace(/{{TOP_TITLE}}/g, topTitle)
   .replace(/{{TOP_DESC}}/g, topDesc)
   .replace(/{{TOP_FILENAME}}/g, topFilename)
-  .replace(/{{PRICE}}/g, price);
+  .replace(/{{PRICE}}/g, price); // Replace all occurrences
 
-// Step 8: Save final output
-fs.writeFileSync(outputPath, output, "utf8");
-console.log("✅ buygallery.html regenerated using locked sequence logic.");
+// Step 8: Write the output HTML file
+try {
+  fs.writeFileSync(outputPath, output);
+  console.log(`✅ buygallery.html generated successfully at ${outputPath}`);
+} catch (err) {
+  console.error("❌ Failed to write buygallery.html:", err);
+  process.exit(1);
+}
