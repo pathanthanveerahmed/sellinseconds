@@ -84,11 +84,14 @@
     {{CARDS}}
   </div>
   <script>
-    const active = {{ACTIVE_ID}};
-    const targetEl = document.querySelector('[data-id="' + active + '"]');
-    if (targetEl) {
-      window.scrollTo({ top: targetEl.offsetTop - 60, behavior: "smooth" });
-      setTimeout(() => window.scrollBy(0, 60), 300);
+    const scrollToId = sessionStorage.getItem("scrollToCardId");
+    if (scrollToId) {
+      const el = document.querySelector('[data-id="' + scrollToId + '"]');
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(() => window.scrollBy(0, -60), 300);
+      }
+      sessionStorage.removeItem("scrollToCardId");
     }
   </script>
 </body>
