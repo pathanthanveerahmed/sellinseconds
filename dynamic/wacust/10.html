@@ -17,8 +17,10 @@
   <meta name="twitter:description" content="13 inch, intel CORE i7-11th Generation, 16 GB RAM, 512 GB SSD, DETACHABLE KEYBOARD, S PEN, intel iris GRAPHICS. BRAND NEW CONDITION ✨💫">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/10.webp">
   <script>
-    const pageId = "10";
+    const pageId = "10"; // Capture the ID from the template
+    console.log("DEBUG (wacust): Attempting to set sessionStorage.scrollToCardId to:", pageId);
     sessionStorage.setItem("scrollToCardId", pageId);
+    console.log("DEBUG (wacust): Value set. Current sessionStorage.scrollToCardId:", sessionStorage.getItem("scrollToCardId"));
     location.href = "/dynamic/buygallery.html";
   </script>
 </head>

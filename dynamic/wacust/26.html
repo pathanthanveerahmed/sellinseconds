@@ -17,8 +17,10 @@
   <meta name="twitter:description" content="5G, 128 GB 💾">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/26.webp">
   <script>
-    const pageId = "26";
+    const pageId = "26"; // Capture the ID from the template
+    console.log("DEBUG (wacust): Attempting to set sessionStorage.scrollToCardId to:", pageId);
     sessionStorage.setItem("scrollToCardId", pageId);
+    console.log("DEBUG (wacust): Value set. Current sessionStorage.scrollToCardId:", sessionStorage.getItem("scrollToCardId"));
     location.href = "/dynamic/buygallery.html";
   </script>
 </head>

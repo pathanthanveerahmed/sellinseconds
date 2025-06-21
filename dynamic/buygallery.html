@@ -2,25 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Buy & Sell Used Smartphones | SellInSeconds</title>
+  <title>Buy Used Apple Devices, Laptops, Smartphones | SellInSeconds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Browse our constantly updated selection of top-quality pre-owned smartphones and gadgets.">
+  <meta name="description" content="Explore the best deals on used iPhones, MacBooks, Apple Watches, iPads, laptops, and smartphones at SellInSeconds. Instant purchase, top quality.">
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="canonical" href="https://www.sellinseconds.in/dynamic/buygallery.html" />
-  <meta property="og:title" content="APPLE iPhone 15 PRO – 70000">
-  <meta property="og:description" content="256 GB 💾, 88% BATTERY HEALTH 🔋, FULL KIT, INDIAN VARIANT 🇮🇳, BRAND NEW CONDITION ✨💫">
-  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/28.webp">
+  <meta property="og:title" content="Buy Used Apple Devices, Laptops, Smartphones | SellInSeconds">
+  <meta property="og:description" content="Explore the best deals on used iPhones, MacBooks, Apple Watches, iPads, laptops, and smartphones at SellInSeconds. Instant purchase, top quality.">
+  <meta property="og:image" content="https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp">
   <meta property="og:image:type" content="image/webp">
   <meta property="og:image:width" content="600">
   <meta property="og:image:height" content="600">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.sellinseconds.in/dynamic/buygallery.html">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="APPLE iPhone 15 PRO – 70000">
-  <meta name="twitter:description" content="256 GB 💾, 88% BATTERY HEALTH 🔋, FULL KIT, INDIAN VARIANT 🇮🇳, BRAND NEW CONDITION ✨💫">
-  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/28.webp">
+  <meta name="twitter:title" content="Buy Used Apple Devices, Laptops, Smartphones | SellInSeconds">
+  <meta name="twitter:description" content="Explore the best deals on used iPhones, MacBooks, Apple Watches, iPads, laptops, and smartphones at SellInSeconds. Instant purchase, top quality.">
+  <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp">
   <style>
-    /* CSS Reset for consistent spacing across browsers */
     html, body {
       margin: 0;
       padding: 0;
@@ -32,9 +31,8 @@
       color: #111;
     }
 
-    /* New wrapper for content to apply padding */
     .content-wrapper {
-      padding: 20px; /* This gives your content 20px space from screen edges */
+      padding: 20px;
     }
 
     .card {
@@ -45,8 +43,7 @@
       overflow: hidden;
       background: white;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      /* This tells the browser to leave 10px space above the card when scrolling to it */
-      scroll-margin-top: 10px; 
+      scroll-margin-top: 10px;
     }
     .card img {
       width: 100%;
@@ -96,6 +93,24 @@
   <div class="content-wrapper"> 
     <div id="gallery">
       
+    <div class="card" data-id="29">
+      <div class="img-wrapper">
+        
+        <img src="/dynamic/images/29.webp" alt="Buy Apple iPhone 13 – 27000 on SellInSeconds" />
+      </div>
+      <h3>Apple iPhone 13 – 27000</h3>
+      <p>128 GB 💾, 87% BATTERY HEALTH 🔋, EXCELLENT CONDITION 💫✨</p>
+      <div class="whatsapp-buttons-row">
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/29.html" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
+        </a>
+        <span class="arrow-text">⬆️</span>
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/29.html" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
+        </a>
+      </div>
+    </div>
+
     <div class="card" data-id="28">
       <div class="img-wrapper">
         
@@ -107,7 +122,7 @@
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/28.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
         </a>
-        <span class="arrow-text">⬆️</span>
+        
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/28.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
         </a>
@@ -602,12 +617,9 @@
     </div>
   </div> 
   <script>
-    // Change from "load" to "DOMContentLoaded" for earlier execution
     window.addEventListener("DOMContentLoaded", () => {
       const scrollToId = sessionStorage.getItem("scrollToCardId");
       console.log("DEBUG (buygallery): Retrieved scrollToId from sessionStorage:", scrollToId);
-
-      // If no ID is found, we should exit and let the page render naturally (which would be the first card)
       if (!scrollToId) {
           console.log("DEBUG (buygallery): scrollToId is empty or null. SCROLLING WILL NOT HAPPEN.");
           return; 
@@ -620,7 +632,7 @@
 
         if (el) {
           console.log("DEBUG (buygallery): Element found: ", el);
-          const img = el.querySelector('img'); // Get the image within the target card
+          const img = el.querySelector('img');
 
           const performScroll = () => {
               el.scrollIntoView({ behavior: "smooth", block: "start" }); 
@@ -629,30 +641,24 @@
               console.log("DEBUG (buygallery): Cleared scrollToCardId from sessionStorage.");
           };
 
-          // Check if there's an image and if it's already complete
           if (img && !img.complete) {
-              // Image is not yet loaded, wait for its 'load' event
-              console.log("DEBUG (buygallery): Image in target card not complete. Waiting for image load...");
+              console.log("DEBUG (buygallery): Image not complete. Waiting...");
               img.addEventListener('load', performScroll);
               img.addEventListener('error', () => {
-                  // If image fails to load, still attempt to scroll to prevent a stuck page
-                  console.warn("DEBUG (buygallery): Image load error, attempting scroll anyway.");
+                  console.warn("DEBUG (buygallery): Image load error. Still scrolling.");
                   performScroll(); 
               });
           } else {
-              // Image is already loaded, or no image exists in the card, so scroll immediately
-              console.log("DEBUG (buygallery): Image in target card already complete or no image. Performing scroll.");
+              console.log("DEBUG (buygallery): Image loaded or not found. Scrolling now.");
               performScroll();
           }
 
         } else {
-          console.log("DEBUG (buygallery): Element NOT found for selector: ", selector, ". Retrying in 100ms...");
-          // Keep retrying if element is not yet in the DOM (e.g., if rendering is slow)
+          console.log("DEBUG (buygallery): Element not found. Retrying in 100ms...");
           setTimeout(tryScroll, 100);
         }
       };
 
-      // Start the scroll attempt immediately
       tryScroll();
     });
   </script>

@@ -17,8 +17,10 @@
   <meta name="twitter:description" content="intel i5-8th Gen, 16 GB RAM, 256 GB SSD, 14 INCH HD DISPLAY">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/12.webp">
   <script>
-    const pageId = "12";
+    const pageId = "12"; // Capture the ID from the template
+    console.log("DEBUG (wacust): Attempting to set sessionStorage.scrollToCardId to:", pageId);
     sessionStorage.setItem("scrollToCardId", pageId);
+    console.log("DEBUG (wacust): Value set. Current sessionStorage.scrollToCardId:", sessionStorage.getItem("scrollToCardId"));
     location.href = "/dynamic/buygallery.html";
   </script>
 </head>
