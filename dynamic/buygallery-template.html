@@ -86,8 +86,7 @@
 
 <script>
   window.addEventListener("load", () => {
-    // IMPORTANT: Ensure this key matches what 1to30-template.html is setting
-    const scrollToId = sessionStorage.getItem("scrollToCard"); // Changed to "scrollToCard"
+    const scrollToId = sessionStorage.getItem("scrollToCard");
     console.log("DEBUG (buygallery): Retrieved scrollToId from sessionStorage:", scrollToId);
 
     if (!scrollToId) {
@@ -103,16 +102,16 @@
       if (el) {
         console.log("DEBUG (buygallery): Element found:", el);
         el.scrollIntoView({ behavior: "smooth", block: "start" });
-        setTimeout(() => {
-            window.scrollBy(0, -60);
-            console.log("DEBUG (buygallery): Scrolled and adjusted position.");
-        }, 300);
-        // Clear the session storage item after successful scroll (use the consistent key)
-        sessionStorage.removeItem("scrollToCard"); // Changed to "scrollToCard"
+        // TEMPORARILY COMMENT OUT THIS LINE FOR TESTING:
+        // setTimeout(() => {
+        //     window.scrollBy(0, -60);
+        //     console.log("DEBUG (buygallery): Scrolled and adjusted position.");
+        // }, 300);
+        sessionStorage.removeItem("scrollToCard");
         console.log("DEBUG (buygallery): Cleared scrollToCard from sessionStorage.");
       } else {
         console.log("DEBUG (buygallery): Element NOT found for selector:", selector, ". Retrying in 100ms...");
-        setTimeout(tryScroll, 100); // Retry after delay
+        setTimeout(tryScroll, 100);
       }
     };
 
