@@ -83,7 +83,8 @@
   <div id="gallery">
     {{CARDS}}
   </div>
-  <script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
     const scrollToId = sessionStorage.getItem("scrollToCard");
     if (scrollToId) {
       const el = document.querySelector('[data-id="' + scrollToId + '"]');
@@ -93,6 +94,7 @@
       }
       sessionStorage.removeItem("scrollToCard");
     }
-  </script>
+  });
+</script>
 </body>
 </html>
