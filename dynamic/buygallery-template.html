@@ -20,12 +20,24 @@
   <meta name="twitter:description" content="{{TOP_DESC}}">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/{{TOP_FILENAME}}">
   <style>
-    body {
+    /* CSS Reset for consistent spacing across browsers */
+    html, body {
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: system-ui, sans-serif;
       background: #f9f9f9;
       color: #111;
+      /* Removed padding from body as it's now on .content-wrapper */
     }
+
+    /* New wrapper for content to apply padding */
+    .content-wrapper {
+      padding: 20px; /* This gives your content 20px space from screen edges */
+    }
+
     .card {
       margin: 10px auto;
       max-width: 95%;
@@ -77,35 +89,13 @@
       height: 20px;
       margin-right: 6px;
     }
-
-     html, body {
-    margin: 0;
-    padding: 0;
-  }
-
-  /* Your existing CSS for .container, .card, etc. */
-  body {
-    font-family: system-ui, sans-serif;
-    background: #f9f9f9;
-    /* margin: 0;  <-- You can remove this specific line if you use the html, body reset above */
-    padding: 20px; /* This padding on body might be intentional, keep it if you want space around overall content */
-  }
-  .container {
-    max-width: 700px;
-    margin: auto;
-    background: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
   </style>
 </head>
 <body>
-  <div id="gallery">
-    {{CARDS}}
-  </div>
-
-<script>
+  <div class="content-wrapper"> <div id="gallery">
+      {{CARDS}}
+    </div>
+  </div> <script>
   window.addEventListener("load", () => {
     const scrollToId = sessionStorage.getItem("scrollToCardId");
     console.log("DEBUG (buygallery): Retrieved scrollToId from sessionStorage:", scrollToId);
@@ -122,7 +112,9 @@
 
       if (el) {
         console.log("DEBUG (buygallery): Element found:", el);
+        // This should scroll the element's top to the very top of the viewport.
         el.scrollIntoView({ behavior: "smooth", block: "start" }); 
+        
         console.log("DEBUG (buygallery): Scrolled to element.");
         sessionStorage.removeItem("scrollToCardId");
         console.log("DEBUG (buygallery): Cleared scrollToCardId from sessionStorage.");
