@@ -39,7 +39,7 @@ const price = priceMatch ? priceMatch[1] : "0";
 // Step 5: Generate HTML cards
 const cardsHTML = validCards.map(item => {
   const badge = item.isNew ? `<span class="badge">NEW</span>` : '';
-  const arrowText = (item.id === top.id && validCards.length > 1) ? '<span class="arrow-text">⬆️</span>' : '';
+  const arrowText = (item.id === top.id && validCards.length > 1) ? '<span class="arrow-text">⬇️</span>' : '';
 
   return `
     <div class="card" data-id="${item.id}">
