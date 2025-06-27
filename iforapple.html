@@ -388,9 +388,12 @@
             .hero-subheading {
                 font-size: 1.2rem;
             }
-            .device-grid {
-                grid-template-columns: 1fr;
-            }
+              .device-grid {
+    		display: grid;
+    		grid-template-columns: repeat(2, minmax(0, 1fr));
+    		gap: 16px;
+    		padding: 20px 0;
+  		}
         }
     </style>
     <script>
