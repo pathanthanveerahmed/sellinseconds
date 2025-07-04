@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SnapLink – Livestream the World</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: #222;
+      background-color: #fff;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)),
+      url('https://images.unsplash.com/photo-1526178610644-6c4c1d4b4de6?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      height: 100vh;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      font-weight: 600;
+    }
+    header p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      max-width: 600px;
+    }
+    .btn {
+      margin-top: 2rem;
+      padding: 0.8rem 1.8rem;
+      background: #2e86de;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background: #1f6fcc;
+    }
+    section {
+      padding: 4rem 1rem;
+      max-width: 960px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      color: #2e86de;
+    }
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .card {
+      padding: 1.5rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    footer {
+      background-color: #f2f2f2;
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+    .disclaimer {
+      font-size: 0.85rem;
+      color: #555;
+      max-width: 800px;
+      margin: 2rem auto 0 auto;
+      line-height: 1.5;
+    }
+    @media(min-width: 768px) {
+      .card-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .card {
+        flex: 1 1 30%;
+        margin: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SnapLink: Livestream the World</h1>
+    <p>Book real-time photographers or livestreamers from anywhere — even from remote villages. Open, consent-based, and verified.</p>
+    <a href="#" class="btn">Join as Creator</a>
+  </header>
+
+  <section>
+    <h2>How It Works</h2>
+    <div class="card-container">
+      <div class="card"><strong>1. Customer Request</strong><br> Choose shoot type (photo/video/live) and location.</div>
+      <div class="card"><strong>2. Local Match</strong><br> SnapLink connects you with a nearby verified creator.</div>
+      <div class="card"><strong>3. Capture or Stream</strong><br> Real-time or recorded delivery — all with consent.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why SnapLink?</h2>
+    <div class="card-container">
+      <div class="card">✅ Works from remote villages (cellular or Starlink)</div>
+      <div class="card">✅ Any mobile user can become a photographer</div>
+      <div class="card">✅ Affordable livestreaming (starting $5)</div>
+      <div class="card">✅ Transparent: Verified IDs & trust layer</div>
+      <div class="card">✅ Creates jobs in rural India and beyond</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Use Cases</h2>
+    <div class="card-container">
+      <div class="card">🎉 Family Functions, Birthdays, Home Ceremonies</div>
+      <div class="card">🌄 Scenic Views from Hills, Rivers, Monuments</div>
+      <div class="card">🏠 Real Estate / Remote Property Documentation</div>
+      <div class="card">🎥 Cultural Livestreams, Temples, Rural Events</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>SnapLink © 2025 – Built for creators. Powered by trust.</p>
+    <a class="btn" href="#">Partner With Us</a>
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong> SnapLink strictly prohibits unauthorized or hidden photography. All shoots are public or family events done with full consent. We do not support spying, surveillance, or any private invasion of privacy. Every creator is verified and accountable.
+    </div>
+  </footer>
+
+</body>
+</html>
