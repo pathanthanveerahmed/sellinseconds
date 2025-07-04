@@ -176,6 +176,15 @@
             margin: 30px auto 0;
             font-size: 1.1rem;
         }
+
+        .section-main-image {
+            width: 100%;
+            max-width: 800px;
+            display: block;
+            margin: -30px auto 50px auto;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
         
         /* How It Works */
         .how-it-works {
@@ -366,9 +375,14 @@
             transform: translateY(-10px);
         }
         
-        .case-icon {
-            font-size: 3rem;
+        .card-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
             margin-bottom: 20px;
+            border: 3px solid var(--white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .case-card h3 {
@@ -450,12 +464,6 @@
         .partner-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-        }
-        
-        .partner-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--primary);
         }
         
         .partner-card h3 {
@@ -611,6 +619,23 @@
             .cta-content h2 {
                 font-size: 2.5rem;
             }
+
+            .empowerment-content, .opportunity-content {
+                flex-direction: column;
+            }
+
+            .empowerment-image, .opportunity-chart, .opportunity-stats {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .steps, .benefits-grid, .cases-container, .partners-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-card, .benefit-card, .case-card, .partner-card {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -633,6 +658,7 @@
                 <h2>How SnapLink Works</h2>
                 <p>A simple four-step process to capture moments from anywhere</p>
             </div>
+            <img src="https://images.unsplash.com/photo-1528699119783-094709d737a4?auto=format&fit=crop&w=1200&q=80" alt="Person using phone to take a photo" class="section-main-image">
             <div class="steps">
                 <div class="step-card">
                     <div class="step-number">1</div>
@@ -712,7 +738,7 @@
                 </div>
                 
                 <div class="empowerment-image">
-                    <img src="https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=800&q=80" alt="Rural Empowerment">
+                    <img src="https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=800&q=80" alt="Rural family using technology">
                 </div>
             </div>
         </div>
@@ -772,25 +798,25 @@
             </div>
             <div class="cases-container">
                 <div class="case-card">
-                    <div class="case-icon">🎉</div>
+                    <img src="https://images.unsplash.com/photo-1511974035430-cdfeaef5edcd?auto=format&fit=crop&w=300&q=80" alt="People celebrating at an event" class="card-image">
                     <h3>Events & Celebrations</h3>
                     <p>Weddings, birthdays, temple events, and hometown livestreams</p>
                 </div>
                 
                 <div class="case-card">
-                    <div class="case-icon">🌄</div>
+                    <img src="https://images.unsplash.com/photo-1506905925370-9357b6c8638b?auto=format&fit=crop&w=300&q=80" alt="Scenic mountain landscape" class="card-image">
                     <h3>Scenic & Nature</h3>
                     <p>Capturing views from hills, rivers, farms, and monuments</p>
                 </div>
                 
                 <div class="case-card">
-                    <div class="case-icon">🏠</div>
+                    <img src="https://images.unsplash.com/photo-1560518883-ffcd14a66e4a?auto=format&fit=crop&w=300&q=80" alt="Modern house exterior" class="card-image">
                     <h3>Real Estate</h3>
                     <p>Property showcasing and documentation</p>
                 </div>
                 
                 <div class="case-card">
-                    <div class="case-icon">📍</div>
+                    <img src="https://images.unsplash.com/photo-1548011244-84524458f331?auto=format&fit=crop&w=300&q=80" alt="Cultural tourist destination" class="card-image">
                     <h3>Tourism & Culture</h3>
                     <p>Rural storytelling, cultural projects, and tourism boards</p>
                 </div>
@@ -842,25 +868,25 @@
             </div>
             <div class="partners-grid">
                 <div class="partner-card">
-                    <div class="partner-icon"><i class="fas fa-signal"></i></div>
+                    <img src="https://images.unsplash.com/photo-1582299879737-122e4d039988?auto=format&fit=crop&w=300&q=80" alt="Telecom tower against a blue sky" class="card-image">
                     <h3>Telecom Providers</h3>
                     <p>Airtel, Jio, Du for 5G livestream kits</p>
                 </div>
                 
                 <div class="partner-card">
-                    <div class="partner-icon"><i class="fas fa-camera"></i></div>
+                    <img src="https://images.unsplash.com/photo-1502920514313-52581002a659?auto=format&fit=crop&w=300&q=80" alt="Close-up of a camera lens" class="card-image">
                     <h3>Camera OEMs</h3>
                     <p>Apple, Sony, Canon for gear partnerships</p>
                 </div>
                 
                 <div class="partner-card">
-                    <div class="partner-icon"><i class="fas fa-server"></i></div>
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=300&q=80" alt="Server racks in a data center" class="card-image">
                     <h3>Tech Infrastructure</h3>
                     <p>AWS, Agora, Google Cloud for streaming & storage</p>
                 </div>
                 
                 <div class="partner-card">
-                    <div class="partner-icon"><i class="fas fa-landmark"></i></div>
+                    <img src="https://images.unsplash.com/photo-1476510526012-f74e6f42a7a4?auto=format&fit=crop&w=300&q=80" alt="Map with travel pins" class="card-image">
                     <h3>Tourism Boards</h3>
                     <p>Rural, cultural, and scenic initiatives</p>
                 </div>
