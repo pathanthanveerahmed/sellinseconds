@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SnapLink - The Uber of Photography</title>
+    <title>SnapLink - Photography from Anywhere. In Real Time.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary: #0A9396;
@@ -16,7 +17,6 @@
             --text: #333333;
             --white: #FFFFFF;
             --black: #000000;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
         }
         
         * {
@@ -35,7 +35,7 @@
         
         h1, h2, h3, h4 {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
+            font-weight: 700;
         }
         
         .container {
@@ -48,13 +48,12 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
             color: var(--white);
             position: relative;
             overflow: hidden;
             display: flex;
             align-items: center;
-            text-align: center;
         }
         
         .hero::before {
@@ -65,38 +64,36 @@
             width: 100%;
             height: 100%;
             background: url('https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
-            opacity: 0.2;
+            opacity: 0.3;
         }
         
         .hero-content {
             position: relative;
             z-index: 2;
+            text-align: center;
             width: 100%;
             padding: 0 20px;
         }
         
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 4rem;
             margin-bottom: 20px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
             animation: fadeInDown 1s ease;
-            line-height: 1.1;
         }
         
         .hero .tagline {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: var(--accent);
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            font-size: 2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
             animation: fadeInUp 1s ease 0.3s forwards;
             opacity: 0;
         }
         
         .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
             animation: fadeInUp 1s ease 0.5s forwards;
             opacity: 0;
         }
@@ -110,42 +107,38 @@
         }
         
         .btn {
-            padding: 16px 36px;
+            padding: 15px 35px;
             border-radius: 50px;
-            font-weight: 700;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
-            transition: all 0.4s ease;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
             font-size: 1rem;
             cursor: pointer;
             border: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
         }
         
         .btn-primary {
             background: var(--secondary);
             color: var(--white);
-            box-shadow: 0 6px 20px rgba(255, 126, 95, 0.5);
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.4);
         }
         
         .btn-primary:hover {
             background: #ff6a4d;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 126, 95, 0.7);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 126, 95, 0.6);
         }
         
-        .btn-whatsapp {
-            background: #25D366;
+        .btn-outline {
+            background: transparent;
             color: var(--white);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+            border: 2px solid var(--white);
         }
         
-        .btn-whatsapp:hover {
-            background: #20bd5a;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.7);
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
         }
         
         /* Section Styling */
@@ -172,17 +165,16 @@
             bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 5px;
+            width: 80px;
+            height: 4px;
             background: var(--secondary);
-            border-radius: 3px;
+            border-radius: 2px;
         }
         
         .section-header p {
             max-width: 700px;
             margin: 30px auto 0;
             font-size: 1.1rem;
-            color: #555;
         }
         
         /* How It Works */
@@ -204,15 +196,14 @@
             background: var(--white);
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         
         .step-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
         
         .step-number {
@@ -226,7 +217,7 @@
         }
         
         .step-icon {
-            font-size: 3.5rem;
+            font-size: 3rem;
             color: var(--primary);
             margin-bottom: 20px;
             position: relative;
@@ -234,7 +225,7 @@
         }
         
         .step-card h3 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             margin-bottom: 15px;
             color: var(--dark);
             position: relative;
@@ -244,138 +235,339 @@
         .step-card p {
             position: relative;
             z-index: 2;
-            font-size: 1rem;
         }
         
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
-            color: var(--white);
-            padding: 100px 0;
-            text-align: center;
+        /* Rural Empowerment */
+        .rural-empowerment {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
         
-        .contact-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 60px 40px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .contact h2 {
-            font-size: 2.8rem;
-            margin-bottom: 40px;
-        }
-        
-        .contact-info {
+        .empowerment-content {
             display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-        
-        .contact-item {
-            display: flex;
+            gap: 50px;
             align-items: center;
-            justify-content: center;
-            gap: 15px;
-            font-size: 1.3rem;
+            flex-wrap: wrap;
         }
         
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.2);
+        .empowerment-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .empowerment-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .empowerment-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .empowerment-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .feature-list {
+            margin: 30px 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon {
+            background: var(--primary);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
-            font-size: 1.5rem;
+            margin-right: 15px;
+            flex-shrink: 0;
         }
         
-        /* WhatsApp CTA */
-        .whatsapp-cta {
+        .feature-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        /* Why SnapLink */
+        .why-snaplink {
             background-color: var(--white);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .benefit-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* Use Cases */
+        .use-cases {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            color: var(--white);
+        }
+        
+        .cases-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .case-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .case-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-10px);
+        }
+        
+        .case-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .case-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Opportunity */
+        .opportunity {
+            background-color: var(--white);
+        }
+        
+        .opportunity-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .opportunity-stats {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .opportunity-chart {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .stat-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-card p {
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        /* Partners */
+        .partners {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .partner-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .partner-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .partner-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* CTA Section */
+        .investor-cta {
             text-align: center;
             padding: 100px 0;
+            background: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            position: relative;
+            color: var(--white);
         }
         
-        .whatsapp-content {
+        .investor-cta::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 147, 150, 0.9);
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
             max-width: 800px;
             margin: 0 auto;
             padding: 0 20px;
         }
         
-        .whatsapp-content h2 {
-            font-size: 2.8rem;
+        .cta-content h2 {
+            font-size: 3.5rem;
             margin-bottom: 30px;
-            color: var(--dark);
         }
         
-        .whatsapp-content p {
-            font-size: 1.2rem;
+        .cta-content p {
+            font-size: 1.3rem;
             margin-bottom: 40px;
-            color: #555;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        }
+        
+        .cta-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
         
         /* Footer */
         footer {
             background: var(--dark);
             color: var(--white);
-            padding: 80px 0 40px;
-            text-align: center;
+            padding: 60px 0 30px;
         }
         
-        .footer-logo {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-            color: var(--accent);
-        }
-        
-        .footer-tagline {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            color: var(--accent);
-            font-weight: 700;
-        }
-        
-        .social-links {
+        .footer-content {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
             margin-bottom: 40px;
         }
         
-        .social-link {
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
             width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--white);
-            transition: all 0.3s ease;
+            height: 3px;
+            background: var(--secondary);
         }
         
-        .social-link:hover {
-            background: var(--secondary);
-            transform: translateY(-5px);
+        .footer-column ul {
+            list-style-type: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary);
         }
         
         .footer-bottom {
+            text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #aaa;
         }
         
@@ -405,57 +597,41 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
             
             .hero .tagline {
-                font-size: 1.8rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
+                font-size: 1.5rem;
             }
             
             .section-header h2 {
                 font-size: 2.2rem;
             }
             
-            .step-card {
-                width: 100%;
-                max-width: 350px;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-                align-items: center;
+            .cta-content h2 {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>SNAPLINK</h1>
-            <div class="tagline">The Uber of Photography</div>
-            <p>On-demand platform connecting customers with professional photographers for photos, videos, and live streams</p>
+            <h1>SnapLink</h1>
+            <div class="tagline">Photography from Anywhere. In Real Time.</div>
+            <p>Connects customers with verified local photographers and livestreamers — even from remote villages.</p>
             <div class="hero-btns">
-                <a href="#contact" class="btn btn-primary">
-                    <i class="fas fa-envelope"></i> Contact Us
-                </a>
-                <a href="https://wa.me/919886566379" target="_blank" class="btn btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> WhatsApp Us
-                </a>
+                <button class="btn btn-primary">Watch Demo</button>
+                <button class="btn btn-outline">Invest Now</button>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
     <section class="how-it-works">
         <div class="container">
             <div class="section-header">
                 <h2>How SnapLink Works</h2>
-                <p>Book a photographer in minutes, not days - anytime, anywhere</p>
+                <p>A simple four-step process to capture moments from anywhere</p>
             </div>
             <div class="steps">
                 <div class="step-card">
@@ -489,102 +665,342 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section class="rural-empowerment">
         <div class="container">
-            <div class="contact-container">
-                <h2>Contact Us</h2>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>thanveerahmed@gmail.com</div>
-                    </div>
+            <div class="section-header">
+                <h2>Rural Empowerment Focus</h2>
+                <p>Bringing opportunities to remote communities</p>
+            </div>
+            <div class="empowerment-content">
+                <div class="empowerment-text">
+                    <h3>Creating Opportunities Where They're Needed Most</h3>
+                    <p>SnapLink is designed to work even in the most remote areas, empowering local creators and connecting the world through visual storytelling.</p>
                     
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-wifi"></i></div>
+                            <div class="feature-text">
+                                <h4>Works with Any Connectivity</h4>
+                                <p>Functions with mobile networks or satellite internet like Starlink</p>
+                            </div>
                         </div>
-                        <div>+91 98865 66379</div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-sync-alt"></i></div>
+                            <div class="feature-text">
+                                <h4>Offline Capabilities</h4>
+                                <p>If no live connection, content is recorded and uploaded later</p>
+                            </div>
                         </div>
-                        <div>Bangalore, India</div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-briefcase"></i></div>
+                            <div class="feature-text">
+                                <h4>Job Creation</h4>
+                                <p>Creates opportunities for rural youth with just a mobile camera</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-globe-asia"></i></div>
+                            <div class="feature-text">
+                                <h4>Economic Democratization</h4>
+                                <p>Democratizes income for local creators everywhere</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <a href="https://wa.me/919886566379" target="_blank" class="btn btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Message on WhatsApp
-                </a>
+                <div class="empowerment-image">
+                    <img src="https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=800&q=80" alt="Rural Empowerment">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- WhatsApp CTA -->
-    <section class="whatsapp-cta">
+    <section class="why-snaplink">
         <div class="container">
-            <div class="whatsapp-content">
-                <h2>Ready to Connect?</h2>
-                <p>Get in touch with us directly on WhatsApp for immediate assistance with your photography needs or investment inquiries</p>
-                <a href="https://wa.me/919886566379" target="_blank" class="btn btn-whatsapp" style="font-size: 1.1rem; padding: 16px 40px;">
-                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-                </a>
+            <div class="section-header">
+                <h2>Why Choose SnapLink?</h2>
+                <p>Key advantages that set us apart</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-user-check"></i></div>
+                    <h3>Verified Creators</h3>
+                    <p>All photographers undergo ID verification and background checks</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Accessible Platform</h3>
+                    <p>Anyone with a phone or DSLR can join as a creator</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-video"></i></div>
+                    <h3>Flexible Options</h3>
+                    <p>Livestreaming and offline upload capabilities</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-percentage"></i></div>
+                    <h3>Fair Pricing</h3>
+                    <p>Only 5% platform fee with streaming starting at $5</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-lock"></i></div>
+                    <h3>Consent-First Model</h3>
+                    <p>Transparent, safe public or family-only shoots</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Global Reach</h3>
+                    <p>Connecting customers and creators across the world</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>Diverse Use Cases</h2>
+                <p>SnapLink serves multiple industries and scenarios</p>
+            </div>
+            <div class="cases-container">
+                <div class="case-card">
+                    <div class="case-icon">🎉</div>
+                    <h3>Events & Celebrations</h3>
+                    <p>Weddings, birthdays, temple events, and hometown livestreams</p>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-icon">🌄</div>
+                    <h3>Scenic & Nature</h3>
+                    <p>Capturing views from hills, rivers, farms, and monuments</p>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-icon">🏠</div>
+                    <h3>Real Estate</h3>
+                    <p>Property showcasing and documentation</p>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-icon">📍</div>
+                    <h3>Tourism & Culture</h3>
+                    <p>Rural storytelling, cultural projects, and tourism boards</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="opportunity">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Market Opportunity</h2>
+                <p>Positioned to capture a significant share of a growing market</p>
+            </div>
+            <div class="opportunity-content">
+                <div class="opportunity-stats">
+                    <div class="stat-card">
+                        <h3>$45B+</h3>
+                        <p>Global photography market</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3>100K+</h3>
+                        <p>Potential creators across India, UAE, SEA</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3>300%</h3>
+                        <p>Growth in demand for remote visual content</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3>First Mover</h3>
+                        <p>In consent-based public shoots at scale</p>
+                    </div>
+                </div>
+                
+                <div class="opportunity-chart">
+                    <canvas id="marketChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="partners">
+        <div class="container">
+            <div class="section-header">
+                <h2>Strategic Partnerships</h2>
+                <p>Building an ecosystem for growth</p>
+            </div>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-icon"><i class="fas fa-signal"></i></div>
+                    <h3>Telecom Providers</h3>
+                    <p>Airtel, Jio, Du for 5G livestream kits</p>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-icon"><i class="fas fa-camera"></i></div>
+                    <h3>Camera OEMs</h3>
+                    <p>Apple, Sony, Canon for gear partnerships</p>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-icon"><i class="fas fa-server"></i></div>
+                    <h3>Tech Infrastructure</h3>
+                    <p>AWS, Agora, Google Cloud for streaming & storage</p>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-icon"><i class="fas fa-landmark"></i></div>
+                    <h3>Tourism Boards</h3>
+                    <p>Rural, cultural, and scenic initiatives</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="investor-cta">
+        <div class="cta-content">
+            <h2>Join the Visual Revolution</h2>
+            <p>We're seeking strategic investors to help us become the global leader in on-demand visual content creation</p>
+            
+            <div class="cta-btns">
+                <a href="https://wa.me/919886566379" target="_blank" class="btn btn-primary">Connect with us on WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
-            <div class="footer-logo">SNAPLINK</div>
-            <div class="footer-tagline">The Uber of Photography</div>
-            
-            <div class="social-links">
-                <a href="https://wa.me/919886566379" target="_blank" class="social-link">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="mailto:thanveerahmed@gmail.com" class="social-link">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="tel:+919886566379" class="social-link">
-                    <i class="fas fa-phone-alt"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SnapLink</h3>
+                    <p>SnapLink - The Uber of Photography. Connecting the world through local visual creators.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">For Photographers</a></li>
+                        <li><a href="#">For Businesses</a></li>
+                        <li><a href="#">For Investors</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Investor Resources</h3>
+                    <ul>
+                        <li><a href="#">Pitch Deck</a></li>
+                        <li><a href="#">Financial Projections</a></li>
+                        <li><a href="#">Business Plan</a></li>
+                        <li><a href="#">Market Research</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> thanveerahmed@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +919886566379</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Bangalore, India</li>
+                    </ul>
+                </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 SnapLink. All rights reserved. | The Uber of Photography</p>
-                <p>Investor Relations | thanveerahmed@gmail.com | +91 98865 66379 | Bangalore, India</p>
+                <p>&copy; 2023 SnapLink. All rights reserved. Designed for investors.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Animation on scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add scroll animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
+        // Market Opportunity Chart
+        const marketCtx = document.getElementById('marketChart').getContext('2d');
+        const marketChart = new Chart(marketCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Photography Market', 'Livestream Growth', 'Rural Creator Potential'],
+                datasets: [{
+                    label: 'Market Value (Billions)',
+                    data: [45, 12, 8],
+                    backgroundColor: [
+                        'rgba(10, 147, 150, 0.8)',
+                        'rgba(255, 126, 95, 0.8)',
+                        'rgba(254, 180, 123, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(10, 147, 150, 1)',
+                        'rgba(255, 126, 95, 1)',
+                        'rgba(254, 180, 123, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Market Opportunity Breakdown',
+                        font: {
+                            size: 18,
+                            weight: 'bold'
+                        },
+                        padding: 20
                     }
-                });
-            }, { threshold: 0.1 });
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Billions of Dollars'
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Header animation on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.hero-content');
+            const scrollPosition = window.scrollY;
             
-            // Animate sections
-            document.querySelectorAll('.section-header, .step-card').forEach(el => {
-                el.style.opacity = 0;
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                observer.observe(el);
+            if (scrollPosition > 100) {
+                header.style.transform = `translateY(${scrollPosition / 2}px)`;
+                header.style.opacity = 1 - (scrollPosition / 500);
+            } else {
+                header.style.transform = 'translateY(0)';
+                header.style.opacity = 1;
+            }
+        });
+        
+        // Animate elements on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
             });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.step-card, .stat-card, .benefit-card, .case-card, .partner-card').forEach(card => {
+            observer.observe(card);
         });
     </script>
 </body>
