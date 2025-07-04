@@ -63,7 +63,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            background: url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
             opacity: 0.3;
         }
         
@@ -84,7 +84,7 @@
         
         .hero .tagline {
             font-size: 2rem;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto 30px;
             animation: fadeInUp 1s ease 0.3s forwards;
             opacity: 0;
@@ -350,7 +350,7 @@
         
         /* Use Cases */
         .use-cases {
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, #FE6B8B 0%, #FF8E53 100%); /* New vibrant gradient */
             color: var(--white);
         }
         
@@ -441,42 +441,11 @@
             color: var(--text);
         }
         
-        /* Partners */
-        .partners {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        }
-        
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-        }
-        
-        .partner-card {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-        
-        .partner-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-        }
-        
-        .partner-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
         /* CTA Section */
         .investor-cta {
             text-align: center;
             padding: 100px 0;
-            background: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            background: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
             position: relative;
             color: var(--white);
         }
@@ -629,11 +598,11 @@
                 min-width: unset;
             }
 
-            .steps, .benefits-grid, .cases-container, .partners-grid {
+            .steps, .benefits-grid, .cases-container {
                 grid-template-columns: 1fr;
             }
 
-            .step-card, .benefit-card, .case-card, .partner-card {
+            .step-card, .benefit-card, .case-card {
                 width: 100%;
             }
         }
@@ -643,8 +612,8 @@
     <section class="hero">
         <div class="hero-content">
             <h1>SnapLink</h1>
-            <div class="tagline">Photography from Anywhere. In Real Time.</div>
-            <p>Connects customers with verified local photographers and livestreamers — even from remote villages.</p>
+            <div class="tagline">Your window to **anywhere, anytime**. Photography and Livestreaming, Demystified.</div>
+            <p>SnapLink connects customers globally with **verified local photographers and livestreamers**, enabling real-time visual capture even from the most **remote villages**. Our mission is to democratize access to visual content and empower local talent worldwide.</p>
             <div class="hero-btns">
                 <button class="btn btn-primary">Watch Demo</button>
                 <button class="btn btn-outline">Invest Now</button>
@@ -658,7 +627,7 @@
                 <h2>How SnapLink Works</h2>
                 <p>A simple four-step process to capture moments from anywhere</p>
             </div>
-            <img src="https://images.unsplash.com/photo-1528699119783-094709d737a4?auto=format&fit=crop&w=1200&q=80" alt="Person using phone to take a photo" class="section-main-image">
+            <img src="https://images.unsplash.com/photo-1528699119783-094709d737a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Person using phone to take a photo of a scenic view" class="section-main-image">
             <div class="steps">
                 <div class="step-card">
                     <div class="step-number">1</div>
@@ -738,7 +707,7 @@
                 </div>
                 
                 <div class="empowerment-image">
-                    <img src="https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=800&q=80" alt="Rural family using technology">
+                    <img src="https://images.unsplash.com/photo-1560264280-88b68371db39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Rural family interacting with technology, smiling">
                 </div>
             </div>
         </div>
@@ -754,37 +723,37 @@
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-user-check"></i></div>
                     <h3>Verified Creators</h3>
-                    <p>All photographers undergo ID verification and background checks</p>
+                    <p>All photographers undergo ID verification and background checks, ensuring reliability and trust.</p>
                 </div>
                 
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-mobile-alt"></i></div>
                     <h3>Accessible Platform</h3>
-                    <p>Anyone with a phone or DSLR can join as a creator</p>
+                    <p>Anyone with a smartphone or DSLR can join our network as a creator, lowering the barrier to entry.</p>
                 </div>
                 
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-video"></i></div>
                     <h3>Flexible Options</h3>
-                    <p>Livestreaming and offline upload capabilities</p>
+                    <p>Supports both real-time livestreaming and offline content capture with later upload capabilities.</p>
                 </div>
                 
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-percentage"></i></div>
                     <h3>Fair Pricing</h3>
-                    <p>Only 5% platform fee with streaming starting at $5</p>
+                    <p>We charge a minimal 5% platform fee, with livestreaming services starting affordably at just $5.</p>
                 </div>
                 
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-lock"></i></div>
                     <h3>Consent-First Model</h3>
-                    <p>Transparent, safe public or family-only shoots</p>
+                    <p>Our platform prioritizes consent for all shoots, ensuring transparent and safe experiences for both public and private events.</p>
                 </div>
                 
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-globe"></i></div>
                     <h3>Global Reach</h3>
-                    <p>Connecting customers and creators across the world</p>
+                    <p>Connecting customers with talented creators across the globe, bridging distances for every visual need.</p>
                 </div>
             </div>
         </div>
@@ -794,31 +763,31 @@
         <div class="container">
             <div class="section-header">
                 <h2>Diverse Use Cases</h2>
-                <p>SnapLink serves multiple industries and scenarios</p>
+                <p>SnapLink serves multiple industries and scenarios, from personal memories to professional needs</p>
             </div>
             <div class="cases-container">
                 <div class="case-card">
-                    <img src="https://images.unsplash.com/photo-1511974035430-cdfeaef5edcd?auto=format&fit=crop&w=300&q=80" alt="People celebrating at an event" class="card-image">
+                    <img src="https://images.unsplash.com/photo-1511974035430-cdfeaef5edcd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="People celebrating at a vibrant party" class="card-image">
                     <h3>Events & Celebrations</h3>
-                    <p>Weddings, birthdays, temple events, and hometown livestreams</p>
+                    <p>Capture candid moments at weddings, birthdays, temple events, or livestream special hometown gatherings.</p>
                 </div>
                 
                 <div class="case-card">
-                    <img src="https://images.unsplash.com/photo-1506905925370-9357b6c8638b?auto=format&fit=crop&w=300&q=80" alt="Scenic mountain landscape" class="card-image">
+                    <img src="https://images.unsplash.com/photo-1506905925370-9357b6c8638b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Breathtaking mountain landscape with a clear sky" class="card-image">
                     <h3>Scenic & Nature</h3>
-                    <p>Capturing views from hills, rivers, farms, and monuments</p>
+                    <p>Get stunning photos and videos of remote hills, serene rivers, lush farms, or ancient monuments.</p>
                 </div>
                 
                 <div class="case-card">
-                    <img src="https://images.unsplash.com/photo-1560518883-ffcd14a66e4a?auto=format&fit=crop&w=300&q=80" alt="Modern house exterior" class="card-image">
+                    <img src="https://images.unsplash.com/photo-1560518883-ffcd14a66e4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Modern house exterior with a green lawn" class="card-image">
                     <h3>Real Estate</h3>
-                    <p>Property showcasing and documentation</p>
+                    <p>Obtain high-quality property showcases, virtual tours, and essential documentation from any location.</p>
                 </div>
                 
                 <div class="case-card">
-                    <img src="https://images.unsplash.com/photo-1548011244-84524458f331?auto=format&fit=crop&w=300&q=80" alt="Cultural tourist destination" class="card-image">
+                    <img src="https://images.unsplash.com/photo-1548011244-84524458f331?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Historic building with intricate carvings" class="card-image">
                     <h3>Tourism & Culture</h3>
-                    <p>Rural storytelling, cultural projects, and tourism boards</p>
+                    <p>Support rural storytelling, document cultural projects, and enhance visual content for tourism boards.</p>
                 </div>
             </div>
         </div>
@@ -834,61 +803,27 @@
                 <div class="opportunity-stats">
                     <div class="stat-card">
                         <h3>$45B+</h3>
-                        <p>Global photography market</p>
+                        <p>Global photography market, with increasing demand for diverse content.</p>
                     </div>
                     
                     <div class="stat-card">
                         <h3>100K+</h3>
-                        <p>Potential creators across India, UAE, SEA</p>
+                        <p>Potential creators across key emerging markets like India, UAE, and Southeast Asia.</p>
                     </div>
                     
                     <div class="stat-card">
                         <h3>300%</h3>
-                        <p>Growth in demand for remote visual content</p>
+                        <p>Projected growth in demand for on-demand remote visual content.</p>
                     </div>
                     
                     <div class="stat-card">
                         <h3>First Mover</h3>
-                        <p>In consent-based public shoots at scale</p>
+                        <p>SnapLink leads in offering consent-based public and private shoots at scale.</p>
                     </div>
                 </div>
                 
                 <div class="opportunity-chart">
                     <canvas id="marketChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="partners">
-        <div class="container">
-            <div class="section-header">
-                <h2>Strategic Partnerships</h2>
-                <p>Building an ecosystem for growth</p>
-            </div>
-            <div class="partners-grid">
-                <div class="partner-card">
-                    <img src="https://images.unsplash.com/photo-1582299879737-122e4d039988?auto=format&fit=crop&w=300&q=80" alt="Telecom tower against a blue sky" class="card-image">
-                    <h3>Telecom Providers</h3>
-                    <p>Airtel, Jio, Du for 5G livestream kits</p>
-                </div>
-                
-                <div class="partner-card">
-                    <img src="https://images.unsplash.com/photo-1502920514313-52581002a659?auto=format&fit=crop&w=300&q=80" alt="Close-up of a camera lens" class="card-image">
-                    <h3>Camera OEMs</h3>
-                    <p>Apple, Sony, Canon for gear partnerships</p>
-                </div>
-                
-                <div class="partner-card">
-                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=300&q=80" alt="Server racks in a data center" class="card-image">
-                    <h3>Tech Infrastructure</h3>
-                    <p>AWS, Agora, Google Cloud for streaming & storage</p>
-                </div>
-                
-                <div class="partner-card">
-                    <img src="https://images.unsplash.com/photo-1476510526012-f74e6f42a7a4?auto=format&fit=crop&w=300&q=80" alt="Map with travel pins" class="card-image">
-                    <h3>Tourism Boards</h3>
-                    <p>Rural, cultural, and scenic initiatives</p>
                 </div>
             </div>
         </div>
@@ -1025,7 +960,7 @@
             });
         }, { threshold: 0.1 });
         
-        document.querySelectorAll('.step-card, .stat-card, .benefit-card, .case-card, .partner-card').forEach(card => {
+        document.querySelectorAll('.step-card, .stat-card, .benefit-card, .case-card').forEach(card => {
             observer.observe(card);
         });
     </script>
