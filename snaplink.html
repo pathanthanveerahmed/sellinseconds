@@ -1,149 +1,933 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SnapLink – Livestream the World</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      color: #222;
-      background-color: #fff;
-      line-height: 1.6;
-    }
-    header {
-      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)),
-      url('https://images.unsplash.com/photo-1526178610644-6c4c1d4b4de6?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-      height: 100vh;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 1rem;
-    }
-    header h1 {
-      font-size: 3rem;
-      margin: 0;
-      font-weight: 600;
-    }
-    header p {
-      margin-top: 1rem;
-      font-size: 1.2rem;
-      max-width: 600px;
-    }
-    .btn {
-      margin-top: 2rem;
-      padding: 0.8rem 1.8rem;
-      background: #2e86de;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      font-size: 1rem;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-    .btn:hover {
-      background: #1f6fcc;
-    }
-    section {
-      padding: 4rem 1rem;
-      max-width: 960px;
-      margin: auto;
-    }
-    h2 {
-      text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 2rem;
-      color: #2e86de;
-    }
-    .card-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .card {
-      padding: 1.5rem;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      background-color: #f9f9f9;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-    footer {
-      background-color: #f2f2f2;
-      padding: 2rem 1rem;
-      text-align: center;
-      font-size: 0.95rem;
-    }
-    .disclaimer {
-      font-size: 0.85rem;
-      color: #555;
-      max-width: 800px;
-      margin: 2rem auto 0 auto;
-      line-height: 1.5;
-    }
-    @media(min-width: 768px) {
-      .card-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-      }
-      .card {
-        flex: 1 1 30%;
-        margin: 0.5rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapLink - The Uber for Photographers & Livestreamers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #0A9396;
+            --secondary: #FF7E5F;
+            --accent: #FEB47B;
+            --dark: #005F73;
+            --light: #E9F1F7;
+            --text: #333333;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--light);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+        
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.4);
+        }
+        
+        .btn-primary:hover {
+            background: #ff6a4d;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 126, 95, 0.6);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .section-header p {
+            max-width: 700px;
+            margin: 30px auto 0;
+            font-size: 1.1rem;
+        }
+        
+        /* Problem/Solution Section */
+        .problem-solution {
+            background-color: var(--white);
+        }
+        
+        .ps-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .ps-box {
+            flex: 1;
+            min-width: 300px;
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .ps-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .ps-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .ps-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .ps-box:hover .ps-image img {
+            transform: scale(1.05);
+        }
+        
+        .ps-content {
+            padding: 30px;
+        }
+        
+        .ps-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .ps-content ul {
+            list-style-type: none;
+        }
+        
+        .ps-content ul li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .ps-content ul li::before {
+            content: "•";
+            color: var(--secondary);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        .problem .ps-content h3 {
+            color: #e74c3c;
+        }
+        
+        .solution .ps-content h3 {
+            color: var(--primary);
+        }
+        
+        /* Market Opportunity */
+        .market-opportunity {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .market-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .market-chart {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .market-stats {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .stat-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-card p {
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        /* Business Model */
+        .business-model {
+            background-color: var(--white);
+        }
+        
+        .model-cards {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .model-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: var(--white);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 10px 30px rgba(10, 147, 150, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .model-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .model-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .model-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .model-card p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .model-card .highlight {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 20px 0;
+            color: var(--accent);
+        }
+        
+        /* Traction */
+        .traction {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            color: var(--white);
+        }
+        
+        .counters {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .counter-item {
+            text-align: center;
+            min-width: 200px;
+        }
+        
+        .counter-number {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .counter-label {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .growth-chart {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* CTA Section */
+        .investor-cta {
+            text-align: center;
+            padding: 100px 0;
+            background: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            position: relative;
+            color: var(--white);
+        }
+        
+        .investor-cta::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 147, 150, 0.9);
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .cta-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+        }
+        
+        .cta-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style-type: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .counter-number {
+                font-size: 3rem;
+            }
+            
+            .model-card {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .cta-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>SnapLink</h1>
+            <p>The Uber for Photographers & Livestreamers</p>
+            <div class="hero-btns">
+                <button class="btn btn-primary">Watch Demo</button>
+                <button class="btn btn-outline">Invest Now</button>
+            </div>
+        </div>
+    </section>
 
-  <header>
-    <h1>SnapLink: Livestream the World</h1>
-    <p>Book real-time photographers or livestreamers from anywhere — even from remote villages. Open, consent-based, and verified.</p>
-    <a href="#" class="btn">Join as Creator</a>
-  </header>
+    <!-- Problem/Solution Section -->
+    <section class="problem-solution">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Problem & Solution</h2>
+                <p>SnapLink solves critical gaps in the visual content creation market</p>
+            </div>
+            <div class="ps-container">
+                <div class="ps-box problem">
+                    <div class="ps-image">
+                        <img src="https://images.unsplash.com/photo-1590523278191-995cbcda646b?auto=format&fit=crop&w=800&q=80" alt="Problem">
+                    </div>
+                    <div class="ps-content">
+                        <h3>The Problem</h3>
+                        <ul>
+                            <li>Booking photographers is slow and limited by location</li>
+                            <li>No easy way to livestream events remotely in real-time</li>
+                            <li>Trust issues with finding reliable photographers</li>
+                            <li>Real-time visual needs underserved in gig economy</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="ps-box solution">
+                    <div class="ps-image">
+                        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=80" alt="Solution">
+                    </div>
+                    <div class="ps-content">
+                        <h3>Our Solution</h3>
+                        <ul>
+                            <li>On-demand platform connecting customers with photographers</li>
+                            <li>Book professional photographers in minutes</li>
+                            <li>Get photos, videos, or livestreams instantly</li>
+                            <li>Secure payments with rating system for quality control</li>
+                            <li>Background verification for all photographers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section>
-    <h2>How It Works</h2>
-    <div class="card-container">
-      <div class="card"><strong>1. Customer Request</strong><br> Choose shoot type (photo/video/live) and location.</div>
-      <div class="card"><strong>2. Local Match</strong><br> SnapLink connects you with a nearby verified creator.</div>
-      <div class="card"><strong>3. Capture or Stream</strong><br> Real-time or recorded delivery — all with consent.</div>
-    </div>
-  </section>
+    <!-- Market Opportunity -->
+    <section class="market-opportunity">
+        <div class="container">
+            <div class="section-header">
+                <h2>Market Opportunity</h2>
+                <p>Capturing a significant share of the growing gig economy</p>
+            </div>
+            <div class="market-content">
+                <div class="market-chart">
+                    <canvas id="marketChart"></canvas>
+                </div>
+                <div class="market-stats">
+                    <div class="stat-card">
+                        <h3>$450B+</h3>
+                        <p>Global Gig Economy</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>$45B+</h3>
+                        <p>Photography Services Market</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>5M+</h3>
+                        <p>Professional Photographers Worldwide</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>300%</h3>
+                        <p>Growth in Livestreaming Demand (2020-2023)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section>
-    <h2>Why SnapLink?</h2>
-    <div class="card-container">
-      <div class="card">✅ Works from remote villages (cellular or Starlink)</div>
-      <div class="card">✅ Any mobile user can become a photographer</div>
-      <div class="card">✅ Affordable livestreaming (starting $5)</div>
-      <div class="card">✅ Transparent: Verified IDs & trust layer</div>
-      <div class="card">✅ Creates jobs in rural India and beyond</div>
-    </div>
-  </section>
+    <!-- Business Model -->
+    <section class="business-model">
+        <div class="container">
+            <div class="section-header">
+                <h2>Business Model</h2>
+                <p>Multiple revenue streams with sustainable economics</p>
+            </div>
+            <div class="model-cards">
+                <div class="model-card">
+                    <div class="model-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3>Platform Fee</h3>
+                    <p>Low commission per booking</p>
+                    <span class="highlight">5%</span>
+                    <p>Industry-lowest commission for photographers</p>
+                </div>
+                
+                <div class="model-card">
+                    <div class="model-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Pro Subscriptions</h3>
+                    <p>Premium features for professionals</p>
+                    <span class="highlight">$29/mo</span>
+                    <p>Enhanced visibility, pro badge, analytics</p>
+                </div>
+                
+                <div class="model-card">
+                    <div class="model-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Value-Added Services</h3>
+                    <p>Premium tools for creators</p>
+                    <span class="highlight">$5-$50+</span>
+                    <p>Editing, cloud delivery, livestream tools</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section>
-    <h2>Use Cases</h2>
-    <div class="card-container">
-      <div class="card">🎉 Family Functions, Birthdays, Home Ceremonies</div>
-      <div class="card">🌄 Scenic Views from Hills, Rivers, Monuments</div>
-      <div class="card">🏠 Real Estate / Remote Property Documentation</div>
-      <div class="card">🎥 Cultural Livestreams, Temples, Rural Events</div>
-    </div>
-  </section>
+    <!-- Traction -->
+    <section class="traction">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Traction</h2>
+                <p>Strong early growth metrics and projections</p>
+            </div>
+            
+            <div class="counters">
+                <div class="counter-item">
+                    <div class="counter-number" id="photographerCounter">0</div>
+                    <div class="counter-label">Photographers</div>
+                </div>
+                
+                <div class="counter-item">
+                    <div class="counter-number" id="bookingCounter">0</div>
+                    <div class="counter-label">Bookings</div>
+                </div>
+                
+                <div class="counter-item">
+                    <div class="counter-number" id="cityCounter">0</div>
+                    <div class="counter-label">Cities</div>
+                </div>
+                
+                <div class="counter-item">
+                    <div class="counter-number" id="revenueCounter">0</div>
+                    <div class="counter-label">Revenue (K)</div>
+                </div>
+            </div>
+            
+            <div class="growth-chart">
+                <canvas id="growthChart"></canvas>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    <p>SnapLink © 2025 – Built for creators. Powered by trust.</p>
-    <a class="btn" href="#">Partner With Us</a>
-    <div class="disclaimer">
-      <strong>Disclaimer:</strong> SnapLink strictly prohibits unauthorized or hidden photography. All shoots are public or family events done with full consent. We do not support spying, surveillance, or any private invasion of privacy. Every creator is verified and accountable.
-    </div>
-  </footer>
+    <!-- Investor CTA -->
+    <section class="investor-cta">
+        <div class="cta-content">
+            <h2>Join the Visual Revolution</h2>
+            <p>We're seeking strategic investors to help us become the global leader in on-demand visual content creation</p>
+            
+            <div class="cta-btns">
+                <button class="btn btn-primary">Download Investor Deck</button>
+                <button class="btn btn-outline">Schedule Meeting</button>
+                <button class="btn btn-primary">View Financial Projections</button>
+            </div>
+        </div>
+    </section>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SnapLink</h3>
+                    <p>The Uber for Photographers & Livestreamers. Connecting customers with professional visual creators instantly.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Our Solution</a></li>
+                        <li><a href="#">Market Opportunity</a></li>
+                        <li><a href="#">Business Model</a></li>
+                        <li><a href="#">For Investors</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Investor Resources</h3>
+                    <ul>
+                        <li><a href="#">Pitch Deck</a></li>
+                        <li><a href="#">Financial Projections</a></li>
+                        <li><a href="#">Business Plan</a></li>
+                        <li><a href="#">Market Research</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> investors@snaplink.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 SnapLink. All rights reserved. Designed for investors.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Counter Animation
+        function animateCounter(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value.toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Initialize counters when in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(document.getElementById('photographerCounter'), 0, 850, 2000);
+                    animateCounter(document.getElementById('bookingCounter'), 0, 1250, 2000);
+                    animateCounter(document.getElementById('cityCounter'), 0, 3, 1500);
+                    animateCounter(document.getElementById('revenueCounter'), 0, 75, 2500);
+                    
+                    // Stop observing after triggering once
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(document.querySelector('.traction'));
+        
+        // Market Opportunity Chart
+        const marketCtx = document.getElementById('marketChart').getContext('2d');
+        const marketChart = new Chart(marketCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Photography Services', 'Other Gig Services'],
+                datasets: [{
+                    data: [45, 445],
+                    backgroundColor: [
+                        'rgba(255, 126, 95, 0.8)',
+                        'rgba(10, 147, 150, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 126, 95, 1)',
+                        'rgba(10, 147, 150, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14
+                            },
+                            padding: 20
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '$490B Gig Economy Market',
+                        font: {
+                            size: 18,
+                            weight: 'bold'
+                        },
+                        padding: 20
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.label}: $${context.parsed}B`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Growth Projection Chart
+        const growthCtx = document.getElementById('growthChart').getContext('2d');
+        const growthChart = new Chart(growthCtx, {
+            type: 'line',
+            data: {
+                labels: ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'],
+                datasets: [{
+                    label: 'Monthly Bookings',
+                    data: [50, 200, 500, 1200, 2500, 4500],
+                    borderColor: 'rgba(255, 126, 95, 1)',
+                    backgroundColor: 'rgba(255, 126, 95, 0.1)',
+                    borderWidth: 3,
+                    pointBackgroundColor: 'rgba(255, 126, 95, 1)',
+                    pointRadius: 6,
+                    pointHoverRadius: 8,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Projected Booking Growth',
+                        font: {
+                            size: 18
+                        },
+                        padding: 20
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Bookings'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Months Post-Launch'
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Header animation on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.hero-content');
+            const scrollPosition = window.scrollY;
+            
+            if (scrollPosition > 100) {
+                header.style.transform = `translateY(${scrollPosition / 2}px)`;
+                header.style.opacity = 1 - (scrollPosition / 500);
+            } else {
+                header.style.transform = 'translateY(0)';
+                header.style.opacity = 1;
+            }
+        });
+    </script>
 </body>
 </html>
