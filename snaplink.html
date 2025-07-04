@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SnapLink - Photography from Anywhere. In Real Time.</title>
+    <title>SnapLink - Photography from Anywhere</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -45,7 +45,7 @@
             padding: 0 20px;
         }
         
-        /* Hero Section */
+        /* Enhanced Hero Section */
         .hero {
             height: 100vh;
             background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
@@ -65,6 +65,7 @@
             height: 100%;
             background: url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
             opacity: 0.3;
+            animation: zoomEffect 20s infinite alternate;
         }
         
         .hero-content {
@@ -78,24 +79,27 @@
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            text-shadow: 0 0 15px rgba(0,0,0,0.5), 2px 2px 5px rgba(0,0,0,0.5);
             animation: fadeInDown 1s ease;
         }
         
         .hero .tagline {
-            font-size: 2rem;
+            font-size: 2.2rem;
             max-width: 900px;
             margin: 0 auto 30px;
             animation: fadeInUp 1s ease 0.3s forwards;
             opacity: 0;
+            font-weight: 700;
+            line-height: 1.3;
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             max-width: 800px;
-            margin: 0 auto 30px;
+            margin: 0 auto 40px;
             animation: fadeInUp 1s ease 0.5s forwards;
             opacity: 0;
+            line-height: 1.8;
         }
         
         .hero-btns {
@@ -184,6 +188,8 @@
             margin: -30px auto 50px auto;
             border-radius: 15px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            height: 450px;
+            object-fit: cover;
         }
         
         /* How It Works */
@@ -348,46 +354,102 @@
             color: var(--dark);
         }
         
-        /* Use Cases */
+        /* Redesigned Use Cases Section */
         .use-cases {
-            background: linear-gradient(135deg, #FE6B8B 0%, #FF8E53 100%); /* New vibrant gradient */
+            background: linear-gradient(135deg, #0A9396 0%, #005F73 100%);
             color: var(--white);
         }
         
         .cases-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
         
         .case-card {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 30px;
+            padding: 40px 30px;
             text-align: center;
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .case-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .case-card:hover::before {
+            transform: scaleX(1);
         }
         
         .case-card:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
         
-        .card-image {
+        .card-icon {
             width: 80px;
             height: 80px;
-            object-fit: cover;
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 50%;
-            margin-bottom: 20px;
-            border: 3px solid var(--white);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: var(--white);
+            transition: all 0.4s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .case-card:hover .card-icon {
+            background: var(--white);
+            color: var(--primary);
+            transform: rotateY(360deg);
         }
         
         .case-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .case-card h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: width 0.4s ease;
+        }
+        
+        .case-card:hover h3::after {
+            width: 80px;
+        }
+        
+        .case-card p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.8;
         }
         
         /* Opportunity */
@@ -571,14 +633,19 @@
             }
         }
         
+        @keyframes zoomEffect {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
             
             .hero .tagline {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
             
             .section-header h2 {
@@ -605,6 +672,34 @@
             .step-card, .benefit-card, .case-card {
                 width: 100%;
             }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-main-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -612,8 +707,8 @@
     <section class="hero">
         <div class="hero-content">
             <h1>SnapLink</h1>
-            <div class="tagline">Your window to **anywhere, anytime**. Photography and Livestreaming, Demystified.</div>
-            <p>SnapLink connects customers globally with **verified local photographers and livestreamers**, enabling real-time visual capture even from the most **remote villages**. Our mission is to democratize access to visual content and empower local talent worldwide.</p>
+            <div class="tagline">Your window to <strong>anywhere, anytime</strong>. Photography and Livestreaming, Demystified.</div>
+            <p>SnapLink connects customers globally with <strong>verified local photographers and livestreamers</strong>, enabling real-time visual capture even from the most <strong>remote villages</strong>. Our mission is to democratize access to visual content and empower local talent worldwide. Your Memories.. Our Moments..</p>
             <div class="hero-btns">
                 <button class="btn btn-primary">Watch Demo</button>
                 <button class="btn btn-outline">Invest Now</button>
@@ -767,25 +862,33 @@
             </div>
             <div class="cases-container">
                 <div class="case-card">
-                    <img src="https://images.unsplash.com/photo-1511974035430-cdfeaef5edcd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="People celebrating at a vibrant party" class="card-image">
+                    <div class="card-icon">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
                     <h3>Events & Celebrations</h3>
                     <p>Capture candid moments at weddings, birthdays, temple events, or livestream special hometown gatherings.</p>
                 </div>
                 
                 <div class="case-card">
-                    <img src="https://images.unsplash.com/photo-1506905925370-9357b6c8638b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Breathtaking mountain landscape with a clear sky" class="card-image">
+                    <div class="card-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
                     <h3>Scenic & Nature</h3>
                     <p>Get stunning photos and videos of remote hills, serene rivers, lush farms, or ancient monuments.</p>
                 </div>
                 
                 <div class="case-card">
-                    <img src="https://images.unsplash.com/photo-1560518883-ffcd14a66e4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Modern house exterior with a green lawn" class="card-image">
+                    <div class="card-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
                     <h3>Real Estate</h3>
                     <p>Obtain high-quality property showcases, virtual tours, and essential documentation from any location.</p>
                 </div>
                 
                 <div class="case-card">
-                    <img src="https://images.unsplash.com/photo-1548011244-84524458f331?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Historic building with intricate carvings" class="card-image">
+                    <div class="card-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
                     <h3>Tourism & Culture</h3>
                     <p>Support rural storytelling, document cultural projects, and enhance visual content for tourism boards.</p>
                 </div>
