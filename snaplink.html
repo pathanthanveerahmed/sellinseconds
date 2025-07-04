@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SnapLink - The Uber for Photographers & Livestreamers</title>
+    <title>SnapLink - Photography from Anywhere. In Real Time.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -16,6 +16,7 @@
             --light: #E9F1F7;
             --text: #333333;
             --white: #FFFFFF;
+            --black: #000000;
         }
         
         * {
@@ -81,11 +82,19 @@
             animation: fadeInDown 1s ease;
         }
         
-        .hero p {
-            font-size: 1.5rem;
+        .hero .tagline {
+            font-size: 2rem;
             max-width: 800px;
             margin: 0 auto 30px;
             animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease 0.5s forwards;
             opacity: 0;
         }
         
@@ -93,7 +102,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            animation: fadeInUp 1s ease 0.6s forwards;
+            animation: fadeInUp 1s ease 0.7s forwards;
             opacity: 0;
         }
         
@@ -168,97 +177,223 @@
             font-size: 1.1rem;
         }
         
-        /* Problem/Solution Section */
-        .problem-solution {
+        /* How It Works */
+        .how-it-works {
             background-color: var(--white);
         }
         
-        .ps-container {
+        .steps {
             display: flex;
-            gap: 40px;
             flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
         }
         
-        .ps-box {
-            flex: 1;
-            min-width: 300px;
+        .step-card {
+            width: 250px;
+            padding: 40px 25px;
             background: var(--white);
             border-radius: 15px;
-            overflow: hidden;
+            text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        .ps-box:hover {
+        .step-card:hover {
             transform: translateY(-10px);
         }
         
-        .ps-image {
-            height: 250px;
-            overflow: hidden;
-        }
-        
-        .ps-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .ps-box:hover .ps-image img {
-            transform: scale(1.05);
-        }
-        
-        .ps-content {
-            padding: 30px;
-        }
-        
-        .ps-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-        
-        .ps-content ul {
-            list-style-type: none;
-        }
-        
-        .ps-content ul li {
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-        }
-        
-        .ps-content ul li::before {
-            content: "•";
-            color: var(--secondary);
-            font-size: 1.5rem;
+        .step-number {
             position: absolute;
-            left: 0;
-            top: -5px;
+            top: 15px;
+            left: 15px;
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(10, 147, 150, 0.1);
+            z-index: 1;
         }
         
-        .problem .ps-content h3 {
-            color: #e74c3c;
-        }
-        
-        .solution .ps-content h3 {
+        .step-icon {
+            font-size: 3rem;
             color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
         }
         
-        /* Market Opportunity */
-        .market-opportunity {
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-card p {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Rural Empowerment */
+        .rural-empowerment {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
         
-        .market-content {
+        .empowerment-content {
             display: flex;
             gap: 50px;
             align-items: center;
             flex-wrap: wrap;
         }
         
-        .market-chart {
+        .empowerment-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .empowerment-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .empowerment-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .empowerment-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .feature-list {
+            margin: 30px 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon {
+            background: var(--primary);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .feature-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        /* Why SnapLink */
+        .why-snaplink {
+            background-color: var(--white);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .benefit-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* Use Cases */
+        .use-cases {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            color: var(--white);
+        }
+        
+        .cases-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .case-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .case-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-10px);
+        }
+        
+        .case-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .case-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Opportunity */
+        .opportunity {
+            background-color: var(--white);
+        }
+        
+        .opportunity-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .opportunity-stats {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .opportunity-chart {
             flex: 1;
             min-width: 300px;
             height: 400px;
@@ -268,17 +403,17 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
         
-        .market-stats {
-            flex: 1;
-            min-width: 300px;
-        }
-        
         .stat-card {
-            background: var(--white);
+            background: var(--light);
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
         }
         
         .stat-card h3 {
@@ -292,94 +427,41 @@
             color: var(--text);
         }
         
-        /* Business Model */
-        .business-model {
-            background-color: var(--white);
+        /* Partners */
+        .partners {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
         
-        .model-cards {
-            display: flex;
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
         }
         
-        .model-card {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
-            color: var(--white);
-            border-radius: 15px;
-            padding: 40px 30px;
-            text-align: center;
-            width: 300px;
-            box-shadow: 0 10px 30px rgba(10, 147, 150, 0.3);
-            transition: transform 0.3s ease;
-        }
-        
-        .model-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .model-icon {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .model-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-        
-        .model-card p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .model-card .highlight {
-            display: block;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 20px 0;
-            color: var(--accent);
-        }
-        
-        /* Traction */
-        .traction {
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
-            color: var(--white);
-        }
-        
-        .counters {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .counter-item {
-            text-align: center;
-            min-width: 200px;
-        }
-        
-        .counter-number {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .counter-label {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .growth-chart {
+        .partner-card {
             background: var(--white);
             border-radius: 15px;
             padding: 30px;
-            max-width: 900px;
-            margin: 0 auto;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .partner-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .partner-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark);
         }
         
         /* CTA Section */
@@ -512,39 +594,18 @@
             }
         }
         
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-        
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
             }
             
-            .hero p {
-                font-size: 1.2rem;
+            .hero .tagline {
+                font-size: 1.5rem;
             }
             
             .section-header h2 {
                 font-size: 2.2rem;
-            }
-            
-            .counter-number {
-                font-size: 3rem;
-            }
-            
-            .model-card {
-                width: 100%;
-                max-width: 400px;
             }
             
             .cta-content h2 {
@@ -558,7 +619,8 @@
     <section class="hero">
         <div class="hero-content">
             <h1>SnapLink</h1>
-            <p>The Uber for Photographers & Livestreamers</p>
+            <div class="tagline">Photography from Anywhere. In Real Time.</div>
+            <p>Connects customers with verified local photographers and livestreamers — even from remote villages.</p>
             <div class="hero-btns">
                 <button class="btn btn-primary">Watch Demo</button>
                 <button class="btn btn-outline">Invest Now</button>
@@ -566,154 +628,249 @@
         </div>
     </section>
 
-    <!-- Problem/Solution Section -->
-    <section class="problem-solution">
+    <!-- How It Works -->
+    <section class="how-it-works">
         <div class="container">
             <div class="section-header">
-                <h2>The Problem & Solution</h2>
-                <p>SnapLink solves critical gaps in the visual content creation market</p>
+                <h2>How SnapLink Works</h2>
+                <p>A simple four-step process to capture moments from anywhere</p>
             </div>
-            <div class="ps-container">
-                <div class="ps-box problem">
-                    <div class="ps-image">
-                        <img src="https://images.unsplash.com/photo-1590523278191-995cbcda646b?auto=format&fit=crop&w=800&q=80" alt="Problem">
-                    </div>
-                    <div class="ps-content">
-                        <h3>The Problem</h3>
-                        <ul>
-                            <li>Booking photographers is slow and limited by location</li>
-                            <li>No easy way to livestream events remotely in real-time</li>
-                            <li>Trust issues with finding reliable photographers</li>
-                            <li>Real-time visual needs underserved in gig economy</li>
-                        </ul>
-                    </div>
+            <div class="steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Request Shoot</h3>
+                    <p>Customer requests photo, video or livestream at a specific location</p>
                 </div>
                 
-                <div class="ps-box solution">
-                    <div class="ps-image">
-                        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=80" alt="Solution">
-                    </div>
-                    <div class="ps-content">
-                        <h3>Our Solution</h3>
-                        <ul>
-                            <li>On-demand platform connecting customers with photographers</li>
-                            <li>Book professional photographers in minutes</li>
-                            <li>Get photos, videos, or livestreams instantly</li>
-                            <li>Secure payments with rating system for quality control</li>
-                            <li>Background verification for all photographers</li>
-                        </ul>
-                    </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon"><i class="fas fa-search-location"></i></div>
+                    <h3>Instant Matching</h3>
+                    <p>SnapLink finds a verified photographer nearby</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon"><i class="fas fa-camera"></i></div>
+                    <h3>Capture Moment</h3>
+                    <p>Creator captures or streams the event in real-time or offline</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <h3>Secure Delivery</h3>
+                    <p>Content is delivered securely to the customer</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Market Opportunity -->
-    <section class="market-opportunity">
+    <!-- Rural Empowerment -->
+    <section class="rural-empowerment">
         <div class="container">
             <div class="section-header">
-                <h2>Market Opportunity</h2>
-                <p>Capturing a significant share of the growing gig economy</p>
+                <h2>Rural Empowerment Focus</h2>
+                <p>Bringing opportunities to remote communities</p>
             </div>
-            <div class="market-content">
-                <div class="market-chart">
-                    <canvas id="marketChart"></canvas>
-                </div>
-                <div class="market-stats">
-                    <div class="stat-card">
-                        <h3>$450B+</h3>
-                        <p>Global Gig Economy</p>
+            <div class="empowerment-content">
+                <div class="empowerment-text">
+                    <h3>Creating Opportunities Where They're Needed Most</h3>
+                    <p>SnapLink is designed to work even in the most remote areas, empowering local creators and connecting the world through visual storytelling.</p>
+                    
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-wifi"></i></div>
+                            <div class="feature-text">
+                                <h4>Works with Any Connectivity</h4>
+                                <p>Functions with mobile networks or satellite internet like Starlink</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-sync-alt"></i></div>
+                            <div class="feature-text">
+                                <h4>Offline Capabilities</h4>
+                                <p>If no live connection, content is recorded and uploaded later</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-briefcase"></i></div>
+                            <div class="feature-text">
+                                <h4>Job Creation</h4>
+                                <p>Creates opportunities for rural youth with just a mobile camera</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-globe-asia"></i></div>
+                            <div class="feature-text">
+                                <h4>Economic Democratization</h4>
+                                <p>Democratizes income for local creators everywhere</p>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                
+                <div class="empowerment-image">
+                    <img src="https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=800&q=80" alt="Rural Empowerment">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why SnapLink -->
+    <section class="why-snaplink">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose SnapLink?</h2>
+                <p>Key advantages that set us apart</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-user-check"></i></div>
+                    <h3>Verified Creators</h3>
+                    <p>All photographers undergo ID verification and background checks</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Accessible Platform</h3>
+                    <p>Anyone with a phone or DSLR can join as a creator</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-video"></i></div>
+                    <h3>Flexible Options</h3>
+                    <p>Livestreaming and offline upload capabilities</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-percentage"></i></div>
+                    <h3>Fair Pricing</h3>
+                    <p>Only 5% platform fee with streaming starting at $5</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-lock"></i></div>
+                    <h3>Consent-First Model</h3>
+                    <p>Transparent, safe public or family-only shoots</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Global Reach</h3>
+                    <p>Connecting customers and creators across the world</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>Diverse Use Cases</h2>
+                <p>SnapLink serves multiple industries and scenarios</p>
+            </div>
+            <div class="cases-container">
+                <div class="case-card">
+                    <div class="case-icon">🎉</div>
+                    <h3>Events & Celebrations</h3>
+                    <p>Weddings, birthdays, temple events, and hometown livestreams</p>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-icon">🌄</div>
+                    <h3>Scenic & Nature</h3>
+                    <p>Capturing views from hills, rivers, farms, and monuments</p>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-icon">🏠</div>
+                    <h3>Real Estate</h3>
+                    <p>Property showcasing and documentation</p>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-icon">📍</div>
+                    <h3>Tourism & Culture</h3>
+                    <p>Rural storytelling, cultural projects, and tourism boards</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opportunity -->
+    <section class="opportunity">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Market Opportunity</h2>
+                <p>Positioned to capture a significant share of a growing market</p>
+            </div>
+            <div class="opportunity-content">
+                <div class="opportunity-stats">
                     <div class="stat-card">
                         <h3>$45B+</h3>
-                        <p>Photography Services Market</p>
+                        <p>Global photography market</p>
                     </div>
+                    
                     <div class="stat-card">
-                        <h3>5M+</h3>
-                        <p>Professional Photographers Worldwide</p>
+                        <h3>100K+</h3>
+                        <p>Potential creators across India, UAE, SEA</p>
                     </div>
+                    
                     <div class="stat-card">
                         <h3>300%</h3>
-                        <p>Growth in Livestreaming Demand (2020-2023)</p>
+                        <p>Growth in demand for remote visual content</p>
                     </div>
+                    
+                    <div class="stat-card">
+                        <h3>First Mover</h3>
+                        <p>In consent-based public shoots at scale</p>
+                    </div>
+                </div>
+                
+                <div class="opportunity-chart">
+                    <canvas id="marketChart"></canvas>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Business Model -->
-    <section class="business-model">
+    <!-- Partners -->
+    <section class="partners">
         <div class="container">
             <div class="section-header">
-                <h2>Business Model</h2>
-                <p>Multiple revenue streams with sustainable economics</p>
+                <h2>Strategic Partnerships</h2>
+                <p>Building an ecosystem for growth</p>
             </div>
-            <div class="model-cards">
-                <div class="model-card">
-                    <div class="model-icon">
-                        <i class="fas fa-percentage"></i>
-                    </div>
-                    <h3>Platform Fee</h3>
-                    <p>Low commission per booking</p>
-                    <span class="highlight">5%</span>
-                    <p>Industry-lowest commission for photographers</p>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-icon"><i class="fas fa-signal"></i></div>
+                    <h3>Telecom Providers</h3>
+                    <p>Airtel, Jio, Du for 5G livestream kits</p>
                 </div>
                 
-                <div class="model-card">
-                    <div class="model-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <h3>Pro Subscriptions</h3>
-                    <p>Premium features for professionals</p>
-                    <span class="highlight">$29/mo</span>
-                    <p>Enhanced visibility, pro badge, analytics</p>
+                <div class="partner-card">
+                    <div class="partner-icon"><i class="fas fa-camera"></i></div>
+                    <h3>Camera OEMs</h3>
+                    <p>Apple, Sony, Canon for gear partnerships</p>
                 </div>
                 
-                <div class="model-card">
-                    <div class="model-icon">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                    </div>
-                    <h3>Value-Added Services</h3>
-                    <p>Premium tools for creators</p>
-                    <span class="highlight">$5-$50+</span>
-                    <p>Editing, cloud delivery, livestream tools</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Traction -->
-    <section class="traction">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Traction</h2>
-                <p>Strong early growth metrics and projections</p>
-            </div>
-            
-            <div class="counters">
-                <div class="counter-item">
-                    <div class="counter-number" id="photographerCounter">0</div>
-                    <div class="counter-label">Photographers</div>
+                <div class="partner-card">
+                    <div class="partner-icon"><i class="fas fa-server"></i></div>
+                    <h3>Tech Infrastructure</h3>
+                    <p>AWS, Agora, Google Cloud for streaming & storage</p>
                 </div>
                 
-                <div class="counter-item">
-                    <div class="counter-number" id="bookingCounter">0</div>
-                    <div class="counter-label">Bookings</div>
+                <div class="partner-card">
+                    <div class="partner-icon"><i class="fas fa-landmark"></i></div>
+                    <h3>Tourism Boards</h3>
+                    <p>Rural, cultural, and scenic initiatives</p>
                 </div>
-                
-                <div class="counter-item">
-                    <div class="counter-number" id="cityCounter">0</div>
-                    <div class="counter-label">Cities</div>
-                </div>
-                
-                <div class="counter-item">
-                    <div class="counter-number" id="revenueCounter">0</div>
-                    <div class="counter-label">Revenue (K)</div>
-                </div>
-            </div>
-            
-            <div class="growth-chart">
-                <canvas id="growthChart"></canvas>
             </div>
         </div>
     </section>
@@ -738,16 +895,16 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>SnapLink</h3>
-                    <p>The Uber for Photographers & Livestreamers. Connecting customers with professional visual creators instantly.</p>
+                    <p>Photography from Anywhere. In Real Time. Connecting the world through local visual creators.</p>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="#">Home</a></li>
-                        <li><a href="#">Our Solution</a></li>
-                        <li><a href="#">Market Opportunity</a></li>
-                        <li><a href="#">Business Model</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">For Photographers</a></li>
+                        <li><a href="#">For Businesses</a></li>
                         <li><a href="#">For Investors</a></li>
                     </ul>
                 </div>
@@ -779,53 +936,24 @@
     </footer>
 
     <script>
-        // Counter Animation
-        function animateCounter(element, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const value = Math.floor(progress * (end - start) + start);
-                element.textContent = value.toLocaleString();
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
-        
-        // Initialize counters when in view
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter(document.getElementById('photographerCounter'), 0, 850, 2000);
-                    animateCounter(document.getElementById('bookingCounter'), 0, 1250, 2000);
-                    animateCounter(document.getElementById('cityCounter'), 0, 3, 1500);
-                    animateCounter(document.getElementById('revenueCounter'), 0, 75, 2500);
-                    
-                    // Stop observing after triggering once
-                    observer.disconnect();
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        observer.observe(document.querySelector('.traction'));
-        
         // Market Opportunity Chart
         const marketCtx = document.getElementById('marketChart').getContext('2d');
         const marketChart = new Chart(marketCtx, {
-            type: 'doughnut',
+            type: 'bar',
             data: {
-                labels: ['Photography Services', 'Other Gig Services'],
+                labels: ['Photography Market', 'Livestream Growth', 'Rural Creator Potential'],
                 datasets: [{
-                    data: [45, 445],
+                    label: 'Market Value (Billions)',
+                    data: [45, 12, 8],
                     backgroundColor: [
+                        'rgba(10, 147, 150, 0.8)',
                         'rgba(255, 126, 95, 0.8)',
-                        'rgba(10, 147, 150, 0.6)'
+                        'rgba(254, 180, 123, 0.8)'
                     ],
                     borderColor: [
+                        'rgba(10, 147, 150, 1)',
                         'rgba(255, 126, 95, 1)',
-                        'rgba(10, 147, 150, 1)'
+                        'rgba(254, 180, 123, 1)'
                     ],
                     borderWidth: 1
                 }]
@@ -835,64 +963,14 @@
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        position: 'bottom',
-                        labels: {
-                            font: {
-                                size: 14
-                            },
-                            padding: 20
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: '$490B Gig Economy Market',
-                        font: {
-                            size: 18,
-                            weight: 'bold'
-                        },
-                        padding: 20
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return `${context.label}: $${context.parsed}B`;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-        
-        // Growth Projection Chart
-        const growthCtx = document.getElementById('growthChart').getContext('2d');
-        const growthChart = new Chart(growthCtx, {
-            type: 'line',
-            data: {
-                labels: ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'],
-                datasets: [{
-                    label: 'Monthly Bookings',
-                    data: [50, 200, 500, 1200, 2500, 4500],
-                    borderColor: 'rgba(255, 126, 95, 1)',
-                    backgroundColor: 'rgba(255, 126, 95, 0.1)',
-                    borderWidth: 3,
-                    pointBackgroundColor: 'rgba(255, 126, 95, 1)',
-                    pointRadius: 6,
-                    pointHoverRadius: 8,
-                    fill: true,
-                    tension: 0.3
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
                         display: false
                     },
                     title: {
                         display: true,
-                        text: 'Projected Booking Growth',
+                        text: 'Market Opportunity Breakdown',
                         font: {
-                            size: 18
+                            size: 18,
+                            weight: 'bold'
                         },
                         padding: 20
                     }
@@ -902,13 +980,7 @@
                         beginAtZero: true,
                         title: {
                             display: true,
-                            text: 'Number of Bookings'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Months Post-Launch'
+                            text: 'Billions of Dollars'
                         }
                     }
                 }
@@ -927,6 +999,19 @@
                 header.style.transform = 'translateY(0)';
                 header.style.opacity = 1;
             }
+        });
+        
+        // Animate elements on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.step-card, .stat-card, .benefit-card, .case-card, .partner-card').forEach(card => {
+            observer.observe(card);
         });
     </script>
 </body>
