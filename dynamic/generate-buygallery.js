@@ -50,7 +50,7 @@ const cardsHTML = validCards.map(item => {
       <h3>${item.name}</h3>
       <p>${item.description}</p>
       <div class="whatsapp-buttons-row">
-        <a href="https://wa.me/919886566379?text=https://www.sellinseconds.in/dynamic/wacust/${item.id}.html" target="_blank">
+       <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F${item.id}.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
         </a>
         ${arrowText}
