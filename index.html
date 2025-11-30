@@ -354,6 +354,29 @@
       margin: 0.5rem auto 0.5rem;
       text-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
+    .glow-once {
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  animation-name: text-pulse;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes text-pulse {
+  0% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    color: #fff;
+    text-shadow: 0 0 10px #00ffcc,
+                 0 0 20px #00ffcc,
+                 0 0 40px #00ffcc;
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+}
     .hero-intro h2 {
       font-size: 1.25rem;
       font-weight: 600;
@@ -1125,7 +1148,7 @@
 <h2 class="no-nonsense-heading">No App, No Multiple Questions.</h2>
 </section>
 <section class="image-grid-section">
-<h4 style="text-align: center;">CALL 9886566379 FOR QUICK ASSISTANCE</h4>
+<h4 class="glow-once" style="text-align: center;">Call 9886566379 for priority assistance</h4>
 <h2 class="visually-hidden">Choose Gadget Category</h2>
 <div class="image-grid">
 <div class="image-grid-row1-row2">
