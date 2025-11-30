@@ -354,67 +354,6 @@
       margin: 0.5rem auto 0.5rem;
       text-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
- .glow-once {
-  text-align: center;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-  animation: text-pulse 2s ease-in-out 1 forwards;
-  position: relative;
-}
-
-@keyframes text-pulse {
-  0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); opacity: 0.8; }
-  50% { text-shadow: 0 0 15px rgba(255, 255, 255, 0.9); opacity: 1; }
-  100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); opacity: 1; }
-}
-
-.glow-once a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.glow-once a span {
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-/* Initial message style */
-#initial-message {
-  animation: fadeOut 2s ease-in-out 1 forwards;
-  animation-delay: 2s;
-}
-
-/* Main message appears after initial fades out */
-#main-message {
-  opacity: 0;
-  animation: fadeIn 2s ease-in-out 1 forwards;
-  animation-delay: 2s;
-}
-
-/* Keyframes for fading */
-@keyframes fadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; display: none; }
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes text-pulse {
-  0% {
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-  }
-  50% {
-    color: #fff;
-    text-shadow: 0 0 10px #00ffcc,
-                 0 0 20px #00ffcc,
-                 0 0 40px #00ffcc;
-  }
-  100% {
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-  }
-}
     .hero-intro h2 {
       font-size: 1.25rem;
       font-weight: 600;
@@ -1120,6 +1059,66 @@
     .modal-content.pop-glow {
         animation: beautifulGlow 2s ease-out forwards; /* 2 seconds duration, plays once and stays at end state */
     }
+    
+    
+    .glow-once {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+/* Glow animation for the initial GIF */
+@keyframes glowPulse {
+  0% { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.7)); opacity: 0.9; }
+  50% { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1)); opacity: 1; }
+  100% { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.7)); opacity: 0.9; }
+}
+
+/* Fade animations */
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; visibility: visible; }
+}
+
+/* Blue neon glow for the main message */
+@keyframes blueGlow {
+  0% { text-shadow: 0 0 5px #007BFF, 0 0 10px #007BFF, 0 0 15px #00A8FF; }
+  50% { text-shadow: 0 0 10px #00A8FF, 0 0 20px #007BFF, 0 0 30px #00A8FF; }
+  100% { text-shadow: 0 0 5px #007BFF, 0 0 10px #007BFF, 0 0 15px #00A8FF; }
+}
+
+.glow-once a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Initial GIF fades out */
+#initial-gif {
+  display: inline-block;
+  animation: glowPulse 2s ease-in-out infinite, fadeOut 2s ease-in-out 1 forwards;
+  animation-delay: 0s, 2s;
+}
+
+/* Main message fades in and glows in blue */
+#main-message {
+  color: #007BFF;
+  opacity: 0;
+  visibility: hidden;
+  animation: fadeIn 2s ease-in-out 1 forwards, blueGlow 2s ease-in-out infinite;
+  animation-delay: 2s, 2s;
+}
+
+/* Only phone number bold & underlined */
+#main-message span {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 </style>
 <link href="/manifest.json" rel="manifest"/>
 <script type="application/ld+json">{
@@ -1185,13 +1184,16 @@
 <section class="hero-intro">
 <h2 class="no-nonsense-heading">No App, No Multiple Questions.</h2>
 </section>
-<section class="image-grid-section">
 <h4 class="glow-once">
   <a href="tel:+919886566379">
-    <span id="initial-message">💫 Touch here to call</span>
+    <img id="initial-gif" 
+         src="https://media.tenor.com/pYF5u5pE1HoAAAAi/tap-click.gif" 
+         alt="Tap to call" 
+         style="width:36px; vertical-align:middle;">
     <span id="main-message">Call: <span>98865 66379</span> for priority assistance</span>
   </a>
 </h4>
+<section class="image-grid-section">
 <h2 class="visually-hidden">Choose Gadget Category</h2>
 <div class="image-grid">
 <div class="image-grid-row1-row2">
