@@ -1061,36 +1061,35 @@
     }
     
     /*glow*/
-    .glow-once {
+.glow-once {
   text-align: center;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
   position: relative;
   font-family: Arial, sans-serif;
 }
 
-/* Glow animation for initial message */
-@keyframes text-pulse {
-  0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.6); opacity: 0.8; }
-  50% { text-shadow: 0 0 15px rgba(255, 255, 255, 1); opacity: 1; }
-  100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.6); opacity: 1; }
+/* One-time subtle white glow for initial text */
+@keyframes text-pulse-once {
+  0%   { text-shadow: 0 0 5px rgba(255,255,255,0.6); opacity: 0.8; }
+  50%  { text-shadow: 0 0 15px rgba(255,255,255,1);   opacity: 1; }
+  100% { text-shadow: 0 0 5px rgba(255,255,255,0.6);  opacity: 1; }
 }
 
 /* Fade animations */
 @keyframes fadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; visibility: hidden; }
+  from { opacity: 1; }
+  to   { opacity: 0; visibility: hidden; }
 }
-
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; visibility: visible; }
+  from { opacity: 0; }
+  to   { opacity: 1; visibility: visible; }
 }
 
-/* Neon glow animation for the final text */
-@keyframes blueGlow {
-  0% { text-shadow: 0 0 5px #007BFF, 0 0 10px #007BFF, 0 0 15px #00A8FF; }
-  50% { text-shadow: 0 0 10px #00A8FF, 0 0 20px #007BFF, 0 0 30px #00A8FF; }
-  100% { text-shadow: 0 0 5px #007BFF, 0 0 10px #007BFF, 0 0 15px #00A8FF; }
+/* One-time blue glow that ends clean (no glow at 100%) */
+@keyframes blueGlowOnce {
+  0%   { text-shadow: 0 0 5px #007BFF, 0 0 10px #007BFF, 0 0 15px #00A8FF; }
+  70%  { text-shadow: 0 0 10px #00A8FF, 0 0 20px #007BFF, 0 0 30px #00A8FF; }
+  100% { text-shadow: none; }
 }
 
 .glow-once a {
@@ -1098,23 +1097,27 @@
   text-decoration: none;
 }
 
-/* Initial message: glowing and fades out */
+/* Initial message: glow once, then fade out */
 #initial-message {
   display: inline-block;
-  animation: text-pulse 2s ease-in-out infinite, fadeOut 2s ease-in-out 1 forwards;
-  animation-delay: 0s, 2s;
+  animation:
+    text-pulse-once 1.5s ease-in-out 1 both,
+    fadeOut 0.6s ease-out 1 forwards;
+  animation-delay: 0s, 1.5s; /* fade after glow finishes */
 }
 
-/* Main message: fades in and keeps glowing in blue */
+/* Main message: fade in, do a single blue glow, then stay light blue */
 #main-message {
-  color: #007BFF; /* professional blue color */
+  color: #66B2FF; /* light blue after glow */
   opacity: 0;
   visibility: hidden;
-  animation: fadeIn 2s ease-in-out 1 forwards, blueGlow 2s ease-in-out infinite;
-  animation-delay: 2s, 2s;
+  animation:
+    fadeIn 0.6s ease-out 1 forwards,
+    blueGlowOnce 1.2s ease-in-out 1 forwards;
+  animation-delay: 1.5s, 1.5s; /* start when initial finishes */
 }
 
-/* Only phone number bold & underlined */
+/* Only the phone number bold & underlined */
 #main-message span {
   font-weight: bold;
   text-decoration: underline;
@@ -1186,7 +1189,7 @@
 <h2 class="no-nonsense-heading">No App, No Multiple Questions.</h2>
 <h4 class="glow-once">
   <a href="tel:+919886566379">
-    <span id="initial-message">💫 Touch here to call</span>
+    <span id="initial-message">Touch to Call</span>
     <span id="main-message">Call: <span>98865 66379</span> for priority assistance</span>
   </a>
 </h4>
