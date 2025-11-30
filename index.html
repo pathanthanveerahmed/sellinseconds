@@ -1061,11 +1061,12 @@
     }
     
     /*glow*/
+
 .glow-once {
   text-align: center;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-  position: relative;
   font-family: Arial, sans-serif;
+  position: relative;
+  white-space: nowrap; /* keeps text on one line */
 }
 
 /* One-time subtle white glow for initial text */
@@ -1085,7 +1086,7 @@
   to   { opacity: 1; visibility: visible; }
 }
 
-/* One-time blue glow that ends clean (no glow at 100%) */
+/* One-time blue glow that ends clean */
 @keyframes blueGlowOnce {
   0%   { text-shadow: 0 0 5px #007BFF, 0 0 10px #007BFF, 0 0 15px #00A8FF; }
   70%  { text-shadow: 0 0 10px #00A8FF, 0 0 20px #007BFF, 0 0 30px #00A8FF; }
@@ -1097,31 +1098,33 @@
   text-decoration: none;
 }
 
-/* Initial message: glow once, then fade out */
+/* Initial message glow once and fade out */
 #initial-message {
   display: inline-block;
   animation:
     text-pulse-once 1.5s ease-in-out 1 both,
     fadeOut 0.6s ease-out 1 forwards;
-  animation-delay: 0s, 1.5s; /* fade after glow finishes */
+  animation-delay: 0s, 1.5s;
 }
 
-/* Main message: fade in, do a single blue glow, then stay light blue */
+/* Final message fade in + one blue glow, stays light blue */
 #main-message {
-  color: #66B2FF; /* light blue after glow */
+  color: #66B2FF; /* soft light blue */
   opacity: 0;
   visibility: hidden;
+  font-size: 18px;
   animation:
     fadeIn 0.6s ease-out 1 forwards,
     blueGlowOnce 1.2s ease-in-out 1 forwards;
-  animation-delay: 1.5s, 1.5s; /* start when initial finishes */
+  animation-delay: 1.5s, 1.5s;
 }
 
-/* Only the phone number bold & underlined */
+/* Phone number bold & underlined */
 #main-message span {
   font-weight: bold;
   text-decoration: underline;
 }
+
 
 </style>
 <link href="/manifest.json" rel="manifest"/>
@@ -1189,7 +1192,7 @@
 <h2 class="no-nonsense-heading">No App, No Multiple Questions.</h2>
 <h4 class="glow-once">
   <a href="tel:+919886566379">
-    <span id="initial-message">Touch to Call</span>
+    <span id="initial-message">Tap here to call</span>
     <span id="main-message">Call: <span>98865 66379</span> for priority assistance</span>
   </a>
 </h4>
