@@ -1060,63 +1060,69 @@
         animation: beautifulGlow 2s ease-out forwards; /* 2 seconds duration, plays once and stays at end state */
     }
     
-    
-    .glow-once {
+    /* phone glow */
+  .glow-once {
   text-align: center;
   font-family: Arial, sans-serif;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 30px 0;
 }
 
-/* Glow animation for the initial GIF */
-@keyframes glowPulse {
-  0% { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.7)); opacity: 0.9; }
-  50% { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1)); opacity: 1; }
-  100% { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.7)); opacity: 0.9; }
-}
-
-/* Fade animations */
-@keyframes fadeOut {
-  0% { opacity: 1; }
+/* Show GIF for a bit, then hide it */
+@keyframes showThenHide {
+  0%   { opacity: 1; visibility: visible; }
+  80%  { opacity: 1; visibility: visible; }
   100% { opacity: 0; visibility: hidden; }
 }
 
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; visibility: visible; }
-}
-
-/* Blue neon glow for the main message */
-@keyframes blueGlow {
-  0% { text-shadow: 0 0 5px #007BFF, 0 0 10px #007BFF, 0 0 15px #00A8FF; }
-  50% { text-shadow: 0 0 10px #00A8FF, 0 0 20px #007BFF, 0 0 30px #00A8FF; }
-  100% { text-shadow: 0 0 5px #007BFF, 0 0 10px #007BFF, 0 0 15px #00A8FF; }
+/* Smooth fade-in for the text */
+@keyframes fadeInOnce {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .glow-once a {
   color: inherit;
   text-decoration: none;
+  text-align: center;
 }
 
-/* Initial GIF fades out */
+/* GIF timing & centering */
 #initial-gif {
-  display: inline-block;
-  animation: glowPulse 2s ease-in-out infinite, fadeOut 2s ease-in-out 1 forwards;
-  animation-delay: 0s, 2s;
+  width: 48px;
+  height: 48px;
+  display: block;
+  margin: 0 auto 8px auto; /* centers and adds spacing */
+  animation: showThenHide 2s ease-out forwards;
 }
 
-/* Main message fades in and glows in blue */
+/* Main message styling */
 #main-message {
-  color: #007BFF;
+  color: #007BFF; /* elegant blue */
   opacity: 0;
   visibility: hidden;
-  animation: fadeIn 2s ease-in-out 1 forwards, blueGlow 2s ease-in-out infinite;
-  animation-delay: 2s, 2s;
+  font-size: 18px;
+  animation: fadeInOnce 800ms ease-out forwards;
+  animation-delay: 2s; /* appears right after GIF fades */
 }
 
 /* Only phone number bold & underlined */
 #main-message span {
   font-weight: bold;
   text-decoration: underline;
+}
+
+/* Accessibility: disable animation if prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #initial-gif, #main-message {
+    animation: none;
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 </style>
@@ -1188,9 +1194,10 @@
   <a href="tel:+919886566379">
     <img id="initial-gif" 
          src="https://media.tenor.com/pYF5u5pE1HoAAAAi/tap-click.gif" 
-         alt="Tap to call" 
-         style="width:36px; vertical-align:middle;">
-    <span id="main-message">Call: <span>98865 66379</span> for priority assistance</span>
+         alt="Tap to call">
+    <span id="main-message">
+      Call: <span>98865 66379</span> for priority assistance
+    </span>
   </a>
 </h4>
 <section class="image-grid-section">
