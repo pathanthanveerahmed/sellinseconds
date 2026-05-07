@@ -1162,7 +1162,8 @@ history.scrollRestoration = 'manual';
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('currentYear').textContent = new Date().getFullYear();
   setTimeout(() => { window.scrollTo(0, 0); }, 50);
-  setTimeout(hideLoading, 100);
+  setTimeout(hideLoading, 300);
+window.addEventListener('load', hideLoading);
   setBodyPadding();
   window.addEventListener('resize', setBodyPadding);
   nameInput.addEventListener('input', validateName);
