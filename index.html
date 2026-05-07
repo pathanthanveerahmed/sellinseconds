@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en-IN">
 <head>
 <meta charset="utf-8"/>
@@ -536,13 +535,6 @@
     }
     #whatsapp-icon img { width: 55px; height: 55px; object-fit: contain; display: block; }
     #whatsapp-icon:hover { transform: scale(1.15); box-shadow: 0 6px 16px rgba(0,0,0,0.3); }
-    #loading-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95);
-      z-index: 9999; display: flex; align-items: center; justify-content: center;
-      opacity: 1; visibility: visible;
-      transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
-    }
-    #loading-overlay img { width: 80px; height: 80px; animation: spin 1s linear infinite; }
     @keyframes spin { 100% { transform: rotate(360deg); } }
     .modal {
       display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%;
@@ -1005,7 +997,6 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
 </div>
 
 <!-- CHANGE 2: Blogs moved below disclaimer — outside primary conversion flow -->
-
 <section class="blog-posts-section">
 <h2>Our Latest Blogs</h2>
 <div class="blog-grid">
@@ -1107,9 +1098,7 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
 <a aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair." href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" id="whatsapp-icon" target="_blank">
 <img alt="WhatsApp Chat Icon for SellInSeconds" loading="lazy" src="https://www.sellinseconds.in/whatsapp.webp"/>
 </a>
-<div id="loading-overlay">
-<img alt="Loading, please wait..." src="https://www.sellinseconds.in/loading.gif"/>
-</div>
+
 <div aria-modal="true" class="modal" id="customModal" role="dialog">
 <div class="modal-content">
 <p aria-live="polite" id="modalMessage"></p>
@@ -1137,216 +1126,207 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
     const mobileError = document.getElementById('mobile-error');
     const mobileInput = document.getElementById('mobile');
 
-```
-function showModal(message) {
-  modalMessage.textContent = message;
-  modal.style.display = 'block';
-  const modalContent = document.querySelector('#customModal .modal-content');
-  modalContent.classList.remove('pop-glow');
-  setTimeout(() => { modalContent.classList.add('pop-glow'); }, 50);
-}
-function hideModal() {
-  modal.style.display = 'none';
-  const modalContent = document.querySelector('#customModal .modal-content');
-  modalContent.classList.remove('pop-glow');
-}
-modalCloseButton.onclick = function() { hideModal(); }
-window.onclick = function(event) { if (event.target == modal) { hideModal(); } }
-
-function setBodyPadding() {
-  requestAnimationFrame(() => {
-    if (headerElement) { bodyElement.style.paddingTop = headerElement.offsetHeight + 'px'; }
-  });
-}
-history.scrollRestoration = 'manual';
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
-  setTimeout(() => { window.scrollTo(0, 0); }, 50);
-  setTimeout(hideLoading, 300);
-  setTimeout(hideLoading, 1000);
-  setTimeout(hideLoading, 3000);
-  window.addEventListener('load', hideLoading);
-  setBodyPadding();
-  window.addEventListener('resize', setBodyPadding);
-  nameInput.addEventListener('input', validateName);
-  nameInput.addEventListener('focus', () => {
-    if (!sessionStorage.getItem('formPopupShown')) {
-      sessionStorage.setItem('formPopupShown', 'true');
-      showModal("⚡ Want an instant response? Call us directly: 98865 66379 — We're ready to help you right now! 🙏");
+    function showModal(message) {
+      modalMessage.textContent = message;
+      modal.style.display = 'block';
+      const modalContent = document.querySelector('#customModal .modal-content');
+      modalContent.classList.remove('pop-glow');
+      setTimeout(() => { modalContent.classList.add('pop-glow'); }, 50);
     }
-  }, { once: false });
-  mobileInput.addEventListener('input', validateMobile);
-  function validateName() {
-    const nameRegex = /^(?!^\d+$)(?!^[^\w\s]+$)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,}$/u;
-    if (!nameRegex.test(nameInput.value.trim())) { nameError.style.display = 'block'; return false; }
-    else { nameError.style.display = 'none'; return true; }
-  }
-  function validateMobile() {
-    const mobileRegex = /^[0-9]{10}$/;
-    if (!mobileRegex.test(mobileInput.value.trim())) { mobileError.style.display = 'block'; return false; }
-    else { mobileError.style.display = 'none'; return true; }
-  }
-  const allFlipContainers = document.querySelectorAll('.image-grid .image-container');
-  const hasFlippedOnce = sessionStorage.getItem('hasFlippedImages');
-  const flipDuration = 900;
-  const staggerDelay = 100;
-  const totalFlipInTime = allFlipContainers.length * staggerDelay;
-  const totalFlipOutTime = allFlipContainers.length * staggerDelay + flipDuration;
-  const parentGlowElements = document.querySelectorAll('.image-grid-row1-row2');
-  if (!hasFlippedOnce && allFlipContainers.length > 0) {
-    parentGlowElements.forEach(el => el.classList.add('glowing-border'));
-    allFlipContainers.forEach((container, index) => {
-      setTimeout(() => {
-        const innerCard = container.querySelector('.image-card-inner');
-        if (innerCard) {
-          innerCard.style.transform = 'rotateY(180deg)';
-          const backText = container.getAttribute('data-back-text');
-          const backFace = container.querySelector('.image-card-back');
-          if (backText && backFace) { backFace.textContent = backText; }
-        }
-      }, staggerDelay * index);
-    });
-    setTimeout(() => {
-      allFlipContainers.forEach((container, index) => {
-        setTimeout(() => {
-          const innerCard = container.querySelector('.image-card-inner');
-          if (innerCard) { innerCard.style.transform = 'rotateY(0deg)'; }
-        }, staggerDelay * index);
+    function hideModal() {
+      modal.style.display = 'none';
+      const modalContent = document.querySelector('#customModal .modal-content');
+      modalContent.classList.remove('pop-glow');
+    }
+    modalCloseButton.onclick = function() { hideModal(); }
+    window.onclick = function(event) { if (event.target == modal) { hideModal(); } }
+
+    function setBodyPadding() {
+      requestAnimationFrame(() => {
+        if (headerElement) { bodyElement.style.paddingTop = headerElement.offsetHeight + 'px'; }
       });
-      setTimeout(() => {
-        parentGlowElements.forEach(el => el.classList.remove('glowing-border'));
-        sessionStorage.setItem('hasFlippedImages', 'true');
-        setTimeout(setBodyPadding, 100);
-      }, totalFlipOutTime + 200);
-    }, totalFlipInTime + 500);
-  }
-  containers.forEach((container) => {
-    container.addEventListener('click', () => {
-      const gadgetInterest = container.getAttribute('data-gadget-name') || '';
-      const isSellingOrTrading = !gadgetInterest.toLowerCase().includes("buy") &&
-                                !gadgetInterest.toLowerCase().includes("repair") &&
-                                !gadgetInterest.toLowerCase().includes("software") &&
-                                !gadgetInterest.toLowerCase().includes("diagnosis") &&
-                                !gadgetInterest.toLowerCase().includes("servicing");
-      // CHANGE 3: Shortened modal message — concise and clear
-      if (isSellingOrTrading) {
-        showModal("No questions needed. Just share your name & number — we'll do the rest. 🙏");
-      }
-      containers.forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-pressed', 'false'); });
-      container.classList.add('selected');
-      container.setAttribute('aria-pressed', 'true');
-      interestInput.value = gadgetInterest;
-      let message;
-      if (gadgetInterest.toLowerCase().includes("buy")) {
-        message = `List of devices will be shared on your WhatsApp`;
-        submitButton.textContent = "See Available Gadgets";
-      } else if (gadgetInterest.toLowerCase().includes("repair") || gadgetInterest.toLowerCase().includes("servicing")) {
-        message = `Need a repair? We can help!`;
-        submitButton.textContent = "Book Repair Service";
-      } else if (gadgetInterest.toLowerCase().includes("software fix")) {
-        message = `Having software troubles? We offer quick solutions!`;
-        submitButton.textContent = "Book Software Fix";
-      } else if (gadgetInterest.toLowerCase().includes("diagnosis")) {
-        message = `Need a checkup? We can diagnose any gadget issue!`;
-        submitButton.textContent = "Book Diagnosis";
-      } else {
-        message = `Selected: ${container.querySelector('figcaption')?.textContent || 'Gadget'}. Get your quote!`;
-        submitButton.textContent = "Get Instant Quote";
-      }
-      if (window.speechSynthesis && window.speechSynthesis.speaking) {
-        window.speechSynthesis.cancel();
-        setTimeout(() => speak(message), 150);
-      } else if (window.speechSynthesis) {
-        speak(message);
-      }
-      nameInput.classList.remove('wave');
-      const nameInputRect = nameInput.getBoundingClientRect();
-      const currentScrollY = window.scrollY;
-      const headerHeight = headerElement ? headerElement.offsetHeight : 0;
-      const targetScrollTop = nameInputRect.top + currentScrollY - headerHeight - 30;
-      window.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
-      setTimeout(() => {
-        nameInput.focus({ preventScroll: true });
-        nameInput.classList.add('wave');
-        setTimeout(() => { nameInput.classList.remove('wave'); }, 900);
-      }, 100);
-    });
-  });
-});
-window.onload = () => { setBodyPadding(); };
-function speak(text) {
-  if ('speechSynthesis' in window) {
-    if (window.speechSynthesis.speaking) { window.speechSynthesis.cancel(); }
-    setTimeout(() => {
-      currentUtterance = new SpeechSynthesisUtterance(text);
-      currentUtterance.rate = 1.1;
-      currentUtterance.pitch = 1.0;
-      window.speechSynthesis.speak(currentUtterance);
-    }, 50);
-  }
-}
-document.getElementById("contact-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const form = e.target;
-  const name = form.name.value.trim();
-  const mobile = form.mobile.value.trim();
-  const interest = form.interest.value.trim();
-  const mobileRegex = /^[0-9]{10}$/;
-  const nameRegex = /^(?!^\d+$)(?!^[^\w\s]+$)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,}$/u;
-  if (!name || !mobile || !interest) { showModal("Please select a product/service and fill out all fields."); return; }
-  if (!nameRegex.test(name)) { nameError.style.display = 'block'; showModal("Please enter a valid name (at least 2 characters, letters and standard punctuation)."); return; }
-  if (!mobileRegex.test(mobile)) { mobileError.style.display = 'block'; showModal("Invalid mobile number! It should contain exactly 10 digits."); return; }
-  showLoading();
-  let loadingTimeout = setTimeout(() => {
-    hideLoading();
-    showModal("The request is taking longer than expected. Please check your internet connection and try again.");
-  }, 15000);
-  const formBody = new URLSearchParams();
-  formBody.append("name", name);
-  formBody.append("mobile", mobile);
-  formBody.append("interest", interest);
-  fetch(form.action, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: formBody.toString()
-  })
-  .then(response => {
-    clearTimeout(loadingTimeout);
-    hideLoading();
-    if (response.ok) {
-      if (interest === "Buy Pre-owned Gadgets") {
-        window.location.href = 'https://www.sellinseconds.in/dynamic/buygallery.html';
-      } else {
-        showModal("Form submitted successfully! We will contact you soon.");
-        form.reset();
-        document.querySelectorAll('.image-container.selected').forEach(c => {
-          c.classList.remove('selected');
-          c.setAttribute('aria-pressed', 'false');
-        });
-        if (submitButton) { submitButton.textContent = "Submit Another Inquiry"; }
-        interestInput.value = "";
-        nameInput.classList.remove('wave');
-      }
-    } else {
-      response.text().then(text => { showModal("Failed to submit. Please try again. (Server error " + response.status + ")"); });
     }
-  })
-  .catch(error => {
-    clearTimeout(loadingTimeout);
-    hideLoading();
-    showModal("Failed to submit. Please check your internet connection and try again. (Network error)");
-  });
-});
-function showLoading() {
-  const overlay = document.getElementById('loading-overlay');
-  overlay.style.cssText = 'display:flex !important; opacity:1 !important; visibility:visible !important;';
-}
-function hideLoading() {
-  const overlay = document.getElementById('loading-overlay');
-  overlay.style.cssText = 'display:none !important; opacity:0 !important; visibility:hidden !important;';
-}
-```
-
+    history.scrollRestoration = 'manual';
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+      setTimeout(() => { window.scrollTo(0, 0); }, 50);
+      setBodyPadding();
+      window.addEventListener('resize', setBodyPadding);
+      nameInput.addEventListener('input', validateName);
+      nameInput.addEventListener('focus', () => {
+        if (!sessionStorage.getItem('formPopupShown')) {
+          sessionStorage.setItem('formPopupShown', 'true');
+          showModal("⚡ Want an instant response? Call us directly: 98865 66379 — We're ready to help you right now! 🙏");
+        }
+      }, { once: false });
+      mobileInput.addEventListener('input', validateMobile);
+      function validateName() {
+        const nameRegex = /^(?!^\d+$)(?!^[^\w\s]+$)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,}$/u;
+        if (!nameRegex.test(nameInput.value.trim())) { nameError.style.display = 'block'; return false; }
+        else { nameError.style.display = 'none'; return true; }
+      }
+      function validateMobile() {
+        const mobileRegex = /^[0-9]{10}$/;
+        if (!mobileRegex.test(mobileInput.value.trim())) { mobileError.style.display = 'block'; return false; }
+        else { mobileError.style.display = 'none'; return true; }
+      }
+      const allFlipContainers = document.querySelectorAll('.image-grid .image-container');
+      const hasFlippedOnce = sessionStorage.getItem('hasFlippedImages');
+      const flipDuration = 900;
+      const staggerDelay = 100;
+      const totalFlipInTime = allFlipContainers.length * staggerDelay;
+      const totalFlipOutTime = allFlipContainers.length * staggerDelay + flipDuration;
+      const parentGlowElements = document.querySelectorAll('.image-grid-row1-row2');
+      if (!hasFlippedOnce && allFlipContainers.length > 0) {
+        parentGlowElements.forEach(el => el.classList.add('glowing-border'));
+        allFlipContainers.forEach((container, index) => {
+          setTimeout(() => {
+            const innerCard = container.querySelector('.image-card-inner');
+            if (innerCard) {
+              innerCard.style.transform = 'rotateY(180deg)';
+              const backText = container.getAttribute('data-back-text');
+              const backFace = container.querySelector('.image-card-back');
+              if (backText && backFace) { backFace.textContent = backText; }
+            }
+          }, staggerDelay * index);
+        });
+        setTimeout(() => {
+          allFlipContainers.forEach((container, index) => {
+            setTimeout(() => {
+              const innerCard = container.querySelector('.image-card-inner');
+              if (innerCard) { innerCard.style.transform = 'rotateY(0deg)'; }
+            }, staggerDelay * index);
+          });
+          setTimeout(() => {
+            parentGlowElements.forEach(el => el.classList.remove('glowing-border'));
+            sessionStorage.setItem('hasFlippedImages', 'true');
+            setTimeout(setBodyPadding, 100);
+          }, totalFlipOutTime + 200);
+        }, totalFlipInTime + 500);
+      }
+      containers.forEach((container) => {
+        container.addEventListener('click', () => {
+          const gadgetInterest = container.getAttribute('data-gadget-name') || '';
+          const isSellingOrTrading = !gadgetInterest.toLowerCase().includes("buy") &&
+                                    !gadgetInterest.toLowerCase().includes("repair") &&
+                                    !gadgetInterest.toLowerCase().includes("software") &&
+                                    !gadgetInterest.toLowerCase().includes("diagnosis") &&
+                                    !gadgetInterest.toLowerCase().includes("servicing");
+          // CHANGE 3: Shortened modal message — concise and clear
+          if (isSellingOrTrading) {
+            showModal("No questions needed. Just share your name & number — we'll do the rest. 🙏");
+          }
+          containers.forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-pressed', 'false'); });
+          container.classList.add('selected');
+          container.setAttribute('aria-pressed', 'true');
+          interestInput.value = gadgetInterest;
+          let message;
+          if (gadgetInterest.toLowerCase().includes("buy")) {
+            message = `List of devices will be shared on your WhatsApp`;
+            submitButton.textContent = "See Available Gadgets";
+          } else if (gadgetInterest.toLowerCase().includes("repair") || gadgetInterest.toLowerCase().includes("servicing")) {
+            message = `Need a repair? We can help!`;
+            submitButton.textContent = "Book Repair Service";
+          } else if (gadgetInterest.toLowerCase().includes("software fix")) {
+            message = `Having software troubles? We offer quick solutions!`;
+            submitButton.textContent = "Book Software Fix";
+          } else if (gadgetInterest.toLowerCase().includes("diagnosis")) {
+            message = `Need a checkup? We can diagnose any gadget issue!`;
+            submitButton.textContent = "Book Diagnosis";
+          } else {
+            message = `Selected: ${container.querySelector('figcaption')?.textContent || 'Gadget'}. Get your quote!`;
+            submitButton.textContent = "Get Instant Quote";
+          }
+          if (window.speechSynthesis && window.speechSynthesis.speaking) {
+            window.speechSynthesis.cancel();
+            setTimeout(() => speak(message), 150);
+          } else if (window.speechSynthesis) {
+            speak(message);
+          }
+          nameInput.classList.remove('wave');
+          const nameInputRect = nameInput.getBoundingClientRect();
+          const currentScrollY = window.scrollY;
+          const headerHeight = headerElement ? headerElement.offsetHeight : 0;
+          const targetScrollTop = nameInputRect.top + currentScrollY - headerHeight - 30;
+          window.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
+          setTimeout(() => {
+            nameInput.focus({ preventScroll: true });
+            nameInput.classList.add('wave');
+            setTimeout(() => { nameInput.classList.remove('wave'); }, 900);
+          }, 100);
+        });
+      });
+    });
+    window.onload = () => { setBodyPadding(); };
+    function speak(text) {
+      if ('speechSynthesis' in window) {
+        if (window.speechSynthesis.speaking) { window.speechSynthesis.cancel(); }
+        setTimeout(() => {
+          currentUtterance = new SpeechSynthesisUtterance(text);
+          currentUtterance.rate = 1.1;
+          currentUtterance.pitch = 1.0;
+          window.speechSynthesis.speak(currentUtterance);
+        }, 50);
+      }
+    }
+    document.getElementById("contact-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value.trim();
+      const mobile = form.mobile.value.trim();
+      const interest = form.interest.value.trim();
+      const mobileRegex = /^[0-9]{10}$/;
+      const nameRegex = /^(?!^\d+$)(?!^[^\w\s]+$)[A-Za-zÀ-ÖØ-öø-ÿ\s.'-]{2,}$/u;
+      if (!name || !mobile || !interest) { showModal("Please select a product/service and fill out all fields."); return; }
+      if (!nameRegex.test(name)) { nameError.style.display = 'block'; showModal("Please enter a valid name (at least 2 characters, letters and standard punctuation)."); return; }
+      if (!mobileRegex.test(mobile)) { mobileError.style.display = 'block'; showModal("Invalid mobile number! It should contain exactly 10 digits."); return; }
+      showLoading();
+      let loadingTimeout = setTimeout(() => {
+        hideLoading();
+        showModal("The request is taking longer than expected. Please check your internet connection and try again.");
+      }, 15000);
+      const formBody = new URLSearchParams();
+      formBody.append("name", name);
+      formBody.append("mobile", mobile);
+      formBody.append("interest", interest);
+      fetch(form.action, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formBody.toString()
+      })
+      .then(response => {
+        clearTimeout(loadingTimeout);
+        hideLoading();
+        if (response.ok) {
+          if (interest === "Buy Pre-owned Gadgets") {
+            window.location.href = 'https://www.sellinseconds.in/dynamic/buygallery.html';
+          } else {
+            showModal("Form submitted successfully! We will contact you soon.");
+            form.reset();
+            document.querySelectorAll('.image-container.selected').forEach(c => {
+              c.classList.remove('selected');
+              c.setAttribute('aria-pressed', 'false');
+            });
+            if (submitButton) { submitButton.textContent = "Submit Another Inquiry"; }
+            interestInput.value = "";
+            nameInput.classList.remove('wave');
+          }
+        } else {
+          response.text().then(text => { showModal("Failed to submit. Please try again. (Server error " + response.status + ")"); });
+        }
+      })
+      .catch(error => {
+        clearTimeout(loadingTimeout);
+        hideLoading();
+        showModal("Failed to submit. Please check your internet connection and try again. (Network error)");
+      });
+    });
+    function showLoading() {
+      if (submitButton) { submitButton.disabled = true; submitButton.textContent = "Submitting..."; }
+    }
+    function hideLoading() {
+      if (submitButton) { submitButton.disabled = false; }
+    }
 </script>
 <script>
   if ('serviceWorker' in navigator) {
