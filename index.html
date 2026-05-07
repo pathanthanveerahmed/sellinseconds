@@ -1140,9 +1140,9 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
     }
   modalCloseButton.onclick = function() {
   hideModal();
-  setTimeout(() => { nameInput.focus(); }, 100);
+  nameInput.focus(); // immediate — works on iOS
+  setTimeout(() => { nameInput.focus(); }, 300); // fallback — works on Android/desktop
 }
-
     window.onclick = function(event) { if (event.target == modal) { hideModal(); } }
 
     function setBodyPadding() {
