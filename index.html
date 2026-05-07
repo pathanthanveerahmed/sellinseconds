@@ -1163,7 +1163,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('currentYear').textContent = new Date().getFullYear();
   setTimeout(() => { window.scrollTo(0, 0); }, 50);
   setTimeout(hideLoading, 300);
-window.addEventListener('load', hideLoading);
+  setTimeout(hideLoading, 1000);
+  setTimeout(hideLoading, 3000);
+  window.addEventListener('load', hideLoading);
   setBodyPadding();
   window.addEventListener('resize', setBodyPadding);
   nameInput.addEventListener('input', validateName);
@@ -1337,15 +1339,11 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 });
 function showLoading() {
   const overlay = document.getElementById('loading-overlay');
-  overlay.style.display = 'flex';
-  overlay.style.opacity = '1';
-  overlay.style.visibility = 'visible';
+  overlay.style.cssText = 'display:flex !important; opacity:1 !important; visibility:visible !important;';
 }
 function hideLoading() {
   const overlay = document.getElementById('loading-overlay');
-  overlay.style.opacity = '0';
-  overlay.style.visibility = 'hidden';
-  setTimeout(() => { overlay.style.display = 'none'; }, 300);
+  overlay.style.cssText = 'display:none !important; opacity:0 !important; visibility:hidden !important;';
 }
 ```
 
