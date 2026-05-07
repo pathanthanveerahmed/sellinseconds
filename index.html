@@ -1207,11 +1207,7 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
       containers.forEach((container) => {
         container.addEventListener('click', () => {
           const gadgetInterest = container.getAttribute('data-gadget-name') || '';
-          const isSellingOrTrading = !gadgetInterest.toLowerCase().includes("buy") &&
-                                    !gadgetInterest.toLowerCase().includes("repair") &&
-                                    !gadgetInterest.toLowerCase().includes("software") &&
-                                    !gadgetInterest.toLowerCase().includes("diagnosis") &&
-                                    !gadgetInterest.toLowerCase().includes("servicing");
+          const isSellingOrTrading = true;
           // CHANGE 3: Shortened modal message — concise and clear
           if (isSellingOrTrading) {
             showModal("No questions needed. Just share your name & number — we'll do the rest. Call: 98865 66379 for priority assistance 🙏");
