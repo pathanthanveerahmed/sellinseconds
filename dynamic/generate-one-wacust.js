@@ -45,7 +45,7 @@ sequences.forEach((sequence, i) => {
 
   const first = images.find(x => x.id === targetId);
   const html = template
-    .replace(/{{TITLE}}/g, first?.name || "SellInSeconds")
+    .replace(/{{TITLE}}/g, (first?.name || "SellInSeconds").replace(/,\s*(₹)/, ' ₹'))
     .replace(/{{DESCRIPTION}}/g, first?.description || "Best Used Phones, Tablets, Laptops")
     .replace(/{{FILENAME}}/g, first?.filename || "og.png")
     .replace(/{{PRICE}}/g, (first?.name.match(/Rs\.?\s*(\d+)/i)?.[1] || "0"))
