@@ -1138,7 +1138,11 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
       const modalContent = document.querySelector('#customModal .modal-content');
       modalContent.classList.remove('pop-glow');
     }
-    modalCloseButton.onclick = function() { hideModal(); }
+  modalCloseButton.onclick = function() {
+  hideModal();
+  setTimeout(() => { nameInput.focus(); }, 100);
+}
+
     window.onclick = function(event) { if (event.target == modal) { hideModal(); } }
 
     function setBodyPadding() {
