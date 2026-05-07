@@ -87,14 +87,68 @@
       height: 20px;
       margin-right: 6px;
     }
+
+    /* Pulse animation */
+    @keyframes cardPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(37,211,102,0.6), 0 2px 8px rgba(0,0,0,0.05); border-color: #25D366; }
+      50%  { box-shadow: 0 0 0 8px rgba(37,211,102,0), 0 2px 8px rgba(0,0,0,0.05); border-color: #25D366; }
+      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0), 0 2px 8px rgba(0,0,0,0.05); border-color: #ccc; }
+    }
+    .card-pulse {
+      animation: cardPulse 0.7s ease-out 2;
+    }
+
+    /* Sticky mini bar */
+    #sticky-bar {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: #111;
+      color: white;
+      padding: 8px 14px;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    #sticky-bar.visible {
+      display: flex;
+    }
+    #sticky-bar .sticky-price {
+      font-size: 15px;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 55%;
+    }
+    #sticky-bar a {
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Sticky bar (hidden by default) -->
+  <div id="sticky-bar">
+    <span class="sticky-price" id="sticky-title"></span>
+    <a id="sticky-wa" href="#">Interested? 💬</a>
+  </div>
+
   <div class="content-wrapper"> 
     <div id="gallery">
       {{CARDS}}
     </div>
   </div> 
+
   <script>
     window.addEventListener("load", () => {
       const scrollToId = sessionStorage.getItem("scrollToCardId");
@@ -102,9 +156,39 @@
       sessionStorage.removeItem("scrollToCardId");
 
       const el = document.querySelector('[data-id="' + scrollToId + '"]');
-      if (el) {
-        el.scrollIntoView({ behavior: "instant", block: "start" });
-      }
+      if (!el) return;
+
+      // Scroll instantly to card
+      el.scrollIntoView({ behavior: "instant", block: "start" });
+
+      // Pulse the card border twice
+      el.classList.add("card-pulse");
+      el.addEventListener("animationend", () => {
+        el.classList.remove("card-pulse");
+      }, { once: true });
+
+      // Setup sticky bar
+      const titleEl = el.querySelector("h3, h2, h1, strong, .card-title");
+      const waLink = el.querySelector('.whatsapp-buttons-row a[href*="wa.me/9"]');
+      const stickyBar = document.getElementById("sticky-bar");
+      const stickyTitle = document.getElementById("sticky-title");
+      const stickyWa = document.getElementById("sticky-wa");
+
+      if (titleEl) stickyTitle.textContent = titleEl.textContent.trim();
+      if (waLink) stickyWa.href = waLink.href;
+
+      // Show sticky bar when card scrolls out of view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) {
+            stickyBar.classList.add("visible");
+          } else {
+            stickyBar.classList.remove("visible");
+          }
+        });
+      }, { threshold: 0.1 });
+
+      observer.observe(el);
     });
   </script>
 </body>
