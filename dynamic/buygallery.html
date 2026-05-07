@@ -96,10 +96,10 @@
     <div class="card" data-id="1">
       <div class="img-wrapper">
         
-        <img src="/dynamic/images/1.webp" alt="Buy APPLE iPhone 15 PLUS, 3 MONTHS WARRANTY AVAILABLE, ₹56000 on SellInSeconds" />
+        <img src="/dynamic/images/1.webp" alt="Buy APPLE iPhone 15 PLUS, 512 GB, 3 MONTHS WARRANTY AVAILABLE, ₹56000 on SellInSeconds" />
       </div>
-      <h3>APPLE iPhone 15 PLUS, 3 MONTHS WARRANTY AVAILABLE, ₹56000</h3>
-      <p>512 GB 💾, 100 % BATTERY HEALTH 🔋, FULL KIT, BRAND NEW ✨💫 CONDITION</p>
+      <h3>APPLE iPhone 15 PLUS, 512 GB, 3 MONTHS WARRANTY AVAILABLE, ₹56000</h3>
+      <p>100 % BATTERY HEALTH 🔋, FULL KIT, BRAND NEW ✨💫 CONDITION</p>
       <div class="whatsapp-buttons-row">
        <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F1.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
@@ -635,49 +635,15 @@
     </div>
   </div> 
   <script>
-    window.addEventListener("DOMContentLoaded", () => {
+    window.addEventListener("load", () => {
       const scrollToId = sessionStorage.getItem("scrollToCardId");
-      console.log("DEBUG (buygallery): Retrieved scrollToId from sessionStorage:", scrollToId);
-      if (!scrollToId) {
-          console.log("DEBUG (buygallery): scrollToId is empty or null. SCROLLING WILL NOT HAPPEN.");
-          return; 
+      if (!scrollToId) return;
+      sessionStorage.removeItem("scrollToCardId");
+
+      const el = document.querySelector('[data-id="' + scrollToId + '"]');
+      if (el) {
+        el.scrollIntoView({ behavior: "instant", block: "start" });
       }
-
-      const tryScroll = () => {
-        const selector = '[data-id="' + scrollToId + '"]';
-        console.log("DEBUG (buygallery): Attempting to query selector: ", selector);
-        const el = document.querySelector(selector);
-
-        if (el) {
-          console.log("DEBUG (buygallery): Element found: ", el);
-          const img = el.querySelector('img');
-
-          const performScroll = () => {
-              el.scrollIntoView({ behavior: "smooth", block: "start" }); 
-              console.log("DEBUG (buygallery): Scrolled to element.");
-              sessionStorage.removeItem("scrollToCardId");
-              console.log("DEBUG (buygallery): Cleared scrollToCardId from sessionStorage.");
-          };
-
-          if (img && !img.complete) {
-              console.log("DEBUG (buygallery): Image not complete. Waiting...");
-              img.addEventListener('load', performScroll);
-              img.addEventListener('error', () => {
-                  console.warn("DEBUG (buygallery): Image load error. Still scrolling.");
-                  performScroll(); 
-              });
-          } else {
-              console.log("DEBUG (buygallery): Image loaded or not found. Scrolling now.");
-              performScroll();
-          }
-
-        } else {
-          console.log("DEBUG (buygallery): Element not found. Retrying in 100ms...");
-          setTimeout(tryScroll, 100);
-        }
-      };
-
-      tryScroll();
     });
   </script>
 </body>
