@@ -148,12 +148,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      overflow-x: hidden;
-    }
+    html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
     body {
       background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5));
       color: var(--text-color);
@@ -172,169 +167,84 @@
     h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; }
     h3 { font-size: 1.6rem; font-weight: 500; margin-bottom: 2rem; }
     .hero-intro h1 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--main-accent-color);
-      background: none;
-      -webkit-background-clip: unset;
-      background-clip: unset;
-      text-align: center;
-      margin: 0.5rem auto 0.5rem;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      font-size: 1.25rem; font-weight: 600; color: var(--main-accent-color);
+      background: none; -webkit-background-clip: unset; background-clip: unset;
+      text-align: center; margin: 0.5rem auto 0.5rem; text-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
     .hero-intro .no-nonsense-heading {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: black;
-      background: none;
-      -webkit-background-clip: unset;
-      background-clip: unset;
-      text-align: center;
-      margin: 0.5rem auto 0.5rem;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      font-size: 1.25rem; font-weight: 600; color: black;
+      background: none; -webkit-background-clip: unset; background-clip: unset;
+      text-align: center; margin: 0.5rem auto 0.5rem; text-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
     .hero-intro h2 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--main-accent-color);
-      background: none;
-      -webkit-background-clip: unset;
-      background-clip: unset;
-      text-align: center;
-      margin: 0.5rem auto 0.5rem;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      font-size: 1.25rem; font-weight: 600; color: var(--main-accent-color);
+      background: none; -webkit-background-clip: unset; background-clip: unset;
+      text-align: center; margin: 0.5rem auto 0.5rem; text-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
     .hero-intro h2::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 3px;
-      background: var(--main-accent-color);
-      margin: 0.5rem auto 0;
-      border-radius: 2px;
+      content: ''; display: block; width: 80px; height: 3px;
+      background: var(--main-accent-color); margin: 0.5rem auto 0; border-radius: 2px;
     }
     .selection-prompt {
-      text-align: center;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #000;
-      margin: 2.5rem auto 1rem;
-      padding: 0 1rem;
-      max-width: 900px;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-      background: none;
-      -webkit-background-clip: unset;
-      background-clip: unset;
+      text-align: center; font-size: 1.25rem; font-weight: 600; color: #000;
+      margin: 2.5rem auto 1rem; padding: 0 1rem; max-width: 900px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1); background: none;
+      -webkit-background-clip: unset; background-clip: unset;
     }
     .selection-prompt::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 3px;
-      background: var(--main-accent-color);
-      margin: 0.5rem auto 0;
-      border-radius: 2px;
+      content: ''; display: block; width: 80px; height: 3px;
+      background: var(--main-accent-color); margin: 0.5rem auto 0; border-radius: 2px;
     }
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-      background-color: #f5f5f7;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      padding-top: 10.68%;
-      min-height: 150px;
+      position: fixed; top: 0; left: 0; width: 100%; overflow: hidden;
+      background-color: #f5f5f7; z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding-top: 10.68%; min-height: 150px;
     }
     .header-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: brightness(0.75) contrast(1.1);
-      z-index: 1;
-      transition: transform 0.5s ease-out;
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: contain; filter: brightness(0.75) contrast(1.1);
+      z-index: 1; transition: transform 0.5s ease-out;
     }
     .header-main-slogan {
-      position: absolute;
-      top: 65%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
-      width: 90%;
-      text-align: center;
-      line-height: 1.2;
-      margin: 0;
-      padding: 15px 30px;
-      max-width: 900px;
-      letter-spacing: -0.02em;
-      font-family: 'Roboto', sans-serif;
+      position: absolute; top: 65%; left: 50%; transform: translate(-50%, -50%);
+      z-index: 2; width: 90%; text-align: center; line-height: 1.2;
+      margin: 0; padding: 15px 30px; max-width: 900px;
+      letter-spacing: -0.02em; font-family: 'Roboto', sans-serif;
     }
     .header-main-slogan span {
-      font-size: 2.53rem;
-      font-weight: 900;
-      color: white;
+      font-size: 2.53rem; font-weight: 900; color: white;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     }
     .header-top-text {
-      display: none;
-      position: absolute;
-      top: 20px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      z-index: 3;
-      color: white;
-      font-weight: 700;
-      font-size: 1.8rem;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-      letter-spacing: 1px;
-      font-family: 'Roboto', sans-serif;
+      display: none; position: absolute; top: 20px; left: 0; width: 100%;
+      text-align: center; z-index: 3; color: white; font-weight: 700;
+      font-size: 1.8rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+      letter-spacing: 1px; font-family: 'Roboto', sans-serif;
     }
     .hero-intro {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      text-align: center;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: var(--text-color);
+      max-width: 900px; margin: 0 auto; padding: 0 1.5rem;
+      text-align: center; font-size: 1.1rem; line-height: 1.8; color: var(--text-color);
     }
     .hero-intro h2 { margin-bottom: 0; }
     .hero-intro p { margin-bottom: 0; }
     .below-form-content {
-      max-width: 900px;
-      margin: 3rem auto 2rem auto;
-      padding: 0 1.5rem;
-      text-align: center;
-      color: var(--text-color);
+      max-width: 900px; margin: 3rem auto 2rem auto;
+      padding: 0 1.5rem; text-align: center; color: var(--text-color);
     }
     .below-form-content h2 { font-size: 2.5rem; }
     .below-form-content p { font-size: 1.1rem; }
     .image-grid-section {
-      padding: 2rem 1rem;
-      background-color: rgba(255, 255, 255, 0.6);
-      border-radius: var(--radius);
-      margin: 1rem auto 2rem auto;
-      max-width: 1280px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      padding: 2rem 1rem; background-color: rgba(255, 255, 255, 0.6);
+      border-radius: var(--radius); margin: 1rem auto 2rem auto;
+      max-width: 1280px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
     .image-grid {
-      max-width: 1200px;
-      margin: 1.5rem auto;
-      padding: 0 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
+      max-width: 1200px; margin: 1.5rem auto; padding: 0 1rem;
+      display: flex; flex-direction: column; gap: 2.5rem;
     }
     .image-grid-row1-row2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 2rem;
-      width: 100%;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem; width: 100%;
       transition: box-shadow 0.4s ease, border 0.4s ease, border-radius 0.4s ease;
     }
     .image-grid-row1-row2.glowing-border {
@@ -347,169 +257,66 @@
       to { border-color: #8ab4f8; }
     }
     .image-container {
-      width: 100%;
-      perspective: 1200px;
-      position: relative;
-      cursor: pointer;
-      text-align: center;
-      background: var(--form-bg);
-      border-radius: var(--radius);
+      width: 100%; perspective: 1200px; position: relative; cursor: pointer;
+      text-align: center; background: var(--form-bg); border-radius: var(--radius);
       box-shadow: var(--shadow);
       transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      border: 2px solid var(--purple-border);
+      display: flex; flex-direction: column; overflow: hidden; border: 2px solid var(--purple-border);
     }
-    .image-container:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: var(--shadow-hover);
-    }
+    .image-container:hover { transform: translateY(-10px) scale(1.03); box-shadow: var(--shadow-hover); }
     .image-card-inner {
-      position: relative;
-      width: 100%;
-      height: 300px;
-      text-align: center;
-      transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
-      transform-style: preserve-3d;
+      position: relative; width: 100%; height: 300px; text-align: center;
+      transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1); transform-style: preserve-3d;
     }
-    .image-card-back,
-    .image-card-front {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      padding: 20px;
-      box-sizing: border-box;
+    .image-card-back, .image-card-front {
+      position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: transparent; padding: 20px; box-sizing: border-box;
     }
-    .image-card-back {
-      transform: rotateY(180deg);
-      background-color: var(--primary);
-      color: white;
-      font-size: 1.4rem;
-      font-weight: 700;
-    }
-    .image-card-front img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      margin-bottom: 0;
-      transition: transform 0.4s ease;
-    }
-    .image-container:hover .image-card-front img {
-      transform: scale(1.12);
-    }
-    .image-card-front figcaption {
-      display: block;
-      font-size: 1.15rem;
-      color: var(--heading-color);
-      font-weight: 700;
-      margin-top: 8px;
-    }
+    .image-card-back { transform: rotateY(180deg); background-color: var(--primary); color: white; font-size: 1.4rem; font-weight: 700; }
+    .image-card-front img { max-width: 100%; max-height: 100%; object-fit: contain; margin-bottom: 0; transition: transform 0.4s ease; }
+    .image-container:hover .image-card-front img { transform: scale(1.12); }
+    .image-card-front figcaption { display: block; font-size: 1.15rem; color: var(--heading-color); font-weight: 700; margin-top: 8px; }
     .image-description {
-      font-size: 0.9rem;
-      color: var(--secondary);
-      padding: 12px 15px;
-      text-align: center;
-      background-color: #f0f0f0;
-      width: 100%;
-      box-sizing: border-box;
-      margin-top: auto;
-      border-top: 1px solid var(--border-color);
-      min-height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1.4;
+      font-size: 0.9rem; color: var(--secondary); padding: 12px 15px; text-align: center;
+      background-color: #f0f0f0; width: 100%; box-sizing: border-box; margin-top: auto;
+      border-top: 1px solid var(--border-color); min-height: 70px;
+      display: flex; align-items: center; justify-content: center; line-height: 1.4;
     }
     .image-container.selected {
       outline: none;
       box-shadow: 0 0 0 4px white, 0 0 0 7px var(--selection-glow-color), var(--shadow-hover);
-      transform: translateY(-10px) scale(1.05);
-      z-index: 10;
+      transform: translateY(-10px) scale(1.05); z-index: 10;
     }
     figcaption { display: block; }
     form {
-      background: var(--form-bg);
-      max-width: 600px;
-      margin: 1.5rem auto 3rem auto;
-      padding: 3rem 2rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
-      /* CHANGE 4: scroll-margin-top so header never overlaps form on scroll */
-      scroll-margin-top: 160px;
+      background: var(--form-bg); max-width: 600px; margin: 1.5rem auto 3rem auto;
+      padding: 3rem 2rem; border-radius: var(--radius); box-shadow: var(--shadow);
+      border: 1px solid var(--border-color); scroll-margin-top: 160px;
     }
-    form h2 {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 2.5rem;
-    }
-    .form-group {
-      margin-bottom: 1.8rem;
-    }
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: var(--heading-color);
-    }
+    form h2 { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 2.5rem; }
+    .form-group { margin-bottom: 1.8rem; }
+    label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--heading-color); }
     input, select, textarea {
-      width: 100%;
-      padding: 1.1rem 1.3rem;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      font-size: 1rem;
-      background: #fdfdfd;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      box-sizing: border-box;
-      min-height: 56px;
+      width: 100%; padding: 1.1rem 1.3rem; border: 1px solid var(--border-color);
+      border-radius: var(--radius); font-size: 1rem; background: #fdfdfd;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease; box-sizing: border-box; min-height: 56px;
     }
     input:focus, select:focus, textarea:focus {
-      border-color: var(--main-accent-color);
-      box-shadow: 0 0 0 3px rgba(66,133,244,0.2);
-      outline: none;
+      border-color: var(--main-accent-color); box-shadow: 0 0 0 3px rgba(66,133,244,0.2); outline: none;
     }
     button[type="submit"] {
-      width: 100%;
-      padding: 1.1rem;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: var(--radius);
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
+      width: 100%; padding: 1.1rem; background: var(--primary); color: white; border: none;
+      border-radius: var(--radius); font-size: 1.1rem; font-weight: 600; cursor: pointer;
       transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      box-shadow: var(--shadow);
-      margin-top: 1rem;
+      box-shadow: var(--shadow); margin-top: 1rem;
     }
-    button[type="submit"]:hover {
-      background: var(--primary-dark);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-hover);
-    }
-    button[type="submit"]:active {
-      transform: translateY(0);
-      box-shadow: var(--shadow);
-    }
+    button[type="submit"]:hover { background: var(--primary-dark); transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+    button[type="submit"]:active { transform: translateY(0); box-shadow: var(--shadow); }
     .disclaimer {
-      max-width: 700px;
-      margin: 4rem auto 2rem auto;
-      padding: 1.5rem;
-      font-size: 0.9rem;
-      color: #555;
-      text-align: center;
-      background-color: var(--form-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
+      max-width: 700px; margin: 4rem auto 2rem auto; padding: 1.5rem; font-size: 0.9rem;
+      color: #555; text-align: center; background-color: var(--form-bg);
+      border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border-color);
     }
     @keyframes wavePulse {
       0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(66,133,244, 0.7); }
@@ -518,13 +325,8 @@
     }
     input.wave { animation: wavePulse 0.8s ease-out; }
     .site-footer {
-      background-color: #1d1d1f;
-      color: #f5f5f7;
-      padding: 2.5rem 1rem;
-      text-align: center;
-      font-size: 0.95rem;
-      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
-      border-top: 4px solid var(--primary);
+      background-color: #1d1d1f; color: #f5f5f7; padding: 2.5rem 1rem; text-align: center;
+      font-size: 0.95rem; box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08); border-top: 4px solid var(--primary);
     }
     .site-footer a { color: #f5f5f7; text-decoration: none; transition: color 0.3s ease, text-decoration 0.3s ease; }
     .site-footer a:hover { color: var(--primary); text-decoration: underline; }
@@ -538,78 +340,39 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
     .modal {
       display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%;
-      overflow: auto; background-color: rgba(0,0,0,0.5);
-      padding-top: 60px; animation: fadeInModal 0.3s ease-out;
+      overflow: auto; background-color: rgba(0,0,0,0.5); padding-top: 60px; animation: fadeInModal 0.3s ease-out;
     }
     @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
     .modal-content {
       background-color: #fefefe; margin: 5% auto; padding: 30px; border: 1px solid #888;
-      width: 85%; max-width: 480px; border-radius: var(--radius); box-shadow: var(--shadow-hover); text-align: center;
-      animation: slideInModal 0.4s ease-out;
-      transition: box-shadow 0.3s ease-out;
+      width: 85%; max-width: 480px; border-radius: var(--radius); box-shadow: var(--shadow-hover);
+      text-align: center; animation: slideInModal 0.4s ease-out; transition: box-shadow 0.3s ease-out;
     }
     @keyframes slideInModal { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     .modal-content p { margin-bottom: 25px; font-size: 1.15rem; line-height: 1.6; }
     .modal-close-button {
       background-color: var(--primary); color: white; padding: 12px 30px; border: none; cursor: pointer;
-      border-radius: var(--radius); font-size: 1rem; font-weight: 600; transition: background-color 0.3s ease, transform 0.2s ease;
+      border-radius: var(--radius); font-size: 1rem; font-weight: 600;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
     .modal-close-button:hover { background-color: var(--primary-dark); transform: scale(1.05); }
     .social-links {
-      margin-top: 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
+      margin-top: 1rem; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; align-items: center;
     }
     .social-links a {
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      vertical-align: middle;
-      transition: transform 0.2s ease-in-out;
+      text-decoration: none; display: inline-flex; align-items: center;
+      justify-content: center; vertical-align: middle; transition: transform 0.2s ease-in-out;
     }
-    .social-icon {
-      width: 24px;
-      height: 24px;
-      object-fit: contain;
-      filter: grayscale(100%) brightness(150%);
-      transition: filter 0.3s ease;
-    }
-    .social-links a:hover .social-icon {
-      filter: grayscale(0%) brightness(100%);
-      transform: scale(1.1);
-    }
-    .social-links a[href*="x.com"] .social-icon {
-      filter: invert(100%) brightness(100%);
-    }
-    .social-links a[href*="x.com"]:hover .social-icon {
-      filter: invert(100%) brightness(100%) drop-shadow(0 0 5px rgba(255,255,255,0.5));
-      transform: scale(1.1);
-    }
+    .social-icon { width: 24px; height: 24px; object-fit: contain; filter: grayscale(100%) brightness(150%); transition: filter 0.3s ease; }
+    .social-links a:hover .social-icon { filter: grayscale(0%) brightness(100%); transform: scale(1.1); }
+    .social-links a[href*="x.com"] .social-icon { filter: invert(100%) brightness(100%); }
+    .social-links a[href*="x.com"]:hover .social-icon { filter: invert(100%) brightness(100%) drop-shadow(0 0 5px rgba(255,255,255,0.5)); transform: scale(1.1); }
     .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      margin: -1px;
-      border: 0;
-      padding: 0;
-      white-space: nowrap;
-      clip-path: inset(100%);
-      clip: rect(0 0 0 0);
-      overflow: hidden;
+      position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0;
+      white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;
     }
-    .error-message {
-      color: #d32f2f;
-      font-size: 0.85rem;
-      margin-top: 0.25rem;
-      display: none;
-    }
-    @media (min-width: 992px) {
-      .header-main-slogan { top: 70%; }
-    }
+    .error-message { color: #d32f2f; font-size: 0.85rem; margin-top: 0.25rem; display: none; }
+    @media (min-width: 992px) { .header-main-slogan { top: 70%; } }
     @media (max-width: 1200px) {
       .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.8rem; }
       .image-card-inner { height: 280px; }
@@ -618,7 +381,7 @@
       .image-grid-row1-row2 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.5rem; }
       .image-card-inner { height: 260px; }
       .image-card-front figcaption { font-size: 1.05rem; }
-      .image-description { font-size: 0.85rem; min-height: 60px;}
+      .image-description { font-size: 0.85rem; min-height: 60px; }
       .header-main-slogan span { font-size: 2.5rem; }
       .selection-prompt { font-size: 1.15rem; }
     }
@@ -676,49 +439,27 @@
       .header-main-slogan span { font-size: 1.2rem; padding: 0 8px; }
     }
     .blog-posts-section {
-      padding: 2rem 1rem;
-      background-color: rgba(255, 255, 255, 0.6);
-      border-radius: var(--radius);
-      margin: 2rem auto 2rem auto;
-      max-width: 1280px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      padding: 2rem 1rem; background-color: rgba(255, 255, 255, 0.6);
+      border-radius: var(--radius); margin: 2rem auto 2rem auto;
+      max-width: 1280px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
     .blog-posts-section h2 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      text-align: center;
+      font-size: 2.2rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center;
       background: linear-gradient(90deg, var(--main-accent-color) 0%, #34A853 33%, #FBBC05 66%, #EA4335 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
     }
     .blog-posts-section h2::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 3px;
-      background: var(--main-accent-color);
-      margin: 0.5rem auto 0;
-      border-radius: 2px;
+      content: ''; display: block; width: 80px; height: 3px;
+      background: var(--main-accent-color); margin: 0.5rem auto 0; border-radius: 2px;
     }
     .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      padding: 1.5rem 1rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem; padding: 1.5rem 1rem; max-width: 1200px; margin: 0 auto;
     }
     .blog-post-card {
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid #e0e0e0;
+      background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      overflow: hidden; display: flex; flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid #e0e0e0;
     }
     .blog-post-card:hover { transform: translateY(-8px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); }
     .blog-post-card a { text-decoration: none; color: inherit; }
@@ -763,53 +504,30 @@
       70% { box-shadow: 0 0 10px rgba(66, 133, 244, 0.5), 0 0 20px rgba(66, 133, 244, 0.3); }
       100% { box-shadow: 0 0 0px rgba(66, 133, 244, 0), 0 0 0px rgba(66, 133, 244, 0); }
     }
-    .modal-content.pop-glow {
-      animation: beautifulGlow 2s ease-out forwards;
-    }
+    .modal-content.pop-glow { animation: beautifulGlow 2s ease-out forwards; }
     .call-line {
-    --blue: #8B0000;
-      width: 100%;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 8px 0;
+      --red: #8B0000;
+      width: 100%; margin: 0 auto; display: flex;
+      justify-content: center; align-items: center; padding: 8px 0;
     }
     .call-line a {
-      color: var(--blue);
-      text-decoration: none;
-      display: inline-block;
-      white-space: nowrap;
-      font: 500 clamp(16px, 2.4vw, 22px)/1.2 Arial, sans-serif;
-      letter-spacing: 0.2px;
-      text-align: center;
+      color: var(--red); text-decoration: none; display: inline-block; white-space: nowrap;
+      font: 500 clamp(16px, 2.4vw, 22px)/1.2 Arial, sans-serif; letter-spacing: 0.2px; text-align: center;
     }
-    .call-line a .num {
-      font-weight: 700;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
+    .call-line a .num { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
     @media (prefers-reduced-motion: no-preference) {
-      .call-line a { animation: fadeIn .5s ease-out both, blueGlowOnce 1s ease-in-out both; }
+      .call-line a { animation: fadeIn .5s ease-out both, redGlowOnce 1s ease-in-out both; }
     }
     @keyframes fadeIn { from {opacity: 0} to {opacity: 1} }
-    @keyframes blueGlowOnce { 0% { text-shadow: 0 0 6px rgba(0,123,255,.55) } 100% { text-shadow: none } }
+    @keyframes redGlowOnce { 0% { text-shadow: 0 0 6px rgba(139,0,0,.55) } 100% { text-shadow: none } }
 </style>
 <link href="/manifest.json" rel="manifest"/>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How do I sell my old iPhone?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Select 'Mobile Phone', fill the form, and get an instant quote for your iPhone." }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I get chip-level repairs for my laptop?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes, we specialize in chip-level motherboard repairs for laptops and other gadgets." }
-    }
+    { "@type": "Question", "name": "How do I sell my old iPhone?", "acceptedAnswer": { "@type": "Answer", "text": "Select 'Mobile Phone', fill the form, and get an instant quote for your iPhone." } },
+    { "@type": "Question", "name": "Can I get chip-level repairs for my laptop?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we specialize in chip-level motherboard repairs for laptops and other gadgets." } }
   ]
 }</script>
 <script type="application/ld+json">{
@@ -824,17 +542,11 @@
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "SellInSeconds Gadget Services",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "275"
-  }
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "275" }
 }</script>
 </head>
 <body>
-<noscript>
-<p style="text-align:center;color:red;">JavaScript is required to use this site effectively.</p>
-</noscript>
+<noscript><p style="text-align:center;color:red;">JavaScript is required to use this site effectively.</p></noscript>
 <header class="header">
 <div class="header-top-text">Sell in Seconds</div>
 <img alt="Sell In Seconds - Banner showing various gadgets like phones, laptops, and watches" class="header-image" loading="eager" src="https://www.sellinseconds.in/aicrop1.webp"/>
@@ -844,9 +556,7 @@
 <section class="hero-intro">
 <h2 class="no-nonsense-heading">No App. No Questions. Instant Trade-In</h2>
 <div class="call-line">
-  <a href="tel:+919886566379">
-    Call: <span class="num">98865 66379</span> for priority assistance
-  </a>
+  <a href="tel:+919886566379">Call: <span class="num">98865 66379</span> for priority assistance</a>
 </div>
 </section>
 <section class="image-grid-section">
@@ -855,36 +565,28 @@
 <div class="image-grid-row1-row2">
 <figure class="image-container" data-back-text="Sell Phone" data-gadget-name="Mobile Phone (iPhone, Samsung, Android, etc.)" tabindex="0">
 <div class="image-card-inner">
-<div class="image-card-front">
-<img alt="Sell Mobile Phone - iPhone, Samsung, OnePlus, Android - Instant Quote" loading="lazy" src="https://www.sellinseconds.in/phone.webp"/>
-</div>
+<div class="image-card-front"><img alt="Sell Mobile Phone - iPhone, Samsung, OnePlus, Android - Instant Quote" loading="lazy" src="https://www.sellinseconds.in/phone.webp"/></div>
 <div class="image-card-back">Sell Phone</div>
 </div>
 <p class="image-description">Sell your old mobile (Apple iPhone, Android, etc.) for a great price.</p>
 <figcaption>Mobile Phone</figcaption></figure>
 <figure class="image-container" data-back-text="Sell Laptop" data-gadget-name="Laptop / MacBook (Dell, HP, Apple, Windows)" tabindex="0">
 <div class="image-card-inner">
-<div class="image-card-front">
-<img alt="Sell Laptop or MacBook - Dell, HP, Apple, Windows - Get Best Price" loading="lazy" src="https://www.sellinseconds.in/laptop.webp"/>
-</div>
+<div class="image-card-front"><img alt="Sell Laptop or MacBook - Dell, HP, Apple, Windows - Get Best Price" loading="lazy" src="https://www.sellinseconds.in/laptop.webp"/></div>
 <div class="image-card-back">Sell Laptop</div>
 </div>
 <p class="image-description">Trade in your used laptop or MacBook (Dell, HP, Apple, Windows) quickly.</p>
 <figcaption>Laptop / MacBook</figcaption></figure>
 <figure class="image-container" data-back-text="Sell iMac" data-gadget-name="iMac / All-in-One PC" tabindex="0">
 <div class="image-card-inner">
-<div class="image-card-front">
-<img alt="Sell iMac or All-in-One PC - Apple, HP, Dell" loading="lazy" src="https://www.sellinseconds.in/allinone.webp"/>
-</div>
+<div class="image-card-front"><img alt="Sell iMac or All-in-One PC - Apple, HP, Dell" loading="lazy" src="https://www.sellinseconds.in/allinone.webp"/></div>
 <div class="image-card-back">Sell iMac</div>
 </div>
 <p class="image-description">Get a great price for your used iMac or All-in-One PC.</p>
 <figcaption>iMac / All-in-One</figcaption></figure>
 <figure class="image-container" data-back-text="Sell Tablet" data-gadget-name="Tablet / iPad (Apple, Samsung, Android)" tabindex="0">
 <div class="image-card-inner">
-<div class="image-card-front">
-<img alt="Sell Tablet or iPad - Apple iPad, Samsung Galaxy Tab, Android Tablets" loading="lazy" src="https://www.sellinseconds.in/tablet.webp"/>
-</div>
+<div class="image-card-front"><img alt="Sell Tablet or iPad - Apple iPad, Samsung Galaxy Tab, Android Tablets" loading="lazy" src="https://www.sellinseconds.in/tablet.webp"/></div>
 <div class="image-card-back">Sell Tablet</div>
 </div>
 <p class="image-description">Sell your old tablet or iPad (Apple, Samsung, Android) for instant cash.</p>
@@ -893,36 +595,28 @@
 <div class="image-grid-row1-row2">
 <figure class="image-container" data-back-text="Sell Accessories" data-gadget-name="Gadget Accessories" tabindex="0">
 <div class="image-card-inner">
-<div class="image-card-front">
-<img alt="Sell Gadget Accessories - Apple Pencil, Apple Keyboard, HomePod etc." loading="lazy" src="https://www.sellinseconds.in/accessories.webp"/>
-</div>
+<div class="image-card-front"><img alt="Sell Gadget Accessories - Apple Pencil, Apple Keyboard, HomePod etc." loading="lazy" src="https://www.sellinseconds.in/accessories.webp"/></div>
 <div class="image-card-back">Sell Accessories</div>
 </div>
 <p class="image-description">Sell various gadget accessories like Apple TV, Apple Pencil &amp; Keyboard, etc.</p>
 <figcaption>Accessories</figcaption></figure>
 <figure class="image-container" data-back-text="Sell Smart Watch" data-gadget-name="Smart Watch / Apple Watch" tabindex="0">
 <div class="image-card-inner">
-<div class="image-card-front">
-<img alt="Sell Smart Watch or Apple Watch - Series 8, 9, Ultra" loading="lazy" src="https://www.sellinseconds.in/watch.webp"/>
-</div>
+<div class="image-card-front"><img alt="Sell Smart Watch or Apple Watch - Series 8, 9, Ultra" loading="lazy" src="https://www.sellinseconds.in/watch.webp"/></div>
 <div class="image-card-back">Sell Smart Watch</div>
 </div>
 <p class="image-description">Sell your Apple Watch or other smartwatches for the best value.</p>
 <figcaption>Smart Watch</figcaption></figure>
 <figure class="image-container" data-back-text="Sell Earbuds" data-gadget-name="Earbuds / AirPods" tabindex="0">
 <div class="image-card-inner">
-<div class="image-card-front">
-<img alt="Sell Earbuds or AirPods - Apple AirPods, Samsung Buds" loading="lazy" src="https://www.sellinseconds.in/earbuds.webp"/>
-</div>
+<div class="image-card-front"><img alt="Sell Earbuds or AirPods - Apple AirPods, Samsung Buds" loading="lazy" src="https://www.sellinseconds.in/earbuds.webp"/></div>
 <div class="image-card-back">Sell Earbuds</div>
 </div>
 <p class="image-description">Get cash for used earbuds, including Apple AirPods &amp; Samsung Buds.</p>
 <figcaption>Earbuds / AirPods</figcaption></figure>
 <figure class="image-container" data-back-text="Sell Console" data-gadget-name="Gaming Console (Xbox, PS, Nintendo)" tabindex="0">
 <div class="image-card-inner">
-<div class="image-card-front">
-<img alt="Sell Gaming Console (Xbox, PlayStation, Nintendo)" loading="lazy" src="https://www.sellinseconds.in/gamingconsole.webp"/>
-</div>
+<div class="image-card-front"><img alt="Sell Gaming Console (Xbox, PlayStation, Nintendo)" loading="lazy" src="https://www.sellinseconds.in/gamingconsole.webp"/></div>
 <div class="image-card-back">Sell Console</div>
 </div>
 <p class="image-description">Sell your Xbox, PlayStation, or Nintendo Switch easily.</p>
@@ -931,36 +625,28 @@
 <div class="image-grid-row1-row2">
 <figure class="image-container" data-back-text="Buy Gadgets" data-gadget-name="Buy Pre-owned Gadgets" tabindex="0">
 <div class="image-card-inner">
-<div class="image-card-front">
-<img alt="Buy Pre-owned Gadgets - Phones, Laptops, Tablets - Quality Checked" loading="lazy" src="https://www.sellinseconds.in/buy.webp"/>
-</div>
+<div class="image-card-front"><img alt="Buy Pre-owned Gadgets - Phones, Laptops, Tablets - Quality Checked" loading="lazy" src="https://www.sellinseconds.in/buy.webp"/></div>
 <div class="image-card-back">Buy Gadgets</div>
 </div>
 <p class="image-description">Looking for quality pre-owned gadgets? Explore our range of iPhones, MacBooks, and iPads.</p>
 <figcaption>Buying Gadget</figcaption></figure>
 <figure class="image-container" data-back-text="Repair Gadgets" data-gadget-name="Gadget Repair Service" tabindex="0">
 <div class="image-card-inner">
-<div class="image-card-front">
-<img alt="Gadget Repair Services - Mobile, Laptop, Tablet, Chip Level Repair" loading="lazy" src="https://www.sellinseconds.in/repair.webp"/>
-</div>
+<div class="image-card-front"><img alt="Gadget Repair Services - Mobile, Laptop, Tablet, Chip Level Repair" loading="lazy" src="https://www.sellinseconds.in/repair.webp"/></div>
 <div class="image-card-back">Repair Gadgets</div>
 </div>
 <p class="image-description">Expert gadget repair for mobiles, laptops, tablets, including chip-level motherboard repairs.</p>
 <figcaption>Servicing Gadget</figcaption></figure>
 <figure class="image-container" data-back-text="Software Fix" data-gadget-name="Software Fix &amp; Optimization" tabindex="0">
 <div class="image-card-inner">
-<div class="image-card-front">
-<img alt="Software Fix &amp; Optimization for Phones, Laptops, Tablets" loading="lazy" src="https://www.sellinseconds.in/software.webp"/>
-</div>
+<div class="image-card-front"><img alt="Software Fix &amp; Optimization for Phones, Laptops, Tablets" loading="lazy" src="https://www.sellinseconds.in/software.webp"/></div>
 <div class="image-card-back">Software Fix</div>
 </div>
 <p class="image-description">Resolve software issues, performance lags, and system errors for all devices.</p>
 <figcaption>Software Fix</figcaption></figure>
 <figure class="image-container" data-back-text="Diagnosis" data-gadget-name="Gadget Diagnosis &amp; Checkup" tabindex="0">
 <div class="image-card-inner">
-<div class="image-card-front">
-<img alt="Full Gadget Diagnosis &amp; Health Check-up" loading="lazy" src="https://www.sellinseconds.in/diagnosis.webp"/>
-</div>
+<div class="image-card-front"><img alt="Full Gadget Diagnosis &amp; Health Check-up" loading="lazy" src="https://www.sellinseconds.in/diagnosis.webp"/></div>
 <div class="image-card-back">Diagnosis</div>
 </div>
 <p class="image-description">Diagnosis to identify hidden issues and ensure optimal performance.</p>
@@ -995,110 +681,71 @@
 Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Driving License) may be required for certain transactions. Payment will be processed post diagnosis and agreement. Service processes will be clearly communicated. For safety and verification, transactions are conducted through secure channels.
 <p><b>Contact : i for Apple, Opp. Bharat Petrol Pump, ITPL Main Road, Hoodi, Bangalore 560048. Phone : 9886566379</b></p>
 </div>
-
-<!-- CHANGE 2: Blogs moved below disclaimer — outside primary conversion flow -->
 <section class="blog-posts-section">
 <h2>Our Latest Blogs</h2>
 <div class="blog-grid">
 <article class="blog-post-card">
-<a href="https://www.sellinseconds.in/blog/selloldphone_blog.html">
-<img alt="Sell iPhone Guide Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/sellphone_tn.webp"/>
-<h3>Unlock the Best Value: A Comprehensive Guide to Selling Your Old iPhone in 2025</h3>
-</a>
+<a href="https://www.sellinseconds.in/blog/selloldphone_blog.html"><img alt="Sell iPhone Guide Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/sellphone_tn.webp"/><h3>Unlock the Best Value: A Comprehensive Guide to Selling Your Old iPhone in 2025</h3></a>
 <p>Learn how to get the most cash for your used iPhone with this step-by-step guide, covering preparation, valuation, and choosing the best selling platform.</p>
 <a class="read-more" href="https://www.sellinseconds.in/blog/selloldphone_blog.html">Read More</a>
 </article>
 <article class="blog-post-card">
-<a href="https://www.sellinseconds.in/blog/sellmac_blog.html">
-<img alt="Sell MacBook Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/personsellingmac_tn.webp"/>
-<h3>MacBook Upgrade? How to Get Top Cash for Your Used MacBook</h3>
-</a>
+<a href="https://www.sellinseconds.in/blog/sellmac_blog.html"><img alt="Sell MacBook Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/personsellingmac_tn.webp"/><h3>MacBook Upgrade? How to Get Top Cash for Your Used MacBook</h3></a>
 <p>Discover how to sell your used MacBook for the best price, with essential tips for preparation and why SellInSeconds is your go-to platform.</p>
 <a class="read-more" href="https://www.sellinseconds.in/blog/sellmac_blog.html">Read More</a>
 </article>
 <article class="blog-post-card">
-<a href="https://www.sellinseconds.in/blog/highquality_blog.html">
-<img alt="Buy Pre-owned Gadgets Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/buypreowned_tn.webp"/>
-<h3>Buying Smart: Your Guide to High-Quality Pre-Owned Gadgets from Sell In Seconds</h3>
-</a>
+<a href="https://www.sellinseconds.in/blog/highquality_blog.html"><img alt="Buy Pre-owned Gadgets Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/buypreowned_tn.webp"/><h3>Buying Smart: Your Guide to High-Quality Pre-Owned Gadgets from Sell In Seconds</h3></a>
 <p>Learn how to make smart choices when buying pre-owned phones, laptops, and tablets, and discover why SellInSeconds is your trusted source for quality-checked devices.</p>
 <a class="read-more" href="https://www.sellinseconds.in/blog/highquality_blog.html">Read More</a>
 </article>
 <article class="blog-post-card">
-<a href="https://www.sellinseconds.in/blog/exchangeprocess_blog.html">
-<img alt="Gadget Exchange Program Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/gadgetexchange_tn.webp"/>
-<h3>Seamless Transitions: How Gadget Exchange Programs Work at Sell In Seconds</h3>
-</a>
+<a href="https://www.sellinseconds.in/blog/exchangeprocess_blog.html"><img alt="Gadget Exchange Program Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/gadgetexchange_tn.webp"/><h3>Seamless Transitions: How Gadget Exchange Programs Work at Sell In Seconds</h3></a>
 <p>Learn how to effortlessly upgrade your old phone or laptop through SellInSeconds' convenient gadget exchange and trade-in programs.</p>
 <a class="read-more" href="https://www.sellinseconds.in/blog/exchangeprocess_blog.html">Read More</a>
 </article>
 <article class="blog-post-card">
-<a href="https://www.sellinseconds.in/blog/gadgetrepair_blog.html">
-<img alt="Gadget Repair Services Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/gadgetrepair_tn.webp"/>
-<h3>Beyond Selling: Comprehensive Gadget Repair Services You Can Trust</h3>
-</a>
+<a href="https://www.sellinseconds.in/blog/gadgetrepair_blog.html"><img alt="Gadget Repair Services Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/gadgetrepair_tn.webp"/><h3>Beyond Selling: Comprehensive Gadget Repair Services You Can Trust</h3></a>
 <p>Discover SellInSeconds' reliable and expert gadget repair services for mobiles, laptops, tablets, and smartwatches, including chip-level repairs.</p>
 <a class="read-more" href="https://www.sellinseconds.in/blog/gadgetrepair_blog.html">Read More</a>
 </article>
 <article class="blog-post-card">
-<a href="https://www.sellinseconds.in/blog/swfix_blog.html">
-<img alt="Software Fix &amp; Optimization Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/swfixOpt_tn.webp"/>
-<h3>Is Your Gadget Slow? The Importance of Software Fix &amp; Optimization</h3>
-</a>
+<a href="https://www.sellinseconds.in/blog/swfix_blog.html"><img alt="Software Fix &amp; Optimization Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/swfixOpt_tn.webp"/><h3>Is Your Gadget Slow? The Importance of Software Fix &amp; Optimization</h3></a>
 <p>Learn why your phone or laptop might be slowing down and how professional software fixes and optimization services from SellInSeconds can restore its performance.</p>
 <a class="read-more" href="https://www.sellinseconds.in/blog/swfix_blog.html">Read More</a>
 </article>
 <article class="blog-post-card">
-<a href="https://www.sellinseconds.in/blog/diagno_blog.html">
-<img alt="Gadget Diagnosis &amp; Checkup Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/gadgetdiacheck_tn.webp"/>
-<h3>Maximize Your Tech Lifespan: The Value of a Gadget Diagnosis &amp; Checkup</h3>
-</a>
+<a href="https://www.sellinseconds.in/blog/diagno_blog.html"><img alt="Gadget Diagnosis &amp; Checkup Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/gadgetdiacheck_tn.webp"/><h3>Maximize Your Tech Lifespan: The Value of a Gadget Diagnosis &amp; Checkup</h3></a>
 <p>Understand the importance of regular gadget diagnosis and checkups to identify hidden issues, optimize performance, and extend the life of your mobile, laptop, or tablet.</p>
 <a class="read-more" href="https://www.sellinseconds.in/blog/diagno_blog.html">Read More</a>
 </article>
 <article class="blog-post-card">
-<a href="https://www.sellinseconds.in/blog/chiplevel_blog.html">
-<img alt="Chip-Level Laptop Repair Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/chiplevelservice_tn.webp"/>
-<h3>Beyond the Screen: Understanding Chip-Level Repair for Your Damaged Laptop</h3>
-</a>
+<a href="https://www.sellinseconds.in/blog/chiplevel_blog.html"><img alt="Chip-Level Laptop Repair Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/chiplevelservice_tn.webp"/><h3>Beyond the Screen: Understanding Chip-Level Repair for Your Damaged Laptop</h3></a>
 <p>Dive deep into chip-level laptop repair, a specialized service that can save your device from severe motherboard issues and data loss.</p>
 <a class="read-more" href="https://www.sellinseconds.in/blog/chiplevel_blog.html">Read More</a>
 </article>
 <article class="blog-post-card">
-<a href="https://www.sellinseconds.in/blog/latest_release_blog.html">
-<img alt="Latest Release Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/latestrelease.webp"/>
-<h3>Match Your Requirements : Study the Changes in New Release &amp; Buy</h3>
-</a>
+<a href="https://www.sellinseconds.in/blog/latest_release_blog.html"><img alt="Latest Release Thumbnail" src="https://www.sellinseconds.in/blog/blogimages/latestrelease.webp"/><h3>Match Your Requirements : Study the Changes in New Release &amp; Buy</h3></a>
 <p>Apple's Latest Launches: What Changed and What's Worth Your Money.</p>
 <a class="read-more" href="https://www.sellinseconds.in/blog/latest_release_blog.html">Read More</a>
 </article>
 </div>
 </section>
-
 </main>
 <footer class="site-footer"><a href="https://goo.gl/maps/Mm49LHyTQLFdbjDE6" style="display:none;">Find Us on Google Maps</a>
 <p>© <span id="currentYear"></span> Sell In Seconds. All rights reserved.</p>
 <p><a href="https://www.sellinseconds.in/privacy-policy.html" title="Privacy Policy">Privacy Policy</a> | <a href="https://www.sellinseconds.in/terms-conditions.html" title="Terms and Conditions">Terms &amp; Conditions</a></p>
 <div class="social-links">
-<a aria-label="Follow us on X" href="https://x.com/thanveerahmed" rel="noopener noreferrer" target="_blank">
-<img alt="X (formerly Twitter) logo" class="social-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg"/>
-</a>
-<a aria-label="Like our Facebook page" href="https://www.facebook.com/rush4phone" rel="noopener noreferrer" target="_blank">
-<img alt="Facebook logo" class="social-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"/>
-</a>
-<a aria-label="Follow us on Instagram" href="https://www.instagram.com/apple.speaks/#" rel="noopener noreferrer" target="_blank">
-<img alt="Instagram logo" class="social-icon" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"/>
-</a>
-<a href="https://youtube.com/@telwin9616?si=imQ-SDz6IPWYkog0" target="_blank" aria-label="Subscribe to our YouTube channel">
-  <img src="https://www.sellinseconds.in/youtube.svg" alt="YouTube icon" class="social-icon" style="width: 24px; height: 24px;">
-</a>
+<a aria-label="Follow us on X" href="https://x.com/thanveerahmed" rel="noopener noreferrer" target="_blank"><img alt="X (formerly Twitter) logo" class="social-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg"/></a>
+<a aria-label="Like our Facebook page" href="https://www.facebook.com/rush4phone" rel="noopener noreferrer" target="_blank"><img alt="Facebook logo" class="social-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"/></a>
+<a aria-label="Follow us on Instagram" href="https://www.instagram.com/apple.speaks/#" rel="noopener noreferrer" target="_blank"><img alt="Instagram logo" class="social-icon" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"/></a>
+<a href="https://youtube.com/@telwin9616?si=imQ-SDz6IPWYkog0" target="_blank" aria-label="Subscribe to our YouTube channel"><img src="https://www.sellinseconds.in/youtube.svg" alt="YouTube icon" class="social-icon" style="width: 24px; height: 24px;"></a>
 </div>
 <p class="small-text">Designed &amp; Developed by Thanveer P</p>
 </footer>
 <a aria-label="Chat with us on WhatsApp for quick assistance regarding gadget selling, buying, or repair." href="https://wa.me/+919886566379?text=Hi%20I%20am%20interested%20in%2Fbuying%2Frepairing%20a%20gadget.%20Please%20contact%20me!" id="whatsapp-icon" target="_blank">
 <img alt="WhatsApp Chat Icon for SellInSeconds" loading="lazy" src="https://www.sellinseconds.in/whatsapp.webp"/>
 </a>
-
 <div aria-modal="true" class="modal" id="customModal" role="dialog">
 <div class="modal-content">
 <p aria-live="polite" id="modalMessage"></p>
@@ -1117,7 +764,6 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
     const submitButton = document.querySelector('#contact-form button[type="submit"]');
     const headerElement = document.querySelector('header');
     const bodyElement = document.body;
-    const synth = window.speechSynthesis;
     let currentUtterance;
     const modal = document.getElementById('customModal');
     const modalMessage = document.getElementById('modalMessage');
@@ -1138,11 +784,11 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
       const modalContent = document.querySelector('#customModal .modal-content');
       modalContent.classList.remove('pop-glow');
     }
-  modalCloseButton.onclick = function() {
-  hideModal();
-  nameInput.focus(); // immediate — works on iOS
-  setTimeout(() => { nameInput.focus(); }, 300); // fallback — works on Android/desktop
-}
+    modalCloseButton.onclick = function() {
+      hideModal();
+      nameInput.focus();
+      setTimeout(() => { nameInput.focus(); }, 300);
+    }
     window.onclick = function(event) { if (event.target == modal) { hideModal(); } }
 
     function setBodyPadding() {
@@ -1211,20 +857,23 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
       containers.forEach((container) => {
         container.addEventListener('click', () => {
           const gadgetInterest = container.getAttribute('data-gadget-name') || '';
-          const isSellingOrTrading = true;
-          // CHANGE 3: Shortened modal message — concise and clear
-          if (isSellingOrTrading) {
-            showModal("No questions needed. Just share your name & number — we'll do the rest. Call: 98865 66379 for priority assistance 🙏");
+
+          // Redirect immediately for Buy — no voice, no form
+          if (gadgetInterest === "Buy Pre-owned Gadgets") {
+            window.location.href = 'https://www.sellinseconds.in/dynamic/buygallery.html';
+            return;
           }
+
+          // Show popup for all other cards
+          showModal("No questions needed. Just share your name & number — we'll do the rest. Call: 98865 66379 for priority assistance 🙏");
+
           containers.forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-pressed', 'false'); });
           container.classList.add('selected');
           container.setAttribute('aria-pressed', 'true');
           interestInput.value = gadgetInterest;
+
           let message;
-          if (gadgetInterest.toLowerCase().includes("buy")) {
-            message = `List of devices will be shared on your WhatsApp`;
-            submitButton.textContent = "See Available Gadgets";
-          } else if (gadgetInterest.toLowerCase().includes("repair") || gadgetInterest.toLowerCase().includes("servicing")) {
+          if (gadgetInterest.toLowerCase().includes("repair") || gadgetInterest.toLowerCase().includes("servicing")) {
             message = `Need a repair? We can help!`;
             submitButton.textContent = "Book Repair Service";
           } else if (gadgetInterest.toLowerCase().includes("software fix")) {
@@ -1237,12 +886,14 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
             message = `Selected: ${container.querySelector('figcaption')?.textContent || 'Gadget'}. Get your quote!`;
             submitButton.textContent = "Get Instant Quote";
           }
+
           if (window.speechSynthesis && window.speechSynthesis.speaking) {
             window.speechSynthesis.cancel();
             setTimeout(() => speak(message), 150);
           } else if (window.speechSynthesis) {
             speak(message);
           }
+
           nameInput.classList.remove('wave');
           const nameInputRect = nameInput.getBoundingClientRect();
           const currentScrollY = window.scrollY;
@@ -1298,24 +949,20 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
         clearTimeout(loadingTimeout);
         hideLoading();
         if (response.ok) {
-          if (interest === "Buy Pre-owned Gadgets") {
-            window.location.href = 'https://www.sellinseconds.in/dynamic/buygallery.html';
-          } else {
-            showModal("Form submitted successfully! We will contact you soon.");
-            form.reset();
-            document.querySelectorAll('.image-container.selected').forEach(c => {
-              c.classList.remove('selected');
-              c.setAttribute('aria-pressed', 'false');
-            });
-            if (submitButton) { submitButton.textContent = "Submit Another Inquiry"; }
-            interestInput.value = "";
-            nameInput.classList.remove('wave');
-          }
+          showModal("Form submitted successfully! We will contact you soon.");
+          form.reset();
+          document.querySelectorAll('.image-container.selected').forEach(c => {
+            c.classList.remove('selected');
+            c.setAttribute('aria-pressed', 'false');
+          });
+          if (submitButton) { submitButton.textContent = "Submit Another Inquiry"; }
+          interestInput.value = "";
+          nameInput.classList.remove('wave');
         } else {
-          response.text().then(text => { showModal("Failed to submit. Please try again. (Server error " + response.status + ")"); });
+          response.text().then(() => { showModal("Failed to submit. Please try again. (Server error " + response.status + ")"); });
         }
       })
-      .catch(error => {
+      .catch(() => {
         clearTimeout(loadingTimeout);
         hideLoading();
         showModal("Failed to submit. Please check your internet connection and try again. (Network error)");
