@@ -128,6 +128,24 @@
   <div class="content-wrapper">
     <div id="gallery">
       
+    <div class="card" id="card-14" data-id="14">
+      <div class="img-wrapper">
+        
+        <img src="/dynamic/images/14.webp" alt="Buy SAMSUNG S22 ULTRA, ₹33000 on SellInSeconds" />
+      </div>
+      <h3>SAMSUNG S22 ULTRA ₹33000</h3>
+      <p>12 GB RAM, 256 GB 💾, BRAND NEW ✨💫 CONDITION</p>
+      <div class="whatsapp-buttons-row">
+       <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F14.html" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
+        </a>
+        <span class="arrow-text">⬇️</span>
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/14.html" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
+        </a>
+      </div>
+    </div>
+
     <div class="card" id="card-13" data-id="13">
       <div class="img-wrapper">
         
@@ -139,7 +157,7 @@
        <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F13.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
         </a>
-        <span class="arrow-text">⬇️</span>
+        
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/13.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
         </a>
@@ -649,24 +667,6 @@
         </a>
       </div>
     </div>
-
-    <div class="card" id="card-14" data-id="14">
-      <div class="img-wrapper">
-        
-        <img src="/dynamic/images/14.webp" alt="Buy APPLE MacBook PRO, APPLE M1 CHIP, ₹45000 on SellInSeconds" />
-      </div>
-      <h3>APPLE MacBook PRO, APPLE M1 CHIP ₹45000</h3>
-      <p>8 GB RAM, 256 GB SSD💾, 90 % BATTERY HEALTH 🔋, EXCELLENT ✨💫 CONDITION, 13.3 INCHES DISPLAY, TOUCH BAR, 154 BATTERY CYCLE COUNT</p>
-      <div class="whatsapp-buttons-row">
-       <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F14.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
-        </a>
-        
-        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/14.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
-        </a>
-      </div>
-    </div>
     </div>
   </div>
 
@@ -706,7 +706,7 @@
         const fullText = titleEl.textContent.trim();
         const priceMatch = fullText.match(/₹[\d,]+/);
         const price = priceMatch ? priceMatch[0] : '';
-        const nameOnly = fullText.replace(/,?\s*₹[\d,]+/, '').trim();
+        const nameOnly = fullText.split(',')[0].trim();
         stickyTitle.textContent = nameOnly + (price ? ' ' + price : '');
 
         stickyTitle.addEventListener("click", () => {
