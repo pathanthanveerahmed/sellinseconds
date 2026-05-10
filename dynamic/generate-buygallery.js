@@ -42,7 +42,7 @@ const cardsHTML = validCards.map(item => {
   const arrowText = (item.id === top.id && validCards.length > 1) ? '<span class="arrow-text">⬇️</span>' : '';
 
   return `
-    <div class="card" data-id="${item.id}">
+    <div class="card" id="card-${item.id}" data-id="${item.id}">
       <div class="img-wrapper">
         ${badge}
         <img src="/dynamic/images/${item.filename}" alt="Buy ${item.name} on SellInSeconds" />
