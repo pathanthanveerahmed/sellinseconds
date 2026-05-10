@@ -167,7 +167,7 @@
         const fullText = titleEl.textContent.trim();
         const priceMatch = fullText.match(/₹[\d,]+/);
         const price = priceMatch ? priceMatch[0] : '';
-        const nameOnly = fullText.replace(/,?\s*₹[\d,]+/, '').trim();
+        const nameOnly = fullText.split(',')[0].trim();
         stickyTitle.textContent = nameOnly + (price ? ' ' + price : '');
 
         stickyTitle.addEventListener("click", () => {
