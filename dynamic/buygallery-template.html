@@ -128,7 +128,13 @@
       const stickyTitle = document.getElementById("sticky-title");
       const stickyWa = document.getElementById("sticky-wa");
 
-      if (titleEl) stickyTitle.textContent = titleEl.textContent.trim();
+      if (titleEl) {
+  stickyTitle.textContent = titleEl.textContent.trim();
+  stickyTitle.style.cursor = 'pointer';
+  stickyTitle.onclick = () => {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+}
       if (waLink) stickyWa.href = waLink.href;
 
       const observer = new IntersectionObserver((entries) => {
