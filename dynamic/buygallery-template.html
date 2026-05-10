@@ -67,7 +67,6 @@
     #sticky-bar {
       display: none;
       position: fixed;
-      /* top set dynamically by JS */
       left: 0;
       right: 0;
       z-index: 999;
@@ -80,25 +79,48 @@
     }
     #sticky-bar.visible { display: flex; }
 
+    .sticky-left {
+      display: flex;
+      flex-direction: column;
+      max-width: 55%;
+      overflow: hidden;
+    }
     #sticky-title {
       background: none;
       border: none;
       color: white;
       text-align: left;
-      font-size: 15px;
+      font-size: 13px;
       font-weight: bold;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 55%;
       cursor: pointer;
       padding: 0;
       text-decoration: underline;
       text-underline-offset: 3px;
       font-family: system-ui, sans-serif;
     }
+    #sticky-price {
+      font-size: 14px;
+      font-weight: bold;
+      color: #25D366;
+      margin-top: 2px;
+    }
 
-    #sticky-bar a { background: #25D366; color: white; text-decoration: none; padding: 6px 12px; border-radius: 5px; font-size: 13px; white-space: nowrap; }
+    #sticky-wa {
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 13px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    #sticky-wa img { width: 18px; height: 18px; }
   </style>
 </head>
 <body>
@@ -108,8 +130,13 @@
   </div>
 
   <div id="sticky-bar">
-    <button id="sticky-title"></button>
-    <a id="sticky-wa" href="#">Interested? 💬</a>
+    <div class="sticky-left">
+      <button id="sticky-title"></button>
+      <span id="sticky-price"></span>
+    </div>
+    <a id="sticky-wa" href="#">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"/> Interested?
+    </a>
   </div>
 
   <div class="content-wrapper">
@@ -119,7 +146,6 @@
   </div>
 
   <script>
-    // Keep sticky bar exactly below call-stock bar dynamically
     function updateStickyBarTop() {
       const callStock = document.querySelector(".call-stock");
       const stickyBar = document.getElementById("sticky-bar");
@@ -149,10 +175,18 @@
       const waLink = el.querySelector('.whatsapp-buttons-row a[href*="wa.me/9"]');
       const stickyBar = document.getElementById("sticky-bar");
       const stickyTitle = document.getElementById("sticky-title");
+      const stickyPrice = document.getElementById("sticky-price");
       const stickyWa = document.getElementById("sticky-wa");
 
       if (titleEl) {
-        stickyTitle.textContent = titleEl.textContent.trim();
+        const fullText = titleEl.textContent.trim();
+        const priceMatch = fullText.match(/₹[\d,]+/);
+        const price = priceMatch ? priceMatch[0] : '';
+        const nameOnly = fullText.replace(/,?\s*₹[\d,]+/, '').trim();
+
+        stickyTitle.textContent = nameOnly;
+        stickyPrice.textContent = price;
+
         stickyTitle.addEventListener("click", () => {
           window.scrollTo({
             top: el.offsetTop - 70,
