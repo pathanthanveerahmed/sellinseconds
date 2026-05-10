@@ -20,6 +20,7 @@
   <meta name="twitter:description" content="Explore the best deals on used iPhones, MacBooks, Apple Watches, iPads, laptops, and smartphones at SellInSeconds. Instant purchase, top quality.">
   <meta name="twitter:image" content="https://www.sellinseconds.in/dynamic/images/sellinseconds_logo.webp">
   <style>
+    html { scroll-behavior: smooth; }
     html, body { margin: 0; padding: 0; }
     body { font-family: system-ui, sans-serif; background: #f9f9f9; color: #111; }
 
@@ -81,20 +82,14 @@
     }
     #sticky-bar.visible { display: flex; }
 
-    /* Button styled to look like the title text */
     #sticky-title {
-      background: none;
-      border: none;
       color: white;
-      text-align: left;
       font-size: 15px;
       font-weight: bold;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 55%;
-      cursor: pointer;
-      padding: 0;
       text-decoration: underline;
       text-underline-offset: 3px;
       font-family: system-ui, sans-serif;
@@ -110,7 +105,7 @@
   </div>
 
   <div id="sticky-bar">
-    <button id="sticky-title"></button>
+    <a id="sticky-title" href="#"></a>
     <a id="sticky-wa" href="#">Interested? 💬</a>
   </div>
 
@@ -144,9 +139,7 @@
 
       if (titleEl) {
         stickyTitle.textContent = titleEl.textContent.trim();
-        stickyTitle.onclick = () => {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        };
+        stickyTitle.href = "#card-" + scrollToId;
       }
 
       if (waLink) stickyWa.href = waLink.href;
