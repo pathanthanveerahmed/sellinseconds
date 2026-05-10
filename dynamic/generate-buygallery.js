@@ -19,7 +19,7 @@ const sequence = Array.isArray(data.sequences?.[active - 1]) ? data.sequences[ac
 // Step 2: Build image map
 const imageMap = {};
 (data.images || []).forEach(img => {
-  if (img.name && img.description && img.filename) {
+  if (img.name && img.filename) {
     imageMap[parseInt(img.id)] = img;
   }
 });
