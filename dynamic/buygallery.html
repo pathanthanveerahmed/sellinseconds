@@ -67,7 +67,6 @@
     #sticky-bar {
       display: none;
       position: fixed;
-      /* top set dynamically by JS */
       left: 0;
       right: 0;
       z-index: 999;
@@ -85,7 +84,7 @@
       border: none;
       color: white;
       text-align: left;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: bold;
       white-space: nowrap;
       overflow: hidden;
@@ -98,7 +97,19 @@
       font-family: system-ui, sans-serif;
     }
 
-    #sticky-bar a { background: #25D366; color: white; text-decoration: none; padding: 6px 12px; border-radius: 5px; font-size: 13px; white-space: nowrap; }
+    #sticky-wa {
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 13px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    #sticky-wa img { width: 18px; height: 18px; }
   </style>
 </head>
 <body>
@@ -109,12 +120,32 @@
 
   <div id="sticky-bar">
     <button id="sticky-title"></button>
-    <a id="sticky-wa" href="#">Interested? 💬</a>
+    <a id="sticky-wa" href="#">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"/> Interested?
+    </a>
   </div>
 
   <div class="content-wrapper">
     <div id="gallery">
       
+    <div class="card" id="card-13" data-id="13">
+      <div class="img-wrapper">
+        
+        <img src="/dynamic/images/13.webp" alt="Buy APPLE MacBook PRO, intel CORE i7-6th Gen, 16 GB RAM, 512 GB SSD, 15 inches, 2 GB AMD RADEON PRO GRAPHICS, TOUCH BAR, 210 CYCLE COUNT, ₹25000 on SellInSeconds" />
+      </div>
+      <h3>APPLE MacBook PRO, intel CORE i7-6th Gen, 16 GB RAM, 512 GB SSD, 15 inches, 2 GB AMD RADEON PRO GRAPHICS, TOUCH BAR, 210 CYCLE COUNT ₹25000</h3>
+      <p></p>
+      <div class="whatsapp-buttons-row">
+       <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F13.html" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
+        </a>
+        <span class="arrow-text">⬇️</span>
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/13.html" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
+        </a>
+      </div>
+    </div>
+
     <div class="card" id="card-12" data-id="12">
       <div class="img-wrapper">
         
@@ -126,7 +157,7 @@
        <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F12.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
         </a>
-        <span class="arrow-text">⬇️</span>
+        
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/12.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
         </a>
@@ -636,29 +667,10 @@
         </a>
       </div>
     </div>
-
-    <div class="card" id="card-13" data-id="13">
-      <div class="img-wrapper">
-        
-        <img src="/dynamic/images/13.webp" alt="Buy APPLE MacBook AIR, APPLE M1 CHIP, ₹35000 on SellInSeconds" />
-      </div>
-      <h3>APPLE MacBook AIR, APPLE M1 CHIP ₹35000</h3>
-      <p>8 GB RAM, 256 GB 💾, 95 % BATTERY HEALTH 🔋, EXCELLENT ✨💫 CONDITION, RETINA 13.3 INCHES DISPLAY, 139 BATTERY CYCLE COUNT</p>
-      <div class="whatsapp-buttons-row">
-       <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F13.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
-        </a>
-        
-        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/13.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
-        </a>
-      </div>
-    </div>
     </div>
   </div>
 
   <script>
-    // Keep sticky bar exactly below call-stock bar dynamically
     function updateStickyBarTop() {
       const callStock = document.querySelector(".call-stock");
       const stickyBar = document.getElementById("sticky-bar");
@@ -691,7 +703,12 @@
       const stickyWa = document.getElementById("sticky-wa");
 
       if (titleEl) {
-        stickyTitle.textContent = titleEl.textContent.trim();
+        const fullText = titleEl.textContent.trim();
+        const priceMatch = fullText.match(/₹[\d,]+/);
+        const price = priceMatch ? priceMatch[0] : '';
+        const nameOnly = fullText.replace(/,?\s*₹[\d,]+/, '').trim();
+        stickyTitle.textContent = nameOnly + (price ? ' ' + price : '');
+
         stickyTitle.addEventListener("click", () => {
           window.scrollTo({
             top: el.offsetTop - 70,
