@@ -80,7 +80,13 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     #sticky-bar.visible { display: flex; }
-    #sticky-bar .sticky-price {
+
+    /* Button styled to look like the title text */
+    #sticky-title {
+      background: none;
+      border: none;
+      color: white;
+      text-align: left;
       font-size: 15px;
       font-weight: bold;
       white-space: nowrap;
@@ -88,10 +94,12 @@
       text-overflow: ellipsis;
       max-width: 55%;
       cursor: pointer;
+      padding: 0;
       text-decoration: underline;
       text-underline-offset: 3px;
-      -webkit-tap-highlight-color: rgba(255,255,255,0.2);
+      font-family: system-ui, sans-serif;
     }
+
     #sticky-bar a { background: #25D366; color: white; text-decoration: none; padding: 6px 12px; border-radius: 5px; font-size: 13px; white-space: nowrap; }
   </style>
 </head>
@@ -102,7 +110,7 @@
   </div>
 
   <div id="sticky-bar">
-    <span class="sticky-price" id="sticky-title"></span>
+    <button id="sticky-title"></button>
     <a id="sticky-wa" href="#">Interested? 💬</a>
   </div>
 
@@ -136,14 +144,9 @@
 
       if (titleEl) {
         stickyTitle.textContent = titleEl.textContent.trim();
-        // Works on all platforms including iOS Safari
-        stickyTitle.addEventListener('click', () => {
+        stickyTitle.onclick = () => {
           el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-        stickyTitle.addEventListener('touchend', (e) => {
-          e.preventDefault();
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
+        };
       }
 
       if (waLink) stickyWa.href = waLink.href;
