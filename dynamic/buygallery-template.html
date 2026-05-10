@@ -23,7 +23,6 @@
     html, body { margin: 0; padding: 0; }
     body { font-family: system-ui, sans-serif; background: #f9f9f9; color: #111; }
 
-    /* Sticky call line — stays at top, not affected by browser chrome */
     .call-stock {
       position: sticky;
       top: 0;
@@ -68,7 +67,7 @@
     #sticky-bar {
       display: none;
       position: fixed;
-      top: 45px;
+      /* top set dynamically by JS */
       left: 0;
       right: 0;
       z-index: 999;
@@ -104,12 +103,10 @@
 </head>
 <body>
 
-  <!-- Sticky call line -->
   <div class="call-stock">
     📞 Call <a href="tel:+919886566379">98865 66379</a> for latest stock
   </div>
 
-  <!-- Sticky interested bar -->
   <div id="sticky-bar">
     <button id="sticky-title"></button>
     <a id="sticky-wa" href="#">Interested? 💬</a>
@@ -122,6 +119,17 @@
   </div>
 
   <script>
+    // Keep sticky bar exactly below call-stock bar dynamically
+    function updateStickyBarTop() {
+      const callStock = document.querySelector(".call-stock");
+      const stickyBar = document.getElementById("sticky-bar");
+      if (callStock && stickyBar) {
+        stickyBar.style.top = callStock.offsetHeight + "px";
+      }
+    }
+    window.addEventListener("load", updateStickyBarTop);
+    window.addEventListener("resize", updateStickyBarTop);
+
     window.addEventListener("load", () => {
       const scrollToId = sessionStorage.getItem("scrollToCardId");
       if (!scrollToId) return;
