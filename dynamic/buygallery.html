@@ -23,9 +23,8 @@
     html, body { margin: 0; padding: 0; }
     body { font-family: system-ui, sans-serif; background: #f9f9f9; color: #111; }
 
-    /* Fixed call line — always visible at top */
     .call-stock {
-      position: fixed;
+      position: sticky;
       top: 0;
       left: 0;
       right: 0;
@@ -40,8 +39,7 @@
     }
     .call-stock a { color: #8B0000; text-decoration: underline; }
 
-    /* Push content below fixed call line */
-    .content-wrapper { padding: 20px; padding-top: 60px; }
+    .content-wrapper { padding: 20px; }
 
     .card {
       margin: 10px auto;
@@ -51,7 +49,6 @@
       overflow: hidden;
       background: white;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      scroll-margin-top: 60px;
     }
     .card img { width: 100%; display: block; border-radius: 8px; max-width: 480px; margin: 0 auto; }
     .badge { position: absolute; top: 8px; left: 8px; background: red; color: white; padding: 4px 6px; font-size: 12px; border-radius: 4px; }
@@ -67,11 +64,10 @@
     }
     .card-pulse { animation: cardPulse 0.7s ease-out 2; }
 
-    /* Sticky interested bar — sits below call line when visible */
     #sticky-bar {
       display: none;
       position: fixed;
-      top: 45px;
+      /* top set dynamically by JS */
       left: 0;
       right: 0;
       z-index: 999;
@@ -83,27 +79,61 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     #sticky-bar.visible { display: flex; }
-    #sticky-bar .sticky-price { font-size: 15px; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55%; }
+
+    #sticky-title {
+      background: none;
+      border: none;
+      color: white;
+      text-align: left;
+      font-size: 15px;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 55%;
+      cursor: pointer;
+      padding: 0;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-family: system-ui, sans-serif;
+    }
+
     #sticky-bar a { background: #25D366; color: white; text-decoration: none; padding: 6px 12px; border-radius: 5px; font-size: 13px; white-space: nowrap; }
   </style>
 </head>
 <body>
 
-  <!-- Fixed call line — always on top -->
   <div class="call-stock">
     📞 Call <a href="tel:+919886566379">98865 66379</a> for latest stock
   </div>
 
-  <!-- Sticky interested bar -->
   <div id="sticky-bar">
-    <span class="sticky-price" id="sticky-title"></span>
+    <button id="sticky-title"></button>
     <a id="sticky-wa" href="#">Interested? 💬</a>
   </div>
 
   <div class="content-wrapper">
     <div id="gallery">
       
-    <div class="card" data-id="11">
+    <div class="card" id="card-12" data-id="12">
+      <div class="img-wrapper">
+        
+        <img src="/dynamic/images/12.webp" alt="Buy MOTOROLA EDGE 60 PRO, 12 GB, 256 GB, 6 MONTHS OLD, FULL KIT, ₹22000 on SellInSeconds" />
+      </div>
+      <h3>MOTOROLA EDGE 60 PRO, 12 GB, 256 GB, 6 MONTHS OLD, FULL KIT ₹22000</h3>
+      <p></p>
+      <div class="whatsapp-buttons-row">
+       <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F12.html" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
+        </a>
+        <span class="arrow-text">⬇️</span>
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/12.html" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
+        </a>
+      </div>
+    </div>
+
+    <div class="card" id="card-11" data-id="11">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/11.webp" alt="Buy APPLE iPhone 13 PRO MAX, 256 GB, EXCELLENT CONDITION, 87% BATTERY HEALTH, FULL KIT, ₹45000 on SellInSeconds" />
@@ -114,14 +144,14 @@
        <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F11.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
         </a>
-        <span class="arrow-text">⬇️</span>
+        
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/11.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
         </a>
       </div>
     </div>
 
-    <div class="card" data-id="10">
+    <div class="card" id="card-10" data-id="10">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/10.webp" alt="Buy APPLE iPhone 14 PRO MAX, 256 GB, EXCELLENT CONDITION, 90% BATTERY HEALTH, ₹45000 on SellInSeconds" />
@@ -139,7 +169,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="9">
+    <div class="card" id="card-9" data-id="9">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/9.webp" alt="Buy SAMSUNG FLIP4, 8 GB, 256 GB, FULL KIT, BRAND NEW CONDITION, ₹25000 on SellInSeconds" />
@@ -157,7 +187,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="8">
+    <div class="card" id="card-8" data-id="8">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/8.webp" alt="Buy DELL INSPIRON 3000, intel CORE i5-11th Gen, ₹28000 on SellInSeconds" />
@@ -175,7 +205,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="7">
+    <div class="card" id="card-7" data-id="7">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/7.webp" alt="Buy OnePlus NORD CE3, ₹13000 on SellInSeconds" />
@@ -193,7 +223,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="6">
+    <div class="card" id="card-6" data-id="6">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/6.webp" alt="Buy VIVO X FOLD5, ₹73000 on SellInSeconds" />
@@ -211,7 +241,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="5">
+    <div class="card" id="card-5" data-id="5">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/5.webp" alt="Buy SAMSUNG S23, ₹30000 on SellInSeconds" />
@@ -229,7 +259,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="4">
+    <div class="card" id="card-4" data-id="4">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/4.webp" alt="Buy SAMSUNG S24, ₹33000 on SellInSeconds" />
@@ -247,7 +277,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="3">
+    <div class="card" id="card-3" data-id="3">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/3.webp" alt="Buy APPLE iMac 2019, intel vPro CORE i5-3.7GHz 6 CORE 9th Gen, 5K OLED 27 INCHES RETINA DISPLAY, ₹70000 on SellInSeconds" />
@@ -265,7 +295,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="2">
+    <div class="card" id="card-2" data-id="2">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/2.webp" alt="Buy APPLE iPhone XR modified to iPhone 17 PRO, ₹15000 on SellInSeconds" />
@@ -283,7 +313,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="1">
+    <div class="card" id="card-1" data-id="1">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/1.webp" alt="Buy APPLE iPhone 15 PLUS, 512 GB, 3 MONTHS WARRANTY AVAILABLE, ₹56000 on SellInSeconds" />
@@ -301,7 +331,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="30">
+    <div class="card" id="card-30" data-id="30">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/30.webp" alt="Buy DELL VOSTRO 3530, intel i5-13th Gen, 6 MONTHS WARRANTY, ₹30000 on SellInSeconds" />
@@ -319,7 +349,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="29">
+    <div class="card" id="card-29" data-id="29">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/29.webp" alt="Buy APPLE iPhone 13 PRO, ₹39000 on SellInSeconds" />
@@ -337,7 +367,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="28">
+    <div class="card" id="card-28" data-id="28">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/28.webp" alt="Buy DELL INSPIRON, intel CORE i5-10th Gen, ₹20000 on SellInSeconds" />
@@ -355,7 +385,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="27">
+    <div class="card" id="card-27" data-id="27">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/27.webp" alt="Buy APPLE MacBook AIR, APPLE M4 CHIP, ₹75000 on SellInSeconds" />
@@ -373,7 +403,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="26">
+    <div class="card" id="card-26" data-id="26">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/26.webp" alt="Buy APPLE MacBook PRO, APPLE M1 PRO CHIP, ₹70000 on SellInSeconds" />
@@ -391,7 +421,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="25">
+    <div class="card" id="card-25" data-id="25">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/25.webp" alt="Buy APPLE MacBook AIR, APPLE M4 CHIP, 15 inches, SEALED, ₹130000 on SellInSeconds" />
@@ -409,7 +439,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="24">
+    <div class="card" id="card-24" data-id="24">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/24.webp" alt="Buy SAMSUNG S25 ULTRA, ₹71000 on SellInSeconds" />
@@ -427,7 +457,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="23">
+    <div class="card" id="card-23" data-id="23">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/23.webp" alt="Buy LENOVO T490S, intel CORE i5-8th Gen, SLIM, ₹20000 on SellInSeconds" />
@@ -445,7 +475,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="22">
+    <div class="card" id="card-22" data-id="22">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/22.webp" alt="Buy APPLE iPhone 12 MINI, ₹17000 on SellInSeconds" />
@@ -463,7 +493,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="21">
+    <div class="card" id="card-21" data-id="21">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/21.webp" alt="Buy APPLE iPhone 12, ₹21000 on SellInSeconds" />
@@ -481,7 +511,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="20">
+    <div class="card" id="card-20" data-id="20">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/20.webp" alt="Buy APPLE iPhone 13 PRO MAX, ₹40000 on SellInSeconds" />
@@ -499,7 +529,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="19">
+    <div class="card" id="card-19" data-id="19">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/19.webp" alt="Buy APPLE iPhone 17 PRO, JUST 4 MONTHS OLD, ₹105000 on SellInSeconds" />
@@ -517,7 +547,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="18">
+    <div class="card" id="card-18" data-id="18">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/18.webp" alt="Buy APPLE WATCH ULTRA 1, 49mm, GPS+CELLULAR, ₹26000 on SellInSeconds" />
@@ -535,7 +565,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="17">
+    <div class="card" id="card-17" data-id="17">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/17.webp" alt="Buy APPLE MacBook PRO, 2.4GHz 8-CORE intel CORE i9-9th Gen, ₹35000 on SellInSeconds" />
@@ -553,7 +583,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="16">
+    <div class="card" id="card-16" data-id="16">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/16.webp" alt="Buy APPLE PENCIL 2nd GENERATION, UNUSED, ₹6000 on SellInSeconds" />
@@ -571,7 +601,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="15">
+    <div class="card" id="card-15" data-id="15">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/15.webp" alt="Buy APPLE iPhone XR, ₹12000 on SellInSeconds" />
@@ -589,7 +619,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="14">
+    <div class="card" id="card-14" data-id="14">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/14.webp" alt="Buy APPLE MacBook PRO, APPLE M1 CHIP, ₹45000 on SellInSeconds" />
@@ -607,7 +637,7 @@
       </div>
     </div>
 
-    <div class="card" data-id="13">
+    <div class="card" id="card-13" data-id="13">
       <div class="img-wrapper">
         
         <img src="/dynamic/images/13.webp" alt="Buy APPLE MacBook AIR, APPLE M1 CHIP, ₹35000 on SellInSeconds" />
@@ -624,28 +654,21 @@
         </a>
       </div>
     </div>
-
-    <div class="card" data-id="12">
-      <div class="img-wrapper">
-        
-        <img src="/dynamic/images/12.webp" alt="Buy APPLE iPad 8th Gen, CELLULAR, ₹11000 on SellInSeconds" />
-      </div>
-      <h3>APPLE iPad 8th Gen, CELLULAR ₹11000</h3>
-      <p>32 GB 💾, EXCELLENT ✨💫 CONDITION, RETINA 10.2 INCHES DISPLAY</p>
-      <div class="whatsapp-buttons-row">
-       <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F12.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
-        </a>
-        
-        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/12.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
-        </a>
-      </div>
-    </div>
     </div>
   </div>
 
   <script>
+    // Keep sticky bar exactly below call-stock bar dynamically
+    function updateStickyBarTop() {
+      const callStock = document.querySelector(".call-stock");
+      const stickyBar = document.getElementById("sticky-bar");
+      if (callStock && stickyBar) {
+        stickyBar.style.top = callStock.offsetHeight + "px";
+      }
+    }
+    window.addEventListener("load", updateStickyBarTop);
+    window.addEventListener("resize", updateStickyBarTop);
+
     window.addEventListener("load", () => {
       const scrollToId = sessionStorage.getItem("scrollToCardId");
       if (!scrollToId) return;
@@ -667,7 +690,16 @@
       const stickyTitle = document.getElementById("sticky-title");
       const stickyWa = document.getElementById("sticky-wa");
 
-      if (titleEl) stickyTitle.textContent = titleEl.textContent.trim();
+      if (titleEl) {
+        stickyTitle.textContent = titleEl.textContent.trim();
+        stickyTitle.addEventListener("click", () => {
+          window.scrollTo({
+            top: el.offsetTop - 70,
+            behavior: "smooth"
+          });
+        });
+      }
+
       if (waLink) stickyWa.href = waLink.href;
 
       const observer = new IntersectionObserver((entries) => {
