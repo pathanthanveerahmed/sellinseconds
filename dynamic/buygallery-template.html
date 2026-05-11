@@ -134,7 +134,9 @@
       const contentWrapper = document.getElementById("content-wrapper");
       if (callStock) {
         const h = callStock.offsetHeight;
-        if (stickyBar) stickyBar.style.top = h + "px";
+        if (stickyBar) {
+    stickyBar.style.top =
+    (h + (window.visualViewport ? window.visualViewport.offsetTop : 0)) + "px";
         if (contentWrapper) contentWrapper.style.paddingTop = (h + 20) + "px";
       }
     }
