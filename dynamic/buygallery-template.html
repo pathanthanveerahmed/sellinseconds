@@ -24,7 +24,7 @@
     body { font-family: system-ui, sans-serif; background: #f9f9f9; color: #111; }
 
     .call-stock {
-      position: sticky;
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
@@ -58,26 +58,10 @@
     .whatsapp-buttons-row img { width: 20px; height: 20px; margin-right: 6px; }
 
     @keyframes cardPulse {
-      0%   {
-  box-shadow:
-    0 0 0 0 rgba(139,0,0,0.65),
-    0 2px 8px rgba(0,0,0,0.05);
-  border-color: #8B0000;
-}
-
-50%  {
-  box-shadow:
-    0 0 0 8px rgba(139,0,0,0),
-    0 2px 8px rgba(0,0,0,0.05);
-  border-color: #8B0000;
-}
-      100% {
-  box-shadow:
-    0 0 0 0 rgba(139,0,0,0),
-    0 2px 8px rgba(0,0,0,0.05);
-  border-color: #ccc;
-}
-}
+      0%   { box-shadow: 0 0 0 0 rgba(139,0,0,0.65), 0 2px 8px rgba(0,0,0,0.05); border-color: #8B0000; }
+      50%  { box-shadow: 0 0 0 8px rgba(139,0,0,0), 0 2px 8px rgba(0,0,0,0.05); border-color: #8B0000; }
+      100% { box-shadow: 0 0 0 0 rgba(139,0,0,0), 0 2px 8px rgba(0,0,0,0.05); border-color: #ccc; }
+    }
     .card-pulse { animation: cardPulse 0.7s ease-out 2; }
 
     #sticky-bar {
@@ -105,35 +89,28 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 55%;
+      max-width: 80%;
       cursor: pointer;
       padding: 0;
       text-decoration: underline;
       text-underline-offset: 3px;
       font-family: system-ui, sans-serif;
     }
+
     #sticky-wa {
-  background: none;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-}
-
-#sticky-wa img {
-  width: 20px;
-  height: 20px;
-  display: block;
-}
-
+      background: none;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    #sticky-wa img { width: 28px; height: 28px; display: block; }
   </style>
 </head>
 <body>
 
-  <div class="call-stock">
+  <div class="call-stock" id="call-stock">
     📞 Call <a href="tel:+919886566379">98865 66379</a> for latest stock
   </div>
 
@@ -144,22 +121,26 @@
     </a>
   </div>
 
-  <div class="content-wrapper">
+  <div class="content-wrapper" id="content-wrapper">
     <div id="gallery">
       {{CARDS}}
     </div>
   </div>
 
   <script>
-    function updateStickyBarTop() {
-      const callStock = document.querySelector(".call-stock");
+    function updateLayout() {
+      const callStock = document.getElementById("call-stock");
       const stickyBar = document.getElementById("sticky-bar");
-      if (callStock && stickyBar) {
-        stickyBar.style.top = callStock.offsetHeight + "px";
+      const contentWrapper = document.getElementById("content-wrapper");
+      if (callStock) {
+        const h = callStock.offsetHeight;
+        if (stickyBar) stickyBar.style.top = h + "px";
+        if (contentWrapper) contentWrapper.style.paddingTop = (h + 20) + "px";
       }
     }
-    window.addEventListener("load", updateStickyBarTop);
-    window.addEventListener("resize", updateStickyBarTop);
+    window.addEventListener("load", updateLayout);
+    window.addEventListener("resize", updateLayout);
+    window.addEventListener("scroll", updateLayout, { passive: true });
 
     window.addEventListener("load", () => {
       const scrollToId = sessionStorage.getItem("scrollToCardId");
@@ -184,11 +165,13 @@
 
       if (titleEl) {
         const fullText = titleEl.textContent.trim();
+        // Extract price first
         const priceMatch = fullText.match(/₹[\d,]+/);
         const price = priceMatch ? priceMatch[0] : '';
-        const nameOnly = fullText.replace(/₹[\d,]+/, '').trim();
-        stickyTitle.textContent =
-        nameOnly + (price ? ' ' + price : '');
+        // Take text before first comma, then remove price if it exists there
+        const nameOnly = fullText.split(',')[0].replace(/₹[\d,]+/, '').trim();
+        stickyTitle.textContent = nameOnly + (price ? ' ' + price : '');
+
         stickyTitle.addEventListener("click", () => {
           window.scrollTo({
             top: el.offsetTop - 70,
