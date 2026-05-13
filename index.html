@@ -505,21 +505,77 @@
       100% { box-shadow: 0 0 0px rgba(66, 133, 244, 0), 0 0 0px rgba(66, 133, 244, 0); }
     }
     .modal-content.pop-glow { animation: beautifulGlow 2s ease-out forwards; }
-    .call-line {
-      --red: #8B0000;
-      width: 100%; margin: 0 auto; display: flex;
-      justify-content: center; align-items: center; padding: 8px 0;
-    }
-    .call-line a {
-      color: var(--red); text-decoration: none; display: inline-block; white-space: nowrap;
-      font: 500 clamp(16px, 2.4vw, 22px)/1.2 Arial, sans-serif; letter-spacing: 0.2px; text-align: center;
-    }
-    .call-line a .num { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
-    @media (prefers-reduced-motion: no-preference) {
-      .call-line a { animation: fadeIn .5s ease-out both, redGlowOnce 1s ease-in-out both; }
-    }
-    @keyframes fadeIn { from {opacity: 0} to {opacity: 1} }
-    @keyframes redGlowOnce { 0% { text-shadow: 0 0 6px rgba(139,0,0,.55) } 100% { text-shadow: none } }
+  .call-line {
+  --red: #8B0000;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  flex-wrap: wrap;
+}
+
+.call-link {
+  color: var(--red);
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+  font: 500 clamp(16px, 2.4vw, 22px)/1.2 Arial, sans-serif;
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+
+.call-link .num {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.wa-channel-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #25D366;
+  font: 500 clamp(13px, 2vw, 15px)/1.2 Arial, sans-serif;
+  white-space: nowrap;
+}
+
+.wa-channel-link:hover,
+.wa-channel-link:focus,
+.wa-channel-link:active,
+.wa-channel-link:visited {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  outline: none !important;
+}
+
+.wa-channel-link img {
+  width: 15px;
+  height: 15px;
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .call-link {
+    animation: fadeIn .5s ease-out both, redGlowOnce 1s ease-in-out both;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes redGlowOnce {
+  0% { text-shadow: 0 0 6px rgba(139,0,0,.55) }
+  100% { text-shadow: none }
+}
 </style>
 <link href="/manifest.json" rel="manifest"/>
 <script type="application/ld+json">{
@@ -556,7 +612,25 @@
 <section class="hero-intro">
 <h2 class="no-nonsense-heading">No App. No Questions. Instant Trade-In</h2>
 <div class="call-line">
-  <a href="tel:+919886566379">Call: <span class="num">98865 66379</span> for priority assistance</a>
+
+  <a class="call-link" href="tel:+919886566379">
+    Call: <span class="num">98865 66379</span> for priority assistance
+  </a>
+
+  <a
+    class="wa-channel-link"
+    href="https://whatsapp.com/channel/0029Va6S8R33wtb0kfH5rY33"
+    target="_blank"
+    rel="noopener noreferrer">
+
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+      alt="WhatsApp">
+
+    <span>Please Join Our WhatsApp Channel</span>
+
+  </a>
+
 </div>
 </section>
 <section class="image-grid-section">
