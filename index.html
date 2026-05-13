@@ -505,8 +505,15 @@
       100% { box-shadow: 0 0 0px rgba(66, 133, 244, 0), 0 0 0px rgba(66, 133, 244, 0); }
     }
     .modal-content.pop-glow { animation: beautifulGlow 2s ease-out forwards; }
+.hero-intro .no-nonsense-heading,
+.call-link,
+.wa-channel-link {
+  font-size: clamp(1.45rem, 3vw, 2.4rem);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
 .hero-intro .no-nonsense-heading {
-  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 900;
   color: #000;
   background: none;
@@ -514,7 +521,6 @@
   background-clip: unset;
   text-align: center;
   margin: 0 auto 1.2rem;
-  line-height: 1.15;
   text-shadow: none;
 }
 
