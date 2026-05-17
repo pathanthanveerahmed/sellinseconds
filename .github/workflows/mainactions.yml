@@ -34,6 +34,6 @@ jobs:
         run: |
           git config user.name "Bot"
           git config user.email "bot@sellinseconds.in"
-          git add dynamic/data.json dynamic/buygallery.html deals/index.html dynamic/wacust/*.html
+          git add .
           git commit -m "✅ Auto update from temp.json" || echo "ℹ️ Nothing to commit"
           git push || echo "✔️ Already up to date"
