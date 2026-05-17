@@ -27,7 +27,7 @@ try {
 }
 
 sequences.forEach((sequence, i) => {
-  const targetId = i + 1; // This is the ID for the current wacust page (e.g., 9 for 9.html)
+  const targetId = i + 1;
   const cards = sequence.map(id => {
     const item = images.find(x => x.id === id);
     if (!item || !item.name || !item.filename) return '';
@@ -45,12 +45,11 @@ sequences.forEach((sequence, i) => {
 
   const first = images.find(x => x.id === targetId);
   const html = template
-    .replace(/{{TITLE}}/g, (first?.name || "SellInSeconds").replace(/,\s*(₹)/, ' ₹'))
+    .replace(/{{TITLE}}/g, (first?.name || "SellInSeconds").replace(/,\s*(₹)/, ' ₹').replace(/(\d+)\s+%/g, '$1%'))
     .replace(/{{DESCRIPTION}}/g, first?.description || "Best Used Phones, Tablets, Laptops")
     .replace(/{{FILENAME}}/g, first?.filename || "og.png")
     .replace(/{{PRICE}}/g, (first?.name.match(/Rs\.?\s*(\d+)/i)?.[1] || "0"))
-    // === THIS IS THE CRUCIAL CHANGE ===
-    .replace(/{{PAGE}}/g, targetId); // Replace {{PAGE}} with the actual ID for og:url and http-equiv refresh
+    .replace(/{{PAGE}}/g, targetId);
 
   fs.writeFileSync(`${outputDir}/${targetId}.html`, html, "utf8");
   console.log(`✅ Generated wacust/${targetId}.html`);
