@@ -1,8 +1,8 @@
 const fs = require("fs");
 
 const dataPath = "dynamic/data.json";
-const templatePath = "dynamic/buygallery-template.html";
-const outputPath = "dynamic/buygallery.html";
+const templatePath = "dynamic/deals-template.html";
+const outputPath = "dynamic/deals.html";
 
 // Step 1: Load data.json
 let data;
