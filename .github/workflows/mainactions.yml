@@ -24,6 +24,9 @@ jobs:
       - name: 🧱 Generate buygallery
         run: node dynamic/generate-buygallery.js
 
+      - name: 💫 Generate deals
+        run: node dynamic/generate-deals.js
+
       - name: 🎯 Generate wacust/N
         run: node dynamic/generate-one-wacust.js
 
@@ -31,6 +34,6 @@ jobs:
         run: |
           git config user.name "Bot"
           git config user.email "bot@sellinseconds.in"
-          git add dynamic/data.json dynamic/buygallery.html dynamic/wacust/*.html
+          git add dynamic/data.json dynamic/buygallery.html dynamic/deals.html dynamic/wacust/*.html
           git commit -m "✅ Auto update from temp.json" || echo "ℹ️ Nothing to commit"
           git push || echo "✔️ Already up to date"
