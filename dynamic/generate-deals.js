@@ -2,7 +2,7 @@ const fs = require("fs");
 
 const dataPath = "dynamic/data.json";
 const templatePath = "dynamic/deals-template.html";
-const outputPath = "dynamic/deals.html";
+const outputPath = "deals/index.html";
 
 // Step 1: Load data.json
 let data;
