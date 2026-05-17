@@ -47,7 +47,7 @@ const cardsHTML = validCards.map(item => {
         ${badge}
         <img src="/dynamic/images/${item.filename}" alt="Buy ${item.name} on SellInSeconds" />
       </div>
-      <h3>${item.name.replace(/,\s*(₹)/, ' ₹')}</h3>
+      <h3>${item.name.replace(/,\s*(₹)/, ' ₹').replace(/(\d+)\s+%/g, '$1%')}</h3>
       <p>${item.description}</p>
       <div class="whatsapp-buttons-row">
        <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F${item.id}.html" target="_blank">
