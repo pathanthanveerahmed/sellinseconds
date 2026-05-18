@@ -117,6 +117,27 @@
       margin: 0;
     }
 
+    .clinic-strip {
+      position: fixed;
+      top: 76px;
+      left: 0;
+      right: 0;
+      z-index: 998;
+      background: #fffaf3;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+
+    .clinic-strip a {
+      display: block;
+      padding: 9px 12px;
+      color: #111;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.93rem;
+      line-height: 1.2;
+    }
+
     .content-wrapper {
       padding: 20px;
     }
@@ -281,6 +302,16 @@
     </a>
   </div>
 
+  <div class="clinic-strip">
+    <a href="https://g.page/r/CX305aPLJeRsECk"
+       target="_blank"
+       rel="noopener noreferrer">
+
+      🏥 Holistic Homoeopathy Care • 🩺 View Clinic & Patient Reviews
+
+    </a>
+  </div>
+
   <div id="sticky-bar">
 
     <button id="sticky-title"></button>
@@ -296,6 +327,24 @@
 
     <div id="gallery">
       
+    <div class="card" id="card-29" data-id="29">
+      <div class="img-wrapper">
+        
+        <img src="/dynamic/images/29.webp" alt="Buy Fast Apple Repairs. Genuine Care, ₹99 on SellInSeconds" />
+      </div>
+      <h3>Fast Apple Repairs. Genuine Care ₹99</h3>
+      <p>EXPERT SERVICE FOR IPHONE, MACBOOK, IPAD, AND APPLE WATCH WITH FAST DIAGNOSTICS, QUALITY REPAIRS, AND TRUSTED SUPPORT</p>
+      <div class="whatsapp-buttons-row">
+       <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F29.html" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
+        </a>
+        <span class="arrow-text">⬇️</span>
+        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/29.html" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
+        </a>
+      </div>
+    </div>
+
     <div class="card" id="card-28" data-id="28">
       <div class="img-wrapper">
         
@@ -307,7 +356,7 @@
        <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F28.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
         </a>
-        <span class="arrow-text">⬇️</span>
+        
         <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/28.html" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
         </a>
@@ -817,24 +866,6 @@
         </a>
       </div>
     </div>
-
-    <div class="card" id="card-29" data-id="29">
-      <div class="img-wrapper">
-        
-        <img src="/dynamic/images/29.webp" alt="Buy APPLE iPad M2 AIR 5G, ₹40000 on SellInSeconds" />
-      </div>
-      <h3>APPLE iPad M2 AIR 5G ₹40000</h3>
-      <p>128 GB 💾, 99 % BATTERY HEALTH 🔋, FULL KIT, LIKE SEALED ✨💫 CONDITION, 11 INCHES DISPLAY, UNUSED DEMO UNIT</p>
-      <div class="whatsapp-buttons-row">
-       <a href="https://wa.me/919886566379?text=Hi%2C%20I%27m%20interested%20in%20this%20item%3A%20https%3A%2F%2Fwww.sellinseconds.in%2Fdynamic%2Fwacust%2F29.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Interested?
-        </a>
-        
-        <a href="https://wa.me/?text=https://www.sellinseconds.in/dynamic/wacust/29.html" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" /> Edit & Share
-        </a>
-      </div>
-    </div>
     </div>
 
   </div>
@@ -855,11 +886,15 @@
       const waBanner =
         document.querySelector(".wa-channel-banner");
 
+      const clinicStrip =
+        document.querySelector(".clinic-strip");
+
       if (callStock && waBanner) {
 
         const totalHeight =
           callStock.offsetHeight +
-          waBanner.offsetHeight;
+          waBanner.offsetHeight +
+          (clinicStrip ? clinicStrip.offsetHeight : 0);
 
         if (stickyBar) {
 
@@ -878,128 +913,6 @@
     window.addEventListener("load", updateLayout);
     window.addEventListener("resize", updateLayout);
     window.addEventListener("scroll", updateLayout, { passive: true });
-
-    window.addEventListener("load", () => {
-
-      const scrollToId =
-        sessionStorage.getItem("scrollToCardId");
-
-      if (!scrollToId) return;
-
-      sessionStorage.removeItem("scrollToCardId");
-
-      const el =
-        document.querySelector(
-          '[data-id="' + scrollToId + '"]'
-        );
-
-      if (!el) return;
-
-      const stickyOffset =
-        document.getElementById("call-stock").offsetHeight +
-        document.querySelector(".wa-channel-banner").offsetHeight +
-        12;
-
-      window.scrollTo({
-        top: el.offsetTop - stickyOffset,
-        behavior: "instant"
-      });
-
-      el.classList.add("card-pulse");
-
-      el.addEventListener(
-        "animationend",
-        () => {
-
-          el.classList.remove("card-pulse");
-
-        },
-        { once: true }
-      );
-
-      const titleEl =
-        el.querySelector(
-          "h3, h2, h1, strong, .card-title"
-        );
-
-      const waLink =
-        el.querySelector(
-          '.whatsapp-buttons-row a[href*="wa.me/9"]'
-        );
-
-      const stickyBar =
-        document.getElementById("sticky-bar");
-
-      const stickyTitle =
-        document.getElementById("sticky-title");
-
-      const stickyWa =
-        document.getElementById("sticky-wa");
-
-      if (titleEl) {
-
-        const fullText =
-          titleEl.textContent.trim();
-
-        const priceMatch =
-          fullText.match(/₹[\d,]+/);
-
-        const price =
-          priceMatch ? priceMatch[0] : '';
-
-        const nameOnly =
-          fullText
-            .split(',')[0]
-            .replace(/₹[\d,]+/, '')
-            .trim();
-
-        stickyTitle.textContent =
-          nameOnly +
-          (price ? ' ' + price : '');
-
-        stickyTitle.addEventListener(
-          "click",
-          () => {
-
-            window.scrollTo({
-              top: el.offsetTop - 120,
-              behavior: "smooth"
-            });
-
-          }
-        );
-      }
-
-      if (waLink) {
-        stickyWa.href = waLink.href;
-      }
-
-      const observer =
-        new IntersectionObserver(
-
-          (entries) => {
-
-            entries.forEach(entry => {
-
-              if (!entry.isIntersecting) {
-                stickyBar.classList.add("visible");
-              } else {
-                stickyBar.classList.remove("visible");
-              }
-
-            });
-
-          },
-
-          {
-            threshold: 0.1
-          }
-
-        );
-
-      observer.observe(el);
-
-    });
 
   </script>
 
