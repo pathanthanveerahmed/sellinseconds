@@ -161,6 +161,73 @@
       flex-shrink: 0;
     }
 
+    @keyframes cardPulse {
+
+      0% {
+        box-shadow:
+          0 0 0 0 rgba(139,0,0,0.75),
+          0 2px 8px rgba(0,0,0,0.05);
+        border-color: #8B0000;
+      }
+
+      50% {
+        box-shadow:
+          0 0 0 14px rgba(139,0,0,0.15),
+          0 2px 8px rgba(0,0,0,0.05);
+        border-color: #8B0000;
+      }
+
+      100% {
+        box-shadow:
+          0 0 0 0 rgba(139,0,0,0),
+          0 2px 8px rgba(0,0,0,0.05);
+      }
+
+    }
+
+    .card-pulse {
+      animation: cardPulse 2s ease-out 1;
+    }
+
+    #sticky-bar {
+      display: none;
+      position: fixed;
+      left: 0;
+      right: 0;
+      z-index: 998;
+      background: #111;
+      color: white;
+      padding: 8px 14px;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    #sticky-bar.visible {
+      display: flex;
+    }
+
+    #sticky-title {
+      background: none;
+      border: none;
+      color: white;
+      text-align: left;
+      font-size: 14px;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 80%;
+      cursor: pointer;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+    }
+
+    #sticky-wa img {
+      width: 28px;
+      height: 28px;
+    }
+
   </style>
 
 </head>
@@ -206,7 +273,22 @@
       rel="noopener noreferrer"
     >
 
-      🏥Best Homeopathy Clinic Bangalore-CLICK HERE🩺
+      🏥Best Homeopathy Clinic in Bangalore-CLICK HERE🩺
+
+    </a>
+
+  </div>
+
+  <div id="sticky-bar">
+
+    <button id="sticky-title"></button>
+
+    <a id="sticky-wa" href="#">
+
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+        alt="WhatsApp"
+      />
 
     </a>
 
@@ -221,6 +303,138 @@
     </div>
 
   </div>
+
+  <script>
+
+    function updateLayout() {
+
+      const callStock =
+        document.querySelector(".call-stock");
+
+      const stickyBar =
+        document.getElementById("sticky-bar");
+
+      const contentWrapper =
+        document.querySelector(".content-wrapper");
+
+      const waBanner =
+        document.querySelector(".wa-channel-banner");
+
+      const clinicStrip =
+        document.querySelector(".clinic-strip");
+
+      const totalHeight =
+        callStock.offsetHeight +
+        waBanner.offsetHeight +
+        clinicStrip.offsetHeight;
+
+      stickyBar.style.top =
+        totalHeight + "px";
+
+      contentWrapper.style.paddingTop =
+        (totalHeight + 20) + "px";
+    }
+
+    window.addEventListener("load", updateLayout);
+    window.addEventListener("resize", updateLayout);
+
+    window.addEventListener("load", () => {
+
+      const scrollToId =
+        sessionStorage.getItem("scrollToCardId");
+
+      if (!scrollToId) return;
+
+      sessionStorage.removeItem("scrollToCardId");
+
+      const el =
+        document.querySelector(
+          '[data-id="' + scrollToId + '"]'
+        );
+
+      if (!el) return;
+
+      const stickyOffset =
+        document.querySelector(".call-stock").offsetHeight +
+        document.querySelector(".wa-channel-banner").offsetHeight +
+        document.querySelector(".clinic-strip").offsetHeight +
+        12;
+
+      window.scrollTo({
+        top: el.offsetTop - stickyOffset,
+        behavior: "instant"
+      });
+
+      el.classList.add("card-pulse");
+
+      setTimeout(() => {
+
+        el.classList.remove("card-pulse");
+
+      }, 2000);
+
+      const titleEl =
+        el.querySelector("h3");
+
+      const waLink =
+        el.querySelector(
+          '.whatsapp-buttons-row a[href*="wa.me/9"]'
+        );
+
+      const stickyBar =
+        document.getElementById("sticky-bar");
+
+      const stickyTitle =
+        document.getElementById("sticky-title");
+
+      const stickyWa =
+        document.getElementById("sticky-wa");
+
+      if (titleEl) {
+
+        stickyTitle.textContent =
+          titleEl.textContent.trim();
+
+      }
+
+      if (waLink) {
+
+        stickyWa.href = waLink.href;
+
+      }
+
+      const observer =
+        new IntersectionObserver(
+
+          (entries) => {
+
+            entries.forEach(entry => {
+
+              if (!entry.isIntersecting) {
+
+                stickyBar.classList.add("visible");
+
+              } else {
+
+                stickyBar.classList.remove("visible");
+
+              }
+
+            });
+
+          },
+
+          {
+            threshold: 0.1
+          }
+
+        );
+
+      observer.observe(el);
+
+    });
+
+  </script>
 
 </body>
 </html>
