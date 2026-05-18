@@ -307,14 +307,14 @@
 
         <img
           src="/dynamic/images/29.webp"
-          alt="Buy Fast Apple Repairs. Genuine Care, ₹999 on SellInSeconds"
+          alt="Buy Fast Apple Repairs. Genuine Care, ₹99 on SellInSeconds"
         />
 
       </div>
 
       <h3>
 
-        Fast Apple Repairs. Genuine Care ₹999
+        Fast Apple Repairs. Genuine Care ₹99
 
       </h3>
 
@@ -2027,7 +2027,7 @@
 
       const waLink =
         el.querySelector(
-          '.whatsapp-buttons-row a[href*="wa.me/9"]'
+          '.whatsapp-buttons-row a'
         );
 
       const stickyBar =
@@ -2043,6 +2043,15 @@
 
         stickyTitle.textContent =
           titleEl.textContent.trim();
+
+        stickyTitle.onclick = () => {
+
+          window.scrollTo({
+            top: el.offsetTop - stickyOffset,
+            behavior: "smooth"
+          });
+
+        };
 
       }
 
