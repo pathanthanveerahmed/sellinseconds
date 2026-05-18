@@ -105,7 +105,7 @@
       padding: 8px 12px;
       color: #111;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.93rem;
       line-height: 1.2;
     }
@@ -136,28 +136,39 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px;
-      gap: 10px;
+      padding: 12px;
+      gap: 12px;
     }
 
     .whatsapp-buttons-row a {
       background: #25D366;
       color: white;
       text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 8px;
+      padding: 12px 14px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 16px;
+      font-weight: 700;
       flex: 1;
+      box-shadow:
+        0 2px 6px rgba(0,0,0,0.12);
+
+      transition:
+        transform 0.15s ease,
+        opacity 0.15s ease;
+    }
+
+    .whatsapp-buttons-row a:active {
+      transform: scale(0.98);
+      opacity: 0.9;
     }
 
     .whatsapp-buttons-row img {
       width: 20px;
       height: 20px;
-      margin-right: 6px;
+      margin-right: 8px;
       flex-shrink: 0;
     }
 
@@ -221,11 +232,14 @@
       cursor: pointer;
       padding: 0;
       font-family: system-ui, sans-serif;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     #sticky-wa img {
       width: 28px;
       height: 28px;
+      display: block;
     }
 
   </style>
@@ -283,7 +297,11 @@
 
     <button id="sticky-title"></button>
 
-    <a id="sticky-wa" href="#">
+    <a
+      id="sticky-wa"
+      href="#"
+      target="_blank"
+    >
 
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
@@ -378,7 +396,7 @@
 
       const waLink =
         el.querySelector(
-          '.whatsapp-buttons-row a'
+          '.whatsapp-buttons-row a[href*="wa.me/919886566379"]'
         );
 
       const stickyBar =
