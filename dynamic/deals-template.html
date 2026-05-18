@@ -378,7 +378,7 @@
 
       const waLink =
         el.querySelector(
-          '.whatsapp-buttons-row a[href*="wa.me/9"]'
+          '.whatsapp-buttons-row a'
         );
 
       const stickyBar =
@@ -394,6 +394,15 @@
 
         stickyTitle.textContent =
           titleEl.textContent.trim();
+
+        stickyTitle.onclick = () => {
+
+          window.scrollTo({
+            top: el.offsetTop - stickyOffset,
+            behavior: "smooth"
+          });
+
+        };
 
       }
 
