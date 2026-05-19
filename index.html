@@ -604,6 +604,139 @@ font-size: 1.45rem;
     height: 22px;
   }
 }
+/* TODAY'S DEALS BANNER */
+
+.todays-deals-banner{
+  margin: 2px auto 8px;
+  padding: 12px 24px;
+
+  width: fit-content;
+  max-width: 90%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  text-align: center;
+
+  background: linear-gradient(135deg,#111,#1f1f1f,#000);
+  border: 2px solid #ffcc00;
+  border-radius: 999px;
+
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+
+  box-shadow:
+    0 0 10px rgba(255,204,0,0.6),
+    0 0 25px rgba(255,204,0,0.35);
+
+  animation: dealsPulse 1.4s infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shine effect */
+
+.todays-deals-banner::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-120%;
+
+  width:60%;
+  height:100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.55),
+    transparent
+  );
+
+  transform: skewX(-25deg);
+
+  animation: shineMove 2.8s infinite;
+}
+
+/* Green live dot */
+
+.deal-dot{
+  width:10px;
+  height:10px;
+
+  background:#00ff66;
+  border-radius:50%;
+
+  box-shadow:0 0 10px #00ff66;
+
+  animation: blinkDot 1s infinite;
+}
+
+/* Flash icon */
+
+.deal-fire{
+  animation: flashIcon 1s infinite;
+}
+
+/* Animations */
+
+@keyframes dealsPulse{
+
+  0%{
+    transform: scale(1);
+
+    box-shadow:
+      0 0 10px rgba(255,204,0,0.5),
+      0 0 20px rgba(255,204,0,0.25);
+  }
+
+  50%{
+    transform: scale(1.03);
+
+    box-shadow:
+      0 0 18px rgba(255,204,0,0.9),
+      0 0 35px rgba(255,204,0,0.55);
+  }
+
+  100%{
+    transform: scale(1);
+
+    box-shadow:
+      0 0 10px rgba(255,204,0,0.5),
+      0 0 20px rgba(255,204,0,0.25);
+  }
+}
+
+@keyframes blinkDot{
+  0%,100%{ opacity:1; }
+  50%{ opacity:0.3; }
+}
+
+@keyframes flashIcon{
+  0%,100%{ transform: scale(1); }
+  50%{ transform: scale(1.25); }
+}
+
+@keyframes shineMove{
+  0%{ left:-120%; }
+  100%{ left:140%; }
+}
+
+/* Mobile */
+
+@media (max-width:600px){
+
+  .todays-deals-banner{
+    font-size: 0.95rem;
+    padding: 10px 18px;
+    gap: 8px;
+  }
+
+}
 </style>
 <link href="/manifest.json" rel="manifest"/>
 <script type="application/ld+json">{
@@ -658,6 +791,13 @@ font-size: 1.45rem;
     <span>Join WhatsApp Channel • Best Deals</span>
 
   </a>
+
+</div>
+<div class="todays-deals-banner">
+  <span class="deal-dot"></span>
+  TODAY’S DEALS
+  <span class="deal-fire">⚡</span>
+</div>
 
 </div>
 </section>
