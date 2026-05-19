@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-IN">
 <head>
-<meta
-  http-equiv="Content-Security-Policy"
-  content="
-    default-src 'self' https: data: blob:;
-    img-src 'self' https: data:;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com data:;
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com;
-    connect-src 'self' https://www.google-analytics.com;
-  ">
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="Sell or exchange your phone, iPad, or laptop instantly. Get free pickup, instant quotes &amp; best price across brands like Apple, Samsung, Dell &amp; more. Trusted gadget repair &amp; buyback platform." name="description"/>
@@ -592,8 +582,8 @@ font-size: 1.45rem;
   }
 
   .call-link {
-  font-size: 1.18rem;
-}
+    font-size: 1.5rem;
+  }
 
   .wa-channel-link {
     font-size: 1.25rem;
@@ -603,139 +593,6 @@ font-size: 1.45rem;
     width: 22px;
     height: 22px;
   }
-}
-/* TODAY'S DEALS BANNER */
-
-.todays-deals-banner{
-  margin: 2px auto 8px;
-  padding: 12px 24px;
-
-  width: fit-content;
-  max-width: 90%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  text-align: center;
-
-  background: linear-gradient(135deg,#111,#1f1f1f,#000);
-  border: 2px solid #ffcc00;
-  border-radius: 999px;
-
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.15rem;
-  font-weight: 900;
-  letter-spacing: 1px;
-
-  box-shadow:
-    0 0 10px rgba(255,204,0,0.6),
-    0 0 25px rgba(255,204,0,0.35);
-
-  animation: dealsPulse 1.4s infinite;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Shine effect */
-
-.todays-deals-banner::before{
-  content:'';
-  position:absolute;
-  top:0;
-  left:-120%;
-
-  width:60%;
-  height:100%;
-
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255,255,255,0.55),
-    transparent
-  );
-
-  transform: skewX(-25deg);
-
-  animation: shineMove 2.8s infinite;
-}
-
-/* Green live dot */
-
-.deal-dot{
-  width:10px;
-  height:10px;
-
-  background:#00ff66;
-  border-radius:50%;
-
-  box-shadow:0 0 10px #00ff66;
-
-  animation: blinkDot 1s infinite;
-}
-
-/* Flash icon */
-
-.deal-fire{
-  animation: flashIcon 1s infinite;
-}
-
-/* Animations */
-
-@keyframes dealsPulse{
-
-  0%{
-    transform: scale(1);
-
-    box-shadow:
-      0 0 10px rgba(255,204,0,0.5),
-      0 0 20px rgba(255,204,0,0.25);
-  }
-
-  50%{
-    transform: scale(1.03);
-
-    box-shadow:
-      0 0 18px rgba(255,204,0,0.9),
-      0 0 35px rgba(255,204,0,0.55);
-  }
-
-  100%{
-    transform: scale(1);
-
-    box-shadow:
-      0 0 10px rgba(255,204,0,0.5),
-      0 0 20px rgba(255,204,0,0.25);
-  }
-}
-
-@keyframes blinkDot{
-  0%,100%{ opacity:1; }
-  50%{ opacity:0.3; }
-}
-
-@keyframes flashIcon{
-  0%,100%{ transform: scale(1); }
-  50%{ transform: scale(1.25); }
-}
-
-@keyframes shineMove{
-  0%{ left:-120%; }
-  100%{ left:140%; }
-}
-
-/* Mobile */
-
-@media (max-width:600px){
-
-  .todays-deals-banner{
-    font-size: 0.95rem;
-    padding: 10px 18px;
-    gap: 8px;
-  }
-
 }
 </style>
 <link href="/manifest.json" rel="manifest"/>
@@ -775,8 +632,8 @@ font-size: 1.45rem;
 <div class="call-line">
 
   <a class="call-link" href="tel:+919886566379">
-  Call <span class="num">9886566379</span> • Priority Assistance
-</a>
+    Call: <span class="num">98865 66379</span> for priority assistance
+  </a>
 
   <a
     class="wa-channel-link"
@@ -788,16 +645,9 @@ font-size: 1.45rem;
       src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
       alt="WhatsApp">
 
-    <span>Join WhatsApp Channel • Best Deals</span>
+    <span>Please Join Our WhatsApp Channel</span>
 
   </a>
-
-</div>
-<div class="todays-deals-banner" onclick="window.location.href='https://www.sellinseconds.in/deals'" style="cursor: pointer;">
-  <span class="deal-dot"></span>
-  TODAY’S DEALS
-  <span class="deal-fire">⚡</span>
-</div>
 
 </div>
 </section>
@@ -1102,7 +952,7 @@ Disclaimer: We handle genuine products only. Identity Proof (Aadhaar/Voter ID/Dr
 
           // Redirect immediately for Buy — no voice, no form
           if (gadgetInterest === "Buy Pre-owned Gadgets") {
-            window.location.href = 'https://www.sellinseconds.in/deals/';
+            window.location.href = 'https://www.sellinseconds.in/dynamic/buygallery.html';
             return;
           }
 
