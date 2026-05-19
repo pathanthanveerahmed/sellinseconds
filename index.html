@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en-IN">
 <head>
+<meta
+  http-equiv="Content-Security-Policy"
+  content="
+    default-src 'self' https: data: blob:;
+    img-src 'self' https: data:;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com data:;
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com;
+    connect-src 'self' https://www.google-analytics.com;
+  ">
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="Sell or exchange your phone, iPad, or laptop instantly. Get free pickup, instant quotes &amp; best price across brands like Apple, Samsung, Dell &amp; more. Trusted gadget repair &amp; buyback platform." name="description"/>
@@ -583,7 +593,6 @@ font-size: 1.45rem;
 
   .call-link {
   font-size: 1.18rem;
-  white-space: nowrap;
 }
 
   .wa-channel-link {
