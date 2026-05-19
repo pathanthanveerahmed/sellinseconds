@@ -1214,10 +1214,13 @@ Chip Level Laptop Repair Whitefield
       formBody.append("mobile", mobile);
       formBody.append("interest", interest);
       fetch(form.action, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formBody.toString()
-      })
+  method: "POST",
+  mode: "no-cors",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  body: formBody.toString()
+})
       .then(response => {
         clearTimeout(loadingTimeout);
         hideLoading();
