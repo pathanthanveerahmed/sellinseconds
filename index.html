@@ -14,7 +14,8 @@ connect-src 'self'
 https://www.google-analytics.com
 https://script.google.com
 https://script.googleusercontent.com
-https://script.googleapis.com;
+https://script.googleapis.com
+https://*.googleusercontent.com;
 form-action 'self' https://script.google.com;
 frame-src
 https://script.google.com
@@ -1025,7 +1026,7 @@ Chip Level Laptop Repair Whitefield
 <button class="modal-close-button" id="modalCloseButton">OK</button>
 </div>
 </div>
-<script async="" defer="" src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QMV442HBWL"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -1215,34 +1216,40 @@ Chip Level Laptop Repair Whitefield
       formBody.append("interest", interest);
       fetch(form.action, {
   method: "POST",
-  mode: "no-cors",
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded"
-  },
+  headers: { "Content-Type": "application/x-www-form-urlencoded" },
   body: formBody.toString()
 })
-      .then(response => {
-        clearTimeout(loadingTimeout);
-        hideLoading();
-        if (response.ok) {
-          showModal("Form submitted successfully! We will contact you soon.");
-          form.reset();
-          document.querySelectorAll('.image-container.selected').forEach(c => {
-            c.classList.remove('selected');
-            c.setAttribute('aria-pressed', 'false');
-          });
-          if (submitButton) { submitButton.textContent = "Submit Another Inquiry"; }
-          interestInput.value = "";
-          nameInput.classList.remove('wave');
-        } else {
-          response.text().then(() => { showModal("Failed to submit. Please try again. (Server error " + response.status + ")"); });
-        }
-      })
-      .catch(() => {
-        clearTimeout(loadingTimeout);
-        hideLoading();
-        showModal("Failed to submit. Please check your internet connection and try again. (Network error)");
-      });
+.then(response => {
+  clearTimeout(loadingTimeout);
+  hideLoading();
+
+  if (response.ok) {
+    showModal("Form submitted successfully! We will contact you soon.");
+    form.reset();
+
+    document.querySelectorAll('.image-container.selected').forEach(c => {
+      c.classList.remove('selected');
+      c.setAttribute('aria-pressed', 'false');
+    });
+
+    if (submitButton) {
+      submitButton.textContent = "Submit Another Inquiry";
+    }
+
+    interestInput.value = "";
+    nameInput.classList.remove('wave');
+
+  } else {
+    response.text().then(() => {
+      showModal("Failed to submit. Please try again. (Server error " + response.status + ")");
+    });
+  }
+})
+.catch(() => {
+  clearTimeout(loadingTimeout);
+  hideLoading();
+  showModal("Failed to submit. Please check your internet connection and try again. (Network error)");
+});
     });
     function showLoading() {
       if (submitButton) { submitButton.disabled = true; submitButton.textContent = "Submitting..."; }
