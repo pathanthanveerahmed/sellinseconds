@@ -1,6 +1,6 @@
 {
-  "active": 21,
-  "updated": 1785384323971,
+  "active": 22,
+  "updated": 1785467196852,
   "sequences": [
     [
       1,
@@ -1092,7 +1092,7 @@
     },
     {
       "id": 22,
-      "name": "APPLE MacBook PRO 2016, intel CORE i5-6th Gen, 8GB RAM, 256GB SSD, 13 inch RETINA DISPLAY, 144 CYCLE COUNT, ₹14999",
+      "name": "Lenovo ThinkPad P14S Gen 2, 14 inch 4K display, intel CORE i7-11th Gen, 16GB RAM, 512GB SSD, NVIDIA T500 (4GB) graphics, ₹44999",
       "description": "",
       "filename": "22.webp"
     },
