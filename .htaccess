@@ -1,69 +1,62 @@
+Absolutely bro. Here is the full .htaccess file, with the .com → .in redirect added while keeping your existing compression and caching settings unchanged.
+
 # =========================================================
 # SELL IN SECONDS - .htaccess
 # Primary Domain: https://www.sellinseconds.in
 # =========================================================
-
 RewriteEngine On
-
 # =========================================================
-# 1. FORCE HTTPS + PRIMARY WWW .IN DOMAIN
+# 1. FORCE HTTPS + REDIRECT .COM TO PRIMARY .IN DOMAIN
 # =========================================================
-
+# Redirect old .COM domain to the new .IN domain
+# Preserves the complete URL path and query string
+#
+# Example:
+# https://www.sellinseconds.com/dynamic/wacust/2
+# ->
+# https://www.sellinseconds.in/dynamic/wacust/2
+RewriteCond %{HTTP_HOST} ^(www\.)?sellinseconds\.com$ [NC]
+RewriteRule ^ https://www.sellinseconds.in%{REQUEST_URI} [R=301,L]
+# Force HTTPS + primary WWW .IN domain
 RewriteCond %{HTTP_HOST} !^www\.sellinseconds\.in$ [NC,OR]
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://www.sellinseconds.in%{REQUEST_URI} [R=301,L]
-
-
 # =========================================================
 # 2. ENABLE GZIP / DEFLATE COMPRESSION
 # =========================================================
-
 <IfModule mod_deflate.c>
-
     AddOutputFilterByType DEFLATE text/plain
     AddOutputFilterByType DEFLATE text/html
     AddOutputFilterByType DEFLATE text/xml
     AddOutputFilterByType DEFLATE text/css
     AddOutputFilterByType DEFLATE text/javascript
-
     AddOutputFilterByType DEFLATE application/json
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
     AddOutputFilterByType DEFLATE application/xml
     AddOutputFilterByType DEFLATE application/xhtml+xml
     AddOutputFilterByType DEFLATE image/svg+xml
-
 </IfModule>
-
-
 # =========================================================
 # 3. BROWSER CACHING
 # =========================================================
-
 <IfModule mod_expires.c>
-
     ExpiresActive On
-
     # Default
     ExpiresDefault "access plus 7 days"
-
     # HTML
     ExpiresByType text/html "access plus 1 hour"
     ExpiresByType text/htm "access plus 1 hour"
-
     # CSS
     ExpiresByType text/css "access plus 30 days"
-
     # JavaScript
     ExpiresByType text/javascript "access plus 30 days"
     ExpiresByType application/javascript "access plus 30 days"
     ExpiresByType application/x-javascript "access plus 30 days"
-
     # JSON / XML
     ExpiresByType application/json "access plus 1 hour"
     ExpiresByType application/xml "access plus 1 hour"
     ExpiresByType text/xml "access plus 1 hour"
-
     # Images
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
@@ -71,50 +64,36 @@ RewriteRule ^ https://www.sellinseconds.in%{REQUEST_URI} [R=301,L]
     ExpiresByType image/gif "access plus 1 year"
     ExpiresByType image/svg+xml "access plus 1 year"
     ExpiresByType image/x-icon "access plus 1 year"
-
     # Fonts
     ExpiresByType font/woff2 "access plus 1 year"
     ExpiresByType font/woff "access plus 1 year"
-
 </IfModule>
-
-
 # =========================================================
 # 4. CACHE-CONTROL HEADERS
 # =========================================================
-
 <IfModule mod_headers.c>
-
     # Long-term cache for static assets
     <FilesMatch "\.(ico|jpg|jpeg|png|webp|gif|svg|js|css|woff|woff2)$">
         Header set Cache-Control "public, max-age=31536000"
     </FilesMatch>
-
     # Shorter cache for HTML
     <FilesMatch "\.(html|htm)$">
         Header set Cache-Control "public, max-age=3600"
     </FilesMatch>
-
     # JSON - keep relatively short because your product data may change
     <FilesMatch "\.json$">
         Header set Cache-Control "public, max-age=3600"
     </FilesMatch>
-
     # Remove ETag
     Header unset ETag
-
 </IfModule>
-
-
 # =========================================================
 # 5. DISABLE FILE ETAGS
 # =========================================================
-
 FileETag None
-
-
 # =========================================================
 # 6. GZIP FILE EXTENSION SUPPORT
 # =========================================================
-
 AddEncoding gzip .gz
+
+This is the version I’d use. No individual /dynamic/wacust/ redirects are needed; every .com URL automatically carries its exact path over to .in.
