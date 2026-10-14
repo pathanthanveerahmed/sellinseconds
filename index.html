@@ -1114,9 +1114,27 @@ Disclaimer: We deal exclusively in genuine products and quality service solution
       .then(response => {
         clearTimeout(loadingTimeout);
         hideLoading();
-        if (response.ok) {
-          showModal("Form submitted successfully! We will contact you soon.");
-          form.reset();
+        
+if (response.ok) {
+  // Prepare WhatsApp message for Sell In Seconds
+  const whatsappNumber = "919886566379";
+  const whatsappMessage =
+    "Hi Sell In Seconds! I just submitted an enquiry on your website.\n\n" +
+    "Name: " + name + "\n" +
+    "Mobile: " + mobile + "\n" +
+    "Interested in: " + interest;
+
+  const whatsappURL =
+    "https://wa.me/" + whatsappNumber +
+    "?text=" + encodeURIComponent(whatsappMessage);
+
+  // Show success message and open WhatsApp
+  showModal("Form submitted successfully! Opening WhatsApp to send your enquiry.");
+
+  window.open(whatsappURL, "_blank");
+
+  form.reset();
+
           document.querySelectorAll('.image-container.selected').forEach(c => {
             c.classList.remove('selected');
             c.setAttribute('aria-pressed', 'false');
